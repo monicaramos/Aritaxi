@@ -1,0 +1,1388 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
+Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
+Begin VB.Form frmGesServSocios 
+   BorderStyle     =   3  'Fixed Dialog
+   Caption         =   "Servicios de Socio"
+   ClientHeight    =   6015
+   ClientLeft      =   45
+   ClientTop       =   630
+   ClientWidth     =   11085
+   ClipControls    =   0   'False
+   Icon            =   "frmGesServSocios.frx":0000
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   6015
+   ScaleWidth      =   11085
+   ShowInTaskbar   =   0   'False
+   StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtAux 
+      Alignment       =   1  'Right Justify
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   315
+      Index           =   5
+      Left            =   1170
+      MaxLength       =   7
+      TabIndex        =   1
+      Tag             =   "Socio|N|N|||sfactsoctr|codsocio|000000||"
+      Text            =   "socios"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   615
+   End
+   Begin VB.TextBox txtAux 
+      Alignment       =   1  'Right Justify
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   315
+      Index           =   1
+      Left            =   9360
+      MaxLength       =   10
+      TabIndex        =   5
+      Tag             =   "Importe|N|N|||sfactsoctr|importe|###,##0.00|N|"
+      Text            =   "Impo"
+      Top             =   3570
+      Visible         =   0   'False
+      Width           =   1065
+   End
+   Begin VB.TextBox txtAux 
+      Alignment       =   1  'Right Justify
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   315
+      Index           =   3
+      Left            =   5040
+      MaxLength       =   10
+      TabIndex        =   2
+      Tag             =   "Fecha|F|N|||sfactsoctr|fecfactu|dd/mm/yyyy|S|"
+      Text            =   "fecha"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   975
+   End
+   Begin VB.TextBox txtAux 
+      Alignment       =   1  'Right Justify
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   315
+      Index           =   2
+      Left            =   8700
+      MaxLength       =   7
+      TabIndex        =   4
+      Tag             =   "Servicios|N|N|||sfactsoctr|numserv|###,##0||"
+      Text            =   "servici"
+      Top             =   3570
+      Visible         =   0   'False
+      Width           =   615
+   End
+   Begin VB.CommandButton cmdAux 
+      Appearance      =   0  'Flat
+      Caption         =   "+"
+      Height          =   315
+      Index           =   1
+      Left            =   6060
+      TabIndex        =   20
+      ToolTipText     =   "Buscar fecha"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   195
+   End
+   Begin VB.TextBox txtAux 
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   315
+      Index           =   4
+      Left            =   6300
+      MaxLength       =   40
+      TabIndex        =   3
+      Tag             =   "Concepto|T|S|||sfactsoctr|concepto|||"
+      Text            =   "concept"
+      Top             =   3570
+      Visible         =   0   'False
+      Width           =   2355
+   End
+   Begin VB.CheckBox chkAux 
+      BackColor       =   &H80000005&
+      Height          =   255
+      Index           =   0
+      Left            =   10590
+      TabIndex        =   6
+      Tag             =   "Int.Contable|N|N|||sfactsoctr|facturado|||"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   255
+   End
+   Begin VB.TextBox Text1 
+      Alignment       =   1  'Right Justify
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000018&
+      BorderStyle     =   0  'None
+      Height          =   285
+      Left            =   9060
+      Locked          =   -1  'True
+      TabIndex        =   18
+      Top             =   5010
+      Width           =   1215
+   End
+   Begin VB.Frame Frame1 
+      Height          =   540
+      Index           =   0
+      Left            =   240
+      TabIndex        =   15
+      Top             =   5400
+      Width           =   2535
+      Begin VB.Label lblIndicador 
+         Alignment       =   2  'Center
+         Caption         =   "Label2"
+         Height          =   240
+         Left            =   240
+         TabIndex        =   16
+         Top             =   180
+         Width           =   2115
+      End
+   End
+   Begin VB.CommandButton cmdAux 
+      Appearance      =   0  'Flat
+      Caption         =   "+"
+      Height          =   315
+      Index           =   0
+      Left            =   930
+      TabIndex        =   14
+      ToolTipText     =   "Buscar VSocio"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   195
+   End
+   Begin VB.TextBox txtAux 
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   315
+      Index           =   0
+      Left            =   360
+      MaxLength       =   6
+      TabIndex        =   0
+      Tag             =   "VSocio|N|N|0|9999|sfactsoctr|numeruve|0000|S|"
+      Text            =   "vsocio"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   525
+   End
+   Begin VB.CommandButton cmdAceptar 
+      Caption         =   "&Aceptar"
+      Height          =   375
+      Left            =   8520
+      TabIndex        =   7
+      Top             =   5400
+      Width           =   1035
+   End
+   Begin VB.CommandButton cmdCancelar 
+      Cancel          =   -1  'True
+      Caption         =   "&Cancelar"
+      Height          =   375
+      Left            =   9675
+      TabIndex        =   8
+      Top             =   5400
+      Width           =   1035
+   End
+   Begin VB.CommandButton cmdRegresar 
+      Caption         =   "&Regresar"
+      Height          =   375
+      Left            =   9675
+      TabIndex        =   9
+      Top             =   5400
+      Visible         =   0   'False
+      Width           =   1035
+   End
+   Begin VB.TextBox Text2 
+      BackColor       =   &H80000018&
+      Height          =   315
+      Index           =   0
+      Left            =   1920
+      Locked          =   -1  'True
+      MaxLength       =   40
+      TabIndex        =   12
+      Text            =   "Text2 Text2 Text2 Text2 Text2 Text2 Text"
+      Top             =   3600
+      Visible         =   0   'False
+      Width           =   3075
+   End
+   Begin MSComctlLib.Toolbar Toolbar1 
+      Align           =   1  'Align Top
+      Height          =   420
+      Left            =   0
+      TabIndex        =   10
+      Top             =   0
+      Width           =   11085
+      _ExtentX        =   19553
+      _ExtentY        =   741
+      ButtonWidth     =   609
+      ButtonHeight    =   582
+      AllowCustomize  =   0   'False
+      Appearance      =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   11
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Buscar"
+         EndProperty
+         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Ver Todos"
+         EndProperty
+         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Style           =   3
+         EndProperty
+         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Style           =   3
+         EndProperty
+         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Nuevo"
+            Object.Tag             =   "2"
+         EndProperty
+         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Modificar"
+            Object.Tag             =   "2"
+         EndProperty
+         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Eliminar"
+            Object.Tag             =   "2"
+         EndProperty
+         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Style           =   3
+         EndProperty
+         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Style           =   3
+         EndProperty
+         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Imprimir"
+         EndProperty
+         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Salir"
+         EndProperty
+      EndProperty
+      Begin VB.CheckBox chkVistaPrevia 
+         Caption         =   "Vista previa"
+         Height          =   315
+         Left            =   6600
+         TabIndex        =   13
+         Top             =   0
+         Visible         =   0   'False
+         Width           =   1215
+      End
+   End
+   Begin MSAdodcLib.Adodc Data1 
+      Height          =   330
+      Left            =   5040
+      Top             =   5400
+      Visible         =   0   'False
+      Width           =   1575
+      _ExtentX        =   2778
+      _ExtentY        =   582
+      ConnectMode     =   0
+      CursorLocation  =   3
+      IsolationLevel  =   -1
+      ConnectionTimeout=   15
+      CommandTimeout  =   30
+      CursorType      =   3
+      LockType        =   3
+      CommandType     =   8
+      CursorOptions   =   0
+      CacheSize       =   50
+      MaxRecords      =   0
+      BOFAction       =   0
+      EOFAction       =   0
+      ConnectStringType=   1
+      Appearance      =   1
+      BackColor       =   -2147483643
+      ForeColor       =   -2147483640
+      Orientation     =   0
+      Enabled         =   -1
+      Connect         =   ""
+      OLEDBString     =   ""
+      OLEDBFile       =   ""
+      DataSourceName  =   ""
+      OtherAttributes =   ""
+      UserName        =   ""
+      Password        =   ""
+      RecordSource    =   ""
+      Caption         =   "Adodc1"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      _Version        =   393216
+   End
+   Begin MSDataGridLib.DataGrid DataGrid1 
+      Bindings        =   "frmGesServSocios.frx":000C
+      Height          =   4115
+      Left            =   240
+      TabIndex        =   17
+      Top             =   720
+      Width           =   10665
+      _ExtentX        =   18812
+      _ExtentY        =   7250
+      _Version        =   393216
+      AllowUpdate     =   0   'False
+      AllowArrows     =   -1  'True
+      BorderStyle     =   0
+      ColumnHeaders   =   -1  'True
+      HeadLines       =   1
+      RowHeight       =   15
+      FormatLocked    =   -1  'True
+      BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ColumnCount     =   2
+      BeginProperty Column00 
+         DataField       =   ""
+         Caption         =   ""
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   3082
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      BeginProperty Column01 
+         DataField       =   ""
+         Caption         =   ""
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   3082
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      SplitCount      =   1
+      BeginProperty Split0 
+         BeginProperty Column00 
+         EndProperty
+         BeginProperty Column01 
+         EndProperty
+      EndProperty
+   End
+   Begin VB.Image imgDoc 
+      Height          =   330
+      Index           =   0
+      Left            =   3150
+      MousePointer    =   4  'Icon
+      Tag             =   "-1"
+      ToolTipText     =   "Detalle de Servicios"
+      Top             =   5460
+      Width           =   360
+   End
+   Begin VB.Label Label2 
+      Caption         =   "IMPORTE TOTAL: "
+      Height          =   195
+      Left            =   7560
+      TabIndex        =   19
+      Top             =   5040
+      Width           =   1395
+   End
+   Begin VB.Label Label10 
+      Caption         =   "Cargando datos ........."
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Left            =   240
+      TabIndex        =   11
+      Top             =   8220
+      Visible         =   0   'False
+      Width           =   3495
+   End
+   Begin VB.Menu mnOpciones 
+      Caption         =   "&Opciones"
+      Begin VB.Menu mnBuscar 
+         Caption         =   "&Buscar"
+         Shortcut        =   ^F
+      End
+      Begin VB.Menu mnVerTodos 
+         Caption         =   "&Ver Todos"
+         Shortcut        =   ^B
+      End
+      Begin VB.Menu mnBarra1 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnNuevo 
+         Caption         =   "&Nuevo"
+         HelpContextID   =   2
+         Shortcut        =   ^N
+      End
+      Begin VB.Menu mnModificar 
+         Caption         =   "&Modificar"
+         HelpContextID   =   2
+         Shortcut        =   ^M
+      End
+      Begin VB.Menu mnEliminar 
+         Caption         =   "&Eliminar"
+         HelpContextID   =   2
+         Shortcut        =   ^E
+      End
+      Begin VB.Menu mnBarra3 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnImprimir 
+         Caption         =   "&Imprimir"
+         Shortcut        =   ^I
+      End
+      Begin VB.Menu mnBarra2 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnSalir 
+         Caption         =   "&Salir"
+         Shortcut        =   ^S
+      End
+   End
+End
+Attribute VB_Name = "frmGesServSocios"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+'Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
+'Public Event DatoSeleccionado(CadenaSeleccion As String)
+
+Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
+Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmF As frmCal 'Calendario de Fechas
+Attribute frmF.VB_VarHelpID = -1
+
+Private WithEvents frmSoc As frmGesVSocio  'Form Mantenimiento socios
+Attribute frmSoc.VB_VarHelpID = -1
+
+Dim PrimeraVez As Boolean
+
+
+Dim NombreTabla As String
+Dim Ordenacion As String
+Private Modo As Byte
+Dim kCampo As Integer
+
+Dim EsBusqueda As Boolean
+'Para cargar el DataGrid con la consulta de busqueda y no con todos los registros
+
+Dim CadenaConsulta As String
+Dim CadenaBusqueda As String
+'Cadena para la consulta de de busqueda en Grid
+
+' utilizado para buscar por checks
+Private BuscaChekc As String
+
+
+Private HaDevueltoDatos As Boolean
+Dim cadB1 As String
+
+
+Private Sub chkAux_Click(Index As Integer)
+    If Modo = 1 Then
+        'Buscqueda
+        If InStr(1, BuscaChekc, "chkAux(" & Index & ")") = 0 Then BuscaChekc = BuscaChekc & "chkAux(" & Index & ")|"
+    End If
+End Sub
+
+Private Sub chkAux_KeyPress(Index As Integer, KeyAscii As Integer)
+    KEYpress KeyAscii
+End Sub
+
+
+
+Private Sub chkVistaPrevia_KeyPress(KeyAscii As Integer)
+    KEYpress KeyAscii
+End Sub
+
+Private Sub cmdAceptar_Click()
+Dim Indicador As String
+Dim NumReg As Long
+On Error GoTo Error1
+    
+    Screen.MousePointer = vbHourglass
+    Select Case Modo
+    Case 1 'BUSQUEDA
+        HacerBusqueda
+    Case 3 'INSERTAR
+        If DatosOk Then
+            If InsertarDesdeForm(Me) Then
+                CargaGrid True
+                BotonAnyadir
+            End If
+        End If
+    Case 4 'MODIFICAR
+        If DatosOk And BLOQUEADesdeFormulario(Me) Then
+             If ModificaDesdeFormulario(Me, 3) Then
+                 TerminaBloquear
+                 NumReg = Data1.Recordset.AbsolutePosition
+                 PonerModo 2
+                 CancelaADODC Me.Data1
+                 CargaGrid True
+                 LLamaLineas 10
+                 SituarDataPosicion Data1, NumReg, Indicador
+             End If
+             lblIndicador.Caption = Indicador
+             DataGrid1.SetFocus
+         End If
+    End Select
+Error1:
+    Screen.MousePointer = vbDefault
+    If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
+End Sub
+
+
+Private Sub cmdAux_Click(Index As Integer)
+    Select Case Index
+        Case 0 'Numero de V
+            Set frmSoc = New frmGesVSocio
+            frmSoc.DatosADevolverBusqueda = "0"
+            frmSoc.Show vbModal
+            Set frmSoc = Nothing
+        
+        Case 1 ' fecha de factura
+            Screen.MousePointer = vbHourglass
+            Set frmF = New frmCal
+            frmF.Fecha = Now
+            If txtAux(Index).Text <> "" Then frmF.Fecha = CDate(txtAux(Index).Text)
+            Screen.MousePointer = vbDefault
+            frmF.Show vbModal
+            Set frmF = Nothing
+    End Select
+    PonerFoco txtAux(Index)
+End Sub
+
+
+Private Sub cmdCancelar_Click()
+    On Error GoTo ECancelar
+
+    Select Case Modo
+        Case 1 'Buscar
+            LimpiarCampos
+            PonerModo 0
+            LLamaLineas 10
+            
+        Case 3 'INSERTAR
+            DataGrid1.AllowAddNew = False
+            
+            If Not Data1.Recordset.EOF Then
+                PonerModo 2
+                Data1.Recordset.MoveFirst
+                lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+            Else 'No hay Registros en la Tabla
+                PonerModo 0
+            End If
+            
+            
+            LLamaLineas 10
+            
+        Case 4  'MODIFICAR
+            TerminaBloquear
+            DeseleccionaGrid Me.DataGrid1
+'            CargaTxtAux False, False
+            PonerModo 2
+            LLamaLineas 10
+            If Not Data1.Recordset.EOF Then Data1.Recordset.MoveFirst
+            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+            
+    End Select
+    
+    CalcularTotales Data1.RecordSource
+
+
+ECancelar:
+    If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
+End Sub
+
+
+Private Sub DataGrid1_DblClick()
+'[Monica]10/09/2014: de momento comentado pq partimos de la shilla
+'    imgDoc_Click (0)
+End Sub
+
+Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
+    KEYpress KeyAscii
+End Sub
+
+
+Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
+
+    If Not Data1.Recordset.EOF And (Modo <> 3 And Modo <> 4) Then
+        
+        lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+    End If
+End Sub
+
+Private Sub Form_Activate()
+    Screen.MousePointer = vbDefault
+End Sub
+
+
+Private Sub Form_Load()
+Dim i As Integer
+
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
+    
+    PrimeraVez = True
+    
+    'ICONOS de laLa toolbar
+    With Toolbar1
+        .ImageList = frmPpal.imgListComun
+        'ASignamos botones
+        .Buttons(1).Image = 1   'Buscar
+        .Buttons(2).Image = 2 'Ver Todos
+        .Buttons(5).Image = 3 'Añadir
+        .Buttons(6).Image = 4 'Modificar
+        .Buttons(7).Image = 5 'Eliminar
+        .Buttons(10).Image = 16 'Imprimir
+        .Buttons(11).Image = 15 'Salir
+    End With
+    
+'[Monica]10/09/2014: de momento comentado pq partimos de la shilla
+'    For i = 0 To imgDoc.Count - 1
+'        imgDoc(i).Picture = frmPpal.ImageListTPV.ListImages(8).Picture
+'    Next i
+    
+    LimpiarCampos   'Limpia los campos TextBox
+    DataGrid1.ClearFields
+    
+    'Vemos como esta guardado el valor del check
+'    chkVistaPrevia.Value = CheckValueLeer(Name)
+    
+    PonerModo 0
+    
+    NombreTabla = "sfactsoctr" 'Tabla de facturas socios
+    Ordenacion = " ORDER BY fecfactu desc, numeruve "
+    
+    CadenaConsulta = "Select sfactsoctr.numeruve, sfactsoctr.codsocio, sclien.nomclien, sfactsoctr.fecfactu, "
+    CadenaConsulta = CadenaConsulta & " sfactsoctr.concepto, sfactsoctr.numserv, sfactsoctr.importe, sfactsoctr.facturado,"
+    CadenaConsulta = CadenaConsulta & "  IF(facturado=1,'*','') as factur "
+    CadenaConsulta = CadenaConsulta & " from " & NombreTabla & " INNER JOIN sclien ON sfactsoctr.codsocio = sclien.codclien "
+    CadenaConsulta = CadenaConsulta & " WHERE sfactsoctr.numeruve is null " 'No recupera datos
+    
+    Data1.ConnectionString = conn
+    Data1.RecordSource = CadenaConsulta
+    Data1.Refresh
+    
+    CargaGrid (Modo = 2)
+    Screen.MousePointer = vbDefault
+    PrimeraVez = False
+End Sub
+
+
+Private Sub CargaGrid(enlaza As Boolean)
+Dim B As Boolean
+Dim SQL As String
+On Error GoTo ECarga
+
+    B = DataGrid1.Enabled
+    
+    SQL = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, SQL, False
+
+    CargaGrid2
+
+    CalcularTotales SQL
+    
+    DataGrid1.Enabled = B
+    DataGrid1.ScrollBars = dbgAutomatic
+    
+ECarga:
+    If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid: " & DataGrid1.Tag, Err.Description
+End Sub
+
+
+Private Sub CargaGrid2()
+Dim tots As String
+On Error GoTo ECarga2
+
+    '"SELECT codprove, " & NombreTabla & ".codfamia, nomfamia, " & NombreTabla & ".codmarca, nommarca, fechadto, dtoline1, dtoline2 "
+    tots = "S|txtAux(0)|T|VSocio|750|;S|cmdAux(0)|B||0|;S|txtAux(5)|T|Socio|700|;S|Text2(0)|T|Nombre|3100|;"
+    tots = tots & "S|txtAux(3)|T|Fecha|1150|;S|cmdAux(1)|B||0|;S|txtAux(4)|T|Concepto|2250|;S|txtAux(2)|T|Serv.|600|;"
+    tots = tots & "S|txtAux(1)|T|Importe|1150|;N||||0|;S|chkAux(0)|CB|Fa|360|;"
+    
+    arregla tots, DataGrid1, Me
+
+    'dtos alineados a la dcha
+'    DataGrid1.Columns(6).Alignment = dbgRight
+'    DataGrid1.Columns(7).Alignment = dbgRight
+    
+ECarga2:
+    If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid: " & DataGrid1.Tag, Err.Description
+End Sub
+
+
+
+Private Sub frmB_Selecionado(CadenaDevuelta As String)
+'Formulario para Busqueda
+Dim cadB As String
+Dim Aux As String
+      
+    If CadenaDevuelta <> "" Then
+            HaDevueltoDatos = True
+            Screen.MousePointer = vbHourglass
+            'Estamos en Cabecera
+            'Recupera todo el registro de Tarifas de Precios
+            'Sabemos que campos son los que nos devuelve
+            'Creamos una cadena consulta y ponemos los datos
+            cadB = ""
+            Aux = ValorDevueltoFormGrid(txtAux(0), CadenaDevuelta, 1)
+            cadB = Aux
+            Aux = ValorDevueltoFormGrid(txtAux(1), CadenaDevuelta, 2)
+            cadB = cadB & " and " & Aux
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            PonerCadenaBusqueda
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
+Private Sub frmF_Selec(vFecha As Date)
+'Calendario de Fecha
+Dim indice As Byte
+    indice = 3
+    txtAux(indice).Text = Format(vFecha, "dd/mm/yyyy")
+End Sub
+
+
+Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
+'Formulario Mantenimiento socios
+    txtAux(0).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtAux(5).Text = Format(RecuperaValor(CadenaSeleccion, 2), "000000")
+    Text2(0).Text = RecuperaValor(CadenaSeleccion, 3)
+End Sub
+
+Private Sub imgDoc_Click(Index As Integer)
+'[Monica]10/09/2014: de momento comentado pq partimos de la shilla
+'Dim vCadena As String
+'    Select Case Index
+'        Case 0
+'            frmGesServSocios2.NumerUve = Me.Data1.Recordset!NumerUve
+'            frmGesServSocios2.FecFactura = Me.Data1.Recordset!FecFactu
+'            frmGesServSocios2.Caption = "Servicios Socio V-" & Format(Me.Data1.Recordset!NumerUve, "000000") & " " & Me.Data1.Recordset!nomclien
+'            frmGesServSocios2.Show vbModal
+'    End Select
+End Sub
+
+Private Sub mnBuscar_Click()
+    BotonBuscar
+End Sub
+
+Private Sub mnEliminar_Click()
+    BotonEliminar
+End Sub
+
+Private Sub mnImprimir_Click()
+    BotonImprimir
+End Sub
+
+Private Sub mnModificar_Click()
+   BotonModificar
+End Sub
+
+Private Sub mnNuevo_Click()
+    BotonAnyadir
+End Sub
+
+Private Sub mnSalir_Click()
+    Unload Me
+End Sub
+
+Private Sub mnVerTodos_Click()
+    BotonVerTodos
+End Sub
+
+
+Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1 'Busqueda
+            mnBuscar_Click
+        Case 2 'Ver Todos
+            mnVerTodos_Click
+        Case 5 'Nuevo
+            mnNuevo_Click
+        Case 6  'Modificar
+            mnModificar_Click
+        Case 7 'Eliminar
+            mnEliminar_Click
+        Case 10 'Imprimir
+            BotonImprimir
+        Case 11  'Salir
+            mnSalir_Click
+    End Select
+End Sub
+
+
+Private Sub KEYpress(KeyAscii As Integer)
+Dim cerrar As Boolean
+
+    KEYpressGnral KeyAscii, Modo, cerrar
+    If cerrar Then Unload Me
+End Sub
+
+
+Private Sub PonerModo(Kmodo As Byte)
+Dim B As Boolean
+    
+    Modo = Kmodo
+    PonerIndicador lblIndicador, Kmodo
+      
+    Select Case Kmodo
+        Case 1 'Modo Buscar
+            PonerFoco txtAux(0)
+            txtAux(0).BackColor = vbYellow
+        Case 2    'Preparamos para que pueda Modificar
+            Me.cmdRegresar.visible = False
+    End Select
+           
+     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
+'    If DatosADevolverBusqueda <> "" Then
+'        cmdRegresar.visible = b
+'        If Modo = 1 Then Me.lblIndicador.Caption = "BUSQUEDA"
+'    Else
+'        cmdRegresar.visible = False
+'    End If
+                 
+    
+    '-----------------------------------------
+    B = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = B
+    cmdAceptar.visible = B
+    Me.DataGrid1.Enabled = (Modo <> 3 And Modo <> 4)
+    BloquearClavesP (Modo = 4) ' si modificar
+    
+    BloquearChk Me.chkAux(0), (Modo = 4) Or (Modo = 3)
+    Me.chkAux(0).visible = (Modo = 1)
+
+
+    'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
+    'debe ser mayor para adminir intervalos de busqueda.
+    PonerLongCampos
+
+    PonerModoOpcionesMenu 'Activar opciones de menu según Modo
+    PonerOpcionesMenu   'Activar opciones de menu según nivel
+                        'de permisos del usuario
+End Sub
+
+
+Private Sub PonerModoOpcionesMenu()
+Dim B As Boolean
+    
+    B = (Modo = 2)
+    'Insertar
+    Toolbar1.Buttons(5).Enabled = (B Or (Modo = 0))
+    Me.mnNuevo.Enabled = (B Or (Modo = 0))
+    'Modificar
+    Toolbar1.Buttons(6).Enabled = B
+    Me.mnModificar.Enabled = B
+    'eliminar
+    Toolbar1.Buttons(7).Enabled = B
+    Me.mnEliminar.Enabled = B
+    
+    'imprimir
+    Toolbar1.Buttons(10).Enabled = B
+    Me.mnImprimir.Enabled = B
+    
+    
+    
+    B = (Modo >= 3) Or Modo = 1
+    'Buscar
+    Toolbar1.Buttons(1).Enabled = Not B
+    Me.mnBuscar.Enabled = Not B
+    'Ver Todos
+    Toolbar1.Buttons(2).Enabled = Not B
+    Me.mnVerTodos.Enabled = Not B
+End Sub
+
+
+Private Sub PonerLongCampos()
+'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
+'para los campos que permitan introducir criterios más largos del tamaño del campo
+    PonerLongCamposGnral Me, Modo, 3
+End Sub
+
+
+Private Sub LimpiarCampos()
+    limpiar Me   'Metodo general: Limpia los controles TextBox
+    'Aqui va el especifico de cada form es
+    '### a mano
+    chkAux(0).Value = 0
+    
+End Sub
+
+
+Private Sub Desplazamiento(Index As Integer)
+'Botones de Desplazamiento de la Toolbar
+    DesplazamientoData Data1, Index
+    PonerCampos
+End Sub
+
+
+Private Function MontaSQLCarga(enlaza As Boolean) As String
+'--------------------------------------------------------------------
+' MontaSQlCarga:
+'   Basándose en la información proporcionada por el vector de campos
+'   crea un SQl para ejecutar una consulta sobre la base de datos que los
+'   devuelva.
+' Si ENLAZA -> Enlaza con el data1
+'           -> Si no lo cargamos sin enlazar a ningun campo
+'--------------------------------------------------------------------
+Dim SQL As String
+    
+    SQL = "Select sfactsoctr.numeruve, sfactsoctr.codsocio, sclien.nomclien, sfactsoctr.fecfactu, sfactsoctr.concepto, "
+    SQL = SQL & " sfactsoctr.numserv, sfactsoctr.importe, sfactsoctr.facturado,"
+    SQL = SQL & "  IF(facturado=1,'*','') as factur "
+    SQL = SQL & " from " & NombreTabla & " INNER JOIN sclien ON sfactsoctr.codsocio = sclien.codclien "
+
+    If enlaza Then
+        If EsBusqueda And CadenaBusqueda <> "" Then SQL = SQL & CadenaBusqueda
+    Else
+        SQL = SQL & " WHERE sfactsoctr.numeruve = -1"
+    End If
+    SQL = SQL & Ordenacion
+    MontaSQLCarga = SQL
+End Function
+
+
+Private Sub BotonBuscar()
+Dim anc As Single
+
+    'Buscar
+    EsBusqueda = True
+    If Modo <> 1 Then
+        LimpiarCampos
+        PonerModo 1
+        'Ponemos el grid lineasfacturas enlazando a ningun sitio
+        CargaGrid False
+'        CargaTxtAux True, True
+        anc = ObtenerAlto(Me.DataGrid1)
+        LLamaLineas anc
+        'Si pasamos el control aqui lo ponemos en amarillo
+        PonerFoco txtAux(0)
+    Else
+        HacerBusqueda
+        If Data1.Recordset.EOF Then
+            txtAux(kCampo).Text = ""
+            txtAux(kCampo).BackColor = vbYellow
+            PonerFoco txtAux(kCampo)
+        End If
+    End If
+End Sub
+
+
+Private Sub BotonVerTodos()
+'Ver todos
+    EsBusqueda = False
+    LimpiarCampos
+    
+    CadenaConsulta = "Select * from " & NombreTabla & Ordenacion
+    PonerCadenaBusqueda
+    
+    cadB1 = ""
+
+End Sub
+
+
+Private Sub BotonAnyadir()
+Dim anc As Single
+
+    LimpiarCampos 'Vacía los TextBox
+    
+    'Añadiremos el boton de aceptar y demas objetos para insertar
+    cmdAceptar.Caption = "Aceptar"
+    PonerModo 3
+       
+    'Situamos el grid al final
+    AnyadirLinea DataGrid1, Data1
+    
+'    CargaTxtAux True, True
+    anc = ObtenerAlto(Me.DataGrid1)
+    LLamaLineas anc
+    
+    txtAux(2).Text = 0
+    txtAux(3).Text = Format(Now, "dd/mm/yyyy")
+    chkAux(0).Value = 0
+
+    
+    PonerFoco txtAux(0)
+End Sub
+
+
+Private Sub BotonModificar()
+Dim i As Integer
+Dim anc As Single
+
+    If CInt(Data1.Recordset!facturado) = 1 Then
+        MsgBox "La línea está facturada, no se permite ni modificar ni eliminar.", vbExclamation
+        Exit Sub
+    End If
+
+    'Escondemos el navegador y ponemos Modo Modificar
+    PonerModo 4
+    
+    'Como el campo1, campo2 y campo3 es clave primaria, NO se puede modificar
+    If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
+        DataGrid1.Refresh
+    End If
+    
+'    CargaTxtAux True, False
+    anc = ObtenerAlto(Me.DataGrid1)
+    LLamaLineas anc
+    
+    
+    '---- poner valores grabados
+    'Vsocio
+    txtAux(0).Text = DBLet(DataGrid1.Columns(0).Value, "N")
+    FormateaCampo txtAux(0)
+    
+    'codsocio
+    txtAux(5).Text = DBLet(DataGrid1.Columns(1).Value, "N")
+    FormateaCampo txtAux(5)
+    
+    
+    'nomclien
+    Text2(0).Text = DBLet(DataGrid1.Columns(2).Value, "T")
+    
+    'fecha
+    txtAux(3).Text = DBLet(DataGrid1.Columns(3).Value, "F")
+    FormateaCampo txtAux(3)
+    
+    'concepto
+    txtAux(4).Text = DBLet(DataGrid1.Columns(4).Value, "N")
+    
+    'servicios
+    txtAux(2).Text = DBLet(DataGrid1.Columns(5).Value, "N")
+    FormateaCampo txtAux(2)
+    
+    
+    'Importe
+    txtAux(1).Text = DBLet(DataGrid1.Columns(6).Value, "N")
+    FormateaCampo txtAux(1)
+    
+    
+    Me.chkAux(0).Value = Me.Data1.Recordset!facturado
+
+    '-----
+    If BLOQUEADesdeFormulario(Me) Then
+        PonerFoco txtAux(4)
+    Else
+        cmdCancelar_Click
+    End If
+End Sub
+
+
+Private Function BotonEliminar() As Boolean
+Dim SQL As String
+On Error GoTo FinEliminar
+        
+        'Ciertas comprobaciones
+        If Data1.Recordset.EOF Then Exit Function
+        
+        If CInt(Data1.Recordset.Fields(7).Value) = 1 Then
+            MsgBox "La línea está facturada, no se permite ni modificar ni eliminar.", vbExclamation
+            Exit Function
+        End If
+        
+        
+        SQL = "¿Seguro que desea eliminar el registro?" & vbCrLf
+        SQL = SQL & vbCrLf & "VSocio: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset.Fields(2).Value
+        SQL = SQL & vbCrLf & "Fecha: " & Data1.Recordset.Fields(3).Value
+        
+        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            'Hay que eliminar
+            NumRegElim = Me.Data1.Recordset.AbsolutePosition
+            SQL = "Delete from " & NombreTabla & " where numeruve=" & Val(Data1.Recordset!NumerUve)
+            SQL = SQL & " and fecfactu=" & DBSet(Data1.Recordset!FecFactu, "F")
+            conn.Execute SQL
+            CancelaADODC Me.Data1
+            CargaGrid True
+            CancelaADODC Me.Data1
+            SituarDataPosicion Me.Data1, NumRegElim, SQL
+        End If
+        
+FinEliminar:
+     Screen.MousePointer = vbDefault
+     If Err.Number <> 0 Then MuestraError Err.Number, "Eliminar Descuento", Err.Description
+End Function
+
+
+Private Function DatosOk() As Boolean
+Dim B As Boolean
+Dim SQL As String
+
+    DatosOk = False
+    B = CompForm(Me, 3)
+    If Not B Then Exit Function
+    
+    If Modo = 3 Then   'Estamos insertando
+        SQL = "select count(*) from sfactsoctr where codsocio = " & txtAux(0).Text & " and fecfactu = "
+        SQL = SQL & DBSet(txtAux(3).Text, "F") & " and numfactu = " & DBSet(txtAux(2).Text, "N")
+        If TotalRegistros(SQL) > 0 Then
+            MsgBox "Ya existe la factura para este socio en esta fecha.", vbExclamation
+            PonerFoco txtAux(0)
+            B = False
+            Exit Function
+        End If
+    End If
+    DatosOk = True
+    
+End Function
+
+
+
+Private Sub HacerBusqueda()
+Dim cadB As String
+
+    cadB = ObtenerBusqueda(Me, False, BuscaChekc)
+    cadB1 = ObtenerBusqueda(Me, True, BuscaChekc)
+    
+    If cadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & Ordenacion
+        CadenaBusqueda = " WHERE " & cadB
+        PonerCadenaBusqueda
+    End If
+End Sub
+
+
+Private Sub PonerCadenaBusqueda()
+Screen.MousePointer = vbHourglass
+On Error GoTo EEPonerBusq
+
+    Data1.RecordSource = CadenaConsulta
+    Data1.Refresh
+    If Data1.Recordset.RecordCount <= 0 Then
+        PonerModo Modo
+        CargaGrid False
+        MsgBox "No hay ningún registro en la tabla " & NombreTabla & " para ese criterio de Búsqueda.", vbInformation
+        Screen.MousePointer = vbDefault
+        Exit Sub
+    Else
+        PonerModo 2
+        PonerCampos
+    End If
+    LLamaLineas 10
+    Screen.MousePointer = vbDefault
+    Exit Sub
+    
+EEPonerBusq:
+    MuestraError Err.Number, "PonerCadenaBusqueda"
+    PonerModo 0
+    Screen.MousePointer = vbDefault
+End Sub
+
+
+
+Private Sub PonerCampos()
+On Error GoTo EPonerCampos
+
+    If Data1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, Data1
+    CargaGrid True
+    
+    '-- Esto permanece para saber donde estamos
+    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+    
+EPonerCampos:
+    If Err.Number <> 0 Then MuestraError Err.Number, "Poniendo Campos", Err.Description
+End Sub
+
+Private Sub BotonImprimir()
+    printNou
+End Sub
+
+Private Sub PonerOpcionesMenu()
+    PonerOpcionesMenuGeneral Me
+End Sub
+
+
+Private Sub txtAux_GotFocus(Index As Integer)
+    kCampo = Index
+    ConseguirFoco txtAux(Index), Modo
+End Sub
+
+
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+    KEYdown KeyCode
+End Sub
+
+Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
+   KEYpress KeyAscii
+End Sub
+
+Private Sub BloquearClavesP(bol As Boolean)
+'Si BloquearClavesPrimarias=true deshablilita los textbox de codigos y lo pone amarillo
+'y habilita el resto de campos para introducir nuevos valores
+'Si BloquearClavesPrimarias=false habilita los textbox de codigos para introducir
+Dim i As Byte
+
+    For i = 0 To 0 'Codigo socio
+        BloquearTxt txtAux(i), bol
+        Me.cmdAux(i).Enabled = Not bol
+    Next i
+    ' fecha bloqueada
+    Me.cmdAux(1).Enabled = Not bol
+    BloquearTxt txtAux(3), bol
+    
+End Sub
+
+
+Private Sub txtAux_LostFocus(Index As Integer)
+Dim campo As String, Tabla As String
+Dim campo2 As String
+
+  
+    If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
+    
+    Select Case Index
+        Case 0 'Vsocio
+            If PonerFormatoEntero(txtAux(Index)) Then
+                campo2 = "codclien"
+                Text2(Index).Text = DevuelveDesdeBDNew(conAri, "sclien", "nomclien", "codclien", txtAux(Index).Text, "N", campo2)
+                txtAux(5).Text = campo2
+            Else
+                Text2(Index).Text = ""
+            End If
+            
+        Case 3 'Fecha
+            PonerFormatoFecha txtAux(Index)
+            
+        Case 2 ' numero de servicios
+            PonerFormatoEntero txtAux(Index)
+            
+        Case 1 'Importe
+            PonerFormatoDecimal txtAux(Index), 6
+    
+        Case 5 'codsocio
+            PonerFormatoEntero txtAux(Index)
+    End Select
+End Sub
+
+
+
+Private Sub LLamaLineas(alto As Single)
+Dim jj As Integer
+Dim B As Boolean
+
+        DeseleccionaGrid Me.DataGrid1
+        'PonerModo xModo + 1
+
+        B = (Modo = 3 Or Modo = 4 Or Modo = 1) 'Insertar o Modificar
+
+        For jj = 0 To txtAux.Count - 1
+            txtAux(jj).Height = DataGrid1.RowHeight
+            txtAux(jj).Top = alto
+            txtAux(jj).visible = B
+        Next jj
+        
+        For jj = 0 To Text2.Count - 1
+            Text2(jj).Height = Me.DataGrid1.RowHeight
+            Text2(jj).Top = alto
+            Text2(jj).visible = B
+        Next jj
+        
+        For jj = 0 To Me.cmdAux.Count - 1
+            Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
+            Me.cmdAux(jj).Top = alto
+            Me.cmdAux(jj).visible = B
+        Next jj
+        
+        Me.chkAux(0).Top = alto
+        Me.chkAux(0).visible = B
+        
+
+        
+End Sub
+
+
+
+Private Sub CalcularTotales(CADENA As String)
+Dim Importe  As Currency
+Dim Compleme As Currency
+Dim Penaliza As Currency
+
+Dim RS As ADODB.Recordset
+Dim SQL As String
+
+    On Error Resume Next
+    
+    SQL = "select sum(importe) importe  from (" & CADENA & ") aaaaa"
+    
+    Set RS = New ADODB.Recordset
+    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    Importe = 0
+    Text1.Text = ""
+    
+    If TotalRegistrosConsulta(CADENA) = 0 Then Exit Sub
+    
+    If Not RS.EOF Then
+        If RS.Fields(0).Value <> 0 Then Importe = DBLet(RS.Fields(0).Value, "N") 'Solo es para saber que hay registros que mostrar
+    
+        Text1.Text = Format(Importe, "###,###,##0.00")
+    End If
+    RS.Close
+    Set RS = Nothing
+
+    
+    DoEvents
+    
+End Sub
+
+Private Sub printNou()
+    With frmImprimir2
+        .cadTabla2 = "sfactsoctr"
+        .Informe2 = "rGesServSocios.rpt"
+        If cadB1 <> "" Then
+            .cadRegSelec = cadB1 'SQL2SF(cadB1)
+        Else
+            .cadRegSelec = ""
+        End If
+        .cadRegActua = POS2SF(Data1, Me)
+        .cadTodosReg = ""
+        '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
+        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"
+        .NumeroParametros2 = 1
+        .MostrarTree2 = False
+        .InfConta2 = False
+        .ConSubInforme2 = False
+        .SubInformeConta = ""
+        .Show vbModal
+    End With
+End Sub
+
+
+

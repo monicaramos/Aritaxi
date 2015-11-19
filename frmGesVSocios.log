@@ -1,0 +1,4 @@
+Línea 12: la propiedad Icon de frmGesVSocio tenía una referencia a archivo no válida.
+Línea 33: la propiedad ItemData de Combo1 tenía una referencia a archivo no válida.
+Línea 35: la propiedad List de Combo1 tenía una referencia a archivo no válida.
+Línea 233: la propiedad Bindings de DataGrid1 tenía una referencia a archivo no válida.

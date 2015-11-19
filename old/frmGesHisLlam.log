@@ -1,0 +1,36 @@
+Línea 556: la clase MSAdodcLib.Adodc del control Adodc1 no era una clase de control cargada.
+Línea 1105: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
+Línea 562: el nombre de la propiedad _ExtentX de Adodc1 no es válido.
+Línea 563: el nombre de la propiedad _ExtentY de Adodc1 no es válido.
+Línea 564: el nombre de la propiedad ConnectMode de Adodc1 no es válido.
+Línea 565: el nombre de la propiedad CursorLocation de Adodc1 no es válido.
+Línea 566: el nombre de la propiedad IsolationLevel de Adodc1 no es válido.
+Línea 567: el nombre de la propiedad ConnectionTimeout de Adodc1 no es válido.
+Línea 568: el nombre de la propiedad CommandTimeout de Adodc1 no es válido.
+Línea 569: el nombre de la propiedad CursorType de Adodc1 no es válido.
+Línea 570: el nombre de la propiedad LockType de Adodc1 no es válido.
+Línea 571: el nombre de la propiedad CommandType de Adodc1 no es válido.
+Línea 572: el nombre de la propiedad CursorOptions de Adodc1 no es válido.
+Línea 573: el nombre de la propiedad CacheSize de Adodc1 no es válido.
+Línea 574: el nombre de la propiedad MaxRecords de Adodc1 no es válido.
+Línea 575: el nombre de la propiedad BOFAction de Adodc1 no es válido.
+Línea 576: el nombre de la propiedad EOFAction de Adodc1 no es válido.
+Línea 577: el nombre de la propiedad ConnectStringType de Adodc1 no es válido.
+Línea 581: el nombre de la propiedad Orientation de Adodc1 no es válido.
+Línea 583: el nombre de la propiedad Connect de Adodc1 no es válido.
+Línea 584: el nombre de la propiedad OLEDBString de Adodc1 no es válido.
+Línea 585: el nombre de la propiedad OLEDBFile de Adodc1 no es válido.
+Línea 586: el nombre de la propiedad DataSourceName de Adodc1 no es válido.
+Línea 587: el nombre de la propiedad OtherAttributes de Adodc1 no es válido.
+Línea 588: el nombre de la propiedad UserName de Adodc1 no es válido.
+Línea 589: el nombre de la propiedad Password de Adodc1 no es válido.
+Línea 590: el nombre de la propiedad RecordSource de Adodc1 no es válido.
+Línea 591: el nombre de la propiedad Caption de Adodc1 no es válido.
+Línea 601: el nombre de la propiedad _Version de Adodc1 no es válido.
+Línea 1112: el nombre de la propiedad _ExtentX de Toolbar1 no es válido.
+Línea 1113: el nombre de la propiedad _ExtentY de Toolbar1 no es válido.
+Línea 1114: el nombre de la propiedad ButtonWidth de Toolbar1 no es válido.
+Línea 1115: el nombre de la propiedad ButtonHeight de Toolbar1 no es válido.
+Línea 1116: el nombre de la propiedad AllowCustomize de Toolbar1 no es válido.
+Línea 1118: el nombre de la propiedad _Version de Toolbar1 no es válido.
+Línea 1175: el nombre de la propiedad Buttons de Toolbar1 no es válido.
