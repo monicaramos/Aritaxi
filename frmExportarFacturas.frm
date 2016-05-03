@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmExportarFacturas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Exportar Facturas"
-   ClientHeight    =   4425
+   ClientHeight    =   4725
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   5940
@@ -10,7 +10,7 @@ Begin VB.Form frmExportarFacturas
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   4425
+   ScaleHeight     =   4725
    ScaleWidth      =   5940
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -18,30 +18,52 @@ Begin VB.Form frmExportarFacturas
       Caption         =   "Salir"
       Height          =   375
       Left            =   3960
-      TabIndex        =   4
-      Top             =   3810
+      TabIndex        =   6
+      Top             =   4140
       Width           =   1695
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
       Height          =   375
       Left            =   2040
-      TabIndex        =   3
-      Top             =   3810
+      TabIndex        =   5
+      Top             =   4140
       Width           =   1695
    End
    Begin VB.Frame Frame3 
-      Height          =   2430
+      Height          =   2910
       Left            =   150
-      TabIndex        =   6
-      Top             =   720
+      TabIndex        =   8
+      Top             =   600
       Width           =   5640
+      Begin VB.TextBox txtCodigo 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Index           =   2
+         Left            =   2520
+         MaxLength       =   10
+         TabIndex        =   3
+         Tag             =   "Código Postal|T|S|||clientes|codsocio|||"
+         Top             =   1755
+         Width           =   1050
+      End
+      Begin VB.TextBox txtCodigo 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Index           =   3
+         Left            =   2520
+         MaxLength       =   10
+         TabIndex        =   4
+         Tag             =   "Código Postal|T|S|||clientes|codsocio|||"
+         Top             =   2100
+         Width           =   1050
+      End
       Begin VB.CheckBox Check2 
          Caption         =   "Incluir los ya traspasados"
          Height          =   255
          Left            =   270
-         TabIndex        =   11
-         Top             =   1860
+         TabIndex        =   13
+         Top             =   2430
          Value           =   1  'Checked
          Width           =   2235
       End
@@ -77,12 +99,40 @@ Begin VB.Form frmExportarFacturas
          Top             =   945
          Width           =   1050
       End
+      Begin VB.Label Label4 
+         Caption         =   "Socio / Cliente"
+         ForeColor       =   &H00972E0B&
+         Height          =   255
+         Index           =   2
+         Left            =   270
+         TabIndex        =   16
+         Top             =   1650
+         Width           =   1185
+      End
+      Begin VB.Label Label4 
+         Caption         =   "Hasta"
+         Height          =   195
+         Index           =   1
+         Left            =   1590
+         TabIndex        =   15
+         Top             =   2100
+         Width           =   420
+      End
+      Begin VB.Label Label4 
+         Caption         =   "Desde"
+         Height          =   195
+         Index           =   0
+         Left            =   1590
+         TabIndex        =   14
+         Top             =   1740
+         Width           =   465
+      End
       Begin VB.Label Label8 
          Caption         =   "Tipo Factura"
          ForeColor       =   &H00972E0B&
          Height          =   255
          Left            =   270
-         TabIndex        =   10
+         TabIndex        =   12
          Top             =   270
          Width           =   1065
       End
@@ -91,7 +141,7 @@ Begin VB.Form frmExportarFacturas
          Height          =   195
          Index           =   15
          Left            =   1590
-         TabIndex        =   9
+         TabIndex        =   11
          Top             =   930
          Width           =   465
       End
@@ -100,7 +150,7 @@ Begin VB.Form frmExportarFacturas
          Height          =   195
          Index           =   14
          Left            =   1590
-         TabIndex        =   8
+         TabIndex        =   10
          Top             =   1290
          Width           =   420
       End
@@ -128,7 +178,7 @@ Begin VB.Form frmExportarFacturas
          Height          =   255
          Index           =   16
          Left            =   270
-         TabIndex        =   7
+         TabIndex        =   9
          Top             =   810
          Width           =   1185
       End
@@ -138,8 +188,8 @@ Begin VB.Form frmExportarFacturas
       Caption         =   "Información del proceso"
       Height          =   375
       Left            =   240
-      TabIndex        =   5
-      Top             =   3285
+      TabIndex        =   7
+      Top             =   3615
       Width           =   5295
    End
 End
@@ -394,6 +444,11 @@ Dim cadParam As String
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
     If Check2.Value = 0 Then SQL = SQL & " and sfactusoc.exportada = 0"
             
+    '[Monica]02/05/2016: añadimos desde/hasta cliente
+    If txtCodigo(2).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio <= " & DBSet(txtCodigo(3).Text, "N")
+            
+            
     Set RS = New ADODB.Recordset
     RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
@@ -520,6 +575,11 @@ Dim cadParam As String
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
     If Check2.Value = 0 Then SQL = SQL & " and scafaccli.exportada = 0"
             
+    '[Monica]02/05/2016: añadimos desde/hasta cliente
+    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafaccli.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafaccli.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    
+    
     Set RS = New ADODB.Recordset
     RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
@@ -633,6 +693,9 @@ Dim cadParam As String
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
     If Check2.Value = 0 Then SQL = SQL & " and scafac.exportada = 0"
             
+    '[Monica]02/05/2016: añadimos desde/hasta cliente
+    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafac.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafac.codclien <= " & DBSet(txtCodigo(3).Text, "N")
             
     Set RS = New ADODB.Recordset
     RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -737,6 +800,10 @@ Dim cadParam As String
             
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
     If Check2.Value = 0 Then SQL = SQL & " and sfactusoc.exportada = 0"
+            
+    '[Monica]02/05/2016: añadimos desde/hasta cliente
+    If txtCodigo(2).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio <= " & DBSet(txtCodigo(3).Text, "N")
             
             
     Set RS = New ADODB.Recordset
@@ -845,6 +912,11 @@ Dim cadParam As String
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
     If Check2.Value = 0 Then SQL = SQL & " and scafaccli.exportada = 0"
             
+    '[Monica]02/05/2016: añadimos desde/hasta cliente
+    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafaccli.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafaccli.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+            
+            
     Set RS = New ADODB.Recordset
     RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
@@ -948,6 +1020,12 @@ Dim cadParam As String
             
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
     If Check2.Value = 0 Then SQL = SQL & " and scafac.exportada = 0"
+            
+    '[Monica]02/05/2016: añadimos desde/hasta cliente
+    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafac.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafac.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+            
+            
             
     Set RS = New ADODB.Recordset
     RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
