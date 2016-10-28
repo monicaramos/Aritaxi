@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmLogin 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Inicio de sesión empresa"
@@ -193,7 +193,7 @@ Option Explicit
 Dim cad As String
 Dim ItmX As ListItem
 Dim RS As Recordset
-
+Dim PrimeraVez As Boolean
     
 Private Sub cmdCancel_Click()
     Unload Me
@@ -221,7 +221,7 @@ Dim Ok As Boolean
             
     'Comprobamos ,k la empresa no este bloqueada
     conn.Execute "SET AUTOCOMMIT=0"
-    If ComprobarEmpresaBloqueada(vUsu.codigo, vUsu.CadenaConexion) Then
+    If ComprobarEmpresaBloqueada(vUsu.Codigo, vUsu.CadenaConexion) Then
         cad = "BLOQ"
     Else
         cad = ""
@@ -242,8 +242,10 @@ Private Sub Form_Activate()
     Screen.MousePointer = vbDefault
 End Sub
 
+
 Private Sub Form_Load()
     CargaImagen
+    PrimeraVez = False
     lw1.SmallIcons = Me.ImageList1
     Me.txtUser.Text = vUsu.Login
     Me.txtlargo.Text = vUsu.Nombre
@@ -281,7 +283,7 @@ On Error GoTo EDevuelveProhibidas
     
     DevuelveProhibidas = ""
     Set RS = New ADODB.Recordset
-    i = vUsu.codigo Mod 1000
+    i = vUsu.Codigo Mod 1000
     SQL = "Select * from usuarios.usuarioempresasaritaxi WHERE codusu =" & i
 '    End If
     RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText

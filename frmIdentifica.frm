@@ -152,7 +152,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Dim PrimeraVez As Boolean
-Dim t1 As Single
+Dim T1 As Single
 
 Private Sub Form_Activate()
     If PrimeraVez Then
@@ -201,13 +201,13 @@ Private Sub Form_Activate()
          DoEvents
          
          'Gestionar el nombre del PC para la asignacion de PC en el entorno de red
-         GestionaPC
+'         GestionaPC
         
          'Leemos el ultimo usuario conectado
          NumeroEmpresaMemorizar True
          
-         t1 = t1 + 2.5 - Timer
-         If t1 > 0 Then Espera t1
+         T1 = T1 + 2.5 - Timer
+         If T1 > 0 Then Espera T1
 
          
          PonerVisible True
@@ -225,7 +225,7 @@ End Sub
 Private Sub Form_Load()
     Screen.MousePointer = vbHourglass
     PonerVisible False
-    t1 = Timer
+    T1 = Timer
     Text1(0).Text = ""
     Text1(1).Text = ""
     PrimeraVez = True
@@ -251,17 +251,6 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 
-
-
-
-
-
-
-
-
-
-
-
 Private Sub Text1_GotFocus(Index As Integer)
     With Text1(Index)
         .SelStart = 0
@@ -271,16 +260,18 @@ End Sub
 
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
-    If KeyAscii = 13 Then
-        KeyAscii = 0
-        SendKeys "{tab}"
-    Else
-        If KeyAscii = 27 Then
-            CadenaDesdeOtroForm = ""
-            Unload Me
-        End If
-    End If
+    KEYpress KeyAscii
 End Sub
+
+
+Private Sub KEYpress(KeyAscii As Integer)
+Dim cerrar As Boolean
+
+    KEYpressGnral KeyAscii, 0, cerrar
+    If cerrar Then Unload Me
+End Sub
+
+
 
 Private Sub Text1_LostFocus(Index As Integer)
     Text1(Index).Text = Trim(Text1(Index).Text)
@@ -343,29 +334,29 @@ End Sub
 'a la que ha entrado, y el usuario
 Private Sub NumeroEmpresaMemorizar(Leer As Boolean)
 Dim NF As Integer
-Dim Cad As String
+Dim cad As String
 On Error GoTo ENumeroEmpresaMemorizar
 
 
         
-    Cad = App.Path & "\ultusu.dat"
+    cad = App.Path & "\ultusu.dat"
     If Leer Then
-        If Dir(Cad) <> "" Then
+        If Dir(cad) <> "" Then
             NF = FreeFile
-            Open Cad For Input As #NF
-            Line Input #NF, Cad
+            Open cad For Input As #NF
+            Line Input #NF, cad
             Close #NF
-            Cad = Trim(Cad)
+            cad = Trim(cad)
             
                 'El primer pipe es el usuario
-                Text1(0).Text = Cad
+                Text1(0).Text = cad
     
         End If
     Else 'Escribir
         NF = FreeFile
-        Open Cad For Output As #NF
-        Cad = Text1(0).Text
-        Print #NF, Cad
+        Open cad For Output As #NF
+        cad = Text1(0).Text
+        Print #NF, cad
         Close #NF
     End If
 ENumeroEmpresaMemorizar:

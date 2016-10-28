@@ -779,7 +779,7 @@ Dim vPorcIva As String
 Dim PorceIVA As Currency
 
 Dim tipoMov As String
-Dim CodSocio As String
+Dim codSocio As String
 
 Private Sub InicializarVbles()
     cadFormula = ""
@@ -798,7 +798,7 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
 
-    If Not DatosOK Then Exit Sub
+    If Not DatosOk Then Exit Sub
     
     InicializarVbles
     
@@ -880,7 +880,7 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
 
-    If Not DatosOK Then Exit Sub
+    If Not DatosOk Then Exit Sub
     
     InicializarVbles
     
@@ -909,34 +909,40 @@ Dim devuelve As String
     If CargarTablaTemporal(Tabla, cadSelect) Then
         If Not HayRegParaInforme("tmpinformes", "codusu= " & vUsu.Codigo) Then Exit Sub
 
-        cadNombreRPT = "rRecRetenciones.rpt"
-        cadTitulo = "Recibos Retenciones Servicios de Crédito"
-    
-        cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
-        numParam = numParam + 1
-        cadParam = cadParam & "pTitulo= ""Retenciones Servicios de Crédito""|"
-        numParam = numParam + 1
-        cadParam = cadParam & "pBase=" & TransformaComasPuntos(ImporteSinFormato(txtCodigo(2).Text)) & "|"
-        numParam = numParam + 1
+
+        If vParamAplic.Cooperativa = 1 Then
+
+            cadNombreRPT = "rRecRetenciones.rpt"
+            cadTitulo = "Recibos Retenciones Servicios de Crédito"
         
-        ConSubInforme = False
-        
-        ' llamamos a la impresion de recibo
-        cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
-        LlamarImprimir False
-        
-        If MsgBox("¿Impresion correcta para actualizar?", vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
-            If ActualizarRegistros Then
-                MsgBox "Proceso realizado correctamente.", vbExclamation
-                cmdCancelar_Click
+            cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
+            numParam = numParam + 1
+            cadParam = cadParam & "pTitulo= ""Retenciones Servicios de Crédito""|"
+            numParam = numParam + 1
+            cadParam = cadParam & "pBase=" & TransformaComasPuntos(ImporteSinFormato(txtCodigo(2).Text)) & "|"
+            numParam = numParam + 1
+            
+            ConSubInforme = False
+            
+            ' llamamos a la impresion de recibo
+            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
+            LlamarImprimir False
+            
+            If MsgBox("¿Impresion correcta para actualizar?", vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
+                If ActualizarRegistros Then
+                    MsgBox "Proceso realizado correctamente.", vbExclamation
+                    cmdCancelar_Click
+                End If
             End If
+        Else
+            GenerarFacturaRetenciones
         End If
     End If
 
 End Sub
 
 Private Function ActualizarRegistros() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim SQL2 As String
 Dim RS As ADODB.Recordset
 Dim Sql2Values As String
@@ -963,16 +969,16 @@ Dim Mens As String
     conn.BeginTrans
     ConnConta.BeginTrans
     
-    Sql = "select * from tmpinformes where codusu = " & vUsu.Codigo
-    Sql = Sql & " order by codigo1, importe1"
+    SQL = "select * from tmpinformes where codusu = " & vUsu.Codigo
+    SQL = SQL & " order by codigo1, importe1"
     
     Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
     SQL2 = "insert into sreten (codsocio, numeruve, fecfactu, numfactu, impreten, tiporeten, desdefec, hastafec) values "
     b = True
     While Not RS.EOF And b
-        Sql2Values = "(" & DBSet(RS!Codigo1, "N") & "," & DBSet(RS!importe1, "N") & "," & DBSet(txtCodigo(4).Text, "F") & ","
+        Sql2Values = "(" & DBSet(RS!Codigo1, "N") & "," & DBSet(RS!Importe1, "N") & "," & DBSet(txtCodigo(4).Text, "F") & ","
         Sql2Values = Sql2Values & "0," & DBSet(RS!importe2 * (-1), "N") & ",1," & DBSet(txtCodigo(102).Text, "F") & ","
         Sql2Values = Sql2Values & DBSet(txtCodigo(103).Text, "F") & ")"
         
@@ -983,7 +989,7 @@ Dim Mens As String
     
         fac.TotalFac = DBLet(RS!importe2, "N")
         fac.FecFactu = txtCodigo(4).Text
-        fac.NumFactu = "R-" & Format(RS!Codigo1, "0000") & Format(RS!importe1, "0000")
+        fac.NumFactu = "R-" & Format(RS!Codigo1, "0000") & Format(RS!Importe1, "0000")
         
         fac.Proveedor = DBLet(RS!Codigo1, "N")
         fac.NombreProv = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", RS!Codigo1, "T")
@@ -1002,9 +1008,9 @@ Dim Mens As String
         Socio = DBLet(RS!Codigo1, "N")
         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
         cuenta = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
-        Sql = ""
-        Sql = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", cuenta, "T")
-        If Sql = "" Then
+        SQL = ""
+        SQL = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", cuenta, "T")
+        If SQL = "" Then
             MsgBox "La cuenta contable del socio: " & Format(Socio, "000000") & " no existe.", vbExclamation
             conn.RollbackTrans
             ConnConta.RollbackTrans
@@ -1065,7 +1071,7 @@ End Function
 
 
 Private Function CargarTablaTemporal(Tabla As String, cadSelect As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim RS As ADODB.Recordset
 Dim SqlValues As String
 Dim Importe As Currency
@@ -1081,34 +1087,43 @@ Dim Importe As Currency
     Screen.MousePointer = vbHourglass
     
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
 
-    Sql = "select codsocio, numeruve, sum(if(impreten is null,0,impreten)) as Importe from sreten "
-    If cadSelect <> "" Then Sql = Sql & " where " & cadSelect
-    Sql = Sql & " group by 1 "
-    Sql = Sql & " order by 1 "
+    SQL = "select codsocio, numeruve, sum(if(impreten is null,0,impreten)) as Importe from sreten "
+    If cadSelect <> "" Then SQL = SQL & " where " & cadSelect
+    SQL = SQL & " group by 1 "
+    SQL = SQL & " order by 1 "
     
     Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     SqlValues = ""
     While Not RS.EOF
         Importe = DBLet(RS!Importe, "N") - ComprobarCero(txtCodigo(96).Text)
         
         If Importe > 0 Then
-            SqlValues = SqlValues & "(" & vUsu.Codigo & "," & DBLet(RS!CodSocio, "N") & "," & DBLet(RS!NumerUve, "N") & "," & DBSet(Importe, "N") & "," & DBSet(txtCodigo(103).Text, "F") & "),"
+            SqlValues = SqlValues & "(" & vUsu.Codigo & "," & DBLet(RS!codSocio, "N") & "," & DBLet(RS!NumerUve, "N") & "," & DBSet(Importe, "N") & "," & DBSet(txtCodigo(103).Text, "F") & "),"
         End If
     
         RS.MoveNext
     Wend
     
     If SqlValues <> "" Then
-        Sql = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values "
-        Sql = Sql & Mid(SqlValues, 1, Len(SqlValues) - 1)
+        SQL = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values "
+        SQL = SQL & Mid(SqlValues, 1, Len(SqlValues) - 1)
         
-        conn.Execute Sql
+        conn.Execute SQL
+    
+    
+        '[Monica]28/10/2016: Metemos en el importe3 el nro de factura
+        If vParamAplic.Cooperativa = 1 Then
+        
+        End If
     End If
+    
+    
+    
     
     Set RS = Nothing
 
@@ -1158,6 +1173,20 @@ Dim H As Integer, W As Integer
             PonerFrameRecibosRetenVisible True, H, W
 
             Tabla = "sreten"
+            
+            '[Monica]28/10/2016: cambiamos labels
+            If vParamAplic.Cooperativa = 1 Then
+                Me.Label4(48).Caption = "Fec.Factura"
+                Me.Label13.Caption = "Facturas de Retención"
+                
+                'no metemos el importe
+                Me.Label4(47).Enabled = False
+                Me.Label4(47).visible = False
+                Me.txtCodigo(96).Enabled = False
+                Me.txtCodigo(96).visible = False
+                
+            End If
+        
         
     End Select
 
@@ -1183,22 +1212,22 @@ End Sub
 
 
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim encontrado As String
 Dim Codigo As String
 
-    DatosOK = True
+    DatosOk = True
     
     Select Case OpcionListado
         Case 0 ' listado de retenciones
             If txtCodigo(2).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente un Importe Base.", vbExclamation
-                DatosOK = False
+                DatosOk = False
                 Exit Function
             End If
             If txtCodigo(3).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la fecha de listado.", vbExclamation
-                DatosOK = False
+                DatosOk = False
                 Exit Function
             End If
         Case 1 ' Impresion de recibos de retenciones
@@ -1206,21 +1235,21 @@ Dim Codigo As String
             If txtCodigo(4).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Fecha de Recibo.", vbExclamation
                 PonerFoco txtCodigo(4)
-                DatosOK = False
+                DatosOk = False
                 Exit Function
             End If
             'forma de pago
             If txtCodigo(61).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Forma de Pago.", vbExclamation
                 PonerFoco txtCodigo(61)
-                DatosOK = False
+                DatosOk = False
                 Exit Function
             End If
             'cuenta de pago
             If txtCodigo(6).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Cuenta de Pago.", vbExclamation
                 PonerFoco txtCodigo(6)
-                DatosOK = False
+                DatosOk = False
                 Exit Function
             End If
             
@@ -1228,7 +1257,7 @@ Dim Codigo As String
             If txtCodigo(102).Text = "" Or txtCodigo(103).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Fecha Desde / Hasta.", vbExclamation
                 PonerFoco txtCodigo(102)
-                DatosOK = False
+                DatosOk = False
                 Exit Function
             End If
             
@@ -1458,5 +1487,208 @@ Dim encontrado As String
     End Select
 End Sub
 
+Private Function GenerarFacturaRetenciones() As Boolean
+Dim vC As CTiposMov
+Dim fac As CFactura
+Dim cad As String
+Dim SQL As String
+Dim totfactu As Currency
+Dim BaseImp As Currency
+Dim base0 As Currency
+Dim base1 As Currency
+Dim base2 As Currency
+Dim base4 As Currency
+Dim ImpIVA As Currency
+Dim cli As CCliente
+Dim b As Boolean
+Dim CADENA As String
+Dim LetraSer As String
+Dim ForPago As Integer
+Dim FecFactu As Date
+Dim NumFactu As Long
+Dim codtipom As String
+Dim Cantidad As Currency
+Dim total As Currency
+Dim i As Currency
+Dim J As Integer
+Dim SqlArt As String
+Dim RsArt As ADODB.Recordset
+Dim SQL2 As String
+
+Dim cad1 As String
+
+
+    On Error GoTo EGenerarFacturas
+    
+    ' vamos a protegerlo con transacciones
+    conn.BeginTrans
+    
+    
+    'guardo el contador inicial por si falla para volver a guardarlo
+    Set miRsAux = New ADODB.Recordset
+    codtipom = "FAV"
+    
+    'valores grales para todos los socios
+    porIva = CCur(DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(iva), "T"))
+    LetraSer = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", codtipom, "T")
+    ForPago = txtCodigo(61).Text
+    CodTraba = DevuelveDesdeBD(conAri, "codtraba", "straba", "login", vUsu.Login, "T")
+    If CodTraba = "" Then CodTraba = DevuelveValor("select min(codtraba) from straba")
+    'busco el minimo almacen y el minimo proveedor
+    SQL = "select min(codalmac) from salmpr"
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not miRsAux.EOF Then
+        almac = miRsAux.Fields(0)
+    End If
+        
+    miRsAux.Close
+        
+    SQL = "select min(codprove) from sprove"
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not miRsAux.EOF Then
+        Prove = miRsAux.Fields(0)
+    End If
+    
+    
+    Set miRsAux = Nothing
+    
+    Pb1.visible = True
+    
+    Cantidad = 0
+    Data1.RecordSource = "select * from tmpinformes inner join sclien on tmpinformes.codigo1 = sclien.codclien where codusu = " & vUsu.Codigo & " order by codigo1 "
+    Data1.Refresh
+    total = Data1.Recordset.RecordCount
+    
+    b = True
+    
+    'inicializamos cadenas
+    cad = ""
+    While Not Data1.Recordset.EOF
+        Cantidad = Cantidad + 1
+        Pb1.Value = Cantidad * 100 / total
+        Set vC = New CTiposMov
+        Set cli = New CCliente
+        Set fac = New CFactura
+
+        If vC.TipoMovimiento <> codtipom Then
+            If Not vC.Leer(codtipom) Then
+                Data1.Recordset.Close
+                If NumRegElim > 0 Then MsgBox "Se han generado " & NumRegElim & " factura(s) antes del error", vbExclamation
+                Exit Function
+            End If
+        End If
+        vC.IncrementarContador (vC.TipoMovimiento)
+        
+        totfactu = Data1.Recordset!importe2
+        
+        BaseImp = Round(TotalFac / (1 + (porIva / 100)), 2)
+            
+
+        DoEvents
+        fac.BaseImp = BaseImp
+        fac.BrutoFac = BaseImp
+        ImpIVA = totfactu - BaseImp
+        fac.TotalFac = totfactu
+        fac.codtipom = codtipom
+        FecFactu = txtCodigo(4).Text
+        fac.FecFactu = FecFactu
+        fac.LetraSerie = LetraSer
+        NumFactu = vC.Contador
+        fac.NumFactu = NumFactu
+'        fac.CuentaPrev = Text1(7).Text
+        fac.ForPago = ForPago
+        
+        fac.BancoPr = txtCodigo(6)
+        fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+        
+        fac.Agente = vParamAplic.PorDefecto_Agente
+        
+        'datos del cliente
+        fac.Cliente = Data1.Recordset!CodClien
+        cli.Nombre = Data1.Recordset!nomclien
+        fac.NombreClien = Data1.Recordset!nomclien
+        cli.Domicilio = Data1.Recordset!domclien
+        fac.DomicilioClien = Data1.Recordset!domclien
+        cli.CPostal = Data1.Recordset!codpobla
+        fac.CPostal = Data1.Recordset!codpobla
+        cli.Poblacion = Data1.Recordset!pobclien
+        fac.Poblacion = Data1.Recordset!pobclien
+        cli.Provincia = Data1.Recordset!proclien
+        fac.Provincia = Data1.Recordset!proclien
+        cli.NIF = Data1.Recordset!nifClien
+        fac.NIF = Data1.Recordset!nifClien
+        
+        '[Monica]22/11/2013:iban
+        fac.Iban = Data1.Recordset!Iban
+        fac.Banco = Data1.Recordset!codbanco
+        fac.Sucursal = Data1.Recordset!codsucur
+        fac.DigControl = Data1.Recordset!digcontr
+        fac.CuentaBan = Data1.Recordset!cuentaba
+    
+        'scafac
+        cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
+        cad = cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
+        cad = cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
+        cad = cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
+        cad = cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
+        cad = cad & DBSet(Data1.Recordset!codbanco, "N", "S") & "," & DBSet(Data1.Recordset!codsucur, "N", "S") & "," & DBSet(Data1.Recordset!digcontr, "T", "S") & "," & DBSet(Data1.Recordset!cuentaba, "T", "S") & "," & DBSet(Data1.Recordset!Iban, "T") & ")"
+        SQL = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
+        SQL = SQL & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
+        SQL = SQL & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
+        SQL = SQL & cad
+        If Not ejecutar(SQL, False) Then
+            vC.DevolverContador vC.TipoMovimiento, vC.Contador
+            Exit Function
+        Else
+            'scafac1
+            If cadFormula = "" Then
+                cadFormula = "{scafac.numfactu}=" & NumFactu
+            Else
+                cadFormula = cadFormula & " or {scafac.numfactu}=" & NumFactu
+            End If
+            cad = ""
+            cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
+            cad = cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+            cad = cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
+    
+            SQL = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
+            SQL = SQL & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
+            SQL = SQL & cad & ")"
+            conn.Execute SQL
+            'slifac
+            cad = ""
+            
+
+                cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
+                cad = cad & DBSet(vParamAplic.ArtCuotaExtraor, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
+                cad = cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
+                cad = cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & DBSet(Text1(6).Text, "T") & ",1)"
+                SQL = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
+                SQL = SQL & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
+                SQL = SQL & cad
+                conn.Execute SQL
+            
+            
+        
+        End If
+        Set vC = Nothing
+        Data1.Recordset.MoveNext
+    Wend
+    Data1.Recordset.Close
+    Pb1.visible = False
+
+EGenerarFacturas:
+    If Err.Number <> 0 Or Not b Then
+        GenerarFacturaRetenciones = False
+        conn.RollbackTrans
+        MsgBox "Error al generar facturas: " & Err.Description
+    Else
+        MsgBox "Proceso realizado correctamente.", vbExclamation
+        GenerarFacturaRetenciones = True
+        conn.CommitTrans
+    End If
+End Function
 
 

@@ -1,5 +1,5 @@
 Attribute VB_Name = "ModFormularios"
-Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hWnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
+Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
 
 '============================================================
 '====== FUNCIONES GENERALES  ================================
@@ -64,12 +64,12 @@ Public Sub BloquearText1(ByRef formulario As Form, Modo As Byte)
 'IN ->  formulario: formulario en el que se van a poner los controles textbox en modo visualización
 '       Modo: modo del mantenimiento (Insertar, Modificar,Buscar...)
 Dim i As Byte
-Dim B As Boolean
+Dim b As Boolean
 Dim vtag As CTag
 On Error Resume Next
 
     With formulario
-        B = (Modo = 3 Or Modo = 4 Or Modo = 1) 'And ModoLineas = 1))
+        b = (Modo = 3 Or Modo = 4 Or Modo = 1) 'And ModoLineas = 1))
         
         For i = 0 To .Text1.Count - 1 'En principio todos los TExt1 tiene TAG
             Set vtag = New CTag
@@ -79,8 +79,8 @@ On Error Resume Next
                     .Text1(i).Locked = True
                     .Text1(i).BackColor = &H80000018 'amarillo claro
                 Else
-                    .Text1(i).Locked = Not B  '((Not b) And (Modo <> 1))
-                    If B Then
+                    .Text1(i).Locked = Not b  '((Not b) And (Modo <> 1))
+                    If b Then
                         .Text1(i).BackColor = vbWhite
                     Else
                         .Text1(i).BackColor = &H80000018 'amarillo claro
@@ -88,8 +88,8 @@ On Error Resume Next
                     If Modo = 3 Then .Text1(i).Text = "" 'Modo 3: Insertar (si vamos a Insertar ade+ Limpiamos el campo)
                 End If
             Else
-                .Text1(i).Locked = Not B  '((Not b) And (Modo <> 1))
-                If B Then
+                .Text1(i).Locked = Not b  '((Not b) And (Modo <> 1))
+                If b Then
                     .Text1(i).BackColor = vbWhite
                 Else
                     .Text1(i).BackColor = &H80000018 'amarillo claro
@@ -103,15 +103,15 @@ On Error Resume Next
 End Sub
 
 
-Public Sub BloquearTxt(ByRef Text As TextBox, B As Boolean, Optional EsContador As Boolean)
+Public Sub BloquearTxt(ByRef Text As TextBox, b As Boolean, Optional EsContador As Boolean)
 'Bloquea un control de tipo TextBox
 'Si lo bloquea lo pone de color amarillo claro sino lo pone en color blanco (sino es contador)
 'pero si es contador lo pone color azul claro
 On Error Resume Next
 
-    Text.Locked = B
-    If Not B And Text.Enabled = False Then Text.Enabled = True
-    If B Then
+    Text.Locked = b
+    If Not b And Text.Enabled = False Then Text.Enabled = True
+    If b Then
         If EsContador Then
             'Si Es un campo que se obtiene de un contador poner color azul
 '            Text.BackColor = &H80000013 'Azul Claro
@@ -126,29 +126,29 @@ On Error Resume Next
 End Sub
 
 
-Public Sub BloquearImg(ByRef imgF As Image, B As Boolean)
+Public Sub BloquearImg(ByRef imgF As Image, b As Boolean)
 On Error Resume Next
 
-    imgF.Enabled = Not B
-    imgF.visible = Not B
+    imgF.Enabled = Not b
+    imgF.visible = Not b
     
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
 
-Public Sub BloquearCmb(ByRef cmb As ComboBox, B As Boolean, Optional EsContador As Boolean)
+Public Sub BloquearCmb(ByRef cmb As ComboBox, b As Boolean, Optional EsContador As Boolean)
 'Bloqueja un control de tipo ComboBox
 'Si el bloqueja el posa de color gris claro, sino el posa de color blanc (sino es contador)
 'pero si es contador el posa color blau clar
     On Error Resume Next
 
-    cmb.Locked = B
+    cmb.Locked = b
     cmb.Enabled = True
     
     'cmb.Enabled = Not b
     
     'If Not b And Cmb.Enabled = False Then Cmb.Enabled = True
-    If B Then
+    If b Then
         If EsContador Then
             'Si Es un campo que se obtiene de un contador poner color azul
             cmb.BackColor = &H80000013 'Azul Claro
@@ -168,11 +168,11 @@ Public Sub BloquearChecks(ByRef formulario As Form, Modo As Byte)
 'Bloquea controles  CheckBox si no estamos en Modo: 3.-Insertar, 4.-Modificar
 'IN ->  formulario: formulario en el que se van a poner los controles textbox en modo visualización
 '       Modo: modo del mantenimiento (Insertar, Modificar,Buscar...)
-Dim B As Boolean
+Dim b As Boolean
 Dim Control As Control
 On Error Resume Next
 
-    B = (Modo = 3 Or Modo = 4 Or Modo = 1)
+    b = (Modo = 3 Or Modo = 4 Or Modo = 1)
     With formulario
         For Each Control In formulario.Controls
             If TypeOf Control Is CheckBox Then
@@ -194,12 +194,12 @@ On Error Resume Next
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Public Sub BloquearChk(ByRef ChK As CheckBox, B As Boolean)
+Public Sub BloquearChk(ByRef ChK As CheckBox, b As Boolean)
 'Bloquea un control de tipo CheckBox
 '(IN) b : sera true o false segun si bloquea o no
     On Error Resume Next
 
-    ChK.Enabled = Not B
+    ChK.Enabled = Not b
    
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -883,13 +883,13 @@ End Sub
 Public Sub ActualizarToolbarGnral(ByRef Toolbar1 As Toolbar, Modo As Byte, Kmodo As Byte, posic As Byte)
 'Modo: Modo antiguo
 'Kmodo: Modo que se va a poner
-Dim B As Boolean
+Dim b As Boolean
     
     '---- [23/09/2009] LAURA : Añadir lineas de Cod. EAN (se añade modo 8)
-    B = (Modo = 5 Or Modo = 6 Or Modo = 7 Or Modo = 8)
+    b = (Modo = 5 Or Modo = 6 Or Modo = 7 Or Modo = 8)
     
     '---- [23/09/2009] LAURA : Añadir lineas de Cod. EAN (se añade modo 8)
-    If (B) And (Kmodo <> 5 And Kmodo <> 6 And Kmodo <> 7 And Kmodo <> 8) Then 'Cabecera
+    If (b) And (Kmodo <> 5 And Kmodo <> 6 And Kmodo <> 7 And Kmodo <> 8) Then 'Cabecera
         'El modo antigu era modificando las lineas
         'Luego hay que reestablecer los dibujitos y los TIPS
         '-- insertar
@@ -926,7 +926,8 @@ Public Sub KEYpressGnral(KeyAscii As Integer, Modo As Byte, cerrar As Boolean)
     cerrar = False
     If KeyAscii = 13 Then 'ENTER
         KeyAscii = 0
-        SendKeys "{tab}"
+'        SendKeys "{tab}"
+        CreateObject("WScript.Shell").SendKeys "{tab}"
     ElseIf KeyAscii = 27 Then 'ESC
         If (Modo = 0 Or Modo = 2) Then cerrar = True
     End If
@@ -1640,7 +1641,7 @@ Dim SQL As String
 Dim vClien As CCliente
 Dim vProve As CProveedor
 Dim vSocio As CSocio
-Dim B As Boolean
+Dim b As Boolean
 
     On Error GoTo EInsCta
     
@@ -1675,9 +1676,9 @@ Dim B As Boolean
             
             ConnConta.Execute SQL
             cadClien = vClien.Nombre
-            B = True
+            b = True
         Else
-            B = False
+            b = False
         End If
         Set vClien = Nothing
     End If
@@ -1703,9 +1704,9 @@ Dim B As Boolean
             
             ConnConta.Execute SQL
             cadClien = vSocio.Nombre
-            B = True
+            b = True
         Else
-            B = False
+            b = False
         End If
         Set vSocio = Nothing
     End If
@@ -1734,9 +1735,9 @@ Dim B As Boolean
             cadProve = ""
             ConnConta.Execute SQL
             cadProve = vProve.Nombre
-            B = True
+            b = True
         Else
-            B = False
+            b = False
         End If
         Set vProve = Nothing
     
@@ -1749,16 +1750,16 @@ Dim B As Boolean
         SQL = SQL & "," & ValorNulo & "," & ValorNulo & ")"
         
         ConnConta.Execute SQL
-        B = True
+        b = True
     ' ----
     End If
     
 EInsCta:
     If Err.Number <> 0 Then
-        B = False
+        b = False
         MuestraError Err.Description, "Insertando cuenta contable", Err.Description
     End If
-    InsertarCuentaCble = B
+    InsertarCuentaCble = b
 End Function
 
 
@@ -1767,7 +1768,7 @@ Dim SQL As String
 Dim vClien As CCliente
 Dim vProve As CProveedor
 Dim vSocio As CSocio
-Dim B As Boolean
+Dim b As Boolean
 
     On Error GoTo EInsCta
     
@@ -1798,9 +1799,9 @@ Dim B As Boolean
             
             ConnConta.Execute SQL
             cadClien = vClien.Nombre
-            B = True
+            b = True
         Else
-            B = False
+            b = False
         End If
         Set vClien = Nothing
     End If
@@ -1830,9 +1831,9 @@ Dim B As Boolean
             
             ConnConta.Execute SQL
             cadClien = vSocio.Nombre
-            B = True
+            b = True
         Else
-            B = False
+            b = False
         End If
         Set vSocio = Nothing
     End If
@@ -1861,20 +1862,20 @@ Dim B As Boolean
             
             ConnConta.Execute SQL
             cadClien = vProve.Nombre
-            B = True
+            b = True
             
         Else
-            B = False
+            b = False
         End If
         Set vProve = Nothing
     End If
     
 EInsCta:
     If Err.Number <> 0 Then
-        B = False
+        b = False
         MuestraError Err.Description, "Insertando cuenta contable", Err.Description
     End If
-    ModificarCuentaCble = B
+    ModificarCuentaCble = b
 End Function
 
 
@@ -1905,13 +1906,13 @@ End Function
 Public Function ComprobarHayStock(stockOrig As Single, stockTras As Single, codArtic As String, NomArtic As String, tipoMov As String)
 'IN: stockOrig: stock existente en almacen Origen
 '    stockTras: stock a traspasar del origen a otro almacen
-Dim B As Boolean
+Dim b As Boolean
 Dim devuelve As String
 
     ComprobarHayStock = False
     If stockOrig >= CSng(stockTras) Then
     'Si cantidad en stock > cantidad a traspasar entonces
-        B = True
+        b = True
     Else    'No hay suficiente stock en almacen origen
         devuelve = "Control de Stock : " & vbCrLf
         devuelve = devuelve & "---------------------- " & vbCrLf & vbCrLf
@@ -1925,7 +1926,7 @@ Dim devuelve As String
         Else
             If vParamAplic.ControlStock Then
             'Si hay control Stock no permitir traspaso
-                B = False
+                b = False
                 Select Case tipoMov
                     Case "REG"
                         devuelve = devuelve & vbCrLf & vbCrLf & " No se puede realizar el Movimiento de Almacen. "
@@ -1941,14 +1942,14 @@ Dim devuelve As String
                     devuelve = devuelve & vbCrLf & vbCrLf & " ¿Desea realizar el Traspaso de Almacen? "
                 End Select
                 If MsgBox(devuelve, vbQuestion + vbYesNo) = vbYes Then
-                    B = True
+                    b = True
                 Else
-                    B = False
+                    b = False
                 End If
             End If
         End If
     End If
-    ComprobarHayStock = B
+    ComprobarHayStock = b
 End Function
 
 
@@ -1988,7 +1989,7 @@ On Error GoTo ELanzaHome
         Exit Function
     End If
 
-    Call ShellExecute(hWnd, "Open", "mailto: " & dirMail, "", "", vbNormalFocus)
+    Call ShellExecute(hwnd, "Open", "mailto: " & dirMail, "", "", vbNormalFocus)
     LanzaMailGnral = True
     
 ELanzaHome:

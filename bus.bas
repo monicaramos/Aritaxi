@@ -132,7 +132,7 @@ Dim T1 As Single
         LeerNivelesEmpresa
         
 '        'Gestionar el nombre del PC para la asignacion de PC en el entorno de red
-'        GestionaPC
+        GestionaPC
         
         'Otras acciones
         OtrasAcciones
@@ -1096,7 +1096,7 @@ End Function
 
 Public Function CuentaCorrectaUltimoNivel(ByRef cuenta As String, ByRef devuelve As String) As Boolean
 'Comprueba si es numerica
-Dim Sql As String
+Dim SQL As String
 Dim otroCampo As String
 
 CuentaCorrectaUltimoNivel = False
@@ -1122,8 +1122,8 @@ End If
 
 otroCampo = "apudirec"
 'BD 2: conexion a BD Conta
-Sql = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", cuenta, "T", otroCampo)
-If Sql = "" Then
+SQL = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", cuenta, "T", otroCampo)
+If SQL = "" Then
     devuelve = "No existe la cuenta : " & cuenta
     CuentaCorrectaUltimoNivel = True
     Exit Function
@@ -1132,7 +1132,7 @@ End If
 'Llegados aqui, si que existe la cuenta
 If otroCampo = "S" Then 'Si es apunte directo
     CuentaCorrectaUltimoNivel = True
-    devuelve = Sql
+    devuelve = SQL
 Else
     devuelve = "No es apunte directo: " & cuenta
 End If
@@ -1880,7 +1880,7 @@ End Function
 '--------------------  ELIMINAR ARTICULO
 Public Function SePuedeEliminarArticulo(ByVal Articulo As String, ByRef L1 As Label) As String
 On Error GoTo Salida
-Dim Sql As String
+Dim SQL As String
 Dim RS As ADODB.Recordset
 Dim i As Integer
 Dim C As String
@@ -1892,9 +1892,9 @@ Dim NT As Integer
     
     
     'Clientes
-    DevuelveTablasBorre 0, C, Sql, NT
+    DevuelveTablasBorre 0, C, SQL, NT
     For i = 1 To NT
-        L1.Caption = RecuperaValor(Sql, i) & " (Clientes)"
+        L1.Caption = RecuperaValor(SQL, i) & " (Clientes)"
         L1.Refresh
         If TieneDatosSQLCount(RS, "SELECT count(*) from " & RecuperaValor(C, i) & " where codartic = " & Articulo, 0) Then
             SePuedeEliminarArticulo = SePuedeEliminarArticulo & "    -" & L1.Caption & vbCrLf
@@ -1905,9 +1905,9 @@ Dim NT As Integer
     
     'Si llega aqui comprobamos en  proveedores
     'PROVEEDORES
-    DevuelveTablasBorre 1, C, Sql, NT
+    DevuelveTablasBorre 1, C, SQL, NT
     For i = 1 To NT
-        L1.Caption = RecuperaValor(Sql, i) & " (Proveedores)"
+        L1.Caption = RecuperaValor(SQL, i) & " (Proveedores)"
         L1.Refresh
         If TieneDatosSQLCount(RS, "SELECT count(*) from " & RecuperaValor(C, i) & " where codartic = " & Articulo, 0) Then
             SePuedeEliminarArticulo = SePuedeEliminarArticulo & "    -" & L1.Caption & vbCrLf
@@ -1917,9 +1917,9 @@ Dim NT As Integer
     If SePuedeEliminarArticulo <> "" Then SePuedeEliminarArticulo = SePuedeEliminarArticulo & vbCrLf
     
     'Varios
-    DevuelveTablasBorre 2, C, Sql, NT
+    DevuelveTablasBorre 2, C, SQL, NT
     For i = 1 To NT
-        L1.Caption = RecuperaValor(Sql, i) & " (Varios)"
+        L1.Caption = RecuperaValor(SQL, i) & " (Varios)"
         L1.Refresh
         If TieneDatosSQLCount(RS, "SELECT count(*) from " & RecuperaValor(C, i) & " where codartic = " & Articulo, 0) Then
             SePuedeEliminarArticulo = SePuedeEliminarArticulo & "    -" & L1.Caption & vbCrLf
@@ -1931,12 +1931,12 @@ Dim NT As Integer
         
     'Si es articulo de parametros
     C = ""
-    Sql = vbCrLf & Space(10)
+    SQL = vbCrLf & Space(10)
     With vParamAplic
-        If DBSet(.ArticServ, "T") = Articulo Then C = C & Sql & "Servicios"
-        If DBSet(.ArtPortes, "T") = Articulo Then C = C & Sql & "Portes"
-        If DBSet(.ArtGastosAdmon, "T") = Articulo Then C = C & Sql & "Gastos de Admon" '"Tasa reciclado"
-        If DBSet(.CodarticTfnia, "T") = Articulo Then C = C & Sql & "Telefonia"
+        If DBSet(.ArticServ, "T") = Articulo Then C = C & SQL & "Servicios"
+        If DBSet(.ArtPortes, "T") = Articulo Then C = C & SQL & "Portes"
+        If DBSet(.ArtGastosAdmon, "T") = Articulo Then C = C & SQL & "Gastos de Admon" '"Tasa reciclado"
+        If DBSet(.CodarticTfnia, "T") = Articulo Then C = C & SQL & "Telefonia"
     End With
     If C <> "" Then
         C = " -Parametros " & C
@@ -2122,11 +2122,11 @@ End Sub
 
 
 
-Public Function ejecutar(ByRef Sql As String, OcultarMsg As Boolean) As Boolean
+Public Function ejecutar(ByRef SQL As String, OcultarMsg As Boolean) As Boolean
     On Error Resume Next
-    conn.Execute Sql
+    conn.Execute SQL
     If Err.Number <> 0 Then
-        If Not OcultarMsg Then MuestraError Err.Number, Err.Description, Sql
+        If Not OcultarMsg Then MuestraError Err.Number, Err.Description, SQL
         ejecutar = False
     Else
         ejecutar = True

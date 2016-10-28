@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -124,85 +124,85 @@ Begin VB.Form frmGesSocios
       TabCaption(0)   =   "Datos"
       TabPicture(0)   =   "frmGesSocios.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "imgFecha(1)"
-      Tab(0).Control(1)=   "Label1(14)"
-      Tab(0).Control(2)=   "imgFecha(0)"
-      Tab(0).Control(3)=   "Label1(13)"
-      Tab(0).Control(4)=   "Label1(4)"
-      Tab(0).Control(5)=   "ImgMail(1)"
-      Tab(0).Control(6)=   "imgBuscar(2)"
-      Tab(0).Control(7)=   "Label1(11)"
-      Tab(0).Control(8)=   "Label1(10)"
-      Tab(0).Control(9)=   "Label1(9)"
-      Tab(0).Control(10)=   "Label1(8)"
-      Tab(0).Control(11)=   "Label1(7)"
-      Tab(0).Control(12)=   "Label1(6)"
-      Tab(0).Control(13)=   "imgBuscar(0)"
-      Tab(0).Control(14)=   "Label1(5)"
-      Tab(0).Control(15)=   "Label1(3)"
-      Tab(0).Control(16)=   "Label1(19)"
-      Tab(0).Control(17)=   "Label1(20)"
-      Tab(0).Control(18)=   "Label14"
-      Tab(0).Control(19)=   "imgDoc(1)"
-      Tab(0).Control(20)=   "imgDoc(0)"
-      Tab(0).Control(21)=   "Label2"
-      Tab(0).Control(22)=   "Label1(21)"
-      Tab(0).Control(23)=   "Text1(23)"
-      Tab(0).Control(24)=   "Frame3(1)"
-      Tab(0).Control(25)=   "Check1(0)"
-      Tab(0).Control(26)=   "Text1(17)"
-      Tab(0).Control(27)=   "Text1(13)"
-      Tab(0).Control(28)=   "Text1(12)"
-      Tab(0).Control(29)=   "Text1(10)"
-      Tab(0).Control(30)=   "Text1(9)"
-      Tab(0).Control(31)=   "Text1(8)"
-      Tab(0).Control(32)=   "Text1(6)"
-      Tab(0).Control(33)=   "Text1(5)"
-      Tab(0).Control(34)=   "Text1(4)"
-      Tab(0).Control(35)=   "Text1(3)"
-      Tab(0).Control(36)=   "Text1(7)"
-      Tab(0).Control(37)=   "Text1(22)"
-      Tab(0).Control(38)=   "Text1(21)"
-      Tab(0).Control(39)=   "Text1(20)"
-      Tab(0).Control(40)=   "Text1(19)"
-      Tab(0).Control(41)=   "Text1(25)"
-      Tab(0).Control(42)=   "Text1(27)"
-      Tab(0).Control(43)=   "Check1(1)"
-      Tab(0).Control(44)=   "Text1(28)"
-      Tab(0).Control(45)=   "Check1(2)"
+      Tab(0).Control(0)=   "Check1(2)"
+      Tab(0).Control(1)=   "Text1(28)"
+      Tab(0).Control(2)=   "Check1(1)"
+      Tab(0).Control(3)=   "Text1(27)"
+      Tab(0).Control(4)=   "Text1(25)"
+      Tab(0).Control(5)=   "Text1(19)"
+      Tab(0).Control(6)=   "Text1(20)"
+      Tab(0).Control(7)=   "Text1(21)"
+      Tab(0).Control(8)=   "Text1(22)"
+      Tab(0).Control(9)=   "Text1(7)"
+      Tab(0).Control(10)=   "Text1(3)"
+      Tab(0).Control(11)=   "Text1(4)"
+      Tab(0).Control(12)=   "Text1(5)"
+      Tab(0).Control(13)=   "Text1(6)"
+      Tab(0).Control(14)=   "Text1(8)"
+      Tab(0).Control(15)=   "Text1(9)"
+      Tab(0).Control(16)=   "Text1(10)"
+      Tab(0).Control(17)=   "Text1(12)"
+      Tab(0).Control(18)=   "Text1(13)"
+      Tab(0).Control(19)=   "Text1(17)"
+      Tab(0).Control(20)=   "Check1(0)"
+      Tab(0).Control(21)=   "Frame3(1)"
+      Tab(0).Control(22)=   "Text1(23)"
+      Tab(0).Control(23)=   "Label1(21)"
+      Tab(0).Control(24)=   "Label2"
+      Tab(0).Control(25)=   "imgDoc(0)"
+      Tab(0).Control(26)=   "imgDoc(1)"
+      Tab(0).Control(27)=   "Label14"
+      Tab(0).Control(28)=   "Label1(20)"
+      Tab(0).Control(29)=   "Label1(19)"
+      Tab(0).Control(30)=   "Label1(3)"
+      Tab(0).Control(31)=   "Label1(5)"
+      Tab(0).Control(32)=   "imgBuscar(0)"
+      Tab(0).Control(33)=   "Label1(6)"
+      Tab(0).Control(34)=   "Label1(7)"
+      Tab(0).Control(35)=   "Label1(8)"
+      Tab(0).Control(36)=   "Label1(9)"
+      Tab(0).Control(37)=   "Label1(10)"
+      Tab(0).Control(38)=   "Label1(11)"
+      Tab(0).Control(39)=   "imgBuscar(2)"
+      Tab(0).Control(40)=   "ImgMail(1)"
+      Tab(0).Control(41)=   "Label1(4)"
+      Tab(0).Control(42)=   "Label1(13)"
+      Tab(0).Control(43)=   "imgFecha(0)"
+      Tab(0).Control(44)=   "Label1(14)"
+      Tab(0).Control(45)=   "imgFecha(1)"
       Tab(0).ControlCount=   46
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "LabelCRM"
-      Tab(1).Control(1)=   "lwCRM"
-      Tab(1).Control(2)=   "cmdAccCRM(2)"
-      Tab(1).Control(3)=   "cmdAccCRM(1)"
-      Tab(1).Control(4)=   "cmdAccCRM(0)"
-      Tab(1).Control(5)=   "Frame3(2)"
+      Tab(1).Control(0)=   "Frame3(2)"
+      Tab(1).Control(1)=   "cmdAccCRM(0)"
+      Tab(1).Control(2)=   "cmdAccCRM(1)"
+      Tab(1).Control(3)=   "cmdAccCRM(2)"
+      Tab(1).Control(4)=   "lwCRM"
+      Tab(1).Control(5)=   "LabelCRM"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "DataGrid1"
-      Tab(2).Control(1)=   "txtAux1(0)"
-      Tab(2).Control(2)=   "txtAux1(1)"
+      Tab(2).Control(0)=   "cmdAux(0)"
+      Tab(2).Control(1)=   "txtAux1(4)"
+      Tab(2).Control(2)=   "txtAux1(3)"
       Tab(2).Control(3)=   "txtAux1(2)"
-      Tab(2).Control(4)=   "txtAux1(3)"
-      Tab(2).Control(5)=   "txtAux1(4)"
-      Tab(2).Control(6)=   "cmdAux(0)"
+      Tab(2).Control(4)=   "txtAux1(1)"
+      Tab(2).Control(5)=   "txtAux1(0)"
+      Tab(2).Control(6)=   "DataGrid1"
       Tab(2).ControlCount=   7
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "DataGrid2"
-      Tab(3).Control(1)=   "txtAux2(0)"
-      Tab(3).Control(2)=   "txtAux2(1)"
-      Tab(3).Control(3)=   "txtAux2(2)"
-      Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "cmdAux1"
-      Tab(3).Control(6)=   "txtAux2(4)"
-      Tab(3).Control(7)=   "cmdAux(1)"
+      Tab(3).Control(0)=   "cmdAux(1)"
+      Tab(3).Control(1)=   "txtAux2(4)"
+      Tab(3).Control(2)=   "cmdAux1"
+      Tab(3).Control(3)=   "txtAux2(3)"
+      Tab(3).Control(4)=   "txtAux2(2)"
+      Tab(3).Control(5)=   "txtAux2(1)"
+      Tab(3).Control(6)=   "txtAux2(0)"
+      Tab(3).Control(7)=   "DataGrid2"
       Tab(3).ControlCount=   8
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
@@ -225,21 +225,21 @@ Begin VB.Form frmGesSocios
       TabCaption(5)   =   "Documentos"
       TabPicture(5)   =   "frmGesSocios.frx":008C
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "LabelDoc"
-      Tab(5).Control(1)=   "imgFecha(3)"
-      Tab(5).Control(2)=   "Label3"
+      Tab(5).Control(0)=   "Text1(26)"
+      Tab(5).Control(1)=   "Toolbar2"
+      Tab(5).Control(2)=   "lw1"
       Tab(5).Control(3)=   "Frame3(0)"
-      Tab(5).Control(4)=   "lw1"
-      Tab(5).Control(5)=   "Toolbar2"
-      Tab(5).Control(6)=   "Text1(26)"
+      Tab(5).Control(4)=   "Label3"
+      Tab(5).Control(5)=   "imgFecha(3)"
+      Tab(5).Control(6)=   "LabelDoc"
       Tab(5).ControlCount=   7
       TabCaption(6)   =   "Contadores"
       TabPicture(6)   =   "frmGesSocios.frx":00A8
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "DataGrid3"
-      Tab(6).Control(1)=   "txtAux4(2)"
-      Tab(6).Control(2)=   "txtAux4(1)"
-      Tab(6).Control(3)=   "txtAux4(0)"
+      Tab(6).Control(0)=   "txtAux4(0)"
+      Tab(6).Control(1)=   "txtAux4(1)"
+      Tab(6).Control(2)=   "txtAux4(2)"
+      Tab(6).Control(3)=   "DataGrid3"
       Tab(6).ControlCount=   4
       Begin VB.CheckBox Check1 
          Caption         =   "Facturación Elec."
@@ -2285,7 +2285,7 @@ Dim aaa As String
             HacerBusqueda
             
         Case 3 'INSERTAR
-            If DatosOK Then
+            If DatosOk Then
               If InsertaRegistro Then 'antes InsertadesdeForm(Me) Then
 '                    CrearContadores
                     PosicionarData
@@ -2293,7 +2293,7 @@ Dim aaa As String
             End If
             
         Case 4  'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                 '[Monica]13/03/2012: Modificamos el registro
                 If ModificarRegistro Then
                     PosicionarData
@@ -2321,6 +2321,7 @@ Dim aaa As String
                 If SSTab1.Tab = 2 Then
                     'choferes
                     If InsertarLinea Then
+                        TerminaBloquear
                         CargaGrid DataGrid1, Adodc2
                         BotonAnyadirLinea
                     End If
@@ -2328,18 +2329,21 @@ Dim aaa As String
                     If SSTab1.Tab = 3 Then
                         'publicidad
                         If InsertarLinea2 Then
+                            TerminaBloquear
                             CargaGrid DataGrid2, Adodc3
                             BotonAnyadirLinea2
                         End If
                     Else
                         If SSTab1.Tab = 6 Then
                             If InsertarLinea4 Then
+                                TerminaBloquear
                                 CargaGrid DataGrid3, Adodc4
                                 BotonAnyadirLinea4
                             End If
                         Else
                             'cuotas
                             If InsertarLinea3 Then
+                                TerminaBloquear
                                 CargaGrid DataGrid4, Adodc5
                                 BotonAnyadirLinea3
                             End If
@@ -2684,7 +2688,7 @@ On Error GoTo EModificarLinea
     
     If DatosOkLinea() Then
         'Creamos la sentencia SQL
-        SQL = "UPDATE sclien_contadores set contador=" & txtAux4(2).Text
+        SQL = "UPDATE sclien_contadores set contador=" & TxtAux4(2).Text
         SQL = SQL & " where codsocio=" & Adodc4.Recordset!codSocio & " AND codtipom='" & Adodc4.Recordset!codtipom & "'"
     End If
     
@@ -2709,7 +2713,7 @@ On Error GoTo EModificarLinea
     
     If DatosOkLinea() Then
         'Creamos la sentencia SQL
-        SQL = "UPDATE sclien_cuotas set importes=" & DBSet(txtAux3(2).Text, "N")
+        SQL = "UPDATE sclien_cuotas set importes=" & DBSet(TxtAux3(2).Text, "N")
         SQL = SQL & " where codsocio=" & Adodc5.Recordset!codSocio & " AND numlinea=" & Adodc5.Recordset!numlinea
     End If
     
@@ -2778,7 +2782,7 @@ Dim SQL As String
             End If
     ElseIf SSTab1.Tab = 4 Then
         'cuotas
-            If txtAux3(0).Text = "" Then
+            If TxtAux3(0).Text = "" Then
                 MsgBox "Es necesario introducir el código de artículo.", vbExclamation
                 DatosOkLinea = False
                 Exit Function
@@ -2787,7 +2791,7 @@ Dim SQL As String
                 If ModificaLineas = 0 Then
                 
                     ' comprobamos que el codigo de articulo no esté introducido ya
-                    If TotalRegistros("select count(*) from sclien_cuotas where codsocio = " & DBSet(Text1(0).Text, "N") & " and codartic = " & DBSet(txtAux3(0).Text, "T")) Then
+                    If TotalRegistros("select count(*) from sclien_cuotas where codsocio = " & DBSet(Text1(0).Text, "N") & " and codartic = " & DBSet(TxtAux3(0).Text, "T")) Then
                         MsgBox "Este artículo ya está introducido en el socio. Revise.", vbExclamation
                         DatosOkLinea = False
                         Exit Function
@@ -2797,14 +2801,14 @@ Dim SQL As String
             End If
     ElseIf SSTab1.Tab = 6 Then
         'contadores
-            If txtAux4(0).Text = "" Then
+            If TxtAux4(0).Text = "" Then
                 MsgBox "Es necesario introducir el tipo de movimiento.", vbExclamation
                 DatosOkLinea = False
                 Exit Function
             Else
                 If ModificaLineas = 1 Then ' si estamos insertando
                     ' comprobamos que el codigo de articulo no esté introducido ya
-                    If TotalRegistros("select count(*) from sclien_contadores where codsocio = " & DBSet(Text1(0).Text, "N") & " and codtipom = " & DBSet(txtAux4(0).Text, "T")) Then
+                    If TotalRegistros("select count(*) from sclien_contadores where codsocio = " & DBSet(Text1(0).Text, "N") & " and codtipom = " & DBSet(TxtAux4(0).Text, "T")) Then
                         MsgBox "Este tipo de movimiento ya está introducido en el socio. Revise.", vbExclamation
                         DatosOkLinea = False
                         Exit Function
@@ -2903,7 +2907,7 @@ On Error GoTo EInsertarLinea3
         SQL = "INSERT INTO sclien_cuotas "
         SQL = SQL & "(codsocio, numlinea, codartic, importes) "
         SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
-        SQL = SQL & DBSet(txtAux3(0).Text, "T") & "," & DBSet(txtAux3(2).Text, "N") & ")"
+        SQL = SQL & DBSet(TxtAux3(0).Text, "T") & "," & DBSet(TxtAux3(2).Text, "N") & ")"
     End If
     
     If SQL <> "" Then
@@ -2929,8 +2933,8 @@ On Error GoTo EInsertarLinea4
         vWhere = "codsocio=" & Val(Text1(0).Text)
         SQL = "INSERT INTO sclien_contadores "
         SQL = SQL & "(codsocio, codtipom, contador) "
-        SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & DBSet(txtAux4(0).Text, "T") & ","
-        SQL = SQL & DBSet(txtAux4(2).Text, "N") & ")"
+        SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & DBSet(TxtAux4(0).Text, "T") & ","
+        SQL = SQL & DBSet(TxtAux4(2).Text, "N") & ")"
      End If
     
     If SQL <> "" Then
@@ -2959,99 +2963,99 @@ Dim cadB As String
     End If
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim Cta As String
+Dim cta As String
 Dim cadMen As String
 Dim SQL As String
 
-    DatosOK = False
+    DatosOk = False
     
     If Text1(0).Text = "" Then
         MsgBox "Es necesario introducir el codigo de socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If ComprobarCero(Text1(1).Text) = "0" Then
         MsgBox "Es necesario introducir la V de socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(2).Text = "" Then
         MsgBox "Es necesario introducir el nombre del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(3).Text = "" Then
         MsgBox "Es necesario introducir el domicilio del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(4).Text = "" Then
         MsgBox "Es necesario introducir el código de población del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(5).Text = "" Then
         MsgBox "Es necesario introducir la población del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(6).Text = "" Then
         MsgBox "Es necesario introducir la provincia del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(7).Text = "" Then
         MsgBox "Es necesario introducir el CIF del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(12).Text = "" Then
         MsgBox "Es necesario introducir la fecha de alta del socio.", vbExclamation
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(14).Text = "" Then
         MsgBox "Es necesario introducir el còdigo de coche.", vbExclamation
         SSTab1.Tab = 0
         PonerFoco Text1(14)
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(11).Text = "" Then
         MsgBox "Es necesario introducir el código de situación.", vbExclamation
         SSTab1.Tab = 0
         PonerFoco Text1(11)
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(19).Text = "" Then
         MsgBox "Es necesario introducir el código del banco.", vbExclamation
         SSTab1.Tab = 0
         PonerFoco Text1(19)
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(20).Text = "" Then
         MsgBox "Es necesario introducir el código de sucursal.", vbExclamation
         SSTab1.Tab = 0
         PonerFoco Text1(19)
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(21).Text = "" Then
         MsgBox "Es necesario introducir el dígito de control.", vbExclamation
         SSTab1.Tab = 0
         PonerFoco Text1(21)
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     If Text1(22).Text = "" Then
         MsgBox "Es necesario introducir la cuenta bancaria.", vbExclamation
         SSTab1.Tab = 0
         PonerFoco Text1(22)
-        DatosOK = False
+        DatosOk = False
         Exit Function
     End If
     
@@ -3061,7 +3065,7 @@ Dim SQL As String
             SQL = "select count(*) from sclien where numeruve = " & DBSet(Text1(1).Text, "N") & " and codclien <> " & DBSet(Text1(0).Text, "N")
             If TotalRegistros(SQL) <> 0 Then
                 If MsgBox("Esta V está asignada a otro socio. ¿ Desea continuar ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
-                    DatosOK = False
+                    DatosOk = False
                     Exit Function
                 End If
             End If
@@ -3083,12 +3087,12 @@ Dim SQL As String
             Text1(21).Text = ""
             Text1(22).Text = ""
         Else
-            Cta = Format(Text1(19).Text, "0000") & Format(Text1(20).Text, "0000") & Format(Text1(21).Text, "00") & Format(Text1(22).Text, "0000000000")
-            If Val(ComprobarCero(Cta)) = 0 Then
+            cta = Format(Text1(19).Text, "0000") & Format(Text1(20).Text, "0000") & Format(Text1(21).Text, "00") & Format(Text1(22).Text, "0000000000")
+            If Val(ComprobarCero(cta)) = 0 Then
                 cadMen = "El socio no tiene asignada cuenta bancaria."
                 MsgBox cadMen, vbExclamation
             End If
-            If Not Comprueba_CC(Cta) Then
+            If Not Comprueba_CC(cta) Then
                 cadMen = "La cuenta bancaria del socio no es correcta. ¿ Desea continuar ?."
                 If MsgBox(cadMen, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
                     b = True
@@ -3100,15 +3104,15 @@ Dim SQL As String
                 BuscaChekc = ""
                 If Me.Text1(28).Text <> "" Then BuscaChekc = Mid(Text1(28).Text, 1, 2)
                     
-                If DevuelveIBAN2(BuscaChekc, Cta, Cta) Then
+                If DevuelveIBAN2(BuscaChekc, cta, cta) Then
                     If Me.Text1(28).Text = "" Then
-                        If MsgBox("Poner IBAN ?", vbQuestion + vbYesNo) = vbYes Then Me.Text1(28).Text = BuscaChekc & Cta
+                        If MsgBox("Poner IBAN ?", vbQuestion + vbYesNo) = vbYes Then Me.Text1(28).Text = BuscaChekc & cta
                     Else
-                        If Mid(Text1(28).Text, 3) <> Cta Then
-                            Cta = "Calculado : " & BuscaChekc & Cta
-                            Cta = "Introducido: " & Me.Text1(28).Text & vbCrLf & Cta & vbCrLf
-                            Cta = "Error en codigo IBAN" & vbCrLf & Cta & "Continuar?"
-                            If MsgBox(Cta, vbQuestion + vbYesNo) = vbNo Then
+                        If Mid(Text1(28).Text, 3) <> cta Then
+                            cta = "Calculado : " & BuscaChekc & cta
+                            cta = "Introducido: " & Me.Text1(28).Text & vbCrLf & cta & vbCrLf
+                            cta = "Error en codigo IBAN" & vbCrLf & cta & "Continuar?"
+                            If MsgBox(cta, vbQuestion + vbYesNo) = vbNo Then
                                 PonerFoco Text1(28)
                                 b = False
                             End If
@@ -3118,7 +3122,7 @@ Dim SQL As String
             End If
         End If
     End If
-    DatosOK = b
+    DatosOk = b
         
 End Function
 
@@ -3339,8 +3343,8 @@ On Error GoTo EPonerModo
     ' Para poder buscar por el codigo de articulo
     CargaTxtAux3 (Modo = 1 Or (Modo = 5 And ModificaLineas = 1)), True
     For i = 1 To 2
-        txtAux3(i).visible = False
-        txtAux3(i).Locked = False
+        TxtAux3(i).visible = False
+        TxtAux3(i).Locked = False
     Next i
                        
     '[Monica]04/02/2015
@@ -3438,11 +3442,11 @@ End Sub
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento de Articulos
     
-    txtAux3(0).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod articulo
-    txtAux3(1).Text = RecuperaValor(CadenaSeleccion, 2) 'nombre articulo
+    TxtAux3(0).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod articulo
+    TxtAux3(1).Text = RecuperaValor(CadenaSeleccion, 2) 'nombre articulo
     
-    txtAux3(2).Text = DevuelveValor("select preciove from sartic where codartic = " & DBSet(txtAux3(0).Text, "T"))
-    txtAux3(2).Text = Format(txtAux3(2).Text, "###,##0.0000")
+    TxtAux3(2).Text = DevuelveValor("select preciove from sartic where codartic = " & DBSet(TxtAux3(0).Text, "T"))
+    TxtAux3(2).Text = Format(TxtAux3(2).Text, "###,##0.0000")
     
 End Sub
 
@@ -3921,23 +3925,23 @@ End Select
     
 '[Monica]: calculo del iban si no lo ponen
 If Index = 19 Or Index = 20 Or Index = 21 Or Index = 22 Then
-    Dim Cta As String
+    Dim cta As String
     Dim CC As String
     If Text1(19).Text <> "" And Text1(20).Text <> "" And Text1(21).Text <> "" And Text1(22).Text <> "" Then
         
-        Cta = Format(Text1(19).Text, "0000") & Format(Text1(20).Text, "0000") & Format(Text1(21).Text, "00") & Format(Text1(22).Text, "0000000000")
-        If Len(Cta) = 20 Then
+        cta = Format(Text1(19).Text, "0000") & Format(Text1(20).Text, "0000") & Format(Text1(21).Text, "00") & Format(Text1(22).Text, "0000000000")
+        If Len(cta) = 20 Then
 '        Text1(42).Text = Calculo_CC_IBAN(cta, Text1(42).Text)
 
             If Text1(28).Text = "" Then
                 'NO ha puesto IBAN
-                If DevuelveIBAN2("ES", Cta, Cta) Then Text1(28).Text = "ES" & Cta
+                If DevuelveIBAN2("ES", cta, cta) Then Text1(28).Text = "ES" & cta
             Else
                 CC = CStr(Mid(Text1(28).Text, 1, 2))
-                If DevuelveIBAN2(CStr(CC), Cta, Cta) Then
-                    If Mid(Text1(28).Text, 3) <> Cta Then
+                If DevuelveIBAN2(CStr(CC), cta, cta) Then
+                    If Mid(Text1(28).Text, 3) <> cta Then
                         
-                        MsgBox "Codigo IBAN distinto del calculado [" & CC & Cta & "]", vbExclamation
+                        MsgBox "Codigo IBAN distinto del calculado [" & CC & cta & "]", vbExclamation
                     End If
                 End If
             End If
@@ -4186,7 +4190,7 @@ Private Sub BotonAnyadirLinea3()
     AnyadirLinea DataGrid4, Adodc5
     CargaTxtAux3 True, True
    
-    PonerFoco txtAux3(0)
+    PonerFoco TxtAux3(0)
     Me.DataGrid2.Enabled = False
 End Sub
 
@@ -4203,7 +4207,7 @@ Private Sub BotonAnyadirLinea4()
     AnyadirLinea DataGrid3, Adodc4
     CargaTxtAux4 True, True
    
-    PonerFoco txtAux4(0)
+    PonerFoco TxtAux4(0)
     Me.DataGrid3.Enabled = False
 End Sub
 
@@ -4389,27 +4393,27 @@ Dim i As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux3.Count - 1 'TextBox
-            txtAux3(i).Top = 290
-            txtAux3(i).visible = visible
+        For i = 0 To TxtAux3.Count - 1 'TextBox
+            TxtAux3(i).Top = 290
+            TxtAux3(i).visible = visible
         Next i
         cmdAux(2).Top = 290
         cmdAux(2).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid4
-            For i = 0 To txtAux3.Count - 1
-                txtAux3(i).Text = ""
-                BloquearTxt txtAux3(i), False
+            For i = 0 To TxtAux3.Count - 1
+                TxtAux3(i).Text = ""
+                BloquearTxt TxtAux3(i), False
             Next i
         Else 'Vamos a modificar
             '[Monica]05/12/2013: solo dejamos modificar el importe
-            For i = 0 To txtAux3.Count - 1
-                txtAux3(i).Text = DataGrid4.Columns(i + 2).Text
-                txtAux3(2).Locked = False
+            For i = 0 To TxtAux3.Count - 1
+                TxtAux3(i).Text = DataGrid4.Columns(i + 2).Text
+                TxtAux3(2).Locked = False
             Next i
             '[Monica]05/12/2013: dejamos modificar el importe
-            BloquearTxt txtAux3(2), False
+            BloquearTxt TxtAux3(2), False
         End If
         
 
@@ -4417,33 +4421,33 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid4, 20)
         
-        For i = 0 To txtAux3.Count - 1
-            txtAux3(i).Top = alto
-            txtAux3(i).Height = DataGrid4.RowHeight
+        For i = 0 To TxtAux3.Count - 1
+            TxtAux3(i).Top = alto
+            TxtAux3(i).Height = DataGrid4.RowHeight
         Next i
         
         
         'Fijamos anchura y posicion Left
         '--------------------------------
         'articulo
-        txtAux3(0).Left = DataGrid4.Left + 330
-        txtAux3(0).Width = DataGrid4.Columns(2).Width - 100
+        TxtAux3(0).Left = DataGrid4.Left + 330
+        TxtAux3(0).Width = DataGrid4.Columns(2).Width - 100
         
-        cmdAux(2).Left = txtAux3(0).Left + txtAux3(0).Width - 50
+        cmdAux(2).Left = TxtAux3(0).Left + TxtAux3(0).Width - 50
         
         'nombre
-        txtAux3(1).Width = DataGrid4.Columns(3).Width - 100
-        txtAux3(1).Left = cmdAux(2).Left + cmdAux(2).Width + 10
+        TxtAux3(1).Width = DataGrid4.Columns(3).Width - 100
+        TxtAux3(1).Left = cmdAux(2).Left + cmdAux(2).Width + 10
         
         'importe
-        txtAux3(2).Width = DataGrid4.Columns(4).Width - 100
-        txtAux3(2).Left = txtAux3(1).Left + (txtAux3(1).Width + 100)
+        TxtAux3(2).Width = DataGrid4.Columns(4).Width - 100
+        TxtAux3(2).Left = TxtAux3(1).Left + (TxtAux3(1).Width + 100)
         
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux3.Count - 1
-            txtAux3(i).visible = visible
+        For i = 0 To TxtAux3.Count - 1
+            TxtAux3(i).visible = visible
         Next i
     End If
     cmdAux(2).Top = alto
@@ -4460,25 +4464,25 @@ Dim i As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux4.Count - 1 'TextBox
-            txtAux4(i).Top = 290
-            txtAux4(i).visible = visible
+        For i = 0 To TxtAux4.Count - 1 'TextBox
+            TxtAux4(i).Top = 290
+            TxtAux4(i).visible = visible
         Next i
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid3
-            For i = 0 To txtAux4.Count - 1
-                txtAux4(i).Text = ""
-                BloquearTxt txtAux4(i), False
+            For i = 0 To TxtAux4.Count - 1
+                TxtAux4(i).Text = ""
+                BloquearTxt TxtAux4(i), False
             Next i
         Else 'Vamos a modificar
-            For i = 0 To txtAux4.Count - 1
-                txtAux4(i).Text = DataGrid3.Columns(i + 1).Text
+            For i = 0 To TxtAux4.Count - 1
+                TxtAux4(i).Text = DataGrid3.Columns(i + 1).Text
                 If i = 2 Then
-                    txtAux4(i).Locked = False
-                    txtAux4(i).BackColor = &H80000005
+                    TxtAux4(i).Locked = False
+                    TxtAux4(i).BackColor = &H80000005
                 Else
-                    txtAux4(i).Locked = True
+                    TxtAux4(i).Locked = True
                 End If
             Next i
         End If
@@ -4488,33 +4492,33 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid3, 20)
         
-        For i = 0 To txtAux4.Count - 1
-            txtAux4(i).Top = alto
-            txtAux4(i).Height = DataGrid3.RowHeight
+        For i = 0 To TxtAux4.Count - 1
+            TxtAux4(i).Top = alto
+            TxtAux4(i).Height = DataGrid3.RowHeight
         Next i
         
         
         'Fijamos anchura y posicion Left
         '--------------------------------
         'articulo
-        txtAux4(0).Left = DataGrid3.Left + 330
-        txtAux4(0).Width = DataGrid3.Columns(1).Width - 10
+        TxtAux4(0).Left = DataGrid3.Left + 330
+        TxtAux4(0).Width = DataGrid3.Columns(1).Width - 10
         
 '        cmdAux(3).Left = TxtAux4(0).Left + TxtAux4(0).Width - 50
         
         'nombre
-        txtAux4(1).Width = DataGrid3.Columns(2).Width - 10
-        txtAux4(1).Left = txtAux4(0).Left + txtAux4(0).Width + 10
+        TxtAux4(1).Width = DataGrid3.Columns(2).Width - 10
+        TxtAux4(1).Left = TxtAux4(0).Left + TxtAux4(0).Width + 10
         
         'importe
-        txtAux4(2).Width = DataGrid3.Columns(3).Width - 10
-        txtAux4(2).Left = txtAux4(1).Left + (txtAux4(1).Width + 10)
+        TxtAux4(2).Width = DataGrid3.Columns(3).Width - 10
+        TxtAux4(2).Left = TxtAux4(1).Left + (TxtAux4(1).Width + 10)
         
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux4.Count - 1
-            txtAux4(i).visible = visible
+        For i = 0 To TxtAux4.Count - 1
+            TxtAux4(i).visible = visible
         Next i
     End If
 End Sub
@@ -4597,7 +4601,7 @@ On Error GoTo EModificarLinea
             
                 CargaTxtAux3 True, False
                 Me.lblIndicador(0).Caption = "MODIFICAR CUOTAS"
-                PonerFoco txtAux3(2)
+                PonerFoco TxtAux3(2)
                 '[Monica]05/12/2013: cambio false por true en el datagrid.enabled
                 Me.DataGrid4.Enabled = True
             Else
@@ -4610,7 +4614,7 @@ On Error GoTo EModificarLinea
                 
                     CargaTxtAux4 True, False
                     Me.lblIndicador(0).Caption = "MODIFICAR CONTADORES"
-                    PonerFoco txtAux4(2)
+                    PonerFoco TxtAux4(2)
                     Me.DataGrid3.Enabled = False
                 End If
             End If
@@ -5143,7 +5147,7 @@ Dim cadkey As Integer
 
     cadkey = ObtenerCadKey(kCampo, Index)
     kCampo = Index
-    ConseguirFocoLin txtAux3(Index), cadkey
+    ConseguirFocoLin TxtAux3(Index), cadkey
 End Sub
 
 Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -5159,22 +5163,22 @@ Private Sub TxtAux3_LostFocus(Index As Integer)
 Dim encontrado As String
 Dim campo1 As String
 
-    txtAux3(Index).Text = Trim(txtAux3(Index).Text)
-    If txtAux3(Index).Text = "" Then Exit Sub
+    TxtAux3(Index).Text = Trim(TxtAux3(Index).Text)
+    If TxtAux3(Index).Text = "" Then Exit Sub
 
     Select Case Index
         Case 0
-            If txtAux3(Index).Text <> "" Then
+            If TxtAux3(Index).Text <> "" Then
                 campo1 = "preciove"
-                encontrado = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", txtAux3(Index).Text, "T", campo1)
+                encontrado = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", TxtAux3(Index).Text, "T", campo1)
                 If encontrado <> "" Then
-                    txtAux3(1).Text = encontrado
-                    txtAux3(2).Text = Format(campo1, "###,##0.0000")
+                    TxtAux3(1).Text = encontrado
+                    TxtAux3(2).Text = Format(campo1, "###,##0.0000")
                     
                     Me.cmdAceptar.SetFocus
                 Else
                     MsgBox "No existe el código de artículo introducido.", vbExclamation
-                    PonerFoco txtAux3(Index)
+                    PonerFoco TxtAux3(Index)
                 End If
             Else
                 Me.cmdCancelar.SetFocus
@@ -5182,7 +5186,7 @@ Dim campo1 As String
             
         '[Monica]05/12/2013: dejo modificar el importe
         Case 2 ' importe
-            PonerFormatoDecimal txtAux3(Index), 2
+            PonerFormatoDecimal TxtAux3(Index), 2
     
     End Select
 End Sub
@@ -5191,7 +5195,7 @@ Private Sub TxtAux4_GotFocus(Index As Integer)
 Dim cadkey As Integer
     cadkey = ObtenerCadKey(kCampo, Index)
     kCampo = Index
-    ConseguirFocoLin txtAux4(Index), cadkey
+    ConseguirFocoLin TxtAux4(Index), cadkey
 End Sub
 
 Private Sub TxtAux4_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -5209,7 +5213,7 @@ Dim campo1 As String
 
     Select Case Index
         Case 0, 1
-            UCase (txtAux4(Index))
+            UCase (TxtAux4(Index))
 '            If txtAux4(Index).Text <> "" Then
 '                encontrado = DevuelveDesdeBD(conAri, "nomtipom", "stipom", "codtipomc", txtAux4(Index).Text, "T")
 '                If encontrado <> "" Then
@@ -5228,7 +5232,7 @@ Dim campo1 As String
 '
 '            End If
        Case 2
-            If PonerFormatoEntero(txtAux4(Index)) Then
+            If PonerFormatoEntero(TxtAux4(Index)) Then
                 cmdAceptar.SetFocus
             Else
                 cmdCancelar.SetFocus

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesHcoUves 
@@ -598,11 +598,11 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim Sql As String
+Dim SQL As String
 On Error GoTo ECarga
 
-    Sql = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, Sql, PrimeraVez
+    SQL = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, SQL, PrimeraVez
     
     CargaGrid2
     DataGrid1.Enabled = (Modo = 2)
@@ -835,17 +835,17 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim Sql As String
+Dim SQL As String
 Dim Tabla As String
     
     Tabla = "shiuve"
-    Sql = "SELECT shiuve.codsocio, sclien.nomclien, shiuve.numeruve, shiuve.fechaalta, shiuve.fechabaja "
-    Sql = Sql & " FROM " & Tabla & " INNER JOIN sclien ON " & Tabla & ".codsocio ="
-    Sql = Sql & " sclien.codclien"
+    SQL = "SELECT shiuve.codsocio, sclien.nomclien, shiuve.numeruve, shiuve.fechaalta, shiuve.fechabaja "
+    SQL = SQL & " FROM " & Tabla & " INNER JOIN sclien ON " & Tabla & ".codsocio ="
+    SQL = SQL & " sclien.codclien"
 
     If enlaza Then
         If EsBusqueda And CadenaBusqueda <> "" Then
-            Sql = Sql & CadenaBusqueda
+            SQL = SQL & CadenaBusqueda
         ElseIf CadenaConsulta = "" Then
             If CadenaBusqueda <> "" Then
                 CadenaBusqueda = CadenaBusqueda & " OR (" & MontaWHERE(True, True) & ")"
@@ -853,13 +853,13 @@ Dim Tabla As String
                 'CadenaBusqueda = " WHERE (codclien=" & txtAux(0).Text & " and codfamia=" & txtAux(1).Text & " and codmarca=" & txtAux(2).Text & ")"
                 CadenaBusqueda = " WHERE (" & MontaWHERE(True, True) & ")"
             End If
-            Sql = Sql & CadenaBusqueda
+            SQL = SQL & CadenaBusqueda
         End If
     Else
-        Sql = Sql & " WHERE shiuve.codsocio = -1"
+        SQL = SQL & " WHERE shiuve.codsocio = -1"
     End If
-    Sql = Sql & Ordenacion
-    MontaSQLCarga = Sql
+    SQL = SQL & Ordenacion
+    MontaSQLCarga = SQL
 End Function
 
 
@@ -920,14 +920,14 @@ End Sub
 Private Sub BotonModificar()
 Dim i As Integer
 Dim anc As Single
-Dim Sql As String
+Dim SQL As String
     
     
     '[Monica]01/04/2014: comprobamos si tiene choferes dados de alta
-    Sql = "select count(*) from sclien_chofer where codsocio = " & DBSet(Me.Data1.Recordset!codSocio, "N") & " and fechabaj is null"
-    If TotalRegistros(Sql) <> 0 Then
-        Sql = "El socio tiene choferes dados de alta. ¿ Desea continuar ?."
-        If MsgBox(Sql, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then Exit Sub
+    SQL = "select count(*) from sclien_chofer where codsocio = " & DBSet(Me.Data1.Recordset!codSocio, "N") & " and fechabaj is null"
+    If TotalRegistros(SQL) <> 0 Then
+        SQL = "El socio tiene choferes dados de alta. ¿ Desea continuar ?."
+        If MsgBox(SQL, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then Exit Sub
     End If
         
     
@@ -958,24 +958,24 @@ End Sub
 
 
 Private Function BotonEliminar() As Boolean
-Dim Sql As String
+Dim SQL As String
 On Error GoTo FinEliminar
         
         'Ciertas comprobaciones
         If Data1.Recordset.EOF Then Exit Function
         
-        Sql = "¿Seguro que desea eliminar el Registro para?" & vbCrLf
-        Sql = Sql & vbCrLf & "Socio: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset.Fields(1).Value
-        Sql = Sql & vbCrLf & "Uve: " & Format(Data1.Recordset.Fields(2).Value, "000000")
-        Sql = Sql & vbCrLf & "Fecha Alta : " & Format(Data1.Recordset.Fields(3).Value, "dd/mm/yyyy")
+        SQL = "¿Seguro que desea eliminar el Registro para?" & vbCrLf
+        SQL = SQL & vbCrLf & "Socio: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset.Fields(1).Value
+        SQL = SQL & vbCrLf & "Uve: " & Format(Data1.Recordset.Fields(2).Value, "000000")
+        SQL = SQL & vbCrLf & "Fecha Alta : " & Format(Data1.Recordset.Fields(3).Value, "dd/mm/yyyy")
         
-        If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
             'Hay que eliminar
             NumRegElim = Me.Data1.Recordset.AbsolutePosition
-            Sql = "Delete from shiuve where codsocio " & vDBSET(Data1.Recordset!codSocio, True, True, False)
-            Sql = Sql & " and numeruve " & vDBSET(Data1.Recordset!NumerUve, True, True, False)
-            Sql = Sql & " and fechaalta = " & DBSet(Data1.Recordset!fechaalta, "F")
-            conn.Execute Sql
+            SQL = "Delete from shiuve where codsocio " & vDBSET(Data1.Recordset!codSocio, True, True, False)
+            SQL = SQL & " and numeruve " & vDBSET(Data1.Recordset!NumerUve, True, True, False)
+            SQL = SQL & " and fechaalta = " & DBSet(Data1.Recordset!fechaalta, "F")
+            conn.Execute SQL
             CancelaADODC Me.Data1
             CargaGrid True
             CancelaADODC Me.Data1
@@ -993,8 +993,8 @@ Dim b As Boolean
 Dim RS As ADODB.Recordset
 Dim C As String
 Dim C2 As String
-Dim Sql As String
-
+Dim SQL As String
+Dim NueDesFec As Date
 
     DatosOk = False
     b = CompForm(Me, 3)
@@ -1023,8 +1023,8 @@ Dim Sql As String
     
     If b And Modo = 3 Then
         ' comprobamos que el socio no este dado de alta con otra uve (sclien)
-        Sql = "select count(*) from sclien where codclien = " & txtAux(0).Text & " and fechabaj is null"
-        If TotalRegistros(Sql) <> 0 Then
+        SQL = "select count(*) from sclien where codclien = " & txtAux(0).Text & " and fechabaj is null"
+        If TotalRegistros(SQL) <> 0 Then
             MsgBox "Socio dado de alta con otra uve. Revise.", vbExclamation
             PonerFoco txtAux(0)
             b = False
@@ -1032,8 +1032,8 @@ Dim Sql As String
         
         ' comprobamos que el socio no esta ya introducido en el hco con fecha de baja null (shiuve)
         If b Then
-            Sql = "select count(*) from shiuve where codsocio = " & txtAux(0).Text & " and fechabaj is null"
-            If TotalRegistros(Sql) <> 0 Then
+            SQL = "select count(*) from shiuve where codsocio = " & txtAux(0).Text & " and fechabaj is null"
+            If TotalRegistros(SQL) <> 0 Then
                 MsgBox "Socio ya introducido en el histórico. Revise.", vbExclamation
                 PonerFoco txtAux(0)
                 b = False
@@ -1042,8 +1042,8 @@ Dim Sql As String
         
         ' comprobamos que la uve no este asignada a otro socio activo (ssocio)
         If b Then
-            Sql = "select count(*) from sclien where numeruve = " & txtAux(1).Text & " and fechabaj is null"
-            If TotalRegistros(Sql) <> 0 Then
+            SQL = "select count(*) from sclien where numeruve = " & txtAux(1).Text & " and fechabaj is null"
+            If TotalRegistros(SQL) <> 0 Then
                 MsgBox "V asignada a otro Socio activo. Revise.", vbExclamation
                 PonerFoco txtAux(0)
                 b = False
@@ -1053,9 +1053,15 @@ Dim Sql As String
     
     '[Monica]11/06/2015: si vamos a darlo de baja comprobamos que no tenga servicios por facturar
     If b And Modo = 4 Then
-        Sql = "select count(*) from shilla where numeruve = " & DBSet(txtAux(1).Text, "N") & " and codsocio = " & DBSet(txtAux(0).Text, "N") & " and liquidadosocio = 0 and impcompr <> 0 and tipservi = 1 "
-        Sql = Sql & " and fecha >= '2015-01-01'"
-        If TotalRegistros(Sql) <> 0 Then
+        NueDesFec = DateAdd("yyyy", -1, CDate(txtAux(3).Text))
+    
+        SQL = "select count(*) from shilla where numeruve = " & DBSet(txtAux(1).Text, "N") & " and codsocio = " & DBSet(txtAux(0).Text, "N") & " and liquidadosocio = 0 and impcompr <> 0 and tipservi = 1 "
+        
+        '[Monica]28/10/2016: que no tengan servicios pendientes en el ultimo año. Miro la fecha de baja
+        'SQL = SQL & " and fecha >= '2015-01-01'"
+        SQL = SQL & " and fecha >= " & DBSet(NueDesFec, "F")
+        
+        If TotalRegistros(SQL) <> 0 Then
             MsgBox "Este Socio tiene servicios por liquidar. Revise.", vbExclamation
             PonerFoco txtAux(0)
             b = False
