@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmLog 
@@ -676,7 +676,7 @@ Private Sub DataGrid1_DblClick()
             If Not adodc1.Recordset.EOF Then
                 CadenaDesdeOtroForm = "Fecha: " & adodc1.Recordset!Fecha & vbCrLf
                 CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Usuario / PC : " & adodc1.Recordset!Usuario & " - " & adodc1.Recordset!PC & vbCrLf
-                CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Accion: " & adodc1.Recordset!NomArtic & vbCrLf & vbCrLf
+                CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Accion: " & DBLet(adodc1.Recordset!NomArtic, "T") & vbCrLf & vbCrLf
                 CadenaDesdeOtroForm = CadenaDesdeOtroForm & Replace(Space(80), " ", "-") & vbCrLf
                 CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Descripción:" & vbCrLf & adodc1.Recordset!Descripcion
                 MsgBox CadenaDesdeOtroForm, vbInformation
@@ -725,7 +725,7 @@ Private Sub Form_Load()
     'Cadena consulta
 '    CadenaConsulta = "select slog.fecha,nomartic,usuario,pc,descripcion from slog,tmpnlotes "
 '    CadenaConsulta = CadenaConsulta & " where tmpnlotes.codusu=" & vUsu.Codigo & " and slog.accion=tmpnlotes.codprove"
-    CadenaConsulta = "select slog.fecha,nombre2,usuario,pc,descripcion from slog,tmpinformes "
+    CadenaConsulta = "select slog.fecha,nombre2 nomartic,usuario,pc,descripcion from slog,tmpinformes "
     CadenaConsulta = CadenaConsulta & " where tmpinformes.codusu=" & vUsu.Codigo & " and slog.accion=tmpinformes.codigo1"
     
     CargaGrid
@@ -777,20 +777,20 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 
-Private Sub CargaGrid(Optional Sql As String)
+Private Sub CargaGrid(Optional SQL As String)
 Dim b As Boolean
 Dim tots As String
     
     b = DataGrid1.Enabled
     
-    If Sql <> "" Then
-        Sql = CadenaConsulta & " AND " & Sql
+    If SQL <> "" Then
+        SQL = CadenaConsulta & " AND " & SQL
         Else
-        Sql = CadenaConsulta
+        SQL = CadenaConsulta
     End If
-    Sql = Sql & " ORDER BY fecha desc"
+    SQL = SQL & " ORDER BY fecha desc"
     
-    CargaGridGnral DataGrid1, Me.adodc1, Sql, False
+    CargaGridGnral DataGrid1, Me.adodc1, SQL, False
     
     '### a mano
     tots = "S|txtAux(0)|T|Fecha|2000|;S|CboTipoSitu|C|Accion|1700|;S|txtAux(1)|T|Usuario|1200|;"

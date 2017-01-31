@@ -9,12 +9,20 @@ Begin VB.Form frmFCliFacturac
    ScaleHeight     =   6075
    ScaleWidth      =   6555
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox ChkAplicarFiltro 
+      Caption         =   "Aplicar Filtro Banco Propio"
+      Height          =   375
+      Left            =   4080
+      TabIndex        =   26
+      Top             =   4560
+      Width           =   2175
+   End
    Begin VB.CheckBox chk_FactHco 
       Caption         =   "Facturación sobre Hco de llamadas"
       Height          =   375
       Left            =   150
       TabIndex        =   24
-      Top             =   5070
+      Top             =   4980
       Width           =   3435
    End
    Begin VB.CheckBox chk_agrupados 
@@ -22,7 +30,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   375
       Left            =   150
       TabIndex        =   23
-      Top             =   4620
+      Top             =   4530
       Width           =   2625
    End
    Begin VB.TextBox txtcodigo 
@@ -478,7 +486,7 @@ Dim b As Boolean
         Set miRsAux = New ADODB.Recordset
         Screen.MousePointer = vbHourglass
         
-        If Not DatosOK Then Exit Sub
+        If Not DatosOk Then Exit Sub
          
          InicializarVbles
          
@@ -498,7 +506,7 @@ Dim b As Boolean
             
             'Desde/Hasta numero de cliente
             '---------------------------------------------
-            If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
+            If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
                 Codigo = "{" & Tabla & ".codclien}"
                 If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
             End If
@@ -509,13 +517,13 @@ Dim b As Boolean
          
          '[Monica]08/09/2011: seleccionamos que servicios vamos a facturar al cliente
          If vParamAplic.Cooperativa = 1 Then
-            If (txtcodigo(0).Text = txtcodigo(1).Text) And txtcodigo(0).Text <> "" Then
+            If (txtCodigo(0).Text = txtCodigo(1).Text) And txtCodigo(0).Text <> "" Then
                 Salir = False
             
                 Set frmMens = New frmMensajes
                 
                 frmMens.OpcionMensaje = 22
-                frmMens.cadWHERE = "shilla.codclien = " & DBSet(txtcodigo(0).Text, "N")
+                frmMens.cadWHERE = "shilla.codclien = " & DBSet(txtCodigo(0).Text, "N")
                 frmMens.Show vbModal
                 
                 Set frmMens = Nothing
@@ -530,7 +538,7 @@ Dim b As Boolean
          
          'Cadena para seleccion Desde y Hasta FECHA
          '--------------------------------------------
-         If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
+         If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
              If Tabla = "shilla" Then
                 Codigo = "{" & Tabla & ".fecha}"
              Else
@@ -618,15 +626,27 @@ Dim SQL2 As String
     If chk_agrupados.Value = 0 Then
         SQL2 = "select distinct " & vUsu.Codigo & ", codclien from ("
         SQL2 = SQL2 & "select distinct codclien from scliente where codclien not in (select codclienalb from scliente_albaran)  "
-        If txtcodigo(0).Text <> "" Then SQL2 = SQL2 & " and codclien >= " & DBSet(txtcodigo(0).Text, "N")
-        If txtcodigo(1).Text <> "" Then SQL2 = SQL2 & " and codclien <= " & DBSet(txtcodigo(1).Text, "N")
+        If txtCodigo(0).Text <> "" Then SQL2 = SQL2 & " and codclien >= " & DBSet(txtCodigo(0).Text, "N")
+        If txtCodigo(1).Text <> "" Then SQL2 = SQL2 & " and codclien <= " & DBSet(txtCodigo(1).Text, "N")
+        
+        '[Monica]30/01/2017: solo los que tengan que pagarse con ese banco propio
+        If Me.ChkAplicarFiltro.Value Then
+            If txtCodigo(5).Text <> "" Then SQL2 = SQL2 & " and codbanpr = " & DBSet(txtCodigo(5).Text, "N")
+        End If
+        
         SQL2 = SQL2 & " order by 1 ) aaaaaa "
         
     Else
         SQL2 = "select distinct " & vUsu.Codigo & ", codclien from ("
         SQL2 = SQL2 & "select distinct codclienalb codclien from scliente_albaran where (1=1) "
-        If txtcodigo(0).Text <> "" Then SQL2 = SQL2 & " and codclien >= " & DBSet(txtcodigo(0).Text, "N")
-        If txtcodigo(1).Text <> "" Then SQL2 = SQL2 & " and codclien <= " & DBSet(txtcodigo(1).Text, "N")
+        If txtCodigo(0).Text <> "" Then SQL2 = SQL2 & " and codclien >= " & DBSet(txtCodigo(0).Text, "N")
+        If txtCodigo(1).Text <> "" Then SQL2 = SQL2 & " and codclien <= " & DBSet(txtCodigo(1).Text, "N")
+        
+        '[Monica]30/01/2017: solo los que tengan que pagarse con ese banco propio
+        If Me.ChkAplicarFiltro.Value Then
+            If txtCodigo(5).Text <> "" Then SQL2 = SQL2 & " and codbanpr = " & DBSet(txtCodigo(5).Text, "N")
+        End If
+        
         SQL2 = SQL2 & " order by 1 ) aaaaaa "
     
     End If
@@ -655,48 +675,48 @@ End Sub
 
 
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim SQL As String
 
-    DatosOK = False
+    DatosOk = False
     '[Monica]04/10/2012: obligamos a poner la fecha hasta de servicios pq va en la fecha de albaran
     If vParamAplic.Cooperativa = 0 Then
-        If txtcodigo(86).Text = "" Then
+        If txtCodigo(86).Text = "" Then
             MsgBox "Es necesario introducir fecha hasta, para fecha de albarán.", vbExclamation
-            PonerFoco txtcodigo(86)
+            PonerFoco txtCodigo(86)
             Exit Function
         End If
     End If
     
     'fecha factu
-    If txtcodigo(2).Text = "" Then
+    If txtCodigo(2).Text = "" Then
         MsgBox "Es necesario introducir fecha de factura.", vbExclamation
-        PonerFoco txtcodigo(2)
+        PonerFoco txtCodigo(2)
         Exit Function
     End If
     
     If (Me.chk_agrupados.Value = 0 And vParamAplic.Cooperativa = 0) Or vParamAplic.Cooperativa = 1 Then
         'concepto
-        If txtcodigo(4).Text = "" Then
+        If txtCodigo(4).Text = "" Then
             MsgBox "Es necesario introducir el concepto de la factura.", vbExclamation
-            PonerFoco txtcodigo(4)
+            PonerFoco txtCodigo(4)
             Exit Function
         End If
     End If
     'banco
-    If txtcodigo(5).Text = "" Then
+    If txtCodigo(5).Text = "" Then
         MsgBox "Es necesario introducir el banco de cobro.", vbExclamation
-        PonerFoco txtcodigo(5)
+        PonerFoco txtCodigo(5)
         Exit Function
     Else
-        SQL = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+        SQL = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
         If SQL = "" Then
             MsgBox "La Cta.Contable prevista de cobro del banco debe tener valor.", vbExclamation
             Exit Function
         End If
     End If
     
-    DatosOK = True
+    DatosOk = True
 
 End Function
 
@@ -801,7 +821,7 @@ Dim NomLote As String
 
 
 
-    FecFactu = txtcodigo(2).Text
+    FecFactu = txtCodigo(2).Text
     
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
@@ -846,7 +866,7 @@ Dim NomLote As String
 
 
 '2º FACTURAMOS DE LA TABLA TEMPORAL
-    FecFactu = txtcodigo(2).Text
+    FecFactu = txtCodigo(2).Text
     
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
@@ -971,8 +991,26 @@ Dim NomLote As String
             FacturasaImprimir = FacturasaImprimir & NumFactu & ","
             
             'Cuenta Prevista de Cobro de las Facturas
-            fac.BancoPr = txtcodigo(5).Text
-            fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+'            fac.BancoPr = txtCodigo(5).Text
+'            fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+          
+            '[Monica]31/01/2017: si el cliente tiene banco propio cojo el del banco propio, en caso contrario el que me pongan
+            If ChkAplicarFiltro.Value = 0 Then
+                Dim BanPr As Integer
+                BanPr = DevuelveValor("select codbanpr from scliente where codclien = " & DBSet(RS!CodClien, "N"))
+                If CInt(BanPr) = 0 Then
+                    fac.BancoPr = txtCodigo(5).Text
+                    fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+                Else
+                    fac.BancoPr = CInt(BanPr)
+                    fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+                End If
+            Else
+                fac.BancoPr = txtCodigo(5).Text
+                fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+            End If
+            
+            
         
             fac.Cliente = cli.Codigo
             fac.NombreClien = cli.Nombre
@@ -995,7 +1033,7 @@ Dim NomLote As String
             'scafaccli
             SQL = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
             SQL = SQL & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-            SQL = SQL & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban) VALUES ("
+            SQL = SQL & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban, codbanpr) VALUES ("
             SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & DBSet(fac.Cliente, "N") & ","
             SQL = SQL & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
             SQL = SQL & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
@@ -1005,7 +1043,10 @@ Dim NomLote As String
             SQL = SQL & DBSet(fac.BaseIVA2, "N", "S") & "," & DBSet(fac.TipoIVA2, "N", "S") & "," & DBSet(fac.PorceIVA2, "N", "S") & ","
             SQL = SQL & DBSet(fac.ImpIVA2, "N", "S") & "," & DBSet(fac.TotalFac, "N") & ",0,NULL,"
             SQL = SQL & DBSet(fac.Banco, "N") & "," & DBSet(fac.Sucursal, "N") & "," & DBSet(fac.DigControl, "T") & "," & DBSet(fac.CuentaBan, "T") & ","
-            SQL = SQL & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T") & ")"
+            SQL = SQL & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
+            '[Monica]30/01/2017: insertamos el codbanpr
+            SQL = SQL & "," & DBSet(txtCodigo(5).Text, "N")
+            SQL = SQL & ")"
         
         
             conn.Execute SQL
@@ -1033,7 +1074,7 @@ Dim NomLote As String
                 SQL = "INSERT INTO scafaccli1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
                 SQL = SQL & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
                 SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",'"
-                SQL = SQL & Format(txtcodigo(86).Text, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+                SQL = SQL & Format(txtCodigo(86).Text, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
                 SQL = SQL & "," & CodTraba & "," & DBSet(o1, "T") & "," & DBSet(o2, "T") & "," & DBSet(o3, "T") & ","
                 SQL = SQL & DBSet(o4, "T") & "," & DBSet(o5, "T") & ",NULL)"
             
@@ -1050,11 +1091,11 @@ Dim NomLote As String
                 SQL = SQL & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
                 SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",0," & almac & ","
                 If RSLineas!CodClien = RS!CodClien And chk_agrupados.Value = 0 Then
-                    SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtcodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
+                    SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtCodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 Else
                     NomLote = ""
                     NomLote = DevuelveValor("select nomenvio from senvio inner join scliente on senvio.codenvio = scliente.codenvio where scliente.codclien = " & DBSet(RS!CodClien, "N"))
-                    NomArtic = Trim(NomArtic) & " " & UCase(Format(txtcodigo(86).Text, "mmmm")) & " " & Year(CDate(txtcodigo(86).Text)) & " " & NomLote
+                    NomArtic = Trim(NomArtic) & " " & UCase(Format(txtCodigo(86).Text, "mmmm")) & " " & Year(CDate(txtCodigo(86).Text)) & " " & NomLote
                     Ampliaci = DevuelveValor("select nomclien from scliente where codclien = " & DBSet(RSLineas!CodClien, "N"))
                     SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(Ampliaci, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 End If
@@ -1221,7 +1262,7 @@ Dim i As Integer
     'Icono del form
     Me.Icon = frmPpal.Icon
 
-    txtcodigo(2).Text = Date
+    txtCodigo(2).Text = Date
 '    Text1(4).Text = vParamAplic.ConFactuPubli
     Modo = 0
     
@@ -1244,6 +1285,10 @@ Dim i As Integer
     For i = 0 To imgAyuda.Count - 1
         imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
     Next i
+    
+    Me.ChkAplicarFiltro.Enabled = (vParamAplic.Cooperativa = 0)
+    Me.ChkAplicarFiltro.visible = (vParamAplic.Cooperativa = 0)
+    
 
 End Sub
 
@@ -1252,12 +1297,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
-    txtcodigo(1).Text = vFecha
+    txtCodigo(1).Text = vFecha
 End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1300,13 +1345,13 @@ Private Sub imgBuscar_Click(Index As Integer)
 
     Select Case Index
         Case 0
-            CadenaDesdeOtroForm = txtcodigo(4).Text
+            CadenaDesdeOtroForm = txtCodigo(4).Text
             frmFacClienteObser.Modificar = True
             frmFacClienteObser.Text1 = CadenaDesdeOtroForm
             frmFacClienteObser.Show vbModal
-            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtcodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
+            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtCodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
             CadenaDesdeOtroForm = ""
-            PonerFoco txtcodigo(4)
+            PonerFoco txtCodigo(4)
         Case 1
             Set frmFP = New frmFacFormasPago
             frmFP.DatosADevolverBusqueda = "0|1|"
@@ -1318,7 +1363,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmCli.DatosADevolverBusqueda = "0|1|"
             frmCli.Show vbModal
             Set frmCli = Nothing
-            PonerFoco txtcodigo(indCodigo)
+            PonerFoco txtCodigo(indCodigo)
         Case 3
             Set frmMtoBancosPro = New frmFacBancosPropios
             frmMtoBancosPro.DatosADevolverBusqueda = "0|1|"
@@ -1329,8 +1374,8 @@ End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
-    txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtCodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1339,12 +1384,12 @@ Private Sub imgFecha_Click(Index As Integer)
    
     Set frmCal = New frmCal
     frmCal.Fecha = Now
-    PonerFormatoFecha txtcodigo(1)
-    If txtcodigo(1).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(1).Text)
+    PonerFormatoFecha txtCodigo(1)
+    If txtCodigo(1).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(1).Text)
     Screen.MousePointer = vbDefault
     frmCal.Show vbModal
     Set frmCal = Nothing
-    PonerFoco txtcodigo(1)
+    PonerFoco txtCodigo(1)
 End Sub
 
 Private Sub KEYpress(KeyAscii As Integer)
@@ -1358,7 +1403,7 @@ End Sub
 
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -1378,7 +1423,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1387,22 +1432,22 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 85, 86  'FECHA Desde Hasta
-            PonerFormatoFecha txtcodigo(Index)
+            PonerFormatoFecha txtCodigo(Index)
             
         Case 0, 1 'cliente
-            PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
             
         Case 3 ' forma de pago
-            PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
             
         Case 2 ' fecha de factura
-            PonerFormatoFecha txtcodigo(Index)
+            PonerFormatoFecha txtCodigo(Index)
              
         Case 5 'banco propio
-            If PonerFormatoEntero(txtcodigo(5)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
+            If PonerFormatoEntero(txtCodigo(5)) Then
+                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
             End If
            
     End Select
@@ -1413,7 +1458,7 @@ Dim devuelve As String
 Dim cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -1422,7 +1467,7 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
@@ -1495,7 +1540,7 @@ Dim DtoGnral As Currency
     conn.BeginTrans
     ConnConta.BeginTrans
 
-    FecFactu = txtcodigo(2).Text
+    FecFactu = txtCodigo(2).Text
     
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
@@ -1645,7 +1690,7 @@ Dim DtoGnral As Currency
             FacturasaImprimir = FacturasaImprimir & NumFactu & ","
             
             'Cuenta Prevista de Cobro de las Facturas
-            fac.BancoPr = txtcodigo(5).Text
+            fac.BancoPr = txtCodigo(5).Text
             fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
         
             fac.Cliente = cli.Codigo
@@ -1734,7 +1779,7 @@ Dim DtoGnral As Currency
             SQL = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,"
             SQL = SQL & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
             SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,0," & almac & ","
-            SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtcodigo(4).Text, "T") & ",1,1," & DBSet(BaseivaServ, "N") & ","
+            SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtCodigo(4).Text, "T") & ",1,1," & DBSet(BaseivaServ, "N") & ","
             SQL = SQL & DBSet(BaseivaServ, "N") & "," & DBSet(BaseivaServ, "N") & "," & DBSet(BaseivaServ, "N") & ","
             SQL = SQL & DBSet(BaseivaServ, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaServ, "N") & ")"
             
@@ -1951,7 +1996,7 @@ Dim NomLote As String
     DoEvents
     
     
-    FecFactu = txtcodigo(2).Text
+    FecFactu = txtCodigo(2).Text
     
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
@@ -1996,7 +2041,7 @@ Dim NomLote As String
 
 
 '2º FACTURAMOS DE LA TABLA TEMPORAL
-    FecFactu = txtcodigo(2).Text
+    FecFactu = txtCodigo(2).Text
     
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
@@ -2121,9 +2166,22 @@ Dim NomLote As String
             FacturasaImprimir = FacturasaImprimir & NumFactu & ","
             
             'Cuenta Prevista de Cobro de las Facturas
-            fac.BancoPr = txtcodigo(5).Text
-            fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
-        
+            '[Monica]31/01/2017: si el cliente tiene banco propio cojo el del banco propio, en caso contrario el que me pongan
+            If ChkAplicarFiltro.Value = 0 Then
+                Dim BanPr As Integer
+                BanPr = DevuelveValor("select codbanpr from scliente where codclien = " & DBSet(RS!CodClien, "N"))
+                If CInt(BanPr) = 0 Then
+                    fac.BancoPr = txtCodigo(5).Text
+                    fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+                Else
+                    fac.BancoPr = CInt(BanPr)
+                    fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+                End If
+            Else
+                fac.BancoPr = txtCodigo(5).Text
+                fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+            End If
+            
             fac.Cliente = cli.Codigo
             fac.NombreClien = cli.Nombre
             fac.DomicilioClien = cli.Domicilio
@@ -2145,7 +2203,7 @@ Dim NomLote As String
             'scafaccli
             SQL = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
             SQL = SQL & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-            SQL = SQL & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban) VALUES ("
+            SQL = SQL & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban, codbanpr) VALUES ("
             SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & DBSet(fac.Cliente, "N") & ","
             SQL = SQL & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
             SQL = SQL & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
@@ -2155,7 +2213,10 @@ Dim NomLote As String
             SQL = SQL & DBSet(fac.BaseIVA2, "N", "S") & "," & DBSet(fac.TipoIVA2, "N", "S") & "," & DBSet(fac.PorceIVA2, "N", "S") & ","
             SQL = SQL & DBSet(fac.ImpIVA2, "N", "S") & "," & DBSet(fac.TotalFac, "N") & ",0,NULL,"
             SQL = SQL & DBSet(fac.Banco, "N") & "," & DBSet(fac.Sucursal, "N") & "," & DBSet(fac.DigControl, "T") & "," & DBSet(fac.CuentaBan, "T") & ","
-            SQL = SQL & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T") & ")"
+            SQL = SQL & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
+            '[Monica]30/01/2017: banco propio
+            SQL = SQL & "," & DBSet(fac.BancoPr, "N")
+            SQL = SQL & ")"
         
         
             conn.Execute SQL
@@ -2183,7 +2244,7 @@ Dim NomLote As String
                 SQL = "INSERT INTO scafaccli1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
                 SQL = SQL & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
                 SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",'"
-                SQL = SQL & Format(txtcodigo(86).Text, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+                SQL = SQL & Format(txtCodigo(86).Text, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
                 SQL = SQL & "," & CodTraba & "," & DBSet(o1, "T") & "," & DBSet(o2, "T") & "," & DBSet(o3, "T") & ","
                 SQL = SQL & DBSet(o4, "T") & "," & DBSet(o5, "T") & ",NULL)"
             
@@ -2200,11 +2261,11 @@ Dim NomLote As String
                 SQL = SQL & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
                 SQL = SQL & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",0," & almac & ","
                 If RSLineas!CodClien = RS!CodClien And chk_agrupados.Value = 0 Then
-                    SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtcodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
+                    SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtCodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 Else
                     NomLote = ""
                     NomLote = DevuelveValor("select nomenvio from senvio inner join scliente on senvio.codenvio = scliente.codenvio where scliente.codclien = " & DBSet(RS!CodClien, "N"))
-                    NomArtic = Trim(NomArtic) & " " & UCase(Format(txtcodigo(86).Text, "mmmm")) & " " & Year(CDate(txtcodigo(86).Text)) & " " & NomLote
+                    NomArtic = Trim(NomArtic) & " " & UCase(Format(txtCodigo(86).Text, "mmmm")) & " " & Year(CDate(txtCodigo(86).Text)) & " " & NomLote
                     Ampliaci = DevuelveValor("select nomclien from scliente where codclien = " & DBSet(RSLineas!CodClien, "N"))
                     SQL = SQL & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(Ampliaci, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 End If
