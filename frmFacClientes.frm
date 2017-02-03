@@ -36,50 +36,50 @@ Begin VB.Form frmFacClientes
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFacClientes.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1(13)"
-      Tab(0).Control(1)=   "Label1(14)"
-      Tab(0).Control(2)=   "Label1(34)"
-      Tab(0).Control(3)=   "Label1(15)"
-      Tab(0).Control(4)=   "Label1(36)"
-      Tab(0).Control(5)=   "Label1(37)"
-      Tab(0).Control(6)=   "Label1(11)"
-      Tab(0).Control(7)=   "Label1(7)"
-      Tab(0).Control(8)=   "Label1(5)"
-      Tab(0).Control(9)=   "imgBuscar(0)"
-      Tab(0).Control(10)=   "imgBuscar(3)"
-      Tab(0).Control(11)=   "Label1(17)"
-      Tab(0).Control(12)=   "Label1(6)"
-      Tab(0).Control(13)=   "imgBuscar(2)"
-      Tab(0).Control(14)=   "imgBuscar(1)"
-      Tab(0).Control(15)=   "imgBuscar(9)"
-      Tab(0).Control(16)=   "imgWeb"
-      Tab(0).Control(17)=   "Label1(16)"
-      Tab(0).Control(18)=   "imgFecha(0)"
-      Tab(0).Control(19)=   "Label1(19)"
-      Tab(0).Control(20)=   "imgBuscar(11)"
-      Tab(0).Control(21)=   "imgBuscar(12)"
-      Tab(0).Control(22)=   "Label1(58)"
-      Tab(0).Control(23)=   "Text1(3)"
-      Tab(0).Control(24)=   "Text1(4)"
-      Tab(0).Control(25)=   "Text1(5)"
-      Tab(0).Control(26)=   "Text1(6)"
-      Tab(0).Control(27)=   "Text1(7)"
-      Tab(0).Control(28)=   "Text1(8)"
-      Tab(0).Control(29)=   "Text1(22)"
-      Tab(0).Control(30)=   "frameAdmon"
-      Tab(0).Control(31)=   "frameComercial"
-      Tab(0).Control(32)=   "Text1(12)"
-      Tab(0).Control(33)=   "Text1(9)"
-      Tab(0).Control(34)=   "Text2(9)"
-      Tab(0).Control(35)=   "Text2(12)"
-      Tab(0).Control(36)=   "Text1(10)"
-      Tab(0).Control(37)=   "Text2(11)"
-      Tab(0).Control(38)=   "Text2(10)"
-      Tab(0).Control(39)=   "Text1(13)"
-      Tab(0).Control(40)=   "chkClienteV"
-      Tab(0).Control(41)=   "Text1(45)"
-      Tab(0).Control(42)=   "Text1(11)"
-      Tab(0).Control(43)=   "Text1(47)"
+      Tab(0).Control(0)=   "Text1(47)"
+      Tab(0).Control(1)=   "Text1(11)"
+      Tab(0).Control(2)=   "Text1(45)"
+      Tab(0).Control(3)=   "chkClienteV"
+      Tab(0).Control(4)=   "Text1(13)"
+      Tab(0).Control(5)=   "Text2(10)"
+      Tab(0).Control(6)=   "Text2(11)"
+      Tab(0).Control(7)=   "Text1(10)"
+      Tab(0).Control(8)=   "Text2(12)"
+      Tab(0).Control(9)=   "Text2(9)"
+      Tab(0).Control(10)=   "Text1(9)"
+      Tab(0).Control(11)=   "Text1(12)"
+      Tab(0).Control(12)=   "frameComercial"
+      Tab(0).Control(13)=   "frameAdmon"
+      Tab(0).Control(14)=   "Text1(22)"
+      Tab(0).Control(15)=   "Text1(8)"
+      Tab(0).Control(16)=   "Text1(7)"
+      Tab(0).Control(17)=   "Text1(6)"
+      Tab(0).Control(18)=   "Text1(5)"
+      Tab(0).Control(19)=   "Text1(4)"
+      Tab(0).Control(20)=   "Text1(3)"
+      Tab(0).Control(21)=   "Label1(58)"
+      Tab(0).Control(22)=   "imgBuscar(12)"
+      Tab(0).Control(23)=   "imgBuscar(11)"
+      Tab(0).Control(24)=   "Label1(19)"
+      Tab(0).Control(25)=   "imgFecha(0)"
+      Tab(0).Control(26)=   "Label1(16)"
+      Tab(0).Control(27)=   "imgWeb"
+      Tab(0).Control(28)=   "imgBuscar(9)"
+      Tab(0).Control(29)=   "imgBuscar(1)"
+      Tab(0).Control(30)=   "imgBuscar(2)"
+      Tab(0).Control(31)=   "Label1(6)"
+      Tab(0).Control(32)=   "Label1(17)"
+      Tab(0).Control(33)=   "imgBuscar(3)"
+      Tab(0).Control(34)=   "imgBuscar(0)"
+      Tab(0).Control(35)=   "Label1(5)"
+      Tab(0).Control(36)=   "Label1(7)"
+      Tab(0).Control(37)=   "Label1(11)"
+      Tab(0).Control(38)=   "Label1(37)"
+      Tab(0).Control(39)=   "Label1(36)"
+      Tab(0).Control(40)=   "Label1(15)"
+      Tab(0).Control(41)=   "Label1(34)"
+      Tab(0).Control(42)=   "Label1(14)"
+      Tab(0).Control(43)=   "Label1(13)"
       Tab(0).ControlCount=   44
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacClientes.frx":0028
@@ -94,37 +94,37 @@ Begin VB.Form frmFacClientes
       TabCaption(2)   =   "Direcciones"
       TabPicture(2)   =   "frmFacClientes.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameDirecciones"
-      Tab(2).Control(1)=   "ToolAux"
+      Tab(2).Control(0)=   "ToolAux"
+      Tab(2).Control(1)=   "FrameDirecciones"
       Tab(2).ControlCount=   2
       TabCaption(3)   =   "Documentos"
       TabPicture(3)   =   "frmFacClientes.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "LabelDoc"
-      Tab(3).Control(1)=   "imgFecha(3)"
-      Tab(3).Control(2)=   "Label3"
-      Tab(3).Control(3)=   "lw1"
-      Tab(3).Control(4)=   "Text1(46)"
-      Tab(3).Control(5)=   "Frame3(0)"
+      Tab(3).Control(0)=   "Frame3(0)"
+      Tab(3).Control(1)=   "Text1(46)"
+      Tab(3).Control(2)=   "lw1"
+      Tab(3).Control(3)=   "Label3"
+      Tab(3).Control(4)=   "imgFecha(3)"
+      Tab(3).Control(5)=   "LabelDoc"
       Tab(3).ControlCount=   6
       TabCaption(4)   =   "CRM"
       TabPicture(4)   =   "frmFacClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "LabelCRM"
-      Tab(4).Control(1)=   "lwCRM"
-      Tab(4).Control(2)=   "Frame3(1)"
-      Tab(4).Control(3)=   "cmdAccCRM(0)"
-      Tab(4).Control(4)=   "cmdAccCRM(1)"
-      Tab(4).Control(5)=   "cmdAccCRM(2)"
+      Tab(4).Control(0)=   "cmdAccCRM(2)"
+      Tab(4).Control(1)=   "cmdAccCRM(1)"
+      Tab(4).Control(2)=   "cmdAccCRM(0)"
+      Tab(4).Control(3)=   "Frame3(1)"
+      Tab(4).Control(4)=   "lwCRM"
+      Tab(4).Control(5)=   "LabelCRM"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Subclientes"
       TabPicture(5)   =   "frmFacClientes.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Adodc2"
-      Tab(5).Control(1)=   "DataGrid1"
+      Tab(5).Control(0)=   "txtAux1(0)"
+      Tab(5).Control(1)=   "txtAux1(1)"
       Tab(5).Control(2)=   "cmdAux(0)"
-      Tab(5).Control(3)=   "txtAux1(1)"
-      Tab(5).Control(4)=   "txtAux1(0)"
+      Tab(5).Control(3)=   "DataGrid1"
+      Tab(5).Control(4)=   "Adodc2"
       Tab(5).ControlCount=   5
       Begin VB.TextBox txtAux1 
          Appearance      =   0  'Flat
@@ -4630,7 +4630,7 @@ Dim b As Boolean
     cboFacturacion.Enabled = b
     cboTipoIVA.Enabled = b
     cmdCancelar.visible = b
-    cmdAceptar.visible = b
+    CmdAceptar.visible = b
     
     
     'Bloquear los checkbox
@@ -5024,7 +5024,7 @@ On Error Resume Next
     If KeyAscii = 13 Then 'ENTER
         KeyAscii = 0
         If (Index = 9 And Me.FrameCtaBanDpto.visible = False) Or Index = 13 Then
-            PonerFocoBtn Me.cmdAceptar
+            PonerFocoBtn Me.CmdAceptar
         Else
             SendKeys "{tab}"
         End If
@@ -5061,7 +5061,7 @@ Dim devuelve As String
             
         Case 12, 13 'DC, cta banco
             FormateaCampo Text3(Index)
-            If Index = 13 Then PonerFocoBtn Me.cmdAceptar
+            If Index = 13 Then PonerFocoBtn Me.CmdAceptar
     End Select
     
     If Err.Number <> 0 Then Err.Clear
@@ -5249,7 +5249,7 @@ End Function
     
 
 Private Sub PonerBotonCabecera(b As Boolean)
-    Me.cmdAceptar.visible = Not b
+    Me.CmdAceptar.visible = Not b
     Me.cmdCancelar.visible = Not b
     Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
@@ -5304,8 +5304,9 @@ Dim Indicador As String, cad As String
     If SituarData(Data1, cad, Indicador) Then
 '       PonerModo 2
        lblIndicador.Caption = Indicador
-       '[Monica]24/09/2012:añado la linea siguiente
-       CargaGrid DataGrid1, Adodc2
+'[Monica]02/02/2017: daba error al dar de alta un cliente nuevo
+'       '[Monica]24/09/2012:añado la linea siguiente
+'       CargaGrid DataGrid1, Adodc2
     Else
         'El Data esta vacio, desde el modo de inicio se pulsa Insertar
         CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP & Ordenacion
@@ -6302,7 +6303,7 @@ Dim encontrado As String
                 If encontrado <> "" Then
                     txtAux1(1).Text = encontrado
                     
-                    cmdAceptar.SetFocus
+                    CmdAceptar.SetFocus
                 Else
                     MsgBox "No existe el código de cliente introducido.", vbExclamation
                     PonerFoco txtAux1(Index)
