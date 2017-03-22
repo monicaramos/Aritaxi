@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -292,59 +292,59 @@ Begin VB.Form frmComHcoFacturas
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmComHcoFacturas.frx":0B2C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "imgBuscar(6)"
+      Tab(1).Control(0)=   "txtAux(8)"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label1(9)"
+      Tab(1).Control(1)=   "txtAux3(1)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "imgBuscar(5)"
+      Tab(1).Control(2)=   "txtAux3(0)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Label1(21)"
+      Tab(1).Control(3)=   "txtAux(3)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "Label1(6)"
+      Tab(1).Control(4)=   "txtAux(2)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "Label1(18)"
+      Tab(1).Control(5)=   "txtAux(1)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "FrameObserva"
+      Tab(1).Control(6)=   "txtAux(0)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "DataGrid2"
+      Tab(1).Control(7)=   "cmdObserva"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "DataGrid1"
+      Tab(1).Control(8)=   "Text3(3)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(7)"
+      Tab(1).Control(9)=   "Text3(2)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "txtAux(6)"
+      Tab(1).Control(10)=   "Text2(0)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "txtAux(5)"
+      Tab(1).Control(11)=   "Text3(0)"
       Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "txtAux(4)"
+      Tab(1).Control(12)=   "Text2(1)"
       Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "Text3(1)"
       Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "Text2(1)"
+      Tab(1).Control(14)=   "txtAux(4)"
       Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "Text3(0)"
+      Tab(1).Control(15)=   "txtAux(5)"
       Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "Text2(0)"
+      Tab(1).Control(16)=   "txtAux(6)"
       Tab(1).Control(16).Enabled=   0   'False
-      Tab(1).Control(17)=   "Text3(2)"
+      Tab(1).Control(17)=   "txtAux(7)"
       Tab(1).Control(17).Enabled=   0   'False
-      Tab(1).Control(18)=   "Text3(3)"
+      Tab(1).Control(18)=   "DataGrid1"
       Tab(1).Control(18).Enabled=   0   'False
-      Tab(1).Control(19)=   "cmdObserva"
+      Tab(1).Control(19)=   "DataGrid2"
       Tab(1).Control(19).Enabled=   0   'False
-      Tab(1).Control(20)=   "txtAux(0)"
+      Tab(1).Control(20)=   "FrameObserva"
       Tab(1).Control(20).Enabled=   0   'False
-      Tab(1).Control(21)=   "txtAux(1)"
+      Tab(1).Control(21)=   "Label1(18)"
       Tab(1).Control(21).Enabled=   0   'False
-      Tab(1).Control(22)=   "txtAux(2)"
+      Tab(1).Control(22)=   "Label1(6)"
       Tab(1).Control(22).Enabled=   0   'False
-      Tab(1).Control(23)=   "txtAux(3)"
+      Tab(1).Control(23)=   "Label1(21)"
       Tab(1).Control(23).Enabled=   0   'False
-      Tab(1).Control(24)=   "txtAux3(0)"
+      Tab(1).Control(24)=   "imgBuscar(5)"
       Tab(1).Control(24).Enabled=   0   'False
-      Tab(1).Control(25)=   "txtAux3(1)"
+      Tab(1).Control(25)=   "Label1(9)"
       Tab(1).Control(25).Enabled=   0   'False
-      Tab(1).Control(26)=   "txtAux(8)"
+      Tab(1).Control(26)=   "imgBuscar(6)"
       Tab(1).Control(26).Enabled=   0   'False
       Tab(1).ControlCount=   27
       Begin VB.TextBox txtAux 
@@ -2545,21 +2545,21 @@ End Sub
 
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
-Dim Indice As Byte
+Dim indice As Byte
 Dim devuelve As String
 
-        Indice = 7
-        Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-        Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve)  'Poblacion
+        indice = 7
+        Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
+        Text1(indice + 1).Text = ObtenerPoblacion(Text1(indice).Text, devuelve)  'Poblacion
         'provincia
-        Text1(Indice + 2).Text = devuelve
+        Text1(indice + 2).Text = devuelve
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
-Dim Indice As Byte
-    Indice = 10
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
+Dim indice As Byte
+    indice = 10
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
     Text2(10).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Forma Pago
 End Sub
 
@@ -2571,32 +2571,32 @@ End Sub
 
 Private Sub frmPV_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Proveedores Varios
-Dim Indice As Byte
+Dim indice As Byte
 
-    Indice = 4
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
-    Text1(Indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
-    PonerDatosProveVario (Text1(Indice).Text)
+    indice = 4
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
+    Text1(indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
+    PonerDatosProveVario (Text1(indice).Text)
 End Sub
 
 Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Trabajadores
-Dim Indice As Byte
+Dim indice As Byte
 
-    Indice = Val(Me.imgBuscar(4).Tag)
-    If Indice = 4 Then
-        Indice = Indice + 9
-        Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
-        Text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Trabajador
+    indice = Val(Me.imgBuscar(4).Tag)
+    If indice = 4 Then
+        indice = indice + 9
+        Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
+        Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Trabajador
     Else
-        Text3(Indice - 5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
-        Text2(Indice - 5).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Trabajador
+        Text3(indice - 5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
+        Text2(indice - 5).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Trabajador
     End If
 End Sub
 
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     If Modo = 2 Or Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
@@ -2608,29 +2608,29 @@ Dim Indice As Byte
             frmProv.DatosADevolverBusqueda = "0"
             frmProv.Show vbModal
             Set frmProv = Nothing
-            Indice = 2
-            PonerFoco Text1(Indice)
+            indice = 2
+            PonerFoco Text1(indice)
             
         Case 1 'NIF para proveedor de Varios
             Set frmPV = New frmComProveV
             frmPV.DatosADevolverBusqueda = "0"
             frmPV.Show vbModal
             Set frmPV = Nothing
-            Indice = 7
-            PonerFoco Text1(Indice)
+            indice = 7
+            PonerFoco Text1(indice)
             
         Case 2 'Cod. Postal
             Set frmCP = New frmCPostal
             frmCP.DatosADevolverBusqueda = "0"
             frmCP.Show vbModal
             Set frmCP = Nothing
-            Indice = 7
+            indice = 7
             VieneDeBuscar = True
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
       
          Case 3 'Forma de Pago
-            Indice = 10
-            PonerFoco Text1(Indice)
+            indice = 10
+            PonerFoco Text1(indice)
             Set frmFP = New frmFacFormasPago
             frmFP.DatosADevolverBusqueda = "0"
             frmFP.Show vbModal
@@ -3034,6 +3034,11 @@ Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
+
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
@@ -3504,7 +3509,7 @@ End Sub
 
 Private Function Eliminar() As Boolean
 Dim Sql As String
-Dim Cta As String
+Dim cta As String
 Dim b As Boolean
 
     On Error GoTo FinEliminar
@@ -3518,8 +3523,8 @@ Dim b As Boolean
         
         'Eliminar en la tabla pagos de la Contabilidad: spagop
         '------------------------------------------------
-        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
-        Sql = " ctaprove='" & Cta & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+        cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
+        Sql = " ctaprove='" & cta & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
         Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
         ConnConta.Execute "Delete from spagop WHERE " & Sql
         b = True
@@ -3872,15 +3877,15 @@ End Function
 
 
 Private Function FactContabilizada() As Boolean
-Dim Cta As String, numasien As String
+Dim cta As String, numasien As String
 On Error GoTo EContab
 
     'comprabar que se puede modificar/eliminar la factura
     If Me.Check1.Value = 1 Then 'si esta contabilizada
         'comprobar en la contabilidad si esta contabilizada
-        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
-        If Cta <> "" Then
-            numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", Cta, "T", , "numfacpr", Text1(0).Text, "T", "fecfacpr", Text1(1).Text, "F")
+        cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
+        If cta <> "" Then
+            numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", cta, "T", , "numfacpr", Text1(0).Text, "T", "fecfacpr", Text1(1).Text, "F")
             If numasien <> "" Then
                 FactContabilizada = True
                 MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation

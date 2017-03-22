@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmConfTipoMov 
@@ -399,7 +399,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim SQL As String
+Dim Sql As String
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -421,8 +421,8 @@ Dim SQL As String
     'Ordenacion = " ORDER BY codtipom"
            
     'ASignamos un SQL al DATA1
-    SQL = "Select codtipom, nomtipom, If(muevesto=1,""Si"",""No"") AS MovStock, contador, letraser, tipodocu "
-    CadenaConsulta = SQL & " from " & NombreTabla
+    Sql = "Select codtipom, nomtipom, If(muevesto=1,""Si"",""No"") AS MovStock, contador, letraser, tipodocu "
+    CadenaConsulta = Sql & " from " & NombreTabla
  
     CargaGrid
     CargaCombo
@@ -540,20 +540,20 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
     On Error GoTo Error2
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     If Not SepuedeBorrar Then Exit Sub
     
     '### a mano
-    SQL = "¿Seguro que desea eliminar el Tipo de Movimiento?"
-    SQL = SQL & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    SQL = SQL & vbCrLf & "Denominación: " & Data1.Recordset.Fields(1)
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
+    Sql = "¿Seguro que desea eliminar el Tipo de Movimiento?"
+    Sql = Sql & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Sql = Sql & vbCrLf & "Denominación: " & Data1.Recordset.Fields(1)
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
         'Hay que eliminar
-        SQL = "Delete from stipom where codtipom='" & Data1.Recordset!codtipom & "'"
-        conn.Execute SQL
+        Sql = "Delete from stipom where codtipom='" & Data1.Recordset!codtipom & "'"
+        conn.Execute Sql
         CancelaADODC Me.Data1
         CargaGrid ""
         CancelaADODC Me.Data1
@@ -565,16 +565,16 @@ Error2:
 End Sub
 
 
-Private Sub CargaGrid(Optional SQL As String)
+Private Sub CargaGrid(Optional Sql As String)
 Dim i As Byte
     
-    If SQL <> "" Then
-        SQL = CadenaConsulta & " WHERE " & SQL
+    If Sql <> "" Then
+        Sql = CadenaConsulta & " WHERE " & Sql
     Else
-        SQL = CadenaConsulta
+        Sql = CadenaConsulta
     End If
     
-    CargaGridGnral DataGrid1, Me.Data1, SQL, PrimeraVez
+    CargaGridGnral DataGrid1, Me.Data1, Sql, PrimeraVez
     
     
     i = 0  'Código
@@ -650,6 +650,7 @@ Dim i As Byte
     For i = 0 To txtAux.Count - 1
         txtAux(i).visible = Not b
     Next i
+    
     Me.CboMueveStock.visible = Not b
     
 '    If b Then Me.lblIndicador.Caption = ""
@@ -774,12 +775,12 @@ End Sub
 
 
 Private Function SepuedeBorrar() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim cad As String
 
     SepuedeBorrar = False
-    SQL = DevuelveDesdeBD(1, "detamovi", "smoval", "detamovi", Data1.Recordset!codtipom, "T")
-    If SQL <> "" Then
+    Sql = DevuelveDesdeBD(1, "detamovi", "smoval", "detamovi", Data1.Recordset!codtipom, "T")
+    If Sql <> "" Then
         cad = "No se puede eliminar la fila. " & vbCrLf
         MsgBox cad & "Esta vinculada con Movimientos de Artículos", vbExclamation
         Exit Function

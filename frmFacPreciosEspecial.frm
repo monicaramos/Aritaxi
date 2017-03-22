@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "msadodc.ocx"
+Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacPreciosEspecial 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Precios Especiales"
@@ -708,7 +708,7 @@ Private Sub chkVistaPrevia_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim SQL As String
+Dim Sql As String
 On Error GoTo Error1
     
     Screen.MousePointer = vbHourglass
@@ -841,7 +841,7 @@ Private Sub Form_Load()
         CadenaConsulta = CadenaConsulta & " codartic=" & RecuperaValor(CadenaSituarData, 1) & " AND codclien = " & RecuperaValor(CadenaSituarData, 2)
     End If
     
-    Data1.ConnectionString = Conn
+    Data1.ConnectionString = conn
     Data1.RecordSource = CadenaConsulta
     Data1.Refresh
     If CadenaSituarData = "" Then
@@ -860,13 +860,13 @@ Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
 Dim i As Byte
 Dim Inicio As Byte
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     b = DataGrid1.Enabled
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data2, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data2, Sql, PrimeraVez
     
     DataGrid1.Columns(0).visible = False 'Cod. Cliente
     DataGrid1.Columns(1).visible = False 'Cod. Articulo
@@ -944,9 +944,9 @@ End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-Dim Indice As Byte
-    Indice = 8
-    Text1(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim indice As Byte
+    indice = 8
+    Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
@@ -980,7 +980,7 @@ End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
@@ -988,15 +988,15 @@ Dim Indice As Byte
    Set frmF = New frmCal
    frmF.Fecha = Now
    
-   Indice = 8
+   indice = 8
    
-   PonerFormatoFecha Text1(Indice)
-   If Text1(Indice).Text <> "" Then frmF.Fecha = CDate(Text1(Indice).Text)
+   PonerFormatoFecha Text1(indice)
+   If Text1(indice).Text <> "" Then frmF.Fecha = CDate(Text1(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco Text1(Indice)
+   PonerFoco Text1(indice)
 End Sub
 
 
@@ -1045,7 +1045,7 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 Dim campo As String
-Dim tabla As String
+Dim Tabla As String
 
     If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
 
@@ -1059,8 +1059,8 @@ Dim tabla As String
             
         Case 1 'Codigo Articulo
             campo = "nomartic"
-            tabla = "sartic"
-            Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, tabla, campo)
+            Tabla = "sartic"
+            Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, Tabla, campo)
         
         Case 2, 3, 5, 6 'Precios Actuales y Nuevos
             'Formato tipo 2: Decimal(10,4)
@@ -1115,6 +1115,10 @@ Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador Me.lblIndicador, Modo
+    
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     '===========================================
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1200,18 +1204,18 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim tabla As String
+Dim Sql As String
+Dim Tabla As String
     
-    tabla = "spree1"
-    SQL = "SELECT * FROM " & tabla
+    Tabla = "spree1"
+    Sql = "SELECT * FROM " & Tabla
     If enlaza Then
-        SQL = SQL & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+        Sql = Sql & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
     Else
-        SQL = SQL & " WHERE codartic = -1"
+        Sql = Sql & " WHERE codartic = -1"
     End If
-    SQL = SQL & " ORDER BY " & tabla & ".numlinea desc"
-    MontaSQLCarga = SQL
+    Sql = Sql & " ORDER BY " & Tabla & ".numlinea desc"
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1278,20 +1282,20 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    SQL = "Precios Especiales." & vbCrLf
-    SQL = SQL & "--------------------------" & vbCrLf & vbCrLf
+    Sql = "Precios Especiales." & vbCrLf
+    Sql = Sql & "--------------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Eliminar El Precio Especial:"
-    SQL = SQL & vbCrLf & "Cod. Clien. : " & Text1(0).Text
-    SQL = SQL & vbCrLf & "Cod. Artic. : " & Text1(1).Text
+    Sql = Sql & "Va a Eliminar El Precio Especial:"
+    Sql = Sql & vbCrLf & "Cod. Clien. : " & Text1(0).Text
+    Sql = Sql & vbCrLf & "Cod. Artic. : " & Text1(1).Text
     
-    SQL = SQL & vbCrLf & vbCrLf & "¿Desea continuar ? "
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
+    Sql = Sql & vbCrLf & vbCrLf & "¿Desea continuar ? "
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -1317,26 +1321,26 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
-        Conn.BeginTrans
-        SQL = " WHERE codclien=" & Val(Data1.Recordset!CodClien)
-        SQL = SQL & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+        conn.BeginTrans
+        Sql = " WHERE codclien=" & Val(Data1.Recordset!CodClien)
+        Sql = Sql & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
         
         'Lineas
-        Conn.Execute "Delete  from spree1 " & SQL
+        conn.Execute "Delete  from spree1 " & Sql
         
         'Cabeceras
-        Conn.Execute "Delete  from " & NombreTabla & SQL
+        conn.Execute "Delete  from " & NombreTabla & Sql
                       
 FinEliminar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar"
-        Conn.RollbackTrans
+        conn.RollbackTrans
         Eliminar = False
     Else
-        Conn.CommitTrans
+        conn.CommitTrans
         Eliminar = True
     End If
 End Function
@@ -1376,7 +1380,7 @@ End Function
 Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1388,8 +1392,8 @@ Dim Titulo As String
     cad = cad & ParaGrid(Text1(1), 15, "Cod. Artic")
     cad = cad & "Desc. Artic|sartic|nomartic|T||38·"
     
-    tabla = "(" & NombreTabla & " LEFT JOIN sclien ON " & NombreTabla & ".codclien=sclien.codclien" & ")"
-    tabla = tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
+    Tabla = "(" & NombreTabla & " LEFT JOIN sclien ON " & NombreTabla & ".codclien=sclien.codclien" & ")"
+    Tabla = Tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
     
     Titulo = "Precios Especiales"
            
@@ -1397,7 +1401,7 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
@@ -1500,7 +1504,7 @@ End Sub
 
 Private Sub BotonActualizar()
 'Actualizar Precios Especiales
-Dim SQL As String
+Dim Sql As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún Precio Especial para actualizar.", vbExclamation
@@ -1509,14 +1513,14 @@ Dim SQL As String
     
     If Data2 Is Nothing Then Exit Sub
    
-    SQL = "Actualización Precios Especiales de Artículos." & vbCrLf
-    SQL = SQL & "---------------------------------------------" & vbCrLf & vbCrLf
+    Sql = "Actualización Precios Especiales de Artículos." & vbCrLf
+    Sql = Sql & "---------------------------------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Actualizar el Precio Especial para:"
-    SQL = SQL & vbCrLf & " Cod. Clien. :  " & CStr(Format(Data1.Recordset.Fields(0), "000000"))
-    SQL = SQL & vbCrLf & " Cod. Artic. :  " & Data1.Recordset.Fields(1)
-    SQL = SQL & vbCrLf & vbCrLf & " ¿Desea continuar ? "
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) <> vbYes Then
+    Sql = Sql & "Va a Actualizar el Precio Especial para:"
+    Sql = Sql & vbCrLf & " Cod. Clien. :  " & CStr(Format(Data1.Recordset.Fields(0), "000000"))
+    Sql = Sql & vbCrLf & " Cod. Artic. :  " & Data1.Recordset.Fields(1)
+    Sql = Sql & vbCrLf & vbCrLf & " ¿Desea continuar ? "
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) <> vbYes Then
         Exit Sub
     End If
     
@@ -1531,21 +1535,21 @@ Private Function ActualizarPreEspecial() As Boolean
 'Actualiza los Precios Especiales insertando los precios actuales con la fecha de cambio en el hostórico
 ' y modificando el la tabla de precios especiales pasando los valores nuevos a ser los actuales.
 Dim Donde As String
-Dim SQL As String
+Dim Sql As String
 Dim bol As Boolean
 On Error GoTo EActualizarPreEspecial
     
    
     'Aqui empieza transaccion
-    Conn.BeginTrans
+    conn.BeginTrans
     bol = ActualizarElPrecio(Donde)
 
 EActualizarPreEspecial:
         If Err.Number <> 0 Then
-            SQL = "Actualizar Precio Especial." & vbCrLf & "----------------------------" & vbCrLf
-            SQL = SQL & Donde
+            Sql = "Actualizar Precio Especial." & vbCrLf & "----------------------------" & vbCrLf
+            Sql = Sql & Donde
 '            If OpcionActualizar = 1 Then
-                MuestraError Err.Number, SQL, Err.Description
+                MuestraError Err.Number, Sql, Err.Description
 '            Else
 '                SQL = Donde & " -> " & Err.Description
 '                SQL = Mid(SQL, 1, 200)
@@ -1554,10 +1558,10 @@ EActualizarPreEspecial:
             bol = False
         End If
         If bol Then
-            Conn.CommitTrans
+            conn.CommitTrans
             ActualizarPreEspecial = True
         Else
-            Conn.RollbackTrans
+            conn.RollbackTrans
             ActualizarPreEspecial = False
         End If
 End Function
@@ -1584,13 +1588,13 @@ End Function
 
 Private Function ModificarCabecera() As Boolean
 'Modifica la tabla de cabeceras de Tarifas
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
 
-    SQL = "UPDATE " & NombreTabla & " SET precioac=precionu, precioa1=precion1, dtoespec=dtoespe1, fechanue=null, precionu=0, precion1=0"
-    SQL = SQL & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    Conn.Execute SQL
+    Sql = "UPDATE " & NombreTabla & " SET precioac=precionu, precioa1=precion1, dtoespec=dtoespe1, fechanue=null, precionu=0, precion1=0"
+    Sql = Sql & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    conn.Execute Sql
     
     If Err.Number <> 0 Then
          'Hay error , almacenamos y salimos
@@ -1602,20 +1606,20 @@ End Function
 
 
 Private Function InsertarLineasHistorico() As Boolean
-Dim SQL As String
-Dim NumF As String
+Dim Sql As String
+Dim numF As String
 On Error Resume Next
 
     'Obtenemos la siguiente numero de linea de tarifa
-    SQL = "codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    NumF = SugerirCodigoSiguienteStr("spree1", "numlinea", SQL)
+    Sql = "codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    numF = SugerirCodigoSiguienteStr("spree1", "numlinea", Sql)
 
-    SQL = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec)"
-    SQL = SQL & " VALUES (" & Data1.Recordset.Fields(0).Value & ", " & DBSet(Data1.Recordset.Fields(1).Value, "T") & ", "
-    SQL = SQL & NumF & ", " & DBSet(Text1(4).Text, "F") & ", "
-    SQL = SQL & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ", "
-    SQL = SQL & DBSet(Data1.Recordset!dtoespec, "N") & ") "
-    Conn.Execute SQL
+    Sql = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec)"
+    Sql = Sql & " VALUES (" & Data1.Recordset.Fields(0).Value & ", " & DBSet(Data1.Recordset.Fields(1).Value, "T") & ", "
+    Sql = Sql & numF & ", " & DBSet(Text1(4).Text, "F") & ", "
+    Sql = Sql & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ", "
+    Sql = Sql & DBSet(Data1.Recordset!dtoespec, "N") & ") "
+    conn.Execute Sql
     
     If Err.Number <> 0 Then
         'Hay error , almacenamos y salimos

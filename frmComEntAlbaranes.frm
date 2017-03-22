@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -541,17 +541,17 @@ Begin VB.Form frmComEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":02B7
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
-      Tab(1).Control(1)=   "Text2(21)"
-      Tab(1).Control(2)=   "Text1(21)"
-      Tab(1).Control(3)=   "Text1(19)"
-      Tab(1).Control(4)=   "Text1(18)"
+      Tab(1).Control(0)=   "Label1(45)"
+      Tab(1).Control(1)=   "Label1(1)"
+      Tab(1).Control(2)=   "imgBuscar(4)"
+      Tab(1).Control(3)=   "Text1(15)"
+      Tab(1).Control(4)=   "Text1(16)"
       Tab(1).Control(5)=   "Text1(17)"
-      Tab(1).Control(6)=   "Text1(16)"
-      Tab(1).Control(7)=   "Text1(15)"
-      Tab(1).Control(8)=   "imgBuscar(4)"
-      Tab(1).Control(9)=   "Label1(1)"
-      Tab(1).Control(10)=   "Label1(45)"
+      Tab(1).Control(6)=   "Text1(18)"
+      Tab(1).Control(7)=   "Text1(19)"
+      Tab(1).Control(8)=   "Text1(21)"
+      Tab(1).Control(9)=   "Text2(21)"
+      Tab(1).Control(10)=   "FrameHco"
       Tab(1).ControlCount=   11
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntAlbaranes.frx":02D3
@@ -3249,6 +3249,12 @@ Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
+
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+
+
 
     'Vuelvo a poner el lbl en la columna
     If Modo = 5 Then DataGrid1.Columns(5).Caption = "Articulo"

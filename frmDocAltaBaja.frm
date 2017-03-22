@@ -677,7 +677,7 @@ Dim Tipo As String
 
 Dim PrimeraVez As Boolean
 Dim Contabilizada As Byte
-Dim Indice As Integer
+Dim indice As Integer
 
 Dim NumCampo As String
 
@@ -1219,7 +1219,7 @@ Dim i As Integer
         ' Numero de uve
         txtcodigo(0).Text = NumCod
         PonerFormatoEntero txtcodigo(0)
-        txtNombre(0).Text = PonerNombreDeCod(txtcodigo(0), conAri, "sclien", "nomclien", "numeruve", "N")
+        txtnombre(0).Text = PonerNombreDeCod(txtcodigo(0), conAri, "sclien", "nomclien", "numeruve", "N")
         ' fecha de documento
         txtcodigo(3).Text = Format(Now, "dd/mm/yyyy")
         txtcodigo(5).Text = Format(vParamAplic.ImpGastoAlta, "###,###,##0.00")
@@ -1231,6 +1231,9 @@ End Sub
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
 Dim List As Collection
+    
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
 
     PrimeraVez = True
     limpiar Me
@@ -1253,13 +1256,13 @@ End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
-    txtcodigo(Indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtcodigo(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
     ' ********************************************
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(Indice).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtNombre(Indice).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtcodigo(indice).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtnombre(indice).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1268,29 +1271,29 @@ End Sub
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub frmTDia_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Consulta de Clientes
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmConce_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Consulta de Clientes
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1313,8 +1316,8 @@ Private Sub imgBuscar_Click(Index As Integer)
             AbrirFrmConceptos (Index)
         
         Case 5, 6 ' FORMAS DE PAGO
-            Indice = Index + 2
-            indCodigo = Indice
+            indice = Index + 2
+            indCodigo = indice
             Set frmFP = New frmFacFormasPago
             frmFP.DatosADevolverBusqueda = "0"
             frmFP.Show vbModal
@@ -1360,9 +1363,9 @@ Private Sub frmF_Selec(vFecha As Date)
     txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
-Private Sub KEYFecha(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
-    imgFec_Click (Indice)
+    imgFec_Click (indice)
 End Sub
 
 Private Sub imgFecha_Click(Index As Integer)
@@ -1392,9 +1395,9 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 
 End Sub
 
-Private Sub KEYBusqueda(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYBusqueda(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
-    imgBuscar_Click (Indice)
+    imgBuscar_Click (indice)
 End Sub
 
 
@@ -1412,11 +1415,11 @@ Dim cad As String, cadTipo As String 'tipo cliente
     Select Case Index
         Case 0 'V Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 1 ' banco propio
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
         
         Case 5, 9 ' Importe
             If txtcodigo(Index).Text <> "" Then PonerFormatoDecimal txtcodigo(Index), 1
@@ -1428,17 +1431,17 @@ Dim cad As String, cadTipo As String 'tipo cliente
             
         Case 2 ' NUMERO DE DIARIO
             If txtcodigo(Index).Text <> "" Then
-                txtNombre(Index).Text = ""
-                txtNombre(Index).Text = DevuelveDesdeBDNew(conConta, "tiposdiario", "desdiari", "numdiari", txtcodigo(Index).Text, "N")
-                If txtNombre(Index).Text = "" Then
+                txtnombre(Index).Text = ""
+                txtnombre(Index).Text = DevuelveDesdeBDNew(conConta, "tiposdiario", "desdiari", "numdiari", txtcodigo(Index).Text, "N")
+                If txtnombre(Index).Text = "" Then
                     MsgBox "Número de Diario no existe en la contabilidad. Reintroduzca.", vbExclamation
 '                    PonerFoco txtcodigo(Index)
                 End If
             End If
         
         Case 4, 6 'CONCEPTOS
-            If txtcodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreConcepto(txtcodigo(Index))
-            If txtNombre(Index).Text = "" Then
+            If txtcodigo(Index).Text <> "" Then txtnombre(Index).Text = PonerNombreConcepto(txtcodigo(Index))
+            If txtnombre(Index).Text = "" Then
                 MsgBox "Número de Concepto no existe en la contabilidad. Reintroduzca.", vbExclamation
 '                PonerFoco txtcodigo(Index)
             End If
@@ -1446,7 +1449,7 @@ Dim cad As String, cadTipo As String 'tipo cliente
             
         Case 7, 8 ' formas de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
             
     End Select
 End Sub
@@ -1490,7 +1493,7 @@ Private Sub LlamarImprimir()
 End Sub
 
 
-Private Sub AbrirFrmSocios(Indice As Integer)
+Private Sub AbrirFrmSocios(indice As Integer)
     Set frmMtoV = New frmGesVSocio
     frmMtoV.DeConsulta = True
     frmMtoV.DatosADevolverBusqueda = "0|1|2|"
@@ -1498,7 +1501,7 @@ Private Sub AbrirFrmSocios(Indice As Integer)
     Set frmMtoV = Nothing
 End Sub
 
-Private Sub AbrirFrmDiario(Indice As Integer)
+Private Sub AbrirFrmDiario(indice As Integer)
     indCodigo = 2
     Set frmTDia = New frmDiaConta
     frmTDia.DatosADevolverBusqueda = "0|1|"
@@ -1507,8 +1510,8 @@ Private Sub AbrirFrmDiario(Indice As Integer)
     Set frmTDia = Nothing
 End Sub
 
-Private Sub AbrirFrmConceptos(Indice As Integer)
-    Select Case Indice
+Private Sub AbrirFrmConceptos(indice As Integer)
+    Select Case indice
         Case 3
             indCodigo = 4
         Case 4

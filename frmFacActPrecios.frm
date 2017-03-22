@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmFacActPrecios 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Actualizar Precios"
@@ -180,7 +180,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 'actualizar los nuevos precios actuales  y/o especiales
 Dim cadSel As String
-Dim SQL As String
+Dim Sql As String
 Dim totRegPA As Long 'total registros a cambiar de precios actuales
 Dim totRegPE As Long 'total registros a cambia de precios especiales
 
@@ -189,14 +189,14 @@ Dim totRegPE As Long 'total registros a cambia de precios especiales
     '-----------------------------
     
     '- comprobar q se ha seleccionado fecha de cambio
-    If txtCodigo(0).Text = "" Then
+    If txtcodigo(0).Text = "" Then
         MsgBox "El campo fecha de cambio debe tener valor.", vbExclamation
         Exit Sub
     End If
     
     '- comprobar que es una fecha valida
-    PonerFormatoFecha txtCodigo(0)
-    If txtCodigo(0).Text = "" Then
+    PonerFormatoFecha txtcodigo(0)
+    If txtcodigo(0).Text = "" Then
         Exit Sub
     End If
     
@@ -214,21 +214,21 @@ Dim totRegPE As Long 'total registros a cambia de precios especiales
     '- obtener la cadena de seleccion de registros de tarifas de precio q se van
     '    a actualizar: los q cumplan q slista.fechanue <= valor_introducido
     cadSel = "fechanue"
-    cadSel = CadenaDesdeHastaBD("", txtCodigo(0).Text, cadSel, "F")
+    cadSel = CadenaDesdeHastaBD("", txtcodigo(0).Text, cadSel, "F")
     
     '- comprabar q existen registros para ese criterio de seleccion
     totRegPA = 0
     totRegPE = 0
     If Me.chkPreuAct.Value = 1 Then
         'si marcado actualizar PRECIOS ACTUALES
-        SQL = "SELECT COUNT(*) FROM slista WHERE " & cadSel
-        totRegPA = TotalRegistros(SQL)
+        Sql = "SELECT COUNT(*) FROM slista WHERE " & cadSel
+        totRegPA = TotalRegistros(Sql)
         
         If Not (totRegPA > 0) Then
             If Me.chkPreuEsp.Value = 1 Then
                 'comprobar si se actualizar precios especiales
-                SQL = "SELECT COUNT(*) FROM sprees WHERE " & cadSel
-                totRegPE = TotalRegistros(SQL)
+                Sql = "SELECT COUNT(*) FROM sprees WHERE " & cadSel
+                totRegPE = TotalRegistros(Sql)
                 If Not (totRegPE > 0) Then
                     MsgBox "No hay tarifas de precios ni precios especiales a actualizar para esa fecha.", vbExclamation
                     Exit Sub
@@ -243,8 +243,8 @@ Dim totRegPE As Long 'total registros a cambia de precios especiales
     
     If Me.chkPreuEsp.Value = 1 Then
         'comprobar si se actualizar PRECIOS ESPECIALES
-        SQL = "SELECT COUNT(*) FROM sprees WHERE " & cadSel
-        totRegPE = TotalRegistros(SQL)
+        Sql = "SELECT COUNT(*) FROM sprees WHERE " & cadSel
+        totRegPE = TotalRegistros(Sql)
         
         If Not ((totRegPE) > 0) And totRegPA = 0 Then
             MsgBox "No hay precios especiales a actualizar para esa fecha.", vbExclamation
@@ -308,6 +308,9 @@ End Sub
 
 
 Private Sub Form_Load()
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
+
     Me.ProgressBar1.visible = False
     Me.lblProgreso(0).visible = False
     Me.lblProgreso(1).visible = False
@@ -316,7 +319,7 @@ End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtCodigo(0).Text = Format(vFecha, "dd/mm/yyyy")
+    txtcodigo(0).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub imgFecha_Click(Index As Integer)
@@ -325,19 +328,19 @@ Private Sub imgFecha_Click(Index As Integer)
     Set frmF = New frmCal
     frmF.Fecha = Now
     
-    PonerFormatoFecha txtCodigo(Index)
-    If txtCodigo(Index).Text <> "" Then frmF.Fecha = CDate(txtCodigo(Index).Text)
+    PonerFormatoFecha txtcodigo(Index)
+    If txtcodigo(Index).Text <> "" Then frmF.Fecha = CDate(txtcodigo(Index).Text)
    
     Screen.MousePointer = vbDefault
     frmF.Show vbModal
     Set frmF = Nothing
-    PonerFoco txtCodigo(Index)
+    PonerFoco txtcodigo(Index)
 End Sub
 
 
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -358,15 +361,15 @@ End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
 
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
     If Screen.ActiveForm.Name <> Me.Name Then Exit Sub
     
     If Index = 0 Then 'fecha de cambio
-        If txtCodigo(Index).Text <> "" Then
-           PonerFormatoFecha txtCodigo(Index)
+        If txtcodigo(Index).Text <> "" Then
+           PonerFormatoFecha txtcodigo(Index)
         End If
     End If
 End Sub
@@ -374,14 +377,14 @@ End Sub
 
 
 
-Private Sub ProcesoActualizarPrecios_Actuales(cadWhere As String, totReg As Long)
+Private Sub ProcesoActualizarPrecios_Actuales(cadWHERE As String, totReg As Long)
 'Actualizar los precios Actuales de las Tarifas
 '(IN) cadWHERE: cadena seleccion de tarifas a actualizar
 'Para cada tarifa a actualizar:
 '   - insertar. en historico (slist1) linea con slista.fechanue y con el slista.precioac
 '   - actualizar slista con slista.precioac=slista.precionu
 '   - si slista.codlista es la tarifa de los parametros de la aplicacion: actualizar PVP del articulo
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim i As Long
 Dim hayErr As Boolean
@@ -400,9 +403,9 @@ Dim hayErr As Boolean
     
     
     '-- seleccionar todos los registros actuales a procesar
-    SQL = "SELECT * FROM slista WHERE " & cadWhere
+    Sql = "SELECT * FROM slista WHERE " & cadWHERE
     Set RS = New ADODB.Recordset
-    RS.Open SQL, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'para cada tarifa a cambiar
     hayErr = False
@@ -455,7 +458,7 @@ Dim margen As Currency
 Dim newPrecio As Currency
 
     On Error GoTo ErrAct
-    Conn.BeginTrans
+    conn.BeginTrans
     
     
     Set cTar = New CTarifaArt
@@ -479,9 +482,9 @@ Dim newPrecio As Currency
     
     
     If b Then
-        Conn.CommitTrans
+        conn.CommitTrans
     Else
-        Conn.RollbackTrans
+        conn.RollbackTrans
     End If
     
     ActualizarTarifa = b
@@ -489,31 +492,31 @@ Dim newPrecio As Currency
     Exit Function
     
 ErrAct:
-    Conn.RollbackTrans
+    conn.RollbackTrans
     MuestraError Err.Number, "Actualizar precio actual tarifa.", Err.Description
 End Function
 
 
 
 Private Function BloquearArticulo(codArt As String) As Boolean
-Dim cadWhere As String
+Dim cadWHERE As String
 
-    cadWhere = "codartic=" & DBSet(codArt, "T")
-    BloquearArticulo = BloqueaRegistro("sartic", cadWhere)
+    cadWHERE = "codartic=" & DBSet(codArt, "T")
+    BloquearArticulo = BloqueaRegistro("sartic", cadWHERE)
 End Function
 
 
 
 
 Private Function ActualizarPVPArticulo(codArt As String, newPreu As Currency) As Boolean
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo ErrActPVP
     ActualizarPVPArticulo = False
     
-    SQL = "UPDATE sartic SET preciove=" & DBSet(newPreu, "N")
-    SQL = SQL & " WHERE codartic=" & DBSet(codArt, "T")
-    Conn.Execute SQL
+    Sql = "UPDATE sartic SET preciove=" & DBSet(newPreu, "N")
+    Sql = Sql & " WHERE codartic=" & DBSet(codArt, "T")
+    conn.Execute Sql
     
     ActualizarPVPArticulo = True
     Exit Function
@@ -529,14 +532,14 @@ End Function
 
 
 
-Private Sub ProcesoActualizarPrecios_Especiales(cadWhere As String, totReg As Long)
+Private Sub ProcesoActualizarPrecios_Especiales(cadWHERE As String, totReg As Long)
 'Actualizar los precios especiales de las Tarifas
 '(IN) cadWHERE: cadena seleccion de precios a actualizar
 'Para cada precio especial a actualizar:
 '   - insertar. en historico (spree1) linea con sprees.fechanue y con el sprees.precioac
 '   - actualizar sprees con sprees.precioac=sprees.precionu
 '   - poner a nulos los valores nuevos
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim i As Long
 Dim hayErr As Boolean
@@ -555,9 +558,9 @@ Dim hayErr As Boolean
     
     
     '-- seleccionar todos los registros actuales a procesar
-    SQL = "SELECT * FROM sprees WHERE " & cadWhere
+    Sql = "SELECT * FROM sprees WHERE " & cadWHERE
     Set RS = New ADODB.Recordset
-    RS.Open SQL, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'para cada precio especial a cambiar
     hayErr = False
@@ -603,49 +606,49 @@ End Sub
 
 Private Function ActualizarPrecioEspec(codCli As Long, codArt As String) As Boolean
 'actualizar precio especial
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim numF As String
 
     On Error GoTo ErrAct
     
-    Conn.BeginTrans
+    conn.BeginTrans
     ActualizarPrecioEspec = False
     
-    SQL = "SELECT * FROM sprees WHERE codclien=" & codCli & " AND codartic=" & DBSet(codArt, "T")
+    Sql = "SELECT * FROM sprees WHERE codclien=" & codCli & " AND codartic=" & DBSet(codArt, "T")
     Set RS = New ADODB.Recordset
-    RS.Open SQL, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RS.EOF Then
         '-- Insertar en el historico spree1
         'numero de linea
         numF = SugerirCodigoSiguienteStr("spree1", "numlinea", "codartic=" & DBSet(codArt, "T") & " AND codclien=" & codCli)
     
-        SQL = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec) "
-        SQL = SQL & " VALUES (" & codCli & "," & DBSet(codArt, "T") & "," & numF & ","
-        SQL = SQL & DBSet(RS!fechanue, "F") & "," & DBSet(RS!precioac, "N") & "," & DBSet(DBLet(RS!precioa1, "N"), "N") & "," & DBSet(RS!dtoespec, "N") & ")"
-        Conn.Execute SQL
+        Sql = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec) "
+        Sql = Sql & " VALUES (" & codCli & "," & DBSet(codArt, "T") & "," & numF & ","
+        Sql = Sql & DBSet(RS!fechanue, "F") & "," & DBSet(RS!precioac, "N") & "," & DBSet(DBLet(RS!precioa1, "N"), "N") & "," & DBSet(RS!dtoespec, "N") & ")"
+        conn.Execute Sql
         
         
         '-- Actualizar precios actuales con nuevo y resetear valores nuevos
-        SQL = "UPDATE sprees SET precioac=" & DBSet(RS!precionu, "N")
+        Sql = "UPDATE sprees SET precioac=" & DBSet(RS!precionu, "N")
         '    SQL = SQL & "," & " precioa1=" & DBSet(newPrecioA1, "N")
-        SQL = SQL & ", dtoespec=" & DBSet(RS!dtoespe1, "N")
-        SQL = SQL & ", " & "precionu=" & ValorNulo & ", fechanue=" & ValorNulo & ", precion1=" & ValorNulo
-        SQL = SQL & ", dtoespe1=" & ValorNulo
-        SQL = SQL & " WHERE codclien=" & codCli & " and codartic=" & DBSet(codArt, "T")
-        Conn.Execute SQL
+        Sql = Sql & ", dtoespec=" & DBSet(RS!dtoespe1, "N")
+        Sql = Sql & ", " & "precionu=" & ValorNulo & ", fechanue=" & ValorNulo & ", precion1=" & ValorNulo
+        Sql = Sql & ", dtoespe1=" & ValorNulo
+        Sql = Sql & " WHERE codclien=" & codCli & " and codartic=" & DBSet(codArt, "T")
+        conn.Execute Sql
     End If
     RS.Close
     Set RS = Nothing
 
 
-    Conn.CommitTrans
+    conn.CommitTrans
     ActualizarPrecioEspec = True
     Exit Function
     
 ErrAct:
     ActualizarPrecioEspec = False
-    Conn.RollbackTrans
+    conn.RollbackTrans
     MuestraError Err.Number, "Actualizar precio especial.", Err.Description
 End Function
 

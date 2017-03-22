@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacPromociones 
    BorderStyle     =   3  'Fixed Dialog
@@ -608,7 +608,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim Indicador As String
-Dim SQL As String
+Dim Sql As String
 On Error GoTo Error1
     
     Screen.MousePointer = vbHourglass
@@ -753,7 +753,7 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
 Dim cadB As String
 Dim Aux As String
-Dim Indice As Integer
+Dim indice As Integer
       
     If CadenaDevuelta <> "" Then
             HaDevueltoDatos = True
@@ -777,13 +777,13 @@ End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-Dim Indice As Byte
-    Indice = Val(Me.imgFecha(0).Tag)
-    Select Case Indice
-        Case 0, 1: Indice = Indice + 2
-        Case 2, 3: Indice = Indice + 4
+Dim indice As Byte
+    indice = Val(Me.imgFecha(0).Tag)
+    Select Case indice
+        Case 0, 1: indice = indice + 2
+        Case 2, 3: indice = indice + 4
     End Select
-    Text1(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+    Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
@@ -818,7 +818,7 @@ End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Integer
+Dim indice As Integer
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
@@ -827,17 +827,17 @@ Dim Indice As Integer
    frmF.Fecha = Now
    
    Select Case Index
-    Case 0, 1: Indice = Index + 2
-    Case 2, 3: Indice = Index + 4
+    Case 0, 1: indice = Index + 2
+    Case 2, 3: indice = Index + 4
    End Select
 
-   PonerFormatoFecha Text1(Indice)
-   If Text1(Indice).Text <> "" Then frmF.Fecha = CDate(Text1(Indice).Text)
+   PonerFormatoFecha Text1(indice)
+   If Text1(indice).Text <> "" Then frmF.Fecha = CDate(Text1(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco Text1(Indice)
+   PonerFoco Text1(indice)
 End Sub
 
 
@@ -880,15 +880,15 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 Dim campo As String
-Dim tabla As String
+Dim Tabla As String
 
     If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
 
     Select Case Index
         Case 0 'Codigo Articulo
             campo = "nomartic"
-            tabla = "sartic"
-            Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, tabla, campo)
+            Tabla = "sartic"
+            Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, Tabla, campo)
         Case 1 'Codigo Tarifa
             If PonerFormatoEntero(Text1(Index)) Then
                 Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, "starif", "nomlista")
@@ -939,26 +939,31 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
-Dim B As Boolean
+Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
+    
     'Modo 2. Hay datos y estamos visualizandolos
-    B = (Kmodo = 2)
+    b = (Kmodo = 2)
    
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     
         
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
     If DatosADevolverBusqueda <> "" Then
-        cmdRegresar.visible = B
+        cmdRegresar.visible = b
         If Modo = 1 Then Me.lblIndicador.Caption = "BUSQUEDA"
     Else
         cmdRegresar.visible = False
@@ -972,16 +977,16 @@ Dim NumReg As Byte
     If Modo = 3 Then Me.chkPermiteDto.Value = 1
     
     '------------------------------------
-    B = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
     
     For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = B And Modo <> 4 'Si modificar no activado pq son claves ajenas
+        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
     Next i
     
     For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = B 'Si es insertar o modificar
+        Me.imgFecha(i).Enabled = b 'Si es insertar o modificar
     Next i
     
     Me.chkPermiteDto.Enabled = (Modo = 3) Or (Modo = 4)
@@ -993,26 +998,26 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
-    B = (Modo = 2)
+Dim b As Boolean
+    b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
     '-------------------------------------
-    B = (Modo >= 3)
+    b = (Modo >= 3)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = Not B
-    Me.mnNuevo.Enabled = Not B
+    Toolbar1.Buttons(5).Enabled = Not b
+    Me.mnNuevo.Enabled = Not b
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 Private Sub LimpiarCampos()
@@ -1093,21 +1098,21 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    SQL = "Promociones." & vbCrLf
-    SQL = SQL & "-------------------" & vbCrLf & vbCrLf
+    Sql = "Promociones." & vbCrLf
+    Sql = Sql & "-------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Eliminar la Promoción para el Articulo:"
-    SQL = SQL & vbCrLf & "Cod. Artic. : " & Text1(0).Text
-    SQL = SQL & vbCrLf & "Cod. Tarifa : " & Text1(1).Text
+    Sql = Sql & "Va a Eliminar la Promoción para el Articulo:"
+    Sql = Sql & vbCrLf & "Cod. Artic. : " & Text1(0).Text
+    Sql = Sql & vbCrLf & "Cod. Tarifa : " & Text1(1).Text
     
     
-    SQL = SQL & vbCrLf & vbCrLf & "¿Desea continuar? "
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
+    Sql = Sql & vbCrLf & vbCrLf & "¿Desea continuar? "
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -1131,16 +1136,16 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo FinEliminar
         
 '        Conn.BeginTrans
-    SQL = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    SQL = SQL & " AND codlista = " & Val(Data1.Recordset!codlista)
+    Sql = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    Sql = Sql & " AND codlista = " & Val(Data1.Recordset!codlista)
        
     'Cabeceras
-    conn.Execute "Delete  from " & NombreTabla & SQL
+    conn.Execute "Delete  from " & NombreTabla & Sql
                       
 FinEliminar:
     If Err.Number <> 0 Then
@@ -1155,12 +1160,12 @@ End Function
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 Dim cadMen As String
 
     DatosOk = False
-    B = CompForm(Me, 1)
-    If Not B Then Exit Function
+    b = CompForm(Me, 1)
+    If Not b Then Exit Function
     
     'Comprobar que fecha fin promocion actual es igual o posterior a fecha inicio
     If Not EsFechaIgualPosterior(Text1(2).Text, Text1(3).Text, True) Then Exit Function
@@ -1186,7 +1191,7 @@ End Function
 Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1198,8 +1203,8 @@ Dim Titulo As String
     cad = cad & ParaGrid(Text1(1), 8, "Tarifa")
     cad = cad & "Desc. Tarifa|starif|nomlista|T||27·"
     
-    tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
-    tabla = tabla & " LEFT JOIN starif ON " & NombreTabla & ".codlista=starif.codlista"
+    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
+    Tabla = Tabla & " LEFT JOIN starif ON " & NombreTabla & ".codlista=starif.codlista"
     
     Titulo = "Precios Especiales"
            
@@ -1207,7 +1212,7 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano

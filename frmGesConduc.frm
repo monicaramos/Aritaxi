@@ -1,12 +1,12 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesConduc 
    Caption         =   "Choferes"
    ClientHeight    =   7485
    ClientLeft      =   225
-   ClientTop       =   825
+   ClientTop       =   870
    ClientWidth     =   10065
    LinkTopic       =   "Form1"
    ScaleHeight     =   7485
@@ -826,30 +826,30 @@ End Sub
 
 Private Function ModificarLinea() As Boolean
 'Modifica un registro en la tabla de lineas de Pedido: sliped
-Dim SQL As String
+Dim Sql As String
 
 On Error GoTo EModificarLinea
 
     ModificarLinea = False
-    SQL = ""
+    Sql = ""
     
     conn.BeginTrans
     
     If DatosOkLinea() Then
         'Creamos la sentencia SQL
-        SQL = "UPDATE schofe_historia Set numeruve = " & txtAux1(0).Text & ", fechaini='" & Format(txtAux1(1).Text, FormatoFecha) & "', "
-        SQL = SQL & "fechafin='" & Format(txtAux1(2).Text, FormatoFecha) & "', observac=" & DBSet(txtAux1(3).Text, "T")
-        SQL = SQL & " where codchofe=" & Adodc2.Recordset!codchofe & " AND numlinea=" & Adodc2.Recordset!numlinea
+        Sql = "UPDATE schofe_historia Set numeruve = " & txtAux1(0).Text & ", fechaini='" & Format(txtAux1(1).Text, FormatoFecha) & "', "
+        Sql = Sql & "fechafin='" & Format(txtAux1(2).Text, FormatoFecha) & "', observac=" & DBSet(txtAux1(3).Text, "T")
+        Sql = Sql & " where codchofe=" & Adodc2.Recordset!codchofe & " AND numlinea=" & Adodc2.Recordset!numlinea
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         ' modificamos la tabla de choferes del socio
-        SQL = "update sclien_chofer, sclien set sclien_chofer.fechaalt = " & DBSet(txtAux1(1).Text, "F") & ", sclien_chofer.fechabaj = " & DBSet(txtAux1(2).Text, "F", "S")
-        SQL = SQL & ", sclien_chofer.obsevac = " & DBSet(txtAux1(3).Text, "T") & " where codchofe = " & Me.Adodc1.Recordset!codchofe
-        SQL = SQL & " and sclien.numeruve = " & DBSet(txtAux1(0).Text, "N")
-        SQL = SQL & " and sclien.codclien = sclien_chofer.codsocio "
+        Sql = "update sclien_chofer, sclien set sclien_chofer.fechaalt = " & DBSet(txtAux1(1).Text, "F") & ", sclien_chofer.fechabaj = " & DBSet(txtAux1(2).Text, "F", "S")
+        Sql = Sql & ", sclien_chofer.obsevac = " & DBSet(txtAux1(3).Text, "T") & " where codchofe = " & Me.Adodc1.Recordset!codchofe
+        Sql = Sql & " and sclien.numeruve = " & DBSet(txtAux1(0).Text, "N")
+        Sql = Sql & " and sclien.codclien = sclien_chofer.codsocio "
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         ModificarLinea = True
     End If
@@ -863,7 +863,7 @@ EModificarLinea:
 End Function
 
 Private Function DatosOkLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Socio As String
 
     DatosOkLinea = False
@@ -878,11 +878,11 @@ Dim Socio As String
             ' solo si no tiene fecha de baja hacemos las comprobaciones
             If txtAux1(2).Text = "" Then
                 ' comprobamos no sea conductor una V sin fecha de baja
-                SQL = "select count(*) from schofe_historia where codchofe = " & Me.Adodc1.Recordset!codchofe
+                Sql = "select count(*) from schofe_historia where codchofe = " & Me.Adodc1.Recordset!codchofe
                 'SQL = SQL & " and numeruve = " & DBSet(txtAux1(0).Text, "N")
-                SQL = SQL & " and (fechafin is null or fechafin = '0000-00-00') "
+                Sql = Sql & " and (fechafin is null or fechafin = '0000-00-00') "
                 
-                If TotalRegistros(SQL) > 0 Then
+                If TotalRegistros(Sql) > 0 Then
                     MsgBox "Este chofer ya está asociado a una V sin fecha de baja. Revise.", vbExclamation
                     Exit Function
                 Else
@@ -912,7 +912,7 @@ Dim Socio As String
 End Function
 
 Private Function InsertarLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim Socio As Long
 Dim numF As String
@@ -923,19 +923,19 @@ On Error GoTo EInsertarLinea
 
 
     InsertarLinea = False
-    SQL = ""
+    Sql = ""
     If DatosOkLinea Then
         
         vWhere = "codchofe=" & Val(Text1(0).Text)
         numF = SugerirCodigoSiguienteStr("schofe_historia", "numlinea", vWhere)
         
-        SQL = "INSERT INTO schofe_historia "
-        SQL = SQL & "(codchofe, numlinea, numeruve, fechaini,fechafin,observac) "
-        SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
-        SQL = SQL & DBSet(txtAux1(0).Text, "T") & ",'" & Format(txtAux1(1).Text, FormatoFecha) & "','"
-        SQL = SQL & Format(txtAux1(2).Text, FormatoFecha) & "'," & DBSet(txtAux1(3).Text, "T") & ")"
+        Sql = "INSERT INTO schofe_historia "
+        Sql = Sql & "(codchofe, numlinea, numeruve, fechaini,fechafin,observac) "
+        Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
+        Sql = Sql & DBSet(txtAux1(0).Text, "T") & ",'" & Format(txtAux1(1).Text, FormatoFecha) & "','"
+        Sql = Sql & Format(txtAux1(2).Text, FormatoFecha) & "'," & DBSet(txtAux1(3).Text, "T") & ")"
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         ' insertamos en la tabla de choferes del socio
         Socio = DevuelveValor("select codclien from sclien where numeruve= " & DBSet(txtAux1(0).Text, "N"))
@@ -943,13 +943,13 @@ On Error GoTo EInsertarLinea
         vWhere = "codsocio=" & DBSet(Socio, "N")
         numF = SugerirCodigoSiguienteStr("sclien_chofer", "numlinea", vWhere)
         
-        SQL = "INSERT INTO sclien_chofer "
-        SQL = SQL & "(codsocio,numlinea,codchofe,fechaalt,fechabaj,obsevac) "
-        SQL = SQL & "VALUES (" & DBSet(Socio, "N") & ", " & numF & ","
-        SQL = SQL & DBSet(Text1(0).Text, "T") & "," & DBSet(txtAux1(1).Text, "F") & ","
-        SQL = SQL & DBSet(txtAux1(2).Text, "F", "S") & "," & DBSet(txtAux1(3).Text, "T") & ")"
+        Sql = "INSERT INTO sclien_chofer "
+        Sql = Sql & "(codsocio,numlinea,codchofe,fechaalt,fechabaj,obsevac) "
+        Sql = Sql & "VALUES (" & DBSet(Socio, "N") & ", " & numF & ","
+        Sql = Sql & DBSet(Text1(0).Text, "T") & "," & DBSet(txtAux1(1).Text, "F") & ","
+        Sql = Sql & DBSet(txtAux1(2).Text, "F", "S") & "," & DBSet(txtAux1(3).Text, "T") & ")"
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         InsertarLinea = True
     End If
@@ -1108,6 +1108,10 @@ On Error GoTo EPonerModo
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
+    
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     
     Modo = Kmodo
@@ -1335,12 +1339,12 @@ End Select
 End Sub
 
 Private Sub LimpiarDataGrids()
-Dim SQL As String
+Dim Sql As String
 'Pone los Grids sin datos, apuntando a ningún registro
 On Error Resume Next
 
-    SQL = "select * from schofe_historia where codchofe=-1"
-    CargaGridGnral DataGrid1, Adodc2, SQL, PrimeraVez
+    Sql = "select * from schofe_historia where codchofe=-1"
+    CargaGridGnral DataGrid1, Adodc2, Sql, PrimeraVez
     CargaGrid DataGrid1, Adodc2
     
     If Err.Number <> 0 Then Err.Clear
@@ -1580,7 +1584,7 @@ End Sub
 Private Sub BotonModificar()
 'Prepara el Form para Modificar la cabecera de Pedidos (tabla: scaped)
 Dim DeVarios As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo EModificar
 
     'Añadiremos el boton de aceptar y demas objetos para insertar
@@ -1604,7 +1608,7 @@ Private Sub mnSalir_Click()
 End Sub
 Private Sub BotonEliminar()
 Dim msg As String
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 Dim RS As ADODB.Recordset
 
@@ -1616,10 +1620,10 @@ If MsgBox(msg, vbYesNo) = vbYes Then
     
     conn.BeginTrans
     
-    SQL = "select * from schofe_historia where codchofe = " & DBSet(Text1(0).Text, "N")
+    Sql = "select * from schofe_historia where codchofe = " & DBSet(Text1(0).Text, "N")
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not RS.EOF
         SQL2 = "delete from sclien_chofer where codchofe = " & DBSet(Text1(0).Text, "N")
@@ -1636,12 +1640,12 @@ If MsgBox(msg, vbYesNo) = vbYes Then
     Set RS = Nothing
     
     'Ahora borramos las lineas
-    SQL = "Delete from schofe_historia where codchofe=" & Text1(0).Text
-    conn.Execute SQL
+    Sql = "Delete from schofe_historia where codchofe=" & Text1(0).Text
+    conn.Execute Sql
 
     ' borramos cabecera
-    SQL = "Delete from schofe where codchofe=" & Text1(0).Text
-    conn.Execute SQL
+    Sql = "Delete from schofe where codchofe=" & Text1(0).Text
+    conn.Execute Sql
 
     conn.CommitTrans
 End If
@@ -1659,7 +1663,7 @@ End Sub
 
 Private Sub BotonEliminarFila()
 Dim msg As String
-Dim SQL As String
+Dim Sql As String
 
 On Error GoTo EEliminarLineas
 
@@ -1669,22 +1673,22 @@ If MsgBox(msg, vbQuestion + vbYesNo) = vbYes Then
     conn.BeginTrans
 
     ' Eliminamos las lineas de choferes en la ficha de socios
-    SQL = "delete from sclien_chofer where codchofe = " & DBSet(Text1(0).Text, "N")
-    SQL = SQL & " and codsocio in (select codsocio from sclien where numeruve = " & DBSet(Me.Adodc2.Recordset!NumerUve, "N") & ")"
-    SQL = SQL & " and fechaalt = " & DBSet(Me.Adodc2.Recordset!FechaIni, "F")
+    Sql = "delete from sclien_chofer where codchofe = " & DBSet(Text1(0).Text, "N")
+    Sql = Sql & " and codsocio in (select codsocio from sclien where numeruve = " & DBSet(Me.Adodc2.Recordset!NumerUve, "N") & ")"
+    Sql = Sql & " and fechaalt = " & DBSet(Me.Adodc2.Recordset!FechaIni, "F")
     
     If Me.Adodc2.Recordset!FechaFin = "" Then
-        SQL = SQL & " and (fechabaj is null or fechabaj = '0000-00-00') "
+        Sql = Sql & " and (fechabaj is null or fechabaj = '0000-00-00') "
     Else
-        SQL = SQL & " and fechabaj = " & DBSet(Me.Adodc2.Recordset!FechaFin, "F")
+        Sql = Sql & " and fechabaj = " & DBSet(Me.Adodc2.Recordset!FechaFin, "F")
     End If
     
-    conn.Execute SQL
+    conn.Execute Sql
     
-    SQL = "Delete from schofe_historia where codchofe=" & Text1(0).Text & " and numeruve = " & DBSet(Me.Adodc2.Recordset!NumerUve, "N")
-    SQL = SQL & " and numlinea = " & DBSet(Me.Adodc2.Recordset!numlinea, "N")
+    Sql = "Delete from schofe_historia where codchofe=" & Text1(0).Text & " and numeruve = " & DBSet(Me.Adodc2.Recordset!NumerUve, "N")
+    Sql = Sql & " and numlinea = " & DBSet(Me.Adodc2.Recordset!numlinea, "N")
     
-    conn.Execute SQL
+    conn.Execute Sql
 
     conn.CommitTrans
     

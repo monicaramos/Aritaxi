@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesServAbonados 
@@ -690,20 +690,20 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim B As Boolean
-Dim SQL As String
+Dim b As Boolean
+Dim Sql As String
 On Error GoTo ECarga
 
-    B = DataGrid1.Enabled
+    b = DataGrid1.Enabled
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, SQL, False
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, Sql, False
 
     CargaGrid2
 
-    CalcularTotales SQL
+    CalcularTotales Sql
     
-    DataGrid1.Enabled = B
+    DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
     
 ECarga:
@@ -827,10 +827,15 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim B As Boolean
-    
+Dim b As Boolean
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
+    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -853,9 +858,9 @@ Dim B As Boolean
     imgDoc(0).Enabled = (Modo = 2)
     
     '-----------------------------------------
-    B = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
     Me.DataGrid1.Enabled = (Modo <> 3 And Modo <> 4)
     BloquearClavesP (Modo = 4) ' si modificar
     
@@ -874,32 +879,32 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
+Dim b As Boolean
     
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = (B Or (Modo = 0))
-    Me.mnNuevo.Enabled = (B Or (Modo = 0))
+    Toolbar1.Buttons(5).Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
     'imprimir
-    Toolbar1.Buttons(10).Enabled = B
-    Me.mnImprimir.Enabled = B
+    Toolbar1.Buttons(10).Enabled = b
+    Me.mnImprimir.Enabled = b
     
     
     
-    B = (Modo >= 3) Or Modo = 1
+    b = (Modo >= 3) Or Modo = 1
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -935,20 +940,20 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
     
-    SQL = "Select sfactclitr.codclien, scliente.nomclien, sfactclitr.fecfactu, sfactclitr.concepto, "
-    SQL = SQL & " sfactclitr.numserv, sfactclitr.importe, sfactclitr.facturado,"
-    SQL = SQL & "  IF(facturado=1,'*','') as factur "
-    SQL = SQL & " from " & NombreTabla & " INNER JOIN scliente ON sfactclitr.codclien = scliente.codclien "
+    Sql = "Select sfactclitr.codclien, scliente.nomclien, sfactclitr.fecfactu, sfactclitr.concepto, "
+    Sql = Sql & " sfactclitr.numserv, sfactclitr.importe, sfactclitr.facturado,"
+    Sql = Sql & "  IF(facturado=1,'*','') as factur "
+    Sql = Sql & " from " & NombreTabla & " INNER JOIN scliente ON sfactclitr.codclien = scliente.codclien "
 
     If enlaza Then
-        If EsBusqueda And CadenaBusqueda <> "" Then SQL = SQL & CadenaBusqueda
+        If EsBusqueda And CadenaBusqueda <> "" Then Sql = Sql & CadenaBusqueda
     Else
-        SQL = SQL & " WHERE sfactclitr.codclien = -1"
+        Sql = Sql & " WHERE sfactclitr.codclien = -1"
     End If
-    SQL = SQL & Ordenacion
-    MontaSQLCarga = SQL
+    Sql = Sql & Ordenacion
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1077,7 +1082,7 @@ End Sub
 
 
 Private Function BotonEliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
         'Ciertas comprobaciones
@@ -1088,27 +1093,27 @@ On Error GoTo FinEliminar
             Exit Function
         End If
         
-        SQL = "¿Seguro que desea eliminar el registro?" & vbCrLf
-        SQL = SQL & vbCrLf & "Cliente: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset.Fields(1).Value
-        SQL = SQL & vbCrLf & "Fecha: " & Data1.Recordset.Fields(2).Value
+        Sql = "¿Seguro que desea eliminar el registro?" & vbCrLf
+        Sql = Sql & vbCrLf & "Cliente: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset.Fields(1).Value
+        Sql = Sql & vbCrLf & "Fecha: " & Data1.Recordset.Fields(2).Value
         
-        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+        If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
             'Hay que eliminar
             NumRegElim = Me.Data1.Recordset.AbsolutePosition
             
             '[Monica]02/04/2014: borramos los servicios asociados si existen
-            SQL = "Delete from sfactclitr_serv where codclien= " & DBSet(Data1.Recordset!CodClien, "N")
-            SQL = SQL & " and fecfactu = " & DBSet(Data1.Recordset!FecFactu, "F")
-            conn.Execute SQL
+            Sql = "Delete from sfactclitr_serv where codclien= " & DBSet(Data1.Recordset!CodClien, "N")
+            Sql = Sql & " and fecfactu = " & DBSet(Data1.Recordset!FecFactu, "F")
+            conn.Execute Sql
             
-            SQL = "Delete from " & NombreTabla & " where codclien=" & Val(Data1.Recordset!CodClien)
-            SQL = SQL & " and fecfactu=" & DBSet(Data1.Recordset!FecFactu, "F")
-            conn.Execute SQL
+            Sql = "Delete from " & NombreTabla & " where codclien=" & Val(Data1.Recordset!CodClien)
+            Sql = Sql & " and fecfactu=" & DBSet(Data1.Recordset!FecFactu, "F")
+            conn.Execute Sql
             
             CancelaADODC Me.Data1
             CargaGrid True
             CancelaADODC Me.Data1
-            SituarDataPosicion Me.Data1, NumRegElim, SQL
+            SituarDataPosicion Me.Data1, NumRegElim, Sql
         End If
         
 FinEliminar:
@@ -1118,20 +1123,20 @@ End Function
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
-Dim SQL As String
+Dim b As Boolean
+Dim Sql As String
 
     DatosOk = False
-    B = CompForm(Me, 3)
-    If Not B Then Exit Function
+    b = CompForm(Me, 3)
+    If Not b Then Exit Function
     
     If Modo = 3 Then   'Estamos insertando
-        SQL = "select count(*) from sfactclitr where codsocio = " & txtAux(0).Text & " and fecfactu = "
-        SQL = SQL & DBSet(txtAux(3).Text, "F") & " and numfactu = " & DBSet(txtAux(2).Text, "N")
-        If TotalRegistros(SQL) > 0 Then
+        Sql = "select count(*) from sfactclitr where codsocio = " & txtAux(0).Text & " and fecfactu = "
+        Sql = Sql & DBSet(txtAux(3).Text, "F") & " and numfactu = " & DBSet(txtAux(2).Text, "N")
+        If TotalRegistros(Sql) > 0 Then
             MsgBox "Ya existe la factura para este socio en esta fecha.", vbExclamation
             PonerFoco txtAux(0)
-            B = False
+            b = False
             Exit Function
         End If
     End If
@@ -1269,33 +1274,33 @@ End Sub
 
 Private Sub LLamaLineas(alto As Single)
 Dim jj As Integer
-Dim B As Boolean
+Dim b As Boolean
 
         DeseleccionaGrid Me.DataGrid1
         'PonerModo xModo + 1
 
-        B = (Modo = 3 Or Modo = 4 Or Modo = 1) 'Insertar o Modificar
+        b = (Modo = 3 Or Modo = 4 Or Modo = 1) 'Insertar o Modificar
 
         For jj = 0 To txtAux.Count - 1
             txtAux(jj).Height = DataGrid1.RowHeight
             txtAux(jj).Top = alto
-            txtAux(jj).visible = B
+            txtAux(jj).visible = b
         Next jj
         
         For jj = 0 To Text2.Count - 1
             Text2(jj).Height = Me.DataGrid1.RowHeight
             Text2(jj).Top = alto
-            Text2(jj).visible = B
+            Text2(jj).visible = b
         Next jj
         
         For jj = 0 To Me.cmdAux.Count - 1
             Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
             Me.cmdAux(jj).Top = alto
-            Me.cmdAux(jj).visible = B
+            Me.cmdAux(jj).visible = b
         Next jj
         
         Me.chkAux(0).Top = alto
-        Me.chkAux(0).visible = B
+        Me.chkAux(0).visible = b
         
 
         
@@ -1309,14 +1314,14 @@ Dim Compleme As Currency
 Dim Penaliza As Currency
 
 Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = "select sum(importe) importe  from (" & CADENA & ") aaaaa"
+    Sql = "select sum(importe) importe  from (" & CADENA & ") aaaaa"
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Importe = 0
     Text1.Text = ""

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmAlmMovimArticulos 
@@ -692,7 +692,7 @@ Dim numParam As Byte
         .EnvioEMail = False
         .Opcion = 9
         .Titulo = "Informe Movimientos Articulos"
-        .ConSubinforme = True
+        .ConSubInforme = True
         .Show vbModal
     End With
 End Sub
@@ -1245,6 +1245,15 @@ Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
 Dim b As Boolean
 Dim NumReg As Byte
+
+
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
+
 
     Modo = Kmodo
     'Modo 2. Hay datos y estamos visualizandolos

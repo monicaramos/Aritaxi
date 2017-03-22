@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -279,12 +279,12 @@ Begin VB.Form frmPubliHcoFacCli
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmPubliHcoFacCli.frx":0A0E
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1(25)"
-      Tab(0).Control(1)=   "Label1(26)"
-      Tab(0).Control(2)=   "Text1(17)"
-      Tab(0).Control(3)=   "Text1(16)"
-      Tab(0).Control(4)=   "FrameCliente"
-      Tab(0).Control(5)=   "FrameFactura"
+      Tab(0).Control(0)=   "FrameFactura"
+      Tab(0).Control(1)=   "FrameCliente"
+      Tab(0).Control(2)=   "Text1(16)"
+      Tab(0).Control(3)=   "Text1(17)"
+      Tab(0).Control(4)=   "Label1(26)"
+      Tab(0).Control(5)=   "Label1(25)"
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmPubliHcoFacCli.frx":0A2A
@@ -2471,7 +2471,7 @@ Dim i As Integer
             HacerBusqueda
 
         Case 4  'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                If ModificarFactura Then
                
                                         
@@ -2947,7 +2947,7 @@ Dim cad As String
 End Sub
 
 
-Private Sub combo1_KeyPress(KeyAscii As Integer)
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -3568,15 +3568,15 @@ End Sub
 
 Private Function BloqueaAlbxFac() As Boolean
 'bloquea todos los albaranes de la factura
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EBloqueaAlb
     
     BloqueaAlbxFac = False
     'bloquear cabecera albaranes x factura
-    SQL = "select * FROM scafaccli1 "
-    SQL = SQL & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute SQL, , adCmdText
+    Sql = "select * FROM scafaccli1 "
+    Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
+    conn.Execute Sql, , adCmdText
     BloqueaAlbxFac = True
 
 EBloqueaAlb:
@@ -3586,15 +3586,15 @@ End Function
 
 Private Function BloqueaLineasFac() As Boolean
 'bloquea todas las lineas de la factura
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EBloqueaLin
 
     BloqueaLineasFac = False
     'bloquear cabecera albaranes x factura
-    SQL = "select * FROM slifaccli "
-    SQL = SQL & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute SQL, , adCmdText
+    Sql = "select * FROM slifaccli "
+    Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
+    conn.Execute Sql, , adCmdText
     BloqueaLineasFac = True
 
 EBloqueaLin:
@@ -4050,6 +4050,10 @@ Dim b As Boolean
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
 
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
+
     ActualizarToolbar Modo, Kmodo
     Text1(3).visible = False  'SIEMPRE VISIBLE FALSE
     Modo = Kmodo
@@ -4196,14 +4200,14 @@ Private Sub PonerLongCampos()
 End Sub
 
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 'Comprobar que los datos de la cabecera son correctos antes de Insertar o Modificar
 'la cabecera del Pedido
 Dim b As Boolean
 
     On Error GoTo EDatosOK
 
-    DatosOK = False
+    DatosOk = False
     
     ComprobarDatosTotales
     
@@ -4211,7 +4215,7 @@ Dim b As Boolean
     b = CompForm(Me, 1) 'Comprobar formato datos ok de la cabecera: opcion=1
     If Not b Then Exit Function
     
-    DatosOK = b
+    DatosOk = b
     
 EDatosOK:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -4371,7 +4375,7 @@ End Sub
     
 Private Function ModificarLinea() As Boolean
 'Modifica un registro en la tabla de lineas de Albaran: slialb
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim b As Boolean
 
@@ -4386,20 +4390,20 @@ Dim b As Boolean
     vWhere = vWhere & " AND numlinea=" & Data2.Recordset.Fields!numlinea
     
     If DatosOkLinea() Then
-        SQL = "UPDATE slifaccli SET "
-        SQL = SQL & " ampliaci=" & DBSet(Text2(16).Text, "T") & ", "
-        SQL = SQL & "precioar = " & DBSet(txtAux(4).Text, "N") & ", "
-        SQL = SQL & "dtoline1= " & DBSet(txtAux(6).Text, "N") & ", dtoline2= " & DBSet(txtAux(7).Text, "N") & ", "
-        SQL = SQL & "importel = " & DBSet(txtAux(8).Text, "N") & ", "
-        SQL = SQL & "origpre='" & txtAux(5) & "',"
+        Sql = "UPDATE slifaccli SET "
+        Sql = Sql & " ampliaci=" & DBSet(Text2(16).Text, "T") & ", "
+        Sql = Sql & "precioar = " & DBSet(txtAux(4).Text, "N") & ", "
+        Sql = Sql & "dtoline1= " & DBSet(txtAux(6).Text, "N") & ", dtoline2= " & DBSet(txtAux(7).Text, "N") & ", "
+        Sql = Sql & "importel = " & DBSet(txtAux(8).Text, "N") & ", "
+        Sql = Sql & "origpre='" & txtAux(5) & "',"
         'TRAZA
-        SQL = SQL & "codprovex= " & DBSet(txtAux(9).Text, "N", "S")
-        SQL = SQL & vWhere
+        Sql = Sql & "codprovex= " & DBSet(txtAux(9).Text, "N", "S")
+        Sql = Sql & vWhere
     End If
     
-    If SQL <> "" Then
+    If Sql <> "" Then
         'actualizar la factura y vencimientos
-        b = ModificarFactura(SQL)
+        b = ModificarFactura(Sql)
         
         ModificarLinea = b
     End If
@@ -4438,7 +4442,7 @@ End Sub
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, enlaza As Boolean)
 Dim b As Boolean
 Dim Opcion As Byte
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargaGrid
 
@@ -4448,8 +4452,8 @@ Dim SQL As String
     Else
         Opcion = 2
     End If
-    SQL = MontaSQLCarga(enlaza, Opcion)
-    CargaGridGnral vDataGrid, vData, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza, Opcion)
+    CargaGridGnral vDataGrid, vData, Sql, PrimeraVez
     
     vDataGrid.RowHeight = 270
     
@@ -4618,7 +4622,7 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String, LEtra As String
+Dim Sql As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim cContaFra As cContabilizarFacturas
@@ -4650,9 +4654,9 @@ Dim cContaFra As cContabilizarFacturas
 '        ConnConta.Execute "Delete from cabfact WHERE " & SQL
         
         'cobros
-        SQL = " numserie='" & LEtra & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
-        SQL = SQL & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-        ConnConta.Execute "Delete from scobro WHERE " & SQL
+        Sql = " numserie='" & LEtra & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
+        Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+        ConnConta.Execute "Delete from scobro WHERE " & Sql
         b = True
     Else
         b = False
@@ -4661,19 +4665,19 @@ Dim cContaFra As cContabilizarFacturas
     'Eliminar en tablas de factura de Aritaxi
     '------------------------------------------
     If b Then
-        SQL = " " & ObtenerWhereCP(True)
+        Sql = " " & ObtenerWhereCP(True)
     
         'Lineas de facturas (slifaccli)
-        conn.Execute "Delete from slifaccli " & SQL
+        conn.Execute "Delete from slifaccli " & Sql
     
         'Lineas de cabeceras de albaranes de la factura
-        conn.Execute "Delete from scafaccli1 " & SQL
+        conn.Execute "Delete from scafaccli1 " & Sql
         
         'Eliminar los vencimientos
-        conn.Execute "Delete from svencicli " & SQL
+        conn.Execute "Delete from svencicli " & Sql
         
         'Cabecera de facturas (scafaccli)
-        conn.Execute "Delete from " & NombreTabla & SQL
+        conn.Execute "Delete from " & NombreTabla & Sql
         
         'Decrementar contador si borramos la ult. factura
         Set vTipoMov = New CTiposMov
@@ -4736,13 +4740,13 @@ End Sub
 
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = " codtipom= '" & Text1(1).Text & "' and numfactu= " & Val(Text1(0).Text) & " and fecfactu='" & Format(Text1(2).Text, FormatoFecha) & "' "
-    If conWhere Then SQL = " WHERE " & SQL
-    ObtenerWhereCP = SQL
+    Sql = " codtipom= '" & Text1(1).Text & "' and numfactu= " & Val(Text1(0).Text) & " and fecfactu='" & Format(Text1(2).Text, FormatoFecha) & "' "
+    If conWhere Then Sql = " WHERE " & Sql
+    ObtenerWhereCP = Sql
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
@@ -4757,29 +4761,29 @@ Private Function MontaSQLCarga(enlaza As Boolean, Opcion As Byte) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
     
     If Opcion = 1 Then
-        SQL = "SELECT codtipom, numfactu, fecfactu, numalbar, numlinea, codalmac, codartic, nomartic, ampliaci, cantidad,numbultos, precioar, origpre, dtoline1, dtoline2, importel ,codprovex, nomprove,codccost,numlote"
-        SQL = SQL & " FROM slifaccli left join sprove on codprovex=codprove " 'lineas de factura
+        Sql = "SELECT codtipom, numfactu, fecfactu, numalbar, numlinea, codalmac, codartic, nomartic, ampliaci, cantidad,numbultos, precioar, origpre, dtoline1, dtoline2, importel ,codprovex, nomprove,codccost,numlote"
+        Sql = Sql & " FROM slifaccli left join sprove on codprovex=codprove " 'lineas de factura
     ElseIf Opcion = 2 Then
-        SQL = "SELECT codtipom,numfactu,fecfactu,codtipoa,numalbar, fechaalb, numpedcl,fecpedcl,sementre,numofert,fecofert, referenc, codenvio,codtraba, codtrab1, codtrab2,observa1,observa2,observa3,observa4,observa5,numtermi,numventa  "
-        SQL = SQL & " FROM scafaccli1 " 'cabeceras albaranes de la factura
+        Sql = "SELECT codtipom,numfactu,fecfactu,codtipoa,numalbar, fechaalb, numpedcl,fecpedcl,sementre,numofert,fecofert, referenc, codenvio,codtraba, codtrab1, codtrab2,observa1,observa2,observa3,observa4,observa5,numtermi,numventa  "
+        Sql = Sql & " FROM scafaccli1 " 'cabeceras albaranes de la factura
     End If
     
     If enlaza Then
-        SQL = SQL & " " & ObtenerWhereCP(True)
-        If Opcion = 1 Then SQL = SQL & " AND numalbar=" & Data3.Recordset.Fields!NumAlbar
+        Sql = Sql & " " & ObtenerWhereCP(True)
+        If Opcion = 1 Then Sql = Sql & " AND numalbar=" & Data3.Recordset.Fields!NumAlbar
     Else
         'aNTES
         'SQL = SQL & " WHERE numfactu = -1 "
         'AHORA     Cambio sugerido por mangel para acelerar la entrada
-        SQL = SQL & " WHERE codtipom is null and numfactu is null and fecfactu is null and codtipoa is null and numalbar is null "
-        If Opcion = 1 Then SQL = SQL & " AND numlinea is null"
+        Sql = Sql & " WHERE codtipom is null and numfactu is null and fecfactu is null and codtipoa is null and numalbar is null "
+        If Opcion = 1 Then Sql = Sql & " AND numlinea is null"
     End If
-    SQL = SQL & " ORDER BY codtipom, numfactu, fecfactu,numalbar "
-    If Opcion = 1 Then SQL = SQL & ", numlinea "
-    MontaSQLCarga = SQL
+    Sql = Sql & " ORDER BY codtipom, numfactu, fecfactu,numalbar "
+    If Opcion = 1 Then Sql = Sql & ", numlinea "
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -5044,16 +5048,16 @@ End Sub
 
 Private Sub BotonImprimirTicket()
 Dim MIPATH As String
-Dim cadImpresion As String, SQL As String
+Dim cadImpresion As String, Sql As String
 Dim NomImpre As String
 Dim NomImpTi As String
 Dim bImpre As Boolean
 
     cadImpresion = "{scafaccli.codtipom}='" & Text1(1).Text & "' and {scafaccli.numfactu}=" & Text1(0).Text
-    SQL = cadImpresion & " and {scafaccli.fecfactu}=" & DBSet(Text1(2).Text, "F")
+    Sql = cadImpresion & " and {scafaccli.fecfactu}=" & DBSet(Text1(2).Text, "F")
     cadImpresion = cadImpresion & " and {scafaccli.fecfactu}=Date(" & Year(CDate(Text1(2).Text)) & "," & Month(CDate(Text1(2).Text)) & "," & Day(CDate(Text1(2).Text)) & ")"
     
-    If Not HayRegParaInforme("scafaccli", SQL) Then Exit Sub
+    If Not HayRegParaInforme("scafaccli", Sql) Then Exit Sub
     
 '    'Obtener que terminal es
 '     'Terminal con el que trabajaremos, leemos el nombre del ordenador
@@ -5108,7 +5112,7 @@ End Sub
 
 
 Private Function ModificaAlbxFac() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim b As Boolean
     
     On Error GoTo EModificaAlb
@@ -5118,21 +5122,21 @@ Dim b As Boolean
      b = CompForm(Me, 2) 'Comprobar formato datos ok de la cabecera alb: opcion=2
     If Not b Then Exit Function
     
-    SQL = "UPDATE scafaccli1 SET codenvio=" & Text3(3).Text & ", "
-    SQL = SQL & "codtraba=" & Text3(0).Text & ", "
-    SQL = SQL & "codtrab1=" & DBSet(Text3(1).Text, "N", "S") & ", " 'Trab. pedido
-    SQL = SQL & "codtrab2=" & Text3(2).Text & ", " 'Trab. Prep. Material
-    SQL = SQL & "referenc=" & DBSet(Text3(16).Text, "T", "S") 'referencia cliente
+    Sql = "UPDATE scafaccli1 SET codenvio=" & Text3(3).Text & ", "
+    Sql = Sql & "codtraba=" & Text3(0).Text & ", "
+    Sql = Sql & "codtrab1=" & DBSet(Text3(1).Text, "N", "S") & ", " 'Trab. pedido
+    Sql = Sql & "codtrab2=" & Text3(2).Text & ", " 'Trab. Prep. Material
+    Sql = Sql & "referenc=" & DBSet(Text3(16).Text, "T", "S") 'referencia cliente
     If Me.FrameObserva.visible Then
-        SQL = SQL & ", observa1=" & DBSet(Text3(9).Text, "T")
-        SQL = SQL & ", observa2=" & DBSet(Text3(10).Text, "T")
-        SQL = SQL & ", observa3=" & DBSet(Text3(11).Text, "T")
-        SQL = SQL & ", observa4=" & DBSet(Text3(12).Text, "T")
-        SQL = SQL & ", observa5=" & DBSet(Text3(13).Text, "T")
+        Sql = Sql & ", observa1=" & DBSet(Text3(9).Text, "T")
+        Sql = Sql & ", observa2=" & DBSet(Text3(10).Text, "T")
+        Sql = Sql & ", observa3=" & DBSet(Text3(11).Text, "T")
+        Sql = Sql & ", observa4=" & DBSet(Text3(12).Text, "T")
+        Sql = Sql & ", observa5=" & DBSet(Text3(13).Text, "T")
     End If
-    SQL = SQL & ObtenerWhereCP(True)
-    SQL = SQL & " AND codtipoa='" & Data3.Recordset.Fields!codtipoa & "' AND numalbar=" & Data3.Recordset.Fields!NumAlbar
-    conn.Execute SQL
+    Sql = Sql & ObtenerWhereCP(True)
+    Sql = Sql & " AND codtipoa='" & Data3.Recordset.Fields!codtipoa & "' AND numalbar=" & Data3.Recordset.Fields!NumAlbar
+    conn.Execute Sql
     ModificaAlbxFac = True
     
 EModificaAlb:
@@ -5144,7 +5148,7 @@ Private Function ModificarFactura(Optional sqlLineas As String) As Boolean
 'si se ha modificado la linea de slifaccli, añadir a la transaccion la modificación de la linea y recalcular
 Dim bol As Boolean
 Dim MenError As String
-Dim SQL As String, LEtra As String
+Dim Sql As String, LEtra As String
 Dim vFactura As CFactura
 Dim recalcular As Boolean
 
@@ -5217,8 +5221,8 @@ Dim recalcular As Boolean
                 
                 'Eliminar los vencimientos
                 '----------------------------------------
-                SQL = ObtenerWhereCP(True)
-                conn.Execute "Delete from svencicli " & SQL
+                Sql = ObtenerWhereCP(True)
+                conn.Execute "Delete from svencicli " & Sql
                 
                 'Eliminar de Tesoreria
                 '----------------------------------------
@@ -5236,9 +5240,9 @@ Dim recalcular As Boolean
               
                 If bol Then
                     'Eliminar de la scobro
-                    SQL = " numserie='" & vFactura.LetraSerie & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
-                    SQL = SQL & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from scobro WHERE " & SQL
+                    Sql = " numserie='" & vFactura.LetraSerie & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
+                    Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                    ConnConta.Execute "Delete from scobro WHERE " & Sql
                     bol = True
 
                     'Volvemos a Insertar los Vencimientos de la Factura. Tabla: svenci
@@ -5600,19 +5604,19 @@ End Function
 
 Private Sub CargaCombo()
 Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim i As Byte
     
     Combo1.Clear
     
-    SQL = "SELECT codtipom,nomtipom FROM stipom WHERE codtipom in  ('FPC','FRP')"
+    Sql = "SELECT codtipom,nomtipom FROM stipom WHERE codtipom in  ('FPC','FRP')"
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not RS.EOF
-        SQL = RS!nomtipom
-        SQL = Replace(SQL, "Factura", "")
-        Combo1.AddItem RS!codtipom & "-" & SQL
+        Sql = RS!nomtipom
+        Sql = Replace(Sql, "Factura", "")
+        Combo1.AddItem RS!codtipom & "-" & Sql
         Combo1.ItemData(Combo1.NewIndex) = i
         i = i + 1
         RS.MoveNext

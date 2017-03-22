@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmAlmInventario 
@@ -627,10 +627,10 @@ Private Sub frmFA_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 
-Private Sub frmFI_Seleccionado(Cadena As String)
+Private Sub frmFI_Seleccionado(CADENA As String)
     Dim resultado As Boolean
-    If Cadena <> "" Then
-        resultado = ProcesarFicheroInventario(Cadena)
+    If CADENA <> "" Then
+        resultado = ProcesarFicheroInventario(CADENA)
         If Not resultado Then
             MsgBox "Se ha producido errores durante el proceso de captura, consulte el fichero LOG para más detalles", vbCritical
         Else
@@ -820,6 +820,12 @@ Dim b As Boolean
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
+    
+    
     'Modo 2. Hay datos y estamos visualizandolos
     'b = (Kmodo = 2)
    
@@ -979,7 +985,7 @@ Dim ADonde As String
     '-------------------------------------------------------
     ADonde = "Modificando datos de Inventario (Tabla: sinven)."
     Sql = "UPDATE sinven Set existenc = " & DBSet(canti, "N")
-    Sql = Sql & " WHERE codartic =" & DBSet(Data1.Recordset!codartic, "T") & " AND "
+    Sql = Sql & " WHERE codartic =" & DBSet(Data1.Recordset!codArtic, "T") & " AND "
     Sql = Sql & " codalmac =" & Val(Text1(0).Text)
     conn.Execute Sql
     
@@ -988,7 +994,7 @@ Dim ADonde As String
     '-------------------------------------------------------------------------
     ADonde = "Modificando datos de Articulos en Almacen. Tabla: salmac."
     Sql = "UPDATE salmac Set stockinv = " & DBSet(canti, "N")
-    Sql = Sql & " WHERE codartic =" & DBSet(Data1.Recordset!codartic, "T") & " AND "
+    Sql = Sql & " WHERE codartic =" & DBSet(Data1.Recordset!codArtic, "T") & " AND "
     Sql = Sql & " codalmac =" & Val(Text1(0).Text)
     conn.Execute Sql
     
@@ -1040,7 +1046,7 @@ Dim Indicador As String
 End Function
 
 '----------------------- RAFA: Fichero de inventario QTD
-Private Function ActualizarExistencia2(canti As String, codartic As String) As Boolean
+Private Function ActualizarExistencia2(canti As String, codArtic As String) As Boolean
 'Actualiza la cantidad de stock Inventariada (Existencia Real en Almacen)
 Dim Sql As String
 Dim ADonde As String
@@ -1052,7 +1058,7 @@ Dim ADonde As String
     '-------------------------------------------------------
     ADonde = "Modificando datos de Inventario (Tabla: sinven)."
     Sql = "UPDATE sinven Set existenc = " & DBSet(canti, "N")
-    Sql = Sql & " WHERE codartic =" & DBSet(codartic, "T") & " AND "
+    Sql = Sql & " WHERE codartic =" & DBSet(codArtic, "T") & " AND "
     Sql = Sql & " codalmac =" & Val(Text1(0).Text)
     conn.Execute Sql
     
@@ -1061,7 +1067,7 @@ Dim ADonde As String
     '-------------------------------------------------------------------------
     ADonde = "Modificando datos de Articulos en Almacen. Tabla: salmac."
     Sql = "UPDATE salmac Set stockinv = " & DBSet(canti, "N")
-    Sql = Sql & " WHERE codartic =" & DBSet(codartic, "T") & " AND "
+    Sql = Sql & " WHERE codartic =" & DBSet(codArtic, "T") & " AND "
     Sql = Sql & " codalmac =" & Val(Text1(0).Text)
     conn.Execute Sql
     
@@ -1086,7 +1092,7 @@ Private Function ProcesarFicheroInventario(Fichero As String) As Boolean
     '   Procesa el fichero pasado en el parámetro fichero y carga los datos correspondientes.
     '   si hay errores los graba en el fichero invddmmaahhmm.log
     Dim Sql As String
-    Dim Rs As ADODB.Recordset
+    Dim RS As ADODB.Recordset
     Dim NfLeer As Integer ' controlador de fichero
     Dim NfLog As Integer ' controlador del fichero log
     Dim LineaLeida As String ' la linea leida del fichero
@@ -1117,14 +1123,14 @@ Private Function ProcesarFicheroInventario(Fichero As String) As Boolean
             Sql = "select * from sarti3 where codigoea = '" & Codigo & "'"
             '----
             
-            Set Rs = New ADODB.Recordset
-            Rs.Open Sql, conn, adOpenForwardOnly
-            If Not Rs.EOF Then
+            Set RS = New ADODB.Recordset
+            RS.Open Sql, conn, adOpenForwardOnly
+            If Not RS.EOF Then
                 '-- Si que lo ha encontrado vamos a actualizarlo
-                If Not ActualizarExistencia2(Cantidad, Rs!codartic) Then
+                If Not ActualizarExistencia2(Cantidad, RS!codArtic) Then
                     LineaLog = "Linea:" & CStr(i) & "|Error actualizando existencias " & _
                         " EAN: " & Codigo & _
-                        " ARTICULO: " & Rs!codartic & _
+                        " ARTICULO: " & RS!codArtic & _
                         " CANTIDAD: " & Cantidad
                     Print #NfLog, LineaLog
                     ProcesarFicheroInventario = False

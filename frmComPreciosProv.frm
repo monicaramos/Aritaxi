@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmComPreciosProv 
@@ -904,16 +904,16 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim B As Boolean
+Dim b As Boolean
 Dim i As Byte
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECarga
 
-    B = DataGrid1.Enabled
+    b = DataGrid1.Enabled
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data2, SQL, False
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data2, Sql, False
     
     DataGrid1.Columns(0).visible = False 'Cod. Articulo
     DataGrid1.Columns(1).visible = False 'Cod. Proveedor
@@ -934,7 +934,7 @@ Dim SQL As String
     For i = 0 To DataGrid1.Columns.Count - 1
         DataGrid1.Columns(i).AllowSizing = False
     Next i
-    DataGrid1.Enabled = B
+    DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
     
 ECarga:
@@ -976,13 +976,13 @@ End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-Dim Indice As Byte
+Dim indice As Byte
     Select Case Me.imgFecha(0).Tag
-        Case 0: Indice = 3
-        Case 1: Indice = 7
-        Case 2: Indice = 8
+        Case 0: indice = 3
+        Case 1: indice = 7
+        Case 2: indice = 8
     End Select
-    Text1(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+    Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
@@ -1017,7 +1017,7 @@ End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    
@@ -1027,19 +1027,19 @@ Dim Indice As Byte
    
    Me.imgFecha(0).Tag = Index
    Select Case Index
-    Case 0: Indice = 3
-    Case 1: Indice = 7
-    Case 2: Indice = 8
+    Case 0: indice = 3
+    Case 1: indice = 7
+    Case 2: indice = 8
    End Select
    
-   PonerFormatoFecha Text1(Indice)
-   If Text1(Indice).Text <> "" Then frmF.Fecha = CDate(Text1(Indice).Text)
+   PonerFormatoFecha Text1(indice)
+   If Text1(indice).Text <> "" Then frmF.Fecha = CDate(Text1(indice).Text)
    
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
    
-   PonerFoco Text1(Indice)
+   PonerFoco Text1(indice)
 End Sub
 
 Private Sub mnBuscar_Click()
@@ -1148,21 +1148,25 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
-Dim B As Boolean
+Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador Me.lblIndicador, Modo
     
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
     '===========================================
     'Modo 2. Hay datos y estamos visualizandolos
-    B = (Kmodo = 2)
+    b = (Kmodo = 2)
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
           
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1 y bloquea clave primaria
@@ -1179,16 +1183,16 @@ Dim NumReg As Byte
     Me.chkPermiteDto(1).Enabled = (Modo = 3) Or (Modo = 4) 'Insert o Modificar
     
     '==============================
-    B = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
     
     For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = B And Modo <> 4 'Si modificar no activado pq son claves ajenas
+        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
     Next i
     
     For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = B
+        Me.imgFecha(i).Enabled = b
     Next i
     
     'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
@@ -1208,30 +1212,30 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
+Dim b As Boolean
 
-    B = (Modo = 2 Or Modo = 0 Or Modo = 1)
+    b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = B
-    Me.mnNuevo.Enabled = B
+    Toolbar1.Buttons(5).Enabled = b
+    Me.mnNuevo.Enabled = b
     
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
     
     '===============================
-    B = (Modo >= 3)
+    b = (Modo >= 3)
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -1261,20 +1265,20 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim tabla As String
+Dim Sql As String
+Dim Tabla As String
     
-    tabla = "slisp1" 'Tabla de lineas
-    SQL = "SELECT * FROM " & tabla
+    Tabla = "slisp1" 'Tabla de lineas
+    Sql = "SELECT * FROM " & Tabla
     
     If enlaza Then
-        SQL = SQL & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codprove=" & Data1.Recordset!codProve
     Else
-        SQL = SQL & " WHERE codprove = -1"
+        Sql = Sql & " WHERE codprove = -1"
     End If
     
-    SQL = SQL & " ORDER BY " & tabla & ".numlinea desc"
-    MontaSQLCarga = SQL
+    Sql = Sql & " ORDER BY " & Tabla & ".numlinea desc"
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1337,21 +1341,21 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    SQL = "Precios Proveedor." & vbCrLf
-    SQL = SQL & "--------------------------" & vbCrLf & vbCrLf
+    Sql = "Precios Proveedor." & vbCrLf
+    Sql = Sql & "--------------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Eliminar El Precio de Proveedor:"
-    SQL = SQL & vbCrLf & "Proveedor : " & Text1(0).Text & " - " & Text2(0).Text
-    SQL = SQL & vbCrLf & "Articulo : " & Text1(1).Text & " - " & Text2(1).Text
+    Sql = Sql & "Va a Eliminar El Precio de Proveedor:"
+    Sql = Sql & vbCrLf & "Proveedor : " & Text1(0).Text & " - " & Text2(0).Text
+    Sql = Sql & vbCrLf & "Articulo : " & Text1(1).Text & " - " & Text2(1).Text
     
-    SQL = SQL & vbCrLf & vbCrLf & "¿Desea continuar ? "
+    Sql = Sql & vbCrLf & vbCrLf & "¿Desea continuar ? "
     
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         
@@ -1377,19 +1381,19 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo FinEliminar
         
     conn.BeginTrans
-    SQL = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    SQL = SQL & " AND codprove=" & Val(Data1.Recordset!codProve)
+    Sql = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    Sql = Sql & " AND codprove=" & Val(Data1.Recordset!codProve)
     
     'Lineas
-    conn.Execute "Delete  from " & NombreTablaLin & SQL
+    conn.Execute "Delete  from " & NombreTablaLin & Sql
     
     'Cabeceras
-    conn.Execute "Delete  from " & NombreTabla & SQL
+    conn.Execute "Delete  from " & NombreTabla & Sql
                       
 FinEliminar:
     If Err.Number <> 0 Then
@@ -1404,26 +1408,26 @@ End Function
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 
     On Error Resume Next
 
     DatosOk = False
-    B = CompForm(Me, 1)
-    If Not B Then Exit Function
+    b = CompForm(Me, 1)
+    If Not b Then Exit Function
     
     'Comprobar que si hay valores nuevos, la fecha de cambio no es nulo
-    If (Not EsVacio(Text1(4))) Then B = (Not EsVacio(Text1(3)))
+    If (Not EsVacio(Text1(4))) Then b = (Not EsVacio(Text1(3)))
     
-    If Not B Then
+    If Not b Then
         MsgBox "La Fecha de Cambio debe tener valor.", vbInformation
         Exit Function
     End If
     
     'Comprobar que si no hay valores nuevos no haya fecha de Cambio
-    If EsVacio(Text1(4)) Then B = (EsVacio(Text1(3)))
+    If EsVacio(Text1(4)) Then b = (EsVacio(Text1(3)))
     
-    If Not B Then
+    If Not b Then
         MsgBox "No hay precio nuevo para la fecha de cambio", vbInformation
         Exit Function
     End If
@@ -1436,7 +1440,7 @@ End Function
 Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1448,8 +1452,8 @@ Dim Titulo As String
     cad = cad & ParaGrid(Text1(1), 20, "Articulo")
     cad = cad & "Desc. Artic|sartic|nomartic|T||38·"
     
-    tabla = "(" & NombreTabla & " LEFT JOIN sprove ON " & NombreTabla & ".codprove=sprove.codprove" & ")"
-    tabla = tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
+    Tabla = "(" & NombreTabla & " LEFT JOIN sprove ON " & NombreTabla & ".codprove=sprove.codprove" & ")"
+    Tabla = Tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
     
     Titulo = "Precios Proveedor"
            
@@ -1457,7 +1461,7 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
@@ -1562,7 +1566,7 @@ End Sub
 
 Private Sub BotonActualizar()
 'Actualizar Precios Especiales
-Dim SQL As String
+Dim Sql As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún Precio Especial para actualizar.", vbExclamation
@@ -1571,14 +1575,14 @@ Dim SQL As String
     
     If Data2 Is Nothing Then Exit Sub
    
-    SQL = "Actualización Precios Especiales de Artículos." & vbCrLf
-    SQL = SQL & "---------------------------------------------" & vbCrLf & vbCrLf
+    Sql = "Actualización Precios Especiales de Artículos." & vbCrLf
+    Sql = Sql & "---------------------------------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Actualizar el Precio Especial para:"
-    SQL = SQL & vbCrLf & " Cod. Clien. :  " & CStr(Format(Data1.Recordset.Fields(0), "000000"))
-    SQL = SQL & vbCrLf & " Cod. Artic. :  " & Data1.Recordset.Fields(1)
-    SQL = SQL & vbCrLf & vbCrLf & " ¿Desea continuar ? "
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) <> vbYes Then Exit Sub
+    Sql = Sql & "Va a Actualizar el Precio Especial para:"
+    Sql = Sql & vbCrLf & " Cod. Clien. :  " & CStr(Format(Data1.Recordset.Fields(0), "000000"))
+    Sql = Sql & vbCrLf & " Cod. Artic. :  " & Data1.Recordset.Fields(1)
+    Sql = Sql & vbCrLf & vbCrLf & " ¿Desea continuar ? "
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) <> vbYes Then Exit Sub
     
     NumRegElim = Data1.Recordset.AbsolutePosition
     If ActualizarPreEspecial Then
@@ -1636,14 +1640,14 @@ End Function
 
 Private Function ModificarCabecera() As Boolean
 'Modifica la tabla de cabeceras de Tarifas
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ErrModCab
 
-    SQL = "UPDATE " & NombreTabla & " SET precioac=precionu, precioa1=precion1, dtoespec=dtoespe1, fechanue=null, precionu=0, precion1=0"
-    SQL = SQL & " WHERE codclien=" & Data1.Recordset!codClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    Sql = "UPDATE " & NombreTabla & " SET precioac=precionu, precioa1=precion1, dtoespec=dtoespe1, fechanue=null, precionu=0, precion1=0"
+    Sql = Sql & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
    
-    conn.Execute SQL
+    conn.Execute Sql
     ModificarCabecera = True
     Exit Function
     
@@ -1658,21 +1662,21 @@ End Function
 
 
 Private Function InsertarLineasHistorico() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim numF As String
 
     On Error GoTo ErrInsLin
 
     'Obtenemos la siguiente numero de linea de tarifa
-    SQL = "codclien=" & Data1.Recordset!codClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    numF = SugerirCodigoSiguienteStr("spree1", "numlinea", SQL)
+    Sql = "codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    numF = SugerirCodigoSiguienteStr("spree1", "numlinea", Sql)
 
-    SQL = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec)"
-    SQL = SQL & " VALUES (" & Data1.Recordset.Fields(0).Value & ", " & DBSet(Data1.Recordset.Fields(1).Value, "T") & ", "
-    SQL = SQL & numF & ", " & DBSet(Text1(4).Text, "F") & ", "
-    SQL = SQL & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ", "
-    SQL = SQL & DBSet(Data1.Recordset!dtoespec, "N") & ") "
-    conn.Execute SQL
+    Sql = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec)"
+    Sql = Sql & " VALUES (" & Data1.Recordset.Fields(0).Value & ", " & DBSet(Data1.Recordset.Fields(1).Value, "T") & ", "
+    Sql = Sql & numF & ", " & DBSet(Text1(4).Text, "F") & ", "
+    Sql = Sql & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ", "
+    Sql = Sql & DBSet(Data1.Recordset!dtoespec, "N") & ") "
+    conn.Execute Sql
     
     InsertarLineasHistorico = True
     Exit Function

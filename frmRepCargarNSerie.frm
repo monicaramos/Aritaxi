@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmRepCargarNSerie 
@@ -433,14 +433,14 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim i As Byte
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     gridCargado = False
     
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, Sql, PrimeraVez
     PrimeraVez = False
         
     'Cod. Artic
@@ -542,7 +542,7 @@ End Sub
 
 
 Private Sub mnCargar_Click()
-Dim SQL As String
+Dim Sql As String
 Dim RStmp As ADODB.Recordset
 Dim cadExisten As String
 Dim cadExisten2 As String
@@ -552,9 +552,9 @@ Dim b As Boolean
     b = True
     'Antes de salir de ventana de carga de Nº series comprobar que en la tabla TMP
     'se han cargado todos los Nº de Serie
-    SQL = "select numserie from tmpnseries where (numserie='' or numserie=' ') AND codusu=" & vUsu.Codigo
+    Sql = "select numserie from tmpnseries where (numserie='' or numserie=' ') AND codusu=" & vUsu.Codigo
     Set RStmp = New ADODB.Recordset
-    RStmp.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RStmp.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RStmp.EOF Then
         MsgBox " Debe Introducir todos los Nº de Serie antes de Salir.", vbExclamation
         b = False
@@ -566,11 +566,11 @@ Dim b As Boolean
     'Comprobar que los Nº de Serie cargados en la temporal no esten asignados ya
     cadExisten = ""
     cadExisten2 = ""
-    SQL = "SELECT numserie, codartic FROM tmpnseries "
-    SQL = SQL & " WHERE codusu=" & vUsu.Codigo
-    SQL = SQL & " ORDER BY codartic "
+    Sql = "SELECT numserie, codartic FROM tmpnseries "
+    Sql = Sql & " WHERE codusu=" & vUsu.Codigo
+    Sql = Sql & " ORDER BY codartic "
     Set RStmp = New ADODB.Recordset
-    RStmp.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RStmp.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If DeVentas Then 'Se llamo desde VENTAS
         'Comprobar que los Nº de Serie cargados en la temporal no esten asignados ya
@@ -732,9 +732,14 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-       
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
+    
+    txtAux.BackColor = vbWhite
+    txtauz.BackColor = vbWhite
+    
     
     'MODIFICAR
     b = (Modo = 4)
@@ -757,17 +762,17 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
 
-     SQL = "select numlinea," & NombreTabla & ".codartic, nomartic," & NombreTabla & ".numserie , " & NombreTabla & ".nummante  "
+     Sql = "select numlinea," & NombreTabla & ".codartic, nomartic," & NombreTabla & ".numserie , " & NombreTabla & ".nummante  "
      'JUNIO 2010
      'TEINSA. Puede ser que haya dos lineas con el mismo articulo y distintos num serie
-     SQL = SQL & " ,numlinealb, if(esrecompra = 0, ""NO"",""SI"")"
-     SQL = SQL & " FROM " & NombreTabla & " INNER JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic "
-     SQL = SQL & " WHERE codusu=" & vUsu.Codigo
-     SQL = SQL & Ordenacion
+     Sql = Sql & " ,numlinealb, if(esrecompra = 0, ""NO"",""SI"")"
+     Sql = Sql & " FROM " & NombreTabla & " INNER JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic "
+     Sql = Sql & " WHERE codusu=" & vUsu.Codigo
+     Sql = Sql & Ordenacion
     
-     MontaSQLCarga = SQL
+     MontaSQLCarga = Sql
 End Function
 
 
@@ -786,40 +791,40 @@ End Sub
 
 Private Function ActualizarNumSerie(nSerie As String, nummante As String) As Boolean
 'Actualizar en la tabla temporal tmpnseries el Nº de Serie
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 
 On Error GoTo EActualizar
            
     'Insertar en la Tabla Temporal
-    SQL = "UPDATE " & NombreTabla & " SET numserie="
+    Sql = "UPDATE " & NombreTabla & " SET numserie="
     'Ha puesto algo.... TRIM
     If nSerie <> " " Then nSerie = Trim(nSerie)
-    SQL = SQL & DBSet(nSerie, "T")
+    Sql = Sql & DBSet(nSerie, "T")
     
     'Modificacion
-    SQL = SQL & " , nummante = " & DBSet(nummante, "T")
+    Sql = Sql & " , nummante = " & DBSet(nummante, "T")
     
     
     '[Monica]24/10/2012: me indica si es o no recompra
     SQL2 = "select count(*) from sserie where numserie = " & DBSet(nSerie, "T") & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
     
-    SQL = SQL & " , esrecompra = " & DevuelveValor(SQL2)
+    Sql = Sql & " , esrecompra = " & DevuelveValor(SQL2)
     ' hasta aqui
     
     
-    SQL = SQL & " WHERE codusu=" & vUsu.Codigo & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    SQL = SQL & " AND numlinea=" & Data1.Recordset!numlinea
+    Sql = Sql & " WHERE codusu=" & vUsu.Codigo & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+    Sql = Sql & " AND numlinea=" & Data1.Recordset!numlinea
     'Junio2010
-    SQL = SQL & " AND numlinealb = " & Data1.Recordset!numlinealb
+    Sql = Sql & " AND numlinealb = " & Data1.Recordset!numlinealb
     
     
-    conn.Execute SQL
+    conn.Execute Sql
     
 EActualizar:
     If Err.Number <> 0 Then
-        SQL = "Actualizando Nº de Serie."
-        MuestraError Err.Number, SQL, Err.Description
+        Sql = "Actualizando Nº de Serie."
+        MuestraError Err.Number, Sql, Err.Description
         ActualizarNumSerie = False
     Else
         ActualizarNumSerie = True

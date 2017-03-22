@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmAlertas 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Alertas"
@@ -111,8 +111,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim SQl As String
-Dim f As Date
+Dim Sql As String
+Dim F As Date
 
 
 Private Sub Command1_Click()
@@ -120,7 +120,9 @@ Private Sub Command1_Click()
 End Sub
 
 Private Sub Form_Load()
+
     Me.Icon = frmPpal.Icon
+    
     Set miRsAux = New ADODB.Recordset
     Set TreeView1.ImageList = Me.ImageList1
     Set ListView1.SmallIcons = frmPpal.ImgListPpal
@@ -132,6 +134,7 @@ End Sub
 
 Private Sub CargaTreeView()
 Dim no As Node
+    
     TreeView1.Nodes.Clear
     
     'Para cada opcion de alertas vamos viendo si lo ponemos.
@@ -208,11 +211,11 @@ Dim It As ListItem
 
     On Error GoTo ECA
     FijaCadenaSQL NumNod
-    If SQl = "" Then Exit Sub
+    If Sql = "" Then Exit Sub
     
     'SI no cargamos. SIiiiempre sera el mismo orden para los campos
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQl, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     NumRegElim = 0
     While Not miRsAux.EOF
         Set It = ListView1.ListItems.Add(, "c" & NumRegElim)
@@ -232,7 +235,7 @@ Dim It As ListItem
     Set miRsAux = Nothing
     Exit Sub
 ECA:
-    MuestraError Err.Number, SQl
+    MuestraError Err.Number, Sql
     Set miRsAux = Nothing
 End Sub
 
@@ -240,7 +243,7 @@ End Sub
 
 Private Sub FijaCadenaSQL(Opcion As Integer)
     
-    SQl = ""
+    Sql = ""
     Select Case Opcion
     Case 1
         ' "PEDIDOS CLIENTE")
@@ -252,32 +255,32 @@ Private Sub FijaCadenaSQL(Opcion As Integer)
     
     Case 2
         '"PEDIDOS PROVEEDORES")
-        SQl = "select scappr.numpedpr,scappr.fecpedpr,scappr.codprove,scappr.nomprove,sum(importel)"
-        SQl = SQl & " from scappr,slippr WHERE scappr.numpedpr=slippr.numpedpr "
-        f = DateAdd("d", -vParamAplic.avipedpro, Now)
-        SQl = SQl & " AND scappr.fecpedpr <= '" & Format(f, FormatoFecha) & "' group by 1 ORDER BY fecpedpr"
+        Sql = "select scappr.numpedpr,scappr.fecpedpr,scappr.codprove,scappr.nomprove,sum(importel)"
+        Sql = Sql & " from scappr,slippr WHERE scappr.numpedpr=slippr.numpedpr "
+        F = DateAdd("d", -vParamAplic.avipedpro, Now)
+        Sql = Sql & " AND scappr.fecpedpr <= '" & Format(F, FormatoFecha) & "' group by 1 ORDER BY fecpedpr"
     
     Case 3
         'Set NO = TreeView1.Nodes.Add(, , "c3", "ALBARANES CLIENTE")
-        SQl = "select concat(scaalb.codtipom , scaalb.numalbar),scaalb.fechaalb,scaalb.codclien,scaalb.nomclien,sum(importel)"
-        SQl = SQl & " from scaalb,slialb WHERE scaalb.numalbar=slialb.numalbar and scaalb.codtipom=slialb.codtipom"
-        f = DateAdd("d", -vParamAplic.avialbcli, Now)
-        SQl = SQl & " AND scaalb.fechaalb <= '" & Format(f, FormatoFecha) & "' group by 1 ORDER BY fechaalb"
+        Sql = "select concat(scaalb.codtipom , scaalb.numalbar),scaalb.fechaalb,scaalb.codclien,scaalb.nomclien,sum(importel)"
+        Sql = Sql & " from scaalb,slialb WHERE scaalb.numalbar=slialb.numalbar and scaalb.codtipom=slialb.codtipom"
+        F = DateAdd("d", -vParamAplic.avialbcli, Now)
+        Sql = Sql & " AND scaalb.fechaalb <= '" & Format(F, FormatoFecha) & "' group by 1 ORDER BY fechaalb"
     
     Case 4
         '"ALBARANES PROVEEDORES"
-        SQl = "select  scaalp.numalbar,scaalp.fechaalb,scaalp.codprove,scaalp.nomprove,sum(importel)"
-        SQl = SQl & " from scaalp,slialp WHERE scaalp.numalbar=slialp.numalbar and scaalp.fechaalb=slialp.fechaalb"
-        SQl = SQl & " and scaalp.codprove=slialp.codprove"
-        f = DateAdd("d", -vParamAplic.avialbpro, Now)
-        SQl = SQl & " AND scaalp.fechaalb <= '" & Format(f, FormatoFecha) & "' group by 1 ORDER BY fechaalb"
+        Sql = "select  scaalp.numalbar,scaalp.fechaalb,scaalp.codprove,scaalp.nomprove,sum(importel)"
+        Sql = Sql & " from scaalp,slialp WHERE scaalp.numalbar=slialp.numalbar and scaalp.fechaalb=slialp.fechaalb"
+        Sql = Sql & " and scaalp.codprove=slialp.codprove"
+        F = DateAdd("d", -vParamAplic.avialbpro, Now)
+        Sql = Sql & " AND scaalp.fechaalb <= '" & Format(F, FormatoFecha) & "' group by 1 ORDER BY fechaalb"
     
     Case 5
         'Set NO = TreeView1.Nodes.Add(, , "c5", "REPARACIONES")
-        f = DateAdd("d", -vParamAplic.avirepara, Now)
-        SQl = "select scarep.numrepar,fecrepar,scarep.codclien,scarep.nomclien,if(imppresu1 is null,'0.0',imppresu1) from"
-        SQl = SQl & " scarep,sclien where scarep.codclien=sclien.codclien  AND motivore is null "
-        SQl = SQl & " AND scarep.fecrepar <= '" & Format(f, FormatoFecha) & "' group by 1 ORDER BY fecrepar"
+        F = DateAdd("d", -vParamAplic.avirepara, Now)
+        Sql = "select scarep.numrepar,fecrepar,scarep.codclien,scarep.nomclien,if(imppresu1 is null,'0.0',imppresu1) from"
+        Sql = Sql & " scarep,sclien where scarep.codclien=sclien.codclien  AND motivore is null "
+        Sql = Sql & " AND scarep.fecrepar <= '" & Format(F, FormatoFecha) & "' group by 1 ORDER BY fecrepar"
     Case 6
         '"AVISOS"
         'f = DateAdd("d", -vParamAplic.aviavisos, Now)

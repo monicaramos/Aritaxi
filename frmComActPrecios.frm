@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "msadodc.ocx"
+Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmComActPrecios 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Actualizar precios venta"
@@ -569,7 +569,7 @@ Private Sub cmdActualizar_Click()
 'Actualizar los nuevos precios del artículo
 ' en la tabla de articulo y en la de tarifas (slista)
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim cTar As CTarifaArt
 Dim MenError As String
@@ -590,10 +590,10 @@ Dim MenError As String
     'Actualizar los precios de las TARIFAS del artículo si se ha modificado
     '-----------------------------------------------------------------------
     If b Then
-        SQL = MontaSQLCarga(True)
+        Sql = MontaSQLCarga(True)
         
         Set RS = New ADODB.Recordset
-        RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not RS.EOF And b
             'si los precios son distintos
             If (RS!precioac <> RS!tmpprecioac) Then
@@ -672,7 +672,7 @@ Private Sub Form_Load()
 'Dim cArt As CArticulo
 
     'Icono del formulario
-'    Me.Icon = frmPpal.Icon
+    Me.Icon = frmPpal.Icon
 
 '    'ICONOS de La toolbar
     With Toolbar1
@@ -809,9 +809,14 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-    
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
+    
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2)
@@ -878,23 +883,23 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
     
-    SQL = "SELECT " & NombreTabla & ".codartic, " & NombreTabla & ".codlista,starif.nomlista, precioac, if(isnull(precioa1),0,precioa1) as precioa1,"
-    SQL = SQL & "if(isnull(starif.margecom),0,starif.margecom) as margen,tmpprecioac,tmpprecioa1,  "
+    Sql = "SELECT " & NombreTabla & ".codartic, " & NombreTabla & ".codlista,starif.nomlista, precioac, if(isnull(precioa1),0,precioa1) as precioa1,"
+    Sql = Sql & "if(isnull(starif.margecom),0,starif.margecom) as margen,tmpprecioac,tmpprecioa1,  "
     'NUEVO. Trifas sobre UPC (ultimo precio compra)
     'Indicare en el grid que tipo tarifa es
-    SQL = SQL & " if(opcionINC=0,""PVP"",""UPC"") as tipo"
-    SQL = SQL & " FROM " & NombreTabla & " INNER JOIN starif ON " & NombreTabla & ".codlista = starif.codlista "
+    Sql = Sql & " if(opcionINC=0,""PVP"",""UPC"") as tipo"
+    Sql = Sql & " FROM " & NombreTabla & " INNER JOIN starif ON " & NombreTabla & ".codlista = starif.codlista "
     
     If enlaza Then
-        SQL = SQL & " WHERE " & NombreTabla & ".codartic=" & DBSet(Me.parCodArtic, "T")
-        SQL = SQL & " AND not isnull(margecom) "
+        Sql = Sql & " WHERE " & NombreTabla & ".codartic=" & DBSet(Me.parCodArtic, "T")
+        Sql = Sql & " AND not isnull(margecom) "
     Else
-        SQL = SQL & " WHERE codlista = -1"
+        Sql = Sql & " WHERE codlista = -1"
     End If
-    SQL = SQL & Ordenacion
-    MontaSQLCarga = SQL
+    Sql = Sql & Ordenacion
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1066,16 +1071,16 @@ End Sub
 
 
 Private Function CalcularPreciosNuevosTarifas() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim cTar As CTarifaArt
 
     On Error GoTo ErrTarifa
     
-    SQL = MontaSQLCarga(True)
+    Sql = MontaSQLCarga(True)
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not RS.EOF
         Set cTar = New CTarifaArt
@@ -1101,12 +1106,12 @@ End Function
 
 
 Private Function ModificarLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ErrMod
-    SQL = "UPDATE " & NombreTabla & " SET tmpprecioac=" & DBSet(txtAux(4).Text, "N")
-    SQL = SQL & " WHERE codartic=" & DBSet(Me.parCodArtic, "T") & " AND codlista=" & Me.Data1.Recordset!codlista
-    conn.Execute SQL
+    Sql = "UPDATE " & NombreTabla & " SET tmpprecioac=" & DBSet(txtAux(4).Text, "N")
+    Sql = Sql & " WHERE codartic=" & DBSet(Me.parCodArtic, "T") & " AND codlista=" & Me.Data1.Recordset!codlista
+    conn.Execute Sql
     
     ModificarLinea = True
     Exit Function

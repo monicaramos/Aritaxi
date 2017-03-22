@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmLlamadas 
@@ -286,18 +286,13 @@ Dim PrimeraVez As Boolean
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-    
+Dim i As Integer
+
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
     
-
-    
-
-
     'DataGrid1.Enabled = b
-
-  
 
     
     'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
@@ -373,7 +368,7 @@ Private Sub BotonVerTodos()
 On Error Resume Next
     ElSQL = ""
     CargaGrid ElSQL
-    If adodc1.Recordset.RecordCount <= 0 Then
+    If Adodc1.Recordset.RecordCount <= 0 Then
          'MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
          'MsgBox "No hay ningún registro en la tabla sllama", vbInformation
          Screen.MousePointer = vbDefault
@@ -387,15 +382,15 @@ End Sub
 
 Private Sub BotonModificar()
 Dim N As Long
-    CadenaDesdeOtroForm = "`feholla`=" & DBSet(adodc1.Recordset.Fields(0), "FH") & " and `usuario`=" & DBSet(adodc1.Recordset.Fields(1), "T")
-    N = adodc1.Recordset.AbsolutePosition
+    CadenaDesdeOtroForm = "`feholla`=" & DBSet(Adodc1.Recordset.Fields(0), "FH") & " and `usuario`=" & DBSet(Adodc1.Recordset.Fields(1), "T")
+    N = Adodc1.Recordset.AbsolutePosition
     frmLLamadasDatos2.SoloVer = False
     frmLLamadasDatos2.vModo = 4
     frmLLamadasDatos2.Show vbModal
     If CadenaDesdeOtroForm <> "" Then
         CadenaConsulta = "Select * from sllama"
         CargaGrid ElSQL
-        If N > 1 Then SituarDataPosicion adodc1, N, Me.lblIndicador
+        If N > 1 Then SituarDataPosicion Adodc1, N, Me.lblIndicador
     End If
 End Sub
 
@@ -403,32 +398,32 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 On Error GoTo Error2
 
     'Ciertas comprobaciones
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
 
     'Si no es de usuario solo dejamos
-    If adodc1.Recordset!Usuario <> vUsu.Login Then
+    If Adodc1.Recordset!Usuario <> vUsu.Login Then
         MsgBox "Llamada no insertada por usuario actual", vbExclamation
         If vUsu.Nivel > 1 Then Exit Sub
     End If
     
     '### a mano
-    SQL = "Fecha: " & adodc1.Recordset.Fields(0) & vbCrLf
-    SQL = SQL & "Usuario:  " & adodc1.Recordset.Fields(1) & vbCrLf
-    SQL = SQL & "Cliente:  " & DBLet(adodc1.Recordset!codClien, "T") & "  " & DBLet(adodc1.Recordset!nomclien, "T") & vbCrLf & vbCrLf
-    SQL = SQL & vbCrLf & "¿Seguro que desea eliminar la llamada?"
-    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+    Sql = "Fecha: " & Adodc1.Recordset.Fields(0) & vbCrLf
+    Sql = Sql & "Usuario:  " & Adodc1.Recordset.Fields(1) & vbCrLf
+    Sql = Sql & "Cliente:  " & DBLet(Adodc1.Recordset!CodClien, "T") & "  " & DBLet(Adodc1.Recordset!nomclien, "T") & vbCrLf & vbCrLf
+    Sql = Sql & vbCrLf & "¿Seguro que desea eliminar la llamada?"
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
-        NumRegElim = Me.adodc1.Recordset.AbsolutePosition
-        SQL = "Delete from sllama where usuario='" & adodc1.Recordset!Usuario & "' AND feholla = " & DBSet(adodc1.Recordset!feholla, "FH")
-        conn.Execute SQL
-        CancelaADODC adodc1
+        NumRegElim = Me.Adodc1.Recordset.AbsolutePosition
+        Sql = "Delete from sllama where usuario='" & Adodc1.Recordset!Usuario & "' AND feholla = " & DBSet(Adodc1.Recordset!feholla, "FH")
+        conn.Execute Sql
+        CancelaADODC Adodc1
         CargaGrid ElSQL
-        CancelaADODC Me.adodc1
-        SituarDataPosicion Me.adodc1, NumRegElim, SQL
+        CancelaADODC Me.Adodc1
+        SituarDataPosicion Me.Adodc1, NumRegElim, Sql
     End If
     
 Error2:
@@ -450,12 +445,12 @@ Private Sub cmdCancelar1_Click()
 End Sub
 
 Private Sub DataGrid1_DblClick()
-    If Not adodc1.Recordset.EOF Then BotonModificar
+    If Not Adodc1.Recordset.EOF Then BotonModificar
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not adodc1.Recordset.EOF Then 'And Modo = 0 Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+    If Not Adodc1.Recordset.EOF Then 'And Modo = 0 Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     End If
 End Sub
 
@@ -548,8 +543,8 @@ End Sub
 
 
 
-Private Sub CargaGrid(Optional ByVal SQL As String)
-Dim I As Byte
+Private Sub CargaGrid(Optional ByVal Sql As String)
+Dim i As Byte
 
     
     lblIndicador.Caption = "Leyendo ..."
@@ -561,76 +556,76 @@ Dim I As Byte
     
     CadenaConsulta = "select feholla,usuario,codclien,nomclien,telefono,codtraba,nomtraba,nomllama1 from"
     CadenaConsulta = CadenaConsulta & " sllama,sllama1 where sllama.codllama1=sllama1.codllama1"
-    If SQL <> "" Then
-        CadenaConsulta = CadenaConsulta & " AND " & SQL
+    If Sql <> "" Then
+        CadenaConsulta = CadenaConsulta & " AND " & Sql
       
     End If
     
-    SQL = CadenaConsulta
-    SQL = SQL & " ORDER BY feholla desc"
+    Sql = CadenaConsulta
+    Sql = Sql & " ORDER BY feholla desc"
 
-    CargaGridGnral DataGrid1, Me.adodc1, SQL, False
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
 
     
     'Nombre producto
-    I = 0
-        DataGrid1.Columns(I).Caption = "Fecha/Hora"
-        DataGrid1.Columns(I).Width = 1700
-        DataGrid1.Columns(I).NumberFormat = "dd/mm/yyyy hh:mm:ss"
+    i = 0
+        DataGrid1.Columns(i).Caption = "Fecha/Hora"
+        DataGrid1.Columns(i).Width = 1700
+        DataGrid1.Columns(i).NumberFormat = "dd/mm/yyyy hh:mm:ss"
     
     'Leemos del vector en 2
-    I = 1
-        DataGrid1.Columns(I).Caption = "Usuario"
-        DataGrid1.Columns(I).Width = 1175
+    i = 1
+        DataGrid1.Columns(i).Caption = "Usuario"
+        DataGrid1.Columns(i).Width = 1175
             
-    I = 2
-        DataGrid1.Columns(I).Caption = "Cod.Cli."
-        DataGrid1.Columns(I).Width = 970
+    i = 2
+        DataGrid1.Columns(i).Caption = "Cod.Cli."
+        DataGrid1.Columns(i).Width = 970
                     
-    I = 3
-        DataGrid1.Columns(I).Caption = "Cliente"
-        DataGrid1.Columns(I).Width = 2900
+    i = 3
+        DataGrid1.Columns(i).Caption = "Cliente"
+        DataGrid1.Columns(i).Width = 2900
                
-    I = 4
-        DataGrid1.Columns(I).Caption = "Teléfono"
-        DataGrid1.Columns(I).Width = 1475
+    i = 4
+        DataGrid1.Columns(i).Caption = "Teléfono"
+        DataGrid1.Columns(i).Width = 1475
                           
                
                
-    I = 5
-        DataGrid1.Columns(I).Caption = "Trab."
-        DataGrid1.Columns(I).Width = 800
+    i = 5
+        DataGrid1.Columns(i).Caption = "Trab."
+        DataGrid1.Columns(i).Width = 800
     'select feholla,usuario,codclien,nomclien,codtraba,nomtraba,nomllama1 from"
     
-    I = 6
-        DataGrid1.Columns(I).Caption = "Nombre"
-        DataGrid1.Columns(I).Width = 2190
+    i = 6
+        DataGrid1.Columns(i).Caption = "Nombre"
+        DataGrid1.Columns(i).Width = 2190
     
-    I = 7
-        DataGrid1.Columns(I).Caption = "Motivo"
-        DataGrid1.Columns(I).Width = 2175
+    i = 7
+        DataGrid1.Columns(i).Caption = "Motivo"
+        DataGrid1.Columns(i).Width = 2175
     
     
 
    
    'No permitir cambiar tamaño de columnas
-   For I = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(I).AllowSizing = False
-   Next I
+   For i = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(i).AllowSizing = False
+   Next i
    
     'Habilitamos botones Modificar y Eliminar
    'If Toolbar1.Buttons(6).Enabled = True Then
-        Toolbar1.Buttons(6).Enabled = Not adodc1.Recordset.EOF
-        Toolbar1.Buttons(7).Enabled = Not adodc1.Recordset.EOF
-        mnModificar.Enabled = Not adodc1.Recordset.EOF
-        mnEliminar.Enabled = Not adodc1.Recordset.EOF
+        Toolbar1.Buttons(6).Enabled = Not Adodc1.Recordset.EOF
+        Toolbar1.Buttons(7).Enabled = Not Adodc1.Recordset.EOF
+        mnModificar.Enabled = Not Adodc1.Recordset.EOF
+        mnEliminar.Enabled = Not Adodc1.Recordset.EOF
    ' End If
    
    DataGrid1.ScrollBars = dbgAutomatic
    
    'Actualizar indicador
-   If Not adodc1.Recordset.EOF And (Modo = 0) Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+   If Not Adodc1.Recordset.EOF And (Modo = 0) Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
    Else
         Me.lblIndicador.Caption = ""
    End If

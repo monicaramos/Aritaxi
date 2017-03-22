@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmConceConta 
@@ -394,13 +394,18 @@ Dim PrimeraVez As Boolean
 
 Private Sub PonerModo(vModo)
 Dim b As Boolean
+Dim i As Integer
 
     Modo = vModo
 '    PonerIndicador lblIndicador, Modo
     b = (Modo = 2)
     
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
+    
     If b Then
-        PonerContRegIndicador lblIndicador, Me.adodc1, cadB
+        PonerContRegIndicador lblIndicador, Me.Adodc1, cadB
     Else
         PonerIndicador lblIndicador, Modo
     End If
@@ -409,7 +414,7 @@ Dim b As Boolean
     txtAux(1).visible = Not b
     Combo1.visible = Not b
         
-    CmdAceptar.visible = Not b
+    cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
     DataGrid1.Enabled = b
     
@@ -536,7 +541,7 @@ Dim i As Integer
 Dim J As Integer
 Dim Aux As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
@@ -548,7 +553,7 @@ Dim Aux As String
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(J) & "|"
+            cad = cad & Adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until i = 0
     RaiseEvent DatoSeleccionado(cad)
@@ -564,7 +569,7 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-     If Modo = 2 Then PonerContRegIndicador lblIndicador, Me.adodc1, cadB
+     If Modo = 2 Then PonerContRegIndicador lblIndicador, Me.Adodc1, cadB
 End Sub
 
 Private Sub Form_Activate()
@@ -581,7 +586,7 @@ Private Sub Form_Activate()
 '        Else
             PonerModo 2
             If Me.CodigoActual <> "" Then
-                SituarData Me.adodc1, "codconce like " & DBSet(CodigoActual, "N"), "" ', True
+                SituarData Me.Adodc1, "codconce like " & DBSet(CodigoActual, "N"), "" ', True
             End If
 '        End If
     End If
@@ -589,6 +594,8 @@ End Sub
 
 Private Sub Form_Load()
     PrimeraVez = True
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
 
     With Me.Toolbar1
 '        .HotImageList = frmPpal.imgListComun_OM
@@ -662,7 +669,7 @@ End Sub
 Private Sub CargaGrid(Optional vSQL As String)
     Dim Sql As String, tots As String
     
-    adodc1.ConnectionString = ConnConta 'BD de la Contabilidad
+    Adodc1.ConnectionString = ConnConta 'BD de la Contabilidad
     If vSQL <> "" Then
         Sql = CadenaConsulta & " WHERE " & vSQL
     Else
@@ -672,11 +679,11 @@ Private Sub CargaGrid(Optional vSQL As String)
     Sql = Sql & " ORDER BY codconce"
     '**************************************************************++
     
-    adodc1.RecordSource = Sql
-    adodc1.CursorType = adOpenDynamic
-    adodc1.LockType = adLockOptimistic
-    adodc1.Refresh
-    Set DataGrid1.DataSource = adodc1
+    Adodc1.RecordSource = Sql
+    Adodc1.CursorType = adOpenDynamic
+    Adodc1.LockType = adLockOptimistic
+    Adodc1.Refresh
+    Set DataGrid1.DataSource = Adodc1
     
     DataGrid1.AllowRowSizing = False
     DataGrid1.RowHeight = 290

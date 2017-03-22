@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.MDIForm frmPpal 
    BackColor       =   &H00858585&
@@ -425,7 +425,7 @@ Begin VB.MDIForm frmPpal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "10:33"
+            TextSave        =   "9:16"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -812,6 +812,254 @@ Begin VB.MDIForm frmPpal
          EndProperty
          BeginProperty ListImage29 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpal.frx":D64F6
+            Key             =   ""
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.ImageList imgListComun_BN 
+      Left            =   6240
+      Top             =   3600
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      MaskColor       =   12632256
+      _Version        =   393216
+   End
+   Begin MSComctlLib.ImageList imgListComun_OM 
+      Left            =   6240
+      Top             =   3000
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      MaskColor       =   12632256
+      _Version        =   393216
+   End
+   Begin MSComctlLib.ImageList imgListComun16 
+      Left            =   6240
+      Top             =   4470
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      MaskColor       =   12632256
+      _Version        =   393216
+   End
+   Begin MSComctlLib.ImageList ImgListComun32 
+      Left            =   7170
+      Top             =   4440
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      MaskColor       =   12632256
+      _Version        =   393216
+   End
+   Begin MSComctlLib.ImageList imgListComun_OM16 
+      Left            =   8640
+      Top             =   3000
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      MaskColor       =   12632256
+      _Version        =   393216
+   End
+   Begin MSComctlLib.ImageList imgListComun_BN16 
+      Left            =   8640
+      Top             =   3600
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      MaskColor       =   12632256
+      _Version        =   393216
+   End
+   Begin MSComctlLib.ImageList imgListComun1 
+      Left            =   7080
+      Top             =   600
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   16
+      ImageHeight     =   16
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   45
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":D6810
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":D851A
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":DE7C0
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":DF1D2
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":DFBE4
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E2396
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E2C70
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E354A
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E3E24
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E46FE
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E5110
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E556A
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E567C
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E578E
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E58A0
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":E5BBA
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EB7DC
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EC1EE
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage19 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":ECC00
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage20 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":ECD12
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage21 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":ED724
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage22 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EE136
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage23 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EEB48
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage24 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EEE62
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage25 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EF17C
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage26 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EF5CE
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage27 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EFA20
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage28 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":EFE72
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage29 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F02C4
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage30 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F0716
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage31 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F0B68
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage32 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F0E82
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage33 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F0FDC
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage34 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F12F6
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage35 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F1610
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage36 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F1EEA
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage37 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F27C4
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage38 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F2ADE
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage39 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F2C38
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage40 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F2F52
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage41 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F3964
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage42 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F4376
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage43 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F4D88
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage44 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F579A
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage45 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F61AC
             Key             =   ""
          EndProperty
       EndProperty
@@ -1543,6 +1791,16 @@ Dim b As Boolean
     '   el situarlo aqui hace que no haya que salir y entrar en el programa si se
     'vParamAplic.Reparaciones
     
+    
+    ' *** per als iconos XP ***
+'    GetIconsFromLibrary App.Path & "\styles\iconos.dll", 1, 24
+'    GetIconsFromLibrary App.Path & "\iconos_BN.dll", 2, 24
+'    GetIconsFromLibrary App.Path & "\iconos_OM.dll", 3, 24
+'++
+
+'++
+    
+    
     'Reparaciones
     'mnReparaciones.visible = vParamAplic.Reparaciones
     PuntoDeMenuVisible mnReparaciones, vParamAplic.Reparaciones
@@ -1564,6 +1822,30 @@ Dim b As Boolean
     Screen.MousePointer = vbDefault
 End Sub
 
+
+Public Sub GetIconsFromLibrary(ByVal sLibraryFilePath As String, ByVal Op As Integer, ByVal tam As Integer)
+    Dim i As Integer
+    Dim tRes As ResType, iCount As Integer
+        
+    opcio = Op
+    tamany = tam
+    ghmodule = LoadLibraryEx(sLibraryFilePath, 0, DONT_RESOLVE_DLL_REFERENCES)
+
+    If ghmodule = 0 Then
+        MsgBox "Invalid library file.", vbCritical
+        Exit Sub
+    End If
+        
+    For tRes = RT_FIRST To RT_LAST
+        DoEvents
+        EnumResourceNames ghmodule, tRes, AddressOf EnumResNameProc, 0
+    Next
+    FreeLibrary ghmodule
+             
+End Sub
+
+
+
 Private Sub PuntoDeMenuVisible(ByRef MnPuntoDMenu As Menu, b As Boolean)
     If MnPuntoDMenu.visible Then MnPuntoDMenu.visible = b
     
@@ -1574,6 +1856,8 @@ Private Sub MDIForm_Load()
 'Formulario Principal
 
     CargaImagen
+
+    CargaIconosDlls
 
     PrimeraVez = True
     'Botones
@@ -1610,12 +1894,50 @@ Private Sub MDIForm_Load()
         
         .Buttons(40).Image = 14 'Salir
     End With
+    
+    
+    
+    
+    
     LeerEditorMenus
     PonerDatosFormulario False
     
     
 End Sub
 
+
+
+Private Function CargaIconosDlls()
+Dim TamanyoImgComun As Integer
+    
+    
+    imgListComun1.ListImages.Clear
+    imgListComun_BN.ListImages.Clear
+    imgListComun_OM.ListImages.Clear
+    
+    TamanyoImgComun = 24
+    
+    imgListComun1.ImageHeight = TamanyoImgComun
+    imgListComun1.ImageWidth = TamanyoImgComun
+    GetIconsFromLibrary App.Path & "\styles\iconos.dll", 5, TamanyoImgComun  'antes icolistcon
+
+    
+    imgListComun_BN.ImageHeight = TamanyoImgComun
+    imgListComun_BN.ImageWidth = TamanyoImgComun
+    GetIconsFromLibrary App.Path & "\styles\iconos_BN.dll", 2, TamanyoImgComun
+  
+    imgListComun_OM.ImageHeight = TamanyoImgComun
+    imgListComun_OM.ImageWidth = TamanyoImgComun
+    GetIconsFromLibrary App.Path & "\styles\iconos_OM.dll", 3, TamanyoImgComun
+    
+    imgListComun16.ImageHeight = 16
+    imgListComun16.ImageWidth = 16
+    GetIconsFromLibrary App.Path & "\styles\iconos.dll", 5, 16
+    
+    GetIconsFromLibrary App.Path & "\styles\iconos_BN.dll", 6, 16
+    GetIconsFromLibrary App.Path & "\styles\iconos_OM.dll", 7, 16
+
+End Function
 
 Private Sub CargaImagen()
     On Error Resume Next
@@ -2746,7 +3068,7 @@ End Sub
 
 Private Sub mnUtiUsuActivos_Click()
 'Muestra si hay otros usuarios conectados a la Gestion
-Dim SQL As String
+Dim Sql As String
 Dim i As Integer
 
     CadenaDesdeOtroForm = OtrosPCsContraContabiliad
@@ -2754,10 +3076,10 @@ Dim i As Integer
         i = 1
         Me.Tag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
         Do
-            SQL = RecuperaValor(CadenaDesdeOtroForm, i)
-            If SQL <> "" Then Me.Tag = Me.Tag & "    - " & SQL & vbCrLf
+            Sql = RecuperaValor(CadenaDesdeOtroForm, i)
+            If Sql <> "" Then Me.Tag = Me.Tag & "    - " & Sql & vbCrLf
             i = i + 1
-        Loop Until SQL = ""
+        Loop Until Sql = ""
         MsgBox Me.Tag, vbExclamation
     Else
         MsgBox "Ningun usuario, además de usted, conectado a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf, vbInformation
@@ -2982,14 +3304,14 @@ End Sub
 
 
 Private Sub LeerEditorMenus()
-Dim SQL As String
+Dim Sql As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     TieneEditorDeMenus = False
-    SQL = "Select count(*) from usuarios.appmenus where aplicacion='Aritaxi'"
+    Sql = "Select count(*) from usuarios.appmenus where aplicacion='Aritaxi'"
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         If Not IsNull(miRsAux.Fields(0)) Then
             If miRsAux.Fields(0) > 0 Then TieneEditorDeMenus = True
@@ -3008,36 +3330,36 @@ End Sub
 
 Private Sub PoneMenusDelEditor()
 Dim T As Control
-Dim SQL As String
+Dim Sql As String
 Dim C As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     
-    SQL = "Select * from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu = " & Val(Right(CStr(vUsu.Codigo), 3))
+    Sql = "Select * from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu = " & Val(Right(CStr(vUsu.Codigo), 3))
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    SQL = ""
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = ""
 
     While Not miRsAux.EOF
         If Not IsNull(miRsAux.Fields(3)) Then
-            SQL = SQL & miRsAux.Fields(3)
-            If Right(miRsAux.Fields(3), 1) <> "|" Then SQL = SQL & "|"
-            SQL = SQL & "·"
+            Sql = Sql & miRsAux.Fields(3)
+            If Right(miRsAux.Fields(3), 1) <> "|" Then Sql = Sql & "|"
+            Sql = Sql & "·"
         End If
         miRsAux.MoveNext
     Wend
     miRsAux.Close
         
    
-    If SQL <> "" Then
-        SQL = "·" & SQL
+    If Sql <> "" Then
+        Sql = "·" & Sql
         For Each T In Me.Controls
             If TypeOf T Is Menu Then
                 C = DevuelveCadenaMenu(T)
                 C = "·" & C & "·"
                 Debug.Print C
-                If InStr(1, SQL, C) > 0 Then
+                If InStr(1, Sql, C) > 0 Then
                     
                     'Stop
                     T.visible = False
@@ -3167,7 +3489,7 @@ Private Function ComprobarBotonMenuVisible(objMenu As Menu, Activado As Boolean)
 'esta activada/desactiva o visible/invisible
 '(se comprueba hasta q se encuentra el false o se llega al padre)
 Dim nomMenu As String
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim cad As String
 Dim b As Boolean
@@ -3187,8 +3509,8 @@ Dim b As Boolean
         Set RS = New ADODB.Recordset
         
         'Obtener el padre del menu
-        SQL = "select padre from usuarios.appmenus where aplicacion='Aritaxi' and name=" & DBSet(nomMenu, "T")
-        RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Sql = "select padre from usuarios.appmenus where aplicacion='Aritaxi' and name=" & DBSet(nomMenu, "T")
+        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not RS.EOF Then
             cad = RS.Fields(0).Value
         End If
@@ -3196,8 +3518,8 @@ Dim b As Boolean
         
         b = True
         While b And cad <> ""
-                SQL = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & cad
-                RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Sql = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & cad
+                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 If Not RS.EOF Then
                     cad = RS!Padre
                     nomMenu = RS!Name
@@ -3205,9 +3527,9 @@ Dim b As Boolean
                 RS.Close
                 
                 'comprobar si el padre esta bloqueado
-                SQL = "Select count(*) from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu=" & Val(Right(CStr(vUsu.Codigo), 3))
-                SQL = SQL & " and tag='" & nomMenu & "|'"
-                RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Sql = "Select count(*) from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu=" & Val(Right(CStr(vUsu.Codigo), 3))
+                Sql = Sql & " and tag='" & nomMenu & "|'"
+                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 If RS.Fields(0).Value > 0 Then
                     'Esta bloqueado el menu para el usuario
                     b = False

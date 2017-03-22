@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacDtosFamMarca 
@@ -731,10 +731,10 @@ Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.AbsolutePosition > 0 Then
             'Poner descripcion del Cliente
-            If IsNull(Data1.Recordset!codClien) Then
+            If IsNull(Data1.Recordset!CodClien) Then
                 Text2(0).Text = ""
             Else
-                Text2(0).Text = DevuelveDesdeBDNew(conAri, "sclien", "nomclien", "codclien", CStr(Data1.Recordset!codClien), "N")
+                Text2(0).Text = DevuelveDesdeBDNew(conAri, "sclien", "nomclien", "codclien", CStr(Data1.Recordset!CodClien), "N")
             End If
             'Poner descripcion de Familia
             If IsNull(Data1.Recordset!Codfamia) Then
@@ -791,11 +791,11 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, Sql, PrimeraVez
     
     CargaGrid2
     DataGrid1.Enabled = (Modo = 2)
@@ -830,24 +830,24 @@ End Sub
 
 Private Sub LLamaLineas(alto As Single)
 Dim jj As Integer
-Dim B As Boolean
+Dim b As Boolean
 
         DeseleccionaGrid Me.DataGrid1
-        B = (Modo = 3 Or Modo = 4 Or Modo = 1) 'Insertar o Modificar
+        b = (Modo = 3 Or Modo = 4 Or Modo = 1) 'Insertar o Modificar
 
         For jj = 0 To txtAux.Count - 1
             txtAux(jj).Height = DataGrid1.RowHeight
             txtAux(jj).Top = alto
-            txtAux(jj).visible = B
+            txtAux(jj).visible = b
         Next jj
         txtAux2.Height = Me.DataGrid1.RowHeight
         txtAux2.Top = alto
-        txtAux2.visible = B
+        txtAux2.visible = b
         
         For jj = 0 To Me.cmdAux.Count - 1
             Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
             Me.cmdAux(jj).Top = alto
-            Me.cmdAux(jj).visible = B
+            Me.cmdAux(jj).visible = b
         Next jj
 End Sub
 
@@ -963,10 +963,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim B As Boolean
-    
+Dim b As Boolean
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
+    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
+    
     
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -978,9 +984,9 @@ Dim B As Boolean
     BloquearClavesP (Modo = 4) ' si modificar
            
     '-----------------------------------------
-    B = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
        
     Me.DataGrid1.Enabled = (Modo = 2)
     
@@ -995,27 +1001,27 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
+Dim b As Boolean
 
     'Modo 2. Hay datos y estamos visualizandolos
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = (B Or (Modo = 0))
-    Me.mnNuevo.Enabled = (B Or (Modo = 0))
+    Toolbar1.Buttons(5).Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
-    B = (Modo >= 3) Or Modo = 1
+    b = (Modo >= 3) Or Modo = 1
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -1048,17 +1054,17 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim tabla As String
+Dim Sql As String
+Dim Tabla As String
     
-    tabla = "sdtofm"
-    SQL = "SELECT codclien, codfamia, codmarca, fechadto, dtoline1, dtoline2, dtocaja1, dtocaja2, " & tabla & ".codactiv, " & " sactiv.nomactiv "
-    SQL = SQL & " FROM " & tabla & " LEFT JOIN sactiv ON " & tabla & ".codactiv ="
-    SQL = SQL & " sactiv.codactiv"
+    Tabla = "sdtofm"
+    Sql = "SELECT codclien, codfamia, codmarca, fechadto, dtoline1, dtoline2, dtocaja1, dtocaja2, " & Tabla & ".codactiv, " & " sactiv.nomactiv "
+    Sql = Sql & " FROM " & Tabla & " LEFT JOIN sactiv ON " & Tabla & ".codactiv ="
+    Sql = Sql & " sactiv.codactiv"
 
     If enlaza Then
         If EsBusqueda And CadenaBusqueda <> "" Then
-            SQL = SQL & CadenaBusqueda
+            Sql = Sql & CadenaBusqueda
         ElseIf CadenaConsulta = "" Then
             If CadenaBusqueda <> "" Then
                 CadenaBusqueda = CadenaBusqueda & " OR (" & MontaWHERE(True, True) & ")"
@@ -1066,13 +1072,13 @@ Dim tabla As String
                 'CadenaBusqueda = " WHERE (codclien=" & txtAux(0).Text & " and codfamia=" & txtAux(1).Text & " and codmarca=" & txtAux(2).Text & ")"
                 CadenaBusqueda = " WHERE (" & MontaWHERE(True, True) & ")"
             End If
-            SQL = SQL & CadenaBusqueda
+            Sql = Sql & CadenaBusqueda
         End If
     Else
-        SQL = SQL & " WHERE codclien = -1"
+        Sql = Sql & " WHERE codclien = -1"
     End If
-    SQL = SQL & Ordenacion
-    MontaSQLCarga = SQL
+    Sql = Sql & Ordenacion
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1169,26 +1175,26 @@ End Sub
 
 
 Private Function BotonEliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
         'Ciertas comprobaciones
         If Data1.Recordset.EOF Then Exit Function
         
-        SQL = "¿Seguro que desea eliminar el Descuento para?" & vbCrLf
-        SQL = SQL & vbCrLf & "Cliente: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Text2(0).Text
-        SQL = SQL & vbCrLf & "Familia: " & Format(Data1.Recordset.Fields(1).Value, "0000") & " - " & Text2(1).Text
-        SQL = SQL & vbCrLf & "Marca : " & Format(Data1.Recordset.Fields(2).Value, "0000") & " - " & Text2(2).Text
-        SQL = SQL & vbCrLf & "Fecha : " & Format(Data1.Recordset!fechadto, "dd/mm/yyyy")
-        SQL = SQL & vbCrLf & "Actividad : " & Format(Data1.Recordset!codactiv, "0000") & " - " & DBLet(Data1.Recordset!nomactiv, "T")
+        Sql = "¿Seguro que desea eliminar el Descuento para?" & vbCrLf
+        Sql = Sql & vbCrLf & "Cliente: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Text2(0).Text
+        Sql = Sql & vbCrLf & "Familia: " & Format(Data1.Recordset.Fields(1).Value, "0000") & " - " & Text2(1).Text
+        Sql = Sql & vbCrLf & "Marca : " & Format(Data1.Recordset.Fields(2).Value, "0000") & " - " & Text2(2).Text
+        Sql = Sql & vbCrLf & "Fecha : " & Format(Data1.Recordset!fechadto, "dd/mm/yyyy")
+        Sql = Sql & vbCrLf & "Actividad : " & Format(Data1.Recordset!codactiv, "0000") & " - " & DBLet(Data1.Recordset!nomactiv, "T")
         
-        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+        If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
             'Hay que eliminar
             NumRegElim = Me.Data1.Recordset.AbsolutePosition
-            SQL = "Delete from sdtofm where codclien" & vDBSET(Data1.Recordset!codClien, True, True, False)
-            SQL = SQL & " and codfamia " & vDBSET(Data1.Recordset!Codfamia, True, True, False) & " and codmarca " & vDBSET(Data1.Recordset!codmarca, True, True, False)
-            SQL = SQL & " and codactiv " & vDBSET(Data1.Recordset!codactiv, True, True, False) & " and fechadto=" & DBSet(Data1.Recordset!fechadto, "F", "S")
-            conn.Execute SQL
+            Sql = "Delete from sdtofm where codclien" & vDBSET(Data1.Recordset!CodClien, True, True, False)
+            Sql = Sql & " and codfamia " & vDBSET(Data1.Recordset!Codfamia, True, True, False) & " and codmarca " & vDBSET(Data1.Recordset!codmarca, True, True, False)
+            Sql = Sql & " and codactiv " & vDBSET(Data1.Recordset!codactiv, True, True, False) & " and fechadto=" & DBSet(Data1.Recordset!fechadto, "F", "S")
+            conn.Execute Sql
             CancelaADODC Me.Data1
             CargaGrid True
             CancelaADODC Me.Data1
@@ -1202,14 +1208,14 @@ End Function
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 Dim RS As ADODB.Recordset
 Dim C As String
 Dim C2 As String
 
     DatosOk = False
-    B = CompForm(Me, 3)
-    If Not B Then Exit Function
+    b = CompForm(Me, 3)
+    If Not b Then Exit Function
     
     'es obligado O EL Cliente o la actividad
     If txtAux(0).Text <> "" And txtAux(8).Text <> "" Then
@@ -1276,7 +1282,7 @@ Dim s As String
     Else
         
         'Contra el DATA1
-        s = " codclien " & vDBSET(Data1.Recordset!codClien, True, True, ConLosTxt)
+        s = " codclien " & vDBSET(Data1.Recordset!CodClien, True, True, ConLosTxt)
         s = s & " and codfamia " & vDBSET(Data1.Recordset!Codfamia, True, True, ConLosTxt)
         s = s & " and codmarca " & vDBSET(Data1.Recordset!codmarca, True, True, ConLosTxt)
         If ComprobarConFecha Then s = s & " and fechadto " & vDBSET(Data1.Recordset!fechadto, False, False, ConLosTxt)
@@ -1310,7 +1316,7 @@ End Function
 Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1319,14 +1325,14 @@ Dim Titulo As String
     'Registro de la tabla de cabeceras: slista
     cad = cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
     cad = cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
-    tabla = NombreTabla
+    Tabla = NombreTabla
     Titulo = "Precios Especiales"
 
     If cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano

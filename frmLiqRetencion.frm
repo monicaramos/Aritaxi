@@ -615,7 +615,7 @@ End Sub
 
 
 
-Private Sub combo1_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub Combo1_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -694,17 +694,17 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     b = DataGrid1.Enabled
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, SQL, False
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, Sql, False
 
     CargaGrid2
 
-    CalcularTotales SQL
+    CalcularTotales Sql
     
     DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
@@ -842,9 +842,14 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-    
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
+    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -944,21 +949,21 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
     
-    SQL = "Select sreten.codsocio, sclien.nomclien, sreten.numeruve, sreten.fecfactu, "
-    SQL = SQL & " sreten.numfactu, sreten.tiporeten,"
-    SQL = SQL & " CASE sreten.tiporeten WHEN 0 THEN ""Liquidación"" WHEN 1 THEN ""Traspaso"" WHEN 2 THEN ""Rectificativa""   END, "
-    SQL = SQL & " impreten, hastafec "
-    SQL = SQL & " from " & NombreTabla & " INNER JOIN sclien ON sreten.codsocio = sclien.codclien "
+    Sql = "Select sreten.codsocio, sclien.nomclien, sreten.numeruve, sreten.fecfactu, "
+    Sql = Sql & " sreten.numfactu, sreten.tiporeten,"
+    Sql = Sql & " CASE sreten.tiporeten WHEN 0 THEN ""Liquidación"" WHEN 1 THEN ""Traspaso"" WHEN 2 THEN ""Rectificativa""   END, "
+    Sql = Sql & " impreten, hastafec "
+    Sql = Sql & " from " & NombreTabla & " INNER JOIN sclien ON sreten.codsocio = sclien.codclien "
 
     If enlaza Then
-        If EsBusqueda And CadenaBusqueda <> "" Then SQL = SQL & CadenaBusqueda
+        If EsBusqueda And CadenaBusqueda <> "" Then Sql = Sql & CadenaBusqueda
     Else
-        SQL = SQL & " WHERE codsocio = -1"
+        Sql = Sql & " WHERE codsocio = -1"
     End If
-    SQL = SQL & Ordenacion
-    MontaSQLCarga = SQL
+    Sql = Sql & Ordenacion
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1089,27 +1094,27 @@ End Sub
 
 
 Private Function BotonEliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
         'Ciertas comprobaciones
         If Data1.Recordset.EOF Then Exit Function
         
-        SQL = "¿Seguro que desea eliminar la Retención para?" & vbCrLf
-        SQL = SQL & vbCrLf & "Socio: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset!nomclien
-        SQL = SQL & vbCrLf & "Fecha: " & Data1.Recordset.Fields(3).Value
-        SQL = SQL & vbCrLf & "Factura : " & Format(Data1.Recordset.Fields(4).Value, "0000000")
+        Sql = "¿Seguro que desea eliminar la Retención para?" & vbCrLf
+        Sql = Sql & vbCrLf & "Socio: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset!nomclien
+        Sql = Sql & vbCrLf & "Fecha: " & Data1.Recordset.Fields(3).Value
+        Sql = Sql & vbCrLf & "Factura : " & Format(Data1.Recordset.Fields(4).Value, "0000000")
         
-        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+        If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
             'Hay que eliminar
             NumRegElim = Me.Data1.Recordset.AbsolutePosition
-            SQL = "Delete from " & NombreTabla & " where codsocio=" & Val(Data1.Recordset!codSocio)
-            SQL = SQL & " and fecfactu=" & DBSet(Data1.Recordset!FecFactu, "F") & " and numfactu=" & Val(Data1.Recordset!NumFactu)
-            conn.Execute SQL
+            Sql = "Delete from " & NombreTabla & " where codsocio=" & Val(Data1.Recordset!codSocio)
+            Sql = Sql & " and fecfactu=" & DBSet(Data1.Recordset!FecFactu, "F") & " and numfactu=" & Val(Data1.Recordset!NumFactu)
+            conn.Execute Sql
             CancelaADODC Me.Data1
             CargaGrid True
             CancelaADODC Me.Data1
-            SituarDataPosicion Me.Data1, NumRegElim, SQL
+            SituarDataPosicion Me.Data1, NumRegElim, Sql
         End If
         
 FinEliminar:
@@ -1120,16 +1125,16 @@ End Function
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 
     DatosOk = False
     b = CompForm(Me, 3)
     If Not b Then Exit Function
     
     If Modo = 3 Then   'Estamos insertando
-        SQL = "select count(*) from sreten where codsocio = " & txtAux(0).Text & " and fecfactu = "
-        SQL = SQL & DBSet(txtAux(3).Text, "F") & " and numfactu = " & DBSet(txtAux(2).Text, "N")
-        If TotalRegistros(SQL) > 0 Then
+        Sql = "select count(*) from sreten where codsocio = " & txtAux(0).Text & " and fecfactu = "
+        Sql = Sql & DBSet(txtAux(3).Text, "F") & " and numfactu = " & DBSet(txtAux(2).Text, "N")
+        If TotalRegistros(Sql) > 0 Then
             MsgBox "Ya existe la factura para este socio en esta fecha.", vbExclamation
             PonerFoco txtAux(0)
             b = False
@@ -1214,7 +1219,7 @@ Private Sub InicializarVbles()
 End Sub
 
 Private Sub BotonReimprimir()
-Dim SQL As String
+Dim Sql As String
 Dim cadFormula As String
 Dim cadParam As String
 Dim numParam As Byte
@@ -1232,14 +1237,14 @@ Dim devuelve As String
         
         ConSubInforme = False
         
-        SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
-        conn.Execute SQL
+        Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
+        conn.Execute Sql
         
-        SQL = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values ("
-        SQL = SQL & vUsu.Codigo & "," & DBSet(Me.Data1.Recordset!codSocio, "N") & "," & DBSet(Data1.Recordset!NumerUve, "N") & ","
-        SQL = SQL & DBSet(Data1.Recordset!impreten * (-1), "N") & "," & DBSet(Data1.Recordset!hastafec, "F") & ")"
+        Sql = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values ("
+        Sql = Sql & vUsu.Codigo & "," & DBSet(Me.Data1.Recordset!codSocio, "N") & "," & DBSet(Data1.Recordset!NumerUve, "N") & ","
+        Sql = Sql & DBSet(Data1.Recordset!impreten * (-1), "N") & "," & DBSet(Data1.Recordset!hastafec, "F") & ")"
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
         
@@ -1433,14 +1438,14 @@ Dim Compleme As Currency
 Dim Penaliza As Currency
 
 Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = "select sum(impreten) importe  from (" & CADENA & ") aaaaa"
+    Sql = "select sum(impreten) importe  from (" & CADENA & ") aaaaa"
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Importe = 0
     Text1.Text = ""

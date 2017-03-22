@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -61,29 +61,29 @@ Begin VB.Form frmRepNumSerie2
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(15)"
+      Tab(1).Control(0)=   "Frame4"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label1(7)"
+      Tab(1).Control(1)=   "Frame3"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "txtAux2(2)"
+      Tab(1).Control(2)=   "txtAux(2)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "chkAux"
+      Tab(1).Control(3)=   "txtAux2(1)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "DataGrid1"
+      Tab(1).Control(4)=   "txtAux2(0)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux(0)"
+      Tab(1).Control(5)=   "txtAux(1)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux(1)"
+      Tab(1).Control(6)=   "txtAux(0)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "txtAux2(0)"
+      Tab(1).Control(7)=   "DataGrid1"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "txtAux2(1)"
+      Tab(1).Control(8)=   "chkAux"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(2)"
+      Tab(1).Control(9)=   "txtAux2(2)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Frame3"
+      Tab(1).Control(10)=   "Label1(7)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "Frame4"
+      Tab(1).Control(11)=   "Label1(15)"
       Tab(1).Control(11).Enabled=   0   'False
       Tab(1).ControlCount=   12
       Begin VB.Frame Frame4 
@@ -1558,7 +1558,7 @@ Private Sub cmdAceptar_Click()
                     
                     CadenaConsulta = "numserie=" & DBSet(Text1(0).Text, "T") & "  AND codartic=" & DBSet(Text1(1).Text, "T") & ""
                     CadenaConsulta = "Select * from " & NombreTabla & " WHERE " & CadenaConsulta
-                    data1.RecordSource = CadenaConsulta
+                    Data1.RecordSource = CadenaConsulta
                     PosicionarData
                 End If
             End If
@@ -1612,15 +1612,15 @@ End Sub
 Private Sub cmdRegresar_Click()
 Dim cad As String
 
-    If data1.Recordset.EOF Then
+    If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = data1.Recordset.Fields(0) & "|" 'num serie
-    cad = cad & data1.Recordset.Fields(1) & "|" 'cod artic
+    cad = Data1.Recordset.Fields(0) & "|" 'num serie
+    cad = cad & Data1.Recordset.Fields(1) & "|" 'cod artic
     cad = cad & Text2(1).Text & "|"  'nom artic
-    cad = cad & data1.Recordset.Fields(3) & "|" 'cod cliente
+    cad = cad & Data1.Recordset.Fields(3) & "|" 'cod cliente
     RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
@@ -1630,7 +1630,7 @@ End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 Dim Sql As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 
 
     If Me.Adodc1.Recordset.EOF Then Exit Sub
@@ -1646,7 +1646,7 @@ Dim Rs As ADODB.Recordset
         txtAux2(7).Text = DBLet(Me.Adodc1.Recordset!numline1, "T")
         
         '[Monica]14/02/2014:
-        txtAux2(8).Text = DBLet(Me.Adodc1.Recordset!NumAlbpr, "T")
+        txtAux2(8).Text = DBLet(Me.Adodc1.Recordset!numalbpr, "T")
         txtAux2(10).Text = DBLet(Me.Adodc1.Recordset!fechaCom, "F")
         txtAux2(11).Text = DBLet(Me.Adodc1.Recordset!numline2, "T")
         
@@ -1654,13 +1654,13 @@ Dim Rs As ADODB.Recordset
         If txtAux2(8).Text <> "" Then
             Sql = "select numfactu from scafpa where numalbar = " & DBSet(txtAux2(8).Text, "T") & " and codprove = " & DBSet(Me.Adodc1.Recordset!codProve, "N")
             
-            Set Rs = New ADODB.Recordset
-            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-            If Not Rs.EOF Then
-                txtAux2(9).Text = DBLet(Rs!NumFactu)
+            Set RS = New ADODB.Recordset
+            RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            If Not RS.EOF Then
+                txtAux2(9).Text = DBLet(RS!NumFactu)
             End If
             
-            Set Rs = Nothing
+            Set RS = Nothing
         End If
         
         
@@ -1677,7 +1677,7 @@ Private Sub Form_Activate()
             Text1_LostFocus (6)
         Else
             If numSerie <> "" Then
-                If data1.Recordset.EOF Then
+                If Data1.Recordset.EOF Then
                     PonerCadenaBusqueda
                 Else
                     PonerCampos
@@ -1754,9 +1754,9 @@ Private Sub Form_Load()
         'No recupera datos
     End If
     
-    data1.ConnectionString = conn
-    data1.RecordSource = CadenaConsulta
-    data1.Refresh
+    Data1.ConnectionString = conn
+    Data1.RecordSource = CadenaConsulta
+    Data1.Refresh
     
     CargaGrid False
 
@@ -2113,10 +2113,14 @@ Dim NumReg As Byte
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
-    If Not data1.Recordset.EOF Then
-        If data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not Data1.Recordset.EOF Then
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
     DesplazamientoVisible Me.Toolbar1, btnPrimero, (Modo = 2), NumReg
         
@@ -2243,7 +2247,7 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    DesplazamientoData data1, Index
+    DesplazamientoData Data1, Index
     PonerCampos
     
 End Sub
@@ -2261,7 +2265,7 @@ Private Sub BotonBuscar()
         Text1(0).BackColor = vbYellow
     Else
         HacerBusqueda
-        If data1.Recordset.EOF Then
+        If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbYellow
             PonerFoco Text1(kCampo)
@@ -2319,7 +2323,7 @@ Private Sub BotonEliminar()
 Dim Sql As String
 
     'Ciertas comprobaciones
-    If data1.Recordset.EOF Then Exit Sub
+    If Data1.Recordset.EOF Then Exit Sub
     'Comprobamos si se puede eliminar
     If Not SePuedeEliminar Then Exit Sub
     
@@ -2332,9 +2336,9 @@ Dim Sql As String
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
-        NumRegElim = data1.Recordset.AbsolutePosition
+        NumRegElim = Data1.Recordset.AbsolutePosition
         If Not Eliminar Then Exit Sub
-        If SituarDataTrasEliminar(data1, NumRegElim) Then
+        If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
         Else
             LimpiarCampos
@@ -2346,7 +2350,7 @@ Error2:
     Screen.MousePointer = vbDefault
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar Nº Serie", Err.Description
-        data1.Recordset.CancelUpdate
+        Data1.Recordset.CancelUpdate
     End If
 End Sub
 
@@ -2356,8 +2360,8 @@ Dim Sql As String
 
     On Error GoTo FinEliminar
 
-      Sql = " WHERE numserie=" & DBSet(data1.Recordset!numSerie, "T")
-      Sql = Sql & " AND codartic = " & DBSet(data1.Recordset!codArtic, "T")
+      Sql = " WHERE numserie=" & DBSet(Data1.Recordset!numSerie, "T")
+      Sql = Sql & " AND codartic = " & DBSet(Data1.Recordset!codArtic, "T")
     
       conn.Execute "Delete  from " & NombreTabla & Sql
                       
@@ -2461,7 +2465,7 @@ Dim selElem As Byte
         'Si ha puesto valores y tenemos que es formulario de busqueda entonces
         'tendremos que cerrar el form lanzando el evento
         If HaDevueltoDatos Then
-            If (Not data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
                 cmdRegresar_Click
 '        Else   'de ha devuelto datos, es decir NO ha devuelto datos
 '            If Modo = 5 Then
@@ -2501,10 +2505,10 @@ Screen.MousePointer = vbHourglass
 
     On Error GoTo EEPonerBusq
 
-    data1.RecordSource = CadenaConsulta
-    data1.Refresh
+    Data1.RecordSource = CadenaConsulta
+    Data1.Refresh
     
-    If data1.Recordset.RecordCount <= 0 Then
+    If Data1.Recordset.RecordCount <= 0 Then
         If Modo = 1 Then
             MsgBox "No hay ningún registro en la tabla " & NombreTabla & " para ese criterio de Búsqueda.", vbInformation
         Else
@@ -2516,7 +2520,7 @@ Screen.MousePointer = vbHourglass
         Exit Sub
     Else
         PonerModo 2
-        data1.Recordset.MoveFirst
+        Data1.Recordset.MoveFirst
         PonerCampos
     End If
     Screen.MousePointer = vbDefault
@@ -2532,18 +2536,18 @@ End Sub
 
 Private Sub PonerCampos()
 Dim Sql As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
  
     On Error GoTo EPonerCampos
     Toolbar1.Buttons(11).Enabled = False
-    If data1.Recordset.EOF Then Exit Sub
+    If Data1.Recordset.EOF Then Exit Sub
 
 
 
      'Si se el campo numsersu tiene valor mostrar el frame de sustitucion
-    Me.FrameSusti.visible = DBLet(data1.Recordset!numsersu, "T") <> ""
+    Me.FrameSusti.visible = DBLet(Data1.Recordset!numsersu, "T") <> ""
 
-    PonerCamposForma Me, data1
+    PonerCamposForma Me, Data1
 
     'Poner el nombre del cod. Articulo
     Text2(1).Text = PonerNombreDeCod(Text1(1), conAri, "sartic", "nomartic")
@@ -2566,21 +2570,21 @@ Dim Rs As ADODB.Recordset
     If Text1(13).Text <> "" Then
         Sql = "select numfactu, fecfactu from scafpa where numalbar = " & DBSet(Text1(13).Text, "T")
         
-        Set Rs = New ADODB.Recordset
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If Not Rs.EOF Then
-            Text2(3).Text = DBLet(Rs!NumFactu)
-            Text2(4).Text = DBLet(Rs!FecFactu)
+        Set RS = New ADODB.Recordset
+        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not RS.EOF Then
+            Text2(3).Text = DBLet(RS!NumFactu)
+            Text2(4).Text = DBLet(RS!FecFactu)
         End If
         
-        Set Rs = Nothing
+        Set RS = Nothing
     End If
     
     
-    If IsNull(data1.Recordset!codmotba) Then
+    If IsNull(Data1.Recordset!codmotba) Then
         Me.cboMotivoBaja.ListIndex = -1
     Else
-        PosicionarCombo Me.cboMotivoBaja, data1.Recordset!codmotba
+        PosicionarCombo Me.cboMotivoBaja, Data1.Recordset!codmotba
     End If
     
     '-- cargar las lineas de venta nº serie
@@ -2588,7 +2592,7 @@ Dim Rs As ADODB.Recordset
     
     Toolbar1.Buttons(11).Enabled = (Modo = 2) And Trim(Text1(6).Text) <> ""
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
+    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
     Exit Sub
     
 EPonerCampos:
@@ -2606,7 +2610,7 @@ Dim Indicador As String
 Dim vWhere As String
 
     vWhere = "(numserie=" & DBSet(Text1(0).Text, "T") & "  AND codartic=" & DBSet(Text1(1).Text, "T") & ")"
-    If SituarDataMULTI(data1, vWhere, Indicador) Then
+    If SituarDataMULTI(Data1, vWhere, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else
@@ -2639,7 +2643,7 @@ Dim vWhere As String
         Exit Sub
     End If
     vWhere = " WHERE codclien = " & Text1(6).Text
-    frmMensajes.cadwhere = vWhere
+    frmMensajes.cadWHERE = vWhere
     'vCampos= Mantenimiento|coddirec|Desc. coddirec| cadCliente
     vWhere = Text1(6).Text & " - " & Text2(6).Text
     frmMensajes.vCampos = Text1(3).Text & "|" & Text1(7).Text & "|" & Text2(7).Text & "|" & vWhere & "|"
@@ -2730,7 +2734,7 @@ Dim Tabla As String
     Sql = Sql & " LEFT OUTER JOIN sdirec d ON s.codclien=d.codclien and s.coddirec=d.coddirec)"
     Sql = Sql & " LEFT OUTER JOIN sprove p On s.codprove = p.codprove "
     If enlaza Then
-        Sql = Sql & " WHERE s.numserie=" & DBSet(data1.Recordset!numSerie, "T") & " AND s.codartic=" & DBSet(data1.Recordset!codArtic, "T")
+        Sql = Sql & " WHERE s.numserie=" & DBSet(Data1.Recordset!numSerie, "T") & " AND s.codartic=" & DBSet(Data1.Recordset!codArtic, "T")
     Else
         Sql = Sql & " WHERE s.numserie = '-1' and s.codartic='-1'"
     End If

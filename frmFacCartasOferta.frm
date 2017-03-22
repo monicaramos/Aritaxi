@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacCartasOferta 
    BorderStyle     =   3  'Fixed Dialog
@@ -492,11 +492,11 @@ On Error GoTo Error1
     Case 1 'BUSQUEDA
         HacerBusqueda
     Case 3 'INSERTAR
-        If DatosOK Then
+        If DatosOk Then
             If InsertarDesdeForm(Me) Then PosicionarData
         End If
     Case 4 'MODIFICAR
-        If DatosOK Then
+        If DatosOk Then
              If ModificaDesdeFormulario(Me, 1) Then
                  TerminaBloquear
                  PosicionarData
@@ -529,7 +529,7 @@ On Error GoTo ECancelar
             TerminaBloquear
             PonerModo 2
             PonerCampos
-            PonerFoco text1(0)
+            PonerFoco Text1(0)
     End Select
 ECancelar:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -609,7 +609,7 @@ Dim Aux As String
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
         cadB = ""
-        Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
         cadB = Aux
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
@@ -623,7 +623,7 @@ Private Sub imgBuscar_Click(Index As Integer)
     Select Case Index
         Case 0
             If Modo = 3 Or Modo = 4 Then
-                CadenaDesdeOtroForm = text1(3).Text
+                CadenaDesdeOtroForm = Text1(3).Text
             Else
                 CadenaDesdeOtroForm = ""
                 If Not Data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Data1.Recordset!parrafo1, "T")
@@ -632,13 +632,13 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmObs = New frmFacClienteObser
             
             frmObs.Modificar = (Modo >= 3)
-            frmObs.text1 = CadenaDesdeOtroForm
+            frmObs.Text1 = CadenaDesdeOtroForm
             frmObs.Caption = "Cuerpo"
             frmObs.Show vbModal
             'Llevara DOS VALORES.
             'Si modifica y el texto
             If Modo = 3 Or Modo = 4 Then
-                If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then text1(3).Text = Mid(CadenaDesdeOtroForm, 3)
+                If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then Text1(3).Text = Mid(CadenaDesdeOtroForm, 3)
             End If
             CadenaDesdeOtroForm = ""
         
@@ -646,7 +646,7 @@ Private Sub imgBuscar_Click(Index As Integer)
         
         Case 1
             If Modo = 3 Or Modo = 4 Then
-                CadenaDesdeOtroForm = text1(4).Text
+                CadenaDesdeOtroForm = Text1(4).Text
             Else
                 CadenaDesdeOtroForm = ""
                 If Not Data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Data1.Recordset!parrafo2, "T")
@@ -655,13 +655,13 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmObs = New frmFacClienteObser
             
             frmObs.Modificar = (Modo >= 3)
-            frmObs.text1 = CadenaDesdeOtroForm
+            frmObs.Text1 = CadenaDesdeOtroForm
             frmObs.Caption = "Párrafo 2"
             frmObs.Show vbModal
             'Llevara DOS VALORES.
             'Si modifica y el texto
             If Modo = 3 Or Modo = 4 Then
-                If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then text1(4).Text = Mid(CadenaDesdeOtroForm, 3)
+                If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then Text1(4).Text = Mid(CadenaDesdeOtroForm, 3)
             End If
             CadenaDesdeOtroForm = ""
         
@@ -669,7 +669,7 @@ Private Sub imgBuscar_Click(Index As Integer)
         
         Case 2
             If Modo = 3 Or Modo = 4 Then
-                CadenaDesdeOtroForm = text1(5).Text
+                CadenaDesdeOtroForm = Text1(5).Text
             Else
                 CadenaDesdeOtroForm = ""
                 If Not Data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Data1.Recordset!parrafo3, "T")
@@ -678,13 +678,13 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmObs = New frmFacClienteObser
             
             frmObs.Modificar = (Modo >= 3)
-            frmObs.text1 = CadenaDesdeOtroForm
+            frmObs.Text1 = CadenaDesdeOtroForm
             frmObs.Caption = "Párrafo 3"
             frmObs.Show vbModal
             'Llevara DOS VALORES.
             'Si modifica y el texto
             If Modo = 3 Or Modo = 4 Then
-                If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then text1(5).Text = Mid(CadenaDesdeOtroForm, 3)
+                If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then Text1(5).Text = Mid(CadenaDesdeOtroForm, 3)
             End If
             CadenaDesdeOtroForm = ""
         
@@ -698,7 +698,7 @@ Private Sub imgDoc_Click(Index As Integer)
     
     TerminaBloquear
     
-    If text1(1).Text = "" Then Exit Sub
+    If Text1(1).Text = "" Then Exit Sub
     
     Select Case Index
         Case 1 'vista preliminar de la impresion del documento
@@ -706,7 +706,7 @@ Private Sub imgDoc_Click(Index As Integer)
 
         
             'Parametro cod. carta
-            cadParam = "|pCodCarta= " & text1(0).Text & "|"
+            cadParam = "|pCodCarta= " & Text1(0).Text & "|"
             numParam = numParam + 1
             
             'Nombre fichero .rpt a Imprimir
@@ -772,7 +772,7 @@ End Sub
 
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
-    ConseguirFoco text1(Index), Modo
+    ConseguirFoco Text1(Index), Modo
 End Sub
 
 
@@ -788,14 +788,14 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
   
-    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
       
-    With text1(Index)
+    With Text1(Index)
         'Código de Carta
         If Index = 0 Then
-            If PonerFormatoEntero(text1(Index)) Then
+            If PonerFormatoEntero(Text1(Index)) Then
                 If Modo = 3 Then 'Insertar
-                    If ExisteCP(text1(Index)) Then PonerFoco text1(Index)
+                    If ExisteCP(Text1(Index)) Then PonerFoco Text1(Index)
                 End If
             End If
         End If
@@ -834,7 +834,12 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
+Dim i As Integer
 
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
     Modo = Kmodo
     PonerIndicador Me.lblIndicador, Modo
     
@@ -928,14 +933,14 @@ Private Sub BotonBuscar()
         LimpiarCampos
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
-        PonerFoco text1(0)
-        text1(0).BackColor = vbYellow
+        PonerFoco Text1(0)
+        Text1(0).BackColor = vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            text1(kCampo).Text = ""
-            text1(kCampo).BackColor = vbYellow
-            PonerFoco text1(kCampo)
+            Text1(kCampo).Text = ""
+            Text1(kCampo).BackColor = vbYellow
+            PonerFoco Text1(kCampo)
         End If
     End If
 End Sub
@@ -959,16 +964,16 @@ Private Sub BotonAnyadir()
     ModoAnterior = Modo 'Para el botón Cancelar en Modo Insertar
     PonerModo 3
               
-    text1(0).Text = SugerirCodigoSiguienteStr(NombreTabla, "codcarta")
-    FormateaCampo text1(0)
-    PonerFoco text1(0)
+    Text1(0).Text = SugerirCodigoSiguienteStr(NombreTabla, "codcarta")
+    FormateaCampo Text1(0)
+    PonerFoco Text1(0)
 End Sub
 
 
 Private Sub BotonModificar()
     'Escondemos el navegador y ponemos Modo Modificar
     PonerModo 4
-    PonerFoco text1(1)
+    PonerFoco Text1(1)
 End Sub
 
 
@@ -979,8 +984,8 @@ Dim Sql As String
     If Data1.Recordset.EOF Then Exit Sub
        
     Sql = Sql & "¿Desea Eliminar la Carta para Ofertas? " & vbCrLf
-    Sql = Sql & vbCrLf & "Código : " & Format(text1(0).Text, "000")
-    Sql = Sql & vbCrLf & "Descripción : " & text1(1).Text
+    Sql = Sql & vbCrLf & "Código : " & Format(Text1(0).Text, "000")
+    Sql = Sql & vbCrLf & "Descripción : " & Text1(1).Text
     
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
@@ -1024,14 +1029,14 @@ FinEliminar:
 End Function
 
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim b As Boolean
 On Error Resume Next
 
-    DatosOK = False
+    DatosOk = False
     b = CompForm(Me, 1)
     If Not b Then Exit Function
-    DatosOK = True
+    DatosOk = True
 End Function
 
 
@@ -1045,8 +1050,8 @@ Dim Titulo As String
     cad = ""
     'Estamos en Modo de Cabeceras
     'Registro de la tabla de cabeceras: scapla
-    cad = cad & ParaGrid(text1(0), 20, "Cod. Carta")
-    cad = cad & ParaGrid(text1(1), 80, "Descripción")
+    cad = cad & ParaGrid(Text1(0), 20, "Cod. Carta")
+    cad = cad & ParaGrid(Text1(1), 80, "Descripción")
     
     Tabla = NombreTabla
     Titulo = "Cartas de Oferta"
@@ -1076,7 +1081,7 @@ Dim Titulo As String
 '            If Modo = 5 Then
 '                PonerFoco txtAux(0)
 '            Else
-                PonerFoco text1(kCampo)
+                PonerFoco Text1(kCampo)
 '            End If
         End If
     End If
@@ -1114,7 +1119,7 @@ Dim cadMen As String
         End If
         Screen.MousePointer = vbDefault
         PonerModo Modo
-        PonerFoco text1(0)
+        PonerFoco Text1(0)
         Exit Sub
     Else
         PonerModo 2
@@ -1165,6 +1170,6 @@ End Sub
 
 Private Function ObtenerWhereCP() As String
 On Error Resume Next
-    ObtenerWhereCP = " WHERE codcarta= " & text1(0).Text
+    ObtenerWhereCP = " WHERE codcarta= " & Text1(0).Text
 End Function
 

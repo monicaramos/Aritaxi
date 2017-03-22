@@ -390,7 +390,7 @@ Public vModo As Byte
     
 
 Dim PrimeVez As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim txtAnterior As String
 
 Private Sub cmdAceptar_Click()
@@ -398,9 +398,9 @@ Dim b As Boolean
     b = False
     If vModo = 1 Then
         'Busqueda
-        SQL = ObtenerBusqueda(Me, False)
-        If SQL <> "" Then
-            CadenaDesdeOtroForm = SQL
+        Sql = ObtenerBusqueda(Me, False)
+        If Sql <> "" Then
+            CadenaDesdeOtroForm = Sql
             b = True
         Else
             MsgBox "Ponga algun parametro para la busqueda", vbExclamation
@@ -436,12 +436,12 @@ Private Sub Form_Activate()
         PrimeVez = False
         If vModo = 4 Then
             CadenaDesdeOtroForm = "Select * from sllama WHERE " & CadenaDesdeOtroForm
-            adodc1.ConnectionString = conn
-            adodc1.RecordSource = CadenaDesdeOtroForm
-            adodc1.Refresh
+            Adodc1.ConnectionString = conn
+            Adodc1.RecordSource = CadenaDesdeOtroForm
+            Adodc1.Refresh
             
             'Si por algun motivo es EOF.
-            If Not Me.adodc1.Recordset.EOF Then PonerCamposForma Me, adodc1
+            If Not Me.Adodc1.Recordset.EOF Then PonerCamposForma Me, Adodc1
 
             CadenaDesdeOtroForm = ""
             
@@ -614,8 +614,8 @@ End Sub
 
 
 Private Sub PonerCampos()
-    If adodc1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, adodc1
+    If Adodc1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, Adodc1
 
     '-- Esto permanece para saber donde estamos
     ' lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
@@ -662,10 +662,10 @@ Dim i As Integer
     'Cargamos combo
     Me.Combo1.Clear
     
-    SQL = "SELECT * FROM sllama1 ORDER BY nomllama1"
+    Sql = "SELECT * FROM sllama1 ORDER BY nomllama1"
     
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not miRsAux.EOF
         Combo1.AddItem miRsAux!nomllama1
         Combo1.ItemData(Combo1.NewIndex) = CInt(miRsAux!codllama1)
@@ -677,23 +677,23 @@ Dim i As Integer
         
     If vModo = 3 Then
         'Estamos insertando. Entonces le pongo la fecha y la hora
-        SQL = "Select CURDATE() ,CURTIME() "
-        miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Sql = "Select CURDATE() ,CURTIME() "
+        miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         'NO PUE SER NULL
-        SQL = Format(miRsAux.Fields(0), "dd/mm/yyyy") & " " & Format(miRsAux.Fields(1), "hh:mm:ss")
-        Text1(0).Text = SQL
+        Sql = Format(miRsAux.Fields(0), "dd/mm/yyyy") & " " & Format(miRsAux.Fields(1), "hh:mm:ss")
+        Text1(0).Text = Sql
         miRsAux.Close
         
-        CadenaDesdeOtroForm = PonerTrabajadorConectado(SQL)
+        CadenaDesdeOtroForm = PonerTrabajadorConectado(Sql)
         If CadenaDesdeOtroForm = "" Then
-            SQL = "SIN LOG."
+            Sql = "SIN LOG."
             cmdAceptar.Enabled = False
         Else
-            SQL = vUsu.Login
+            Sql = vUsu.Login
             Text1(8).Text = CadenaDesdeOtroForm
         End If
-        Text1(1).Text = SQL
-        Text1(11).Text = SQL
+        Text1(1).Text = Sql
+        Text1(11).Text = Sql
         
         
 
@@ -708,13 +708,18 @@ Dim i As Integer
     
     
 ER:
-    If Err.Number <> 0 Then MuestraError Err.Number, SQL
+    If Err.Number <> 0 Then MuestraError Err.Number, Sql
     Set miRsAux = Nothing
 End Sub
 
 
 Private Sub PonerModo()
 Dim b As Boolean
+Dim i As Integer
+
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     b = vModo = 1
     BloquearTxt Text1(0), Not b, True

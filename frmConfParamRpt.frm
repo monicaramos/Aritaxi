@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmConfParamRpt 
    BorderStyle     =   3  'Fixed Dialog
@@ -409,7 +409,7 @@ Dim btnPrimero As Byte
 Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
 Dim HaDevueltoDatos  As Boolean
-Dim CadB As String
+Dim cadB As String
 
 Dim Modo As Byte
 '0: Inicial
@@ -572,8 +572,8 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
-        CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        cadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
@@ -737,11 +737,19 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
+Dim i As Integer
+
    
     Modo = Kmodo
         
     '----------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
+   
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+   
+   
    
     PonerIndicador lblIndicador, Modo
     
@@ -786,7 +794,7 @@ Dim b As Boolean
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
 
@@ -799,7 +807,7 @@ Dim cad As String
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
         frmB.vTabla = "scryst"
-        frmB.vSQL = CadB
+        frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|"

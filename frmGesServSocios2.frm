@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesServSocios2 
@@ -639,7 +639,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
     
@@ -824,9 +824,13 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-    
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -1011,7 +1015,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim I As Integer
+Dim i As Integer
 Dim anc As Single
 
     If CInt(Data1.Recordset!facturado) = 1 Then
@@ -1024,8 +1028,8 @@ Dim anc As Single
     
     'Como el campo1, campo2 y campo3 es clave primaria, NO se puede modificar
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -1037,7 +1041,7 @@ Dim anc As Single
     '---- poner valores grabados
     'codclien
     txtAux(0).Text = DBLet(DataGrid1.Columns(0).Value, "N")
-    FormateaCampo txtAux(I)
+    FormateaCampo txtAux(i)
     
     'nomclien
 '    Text2(0).Text = DBLet(DataGrid1.Columns(1).Value, "T")
@@ -1210,12 +1214,12 @@ Private Sub BloquearClavesP(bol As Boolean)
 'Si BloquearClavesPrimarias=true deshablilita los textbox de codigos y lo pone amarillo
 'y habilita el resto de campos para introducir nuevos valores
 'Si BloquearClavesPrimarias=false habilita los textbox de codigos para introducir
-Dim I As Byte
+Dim i As Byte
 
-    For I = 1 To 1 'Codigo socio
-        BloquearTxt txtAux(I), bol
-        Me.cmdAux(I).Enabled = Not bol
-    Next I
+    For i = 1 To 1 'Codigo socio
+        BloquearTxt txtAux(i), bol
+        Me.cmdAux(i).Enabled = Not bol
+    Next i
     ' fecha bloqueada
     Me.cmdAux(1).Enabled = Not bol
     BloquearTxt txtAux(3), bol

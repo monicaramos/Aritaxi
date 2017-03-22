@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMensajes 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Mensajes"
@@ -1489,6 +1489,11 @@ Dim H As Integer, W As Integer
 Dim cad As String
 On Error Resume Next
 
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
+
+
+
     Me.FrameCobrosPtes.visible = False
     Me.FrameAcercaDe.visible = False
     Me.FrameNSeries.visible = False
@@ -1497,7 +1502,7 @@ On Error Resume Next
     Me.FrameErrores.visible = False
     FrameEtiqEstant.visible = False
     FrameCorreccionPrecios.visible = False
-    FrameEmail.visible = False
+    FrameEMail.visible = False
     FrameServicios.visible = False
     PulsadoSalir = True
     PrimeraVez = True
@@ -1654,9 +1659,9 @@ On Error Resume Next
         Case 21
             'Ver email
             limpiar Me
-            H = FrameEmail.Height
-            W = FrameEmail.Width
-            PonerFrameVisible FrameEmail, True, H, W
+            H = FrameEMail.Height
+            W = FrameEMail.Width
+            PonerFrameVisible FrameEMail, True, H, W
             If cadWHERE2 = "0" Then
                 Caption = "Enviados"
                 Label5(0).Caption = "Para"

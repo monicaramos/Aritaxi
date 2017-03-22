@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
-Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "msadodc.ocx"
+Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmAlmTipoUnidad 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Tipos de Unidad"
@@ -567,14 +567,23 @@ Dim ModificaLineas As Byte
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
+Dim i As Integer
     
-    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
     
     ActualizarToolbarGnral Me.Toolbar1, Modo, vModo, 5
     
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
+    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
+    
+    
     b = Modo = 1 Or Modo = 3 Or Modo = 4
     txtAux(0).visible = b
     txtAux(1).visible = b
@@ -662,7 +671,7 @@ Dim anc As Single
     Else
     
         'Situamos el grid al final
-        AnyadirLinea DataGrid1, adodc1
+        AnyadirLinea DataGrid1, Adodc1
           
         anc = ObtenerAlto(DataGrid1, 10)
         
@@ -690,7 +699,7 @@ End Sub
 Private Sub BotonVerTodos()
 On Error Resume Next
     CargaGrid ""
-    If adodc1.Recordset.RecordCount <= 0 Then
+    If Adodc1.Recordset.RecordCount <= 0 Then
          'MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
          MsgBox "No hay ningún registro en la tabla sunida", vbInformation
          Screen.MousePointer = vbDefault
@@ -711,8 +720,8 @@ Dim cad As String
 Dim anc As Single
 Dim i As Integer
 
-    If adodc1.Recordset.EOF Then Exit Sub
-    If adodc1.Recordset.RecordCount < 1 Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
 
     If Modo = 5 Then
         If Adodc2.Recordset.EOF Then Exit Sub
@@ -791,46 +800,46 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
     On Error GoTo Error2
 
     'Ciertas comprobaciones
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
     
     If Modo = 5 Then
         If Adodc2.Recordset.EOF Then Exit Sub
-        SQL = "¿Seguro que desea eliminar la linea de coste? " & vbCrLf
-        SQL = SQL & vbCrLf & "Código: " & Format(Adodc2.Recordset.Fields(0), FormatoCod)
-        SQL = SQL & vbCrLf & "Descripcion: " & Adodc2.Recordset.Fields(1)
-        If MsgBox(SQL, vbQuestion + vbYesNo) = vbNo Then Exit Sub
+        Sql = "¿Seguro que desea eliminar la linea de coste? " & vbCrLf
+        Sql = Sql & vbCrLf & "Código: " & Format(Adodc2.Recordset.Fields(0), FormatoCod)
+        Sql = Sql & vbCrLf & "Descripcion: " & Adodc2.Recordset.Fields(1)
+        If MsgBox(Sql, vbQuestion + vbYesNo) = vbNo Then Exit Sub
     
-        SQL = "DELETE FROM sunilin"
-        SQL = SQL & " WHERE codunida =" & adodc1.Recordset!codunida & " AND codigo =" & Adodc2.Recordset!Codigo
-        Conn.Execute SQL
+        Sql = "DELETE FROM sunilin"
+        Sql = Sql & " WHERE codunida =" & Adodc1.Recordset!codunida & " AND codigo =" & Adodc2.Recordset!Codigo
+        conn.Execute Sql
         CargaGrid2 True
     
     Else
         'Eliminar normal
-        SQL = DevuelveDesdeBD(conAri, "codunida", "sartic", "codunida", CStr(adodc1.Recordset!codunida))
-        If SQL <> "" Then
+        Sql = DevuelveDesdeBD(conAri, "codunida", "sartic", "codunida", CStr(Adodc1.Recordset!codunida))
+        If Sql <> "" Then
             MsgBox "Existen articulos con este tipo de unidad", vbExclamation
             Exit Sub
         End If
         
         '### a mano
-        SQL = "¿Seguro que desea eliminar el Tipo de Unidad? " & vbCrLf
-        SQL = SQL & vbCrLf & "Código: " & Format(adodc1.Recordset.Fields(0), FormatoCod)
-        SQL = SQL & vbCrLf & "Denominación: " & adodc1.Recordset.Fields(1)
+        Sql = "¿Seguro que desea eliminar el Tipo de Unidad? " & vbCrLf
+        Sql = Sql & vbCrLf & "Código: " & Format(Adodc1.Recordset.Fields(0), FormatoCod)
+        Sql = Sql & vbCrLf & "Denominación: " & Adodc1.Recordset.Fields(1)
         
-        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
-            NumRegElim = Me.adodc1.Recordset.AbsolutePosition
+        If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+            NumRegElim = Me.Adodc1.Recordset.AbsolutePosition
             'Hay que eliminar
-            SQL = "Delete from sunida where codunida=" & adodc1.Recordset!codunida
-            Conn.Execute SQL
-            CancelaADODC Me.adodc1
+            Sql = "Delete from sunida where codunida=" & Adodc1.Recordset!codunida
+            conn.Execute Sql
+            CancelaADODC Me.Adodc1
             CargaGrid ""
-            CancelaADODC Me.adodc1
-            SituarDataPosicion Me.adodc1, NumRegElim, SQL
+            CancelaADODC Me.Adodc1
+            SituarDataPosicion Me.Adodc1, NumRegElim, Sql
         End If
 
     End If
@@ -858,11 +867,11 @@ On Error Resume Next
             If DatosOk And BLOQUEADesdeFormulario(Me) Then
                 If ModificaDesdeFormulario(Me, 3) Then
                    TerminaBloquear
-                   i = adodc1.Recordset.Fields(0)
+                   i = Adodc1.Recordset.Fields(0)
                    PonerModo 2
-                   CancelaADODC Me.adodc1
+                   CancelaADODC Me.Adodc1
                    CargaGrid
-                   adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
+                   Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
                 End If
                 DataGrid1.SetFocus
             End If
@@ -924,10 +933,10 @@ On Error Resume Next
     Case 3 'Insertar
         DataGrid1.AllowAddNew = False
         'CargaGrid
-        If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
+        If Not Adodc1.Recordset.EOF Then Adodc1.Recordset.MoveFirst
     Case 4 'Modificar
         TerminaBloquear
-        Me.lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+        Me.lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     Case 1 'Busqueda
         CargaGrid
     Case 5
@@ -950,7 +959,7 @@ Private Sub cmdRegresar_Click()
 Dim cad As String
 
     If Modo = 5 Then
-        Me.lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+        Me.lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
         If DataGrid1.Row >= 0 Then
             DeseleccionaGrid Me.DataGrid1
             DataGrid1.Bookmark = 1
@@ -965,13 +974,13 @@ Dim cad As String
 
     Else
 
-        If adodc1.Recordset.EOF Then
+        If Adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
     
-        cad = adodc1.Recordset.Fields(0) & "|"
-        cad = cad & adodc1.Recordset.Fields(1) & "|"
+        cad = Adodc1.Recordset.Fields(0) & "|"
+        cad = cad & Adodc1.Recordset.Fields(1) & "|"
         RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
@@ -991,14 +1000,14 @@ Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 
 On Error GoTo Error1
 
-    If Not adodc1.Recordset.EOF Then lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+    If Not Adodc1.Recordset.EOF Then lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
         
         
     
 
 
     If Modo = 2 Or Modo = 5 Then 'Poner el valor al camp ampliacion linea '5: modo lineas
-        If Not adodc1.Recordset.EOF And ModificaLineas <> 1 Then '1: Insertar
+        If Not Adodc1.Recordset.EOF And ModificaLineas <> 1 Then '1: Insertar
             'Devuelve = DevuelveDesdeBDNew(conAri, NomTablaLineas, "ampliaci", "numpedcl", Text1(0).Text, "N", , "numlinea", Data2.Recordset!numlinea, "N")
             'Poner descripcion de ampliacion lineas
             CargaGrid2 True
@@ -1022,6 +1031,7 @@ End Sub
 Private Sub Form_Load()
     ' ICONITOS DE LA BARRA
     Me.Icon = frmPpal.Icon
+    
     If vParamAplic.Descriptores Then Me.Caption = "Formatos"
     With Me.Toolbar1
         .ImageList = frmPpal.imgListComun
@@ -1037,7 +1047,7 @@ Private Sub Form_Load()
     
     '------------------------------------------------
     DataGrid2.visible = vParamAplic.Produccion
-    label1.visible = vParamAplic.Produccion
+    Label1.visible = vParamAplic.Produccion
     Me.Toolbar1.Buttons(9).visible = vParamAplic.Produccion
     If vParamAplic.Produccion Then
         DataGrid1.Height = 3525
@@ -1122,19 +1132,19 @@ Private Sub MtoLineas()
     PonerModo 5
     PonerBotonCabecera True
 End Sub
-Private Sub CargaGrid(Optional SQL As String)
+Private Sub CargaGrid(Optional Sql As String)
 Dim i As Byte
 Dim b As Boolean
     
     b = DataGrid1.Enabled
-    If SQL <> "" Then
-        SQL = CadenaConsulta & " WHERE " & SQL
+    If Sql <> "" Then
+        Sql = CadenaConsulta & " WHERE " & Sql
     Else
-        SQL = CadenaConsulta
+        Sql = CadenaConsulta
     End If
-    SQL = SQL & " ORDER BY codunida"
+    Sql = Sql & " ORDER BY codunida"
     
-    CargaGridGnral DataGrid1, Me.adodc1, SQL, False
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
     
     i = 0 'Cod. Tipo Unidad
         DataGrid1.Columns(i).Caption = "Unidad"
@@ -1173,22 +1183,22 @@ Dim b As Boolean
    
     'Habilitamos botones Modificar y Eliminar
    If Toolbar1.Buttons(6).Enabled Then
-        Toolbar1.Buttons(6).Enabled = Not adodc1.Recordset.EOF
-        Toolbar1.Buttons(7).Enabled = Not adodc1.Recordset.EOF
-        mnModificar.Enabled = Not adodc1.Recordset.EOF
-        mnEliminar.Enabled = Not adodc1.Recordset.EOF
+        Toolbar1.Buttons(6).Enabled = Not Adodc1.Recordset.EOF
+        Toolbar1.Buttons(7).Enabled = Not Adodc1.Recordset.EOF
+        mnModificar.Enabled = Not Adodc1.Recordset.EOF
+        mnEliminar.Enabled = Not Adodc1.Recordset.EOF
    End If
    DataGrid1.Enabled = b
    DataGrid1.ScrollBars = dbgAutomatic
    
-   CargaGrid2 Not adodc1.Recordset.EOF
+   CargaGrid2 Not Adodc1.Recordset.EOF
    
    
    PonerOpcionesMenu
    
    'Actualizar indicador
-   If Not adodc1.Recordset.EOF And (Modo = 2) Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+   If Not Adodc1.Recordset.EOF And (Modo = 2) Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
    Else
         Me.lblIndicador.Caption = ""
    End If
@@ -1281,10 +1291,10 @@ Private Sub Campos_2_Visibles(visibles As Boolean)
         Me.cmdAux2.visible = visibles
 End Sub
 
-Private Sub CargaGrid2(Enlaza As Boolean)
+Private Sub CargaGrid2(enlaza As Boolean)
 Dim i As Byte
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim PriVe As Boolean
 
 
@@ -1292,17 +1302,17 @@ Dim PriVe As Boolean
 
     b = DataGrid2.Enabled
     DataGrid2.Enabled = False
-    SQL = "select sunilin.codigo,descripcion,importe from sunilin,sunidesc where sunilin.codigo=sunidesc.codigo AND codunida = "
-    If Enlaza Then
-        SQL = SQL & adodc1.Recordset!codunida
+    Sql = "select sunilin.codigo,descripcion,importe from sunilin,sunidesc where sunilin.codigo=sunidesc.codigo AND codunida = "
+    If enlaza Then
+        Sql = Sql & Adodc1.Recordset!codunida
     Else
-        SQL = SQL & " -1"
+        Sql = Sql & " -1"
     End If
-    SQL = SQL & " ORDER BY codigo"
+    Sql = Sql & " ORDER BY codigo"
     
     PriVe = Adodc2.Recordset Is Nothing
     
-    CargaGridGnral DataGrid2, Me.Adodc2, SQL, PriVe
+    CargaGridGnral DataGrid2, Me.Adodc2, Sql, PriVe
     
     i = 0 'Cod. Tipo Unidad
         DataGrid2.Columns(i).Caption = "Coste"
@@ -1396,15 +1406,15 @@ Dim C As String
         
         '               codigo              importe
         C = "," & Val(txtAux2(0).Text) & "," & C & ")"
-        C = "INSERT INTO sunilin (codunida ,codigo ,importe) VALUES (" & adodc1.Recordset!codunida & C
+        C = "INSERT INTO sunilin (codunida ,codigo ,importe) VALUES (" & Adodc1.Recordset!codunida & C
         
     
     Else
         C = "UPDATE sunilin set importe = " & C
-        C = C & " WHERE codunida =" & adodc1.Recordset!codunida & " AND codigo =" & Adodc2.Recordset!Codigo
+        C = C & " WHERE codunida =" & Adodc1.Recordset!codunida & " AND codigo =" & Adodc2.Recordset!Codigo
     End If
     
-    Conn.Execute C
+    conn.Execute C
     InsertarModificar = True
     Exit Function
 EInsertarModificar:

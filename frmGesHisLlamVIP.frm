@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesHisLlamVIP 
    Caption         =   "Histórico de Llamadas VIP"
@@ -1259,12 +1259,12 @@ Dim Indicador As String
             HacerBusqueda
             
         Case 3 'INSERTAR
-            If DatosOK Then
+            If DatosOk Then
               If InsertarDesdeForm(Me) Then PosicionarData
             End If
             
         Case 4  'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                 If ModificaDesdeFormulario(Me, 1) Then
                     TerminaBloquear
                     
@@ -1301,10 +1301,10 @@ Dim cadB As String
         PonerFoco Text1(1)
     End If
 End Sub
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim b As Boolean
 
-DatosOK = False
+DatosOk = False
 'If Modo = 4 Then
 '    DatosOk = True
 '    Exit Function
@@ -1359,7 +1359,7 @@ DatosOK = False
 
 
 
-    DatosOK = b
+    DatosOk = b
     
 End Function
 
@@ -1383,7 +1383,7 @@ Private Sub Combo1_KeyDown(KeyCode As Integer, Shift As Integer)
     KEYdown KeyCode
 End Sub
 
-Private Sub combo1_KeyPress(KeyAscii As Integer)
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -1495,13 +1495,15 @@ Private Sub Form_Load()
     End If
 End Sub
 
+
 Private Sub CargarCombo()
     Combo1.AddItem "Normal"
     Combo1.ItemData(Combo1.NewIndex) = 0
     Combo1.AddItem "Crédito"
     Combo1.ItemData(Combo1.NewIndex) = 1
-    
 End Sub
+
+
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte, NumReg As Byte
 Dim b As Boolean
@@ -1512,6 +1514,11 @@ On Error GoTo EPonerModo
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
     BuscaChekc = ""
+    
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
     
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo

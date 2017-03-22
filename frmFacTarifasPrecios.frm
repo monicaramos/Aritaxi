@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacTarifasPrecios 
@@ -863,16 +863,16 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim B As Boolean
+Dim b As Boolean
 Dim i As Byte
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECarga
 
-    B = DataGrid1.Enabled
+    b = DataGrid1.Enabled
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data2, SQL, False
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data2, Sql, False
 
     DataGrid1.Columns(0).visible = False 'Cod. Articulo
     DataGrid1.Columns(1).visible = False 'Cod. Lista
@@ -903,7 +903,7 @@ Dim SQL As String
     For i = 0 To DataGrid1.Columns.Count - 1
         DataGrid1.Columns(i).AllowSizing = False
     Next i
-    DataGrid1.Enabled = B
+    DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
     Exit Sub
     
@@ -978,7 +978,7 @@ End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
@@ -986,14 +986,14 @@ Dim Indice As Byte
    Set frmF = New frmCal
    frmF.Fecha = Now
    
-   Indice = 4
-   PonerFormatoFecha Text1(Indice)
-   If Text1(Indice).Text <> "" Then frmF.Fecha = CDate(Text1(Indice).Text)
+   indice = 4
+   PonerFormatoFecha Text1(indice)
+   If Text1(indice).Text <> "" Then frmF.Fecha = CDate(Text1(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco Text1(Indice)
+   PonerFoco Text1(indice)
 End Sub
 
 
@@ -1051,11 +1051,11 @@ End Sub
 
 
 Private Sub Text1_LostFocus(Index As Integer)
-Dim SQL As String
+Dim Sql As String
 Dim devuelve As String
 Dim campo As String, TipoCampo As String
 Dim Codigo As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 Dim index2 As Integer 'Indice del control Text2
 Dim indImgP As Integer 'Indice del control ImgBuscar (Prismaticos)
@@ -1066,7 +1066,7 @@ Dim indImgP As Integer 'Indice del control ImgBuscar (Prismaticos)
         Case 0 'Codigo Articulo
             campo = "nomartic"
             TipoCampo = "T"
-            tabla = "sartic"
+            Tabla = "sartic"
             Codigo = "codartic"
             Titulo = "Articulos"
             indImgP = Index 'Imagen Prismaticos
@@ -1075,7 +1075,7 @@ Dim indImgP As Integer 'Indice del control ImgBuscar (Prismaticos)
         Case 1 'Codigo Tarifa
             campo = "nomlista"
             TipoCampo = "N"
-            tabla = "starif"
+            Tabla = "starif"
             Codigo = "codlista"
             Titulo = "Tarifas"
             indImgP = Index
@@ -1110,9 +1110,9 @@ Dim indImgP As Integer 'Indice del control ImgBuscar (Prismaticos)
                     Exit Sub
                 End If
             End If
-            SQL = DevuelveDesdeBD(conAri, campo, tabla, Codigo, Text1(Index).Text, TipoCampo)
-            Text2(index2).Text = SQL
-            If SQL = "" Then 'No existe
+            Sql = DevuelveDesdeBD(conAri, campo, Tabla, Codigo, Text1(Index).Text, TipoCampo)
+            Text2(index2).Text = Sql
+            If Sql = "" Then 'No existe
                 devuelve = "No existe el código de " & Titulo & vbCrLf
                 devuelve = devuelve & "Código: " & Text1(Index).Text
                 MsgBox devuelve, vbExclamation
@@ -1157,21 +1157,27 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte, NumReg As Byte
-Dim B As Boolean
+Dim b As Boolean
 On Error GoTo EPonerModo
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
     
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
+    
+    
     'Modo 2. Hay datos y estamos visualizandolos
-    B = (Kmodo = 2)
+    b = (Kmodo = 2)
     
      'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
 
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -1180,16 +1186,16 @@ On Error GoTo EPonerModo
     BloquearChecks Me, Modo
            
     '--------------------------------------
-    B = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
     
     For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = B And Modo <> 4 'Si modificar no activado pq son claves ajenas
+        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
     Next i
     
     For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = B 'And Modo <> 3 'Si es insertar se modifica
+        Me.imgFecha(i).Enabled = b 'And Modo <> 3 'Si es insertar se modifica
     Next i
     
 '    Me.chkPermiteDto.Enabled = (Modo = 1) Or (Modo = 3) Or (Modo = 4)
@@ -1202,27 +1208,27 @@ EPonerModo:
 End Sub
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
+Dim b As Boolean
 
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
     '-------------------------------------
-    B = (Modo >= 3)
+    b = (Modo >= 3)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = Not B
-    Me.mnNuevo.Enabled = Not B
+    Toolbar1.Buttons(5).Enabled = Not b
+    Me.mnNuevo.Enabled = Not b
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 Private Sub LimpiarCampos()
@@ -1250,19 +1256,19 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim tabla As String
+Dim Sql As String
+Dim Tabla As String
     
-    tabla = "slist1"
+    Tabla = "slist1"
 
-    SQL = "SELECT * FROM " & tabla
+    Sql = "SELECT * FROM " & Tabla
     If enlaza Then
-        SQL = SQL & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codlista=" & Data1.Recordset!codlista
+        Sql = Sql & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codlista=" & Data1.Recordset!codlista
     Else
-        SQL = SQL & " WHERE codartic = -1"
+        Sql = Sql & " WHERE codartic = -1"
     End If
-    SQL = SQL & " ORDER BY " & tabla & ".numlinea desc"
-    MontaSQLCarga = SQL
+    Sql = Sql & " ORDER BY " & Tabla & ".numlinea desc"
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1335,19 +1341,19 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    SQL = "Tarifas de Precios." & vbCrLf
-    SQL = SQL & "---------------------------" & vbCrLf & vbCrLf
+    Sql = "Tarifas de Precios." & vbCrLf
+    Sql = Sql & "---------------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Eliminar la Tarifa del Articulo:"
-    SQL = SQL & vbCrLf & "Cod. Artic :  " & Text1(0).Text
-    SQL = SQL & vbCrLf & "Cod. Tarif :  " & Text1(1).Text
-    SQL = SQL & vbCrLf & vbCrLf & "¿Desea continuar ? "
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
+    Sql = Sql & "Va a Eliminar la Tarifa del Articulo:"
+    Sql = Sql & vbCrLf & "Cod. Artic :  " & Text1(0).Text
+    Sql = Sql & vbCrLf & "Cod. Tarif :  " & Text1(1).Text
+    Sql = Sql & vbCrLf & vbCrLf & "¿Desea continuar ? "
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         If Not Eliminar Then Exit Sub
@@ -1373,18 +1379,18 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
         conn.BeginTrans
-        SQL = " WHERE  codartic=" & DBSet(Data1.Recordset!codArtic, "T") & ""
-        SQL = SQL & " AND codlista=" & Val(Data1.Recordset!codlista)
+        Sql = " WHERE  codartic=" & DBSet(Data1.Recordset!codArtic, "T") & ""
+        Sql = Sql & " AND codlista=" & Val(Data1.Recordset!codlista)
         
         'Lineas
-        conn.Execute "Delete  from slist1 " & SQL
+        conn.Execute "Delete  from slist1 " & Sql
         
         'Cabeceras
-        conn.Execute "Delete  from slista " & SQL
+        conn.Execute "Delete  from slista " & Sql
                       
 FinEliminar:
     If Err.Number <> 0 Then
@@ -1399,26 +1405,26 @@ End Function
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 
     DatosOk = False
-    B = CompForm(Me, 1)
-    If Not B Then Exit Function
+    b = CompForm(Me, 1)
+    If Not b Then Exit Function
     
     'Comprobar que si hay valores nuevos, la fecha de cambio no es nulo
     If Not EsVacio(Text1(5)) Or Not EsVacio(Text1(6)) Then
-        B = (Not EsVacio(Text1(4)))
+        b = (Not EsVacio(Text1(4)))
     End If
-    If Not B Then
+    If Not b Then
         MsgBox "La Fecha de Cambio debe tener valor.", vbInformation
         Exit Function
     End If
     
     'Comprobar que si no hay valores nuevos no haya fecha de Cambio
     If EsVacio(Text1(5)) And EsVacio(Text1(6)) Then
-        B = (EsVacio(Text1(4)))
+        b = (EsVacio(Text1(4)))
     End If
-    If Not B Then
+    If Not b Then
         MsgBox "No hay valores nuevos para la fecha de cambio", vbInformation
         Exit Function
     End If
@@ -1426,8 +1432,8 @@ Dim B As Boolean
     'si se modifica el precio actual no hay fecha de cambio ni precio nuevo
     If Modo = 4 Then
         If CCur(Me.Data1.Recordset!precioac) <> CCur(Me.Text1(2).Text) Then
-            B = EsVacio(Text1(5)) And EsVacio(Text1(6)) And EsVacio(Text1(4))
-            If Not B Then
+            b = EsVacio(Text1(5)) And EsVacio(Text1(6)) And EsVacio(Text1(4))
+            If Not b Then
                 MsgBox "Si se modifican precios actuales, los precios nuevos y fecha cambio no deben tener valor.", vbInformation
                 Exit Function
             End If
@@ -1443,7 +1449,7 @@ End Function
 Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1455,8 +1461,8 @@ Dim Titulo As String
     cad = cad & ParaGrid(Text1(1), 10, "Cod Tarifa")
     cad = cad & "Desc. Tarifa|starif|nomlista|T||30·"
     
-    tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
-    tabla = tabla & " LEFT JOIN starif ON " & NombreTabla & ".codlista=starif.codlista"
+    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
+    Tabla = Tabla & " LEFT JOIN starif ON " & NombreTabla & ".codlista=starif.codlista"
        
 '    tabla = "slista"
     Titulo = "Tarifas de Artículos"
@@ -1465,7 +1471,7 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
@@ -1567,7 +1573,7 @@ End Sub
 
 Private Sub BotonActualizar()
 'Actualizar Tarifas de Articulos
-Dim SQL As String
+Dim Sql As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningúna Tarifa para actualizar.", vbExclamation
@@ -1576,14 +1582,14 @@ Dim SQL As String
     
     If Data2 Is Nothing Then Exit Sub
    
-    SQL = "Actualización Tarifas de Artículos." & vbCrLf
-    SQL = SQL & "-----------------------------------------" & vbCrLf & vbCrLf
+    Sql = "Actualización Tarifas de Artículos." & vbCrLf
+    Sql = Sql & "-----------------------------------------" & vbCrLf & vbCrLf
     
-    SQL = SQL & "Va a Actualizar la Tarifa del Articulo:"
-    SQL = SQL & vbCrLf & " Cod. Artic. :  " & Data1.Recordset.Fields(0)
-    SQL = SQL & vbCrLf & " Cod. Tarifa :  " & CStr(Format(Data1.Recordset.Fields(1), "000"))
-    SQL = SQL & vbCrLf & vbCrLf & " ¿Desea continuar ? "
-    If MsgBox(SQL, vbQuestion + vbYesNoCancel) <> vbYes Then
+    Sql = Sql & "Va a Actualizar la Tarifa del Articulo:"
+    Sql = Sql & vbCrLf & " Cod. Artic. :  " & Data1.Recordset.Fields(0)
+    Sql = Sql & vbCrLf & " Cod. Tarifa :  " & CStr(Format(Data1.Recordset.Fields(1), "000"))
+    Sql = Sql & vbCrLf & vbCrLf & " ¿Desea continuar ? "
+    If MsgBox(Sql, vbQuestion + vbYesNoCancel) <> vbYes Then
         Exit Sub
     End If
     
@@ -1596,7 +1602,7 @@ End Sub
 
 Private Function ActualizarTarifa() As Boolean
 Dim Donde As String
-Dim SQL As String
+Dim Sql As String
 Dim bol As Boolean
 On Error GoTo EActualizarTarifa
     
@@ -1607,10 +1613,10 @@ On Error GoTo EActualizarTarifa
 
 EActualizarTarifa:
         If Err.Number <> 0 Then
-            SQL = "Actualizar Tarifa." & vbCrLf & "----------------------------" & vbCrLf
-            SQL = SQL & Donde
+            Sql = "Actualizar Tarifa." & vbCrLf & "----------------------------" & vbCrLf
+            Sql = Sql & Donde
 '            If OpcionActualizar = 1 Then
-                MuestraError Err.Number, SQL, Err.Description
+                MuestraError Err.Number, Sql, Err.Description
 '            Else
 '                SQL = Donde & " -> " & Err.Description
 '                SQL = Mid(SQL, 1, 200)
@@ -1645,13 +1651,13 @@ End Function
 
 Private Function ModificarCabecera() As Boolean
 'Modifica la tabla de cabeceras de Tarifas
-Dim SQL As String
+Dim Sql As String
 On Error Resume Next
 
-    SQL = "UPDATE slista SET precioac=precionu, precioa1=precion1, fechanue=null, precionu=0, precion1=0"
-    SQL = SQL & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codlista=" & Data1.Recordset!codlista
+    Sql = "UPDATE slista SET precioac=precionu, precioa1=precion1, fechanue=null, precionu=0, precion1=0"
+    Sql = Sql & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codlista=" & Data1.Recordset!codlista
    
-    conn.Execute SQL
+    conn.Execute Sql
     
     If Err.Number <> 0 Then
          'Hay error , almacenamos y salimos
@@ -1663,19 +1669,19 @@ End Function
 
 
 Private Function InsertarLineasHistorico() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim numF As String
 On Error Resume Next
 
     'Obtenemos la siguiente numero de linea de tarifa
-    SQL = "codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codlista=" & Data1.Recordset!codlista
-    numF = SugerirCodigoSiguienteStr("slist1", "numlinea", SQL)
+    Sql = "codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codlista=" & Data1.Recordset!codlista
+    numF = SugerirCodigoSiguienteStr("slist1", "numlinea", Sql)
 
-    SQL = "INSERT INTO slist1 (codartic, codlista, numlinea, fechacam, precioac, precioa1)"
-    SQL = SQL & " VALUES (" & DBSet(Data1.Recordset.Fields(0).Value, "T") & ", " & Data1.Recordset.Fields(1).Value & ", "
-    SQL = SQL & numF & ", " & DBSet(Text1(4).Text, "F") & ", "
-    SQL = SQL & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ") "
-    conn.Execute SQL
+    Sql = "INSERT INTO slist1 (codartic, codlista, numlinea, fechacam, precioac, precioa1)"
+    Sql = Sql & " VALUES (" & DBSet(Data1.Recordset.Fields(0).Value, "T") & ", " & Data1.Recordset.Fields(1).Value & ", "
+    Sql = Sql & numF & ", " & DBSet(Text1(4).Text, "F") & ", "
+    Sql = Sql & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ") "
+    conn.Execute Sql
         
     If Err.Number <> 0 Then
         'Hay error , almacenamos y salimos
@@ -1718,7 +1724,7 @@ Private Function ActualizarPVPArticulo() As Boolean
 Dim cTar As CTarifaArt
 Dim margen As Currency
 Dim newPrecio As Currency
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo ErrActPVP
     
@@ -1727,9 +1733,9 @@ Dim SQL As String
         margen = Round2(cTar.MargenComercial / 100, 4)
         newPrecio = Round2((cTar.PrecioActual / (margen + 1)), 4)
         If newPrecio > 0 Then
-            SQL = "UPDATE sartic SET preciove=" & DBSet(newPrecio, "N")
-            SQL = SQL & " WHERE codartic=" & DBSet(Text1(0).Text, "T")
-            conn.Execute SQL
+            Sql = "UPDATE sartic SET preciove=" & DBSet(newPrecio, "N")
+            Sql = Sql & " WHERE codartic=" & DBSet(Text1(0).Text, "T")
+            conn.Execute Sql
         End If
     End If
     Set cTar = Nothing

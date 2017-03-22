@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmComDtosFamMarca 
@@ -676,7 +676,7 @@ Private Sub Form_Load()
     Ordenacion = " ORDER BY codprove, codfamia, codmarca "
     CadenaConsulta = "Select * from " & NombreTabla & " WHERE codprove = -1" 'No recupera datos
     
-    Data1.ConnectionString = Conn
+    Data1.ConnectionString = conn
     Data1.RecordSource = CadenaConsulta
     Data1.Refresh
     
@@ -687,13 +687,13 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     b = DataGrid1.Enabled
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, SQL, False
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, Sql, False
 
     CargaGrid2
 
@@ -750,9 +750,9 @@ End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-Dim Indice As Byte
-    Indice = 3
-    txtAux(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim indice As Byte
+    indice = 3
+    txtAux(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmFam_DatoSeleccionado(CadenaSeleccion As String)
@@ -828,9 +828,15 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
+Dim i As Integer
+
     
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
+      
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -922,19 +928,19 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
     
-    SQL = "SELECT codprove, " & NombreTabla & ".codfamia, nomfamia, " & NombreTabla & ".codmarca, nommarca, fechadto, dtoline1, dtoline2 "
-    SQL = SQL & " FROM (" & NombreTabla & " LEFT JOIN sfamia ON " & NombreTabla & ".codfamia =sfamia.codfamia) "
-    SQL = SQL & " LEFT JOIN smarca ON " & NombreTabla & ".codmarca=smarca.codmarca "
+    Sql = "SELECT codprove, " & NombreTabla & ".codfamia, nomfamia, " & NombreTabla & ".codmarca, nommarca, fechadto, dtoline1, dtoline2 "
+    Sql = Sql & " FROM (" & NombreTabla & " LEFT JOIN sfamia ON " & NombreTabla & ".codfamia =sfamia.codfamia) "
+    Sql = Sql & " LEFT JOIN smarca ON " & NombreTabla & ".codmarca=smarca.codmarca "
 
     If enlaza Then
-        If EsBusqueda And CadenaBusqueda <> "" Then SQL = SQL & CadenaBusqueda
+        If EsBusqueda And CadenaBusqueda <> "" Then Sql = Sql & CadenaBusqueda
     Else
-        SQL = SQL & " WHERE codprove = -1"
+        Sql = Sql & " WHERE codprove = -1"
     End If
-    SQL = SQL & Ordenacion
-    MontaSQLCarga = SQL
+    Sql = Sql & Ordenacion
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1001,7 +1007,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim I As Integer
+Dim i As Integer
 Dim anc As Single
 
     'Escondemos el navegador y ponemos Modo Modificar
@@ -1009,8 +1015,8 @@ Dim anc As Single
     
     'Como el campo1, campo2 y campo3 es clave primaria, NO se puede modificar
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -1020,10 +1026,10 @@ Dim anc As Single
     
     '---- poner valores grabados
     'prove y familia
-    For I = 0 To 1
-        txtAux(I).Text = DBLet(DataGrid1.Columns(I).Value, "N")
-        FormateaCampo txtAux(I)
-    Next I
+    For i = 0 To 1
+        txtAux(i).Text = DBLet(DataGrid1.Columns(i).Value, "N")
+        FormateaCampo txtAux(i)
+    Next i
     txtAux2(1).Text = DBLet(Me.DataGrid1.Columns(2).Value, "T")
     
     'Marca
@@ -1032,10 +1038,10 @@ Dim anc As Single
     txtAux2(2).Text = DBLet(Me.DataGrid1.Columns(4).Value, "T")
     
     txtAux(3).Text = DBLet(Me.DataGrid1.Columns(5).Value, "F")
-    For I = 4 To 5
-        txtAux(I).Text = DBLet(DataGrid1.Columns(I + 2), "N")
-        FormateaCampo txtAux(I)
-    Next I
+    For i = 4 To 5
+        txtAux(i).Text = DBLet(DataGrid1.Columns(i + 2), "N")
+        FormateaCampo txtAux(i)
+    Next i
     '-----
     If BLOQUEADesdeFormulario(Me) Then
         PonerFoco txtAux(3)
@@ -1046,27 +1052,27 @@ End Sub
 
 
 Private Function BotonEliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
         'Ciertas comprobaciones
         If Data1.Recordset.EOF Then Exit Function
         
-        SQL = "¿Seguro que desea eliminar el Descuento para?" & vbCrLf
-        SQL = SQL & vbCrLf & "Proveedor: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Text2(0).Text
-        SQL = SQL & vbCrLf & "Familia: " & Format(Data1.Recordset.Fields(1).Value, "0000") & " - " & Data1.Recordset!nomfamia
-        SQL = SQL & vbCrLf & "Marca : " & Format(Data1.Recordset.Fields(3).Value, "0000") & " - " & Data1.Recordset!nommarca
+        Sql = "¿Seguro que desea eliminar el Descuento para?" & vbCrLf
+        Sql = Sql & vbCrLf & "Proveedor: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Text2(0).Text
+        Sql = Sql & vbCrLf & "Familia: " & Format(Data1.Recordset.Fields(1).Value, "0000") & " - " & Data1.Recordset!nomfamia
+        Sql = Sql & vbCrLf & "Marca : " & Format(Data1.Recordset.Fields(3).Value, "0000") & " - " & Data1.Recordset!nommarca
         
-        If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+        If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
             'Hay que eliminar
             NumRegElim = Me.Data1.Recordset.AbsolutePosition
-            SQL = "Delete from " & NombreTabla & " where codprove=" & Val(Data1.Recordset!codProve)
-            SQL = SQL & " and codfamia=" & Val(Data1.Recordset!codfamia) & " and codmarca=" & Val(Data1.Recordset!codmarca)
-            Conn.Execute SQL
+            Sql = "Delete from " & NombreTabla & " where codprove=" & Val(Data1.Recordset!codProve)
+            Sql = Sql & " and codfamia=" & Val(Data1.Recordset!Codfamia) & " and codmarca=" & Val(Data1.Recordset!codmarca)
+            conn.Execute Sql
             CancelaADODC Me.Data1
             CargaGrid True
             CancelaADODC Me.Data1
-            SituarDataPosicion Me.Data1, NumRegElim, SQL
+            SituarDataPosicion Me.Data1, NumRegElim, Sql
         End If
         
 FinEliminar:
@@ -1167,12 +1173,12 @@ Private Sub BloquearClavesP(bol As Boolean)
 'Si BloquearClavesPrimarias=true deshablilita los textbox de codigos y lo pone amarillo
 'y habilita el resto de campos para introducir nuevos valores
 'Si BloquearClavesPrimarias=false habilita los textbox de codigos para introducir
-Dim I As Byte
+Dim i As Byte
 
-    For I = 0 To 2 'Codigos
-        BloquearTxt txtAux(I), bol
-        Me.cmdAux(I).Enabled = Not bol
-    Next I
+    For i = 0 To 2 'Codigos
+        BloquearTxt txtAux(i), bol
+        Me.cmdAux(i).Enabled = Not bol
+    Next i
 End Sub
 
 

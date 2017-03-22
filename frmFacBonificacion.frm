@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacBonificacion 
    BorderStyle     =   3  'Fixed Dialog
@@ -610,11 +610,11 @@ End Sub
 
 Private Sub frmA_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento Articulos
-Dim Indice As Byte
-    Indice = CByte(Me.imgBuscar(0).Tag)
-    If Indice = 2 Then Indice = 4
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1)
-    Text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2)
+Dim indice As Byte
+    indice = CByte(Me.imgBuscar(0).Tag)
+    If indice = 2 Then indice = 4
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1)
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -769,20 +769,25 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
-Dim B As Boolean
+Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
+    
     'Modo 2. Hay datos y estamos visualizandolos
-    B = (Kmodo = 2)
+    b = (Kmodo = 2)
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -793,7 +798,7 @@ Dim NumReg As Byte
 
      'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
     If DatosADevolverBusqueda <> "" Then
-        cmdRegresar.visible = B
+        cmdRegresar.visible = b
     Else
         cmdRegresar.visible = False
     End If
@@ -801,12 +806,12 @@ Dim NumReg As Byte
             
     'Modo INSERTAR
     '------------------------------------
-    B = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
     
     For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = B And Modo <> 4 'Si modificar no activado pq son claves ajenas
+        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
     Next i
     
     'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
@@ -827,27 +832,27 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
+Dim b As Boolean
 On Error Resume Next
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
     '-------------------------------------
-    B = (Modo >= 3)
+    b = (Modo >= 3)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = Not B
-    Me.mnNuevo.Enabled = Not B
+    Toolbar1.Buttons(5).Enabled = Not b
+    Me.mnNuevo.Enabled = Not b
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -918,15 +923,15 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    SQL = SQL & "¿Seguro que desea Eliminar las Bonificaciones para el Articulo:?"
-    SQL = SQL & vbCrLf & vbCrLf & Text1(0).Text & " - " & Text2(0).Text
+    Sql = Sql & "¿Seguro que desea Eliminar las Bonificaciones para el Articulo:?"
+    Sql = Sql & vbCrLf & vbCrLf & Text1(0).Text & " - " & Text2(0).Text
     'SQL = SQL & vbCrLf & vbCrLf & "¿Desea continuar? "
-    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -950,12 +955,12 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
         
-        SQL = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
+        Sql = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
        
-        conn.Execute "Delete  from " & NombreTabla & SQL
+        conn.Execute "Delete  from " & NombreTabla & Sql
                       
 FinEliminar:
     If Err.Number <> 0 Then
@@ -968,22 +973,22 @@ End Function
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 Dim cadMen As String
 
     DatosOk = False
-    B = CompForm(Me, 1)
-    If Not B Then Exit Function
+    b = CompForm(Me, 1)
+    If Not b Then Exit Function
     
     'Comprobar que cantidad Hasta de Articulo2 es mayor que cantidad Hasta del Articulo1,
     If Text1(5).Text <> "" And Text1(2).Text <> "" Then
         If CLng(Text1(5).Text) <= CLng(Text1(2).Text) Then
             cadMen = "El campo Hasta del segundo Articulo de Bonificación debe ser mayor que el del primero."
             MsgBox cadMen, vbExclamation
-            B = False
+            b = False
         End If
     End If
-    If Not B Then Exit Function
+    If Not b Then Exit Function
 
     'Comprobar que Importe de Articulo2 es mayor que Importe del Articulo1
     'Pero deja pasar, solo muesta el mensaje
@@ -1001,7 +1006,7 @@ End Function
 Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1013,7 +1018,7 @@ Dim Titulo As String
     cad = cad & ParaGrid(Text1(2), 15, "Hasta 1")
     cad = cad & ParaGrid(Text1(5), 15, "Hasta 2")
     
-    tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
+    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
     
     Titulo = "Bonificaciones Factura"
            
@@ -1021,7 +1026,7 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano

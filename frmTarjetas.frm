@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
@@ -1051,7 +1051,7 @@ Private Sub BotonAnyadir()
 'Añadir registro en tabla de cabecera de Pedidos: scaped (Cabecera)
 Dim NomTraba As String
 Dim cad As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 
     LimpiarCampos 'Vacía los TextBox
     'Poner los grid sin apuntar a nada
@@ -1345,7 +1345,7 @@ End Sub
 
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 Dim Sql As String
 Dim i As Integer
 
@@ -1502,10 +1502,10 @@ End Sub
 
 Private Sub frmA_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Agentes
-Dim Indice As Byte
-    Indice = 17
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Agente
-    FormateaCampo Text1(Indice)
+Dim indice As Byte
+    indice = 17
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Agente
+    FormateaCampo Text1(indice)
 End Sub
 
 Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
@@ -1560,47 +1560,47 @@ End Sub
 
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
-Dim Indice As Byte
+Dim indice As Byte
 Dim devuelve As String
 
-    Indice = 9
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-    Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve) 'Poblacion
+    indice = 9
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
+    Text1(indice + 1).Text = ObtenerPoblacion(Text1(indice).Text, devuelve) 'Poblacion
     'provincia
-    Text1(Indice + 2).Text = devuelve
+    Text1(indice + 2).Text = devuelve
     
 End Sub
 
 
 Private Sub frmCV_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Clientes Varios
-Dim Indice As Byte
+Dim indice As Byte
 
-    Indice = 6
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
-    Text1(Indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
+    indice = 6
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
+    Text1(indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
     
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date) 'Calendario Fechas
-Dim Indice As Byte
-    Indice = CByte(Me.cmdaux(0).Tag) + 1
-    txtAux(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim indice As Byte
+    indice = CByte(Me.cmdAux(0).Tag) + 1
+    txtAux(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
 Private Sub frmFE_DatoSeleccionado(CadenaSeleccion As String)
 'Formas de Envio
-Dim Indice As Byte
-    Indice = 29
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Envio
+Dim indice As Byte
+    indice = 29
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Envio
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
-Dim Indice As Byte
-    Indice = 14
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
+Dim indice As Byte
+    indice = 14
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
 End Sub
 
 
@@ -1660,14 +1660,14 @@ End Sub
 
 Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Trabajadores
-Dim Indice As Byte
-    Indice = Val(Me.imgBuscar(3).Tag)
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
+Dim indice As Byte
+    indice = Val(Me.imgBuscar(3).Tag)
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
 End Sub
 
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     If Modo = 2 Or Modo = 0 Then Exit Sub
     TerminaBloquear
@@ -1682,7 +1682,7 @@ Dim Indice As Byte
             Screen.MousePointer = vbDefault
             frmC.Show vbModal
             Set frmC = Nothing
-            Indice = 5
+            indice = 5
             If HaDevueltoDatos Then
                 txtAnterior = ""
                 Text1_LostFocus 0
@@ -1693,11 +1693,11 @@ Dim Indice As Byte
             frmCV.DatosADevolverBusqueda = "0"
             frmCV.Show vbModal
             Set frmCV = Nothing
-            Indice = 6
+            indice = 6
             
     End Select
     
-    PonerFoco Text1(Indice)
+    PonerFoco Text1(indice)
     Screen.MousePointer = vbDefault
     
     If Modo = 4 Then
@@ -1707,22 +1707,22 @@ End Sub
 
 
 Private Sub cmdAux_Click(Index As Integer) 'Abre calendario Fechas
-Dim Indice As Byte
+Dim indice As Byte
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
    Set frmF = New frmCal
    frmF.Fecha = Now
-   Indice = Index + 1
-   Me.cmdaux(0).Tag = Index
+   indice = Index + 1
+   Me.cmdAux(0).Tag = Index
 
-   PonerFormatoFecha txtAux(Indice)
-   If txtAux(Indice).Text <> "" Then frmF.Fecha = CDate(txtAux(Indice).Text)
+   PonerFormatoFecha txtAux(indice)
+   If txtAux(indice).Text <> "" Then frmF.Fecha = CDate(txtAux(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtAux(Indice)
+   PonerFoco txtAux(indice)
 End Sub
 
 
@@ -2117,6 +2117,12 @@ Dim b As Boolean
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
+    
+    
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
@@ -2301,7 +2307,7 @@ Dim DentroTRANS As Boolean
     'Conseguir el siguiente numero de linea
     vWhere = Replace(ObtenerWhereCP(False), NombreTabla, NomTablaLineas)
     numlinea = SugerirCodigoSiguienteStr(NomTablaLineas, "numlinea", vWhere)
-    Me.cmdaux(0).Tag = numlinea 'Aqui almaceno el Nº linea que acabo de Insertar
+    Me.cmdAux(0).Tag = numlinea 'Aqui almaceno el Nº linea que acabo de Insertar
     
     
     If DatosOkLinea() Then 'Lineas de Albaranes
@@ -2481,8 +2487,8 @@ Dim i As Byte
             txtAux(i).Top = 290
             txtAux(i).visible = visible
         Next i
-        cmdaux(0).visible = visible
-        cmdaux(1).visible = visible
+        cmdAux(0).visible = visible
+        cmdAux(1).visible = visible
         imgFich(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
@@ -2519,8 +2525,8 @@ Dim i As Byte
             Next i
         End If
         
-        cmdaux(0).Enabled = True
-        cmdaux(1).Enabled = True
+        cmdAux(0).Enabled = True
+        cmdAux(1).Enabled = True
 '        cmdAux(9).Enabled = True
                
         
@@ -2532,11 +2538,11 @@ Dim i As Byte
             txtAux(i).Top = alto
             txtAux(i).Height = DataGrid1.RowHeight
         Next i
-        cmdaux(0).Top = alto
-        cmdaux(1).Top = alto
+        cmdAux(0).Top = alto
+        cmdAux(1).Top = alto
 '        cmdAux(9).Top = alto
-        cmdaux(0).Height = DataGrid1.RowHeight
-        cmdaux(1).Height = DataGrid1.RowHeight
+        cmdAux(0).Height = DataGrid1.RowHeight
+        cmdAux(1).Height = DataGrid1.RowHeight
 '        cmdAux(9).Height = DataGrid1.RowHeight
         
         'Fijamos anchura y posicion Left
@@ -2547,20 +2553,20 @@ Dim i As Byte
         'fecha de emision
         txtAux(1).Left = txtAux(0).Left + txtAux(0).Width + 10
         txtAux(1).Width = DataGrid1.Columns(4).Width - 160
-        cmdaux(0).Left = txtAux(1).Left + txtAux(1).Width - 50
+        cmdAux(0).Left = txtAux(1).Left + txtAux(1).Width - 50
         
         'fecha de caducidad
-        txtAux(2).Left = cmdaux(0).Left + cmdaux(0).Width + 20
+        txtAux(2).Left = cmdAux(0).Left + cmdAux(0).Width + 20
         txtAux(2).Width = DataGrid1.Columns(5).Width - 160
-        cmdaux(1).Left = txtAux(2).Left + txtAux(2).Width - 50
+        cmdAux(1).Left = txtAux(2).Left + txtAux(2).Width - 50
         
         'Los ponemos Visibles o No
         '--------------------------
         For i = 0 To 2
              txtAux(i).visible = visible
         Next i
-        cmdaux(0).visible = visible
-        cmdaux(1).visible = visible
+        cmdAux(0).visible = visible
+        cmdAux(1).visible = visible
     End If
 End Sub
 
@@ -3150,7 +3156,7 @@ End Sub
 Private Sub InsertarLineasFactu(cadWHERE)
 'cadSerie = "INSERT INTO slialb(codtipom,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre) "
 'cadSerie = cadSerie & " SELECT '" & Text1(30).Text & "' as codtipom," & Text1(0).Text & " as numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre FROM slifac WHERE " & CadenaSeleccion
- Dim Rs As ADODB.Recordset
+ Dim RS As ADODB.Recordset
  Dim Sql As String
  Dim i As Integer
  Dim cadI As String
@@ -3169,25 +3175,25 @@ Private Sub InsertarLineasFactu(cadWHERE)
     
         Sql = "SELECT * FROM slifac WHERE " & cadWHERE
     
-        Set Rs = New ADODB.Recordset
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        While Not Rs.EOF
-            txtAux(0).Text = Rs!codAlmac
-            txtAux(1).Text = Rs!codArtic
-            txtAux(2).Text = Rs!NomArtic
+        Set RS = New ADODB.Recordset
+        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        While Not RS.EOF
+            txtAux(0).Text = RS!codAlmac
+            txtAux(1).Text = RS!codArtic
+            txtAux(2).Text = RS!NomArtic
 '            Text2(9).Text = DBLet(RS!nomprove, "T")
-            txtAux(3).Text = CStr(Rs!Cantidad * -1)
-            txtAux(4).Text = Rs!precioar
-            txtAux(5).Text = DBLet(Rs!origpre, "T")
-            txtAux(6).Text = Rs!dtoline1
-            txtAux(7).Text = Rs!dtoline2
-            txtAux(8).Text = CStr(Rs!ImporteL * -1)
+            txtAux(3).Text = CStr(RS!Cantidad * -1)
+            txtAux(4).Text = RS!precioar
+            txtAux(5).Text = DBLet(RS!origpre, "T")
+            txtAux(6).Text = RS!dtoline1
+            txtAux(7).Text = RS!dtoline2
+            txtAux(8).Text = CStr(RS!ImporteL * -1)
             
             ' ---- [21/10/2009] [LAURA] : se añade el centro de coste
             If Not vEmpresa.TieneAnalitica Then
-                txtAux(9).Text = DBLet(Rs!codprovex, "N")
+                txtAux(9).Text = DBLet(RS!codprovex, "N")
             Else
-                txtAux(9).Text = DBLet(Rs!CodCCost, "T")
+                txtAux(9).Text = DBLet(RS!CodCCost, "T")
             End If
             
             'para no tener que traer ahora el proveedor pongo en txt(10) un texto
@@ -3195,9 +3201,9 @@ Private Sub InsertarLineasFactu(cadWHERE)
 '            Text2(9).Text = "*"
             
             'numbultos
-            txtAux(10).Text = CStr(Rs!numbultos * -1)
+            txtAux(10).Text = CStr(RS!numbultos * -1)
             'numlote
-            txtAux(11).Text = DBLet(Rs!numlote, "T")
+            txtAux(11).Text = DBLet(RS!numlote, "T")
             
             If InsertarLinea(numlin, True) Then
             
@@ -3213,10 +3219,10 @@ Private Sub InsertarLineasFactu(cadWHERE)
 '                cadI = cadI & "," & SQL
 '            End If
 '            i = i + 1
-            Rs.MoveNext
+            RS.MoveNext
         Wend
-        Rs.Close
-        Set Rs = Nothing
+        RS.Close
+        Set RS = Nothing
         
         
 '        If cadI <> "" Then

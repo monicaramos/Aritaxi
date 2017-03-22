@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesVehic 
@@ -353,7 +353,7 @@ Private CadenaConsulta As String
 
 Dim FormatoCod As String 'formato del campo de codigo
 
-Dim CadB1 As String
+Dim cadB1 As String
 
 Dim Modo As Byte
 '-------------------------------------------------------
@@ -373,10 +373,15 @@ Dim Modo As Byte
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
+Dim i As Integer
 
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
+    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
     
     Me.txtAux(0).visible = Not b
     txtAux(1).visible = Not b
@@ -566,7 +571,7 @@ Dim cadB As String
     Select Case Modo
         Case 1 'HacerBusqueda
             cadB = ObtenerBusqueda(Me, False)
-            CadB1 = ObtenerBusqueda(Me, True)
+            cadB1 = ObtenerBusqueda(Me, True)
             If cadB <> "" Then
                 PonerModo 2
                 CargaGrid cadB
@@ -639,7 +644,7 @@ End Sub
 
 
 
-Private Sub combo1_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub Combo1_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -666,7 +671,6 @@ Private Sub Form_Load()
     'Icono del form
     Me.Icon = frmPpal.Icon
     
-
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
@@ -881,8 +885,8 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "scoche"
         .Informe2 = "rGesVehic.rpt"
-        If CadB1 <> "" Then
-            .cadRegSelec = CadB1 'SQL2SF(cadB1)
+        If cadB1 <> "" Then
+            .cadRegSelec = cadB1 'SQL2SF(cadB1)
         Else
             .cadRegSelec = ""
         End If

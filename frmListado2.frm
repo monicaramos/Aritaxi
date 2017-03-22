@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmListado2 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "L"
@@ -2957,7 +2957,7 @@ Private Sub LlamarImprimir(PongoNombrePDF As Boolean)
         .NombrePDF = ""
         If PongoNombrePDF Then .NombrePDF = cadPDFrpt
         .NombreRPT = cadNomRPT
-        .ConSubinforme = conSubRPT
+        .ConSubInforme = conSubRPT
         .Show vbModal
     End With
 End Sub
@@ -2967,7 +2967,7 @@ End Sub
 
 
 Private Sub cmdSituAlbaran_Click()
-Dim I As Integer
+Dim i As Integer
     InicializarVbles
     cadTitulo = ""
     cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
@@ -2992,20 +2992,20 @@ Dim I As Integer
     devuelve = ""
     miSQL = ""
     IndiceImg = 0
-    For I = 0 To List1.ListCount - 1
-        If List1.Selected(I) Then
+    For i = 0 To List1.ListCount - 1
+        If List1.Selected(i) Then
             IndiceImg = IndiceImg + 1
-            NumRegElim = InStrRev(List1.List(I), "(")
+            NumRegElim = InStrRev(List1.List(i), "(")
             If NumRegElim = 0 Then
                 MsgBox "No se ha encontrado (", vbExclamation
                 Exit Sub
             End If
-            campo = Mid(List1.List(I), NumRegElim + 1, 3)
+            campo = Mid(List1.List(i), NumRegElim + 1, 3)
             miSQL = miSQL & " - " & campo
             devuelve = devuelve & ", '" & campo & "'"
             
         End If
-    Next I
+    Next i
     If devuelve = "" Then
         MsgBox "Seleccione algun tipo de albarán", vbExclamation
         Exit Sub
@@ -3204,6 +3204,7 @@ Dim W As Integer
 Dim IndiceCancel As Integer
 
     Me.Icon = frmPpal.Icon
+    
     PrimeraVez = True
     limpiar Me
     FrListadoReparaciones.visible = False
@@ -3386,18 +3387,18 @@ Private Sub imgBancoPr_Click(Index As Integer)
 End Sub
 
 Private Sub imgCheck_Click(Index As Integer)
-Dim I As Integer
+Dim i As Integer
 
     If Index < 2 Then
         'Seleecionar otras ofertas
-        For I = 1 To Me.lw1.ListItems.Count
-            lw1.ListItems(I).Checked = Index = 1
-        Next I
+        For i = 1 To Me.lw1.ListItems.Count
+            lw1.ListItems(i).Checked = Index = 1
+        Next i
     ElseIf Index < 4 Then
         'Seleccionar Tipos albaran para listado situacion labaranes
-        For I = 0 To List1.ListCount - 1
-            List1.Selected(I) = Index = 2
-        Next I
+        For i = 0 To List1.ListCount - 1
+            List1.Selected(i) = Index = 2
+        Next i
     End If
     
 End Sub
@@ -4495,7 +4496,7 @@ End Sub
 
 Private Sub HacerCambiosMultibase(numlinea As Integer)
 Dim TotalReg As Long
-Dim I As Integer
+Dim i As Integer
 Dim J As Integer
 Dim Claves As Integer
 Dim Campos As Integer
@@ -4575,13 +4576,13 @@ Dim T1 As Single
         End If
         
         cadSelect = "" 'LOS UPDATES
-        For I = Claves To Campos
-            If Not IsNull(miRsAux.Fields(I)) Then
-                cadParam = miRsAux.Fields(I)  'Cojo el valor del field
+        For i = Claves To Campos
+            If Not IsNull(miRsAux.Fields(i)) Then
+                cadParam = miRsAux.Fields(i)  'Cojo el valor del field
                 cadNomRPT = RevisaCaracterMultibase(cadParam)  'Obtengo la modificaicon por campos multibase
                 If cadParam <> cadNomRPT Then
                     'HAY que modificar ya que son disitintos el de laBD y el calculado por el modulo de multibase
-                    cadSelect = cadSelect & ", " & miRsAux.Fields(I).Name & " = '" & DevNombreSQL(cadNomRPT) & "'"
+                    cadSelect = cadSelect & ", " & miRsAux.Fields(i).Name & " = '" & DevNombreSQL(cadNomRPT) & "'"
                 End If
             End If
         Next
@@ -4597,9 +4598,9 @@ Dim T1 As Single
 
                 Select Case Codigo
                 Case "F"
-                    cadParam = cadParam & "'" & Format(miRsAux.Fields(I).Value, FormatoFecha) & "'"
+                    cadParam = cadParam & "'" & Format(miRsAux.Fields(i).Value, FormatoFecha) & "'"
                 Case "T"
-                    cadParam = cadParam & "'" & miRsAux.Fields(I).Value & "'"
+                    cadParam = cadParam & "'" & miRsAux.Fields(i).Value & "'"
                 Case Else  'NUMERICO
                     cadParam = cadParam & miRsAux.Fields(J).Value
                 End Select
@@ -5076,7 +5077,7 @@ Private Sub CargarCamposTabla()
 'Dim Cad As String
 'Dim Aux As String
 Dim RS As ADODB.Recordset
-Dim I As Integer
+Dim i As Integer
 Dim TieneClaves As Boolean
 
     
@@ -5086,28 +5087,28 @@ Dim TieneClaves As Boolean
     
  
         TieneClaves = False
-        For I = 0 To RS.Fields.Count - 1
+        For i = 0 To RS.Fields.Count - 1
            
             
             
             'SOLO TEXTOS
-            If RS.Fields(I).Type = 129 Or RS.Fields(I).Type = 200 Or RS.Fields(I).Type = adVarChar Then
+            If RS.Fields(i).Type = 129 Or RS.Fields(i).Type = 200 Or RS.Fields(i).Type = adVarChar Then
     
        
   
-                If RS.Fields(I).Properties(18).Value Then
+                If RS.Fields(i).Properties(18).Value Then
                     'NO HACEMOS NADA. Es campo clave
                 
                 Else
-                    cboCampos.AddItem RS.Fields(I).Name
+                    cboCampos.AddItem RS.Fields(i).Name
                 End If
                 
             End If
             
             'Para saber si tiene claves
-            If RS.Fields(I).Properties(18).Value Then TieneClaves = True
+            If RS.Fields(i).Properties(18).Value Then TieneClaves = True
             
-        Next I
+        Next i
         
         
         
@@ -5124,7 +5125,7 @@ End Sub
 
 
 Private Sub UpdatearTablaRoot()
-Dim I As Integer
+Dim i As Integer
 Dim TienDatos As Boolean
 
     On Error GoTo EUpdatearTablaRoot
@@ -5148,28 +5149,28 @@ Dim TienDatos As Boolean
             If miSQL <> devuelve Then
                     'La clave
                     cadFrom = ""
-                    For I = 0 To miRsAux.Fields.Count - 1
-                        If miRsAux.Fields(I).Properties(18).Value Then
-                            Select Case miRsAux.Fields(I).Type
+                    For i = 0 To miRsAux.Fields.Count - 1
+                        If miRsAux.Fields(i).Properties(18).Value Then
+                            Select Case miRsAux.Fields(i).Type
                             Case 133
-                                campo = CStr(miRsAux.Fields(I))
+                                campo = CStr(miRsAux.Fields(i))
                                 campo = "'" & Format(campo, "yyyy-mm-dd") & "'"
             
                             Case 135 'Fecha/Hora
-                                campo = DBSet(miRsAux.Fields(I), "FH", "S")
+                                campo = DBSet(miRsAux.Fields(i), "FH", "S")
                             'Numero normal, sin decimales
                             Case 2, 3, 16 To 19
-                                campo = miRsAux.Fields(I)
+                                campo = miRsAux.Fields(i)
                             Case 129, 200
-                                campo = DBSet(miRsAux.Fields(I), "T")
+                                campo = DBSet(miRsAux.Fields(i), "T")
                             Case Else
-                                MsgBox "No tratado: " & miRsAux.Fields(I).Type, vbExclamation
+                                MsgBox "No tratado: " & miRsAux.Fields(i).Type, vbExclamation
                                 Exit Sub
                                 
                             End Select
-                            cadFrom = cadFrom & " AND " & miRsAux.Fields(I).Name & " = " & campo
+                            cadFrom = cadFrom & " AND " & miRsAux.Fields(i).Name & " = " & campo
                         End If
-                    Next I
+                    Next i
                     cadFrom = Mid(cadFrom, 6)
                     devuelve = DevNombreSQL(devuelve)
                     miSQL = "UPDATE " & Me.cboTablas.List(cboTablas.ListIndex) & " SET " & Me.cboCampos.List(cboCampos.ListIndex)

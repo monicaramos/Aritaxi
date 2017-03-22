@@ -266,8 +266,8 @@ Private Function DatosOk() As Boolean
 Dim Codigo As String
 
     'Comprobacion de fechas
-    DesdeFecha = CDate(txtCodigo(0).Text)
-    Hastafecha = CDate(txtCodigo(1).Text)
+    DesdeFecha = CDate(txtcodigo(0).Text)
+    Hastafecha = CDate(txtcodigo(1).Text)
     If DesdeFecha > Hastafecha Then
         MsgBox "La fecha desde debe ser menor que la fecha hasta", vbInformation
         Exit Function
@@ -292,8 +292,12 @@ End Function
 
 
 Private Sub Form_Load()
-    txtCodigo(0).Text = Date
-    txtCodigo(1).Text = Date
+
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
+
+    txtcodigo(0).Text = Date
+    txtcodigo(1).Text = Date
     
     CargaCombo
     
@@ -332,23 +336,23 @@ Private Sub imgFec_Click(Index As Integer)
     ' ***canviar l'index de imgFec pel 1r index de les imagens de buscar data***
     imgFec(0).Tag = Index 'independentment de les dates que tinga, sempre pose l'index en la 27
     
-    PonerFormatoFecha txtCodigo(Index)
-    If txtCodigo(Index).Text <> "" Then frmC.Fecha = CDate(txtCodigo(Index).Text)
+    PonerFormatoFecha txtcodigo(Index)
+    If txtcodigo(Index).Text <> "" Then frmC.Fecha = CDate(txtcodigo(Index).Text)
 
     frmC.Show vbModal
     Set frmC = Nothing
-    PonerFoco txtCodigo(CByte(imgFec(0).Tag))
+    PonerFoco txtcodigo(CByte(imgFec(0).Tag))
     ' ***************************
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
  'Fecha
-    txtCodigo(CByte(imgFec(0).Tag)).Text = Format(vFecha, "dd/MM/yyyy")
+    txtcodigo(CByte(imgFec(0).Tag)).Text = Format(vFecha, "dd/MM/yyyy")
 End Sub
 
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -395,14 +399,14 @@ Dim cad As String, cadTipo As String 'tipo cliente
     
     Select Case Index
         Case 0, 1 'FECHAS
-            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
             
     End Select
 End Sub
 
 
 Private Sub CargaFacturasLiq(DFecha As Date, HFecha As Date)
-    Dim SQL As String
+    Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
     Dim i As Long
@@ -429,42 +433,42 @@ Dim numParam As Byte
 Dim cadParam As String
 
     '[Monica]29/02/2012: añadida la insercion en la tabla temporal por el report
-    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute Sql
 
-    SQL = "select sfactusoc.*, stipom.letraser " & _
-            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and sfactusoc.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+    Sql = "select sfactusoc.*, stipom.letraser " & _
+            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and sfactusoc.codtipom = stipom.codtipom " & _
             " and sfactusoc.codtipom in ('FLI','FRL') "
     
     '[Monica]12/11/2014: faltaba la condicion de solo los socios que tienen facturae
-    SQL = SQL & " and sclien.facturae=1 and sfactusoc.codsocio = sclien.codclien "
+    Sql = Sql & " and sclien.facturae=1 and sfactusoc.codsocio = sclien.codclien "
             
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
-    If Check2.Value = 0 Then SQL = SQL & " and sfactusoc.exportada = 0"
+    If Check2.Value = 0 Then Sql = Sql & " and sfactusoc.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtcodigo(3).Text, "N")
             
             
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
-        SQL = "insert into tmpinformes (codusu, nombre1, importe1, codigo1, fecha1) "
-        SQL = SQL & " select " & vUsu.Codigo & ", sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.codsocio, sfactusoc.fecfactu from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-                " and sfactusoc.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+        Sql = "insert into tmpinformes (codusu, nombre1, importe1, codigo1, fecha1) "
+        Sql = Sql & " select " & vUsu.Codigo & ", sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.codsocio, sfactusoc.fecfactu from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+                " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
                 " and sfactusoc.codtipom = stipom.codtipom " & _
                 " and sfactusoc.codtipom in ('FLI','FRL') "
                 
         '[Monica]12/11/2014: faltaba la condicion de solo los socios que tienen facturae
-        SQL = SQL & " and sclien.facturae=1 and sfactusoc.codsocio = sclien.codclien "
+        Sql = Sql & " and sclien.facturae=1 and sfactusoc.codsocio = sclien.codclien "
         
-        If Check2.Value = 0 Then SQL = SQL & " and sfactusoc.exportada = 0"
+        If Check2.Value = 0 Then Sql = Sql & " and sfactusoc.exportada = 0"
                 
-        conn.Execute SQL
+        conn.Execute Sql
         
         
         RS.MoveFirst
@@ -510,10 +514,10 @@ Dim cadParam As String
             FileCopy FicheroPDF, nompath & "\aritaxi_" & Format(RS!codSocio, "000000") & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_S.pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            SQL = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            SQL = SQL & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
-            SQL = SQL & " and codsocio = " & DBSet(RS!codSocio, "N")
-            conn.Execute SQL
+            Sql = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = Sql & " and codsocio = " & DBSet(RS!codSocio, "N")
+            conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
@@ -538,7 +542,7 @@ err_CargaFacturas:
 End Sub
 
 Private Sub CargaFacturasCliente(DFecha As Date, HFecha As Date)
-    Dim SQL As String
+    Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
     Dim i As Long
@@ -564,24 +568,24 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim numParam As Byte
 Dim cadParam As String
     
-    SQL = "select scafaccli.*, stipom.letraser " & _
-            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafaccli.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+    Sql = "select scafaccli.*, stipom.letraser " & _
+            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafaccli.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafaccli.codtipom in ('FAC','FVC','FRN') " & _
             " and scafaccli.codtipom = stipom.codtipom "
     '[Monica]12/11/2014: faltaba la condicion de solo los clientes que tienen facturae
-    SQL = SQL & " and scliente.tasareciclado=1 and scafaccli.codclien = scliente.codclien "
+    Sql = Sql & " and scliente.tasareciclado=1 and scafaccli.codclien = scliente.codclien "
 
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
-    If Check2.Value = 0 Then SQL = SQL & " and scafaccli.exportada = 0"
+    If Check2.Value = 0 Then Sql = Sql & " and scafaccli.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafaccli.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafaccli.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafaccli.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtcodigo(3).Text, "N")
     
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
         RS.MoveFirst
@@ -626,10 +630,10 @@ Dim cadParam As String
             FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_F.pdf"
             
             'actualizamos el pasaridoc de facturas clientes
-            SQL = "update scafaccli set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            SQL = SQL & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = "update scafaccli set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
             
-            conn.Execute SQL
+            conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
@@ -654,7 +658,7 @@ err_CargaFacturas:
 End Sub
 
 Private Sub CargaFacturasCuotasSocio(DFecha As Date, HFecha As Date)
-    Dim SQL As String
+    Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
     Dim i As Long
@@ -680,25 +684,25 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim numParam As Byte
 Dim cadParam As String
 
-    SQL = "select scafac.*, stipom.letraser " & _
-            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafac.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+    Sql = "select scafac.*, stipom.letraser " & _
+            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafac.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafac.codtipom = stipom.codtipom " & _
             " and scafac.codtipom  in ('FCN','FCE','FRC') "
             
     '[Monica]12/11/2014: faltaba la condicion de solo los socios que tienen facturae
-    SQL = SQL & " and sclien.facturae=1 and scafac.codclien = sclien.codclien "
+    Sql = Sql & " and sclien.facturae=1 and scafac.codclien = sclien.codclien "
             
             
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
-    If Check2.Value = 0 Then SQL = SQL & " and scafac.exportada = 0"
+    If Check2.Value = 0 Then Sql = Sql & " and scafac.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafac.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafac.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
         RS.MoveFirst
@@ -735,9 +739,9 @@ Dim cadParam As String
             FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_C.pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            SQL = "update scafac set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            SQL = SQL & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
-            conn.Execute SQL
+            Sql = "update scafac set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
@@ -762,7 +766,7 @@ err_CargaFacturas:
 End Sub
 
 Private Sub CargaFacturasPublicidadSocio(DFecha As Date, HFecha As Date)
-    Dim SQL As String
+    Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
     Dim i As Long
@@ -788,26 +792,26 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim numParam As Byte
 Dim cadParam As String
 
-    SQL = "select sfactusoc.*, stipom.letraser " & _
-            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and sfactusoc.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+    Sql = "select sfactusoc.*, stipom.letraser " & _
+            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and sfactusoc.codtipom = stipom.codtipom " & _
             " and sfactusoc.codtipom = 'FPS' "
             
     '[Monica]12/11/2014: faltaba la condicion de solo los socios que tienen facturae
-    SQL = SQL & " and sclien.facturae=1 and sfactusoc.codsocio = sclien.codclien "
+    Sql = Sql & " and sclien.facturae=1 and sfactusoc.codsocio = sclien.codclien "
             
             
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
-    If Check2.Value = 0 Then SQL = SQL & " and sfactusoc.exportada = 0"
+    If Check2.Value = 0 Then Sql = Sql & " and sfactusoc.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and sfactusoc.codsocio <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtcodigo(3).Text, "N")
             
             
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
         RS.MoveFirst
@@ -845,10 +849,10 @@ Dim cadParam As String
             FileCopy FicheroPDF, nompath & "\aritaxi_" & Format(RS!codSocio, "000000") & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_S" & ".pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            SQL = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            SQL = SQL & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
-            SQL = SQL & " and codsocio = " & DBSet(RS!codSocio, "N")
-            conn.Execute SQL
+            Sql = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = Sql & " and codsocio = " & DBSet(RS!codSocio, "N")
+            conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
@@ -873,7 +877,7 @@ err_CargaFacturas:
 End Sub
 
 Private Sub CargaFacturasPublicidadCliente(DFecha As Date, HFecha As Date)
-    Dim SQL As String
+    Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
     Dim i As Long
@@ -899,26 +903,26 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim numParam As Byte
 Dim cadParam As String
     
-    SQL = "select scafaccli.*, stipom.letraser " & _
-            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafaccli.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+    Sql = "select scafaccli.*, stipom.letraser " & _
+            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafaccli.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafaccli.codtipom in ('FPC','FRP') " & _
             " and scafaccli.codtipom = stipom.codtipom "
     
     '[Monica]12/11/2014: faltaba la condicion de solo los clientes que tienen facturae
-    SQL = SQL & " and scliente.tasareciclado=1 and scafaccli.codclien = scliente.codclien "
+    Sql = Sql & " and scliente.tasareciclado=1 and scafaccli.codclien = scliente.codclien "
             
     
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
-    If Check2.Value = 0 Then SQL = SQL & " and scafaccli.exportada = 0"
+    If Check2.Value = 0 Then Sql = Sql & " and scafaccli.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafaccli.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafaccli.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafaccli.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
             
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
         RS.MoveFirst
@@ -955,10 +959,10 @@ Dim cadParam As String
             FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_F.pdf"
             
             'actualizamos el pasaridoc de facturas clientes
-            SQL = "update scafaccli set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            SQL = SQL & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = "update scafaccli set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
             
-            conn.Execute SQL
+            conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
@@ -983,7 +987,7 @@ err_CargaFacturas:
 End Sub
 
 Private Sub CargaFacturasVentaSocio(DFecha As Date, HFecha As Date)
-    Dim SQL As String
+    Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
     Dim i As Long
@@ -1009,26 +1013,26 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim numParam As Byte
 Dim cadParam As String
 
-    SQL = "select scafac.*, stipom.letraser " & _
-            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafac.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+    Sql = "select scafac.*, stipom.letraser " & _
+            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafac.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafac.codtipom = stipom.codtipom " & _
             " and scafac.codtipom  in ('FAV','FRT') "
             
     '[Monica]12/11/2014: faltaba la condicion de solo los clientes que tienen facturae
-    SQL = SQL & " and sclien.facturae=1 and scafac.codclien = sclien.codclien "
+    Sql = Sql & " and sclien.facturae=1 and scafac.codclien = sclien.codclien "
             
     '[Monica]05/09/2012: añadimos el check de solo los que no estan traspasados
-    If Check2.Value = 0 Then SQL = SQL & " and scafac.exportada = 0"
+    If Check2.Value = 0 Then Sql = Sql & " and scafac.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and scafac.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and scafac.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
             
             
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
         RS.MoveFirst
@@ -1065,9 +1069,9 @@ Dim cadParam As String
             FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_C.pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            SQL = "update scafac set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            SQL = SQL & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
-            conn.Execute SQL
+            Sql = "update scafac set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacFormasPago 
    BorderStyle     =   3  'Fixed Dialog
@@ -759,7 +759,7 @@ Dim cad As String
 End Sub
 
 
-Private Sub combo1_KeyPress(KeyAscii As Integer)
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -830,15 +830,15 @@ Private Sub CargarComboTipoPago()
 ' o marcamos la opcion sorted del combo
 '0-Contado, 1-Cheque, 2-Pagaré, 3-Transferencia, 4-Efecto
 Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 
     Combo1.Clear
         
     On Error GoTo ECargar
 
-    SQL = "SELECT tipforpa, destippa from stippa"
+    Sql = "SELECT tipforpa, destippa from stippa"
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not RS.EOF
         Combo1.AddItem RS!destippa
@@ -1147,6 +1147,10 @@ Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
+    
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos

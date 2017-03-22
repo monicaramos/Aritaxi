@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmCPostal 
@@ -342,10 +342,17 @@ Dim Modo As Byte
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
+Dim i As Integer
 
     Modo = vModo
     b = (Modo = 0)
     If b Then Me.lblIndicador.Caption = ""
+    
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
+    
+    
     
     txtAux(0).visible = Not b
     txtAux(1).visible = Not b
@@ -380,7 +387,7 @@ Dim anc As Single
     'Obtenemos la siguiente numero de factura
     lblIndicador.Caption = "INSERTAR"
     'Situamos el grid al final
-    AnyadirLinea DataGrid1, adodc1
+    AnyadirLinea DataGrid1, Adodc1
     
     anc = ObtenerAlto(DataGrid1, 20)
     txtAux(0).Text = ""
@@ -405,14 +412,14 @@ End Sub
 Private Sub BotonVerTodos()
     cadB = ""
     CargaGrid "length(cpostal)>2"
-    If adodc1.Recordset.RecordCount <= 0 Then
+    If Adodc1.Recordset.RecordCount <= 0 Then
          'MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
          MsgBox "No hay ningún registro en la tabla CPostal", vbInformation
          Screen.MousePointer = vbDefault
          Exit Sub
     Else
 '        PonerModo 2
-        adodc1.Recordset.MoveFirst
+        Adodc1.Recordset.MoveFirst
 '        PonerCampos
     End If
 End Sub
@@ -423,8 +430,8 @@ Private Sub BotonModificar()
 Dim anc As Single
 Dim i As Byte
 
-    If adodc1.Recordset.EOF Then Exit Sub
-    If adodc1.Recordset.RecordCount < 1 Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
 
     Screen.MousePointer = vbHourglass
     Me.lblIndicador.Caption = "MODIFICAR"
@@ -466,30 +473,30 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
     On Error GoTo Error2
     'Ciertas comprobaciones
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
     If Not SepuedeBorrar Then Exit Sub
 
     Screen.MousePointer = vbHourglass
     '### a mano
-    SQL = "Seguro que desea eliminar el Cod. Postal:"
-    SQL = SQL & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
-    SQL = SQL & vbCrLf & "Provincia: " & adodc1.Recordset.Fields(1)
-    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+    Sql = "Seguro que desea eliminar el Cod. Postal:"
+    Sql = Sql & vbCrLf & "Código: " & Adodc1.Recordset.Fields(0)
+    Sql = Sql & vbCrLf & "Provincia: " & Adodc1.Recordset.Fields(1)
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
-        SQL = "Delete from cpostal where cpostal='" & adodc1.Recordset!CPostal & "'"
-        SQL = SQL & " AND provincia= '" & adodc1.Recordset!Provincia & "'"
-        Conn.Execute SQL
-        CancelaADODC Me.adodc1
+        Sql = "Delete from cpostal where cpostal='" & Adodc1.Recordset!CPostal & "'"
+        Sql = Sql & " AND provincia= '" & Adodc1.Recordset!Provincia & "'"
+        conn.Execute Sql
+        CancelaADODC Me.Adodc1
         Espera 0.5
         If cadB <> "" Then
             CargaGrid cadB & "and length(cpostal)>2"
         Else
             CargaGrid "length(cpostal)>2"
         End If
-        CancelaADODC Me.adodc1
+        CancelaADODC Me.Adodc1
     End If
     Screen.MousePointer = vbDefault
     
@@ -522,15 +529,15 @@ Select Case Modo
              If ModificarCPostal(Me) Then
 '             If ModificaDesdeFormulario(Me) Then
                   Espera 0.5
-                  i = adodc1.Recordset.Fields(0)
+                  i = Adodc1.Recordset.Fields(0)
                   PonerModo 0
-                  CancelaADODC Me.adodc1
+                  CancelaADODC Me.Adodc1
                   If cadB <> "" Then
                       CargaGrid cadB & "and length(cpostal)>2"
                   Else
                       CargaGrid "length(cpostal)>2"
                   End If
-                  adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
+                  Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
               End If
 '              adodc1.Recordset.MoveFirst
               lblIndicador.Caption = ""
@@ -551,11 +558,11 @@ Private Sub cmdCancelar_Click()
         Case 1 'Insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
-            If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
+            If Not Adodc1.Recordset.EOF Then Adodc1.Recordset.MoveFirst
         
         Case 2 'Modificar
             'CargaGrid
-            If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
+            If Not Adodc1.Recordset.EOF Then Adodc1.Recordset.MoveFirst
         Case 3 'Buscar
             CargaGrid "length(cpostal)>2"
     End Select
@@ -568,13 +575,13 @@ End Sub
 Private Sub cmdRegresar_Click()
 Dim cad As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = adodc1.Recordset.Fields(0) & "|"
-    cad = cad & adodc1.Recordset.Fields(1) & "|"
+    cad = Adodc1.Recordset.Fields(0) & "|"
+    cad = cad & Adodc1.Recordset.Fields(1) & "|"
     RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
@@ -594,6 +601,8 @@ End Sub
 
 
 Private Sub Form_Load()
+    'Icono del formulario
+    Me.Icon = frmPpal.Icon
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
@@ -668,7 +677,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 
-Private Sub CargaGrid(Optional SQL As String)
+Private Sub CargaGrid(Optional Sql As String)
 Dim i As Byte
 Dim b As Boolean
 
@@ -676,15 +685,15 @@ Dim b As Boolean
     
     b = DataGrid1.Enabled
 
-    If SQL <> "" Then
-        SQL = CadenaConsulta & " WHERE " & SQL
+    If Sql <> "" Then
+        Sql = CadenaConsulta & " WHERE " & Sql
     Else
-        SQL = CadenaConsulta
+        Sql = CadenaConsulta
     End If
-    SQL = SQL & " ORDER BY cpostal"
+    Sql = Sql & " ORDER BY cpostal"
     
 
-    CargaGridGnral DataGrid1, Me.adodc1, SQL, False
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
 
     
     'Nombre producto
@@ -712,10 +721,10 @@ Dim b As Boolean
    Next i
    
     'Habilitamos botones Modificar y Eliminar
-   Toolbar1.Buttons(8).Enabled = Not adodc1.Recordset.EOF
-   Toolbar1.Buttons(9).Enabled = Not adodc1.Recordset.EOF
-   mnModificar.Enabled = Not adodc1.Recordset.EOF
-   mnEliminar.Enabled = Not adodc1.Recordset.EOF
+   Toolbar1.Buttons(8).Enabled = Not Adodc1.Recordset.EOF
+   Toolbar1.Buttons(9).Enabled = Not Adodc1.Recordset.EOF
+   mnModificar.Enabled = Not Adodc1.Recordset.EOF
+   mnEliminar.Enabled = Not Adodc1.Recordset.EOF
    DataGrid1.Enabled = b
    DataGrid1.ScrollBars = dbgAutomatic
    PonerOpcionesMenu
@@ -812,7 +821,7 @@ Dim Control As Object
 Dim mTag As CTag
 Dim Aux As String, aux2 As String
 Dim cadWHERE As String
-Dim cadUPDATE As String
+Dim cadUpdate As String
 Dim b As Boolean
 
 On Error GoTo EModificaDesdeFormulario
@@ -835,7 +844,7 @@ On Error GoTo EModificaDesdeFormulario
                             'Lo pondremos para el WHERE
                              If cadWHERE <> "" Then cadWHERE = cadWHERE & " AND "
                              If mTag.columna = "provincia" Then
-                                aux2 = "'" & adodc1.Recordset!Provincia & "'"
+                                aux2 = "'" & Adodc1.Recordset!Provincia & "'"
                                 cadWHERE = cadWHERE & "(" & mTag.columna & " = " & aux2 & ")"
                              Else
                                 cadWHERE = cadWHERE & "(" & mTag.columna & " = " & Aux & ")"
@@ -843,7 +852,7 @@ On Error GoTo EModificaDesdeFormulario
 '                        Else
 '                            If cadUPDATE <> "" Then cadUPDATE = cadUPDATE & " , "
                             If mTag.columna = "provincia" Then
-                                cadUPDATE = cadUPDATE & "" & mTag.columna & " = " & Aux
+                                cadUpdate = cadUpdate & "" & mTag.columna & " = " & Aux
                             End If
                         End If
                     End If
@@ -857,8 +866,8 @@ On Error GoTo EModificaDesdeFormulario
         Exit Function
     End If
     Aux = "UPDATE " & mTag.Tabla
-    Aux = Aux & " SET " & cadUPDATE & " WHERE " & cadWHERE
-    Conn.Execute Aux, , adCmdText
+    Aux = Aux & " SET " & cadUpdate & " WHERE " & cadWHERE
+    conn.Execute Aux, , adCmdText
 
     
     ModificarCPostal = True

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmConfParamAplic 
@@ -209,92 +209,92 @@ Begin VB.Form frmConfParamAplic
       TabCaption(1)   =   "Datos Facturación"
       TabPicture(1)   =   "frmConfParamAplic.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame15"
-      Tab(1).Control(1)=   "Frame10"
-      Tab(1).Control(2)=   "Frame3"
+      Tab(1).Control(0)=   "Frame12"
+      Tab(1).Control(1)=   "Frame4"
+      Tab(1).Control(2)=   "Frame9"
       Tab(1).Control(3)=   "Frame2"
-      Tab(1).Control(4)=   "Frame9"
-      Tab(1).Control(5)=   "Frame4"
-      Tab(1).Control(6)=   "Frame12"
+      Tab(1).Control(4)=   "Frame3"
+      Tab(1).Control(5)=   "Frame10"
+      Tab(1).Control(6)=   "Frame15"
       Tab(1).ControlCount=   7
       TabCaption(2)   =   "Internet"
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Text1(81)"
-      Tab(2).Control(1)=   "FrameSoporte"
-      Tab(2).Control(2)=   "FrameEMail"
-      Tab(2).Control(3)=   "Label1(80)"
+      Tab(2).Control(0)=   "Label1(80)"
+      Tab(2).Control(1)=   "FrameEMail"
+      Tab(2).Control(2)=   "FrameSoporte"
+      Tab(2).Control(3)=   "Text1(81)"
       Tab(2).ControlCount=   4
       TabCaption(3)   =   "Datos Contabilidad "
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "CboModAnalitica"
-      Tab(3).Control(1)=   "Text1(50)"
-      Tab(3).Control(2)=   "Text1(52)"
-      Tab(3).Control(3)=   "Text2(52)"
-      Tab(3).Control(4)=   "cboObsFactura"
-      Tab(3).Control(5)=   "Text2(48)"
-      Tab(3).Control(6)=   "Text1(48)"
-      Tab(3).Control(7)=   "Frame8"
-      Tab(3).Control(8)=   "Text1(23)"
-      Tab(3).Control(9)=   "Text1(22)"
-      Tab(3).Control(10)=   "Text1(21)"
-      Tab(3).Control(11)=   "Text1(20)"
-      Tab(3).Control(12)=   "Label1(58)"
-      Tab(3).Control(13)=   "Label1(51)"
-      Tab(3).Control(14)=   "Label1(47)"
-      Tab(3).Control(15)=   "imgBuscar(45)"
-      Tab(3).Control(16)=   "Label1(53)"
-      Tab(3).Control(17)=   "imgBuscar(41)"
-      Tab(3).Control(18)=   "Label1(50)"
-      Tab(3).Control(19)=   "Label1(49)"
-      Tab(3).Control(20)=   "Label1(19)"
-      Tab(3).Control(21)=   "Label1(18)"
-      Tab(3).Control(22)=   "Label1(17)"
-      Tab(3).Control(23)=   "Label1(15)"
+      Tab(3).Control(0)=   "Label1(15)"
+      Tab(3).Control(1)=   "Label1(17)"
+      Tab(3).Control(2)=   "Label1(18)"
+      Tab(3).Control(3)=   "Label1(19)"
+      Tab(3).Control(4)=   "Label1(49)"
+      Tab(3).Control(5)=   "Label1(50)"
+      Tab(3).Control(6)=   "imgBuscar(41)"
+      Tab(3).Control(7)=   "Label1(53)"
+      Tab(3).Control(8)=   "imgBuscar(45)"
+      Tab(3).Control(9)=   "Label1(47)"
+      Tab(3).Control(10)=   "Label1(51)"
+      Tab(3).Control(11)=   "Label1(58)"
+      Tab(3).Control(12)=   "Text1(20)"
+      Tab(3).Control(13)=   "Text1(21)"
+      Tab(3).Control(14)=   "Text1(22)"
+      Tab(3).Control(15)=   "Text1(23)"
+      Tab(3).Control(16)=   "Frame8"
+      Tab(3).Control(17)=   "Text1(48)"
+      Tab(3).Control(18)=   "Text2(48)"
+      Tab(3).Control(19)=   "cboObsFactura"
+      Tab(3).Control(20)=   "Text2(52)"
+      Tab(3).Control(21)=   "Text1(52)"
+      Tab(3).Control(22)=   "Text1(50)"
+      Tab(3).Control(23)=   "CboModAnalitica"
       Tab(3).ControlCount=   24
       TabCaption(4)   =   "Publicidad / Cuotas"
       TabPicture(4)   =   "frmConfParamAplic.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Frame6"
-      Tab(4).Control(1)=   "Frame11"
-      Tab(4).Control(2)=   "Text2(25)"
-      Tab(4).Control(3)=   "Text1(25)"
-      Tab(4).Control(4)=   "Text2(26)"
-      Tab(4).Control(5)=   "Text1(26)"
-      Tab(4).Control(6)=   "Text2(27)"
-      Tab(4).Control(7)=   "Text1(27)"
-      Tab(4).Control(8)=   "Text2(29)"
-      Tab(4).Control(9)=   "Text1(29)"
-      Tab(4).Control(10)=   "Text2(30)"
-      Tab(4).Control(11)=   "Text1(30)"
-      Tab(4).Control(12)=   "Text2(31)"
-      Tab(4).Control(13)=   "Text1(31)"
-      Tab(4).Control(14)=   "Frame5"
-      Tab(4).Control(15)=   "Frame7"
-      Tab(4).Control(16)=   "Text1(62)"
-      Tab(4).Control(17)=   "Text1(63)"
-      Tab(4).Control(18)=   "Text1(64)"
-      Tab(4).Control(19)=   "Text1(68)"
-      Tab(4).Control(20)=   "Label1(31)"
-      Tab(4).Control(21)=   "Label1(29)"
-      Tab(4).Control(22)=   "imgBuscar(29)"
-      Tab(4).Control(23)=   "imgBuscar(31)"
-      Tab(4).Control(24)=   "Label1(25)"
-      Tab(4).Control(25)=   "Label1(26)"
-      Tab(4).Control(26)=   "Label1(27)"
-      Tab(4).Control(27)=   "Label1(30)"
-      Tab(4).Control(28)=   "imgBuscar(26)"
-      Tab(4).Control(29)=   "imgBuscar(27)"
-      Tab(4).Control(30)=   "imgBuscar(25)"
-      Tab(4).Control(31)=   "imgBuscar(30)"
+      Tab(4).Control(0)=   "imgBuscar(30)"
+      Tab(4).Control(1)=   "imgBuscar(25)"
+      Tab(4).Control(2)=   "imgBuscar(27)"
+      Tab(4).Control(3)=   "imgBuscar(26)"
+      Tab(4).Control(4)=   "Label1(30)"
+      Tab(4).Control(5)=   "Label1(27)"
+      Tab(4).Control(6)=   "Label1(26)"
+      Tab(4).Control(7)=   "Label1(25)"
+      Tab(4).Control(8)=   "imgBuscar(31)"
+      Tab(4).Control(9)=   "imgBuscar(29)"
+      Tab(4).Control(10)=   "Label1(29)"
+      Tab(4).Control(11)=   "Label1(31)"
+      Tab(4).Control(12)=   "Text1(68)"
+      Tab(4).Control(13)=   "Text1(64)"
+      Tab(4).Control(14)=   "Text1(63)"
+      Tab(4).Control(15)=   "Text1(62)"
+      Tab(4).Control(16)=   "Frame7"
+      Tab(4).Control(17)=   "Frame5"
+      Tab(4).Control(18)=   "Text1(31)"
+      Tab(4).Control(19)=   "Text2(31)"
+      Tab(4).Control(20)=   "Text1(30)"
+      Tab(4).Control(21)=   "Text2(30)"
+      Tab(4).Control(22)=   "Text1(29)"
+      Tab(4).Control(23)=   "Text2(29)"
+      Tab(4).Control(24)=   "Text1(27)"
+      Tab(4).Control(25)=   "Text2(27)"
+      Tab(4).Control(26)=   "Text1(26)"
+      Tab(4).Control(27)=   "Text2(26)"
+      Tab(4).Control(28)=   "Text1(25)"
+      Tab(4).Control(29)=   "Text2(25)"
+      Tab(4).Control(30)=   "Frame11"
+      Tab(4).Control(31)=   "Frame6"
       Tab(4).ControlCount=   32
       TabCaption(5)   =   "Varios"
       TabPicture(5)   =   "frmConfParamAplic.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Text1(82)"
+      Tab(5).Control(0)=   "Label1(81)"
       Tab(5).Control(1)=   "Frame14"
-      Tab(5).Control(2)=   "Label1(81)"
+      Tab(5).Control(2)=   "Text1(82)"
       Tab(5).ControlCount=   3
       Begin VB.CheckBox chkHaynserie 
          Caption         =   "Hay Nº Serie en Compras"
@@ -3742,7 +3742,7 @@ Attribute frmB.VB_VarHelpID = -1
 
 Private NombreTabla As String  'Nombre de la tabla o de la
 Private CadenaConsulta As String
-Dim Indice As Byte
+Dim indice As Byte
 
 
 Dim PrimeraVez As Boolean
@@ -4281,9 +4281,9 @@ Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
 
 
     
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Forma Pago
-    FormateaCampo Text1(Indice)
-    Text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Forma Pago
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Forma Pago
+    FormateaCampo Text1(indice)
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Forma Pago
 End Sub
 
 Private Sub frmMtoArt_DatoSeleccionado(CadenaSeleccion As String)
@@ -4356,7 +4356,7 @@ Dim i As Integer
             Set frmFP = New frmFacFormasPago
             frmFP.DatosADevolverBusqueda = "0"
             frmFP.Show vbModal
-            Indice = 24
+            indice = 24
             Set frmFP = Nothing
             If Modo = 4 Then
                 If Not BLOQUEADesdeFormulario(Me) Then cmdCancelar_Click
@@ -4378,7 +4378,7 @@ Dim i As Integer
             
             
         Case 27 'forma de pago
-            Indice = 27
+            indice = 27
             Set frmFP = New frmFacFormasPago
             frmFP.DatosADevolverBusqueda = "0"
             frmFP.Show vbModal
@@ -4874,9 +4874,15 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-   
+Dim i As Integer
+
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
+      
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+      
       
     '------------------------------------------------------
     'Modo insertar o modificar

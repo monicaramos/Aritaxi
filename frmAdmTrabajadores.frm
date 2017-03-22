@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -390,11 +390,8 @@ Begin VB.Form frmAdmTrabajadores
       TabPicture(1)   =   "frmAdmTrabajadores.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "DataGrid1"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "txtAux1(0)"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "txtAux1(1)"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "Habilidades"
       TabPicture(2)   =   "frmAdmTrabajadores.frx":0044
@@ -2281,7 +2278,7 @@ End Sub
 
 Private Sub BotonEliminarLinea()
 'Eliminar una linea De Trabajador. Tablas: strab1, strab2, strab3, strab4, strab5
-Dim SQL As String
+Dim Sql As String
 Dim numlinea As Integer
 On Error GoTo EEliminarLinea
 
@@ -2313,15 +2310,15 @@ On Error GoTo EEliminarLinea
     End Select
     
     ModificaLineas = 3 'Eliminar
-    SQL = "¿Seguro que desea eliminar la línea de " & TituloLinea & "?"
-    SQL = SQL & vbCrLf & "Cod. Traba.: " & Format(Data1.Recordset!CodTraba, "000000")
-    SQL = SQL & vbCrLf & "Nombre: " & Data1.Recordset!NomTraba
-    SQL = SQL & vbCrLf & "Numlinea: " & numlinea
-    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+    Sql = "¿Seguro que desea eliminar la línea de " & TituloLinea & "?"
+    Sql = Sql & vbCrLf & "Cod. Traba.: " & Format(Data1.Recordset!CodTraba, "000000")
+    Sql = Sql & vbCrLf & "Nombre: " & Data1.Recordset!NomTraba
+    Sql = Sql & vbCrLf & "Numlinea: " & numlinea
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
-        SQL = "Delete from " & NomTablaLineas & " where codtraba=" & Data1.Recordset!CodTraba
-        SQL = SQL & " and numlinea=" & numlinea
-        conn.Execute SQL
+        Sql = "Delete from " & NomTablaLineas & " where codtraba=" & Data1.Recordset!CodTraba
+        Sql = Sql & " and numlinea=" & numlinea
+        conn.Execute Sql
 
         ModificaLineas = 0
         Select Case Me.SSTab1.Tab
@@ -2891,7 +2888,7 @@ End Sub
 
 Private Sub PonerCamposLineas()
 'Carga las Pestañas con las tablas de lineas del Trabajador seleccionado para mostrar
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 On Error GoTo EPonerLineas
 
@@ -2899,29 +2896,29 @@ On Error GoTo EPonerLineas
    
     vWhere = " WHERE codtraba= " & Data1.Recordset!CodTraba
     'Estudios/Formacion - Datos de la tabla strab1
-    SQL = "Select * from strab1 " & vWhere
-    SQL = SQL & " order by numlinea"
-    CargaGrid DataGrid1, Data2, SQL
+    Sql = "Select * from strab1 " & vWhere
+    Sql = Sql & " order by numlinea"
+    CargaGrid DataGrid1, Data2, Sql
     
     'Habilidades
-    SQL = "Select * from strab2 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
-    SQL = SQL & " order by numlinea"
-    CargaGrid DataGrid2, Data3, SQL
+    Sql = "Select * from strab2 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
+    Sql = Sql & " order by numlinea"
+    CargaGrid DataGrid2, Data3, Sql
 
     'Experiencia Laboral
-    SQL = "Select * from strab3 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
-    SQL = SQL & " order by numlinea"
-    CargaGrid DataGrid3, Data4, SQL
+    Sql = "Select * from strab3 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
+    Sql = Sql & " order by numlinea"
+    CargaGrid DataGrid3, Data4, Sql
 
     'Formacion Realizada
-    SQL = "Select * from strab4 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
-    SQL = SQL & " order by numlinea"
-    CargaGrid DataGrid4, Data5, SQL
+    Sql = "Select * from strab4 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
+    Sql = Sql & " order by numlinea"
+    CargaGrid DataGrid4, Data5, Sql
 
     'Formacion Empresa
-    SQL = "Select * from strab5 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
-    SQL = SQL & " order by numlinea"
-    CargaGrid DataGrid5, Data6, SQL
+    Sql = "Select * from strab5 " & vWhere 'where codtraba= " & Data1.Recordset!codtraba
+    Sql = Sql & " order by numlinea"
+    CargaGrid DataGrid5, Data6, Sql
 
     PrimeraVez = False
     Screen.MousePointer = vbDefault
@@ -2958,13 +2955,19 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte, NumReg As Byte
-Dim B As Boolean
+Dim b As Boolean
 On Error GoTo EPonerModo
 
     'Visualizar el login solo si es administrador o root
-    B = (vUsu.Nivel < 2)
-    Me.Label1(25).visible = B
-    Text1(23).visible = B
+    b = (vUsu.Nivel < 2)
+    Me.Label1(25).visible = b
+    Text1(23).visible = b
+
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+
+
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -2984,29 +2987,29 @@ On Error GoTo EPonerModo
     End If
     
     '=======================================
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
     BloquearText1 Me, Modo
     
     '---------------------------------------------
-    B = Modo <> 0 And Modo <> 2 And Modo <> 5
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
+    b = Modo <> 0 And Modo <> 2 And Modo <> 5
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
     
     For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = B
+        Me.imgFecha(i).Enabled = b
     Next i
     
     For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = B
+        Me.imgBuscar(i).Enabled = b
     Next i
     
     chkVistaPrevia.Enabled = (Modo <= 2)
@@ -3026,42 +3029,42 @@ End Sub
 
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
-Dim B As Boolean
+Dim b As Boolean
 Dim i As Byte
 
-    B = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
+    b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = B
-    Me.mnNuevo.Enabled = B
+    Toolbar1.Buttons(5).Enabled = b
+    Me.mnNuevo.Enabled = b
     
-    B = (Modo = 2 Or Modo = 5)
+    b = (Modo = 2 Or Modo = 5)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    Me.mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    Me.mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    Me.mnEliminar.Enabled = b
     
     'Mantenimiento lineas
-    B = (Modo = 2)
+    b = (Modo = 2)
     For i = 10 To 14
-        Toolbar1.Buttons(i).Enabled = B
+        Toolbar1.Buttons(i).Enabled = b
     Next i
-    Toolbar1.Buttons(16).Enabled = B Or Modo = 0
-    Me.mnEstudios.Enabled = B
-    Me.mnExperiencia.Enabled = B
-    Me.mnFormEmpresa.Enabled = B
-    Me.mnFormRealizada.Enabled = B
-    Me.mnHabilidades.Enabled = B
+    Toolbar1.Buttons(16).Enabled = b Or Modo = 0
+    Me.mnEstudios.Enabled = b
+    Me.mnExperiencia.Enabled = b
+    Me.mnFormEmpresa.Enabled = b
+    Me.mnFormRealizada.Enabled = b
+    Me.mnHabilidades.Enabled = b
     
     '------------------------------------------
-    B = (Modo >= 3)
+    b = (Modo >= 3)
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -3073,19 +3076,19 @@ End Sub
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 Dim cta As String
 Dim cadMen As String
 
 On Error GoTo EDatosOK
 
     DatosOk = False
-    B = True
-    B = CompForm(Me, 1) 'Comprobar formato datos ok
-    If Not B Then Exit Function
+    b = True
+    b = CompForm(Me, 1) 'Comprobar formato datos ok
+    If Not b Then Exit Function
 '[Monica]22/11/2013: iban
 '    Comprueba_CuentaBan (Text1(31).Text & Text1(32).Text & Text1(33).Text & Text1(34).Text)
-    If B And (Modo = 3 Or Modo = 4) Then
+    If b And (Modo = 3 Or Modo = 4) Then
         
         
         '[Monica]22/08/2013: añadida la comprobacion de que la cuenta contable sea correcta
@@ -3105,10 +3108,10 @@ On Error GoTo EDatosOK
             If Not Comprueba_CC(cta) Then
                 cadMen = "La cuenta bancaria de nómina del trabajador no es correcta. ¿ Desea continuar ?."
                 If MsgBox(cadMen, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
-                    B = True
+                    b = True
                 Else
                     PonerFoco Text1(15)
-                    B = False
+                    b = False
                 End If
             Else
                 BuscaChekc = ""
@@ -3124,7 +3127,7 @@ On Error GoTo EDatosOK
                             cta = "Error en codigo IBAN" & vbCrLf & cta & "Continuar?"
                             If MsgBox(cta, vbQuestion + vbYesNo) = vbNo Then
                                 PonerFoco Text1(25)
-                                B = False
+                                b = False
                             End If
                         End If
                     End If
@@ -3149,10 +3152,10 @@ On Error GoTo EDatosOK
             If Not Comprueba_CC(cta) Then
                 cadMen = "La cuenta bancaria de gastos del trabajador no es correcta. ¿ Desea continuar ?."
                 If MsgBox(cadMen, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
-                    B = True
+                    b = True
                 Else
                     PonerFoco Text1(19)
-                    B = False
+                    b = False
                 End If
             Else
                 BuscaChekc = ""
@@ -3168,7 +3171,7 @@ On Error GoTo EDatosOK
                             cta = "Error en codigo IBAN" & vbCrLf & cta & "Continuar?"
                             If MsgBox(cta, vbQuestion + vbYesNo) = vbNo Then
                                 PonerFoco Text1(19)
-                                B = False
+                                b = False
                             End If
                         End If
                     End If
@@ -3182,48 +3185,48 @@ On Error GoTo EDatosOK
     
     End If
           
-    DatosOk = B
+    DatosOk = b
 EDatosOK:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Function
 
 
 Private Function DatosOkLinea() As Boolean
-Dim B As Boolean
+Dim b As Boolean
 On Error GoTo EDatosOkLinea
 
     DatosOkLinea = False
-    B = True
+    b = True
 
     Select Case Me.SSTab1.Tab
         Case 1 'Estudios/Formacion
             If (Not Trim(txtAux1(0).Text) <> "") And (Not Trim(txtAux1(1).Text) <> "") Then
                 MsgBox "Los campos Periodo y Formación no pueden ser nulos", vbExclamation
-                B = False
+                b = False
             End If
         Case 2 'Habilidades
             If Trim(txtAux2.Text) = "" Then
                 MsgBox "El campo Habilidad no puede ser nulo", vbExclamation
-                B = False
+                b = False
             End If
         Case 3 'Experiencial Laboral
             If (Not Trim(txtAux3(0).Text) <> "") And (Not Trim(txtAux3(1).Text) <> "") Then
                 MsgBox "Los campos Periodo y Experiencia no pueden ser nulos", vbExclamation
-                B = False
+                b = False
             End If
         Case 4 'Formacion Realizada
             If (Not Trim(txtAux4(0).Text) <> "") And (Not Trim(TxtAux5(1).Text) <> "") Then
                 MsgBox "Los campos Fecha Formación y Fecha Evaluación no pueden ser nulos", vbExclamation
-                B = False
+                b = False
             End If
         Case 5 'Formacion Empresa
             If Trim(TxtAux5(0).Text) = "" Then
                 MsgBox "El campo Fecha Formación no puede ser nulo", vbExclamation
-                B = False
+                b = False
             End If
     End Select
     
-    DatosOkLinea = B
+    DatosOkLinea = b
 EDatosOkLinea:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Function
@@ -3282,48 +3285,48 @@ End Sub
    
     
 Private Function InsertarLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim numF As String
 On Error GoTo EInsertarLinea
 
     InsertarLinea = False
-    SQL = ""
+    Sql = ""
     If DatosOkLinea Then
           vWhere = "codtraba=" & Val(Text1(0).Text)
           numF = SugerirCodigoSiguienteStr(NomTablaLineas, "numlinea", vWhere)
           Select Case Me.SSTab1.Tab
              Case 1 'Estudios/Formacion
-                 SQL = "INSERT INTO strab1 "
-                 SQL = SQL & "(codtraba, numlinea, periodos, formacio) "
-                 SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
-                 SQL = SQL & DBSet(txtAux1(0).Text, "T") & "," & DBSet(txtAux1(1).Text, "T") & ")"
+                 Sql = "INSERT INTO strab1 "
+                 Sql = Sql & "(codtraba, numlinea, periodos, formacio) "
+                 Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
+                 Sql = Sql & DBSet(txtAux1(0).Text, "T") & "," & DBSet(txtAux1(1).Text, "T") & ")"
             Case 2 'Habilidades
-                 SQL = "INSERT INTO strab2 "
-                 SQL = SQL & "(codtraba, numlinea, habilida) "
-                 SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
-                 SQL = SQL & DBSet(txtAux2.Text, "T") & ")"
+                 Sql = "INSERT INTO strab2 "
+                 Sql = Sql & "(codtraba, numlinea, habilida) "
+                 Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
+                 Sql = Sql & DBSet(txtAux2.Text, "T") & ")"
             Case 3 'Experiencia Laboral
-                 SQL = "INSERT INTO strab3 "
-                 SQL = SQL & "(codtraba, numlinea, periodo1, experien) "
-                 SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
-                 SQL = SQL & DBSet(txtAux3(0).Text, "T") & ", " & DBSet(txtAux3(1).Text, "T") & ")"
+                 Sql = "INSERT INTO strab3 "
+                 Sql = Sql & "(codtraba, numlinea, periodo1, experien) "
+                 Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
+                 Sql = Sql & DBSet(txtAux3(0).Text, "T") & ", " & DBSet(txtAux3(1).Text, "T") & ")"
             Case 4 'Formacion Realizada
-                 SQL = "INSERT INTO strab4 "
-                 SQL = SQL & "(codtraba, numlinea, fecforma, fecevalu, formaci1, codcentr, evaluaci) "
-                 SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ",'"
-                 SQL = SQL & Format(txtAux4(0).Text, FormatoFecha) & "', '" & Format(txtAux4(1).Text, FormatoFecha) & "', "
-                 SQL = SQL & DBSet(txtAux4(2).Text, "T") & ", " & DBSet(txtAux4(3).Text, "T") & ", " & DBSet(txtAux4(4).Text, "T") & ")"
+                 Sql = "INSERT INTO strab4 "
+                 Sql = Sql & "(codtraba, numlinea, fecforma, fecevalu, formaci1, codcentr, evaluaci) "
+                 Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ",'"
+                 Sql = Sql & Format(txtAux4(0).Text, FormatoFecha) & "', '" & Format(txtAux4(1).Text, FormatoFecha) & "', "
+                 Sql = Sql & DBSet(txtAux4(2).Text, "T") & ", " & DBSet(txtAux4(3).Text, "T") & ", " & DBSet(txtAux4(4).Text, "T") & ")"
             Case 5 'Formacion Empresa
-                 SQL = "INSERT INTO strab5 "
-                 SQL = SQL & "(codtraba, numlinea, fecforma, formaci2, resforma) "
-                 SQL = SQL & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ",'"
-                 SQL = SQL & Format(TxtAux5(0).Text, FormatoFecha) & "', " & DBSet(TxtAux5(1).Text, "T") & ", " & DBSet(TxtAux5(2).Text, "T") & ")"
+                 Sql = "INSERT INTO strab5 "
+                 Sql = Sql & "(codtraba, numlinea, fecforma, formaci2, resforma) "
+                 Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ",'"
+                 Sql = Sql & Format(TxtAux5(0).Text, FormatoFecha) & "', " & DBSet(TxtAux5(1).Text, "T") & ", " & DBSet(TxtAux5(2).Text, "T") & ")"
           End Select
      End If
     
-    If SQL <> "" Then
-        conn.Execute SQL
+    If Sql <> "" Then
+        conn.Execute Sql
         InsertarLinea = True
     End If
     Exit Function
@@ -3333,40 +3336,40 @@ End Function
 
 
 Private Function ModificarLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 On Error GoTo EModificarLinea
 
     ModificarLinea = False
-    SQL = ""
+    Sql = ""
     If DatosOkLinea Then
          vWhere = "codtraba=" & Val(Text1(0).Text)
          Select Case Me.SSTab1.Tab
             Case 1 'Estudios/Formacion
-                SQL = "UPDATE strab1 Set periodos = " & DBSet(txtAux1(0).Text, "T")
-                SQL = SQL & ", formacio = " & DBSet(txtAux1(1).Text, "T")
-                SQL = SQL & " WHERE " & vWhere & " AND numlinea=" & Data2.Recordset!numlinea
+                Sql = "UPDATE strab1 Set periodos = " & DBSet(txtAux1(0).Text, "T")
+                Sql = Sql & ", formacio = " & DBSet(txtAux1(1).Text, "T")
+                Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data2.Recordset!numlinea
             Case 2 'Habilidades
-                SQL = "UPDATE strab2 Set habilida = " & DBSet(txtAux2.Text, "T")
-                SQL = SQL & " WHERE " & vWhere & " AND numlinea=" & Data3.Recordset!numlinea
+                Sql = "UPDATE strab2 Set habilida = " & DBSet(txtAux2.Text, "T")
+                Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data3.Recordset!numlinea
             Case 3 'Experiencia Laboral
-                SQL = "UPDATE strab3 Set periodo1 = " & DBSet(txtAux3(0).Text, "T") & ", "
-                SQL = SQL & "experien=" & DBSet(txtAux3(1).Text, "T")
-                SQL = SQL & " WHERE " & vWhere & " AND numlinea=" & Data4.Recordset!numlinea
+                Sql = "UPDATE strab3 Set periodo1 = " & DBSet(txtAux3(0).Text, "T") & ", "
+                Sql = Sql & "experien=" & DBSet(txtAux3(1).Text, "T")
+                Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data4.Recordset!numlinea
             Case 4 'Formacion Realizada
-                SQL = "UPDATE strab4 Set fecforma = " & DBSet(txtAux4(0).Text, "F") & ", fecevalu="
-                SQL = SQL & DBSet(txtAux4(1).Text, "F") & ", formaci1=" & DBSet(txtAux4(2).Text, "T") & ", codcentr="
-                SQL = SQL & DBSet(txtAux4(3).Text, "T") & ", evaluaci=" & DBSet(txtAux4(4).Text, "T")
-                SQL = SQL & " WHERE " & vWhere & " AND numlinea=" & Data5.Recordset!numlinea
+                Sql = "UPDATE strab4 Set fecforma = " & DBSet(txtAux4(0).Text, "F") & ", fecevalu="
+                Sql = Sql & DBSet(txtAux4(1).Text, "F") & ", formaci1=" & DBSet(txtAux4(2).Text, "T") & ", codcentr="
+                Sql = Sql & DBSet(txtAux4(3).Text, "T") & ", evaluaci=" & DBSet(txtAux4(4).Text, "T")
+                Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data5.Recordset!numlinea
             Case 5 'Formacion Empresa
-                SQL = "UPDATE strab5 Set fecforma = " & DBSet(TxtAux5(0).Text, "F") & ", formaci2="
-                SQL = SQL & DBSet(TxtAux5(1).Text, "T") & ", resforma=" & DBSet(TxtAux5(2).Text, "T")
-                SQL = SQL & " WHERE " & vWhere & " AND numlinea=" & Data6.Recordset!numlinea
+                Sql = "UPDATE strab5 Set fecforma = " & DBSet(TxtAux5(0).Text, "F") & ", formaci2="
+                Sql = Sql & DBSet(TxtAux5(1).Text, "T") & ", resforma=" & DBSet(TxtAux5(2).Text, "T")
+                Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data6.Recordset!numlinea
         End Select
     End If
 
-    If SQL <> "" Then
-        conn.Execute SQL
+    If Sql <> "" Then
+        conn.Execute Sql
         ModificarLinea = True
     End If
     Exit Function
@@ -3375,15 +3378,15 @@ EModificarLinea:
 End Function
 
 
-Private Sub PonerBotonCabecera(B As Boolean)
+Private Sub PonerBotonCabecera(b As Boolean)
 'Pone el boton de Regresar a la Cabecera si pasamos a MAntenimiento de Lineas
 'o Pone los botones de Aceptar y cancelar en Insert,update o delete lineas
 On Error Resume Next
-    Me.cmdAceptar.visible = Not B
-    Me.cmdCancelar.visible = Not B
-    Me.cmdRegresar.visible = B
+    Me.cmdAceptar.visible = Not b
+    Me.cmdCancelar.visible = Not b
+    Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
-    If B Then
+    If b Then
         Me.lblIndicador.Caption = "Líneas " & TituloLinea
         PonerFocoBtn Me.cmdRegresar
     End If
@@ -3391,10 +3394,10 @@ On Error Resume Next
 End Sub
 
 
-Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, SQL As String)
+Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, Sql As String)
 On Error GoTo ECargaGrid
 
-    CargaGridGnral vDataGrid, vData, SQL, PrimeraVez
+    CargaGridGnral vDataGrid, vData, Sql, PrimeraVez
     vDataGrid.RowHeight = 320
      
     CargaGrid2 vDataGrid, vData
@@ -3850,24 +3853,24 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo FinEliminar
 
         conn.BeginTrans
-        SQL = " WHERE  codtraba=" & Data1.Recordset!CodTraba
+        Sql = " WHERE  codtraba=" & Data1.Recordset!CodTraba
 
         'Lineas Estudios/Formacion
-        conn.Execute "Delete from strab1 " & SQL
+        conn.Execute "Delete from strab1 " & Sql
         'Lineas Habilidades
-        conn.Execute "Delete from strab2 " & SQL
+        conn.Execute "Delete from strab2 " & Sql
         'Lineas Experiencia Laboral
-        conn.Execute "Delete from strab3 " & SQL
+        conn.Execute "Delete from strab3 " & Sql
         'Lineas Formacion Realizada
-        conn.Execute "Delete from strab4 " & SQL
+        conn.Execute "Delete from strab4 " & Sql
         'Lineas Experiencia Empresa
-        conn.Execute "Delete from strab5 " & SQL
+        conn.Execute "Delete from strab5 " & Sql
         'Cabeceras
-        conn.Execute "Delete from straba " & SQL
+        conn.Execute "Delete from straba " & Sql
 
 FinEliminar:
     If Err.Number <> 0 Then

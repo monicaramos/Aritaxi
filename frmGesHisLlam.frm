@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesHisLlam 
    Caption         =   "Histórico de Llamadas."
@@ -1391,12 +1391,12 @@ Dim cad1 As String
             HacerBusqueda
             
         Case 3 'INSERTAR
-            If DatosOK Then
+            If DatosOk Then
               If InsertarDesdeForm(Me) Then PosicionarData
             End If
             
         Case 4  'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                 If ModificaDesdeFormulario(Me, 1) Then
                      '[Monica]04/02/2015: guardo en el slog los campos que me han cambiado
                     cad1 = ""
@@ -1494,11 +1494,11 @@ Dim cadB As String
         PonerFoco Text1(1)
     End If
 End Sub
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 
-DatosOK = False
+DatosOk = False
 If Modo = 4 Then
-    DatosOK = True
+    DatosOk = True
     Exit Function
 End If
 'CODIGO DE socio
@@ -1544,7 +1544,7 @@ ElseIf Not IsNumeric(Text1(8).Text) Then
         PonerFoco Text1(8)
         Exit Function
 End If
-DatosOK = True
+DatosOk = True
     
 End Function
 
@@ -1568,7 +1568,7 @@ Private Sub Combo1_KeyDown(KeyCode As Integer, Shift As Integer)
     KEYdown KeyCode
 End Sub
 
-Private Sub combo1_KeyPress(KeyAscii As Integer)
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -1683,11 +1683,15 @@ Private Sub CargarCombo()
     Combo1.ItemData(Combo1.NewIndex) = 1
     
 End Sub
+
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -2102,7 +2106,7 @@ End Sub
 Private Sub BotonModificar()
 'Prepara el Form para Modificar
 Dim DeVarios As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo EModificar
 
     'Añadiremos el boton de aceptar y demas objetos para insertar
@@ -2157,16 +2161,16 @@ Private Sub mnSalir_Click()
 End Sub
 Private Sub BotonEliminar()
 Dim msg As String
-Dim SQL As String
+Dim Sql As String
 
 On Error GoTo EEliminar
 
 msg = "Esta seguro que desea eliminar la llamada del día:" & Text1(1).Text & "?"
 If MsgBox(msg, vbYesNo) = vbYes Then
     NumRegElim = Adodc1.Recordset.AbsolutePosition
-    SQL = "Delete from shilla where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
-    SQL = SQL & "' and codsocio=" & Text1(0).Text & " and numeruve=" & Text1(8).Text
-    conn.Execute SQL
+    Sql = "Delete from shilla where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
+    Sql = Sql & "' and codsocio=" & Text1(0).Text & " and numeruve=" & Text1(8).Text
+    conn.Execute Sql
 End If
 
 If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
@@ -2354,15 +2358,15 @@ Dim vWhere As String
 End Sub
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = "(fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
-    SQL = SQL & "' and numeruve=" & Text1(8).Text & ")"
+    Sql = "(fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
+    Sql = Sql & "' and numeruve=" & Text1(8).Text & ")"
     
-    If conWhere Then SQL = " WHERE " & SQL
-    ObtenerWhereCP = SQL
+    If conWhere Then Sql = " WHERE " & Sql
+    ObtenerWhereCP = Sql
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function

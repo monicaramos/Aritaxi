@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmComProveedores 
@@ -256,24 +256,24 @@ Begin VB.Form frmComProveedores
       TabCaption(1)   =   "Datos Contacto"
       TabPicture(1)   =   "frmComProveedores.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame2(13)"
-      Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(2)=   "Text1(28)"
-      Tab(1).Control(3)=   "Text1(27)"
-      Tab(1).Control(4)=   "imgCuentas(5)"
-      Tab(1).Control(5)=   "imgWeb"
-      Tab(1).Control(6)=   "Label2(11)"
-      Tab(1).Control(7)=   "Label2(10)"
+      Tab(1).Control(0)=   "Label2(10)"
+      Tab(1).Control(1)=   "Label2(11)"
+      Tab(1).Control(2)=   "imgWeb"
+      Tab(1).Control(3)=   "imgCuentas(5)"
+      Tab(1).Control(4)=   "Text1(27)"
+      Tab(1).Control(5)=   "Text1(28)"
+      Tab(1).Control(6)=   "Frame1"
+      Tab(1).Control(7)=   "Frame2(13)"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmComProveedores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label3"
-      Tab(2).Control(1)=   "imgFecha(2)"
-      Tab(2).Control(2)=   "Label2(0)"
-      Tab(2).Control(3)=   "lw1"
-      Tab(2).Control(4)=   "Toolbar2"
-      Tab(2).Control(5)=   "Text1(30)"
+      Tab(2).Control(0)=   "Text1(30)"
+      Tab(2).Control(1)=   "Toolbar2"
+      Tab(2).Control(2)=   "lw1"
+      Tab(2).Control(3)=   "Label2(0)"
+      Tab(2).Control(4)=   "imgFecha(2)"
+      Tab(2).Control(5)=   "Label3"
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text1 
          Height          =   315
@@ -1963,21 +1963,21 @@ On Error Resume Next
     
     '[Monica]22/11/2013: calculo del iban si no lo ponen
     If Index = 15 Or Index = 16 Or Index = 17 Or Index = 18 Then
-        Dim Cta As String
+        Dim cta As String
         Dim CC As String
         If Text1(15).Text <> "" And Text1(16).Text <> "" And Text1(17).Text <> "" And Text1(18).Text <> "" Then
             
-            Cta = Format(Text1(15).Text, "0000") & Format(Text1(16).Text, "0000") & Format(Text1(17).Text, "00") & Format(Text1(18).Text, "0000000000")
-            If Len(Cta) = 20 Then
+            cta = Format(Text1(15).Text, "0000") & Format(Text1(16).Text, "0000") & Format(Text1(17).Text, "00") & Format(Text1(18).Text, "0000000000")
+            If Len(cta) = 20 Then
                 If Text1(31).Text = "" Then
                     'NO ha puesto IBAN
-                    If DevuelveIBAN2("ES", Cta, Cta) Then Text1(31).Text = "ES" & Cta
+                    If DevuelveIBAN2("ES", cta, cta) Then Text1(31).Text = "ES" & cta
                 Else
                     CC = CStr(Mid(Text1(31).Text, 1, 2))
-                    If DevuelveIBAN2(CStr(CC), Cta, Cta) Then
-                        If Mid(Text1(31).Text, 3) <> Cta Then
+                    If DevuelveIBAN2(CStr(CC), cta, cta) Then
+                        If Mid(Text1(31).Text, 3) <> cta Then
                             
-                            MsgBox "Codigo IBAN distinto del calculado [" & CC & Cta & "]", vbExclamation
+                            MsgBox "Codigo IBAN distinto del calculado [" & CC & cta & "]", vbExclamation
                         End If
                     End If
                 End If
@@ -1996,17 +1996,21 @@ End Sub
 '
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
-Dim B As Boolean
+Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
     
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
     'Modo 2. Hay datos y estamos visualizandolos
-    B = (Kmodo = 2)
+    b = (Kmodo = 2)
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
     If DatosADevolverBusqueda <> "" Then
-        cmdRegresar.visible = B
+        cmdRegresar.visible = b
     Else
         cmdRegresar.visible = False
     End If
@@ -2016,16 +2020,16 @@ Dim NumReg As Byte
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     
     '----------------------------------------------------------------
-    B = (Kmodo >= 3) Or Modo = 1 'Modo: Insertar/Modificar o Busqueda
-    Me.cboTipoProv.Enabled = B
-    Me.cboTipoDto.Enabled = B
-    Me.chkProveV.Enabled = B 'proveedor varios
-    checkAlbFac.Enabled = B           'Solo si al aplicacion lleva REA veremos este check
-    cmdAceptar.visible = B
-    cmdCancelar.visible = B
+    b = (Kmodo >= 3) Or Modo = 1 'Modo: Insertar/Modificar o Busqueda
+    Me.cboTipoProv.Enabled = b
+    Me.cboTipoDto.Enabled = b
+    Me.chkProveV.Enabled = b 'proveedor varios
+    checkAlbFac.Enabled = b           'Solo si al aplicacion lleva REA veremos este check
+    cmdAceptar.visible = b
+    cmdCancelar.visible = b
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -2055,28 +2059,28 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
+Dim b As Boolean
     
-    B = (Modo = 2) Or (Modo = 0) Or (Modo = 1)
+    b = (Modo = 2) Or (Modo = 0) Or (Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = B
-    Me.mnNuevo.Enabled = B
+    Toolbar1.Buttons(5).Enabled = b
+    Me.mnNuevo.Enabled = b
       
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = B
-    mnModificar.Enabled = B
+    Toolbar1.Buttons(6).Enabled = b
+    mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = B
-    mnEliminar.Enabled = B
+    Toolbar1.Buttons(7).Enabled = b
+    mnEliminar.Enabled = b
 
-    B = (Modo >= 3) 'Modo: Insertar/Modificar
+    b = (Modo >= 3) 'Modo: Insertar/Modificar
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not B
-    Me.mnBuscar.Enabled = Not B
+    Toolbar1.Buttons(1).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
     'VerTodos
-    Toolbar1.Buttons(2).Enabled = Not B
-    Me.mnVerTodos.Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -2112,18 +2116,18 @@ End Sub
 
 
 Private Function DatosOk() As Boolean
-Dim B As Boolean
-Dim Cta As String
+Dim b As Boolean
+Dim cta As String
 Dim cadMen As String
             
     DatosOk = False
-    B = CompForm(Me, 1)
-    If Not B Then Exit Function
+    b = CompForm(Me, 1)
+    If Not b Then Exit Function
         
     'Validar que la cuenta bancaria es correcta
 '    If Comprueba_CuentaBan(Text1(15).Text & Text1(16).Text & Text1(17).Text & Text1(18).Text) Then
     '[Monica]22/11/2013: he cambiado esto por lo de arriba
-    If B And (Modo = 3 Or Modo = 4) Then
+    If b And (Modo = 3 Or Modo = 4) Then
         If Text1(15).Text = "" Or Text1(16).Text = "" Or Text1(17).Text = "" Or Text1(18).Text = "" Then
             '[Monica]22/11/2013: añadido el codigo de iban
             Text1(31).Text = ""
@@ -2132,34 +2136,34 @@ Dim cadMen As String
             Text1(17).Text = ""
             Text1(18).Text = ""
         Else
-            Cta = Format(Text1(15).Text, "0000") & Format(Text1(16).Text, "0000") & Format(Text1(17).Text, "00") & Format(Text1(18).Text, "0000000000")
-            If Val(ComprobarCero(Cta)) = 0 Then
+            cta = Format(Text1(15).Text, "0000") & Format(Text1(16).Text, "0000") & Format(Text1(17).Text, "00") & Format(Text1(18).Text, "0000000000")
+            If Val(ComprobarCero(cta)) = 0 Then
                 cadMen = "El proveedor no tiene asignada cuenta bancaria."
                 MsgBox cadMen, vbExclamation
             End If
-            If Not Comprueba_CC(Cta) Then
+            If Not Comprueba_CC(cta) Then
                 cadMen = "La cuenta bancaria del proveedor no es correcta. ¿ Desea continuar ?."
                 If MsgBox(cadMen, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
-                    B = True
+                    b = True
                 Else
                     PonerFoco Text1(15)
-                    B = False
+                    b = False
                 End If
             Else
                 BuscaChekc = ""
                 If Me.Text1(31).Text <> "" Then BuscaChekc = Mid(Text1(31).Text, 1, 2)
                     
-                If DevuelveIBAN2(BuscaChekc, Cta, Cta) Then
+                If DevuelveIBAN2(BuscaChekc, cta, cta) Then
                     If Me.Text1(31).Text = "" Then
-                        If MsgBox("Poner IBAN ?", vbQuestion + vbYesNo) = vbYes Then Me.Text1(31).Text = BuscaChekc & Cta
+                        If MsgBox("Poner IBAN ?", vbQuestion + vbYesNo) = vbYes Then Me.Text1(31).Text = BuscaChekc & cta
                     Else
-                        If Mid(Text1(31).Text, 3) <> Cta Then
-                            Cta = "Calculado : " & BuscaChekc & Cta
-                            Cta = "Introducido: " & Me.Text1(31).Text & vbCrLf & Cta & vbCrLf
-                            Cta = "Error en codigo IBAN" & vbCrLf & Cta & "Continuar?"
-                            If MsgBox(Cta, vbQuestion + vbYesNo) = vbNo Then
+                        If Mid(Text1(31).Text, 3) <> cta Then
+                            cta = "Calculado : " & BuscaChekc & cta
+                            cta = "Introducido: " & Me.Text1(31).Text & vbCrLf & cta & vbCrLf
+                            cta = "Error en codigo IBAN" & vbCrLf & cta & "Continuar?"
+                            If MsgBox(cta, vbQuestion + vbYesNo) = vbNo Then
                                 PonerFoco Text1(31)
-                                B = False
+                                b = False
                             End If
                         End If
                     End If
@@ -2169,7 +2173,7 @@ Dim cadMen As String
     End If
         
         
-    DatosOk = B
+    DatosOk = b
 End Function
 
 

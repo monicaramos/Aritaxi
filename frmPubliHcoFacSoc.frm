@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmPubliHcoFacSoc 
@@ -908,14 +908,14 @@ Dim i As Byte
 End Sub
 
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 'Comprobar que los datos de la cabecera son correctos antes de Insertar o Modificar
 'la cabecera del Pedido
 Dim b As Boolean
 
     On Error GoTo EDatosOK
 
-    DatosOK = False
+    DatosOk = False
     
     ComprobarDatosTotales
     
@@ -923,7 +923,7 @@ Dim b As Boolean
     b = CompForm(Me, 1) 'Comprobar formato datos ok de la cabecera: opcion=1
     If Not b Then Exit Function
     
-    DatosOK = b
+    DatosOk = b
     
 EDatosOK:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -964,7 +964,7 @@ Private Function ModificarFactura(Optional sqlLineas As String) As Boolean
 'si se ha modificado la linea de slifac, añadir a la transaccion la modificación de la linea y recalcular
 Dim bol As Boolean
 Dim MenError As String
-Dim SQL As String
+Dim Sql As String
 Dim vFactu As CFacturaSoc
 On Error GoTo EModFact
 
@@ -1008,9 +1008,9 @@ On Error GoTo EModFact
                 
                 If bol Then
                     'Eliminar de la spagop
-                    SQL = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu & ""
-                    SQL = SQL & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from spagop WHERE " & SQL
+                    Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu & ""
+                    Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                    ConnConta.Execute "Delete from spagop WHERE " & Sql
                     
                     'Volvemos a grabar en TESORERIA. Tabla de Contabilidad: sconta.spagop
                     If bol Then
@@ -1149,7 +1149,7 @@ Dim i As Integer
             HacerBusqueda
 
         Case 3  'INSERTAR
-            If DatosOK Then
+            If DatosOk Then
                 If InsertarCabecera Then
                     CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                     PonerCadenaBusqueda
@@ -1161,7 +1161,7 @@ Dim i As Integer
 
 
         Case 4  'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                If ModificarFactura Then
                
                                         
@@ -1217,7 +1217,7 @@ End Sub
 
 Private Function InsertarCabecera() As Boolean
 Dim vTipoMov As CTiposMov 'Clase Tipo Movimiento
-Dim SQL As String
+Dim Sql As String
 Dim NumFactu As Long
 Dim vSocio As CSocio
 Dim bol As Boolean
@@ -1424,7 +1424,7 @@ Private Sub cmdCancelar_Click()
 
 End Sub
 
-Private Sub combo1_KeyPress(KeyAscii As Integer)
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -1746,7 +1746,7 @@ Dim EnTesoreria  As String
 End Sub
 
 Private Function FactContabilizada(ByRef EstaEnTesoreria As String) As Boolean
-Dim Cta As String, numasien As String
+Dim cta As String, numasien As String
     
     On Error GoTo EContab
     
@@ -1754,10 +1754,10 @@ Dim Cta As String, numasien As String
     If Me.Check1.Value = 1 Then 'si esta contabilizada
         'comprobar en la contabilidad si esta contabilizada
         
-        Cta = vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(4).Text, "0000")
+        cta = vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(4).Text, "0000")
 '        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
-        If Cta <> "" Then
-            numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", Cta, "T", , "numfacpr", Text1(0).Text, "T", "fecfacpr", Text1(1).Text, "F")
+        If cta <> "" Then
+            numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", cta, "T", , "numfacpr", Text1(0).Text, "T", "fecfacpr", Text1(1).Text, "F")
             If numasien <> "" Then
                 FactContabilizada = True
                 MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
@@ -1778,7 +1778,7 @@ EContab:
 End Function
 
 Private Function FactContabilizada3(ByRef EstaEnTesoreria As String) As Boolean
-Dim Cta As String, numasien As String
+Dim cta As String, numasien As String
     
     On Error GoTo EContab
     
@@ -2090,11 +2090,16 @@ EEPonerBusq:
     PonerModo 0
     Screen.MousePointer = vbDefault
 End Sub
+
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
+
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
@@ -2398,7 +2403,7 @@ End Function
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String, LEtra As String
+Dim Sql As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim vFactu As CFacturaSoc
@@ -2471,19 +2476,19 @@ Dim bol As Boolean
         If bol Then
             
             
-            SQL = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
-            SQL = SQL & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-            ConnConta.Execute "Delete from spagop WHERE " & SQL
+            Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from spagop WHERE " & Sql
             b = True
             
             
             'Eliminar en tablas de factura de Aritaxi: scafpc, scafpa, slifpc
             '---------------------------------------------------------------
             If b Then
-                SQL = " " & ObtenerWhereCP(True)
+                Sql = " " & ObtenerWhereCP(True)
             
                 'Cabecera de facturas (sfactusoc)
-                conn.Execute "Delete from " & NombreTabla & SQL
+                conn.Execute "Delete from " & NombreTabla & Sql
             End If
             
             'Eliminar los movimientos generados por el albaran que genero la factura
@@ -2514,15 +2519,15 @@ FinEliminar:
     End If
 End Function
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = " codtipom= '" & Text1(1).Text & "' and numfactu= " & Val(Text1(0).Text) & " and fecfactu='" & Format(Text1(2).Text, FormatoFecha) & "' "
-    SQL = SQL & " and codsocio = " & Text1(4).Text
+    Sql = " codtipom= '" & Text1(1).Text & "' and numfactu= " & Val(Text1(0).Text) & " and fecfactu='" & Format(Text1(2).Text, FormatoFecha) & "' "
+    Sql = Sql & " and codsocio = " & Text1(4).Text
     
-    If conWhere Then SQL = " WHERE " & SQL
-    ObtenerWhereCP = SQL
+    If conWhere Then Sql = " WHERE " & Sql
+    ObtenerWhereCP = Sql
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
@@ -2582,19 +2587,19 @@ End Function
 
 Private Sub CargaCombo()
 Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim i As Byte
     
     Combo1.Clear
     
-    SQL = "SELECT codtipom,nomtipom FROM stipom WHERE codtipom in  ('FPS')" ','FRQ')"
+    Sql = "SELECT codtipom,nomtipom FROM stipom WHERE codtipom in  ('FPS')" ','FRQ')"
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not RS.EOF
-        SQL = RS!nomtipom
-        SQL = Replace(SQL, "Factura", "")
-        Combo1.AddItem RS!codtipom & "-" & SQL
+        Sql = RS!nomtipom
+        Sql = Replace(Sql, "Factura", "")
+        Combo1.AddItem RS!codtipom & "-" & Sql
         Combo1.ItemData(Combo1.NewIndex) = i
         i = i + 1
         RS.MoveNext

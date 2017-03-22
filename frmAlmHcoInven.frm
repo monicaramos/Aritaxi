@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmAlmHcoInven 
@@ -627,13 +627,13 @@ End Sub
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
 Dim tots As String
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     b = DataGrid1.Enabled
      
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data2, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data2, Sql, PrimeraVez
     
     'SELECT shinve.codartic, shinve.codalmac, salmpr.nomalmac, shinve.fechainv, shinve.horainve,existenc
     tots = "N||||0|;S|txtAux(0)|T|Alm.|800|;S|cmdAux|B||0|;S|txtAux2(0)|T|Nom. Alm.|2500|;S|txtAux(1)|T|Fecha|1150|;"
@@ -668,7 +668,7 @@ End Sub
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
 Dim cadB As String
-Dim codartic As String
+Dim codArtic As String
 
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
@@ -821,6 +821,10 @@ Dim NumReg As Byte
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2)
     
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+    
     PonerIndicador Me.lblIndicador, Modo
     
     NumReg = 1
@@ -905,26 +909,26 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
 
-    SQL = "SELECT shinve.codartic, shinve.codalmac, salmpr.nomalmac, shinve.fechainv, shinve.horainve,existenc "
-    SQL = SQL & " FROM (shinve INNER JOIN salmpr on shinve.codalmac=salmpr.codalmac)"
+    Sql = "SELECT shinve.codartic, shinve.codalmac, salmpr.nomalmac, shinve.fechainv, shinve.horainve,existenc "
+    Sql = Sql & " FROM (shinve INNER JOIN salmpr on shinve.codalmac=salmpr.codalmac)"
     If enlaza Then
         If EsBusqueda And CadenaBusqueda <> "" Then
 '            If Data1.Recordset.RecordCount > 1 Then
             'Si devuelve + de 1 registro en el DataGrid poner la info del primer articulo
-                SQL = SQL & CadenaBusqueda & " AND codartic=" & DBSet(Text1(0).Text, "T")
+                Sql = Sql & CadenaBusqueda & " AND codartic=" & DBSet(Text1(0).Text, "T")
 '            Else
 '                SQL = SQL & CadenaBusqueda
 '            End If
         Else
-            SQL = SQL & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
+            Sql = Sql & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
         End If
     Else
-        SQL = SQL & " WHERE codartic = '-1'"
+        Sql = Sql & " WHERE codartic = '-1'"
     End If
-    SQL = SQL & " " & Ordenacion & " DESC "
-    MontaSQLCarga = SQL
+    Sql = Sql & " " & Ordenacion & " DESC "
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1158,15 +1162,15 @@ End Sub
 
 
 Private Function ModificarLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo EModificar
 
     ModificarLinea = False
-    SQL = "UPDATE " & NombreTabla & " SET fechainv=" & DBSet(txtAux(1).Text, "F")
-    SQL = SQL & ", horainve='" & Format(txtAux(1).Text & " " & txtAux(2).Text, "yyyy-mm-dd hh:mm:ss") & "'"
-    SQL = SQL & ", existenc=" & DBSet(txtAux(3).Text, "N")
-    SQL = SQL & " WHERE codartic=" & DBSet(Text1(0).Text, "T") & " AND codalmac=" & Me.Data2.Recordset.Fields(1).Value
-    conn.Execute SQL
+    Sql = "UPDATE " & NombreTabla & " SET fechainv=" & DBSet(txtAux(1).Text, "F")
+    Sql = Sql & ", horainve='" & Format(txtAux(1).Text & " " & txtAux(2).Text, "yyyy-mm-dd hh:mm:ss") & "'"
+    Sql = Sql & ", existenc=" & DBSet(txtAux(3).Text, "N")
+    Sql = Sql & " WHERE codartic=" & DBSet(Text1(0).Text, "T") & " AND codalmac=" & Me.Data2.Recordset.Fields(1).Value
+    conn.Execute Sql
     ModificarLinea = True
 EModificar:
     If Err.Number <> 0 Then MuestraError Err.Number, "Modificar Linea", Err.Description

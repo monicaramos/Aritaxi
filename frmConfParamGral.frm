@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmConfParamGral 
    BorderStyle     =   3  'Fixed Dialog
@@ -519,7 +519,7 @@ Private Sub Form_Load()
     NombreTabla = "sparam"
     Ordenacion = " ORDER BY codigo"
     'ASignamos un SQL al DATA1
-    Data1.ConnectionString = Conn
+    Data1.ConnectionString = conn
     CadenaConsulta = "Select * from " & NombreTabla & Ordenacion
     Data1.RecordSource = CadenaConsulta
     Data1.Refresh
@@ -563,14 +563,14 @@ End Sub
 
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
-Dim Indice As Byte
+Dim indice As Byte
 Dim devuelve As String
 
-    Indice = 3
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-    Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve)  'Poblacion
+    indice = 3
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
+    Text1(indice + 1).Text = ObtenerPoblacion(Text1(indice).Text, devuelve)  'Poblacion
     'provincia
-    Text1(Indice + 2).Text = devuelve
+    Text1(indice + 2).Text = devuelve
 End Sub
 
 Private Sub imgBuscar_Click()
@@ -600,7 +600,7 @@ Dim dirMail As String
         Case 0: dirMail = Text1(10).Text
     End Select
 
-    If LanzaMailGnral(dirMail) Then espera 2
+    If LanzaMailGnral(dirMail) Then Espera 2
     Screen.MousePointer = vbDefault
 End Sub
 
@@ -610,7 +610,7 @@ Private Sub imgWeb_Click()
 '    If Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
 
-    If LanzaHomeGnral(Text1(9).Text) Then espera 2
+    If LanzaHomeGnral(Text1(9).Text) Then Espera 2
     Screen.MousePointer = vbDefault
 End Sub
 
@@ -696,6 +696,11 @@ End Sub
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
+Dim i As Integer
+
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     Modo = vModo
     b = (Modo = 0)

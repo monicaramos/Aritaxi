@@ -11,33 +11,33 @@ Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (B
 'Se puede comentar todo y asi no hace nada ni da error
 'El SQL es propio de cada tabla
 Public Function SugerirCodigoSiguienteStr(NomTabla As String, NomCodigo As String, Optional CondLineas As String) As String
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 On Error GoTo ESugerirCodigo
 
     'SQL = "Select Max(codtipar) from stipar"
-    SQL = "Select Max(" & NomCodigo & ") from " & NomTabla
+    Sql = "Select Max(" & NomCodigo & ") from " & NomTabla
     If CondLineas <> "" Then
-        SQL = SQL & " WHERE " & CondLineas
+        Sql = Sql & " WHERE " & CondLineas
     End If
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, , , adCmdText
-    SQL = "1"
+    RS.Open Sql, conn, , , adCmdText
+    Sql = "1"
     If Not RS.EOF Then
         If Not IsNull(RS.Fields(0)) Then
             If IsNumeric(RS.Fields(0)) Then
-                SQL = CStr(RS.Fields(0) + 1)
+                Sql = CStr(RS.Fields(0) + 1)
             Else
                 If Asc(Left(RS.Fields(0), 1)) <> 122 Then 'Z
-                SQL = Left(RS.Fields(0), 1) & CStr(Asc(Right(RS.Fields(0), 1)) + 1)
+                Sql = Left(RS.Fields(0), 1) & CStr(Asc(Right(RS.Fields(0), 1)) + 1)
                 End If
             End If
         End If
     End If
     RS.Close
     Set RS = Nothing
-    SugerirCodigoSiguienteStr = SQL
+    SugerirCodigoSiguienteStr = Sql
 ESugerirCodigo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Function
@@ -488,7 +488,7 @@ On Error Resume Next
     
     If (Modo <> 0 And Modo <> 2) Then
         If Modo = 1 Then
-            Text.BackColor = vbYellow  'Modo 1: Busqueda
+            Text.BackColor = vbLightBlue 'vbYellow  'Modo 1: Busqueda
         Else
             If Text.Locked Then 'si el control esta bloqueado pasamos el foco al sig. campo
                 Text.BackColor = &H80000018 'amarillo claro
@@ -571,7 +571,7 @@ On Error Resume Next
         'Quitamos blancos por los lados
         .Text = Trim(.Text)
         
-        If .BackColor = vbYellow Then .BackColor = vbWhite
+        If .BackColor = vbLightBlue Then .BackColor = vbWhite
         
         'Si no estamos en modo: 3=Insertar o 4=Modificar o 1=Busqueda, no hacer ninguna comprobacion
         If (Modo <> 3 And Modo <> 4 And Modo <> 1) Then
@@ -665,13 +665,13 @@ EDeseleccionaGrid:
 End Sub
 
 
-Public Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, SQL As String, PrimeraVez As Boolean)
+Public Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, Sql As String, PrimeraVez As Boolean)
 On Error GoTo ECargaGrid
 
     vDataGrid.Enabled = True
     '    vdata.Recordset.Cancel
     vData.ConnectionString = conn
-    vData.RecordSource = SQL
+    vData.RecordSource = Sql
     vData.CursorType = adOpenDynamic
     vData.LockType = adLockPessimistic
     vDataGrid.ScrollBars = dbgNone
@@ -720,7 +720,7 @@ Public Sub CargarCombo_Tabla(ByRef Cbo As ComboBox, NomTabla As String, NomCodig
 '(IN) nomDescrip: nombre del campo descripcion de la tabla a cargar
 '(IN) strWhere: para filtrar los registros de la tabla q queremos cargar
 '(IN) ItemNulo: si es true se añade el primer item con linea en blanco
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim i As Integer
 
@@ -728,13 +728,13 @@ Dim i As Integer
     
     Cbo.Clear
     
-    SQL = "SELECT " & NomCodigo & "," & nomDescrip & " FROM " & NomTabla
-    If strWhere <> "" Then SQL = SQL & " WHERE " & strWhere
-    SQL = SQL & " ORDER BY " & nomDescrip
+    Sql = "SELECT " & NomCodigo & "," & nomDescrip & " FROM " & NomTabla
+    If strWhere <> "" Then Sql = Sql & " WHERE " & strWhere
+    Sql = Sql & " ORDER BY " & nomDescrip
     
 '    If AbrirRecordset(SQL, RS) Then
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     '- si valor del parametro ItemNulo=true hay que añadir linea en blanco
     If Not RS.EOF And ItemNulo Then
@@ -786,7 +786,7 @@ Public Sub CargarCombo_TipMov(ByRef Cbo As ComboBox, NomTabla As String, NomCodi
 '(IN) nomDescrip: nombre del campo descripcion de la tabla q queremos cargar
 '(IN) strWhere: para filtrar los registros de la tabla q queremos cargar
 '(IN) ItemNulo: si es true se añade el primer item con linea en blanco
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim i As Integer
 
@@ -794,12 +794,12 @@ Dim i As Integer
     
     Cbo.Clear
     
-    SQL = "SELECT " & NomCodigo & "," & nomDescrip & " FROM " & NomTabla
-    If strWhere <> "" Then SQL = SQL & " WHERE " & strWhere
-    SQL = SQL & " ORDER BY " & NomCodigo
+    Sql = "SELECT " & NomCodigo & "," & nomDescrip & " FROM " & NomTabla
+    If strWhere <> "" Then Sql = Sql & " WHERE " & strWhere
+    Sql = Sql & " ORDER BY " & NomCodigo
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     '- si valor del parametro ItemNulo=true hay que añadir linea en blanco
     If Not RS.EOF And ItemNulo Then
@@ -809,9 +809,9 @@ Dim i As Integer
        
     i = 1
     While Not RS.EOF
-        SQL = Replace(RS.Fields(1).Value, "Factura", "Fac.")
-        SQL = RS.Fields(0).Value & " - " & SQL
-        Cbo.AddItem SQL 'campo del codigo
+        Sql = Replace(RS.Fields(1).Value, "Factura", "Fac.")
+        Sql = RS.Fields(0).Value & " - " & Sql
+        Cbo.AddItem Sql 'campo del codigo
         Cbo.ItemData(Cbo.NewIndex) = i
         i = i + 1
         RS.MoveNext
@@ -1379,7 +1379,7 @@ End Function
 Public Function PonerNombreDeCod(ByRef txt As TextBox, bd As Byte, Tabla As String, campo As String, Optional Codigo As String, Optional Texto As String, Optional Tipo As String) As String
 'Devuelve el nombre/Descripción asociado al Código correspondiente
 'Además pone formato al campo txt del código a partir del Tag
-Dim SQL As String
+Dim Sql As String
 Dim devuelve As String
 Dim vtag As CTag
 Dim ValorCodigo As String
@@ -1391,9 +1391,9 @@ On Error GoTo EPonerNombresDeCod
         If vtag.Cargar(txt) Then
             If Codigo = "" Then Codigo = vtag.columna
             If Tipo = "" Then Tipo = vtag.TipoDato
-            SQL = DevuelveDesdeBD(bd, campo, Tabla, Codigo, ValorCodigo, Tipo)
+            Sql = DevuelveDesdeBD(bd, campo, Tabla, Codigo, ValorCodigo, Tipo)
             If vtag.TipoDato = "N" Then ValorCodigo = Format(ValorCodigo, vtag.Formato)
-            If SQL = "" Then
+            If Sql = "" Then
                 If Texto = "" Then
                     devuelve = "No existe " & vtag.Nombre & ": " & ValorCodigo
                 Else
@@ -1405,7 +1405,7 @@ On Error GoTo EPonerNombresDeCod
 '                PonerFoco Txt
 '                Txt.SetFocus
             Else
-                PonerNombreDeCod = SQL 'Descripcion del codigo
+                PonerNombreDeCod = Sql 'Descripcion del codigo
                 'Poner valor codigo formateado
                 txt.Text = ValorCodigo 'Valor codigo formateado
             End If
@@ -1568,20 +1568,20 @@ End Sub
 
 Public Function PonerNombreCuenta(ByRef txt As TextBox, Modo As Byte, Optional clien As String) As String
 Dim DevfrmCCtas As String
-Dim SQL As String
+Dim Sql As String
 
      If txt.Text = "" Then
          PonerNombreCuenta = ""
          Exit Function
     End If
     DevfrmCCtas = txt.Text
-    If CuentaCorrectaUltimoNivel(DevfrmCCtas, SQL) Then
-        If InStr(SQL, "No existe la cuenta") > 0 Then
+    If CuentaCorrectaUltimoNivel(DevfrmCCtas, Sql) Then
+        If InStr(Sql, "No existe la cuenta") > 0 Then
             txt.Text = DevfrmCCtas
             
             If (Modo = 3 Or Modo = 4) Then  'si insertar o modificar
-                SQL = SQL & "  ¿Desea crearla?"
-                If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+                Sql = Sql & "  ¿Desea crearla?"
+                If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                     'SI MODO es insetar NO me sirve el metodo anterior. Pq? Pq aun no he creado el cli/prov
                     'De momento pondre una marca en el texto de descripcion para que la cree
                     If Modo = 3 Then
@@ -1607,7 +1607,7 @@ Dim SQL As String
                     txt.Text = ""
                 End If
             Else
-                MsgBox SQL, vbExclamation
+                MsgBox Sql, vbExclamation
             End If
         Else
             txt.Text = DevfrmCCtas
@@ -1624,7 +1624,7 @@ Dim SQL As String
         End If
     Else
         If Modo = 3 Or Modo = 4 Or Modo = 1 Then 'si insertar o modificar
-            MsgBox SQL, vbExclamation
+            MsgBox Sql, vbExclamation
 '            PonerNombreCuenta = ""
         End If
 '        Txt.Text = ""
@@ -1637,7 +1637,7 @@ End Function
 
 'He cambiado el metodo a public
 Public Function InsertarCuentaCble(cuenta As String, Optional cadClien As String, Optional cadProve As String, Optional cadFamia As String, Optional cadSocio As String, Optional Desmarcar347 As Byte) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim vClien As CCliente
 Dim vProve As CProveedor
 Dim vSocio As CSocio
@@ -1645,36 +1645,36 @@ Dim b As Boolean
 
     On Error GoTo EInsCta
     
-    SQL = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,pais,forpa,ctabanco,entidad,oficina,CC,cuentaba" ') "
+    Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,pais,forpa,ctabanco,entidad,oficina,CC,cuentaba" ') "
     '[Monica]22/11/2013: iban
     If vEmpresa.HayNorma19_34Nueva = 1 Then
-        SQL = SQL & ", iban)"
+        Sql = Sql & ", iban)"
     Else
-        SQL = SQL & ")"
+        Sql = Sql & ")"
     End If
-    SQL = SQL & " VALUES (" & DBSet(cuenta, "T") & ","
+    Sql = Sql & " VALUES (" & DBSet(cuenta, "T") & ","
     
     If cadClien <> "" Then
         Set vClien = New CCliente
         If vClien.LeerDatos(cadClien) Then
             If Desmarcar347 Then
-                SQL = SQL & DBSet(vClien.Nombre, "T") & ",'S',0," & DBSet(vClien.Nombre, "T") & "," & DBSet(vClien.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vClien.Nombre, "T") & ",'S',0," & DBSet(vClien.Nombre, "T") & "," & DBSet(vClien.Domicilio, "T") & ","
             Else
-                SQL = SQL & DBSet(vClien.Nombre, "T") & ",'S',1," & DBSet(vClien.Nombre, "T") & "," & DBSet(vClien.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vClien.Nombre, "T") & ",'S',1," & DBSet(vClien.Nombre, "T") & "," & DBSet(vClien.Domicilio, "T") & ","
             End If
             
-            SQL = SQL & DBSet(vClien.CPostal, "T") & "," & DBSet(vClien.Poblacion, "T") & "," & DBSet(vClien.Provincia, "T") & "," & DBSet(vClien.NIF, "T") & "," & DBSet(vClien.EMailAdm, "T") & "," & DBSet(vClien.WebClien, "T") & "," & ValorNulo & "," & ValorNulo
+            Sql = Sql & DBSet(vClien.CPostal, "T") & "," & DBSet(vClien.Poblacion, "T") & "," & DBSet(vClien.Provincia, "T") & "," & DBSet(vClien.NIF, "T") & "," & DBSet(vClien.EMailAdm, "T") & "," & DBSet(vClien.WebClien, "T") & "," & ValorNulo & "," & ValorNulo
             'Forma pago y cuenta banco por defecto
-            SQL = SQL & "," & DBSet(vClien.ForPago, "N", "S") & "," & ValorNulo & "," & DBSet(Format(vClien.Banco, "0000"), "T") & "," & DBSet(Format(vClien.Sucursal, "0000"), "T") & "," & DBSet(vClien.DigControl, "T") & "," & DBSet(vClien.CuentaBan, "T") '& ")"
+            Sql = Sql & "," & DBSet(vClien.ForPago, "N", "S") & "," & ValorNulo & "," & DBSet(Format(vClien.Banco, "0000"), "T") & "," & DBSet(Format(vClien.Sucursal, "0000"), "T") & "," & DBSet(vClien.DigControl, "T") & "," & DBSet(vClien.CuentaBan, "T") '& ")"
             
             '[Monica]22/11/2013: iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & "," & DBSet(vClien.Iban, "T") & ")"
+                Sql = Sql & "," & DBSet(vClien.Iban, "T") & ")"
             Else
-                SQL = SQL & ")"
+                Sql = Sql & ")"
             End If
             
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
             cadClien = vClien.Nombre
             b = True
         Else
@@ -1687,22 +1687,22 @@ Dim b As Boolean
         Set vSocio = New CSocio
         If vSocio.LeerDatos(cadSocio) Then
             If Desmarcar347 Then
-                SQL = SQL & DBSet(vSocio.Nombre, "T") & ",'S',0," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vSocio.Nombre, "T") & ",'S',0," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & ","
             Else
-                SQL = SQL & DBSet(vSocio.Nombre, "T") & ",'S',1," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vSocio.Nombre, "T") & ",'S',1," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & ","
             End If
-            SQL = SQL & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Poblacion, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo
+            Sql = Sql & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Poblacion, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo
             'Forma pago y cuenta banco por defecto
-            SQL = SQL & "," & DBSet(vSocio.ForPago, "N", "S") & "," & ValorNulo & "," & DBSet(Format(vSocio.Banco, "0000"), "T") & "," & DBSet(Format(vSocio.Sucursal, "0000"), "T") & "," & DBSet(vSocio.DigControl, "T") & "," & DBSet(vSocio.CuentaBan, "T") '& ")"
+            Sql = Sql & "," & DBSet(vSocio.ForPago, "N", "S") & "," & ValorNulo & "," & DBSet(Format(vSocio.Banco, "0000"), "T") & "," & DBSet(Format(vSocio.Sucursal, "0000"), "T") & "," & DBSet(vSocio.DigControl, "T") & "," & DBSet(vSocio.CuentaBan, "T") '& ")"
             
             '[Monica]22/11/2013: iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & "," & DBSet(vSocio.Iban, "T") & ")"
+                Sql = Sql & "," & DBSet(vSocio.Iban, "T") & ")"
             Else
-                SQL = SQL & ")"
+                Sql = Sql & ")"
             End If
             
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
             cadClien = vSocio.Nombre
             b = True
         Else
@@ -1715,25 +1715,25 @@ Dim b As Boolean
         Set vProve = New CProveedor
         If vProve.LeerDatos(cadProve) Then
             If Desmarcar347 Then
-                SQL = SQL & DBSet(vProve.Nombre, "T") & ",'S',0," & DBSet(vProve.Nombre, "T") & "," & DBSet(vProve.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vProve.Nombre, "T") & ",'S',0," & DBSet(vProve.Nombre, "T") & "," & DBSet(vProve.Domicilio, "T") & ","
             Else
-                SQL = SQL & DBSet(vProve.Nombre, "T") & ",'S',1," & DBSet(vProve.Nombre, "T") & "," & DBSet(vProve.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vProve.Nombre, "T") & ",'S',1," & DBSet(vProve.Nombre, "T") & "," & DBSet(vProve.Domicilio, "T") & ","
             End If
-            SQL = SQL & DBSet(vProve.CPostal, "T") & "," & DBSet(vProve.Poblacion, "T") & "," & DBSet(vProve.Provincia, "T") & "," & DBSet(vProve.NIF, "T") & ","
-            SQL = SQL & DBSet(vProve.EMailAdmon, "T") & "," & DBSet(vProve.WebProve, "T") & "," & ValorNulo & "," & ValorNulo
+            Sql = Sql & DBSet(vProve.CPostal, "T") & "," & DBSet(vProve.Poblacion, "T") & "," & DBSet(vProve.Provincia, "T") & "," & DBSet(vProve.NIF, "T") & ","
+            Sql = Sql & DBSet(vProve.EMailAdmon, "T") & "," & DBSet(vProve.WebProve, "T") & "," & ValorNulo & "," & ValorNulo
             'Forma pago y cuenta banco por defecto
             cadProve = DevuelveDesdeBD(conAri, "codmacta", "sbanpr", "codbanpr", vProve.BancoPropio)
-            SQL = SQL & "," & DBSet(vProve.ForPago, "N", "S") & "," & DBSet(cadProve, "N", "S") '& ")"
+            Sql = Sql & "," & DBSet(vProve.ForPago, "N", "S") & "," & DBSet(cadProve, "N", "S") '& ")"
             
             '[Monica]22/11/2013: iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & "," & DBSet(vProve.Iban, "T") & ")"
+                Sql = Sql & "," & DBSet(vProve.Iban, "T") & ")"
             Else
-                SQL = SQL & ")"
+                Sql = Sql & ")"
             End If
             
             cadProve = ""
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
             cadProve = vProve.Nombre
             b = True
         Else
@@ -1743,13 +1743,13 @@ Dim b As Boolean
     
     ' ---- [02/10/2009] (LAURA): crear cuenta en familias articulos
     ElseIf cadFamia <> "" Then 'cuentas familias articulos
-        SQL = SQL & DBSet(cadFamia, "T") & ",'S',0," & DBSet(cadFamia, "T") & "," & ValorNulo & ","
-        SQL = SQL & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
-        SQL = SQL & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo
+        Sql = Sql & DBSet(cadFamia, "T") & ",'S',0," & DBSet(cadFamia, "T") & "," & ValorNulo & ","
+        Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
+        Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo
         'Forma pago y cuenta banco por defecto
-        SQL = SQL & "," & ValorNulo & "," & ValorNulo & ")"
+        Sql = Sql & "," & ValorNulo & "," & ValorNulo & ")"
         
-        ConnConta.Execute SQL
+        ConnConta.Execute Sql
         b = True
     ' ----
     End If
@@ -1764,7 +1764,7 @@ End Function
 
 
 Public Function ModificarCuentaCble(cuenta As String, cadClien As String, Tabla As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim vClien As CCliente
 Dim vProve As CProveedor
 Dim vSocio As CSocio
@@ -1777,27 +1777,27 @@ Dim b As Boolean
         Set vClien = New CCliente
         If vClien.LeerDatos(cadClien) Then
             
-            SQL = "UPDATE cuentas SET nommacta = " & DBSet(vClien.Nombre, "T")
-            SQL = SQL & ", razosoci = " & DBSet(vClien.Nombre, "T")
-            SQL = SQL & ", dirdatos = " & DBSet(vClien.Domicilio, "T")
-            SQL = SQL & ", codposta = " & DBSet(vClien.CPostal, "T")
-            SQL = SQL & ", despobla = " & DBSet(vClien.Poblacion, "T")
-            SQL = SQL & ", desprovi = " & DBSet(vClien.Provincia, "T")
-            SQL = SQL & ", nifdatos = " & DBSet(vClien.NIF, "T")
-            SQL = SQL & ", maidatos = " & DBSet(vClien.EMailAdm, "T")
-            SQL = SQL & ", forpa = " & DBSet(vClien.ForPago, "N", "S")
-            SQL = SQL & ", entidad = " & DBSet(Format(vClien.Banco, "0000"), "T")
-            SQL = SQL & ", oficina = " & DBSet(Format(vClien.Sucursal, "0000"), "T")
-            SQL = SQL & ", CC = " & DBSet(vClien.DigControl, "T")
-            SQL = SQL & ", cuentaba = " & DBSet(vClien.CuentaBan, "T")
+            Sql = "UPDATE cuentas SET nommacta = " & DBSet(vClien.Nombre, "T")
+            Sql = Sql & ", razosoci = " & DBSet(vClien.Nombre, "T")
+            Sql = Sql & ", dirdatos = " & DBSet(vClien.Domicilio, "T")
+            Sql = Sql & ", codposta = " & DBSet(vClien.CPostal, "T")
+            Sql = Sql & ", despobla = " & DBSet(vClien.Poblacion, "T")
+            Sql = Sql & ", desprovi = " & DBSet(vClien.Provincia, "T")
+            Sql = Sql & ", nifdatos = " & DBSet(vClien.NIF, "T")
+            Sql = Sql & ", maidatos = " & DBSet(vClien.EMailAdm, "T")
+            Sql = Sql & ", forpa = " & DBSet(vClien.ForPago, "N", "S")
+            Sql = Sql & ", entidad = " & DBSet(Format(vClien.Banco, "0000"), "T")
+            Sql = Sql & ", oficina = " & DBSet(Format(vClien.Sucursal, "0000"), "T")
+            Sql = Sql & ", CC = " & DBSet(vClien.DigControl, "T")
+            Sql = Sql & ", cuentaba = " & DBSet(vClien.CuentaBan, "T")
             '[Monica]22/11/2013: iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & ", iban = " & DBSet(vClien.Iban, "T")
+                Sql = Sql & ", iban = " & DBSet(vClien.Iban, "T")
             End If
             
-            SQL = SQL & " where codmacta = " & DBSet(cuenta, "T")
+            Sql = Sql & " where codmacta = " & DBSet(cuenta, "T")
             
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
             cadClien = vClien.Nombre
             b = True
         Else
@@ -1810,26 +1810,26 @@ Dim b As Boolean
         Set vSocio = New CSocio
         If vSocio.LeerDatos(cadClien) Then
             
-            SQL = "UPDATE cuentas SET nommacta = " & DBSet(vSocio.Nombre, "T")
-            SQL = SQL & ", razosoci = " & DBSet(vSocio.Nombre, "T")
-            SQL = SQL & ", dirdatos = " & DBSet(vSocio.Domicilio, "T")
-            SQL = SQL & ", codposta = " & DBSet(vSocio.CPostal, "T")
-            SQL = SQL & ", despobla = " & DBSet(vSocio.Poblacion, "T")
-            SQL = SQL & ", desprovi = " & DBSet(vSocio.Provincia, "T")
-            SQL = SQL & ", nifdatos = " & DBSet(vSocio.NIF, "T")
-            SQL = SQL & ", forpa = " & DBSet(vSocio.ForPago, "N", "S")
-            SQL = SQL & ", maidatos = " & DBSet(vSocio.EMailSocio, "T")
-            SQL = SQL & ", entidad = " & DBSet(Format(vSocio.Banco, "0000"), "T")
-            SQL = SQL & ", oficina = " & DBSet(Format(vSocio.Sucursal, "0000"), "T")
-            SQL = SQL & ", CC = " & DBSet(vSocio.DigControl, "T")
-            SQL = SQL & ", cuentaba = " & DBSet(vSocio.CuentaBan, "T")
+            Sql = "UPDATE cuentas SET nommacta = " & DBSet(vSocio.Nombre, "T")
+            Sql = Sql & ", razosoci = " & DBSet(vSocio.Nombre, "T")
+            Sql = Sql & ", dirdatos = " & DBSet(vSocio.Domicilio, "T")
+            Sql = Sql & ", codposta = " & DBSet(vSocio.CPostal, "T")
+            Sql = Sql & ", despobla = " & DBSet(vSocio.Poblacion, "T")
+            Sql = Sql & ", desprovi = " & DBSet(vSocio.Provincia, "T")
+            Sql = Sql & ", nifdatos = " & DBSet(vSocio.NIF, "T")
+            Sql = Sql & ", forpa = " & DBSet(vSocio.ForPago, "N", "S")
+            Sql = Sql & ", maidatos = " & DBSet(vSocio.EMailSocio, "T")
+            Sql = Sql & ", entidad = " & DBSet(Format(vSocio.Banco, "0000"), "T")
+            Sql = Sql & ", oficina = " & DBSet(Format(vSocio.Sucursal, "0000"), "T")
+            Sql = Sql & ", CC = " & DBSet(vSocio.DigControl, "T")
+            Sql = Sql & ", cuentaba = " & DBSet(vSocio.CuentaBan, "T")
             '[Monica]22/11/2013: iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & ", iban = " & DBSet(vSocio.Iban, "T")
+                Sql = Sql & ", iban = " & DBSet(vSocio.Iban, "T")
             End If
-            SQL = SQL & " where codmacta = " & DBSet(cuenta, "T")
+            Sql = Sql & " where codmacta = " & DBSet(cuenta, "T")
             
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
             cadClien = vSocio.Nombre
             b = True
         Else
@@ -1842,25 +1842,25 @@ Dim b As Boolean
     If cadClien <> "" And Tabla = "sprove" Then
         Set vProve = New CProveedor
         If vProve.LeerDatos(cadClien) Then
-            SQL = "UPDATE cuentas SET nommacta = " & DBSet(vProve.Nombre, "T")
-            SQL = SQL & ", razosoci = " & DBSet(vProve.Nombre, "T")
-            SQL = SQL & ", dirdatos = " & DBSet(vProve.Domicilio, "T")
-            SQL = SQL & ", codposta = " & DBSet(vProve.CPostal, "T")
-            SQL = SQL & ", despobla = " & DBSet(vProve.Poblacion, "T")
-            SQL = SQL & ", desprovi = " & DBSet(vProve.Provincia, "T")
-            SQL = SQL & ", nifdatos = " & DBSet(vProve.NIF, "T")
-            SQL = SQL & ", forpa = " & DBSet(vProve.ForPago, "N", "S")
-            SQL = SQL & ", entidad = " & DBSet(Format(vProve.Banco, "0000"), "T")
-            SQL = SQL & ", oficina = " & DBSet(Format(vProve.Sucursal, "0000"), "T")
-            SQL = SQL & ", CC = " & DBSet(vProve.DigControl, "T")
-            SQL = SQL & ", cuentaba = " & DBSet(vProve.CuentaBan, "T")
+            Sql = "UPDATE cuentas SET nommacta = " & DBSet(vProve.Nombre, "T")
+            Sql = Sql & ", razosoci = " & DBSet(vProve.Nombre, "T")
+            Sql = Sql & ", dirdatos = " & DBSet(vProve.Domicilio, "T")
+            Sql = Sql & ", codposta = " & DBSet(vProve.CPostal, "T")
+            Sql = Sql & ", despobla = " & DBSet(vProve.Poblacion, "T")
+            Sql = Sql & ", desprovi = " & DBSet(vProve.Provincia, "T")
+            Sql = Sql & ", nifdatos = " & DBSet(vProve.NIF, "T")
+            Sql = Sql & ", forpa = " & DBSet(vProve.ForPago, "N", "S")
+            Sql = Sql & ", entidad = " & DBSet(Format(vProve.Banco, "0000"), "T")
+            Sql = Sql & ", oficina = " & DBSet(Format(vProve.Sucursal, "0000"), "T")
+            Sql = Sql & ", CC = " & DBSet(vProve.DigControl, "T")
+            Sql = Sql & ", cuentaba = " & DBSet(vProve.CuentaBan, "T")
             '[Monica]22/11/2013: iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & ", iban = " & DBSet(vProve.Iban, "T")
+                Sql = Sql & ", iban = " & DBSet(vProve.Iban, "T")
             End If
-            SQL = SQL & " where codmacta = " & DBSet(cuenta, "T")
+            Sql = Sql & " where codmacta = " & DBSet(cuenta, "T")
             
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
             cadClien = vProve.Nombre
             b = True
             
@@ -1887,14 +1887,14 @@ End Function
 
 'He cambiado el metodo a public
 Public Function InsertarCuentaCbleDescripcion(cuenta As String, Descripcion As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 
 
    
     
-    SQL = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci) "
-    SQL = SQL & " VALUES ('" & cuenta & "','" & DevNombreSQL(Descripcion) & "','S',0,'" & DevNombreSQL(Descripcion) & "')"
-    ConnConta.Execute SQL
+    Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci) "
+    Sql = Sql & " VALUES ('" & cuenta & "','" & DevNombreSQL(Descripcion) & "','S',0,'" & DevNombreSQL(Descripcion) & "')"
+    ConnConta.Execute Sql
 
 End Function
 

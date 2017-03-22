@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -309,22 +309,22 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0A2A
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "cmdObserva"
-      Tab(1).Control(1)=   "txtAux(11)"
-      Tab(1).Control(2)=   "cmdaux"
-      Tab(1).Control(3)=   "txtAux(10)"
-      Tab(1).Control(4)=   "txtAux(9)"
-      Tab(1).Control(5)=   "txtAux(5)"
-      Tab(1).Control(6)=   "txtAux(3)"
-      Tab(1).Control(7)=   "txtAux(2)"
-      Tab(1).Control(8)=   "txtAux(1)"
-      Tab(1).Control(9)=   "txtAux(0)"
-      Tab(1).Control(10)=   "txtAux(4)"
-      Tab(1).Control(11)=   "txtAux(6)"
-      Tab(1).Control(12)=   "txtAux(7)"
-      Tab(1).Control(13)=   "txtAux(8)"
-      Tab(1).Control(14)=   "DataGrid1"
-      Tab(1).Control(15)=   "FrameObserva"
+      Tab(1).Control(0)=   "FrameObserva"
+      Tab(1).Control(1)=   "DataGrid1"
+      Tab(1).Control(2)=   "txtAux(8)"
+      Tab(1).Control(3)=   "txtAux(7)"
+      Tab(1).Control(4)=   "txtAux(6)"
+      Tab(1).Control(5)=   "txtAux(4)"
+      Tab(1).Control(6)=   "txtAux(0)"
+      Tab(1).Control(7)=   "txtAux(1)"
+      Tab(1).Control(8)=   "txtAux(2)"
+      Tab(1).Control(9)=   "txtAux(3)"
+      Tab(1).Control(10)=   "txtAux(5)"
+      Tab(1).Control(11)=   "txtAux(9)"
+      Tab(1).Control(12)=   "txtAux(10)"
+      Tab(1).Control(13)=   "cmdaux"
+      Tab(1).Control(14)=   "txtAux(11)"
+      Tab(1).Control(15)=   "cmdObserva"
       Tab(1).ControlCount=   16
       Begin VB.Frame FrameCliente 
          Caption         =   "Datos Socio"
@@ -1968,7 +1968,7 @@ Dim cad1 As String
             HacerBusqueda
 
         Case 4  'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                If ModificarFactura Then
                
                      '[Monica]06/03/2012: guardo en el slog los campos que me han cambiado
@@ -2434,7 +2434,7 @@ Dim cad As String
 End Sub
 
 
-Private Sub combo1_KeyPress(KeyAscii As Integer)
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -3386,6 +3386,12 @@ Dim b As Boolean
 
     On Error GoTo EPonerModo
 
+    For i = 0 To txtAux.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
+
+
+
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
     ActualizarToolbar Modo, Kmodo
@@ -3536,14 +3542,14 @@ Private Sub PonerLongCampos()
 End Sub
 
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 'Comprobar que los datos de la cabecera son correctos antes de Insertar o Modificar
 'la cabecera del Pedido
 Dim b As Boolean
 
     On Error GoTo EDatosOK
 
-    DatosOK = False
+    DatosOk = False
     
     ComprobarDatosTotales
     
@@ -3551,7 +3557,7 @@ Dim b As Boolean
     b = CompForm(Me, 1) 'Comprobar formato datos ok de la cabecera: opcion=1
     If Not b Then Exit Function
     
-    DatosOK = b
+    DatosOk = b
     
 EDatosOK:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -4647,7 +4653,7 @@ Dim i As Byte
 End Sub
 
 Private Function FactContabilizada3(ByRef EstaEnTesoreria As String) As Boolean
-Dim Cta As String, numasien As String
+Dim cta As String, numasien As String
     
     On Error GoTo EContab
     
