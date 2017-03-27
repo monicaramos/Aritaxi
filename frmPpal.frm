@@ -425,7 +425,7 @@ Begin VB.MDIForm frmPpal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "9:16"
+            TextSave        =   "9:02"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1932,10 +1932,10 @@ Dim TamanyoImgComun As Integer
     
     imgListComun16.ImageHeight = 16
     imgListComun16.ImageWidth = 16
-    GetIconsFromLibrary App.Path & "\styles\iconos.dll", 5, 16
+    GetIconsFromLibrary App.Path & "\styles\iconos.dll", 1, 16
     
-    GetIconsFromLibrary App.Path & "\styles\iconos_BN.dll", 6, 16
-    GetIconsFromLibrary App.Path & "\styles\iconos_OM.dll", 7, 16
+    GetIconsFromLibrary App.Path & "\styles\iconos_BN.dll", 2, 16
+    GetIconsFromLibrary App.Path & "\styles\iconos_OM.dll", 3, 16
 
 End Function
 

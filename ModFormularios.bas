@@ -269,9 +269,12 @@ End Sub
 
 
 
-Public Sub DesplazamientoData(ByRef vData As Adodc, Index As Integer)
+Public Sub DesplazamientoData(ByRef vData As Adodc, Index As Integer, Optional EsNuevo As Boolean)
 'Para desplazarse por los registros de control Data
     If vData.Recordset.EOF Then Exit Sub
+    
+    If EsNuevo Then Index = Index - 1
+    
     Select Case Index
         Case 0 'Primer Registro
             If Not vData.Recordset.BOF Then vData.Recordset.MoveFirst
@@ -860,7 +863,7 @@ Dim i As Byte
 End Sub
 
 
-Public Sub PonerIndicador(ByRef lblIndicador As Label, Modo As Byte)
+Public Sub PonerIndicador(ByRef lblIndicador As Label, Modo As Byte, Optional ModoLineas As Byte)
 'Pone el titulo del label lblIndicador
     lblIndicador.FontBold = True
     Select Case Modo
@@ -869,11 +872,19 @@ Public Sub PonerIndicador(ByRef lblIndicador As Label, Modo As Byte)
         Case 1 'Modo Buscar
             lblIndicador.Caption = "BUSQUEDA"
         Case 2    'Preparamos para que pueda Modificar
+            lblIndicador.Caption = ""
         
         Case 3 'Modo Insertar
             lblIndicador.Caption = "INSERTAR"
         Case 4 'MODIFICAR
             lblIndicador.Caption = "MODIFICAR"
+        Case 5
+            If ModoLineas = 1 Then
+                lblIndicador.Caption = "INSERTAR LINEA"
+            ElseIf ModoLineas = 2 Then
+                lblIndicador.Caption = "MODIFICAR LINEA"
+            End If
+           
         Case Else
             lblIndicador.Caption = ""
     End Select

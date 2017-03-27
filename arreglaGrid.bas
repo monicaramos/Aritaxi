@@ -6,7 +6,7 @@ Public Sub arregla_david(ByRef tots As String, ByRef grid As DataGrid, ByRef for
     Dim camp As String
     Dim Mens As String
     Dim difer As Integer
-    Dim I As Integer
+    Dim i As Integer
     Dim K As Integer
     Dim posi As Integer
     Dim posi2 As Integer
@@ -197,10 +197,10 @@ Public Sub arregla_david(ByRef tots As String, ByRef grid As DataGrid, ByRef for
     Wend
 
     'No permitir canviar tamany de columnes
-    For I = 0 To grid.Columns.Count - 1
-         grid.Columns(I).Locked = True
-         grid.Columns(I).AllowSizing = False
-    Next I
+    For i = 0 To grid.Columns.Count - 1
+         grid.Columns(i).Locked = True
+         grid.Columns(i).AllowSizing = False
+    Next i
 
 '    If grid.Width - TotalAncho <> difer Then
 '        mens = "Es recomana que el total d'amples de les columnes per a este DataGrid siga de "
@@ -209,12 +209,12 @@ Public Sub arregla_david(ByRef tots As String, ByRef grid As DataGrid, ByRef for
 '    End If
 End Sub
 
-Public Sub arregla(ByRef tots As String, ByRef grid As DataGrid, ByRef formu As Form)
+Public Sub arregla(ByRef tots As String, ByRef grid As DataGrid, ByRef formu As Form, Optional RowHeight As Integer)
     'Dim tots As String
     Dim camp As String
     Dim Mens As String
     Dim difer As Integer
-    Dim I As Integer
+    Dim i As Integer
     Dim K As Integer
     Dim posi As Integer
     Dim posi2 As Integer
@@ -229,7 +229,8 @@ Public Sub arregla(ByRef tots As String, ByRef grid As DataGrid, ByRef formu As 
     Dim TotalAncho As Integer
     
     grid.AllowRowSizing = False
-    grid.RowHeight = 290
+    If RowHeight = 0 Then RowHeight = 290
+    grid.RowHeight = RowHeight
     
     '***********
     difer = 563 'dirència recomanda entre l'ample del Datagrid i la suma dels amples de les columnes
@@ -514,9 +515,9 @@ Public Sub arregla(ByRef tots As String, ByRef grid As DataGrid, ByRef formu As 
     Wend
 
     'No permitir canviar tamany de columnes
-    For I = 0 To grid.Columns.Count - 1
-         grid.Columns(I).AllowSizing = False
-    Next I
+    For i = 0 To grid.Columns.Count - 1
+         grid.Columns(i).AllowSizing = False
+    Next i
 
 '    If grid.Width - TotalAncho <> difer Then
 '        mens = "Es recomana que el total d'amples de les columnes per a este DataGrid siga de "

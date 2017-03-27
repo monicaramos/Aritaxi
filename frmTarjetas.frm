@@ -1502,10 +1502,10 @@ End Sub
 
 Private Sub frmA_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Agentes
-Dim indice As Byte
-    indice = 17
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Agente
-    FormateaCampo Text1(indice)
+Dim Indice As Byte
+    Indice = 17
+    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Agente
+    FormateaCampo Text1(Indice)
 End Sub
 
 Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
@@ -1560,47 +1560,47 @@ End Sub
 
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
-Dim indice As Byte
+Dim Indice As Byte
 Dim devuelve As String
 
-    indice = 9
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-    Text1(indice + 1).Text = ObtenerPoblacion(Text1(indice).Text, devuelve) 'Poblacion
+    Indice = 9
+    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
+    Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve) 'Poblacion
     'provincia
-    Text1(indice + 2).Text = devuelve
+    Text1(Indice + 2).Text = devuelve
     
 End Sub
 
 
 Private Sub frmCV_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Clientes Varios
-Dim indice As Byte
+Dim Indice As Byte
 
-    indice = 6
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
-    Text1(indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
+    Indice = 6
+    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
+    Text1(Indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
     
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date) 'Calendario Fechas
-Dim indice As Byte
-    indice = CByte(Me.cmdAux(0).Tag) + 1
-    txtAux(indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim Indice As Byte
+    Indice = CByte(Me.cmdAux(0).Tag) + 1
+    txtAux(Indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
 Private Sub frmFE_DatoSeleccionado(CadenaSeleccion As String)
 'Formas de Envio
-Dim indice As Byte
-    indice = 29
-    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Envio
+Dim Indice As Byte
+    Indice = 29
+    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Envio
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
-Dim indice As Byte
-    indice = 14
-    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
+Dim Indice As Byte
+    Indice = 14
+    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
 End Sub
 
 
@@ -1660,14 +1660,14 @@ End Sub
 
 Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Trabajadores
-Dim indice As Byte
-    indice = Val(Me.imgBuscar(3).Tag)
-    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
+Dim Indice As Byte
+    Indice = Val(Me.imgBuscar(3).Tag)
+    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
 End Sub
 
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim indice As Byte
+Dim Indice As Byte
 
     If Modo = 2 Or Modo = 0 Then Exit Sub
     TerminaBloquear
@@ -1682,7 +1682,7 @@ Dim indice As Byte
             Screen.MousePointer = vbDefault
             frmC.Show vbModal
             Set frmC = Nothing
-            indice = 5
+            Indice = 5
             If HaDevueltoDatos Then
                 txtAnterior = ""
                 Text1_LostFocus 0
@@ -1693,11 +1693,11 @@ Dim indice As Byte
             frmCV.DatosADevolverBusqueda = "0"
             frmCV.Show vbModal
             Set frmCV = Nothing
-            indice = 6
+            Indice = 6
             
     End Select
     
-    PonerFoco Text1(indice)
+    PonerFoco Text1(Indice)
     Screen.MousePointer = vbDefault
     
     If Modo = 4 Then
@@ -1707,22 +1707,22 @@ End Sub
 
 
 Private Sub cmdAux_Click(Index As Integer) 'Abre calendario Fechas
-Dim indice As Byte
+Dim Indice As Byte
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
    Set frmF = New frmCal
    frmF.Fecha = Now
-   indice = Index + 1
+   Indice = Index + 1
    Me.cmdAux(0).Tag = Index
 
-   PonerFormatoFecha txtAux(indice)
-   If txtAux(indice).Text <> "" Then frmF.Fecha = CDate(txtAux(indice).Text)
+   PonerFormatoFecha txtAux(Indice)
+   If txtAux(Indice).Text <> "" Then frmF.Fecha = CDate(txtAux(Indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtAux(indice)
+   PonerFoco txtAux(Indice)
 End Sub
 
 
@@ -2117,7 +2117,7 @@ Dim b As Boolean
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To txtAux.Count - 1
+    For i = 0 To Text1.Count - 1
         Text1(i).BackColor = vbWhite
     Next i
     

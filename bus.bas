@@ -82,6 +82,7 @@ Public pPdfRpt As String
 '[Monica]28/09/2012: tema de la impresora por defecto de tarjetas
 Public ImpresoraDefecto As String
 
+Public teclaBuscar As Integer 'llamada desde prismaticos
 
 'Inicio Aplicación
 Public Sub Main()
@@ -338,6 +339,9 @@ On Error Resume Next
     FormatoDescuento = "#0.00" 'Decima(4,2)
     FormatoKms = "#,##0.00##" 'Decimal(8,4)
     FormatoPorcen = "##0.00" 'Decima(5,2)
+    
+    teclaBuscar = 43
+    
     
     'Borramos uno de los archivos temporales
     If Dir(App.Path & "\ErrActua.txt") <> "" Then Kill App.Path & "\ErrActua.txt"

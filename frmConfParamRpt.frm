@@ -6,7 +6,7 @@ Begin VB.Form frmConfParamRpt
    Caption         =   "Tipos de Documentos"
    ClientHeight    =   5835
    ClientLeft      =   45
-   ClientTop       =   735
+   ClientTop       =   435
    ClientWidth     =   10965
    Icon            =   "frmConfParamRpt.frx":0000
    LinkTopic       =   "Form1"
@@ -16,38 +16,181 @@ Begin VB.Form frmConfParamRpt
    ScaleWidth      =   10965
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   8490
+      TabIndex        =   28
+      Top             =   150
+      Width           =   1605
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   270
+      TabIndex        =   26
+      Top             =   0
+      Width           =   3075
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   27
+         Top             =   180
+         Width           =   2655
+         _ExtentX        =   4683
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+               Object.Tag             =   "0"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   3480
+      TabIndex        =   24
+      Top             =   0
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   25
+         Top             =   210
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   10
       Left            =   6765
       MaxLength       =   100
       TabIndex        =   3
       Tag             =   "Fichero envio mail|T|N|||scryst|pdfrpt|||"
       Text            =   "Text1"
-      Top             =   1620
+      Top             =   1710
       Width           =   3750
    End
    Begin VB.CheckBox Check1 
       Caption         =   "Impresion directa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   195
-      Left            =   6720
-      TabIndex        =   24
+      Left            =   6750
+      TabIndex        =   22
       Tag             =   "Impr  directa|N|N|||scryst|imprimedirecto|||"
-      Top             =   2160
-      Width           =   1935
-   End
-   Begin VB.CheckBox chkVistaPrevia 
-      Caption         =   "Vista previa"
-      Height          =   195
-      Left            =   6600
-      TabIndex        =   23
-      Top             =   120
-      Width           =   1215
+      Top             =   2280
+      Width           =   3135
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   6
-      Left            =   300
+      Left            =   270
       MaxLength       =   140
       TabIndex        =   7
       Tag             =   "Linea pie 2|T|S|||scryst|lineapi2|||"
@@ -56,9 +199,18 @@ Begin VB.Form frmConfParamRpt
       Width           =   10245
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   9
-      Left            =   300
+      Left            =   270
       MaxLength       =   140
       TabIndex        =   10
       Tag             =   "Linea pie 5|T|S|||scryst|lineapi5|||"
@@ -67,9 +219,18 @@ Begin VB.Form frmConfParamRpt
       Width           =   10245
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   8
-      Left            =   300
+      Left            =   270
       MaxLength       =   140
       TabIndex        =   9
       Tag             =   "Linea pie 4|T|S|||scryst|lineapi4|||"
@@ -78,9 +239,18 @@ Begin VB.Form frmConfParamRpt
       Width           =   10245
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   7
-      Left            =   300
+      Left            =   270
       MaxLength       =   140
       TabIndex        =   8
       Tag             =   "Linea pie 3|T|S|||scryst|lineapi3|||"
@@ -91,8 +261,17 @@ Begin VB.Form frmConfParamRpt
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   9315
+      Left            =   9465
       TabIndex        =   12
       Top             =   5280
       Width           =   1035
@@ -100,23 +279,41 @@ Begin VB.Form frmConfParamRpt
    Begin VB.Frame Frame1 
       Height          =   540
       Left            =   240
-      TabIndex        =   20
+      TabIndex        =   19
       Top             =   5160
       Width           =   3000
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   120
-         TabIndex        =   21
-         Top             =   210
+         Left            =   240
+         TabIndex        =   20
+         Top             =   180
          Width           =   2280
       End
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   5
-      Left            =   300
+      Left            =   270
       MaxLength       =   140
       TabIndex        =   6
       Tag             =   "Linea pie 1|T|S|||scryst|lineapi1|||"
@@ -126,53 +323,98 @@ Begin VB.Form frmConfParamRpt
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   4
-      Left            =   4500
+      Left            =   5220
       MaxLength       =   2
       TabIndex        =   5
       Tag             =   "Revisión ISO|N|S|0|99|scryst|codigrev|00||"
       Text            =   "Te"
-      Top             =   2070
-      Width           =   525
+      Top             =   2160
+      Width           =   705
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   3
-      Left            =   1180
+      Left            =   1485
       MaxLength       =   10
       TabIndex        =   4
       Tag             =   "Código ISO|T|S|||scryst|codigiso|||"
       Text            =   "Text1"
-      Top             =   2070
+      Top             =   2160
       Width           =   1605
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   2
-      Left            =   1180
+      Left            =   1485
       MaxLength       =   100
       TabIndex        =   2
       Tag             =   "Fichero rpt|T|N|||scryst|documrpt|||"
       Text            =   "Text1"
-      Top             =   1620
+      Top             =   1710
       Width           =   3750
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
-      Left            =   1180
+      Left            =   1485
       MaxLength       =   30
       TabIndex        =   1
       Tag             =   "Descripción|T|N|||scryst|nomcryst|||"
       Text            =   "Text1"
-      Top             =   1170
+      Top             =   1260
       Width           =   3765
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   7920
+      Left            =   8070
       TabIndex        =   11
       Top             =   5280
       Visible         =   0   'False
@@ -180,85 +422,41 @@ Begin VB.Form frmConfParamRpt
    End
    Begin VB.CommandButton cmdSalir 
       Caption         =   "&Salir"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   9315
+      Left            =   9435
       TabIndex        =   13
       Top             =   5280
       Width           =   1035
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
-      Left            =   1180
+      Left            =   1485
       MaxLength       =   4
       TabIndex        =   0
       Tag             =   "Código Documento|N|N|||scryst|codcryst||S|"
       Text            =   "Text"
-      Top             =   720
+      Top             =   810
       Width           =   765
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   15
-      Top             =   0
-      Width           =   10965
-      _ExtentX        =   19341
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   14
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Object.Tag             =   "0"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Insertar"
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "1"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ultimo"
-         EndProperty
-      EndProperty
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -310,69 +508,134 @@ Begin VB.Form frmConfParamRpt
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       Caption         =   "Fichero envio mail"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   0
-      Left            =   5160
-      TabIndex        =   25
-      Top             =   1620
+      Left            =   5250
+      TabIndex        =   23
+      Top             =   1740
       Width           =   1575
    End
    Begin VB.Label Label1 
       Caption         =   "Líneas para el  Pie del Informe"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   7
       Left            =   300
-      TabIndex        =   22
+      TabIndex        =   21
       Top             =   2600
       Width           =   3135
    End
    Begin VB.Label Label1 
       Caption         =   "Revisión ISO"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   6
-      Left            =   3495
-      TabIndex        =   19
-      Top             =   2115
-      Width           =   975
+      Left            =   3825
+      TabIndex        =   18
+      Top             =   2205
+      Width           =   1455
    End
    Begin VB.Label Label1 
       Caption         =   "Código ISO"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   5
       Left            =   300
-      TabIndex        =   18
-      Top             =   2115
-      Width           =   975
+      TabIndex        =   17
+      Top             =   2175
+      Width           =   1185
    End
    Begin VB.Label Label1 
       Caption         =   "Fichero rpt"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   3
       Left            =   300
-      TabIndex        =   17
-      Top             =   1620
-      Width           =   855
+      TabIndex        =   16
+      Top             =   1740
+      Width           =   1275
    End
    Begin VB.Label Label1 
       Caption         =   "Descripción"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   2
       Left            =   300
-      TabIndex        =   16
-      Top             =   1170
-      Width           =   855
+      TabIndex        =   15
+      Top             =   1290
+      Width           =   1185
    End
    Begin VB.Label Label1 
       Caption         =   "Código"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   1
       Left            =   300
       TabIndex        =   14
-      Top             =   720
-      Width           =   615
+      Top             =   840
+      Width           =   765
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnNuevo 
          Caption         =   "&Nuevo"
          Shortcut        =   ^N
@@ -511,19 +774,49 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
 
     ' ICONITOS DE LA BARRA
+'    With Me.Toolbar1
+'        btnPrimero = 11
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1
+'        .Buttons(2).Image = 2
+'        .Buttons(4).Image = 3   'Anyadir
+'        .Buttons(5).Image = 4   'Modificar
+'        .Buttons(8).Image = 15  'Salir
+'        .Buttons(btnPrimero).Image = 6 'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+'    End With
+    
     With Me.Toolbar1
         btnPrimero = 11
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1
-        .Buttons(2).Image = 2
-        .Buttons(4).Image = 3   'Anyadir
-        .Buttons(5).Image = 4   'Modificar
-        .Buttons(8).Image = 15  'Salir
-        .Buttons(btnPrimero).Image = 6 'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .Buttons(5).Image = 1
+        .Buttons(6).Image = 2
+        .Buttons(1).Image = 3   'Anyadir
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Eliminar
     End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+'    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+    
     
     NombreTabla = "scryst"
     Ordenacion = " ORDER BY codcryst"
@@ -608,6 +901,9 @@ End Sub
 
 
 Private Sub Text1_LostFocus(Index As Integer)
+
+    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
+
     If Index = 4 Then 'cod. ISO
         If Text1(Index).Text = "" Then Exit Sub
         If Not PonerFormatoEntero(Text1(Index)) Then
@@ -619,21 +915,18 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1
-            'BUSCAR
-            
-        
-        Case 2
-            'Ver todos
-            BotonVerTodos
-        Case 4  'Anyadir
+        Case 1  'Anyadir
             mnNuevo_Click
-        Case 5  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 8 'Salir
-           mnSalir_Click
         Case btnPrimero To btnPrimero + 3 'Desplazamiento Registros
             Desplazamiento (Button.Index - btnPrimero)
+        Case 5
+            'BUSCAR
+            BotonBuscar
+        Case 6
+            'Ver todos
+            BotonVerTodos
     End Select
 End Sub
 
@@ -711,12 +1004,6 @@ EPonerCampos:
 End Sub
 
 
-Private Sub Desplazamiento(Index As Integer)
-'Para desplazarse por los registros de control Data
-    DesplazamientoData Data1, Index
-    PonerCampos
-End Sub
-
 
 Private Sub PonerOpcionesMenu()
     PonerOpcionesMenuGeneral Me
@@ -759,8 +1046,9 @@ Dim i As Integer
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
     b = (Kmodo = 2) Or (Kmodo = 0)
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+        
     
     '------------------------------------------------------
     'Modo insertar o modificar
@@ -783,6 +1071,10 @@ Dim i As Integer
                         'de permisos del usuario
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
@@ -828,3 +1120,57 @@ Dim cad As String
     
     Screen.MousePointer = vbDefault
 End Sub
+
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
+
+
+Private Sub BotonBuscar()
+    'Buscar
+    If Modo <> 1 Then
+        LimpiarCampos
+        PonerModo 1
+        '### A mano
+        '-------------------------------------------------
+        'Si pasamos el control aqui lo ponemos en amarillo
+        PonerFoco Text1(0)
+        Else
+            HacerBusqueda
+            If Data1.Recordset.EOF Then
+                 '### A mano
+                Text1(0).Text = ""
+                PonerFoco Text1(0)
+            End If
+    End If
+End Sub
+
+Private Sub HacerBusqueda()
+Dim cadB As String
+
+    cadB = ObtenerBusqueda(Me, False)
+'    cadSeleccion = ObtenerBusqueda(Me, True) 'Para la consulta de report
+
+    If chkVistaPrevia = 1 Then
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        PonerCadenaBusqueda
+    Else
+        MsgBox "Introducir criterios de búsqueda", vbExclamation
+        PonerFoco Text1(0)
+    End If
+    
+End Sub
+
+
+Private Sub Desplazamiento(Index As Integer)
+'Botons de Desplaçament; per a desplaçar-se pels registres de control Data
+    If Data1.Recordset.EOF Then Exit Sub
+    DesplazamientoData Data1, Index, True
+    PonerCampos
+End Sub
+
+
+
