@@ -66,7 +66,7 @@ End Sub
 Public Function ValorParaSQL(Valor, ByRef vtag As CTag) As String
 Dim Dev As String
 Dim d As Single
-Dim i As Integer
+Dim I As Integer
 Dim V
     Dev = ""
     If Valor <> "" Then
@@ -196,7 +196,7 @@ Dim cad As String
     'Ejemplo
     'INSERT INTO Empleados (Nombre,Apellido, Cargo) VALUES ('Carlos', 'Sesma', 'Prácticas');
     
-    cad = "INSERT INTO " & mTag.Tabla
+    cad = "INSERT INTO " & mTag.tabla
     cad = cad & " (" & Izda & ") VALUES (" & Der & ");"
     conn.Execute cad, , adCmdText
     
@@ -281,7 +281,7 @@ Dim cad As String
     'Ejemplo
     'INSERT INTO Empleados (Nombre,Apellido, Cargo) VALUES ('Carlos', 'Sesma', 'Prácticas');
     
-    cad = "INSERT INTO " & mTag.Tabla
+    cad = "INSERT INTO " & mTag.tabla
     cad = cad & " (" & Izda & ") VALUES (" & Der & ");"
 '    Conn.Execute cad, , adCmdText
     
@@ -298,7 +298,7 @@ Dim mTag As CTag
 Dim cad As String
 Dim Valor As Variant
 Dim campo As String  'Campo en la base de datos
-Dim i As Integer
+Dim I As Integer
 
 
     On Error GoTo EPonerCamposForma
@@ -380,14 +380,14 @@ Dim i As Integer
                 If mTag.Cargado Then
                     campo = mTag.columna
                     Valor = DBLet(vData.Recordset.Fields(campo))
-                    i = 0
-                    For i = 0 To Control.ListCount - 1
-                        If Control.ItemData(i) = Val(Valor) Then
-                            Control.ListIndex = i
+                    I = 0
+                    For I = 0 To Control.ListCount - 1
+                        If Control.ItemData(I) = Val(Valor) Then
+                            Control.ListIndex = I
                             Exit For
                         End If
-                    Next i
-                    If i = Control.ListCount Then Control.ListIndex = -1
+                    Next I
+                    If I = Control.ListCount Then Control.ListIndex = -1
                 End If 'de cargado
             End If 'de <>""
         End If
@@ -410,7 +410,7 @@ Dim mTag As CTag
 Dim cad As String
 Dim Valor As Variant
 Dim campo As String  'Campo en la base de datos
-Dim i As Integer
+Dim I As Integer
 
     Set mTag = New CTag
     PonerCamposFormaFrame = False
@@ -470,14 +470,14 @@ Dim i As Integer
                 If mTag.Cargado Then
                     campo = mTag.columna
                     Valor = vData.Recordset.Fields(campo)
-                    i = 0
-                    For i = 0 To Control.ListCount - 1
-                        If Control.ItemData(i) = Val(Valor) Then
-                            Control.ListIndex = i
+                    I = 0
+                    For I = 0 To Control.ListCount - 1
+                        If Control.ItemData(I) = Val(Valor) Then
+                            Control.ListIndex = I
                             Exit For
                         End If
-                    Next i
-                    If i = Control.ListCount Then Control.ListIndex = -1
+                    Next I
+                    If I = Control.ListCount Then Control.ListIndex = -1
                 End If 'de cargado
             End If 'de <>""
         End If
@@ -648,8 +648,8 @@ Dim Carga As Boolean
 Dim mTag As CTag
 Dim Aux As String
 Dim cad As String
-Dim Sql As String
-Dim Tabla As String, columna As String
+Dim SQL As String
+Dim tabla As String, columna As String
 Dim Rc As Byte
 
     On Error GoTo EObtenerBusqueda
@@ -657,7 +657,7 @@ Dim Rc As Byte
     'Exit Function
     Set mTag = New CTag
     ObtenerBusqueda = ""
-    Sql = ""
+    SQL = ""
 
     'Recorremos los text en busca de ">>" o "<<"
     For Each Control In formulario.Controls
@@ -670,43 +670,43 @@ Dim Rc As Byte
                         If Not paraRPT Then
                             cad = " MAX(" & mTag.columna & ")"
                         Else
-                            cad = " MAX({" & mTag.Tabla & "." & mTag.columna & "})"
+                            cad = " MAX({" & mTag.tabla & "." & mTag.columna & "})"
                         End If
                     Else
                         If Not paraRPT Then
                             cad = " MIN(" & mTag.columna & ")"
                         Else
-                            cad = " MIN({" & mTag.Tabla & "." & mTag.columna & "})"
+                            cad = " MIN({" & mTag.tabla & "." & mTag.columna & "})"
                         End If
                     End If
                     If Not paraRPT Then
-                        Sql = "Select " & cad & " from " & mTag.Tabla
+                        SQL = "Select " & cad & " from " & mTag.tabla
                     Else
-                        Sql = "Select " & cad & " from {" & mTag.Tabla & "}"
+                        SQL = "Select " & cad & " from {" & mTag.tabla & "}"
                     End If
-                    Sql = ObtenerMaximoMinimo(Replace(Replace(Sql, "}", ""), "{", ""))
+                    SQL = ObtenerMaximoMinimo(Replace(Replace(SQL, "}", ""), "{", ""))
                     
                     Select Case mTag.TipoDato
                     Case "N"
                         If Not paraRPT Then
-                            Sql = mTag.Tabla & "." & mTag.columna & " = " & TransformaComasPuntos(Sql)
+                            SQL = mTag.tabla & "." & mTag.columna & " = " & TransformaComasPuntos(SQL)
                         Else
-                            Sql = "{" & mTag.Tabla & "." & mTag.columna & "} = " & TransformaComasPuntos(Sql)
+                            SQL = "{" & mTag.tabla & "." & mTag.columna & "} = " & TransformaComasPuntos(SQL)
                         End If
                     Case "F"
                         If Not paraRPT Then
-                            Sql = mTag.Tabla & "." & mTag.columna & " = '" & Format(Sql, "yyyy-mm-dd") & "'"
+                            SQL = mTag.tabla & "." & mTag.columna & " = '" & Format(SQL, "yyyy-mm-dd") & "'"
                         Else
-                            Sql = "{" & mTag.Tabla & "." & mTag.columna & "} = date(""" & Format(Sql, "dd/mm/yyyy") & """)"
+                            SQL = "{" & mTag.tabla & "." & mTag.columna & "} = date(""" & Format(SQL, "dd/mm/yyyy") & """)"
                         End If
                     Case Else
                         If Not paraRPT Then
-                            Sql = mTag.Tabla & "." & mTag.columna & " = '" & Sql & "'"
+                            SQL = mTag.tabla & "." & mTag.columna & " = '" & SQL & "'"
                         Else
-                            Sql = "{" & mTag.Tabla & "." & mTag.columna & "} = '" & Sql & "'"
+                            SQL = "{" & mTag.tabla & "." & mTag.columna & "} = '" & SQL & "'"
                         End If
                     End Select
-                    Sql = "(" & Sql & ")"
+                    SQL = "(" & SQL & ")"
                 End If
             End If
         End If
@@ -720,13 +720,13 @@ Dim Rc As Byte
                 Carga = mTag.Cargar(Control)
                 If Carga Then
                     If Not paraRPT Then
-                        Sql = mTag.Tabla & "." & mTag.columna & " is NULL"
+                        SQL = mTag.tabla & "." & mTag.columna & " is NULL"
                     Else
                         ' cambiado para rpt [Monica]
 '                        SQL = "{" & mTag.tabla & "." & mTag.columna & "} is NULL"
-                        Sql = "isnull({" & mTag.Tabla & "." & mTag.columna & "})"
+                        SQL = "isnull({" & mTag.tabla & "." & mTag.columna & "})"
                     End If
-                    Sql = "(" & Sql & ")"
+                    SQL = "(" & SQL & ")"
                     '[Monica] lo he quitado
 '                    Control.Text = ""
                 End If
@@ -744,27 +744,27 @@ Dim Rc As Byte
                     Aux = Trim(Control.Text)
                     Aux = QuitarCaracterEnter(Aux) 'Si es multilinea quitar ENTER
                     If Aux <> "" Then
-                        If mTag.Tabla <> "" Then
+                        If mTag.tabla <> "" Then
                             If Not paraRPT Then
-                                Tabla = mTag.Tabla & "."
+                                tabla = mTag.tabla & "."
                             Else
-                                Tabla = "{" & mTag.Tabla & "."
+                                tabla = "{" & mTag.tabla & "."
                             End If
                         Else
-                            Tabla = ""
+                            tabla = ""
                         End If
                         If Not paraRPT Then
                             columna = mTag.columna
                         Else
                             columna = mTag.columna & "}"
                         End If
-                    Rc = SeparaCampoBusqueda(mTag.TipoDato, Tabla & columna, Aux, cad, paraRPT)
+                    Rc = SeparaCampoBusqueda(mTag.TipoDato, tabla & columna, Aux, cad, paraRPT)
                     If Rc = 0 Then
-                        If Sql <> "" Then Sql = Sql & " AND "
+                        If SQL <> "" Then SQL = SQL & " AND "
                         If Not paraRPT Then
-                            Sql = Sql & "(" & cad & ")"
+                            SQL = SQL & "(" & cad & ")"
                         Else
-                            Sql = Sql & "(" & cad & ")"
+                            SQL = SQL & "(" & cad & ")"
                         End If
                     End If
                 End If
@@ -782,21 +782,21 @@ Dim Rc As Byte
                     If mTag.TipoDato <> "T" Then
                         cad = Control.ItemData(Control.ListIndex)
                         If Not paraRPT Then
-                            cad = mTag.Tabla & "." & mTag.columna & " = " & cad
+                            cad = mTag.tabla & "." & mTag.columna & " = " & cad
                         Else
-                            cad = "{" & mTag.Tabla & "." & mTag.columna & "} = " & cad
+                            cad = "{" & mTag.tabla & "." & mTag.columna & "} = " & cad
                         End If
-                        If Sql <> "" Then Sql = Sql & " AND "
-                        Sql = Sql & "(" & cad & ")"
+                        If SQL <> "" Then SQL = SQL & " AND "
+                        SQL = SQL & "(" & cad & ")"
                     Else
                         cad = Control.List(Control.ListIndex)
                         If Not paraRPT Then
-                            cad = mTag.Tabla & "." & mTag.columna & " = '" & cad & "'"
+                            cad = mTag.tabla & "." & mTag.columna & " = '" & cad & "'"
                         Else
-                            cad = "{" & mTag.Tabla & "." & mTag.columna & "} = '" & cad & "'"
+                            cad = "{" & mTag.tabla & "." & mTag.columna & "} = '" & cad & "'"
                         End If
-                        If Sql <> "" Then Sql = Sql & " AND "
-                        Sql = Sql & "(" & cad & ")"
+                        If SQL <> "" Then SQL = SQL & " AND "
+                        SQL = SQL & "(" & cad & ")"
                     End If
                 End If
             End If
@@ -815,27 +815,27 @@ Dim Rc As Byte
                     Else
                         If CHECK <> "" Then
                             CheckBusqueda Control
-                            Tabla = NombreCheck & "|"
-                            If InStr(1, CHECK, Tabla, vbTextCompare) > 0 Then Aux = Control.Value
+                            tabla = NombreCheck & "|"
+                            If InStr(1, CHECK, tabla, vbTextCompare) > 0 Then Aux = Control.Value
                         End If
                     End If
                     If Aux <> "" Then
                         If Not paraRPT Then
-                            cad = mTag.Tabla & "." & mTag.columna
+                            cad = mTag.tabla & "." & mTag.columna
                         Else
-                            cad = "{" & mTag.Tabla & "." & mTag.columna & "} "
+                            cad = "{" & mTag.tabla & "." & mTag.columna & "} "
                         End If
                         
                         cad = cad & " = " & Aux
-                        If Sql <> "" Then Sql = Sql & " AND "
-                        Sql = Sql & "(" & cad & ")"
+                        If SQL <> "" Then SQL = SQL & " AND "
+                        SQL = SQL & "(" & cad & ")"
                     End If 'cargado
                 End If '<>""
             End If
         End If
     
     Next Control
-    ObtenerBusqueda = Sql
+    ObtenerBusqueda = SQL
 Exit Function
 EObtenerBusqueda:
     ObtenerBusqueda = ""
@@ -935,7 +935,7 @@ On Error GoTo EModificaDesdeFormulario
         MsgBox "No se ha definido ninguna clave principal.", vbExclamation
         Exit Function
     End If
-    Aux = "UPDATE " & mTag.Tabla
+    Aux = "UPDATE " & mTag.tabla
     Aux = Aux & " SET " & cadUPDATE & " WHERE " & cadWHERE
     conn.Execute Aux, , adCmdText
 
@@ -988,26 +988,26 @@ End Function
 'recupera valor desde una cadena con pipes(acabada en pipes)
 'Para ello le decimos el orden  y ya ta
 Public Function RecuperaValor(ByRef CADENA As String, Orden As Integer) As String
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 Dim cont As Integer
 Dim cad As String
 
-    i = 0
+    I = 0
     cont = 1
     cad = ""
     Do
-        J = i + 1
-        i = InStr(J, CADENA, "|")
-        If i > 0 Then
+        J = I + 1
+        I = InStr(J, CADENA, "|")
+        If I > 0 Then
             If cont = Orden Then
-                cad = Mid(CADENA, J, i - J)
-                i = Len(CADENA) 'Para salir del bucle
+                cad = Mid(CADENA, J, I - J)
+                I = Len(CADENA) 'Para salir del bucle
                 Else
                     cont = cont + 1
             End If
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     RecuperaValor = cad
 End Function
 
@@ -1022,7 +1022,7 @@ End Function
 'Para ello en el tag del button tendremos k poner un numero k nos diara hasta k nivel esta permitido
 
 Public Sub PonerOpcionesMenuGeneral(ByRef formulario As Form)
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 
 On Error GoTo EPonerOpcionesMenuGeneral
@@ -1031,14 +1031,14 @@ On Error GoTo EPonerOpcionesMenuGeneral
 With formulario
 
     'LA TOOLBAR  .--> Requisito, k se llame toolbar1
-    For i = 1 To .Toolbar1.Buttons.Count
-        If .Toolbar1.Buttons(i).Tag <> "" Then
-            J = Val(.Toolbar1.Buttons(i).Tag)
+    For I = 1 To .Toolbar1.Buttons.Count
+        If .Toolbar1.Buttons(I).Tag <> "" Then
+            J = Val(.Toolbar1.Buttons(I).Tag)
             If J < vUsu.Nivel Then
-                .Toolbar1.Buttons(i).Enabled = False
+                .Toolbar1.Buttons(I).Enabled = False
             End If
         End If
-    Next i
+    Next I
 
     'Esto es un poco salvaje. Por si acaso , no existe en este trozo pondremos los errores on resume next
 
@@ -1109,7 +1109,7 @@ On Error GoTo EBLOQUEADesdeFormulario
     If cadWHERE = "" Then
         MsgBox "No se ha definido ninguna clave principal.", vbExclamation
     Else
-        Aux = "select * FROM " & mTag.Tabla
+        Aux = "select * FROM " & mTag.tabla
         Aux = Aux & " WHERE " & cadWHERE & " FOR UPDATE"
 
         'Intenteamos bloquear
@@ -1183,7 +1183,7 @@ On Error GoTo EBLOQ
     If AuxDef = "" Then
         MsgBox "No se ha definido ninguna clave principal.", vbExclamation
     Else
-        Aux = "Insert into zbloqueos(codusu,tabla,clave) VALUES(" & vUsu.Codigo & ",'" & mTag.Tabla
+        Aux = "Insert into zbloqueos(codusu,tabla,clave) VALUES(" & vUsu.Codigo & ",'" & mTag.tabla
         Aux = Aux & "',""" & ComprobarComillas(AuxDef) & """)"
         conn.Execute Aux
         BloqueaRegistroForm = True
@@ -1209,32 +1209,32 @@ End Function
 
 Private Function ComprobarComillas(cad As String) As String
 Dim J As Integer
-Dim i As Integer
+Dim I As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, cad, """")
-        If i > 0 Then
-            Aux = Mid(cad, 1, i - 1) & "\"
-            cad = Aux & Mid(cad, i)
-            J = i + 2
+        I = InStr(J, cad, """")
+        If I > 0 Then
+            Aux = Mid(cad, 1, I - 1) & "\"
+            cad = Aux & Mid(cad, I)
+            J = I + 2
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     ComprobarComillas = cad
 End Function
 
 
 Public Function DesBloqueaRegistroForm(ByRef TextBoxConTag As TextBox) As Boolean
 Dim mTag As CTag
-Dim Sql As String
+Dim SQL As String
 
 'Solo me interesa la tabla
 On Error Resume Next
     Set mTag = New CTag
     mTag.Cargar TextBoxConTag
     If mTag.Cargado Then
-        Sql = "DELETE from zbloqueos where codusu=" & vUsu.Codigo & " and tabla='" & mTag.Tabla & "'"
-        conn.Execute Sql
+        SQL = "DELETE from zbloqueos where codusu=" & vUsu.Codigo & " and tabla='" & mTag.tabla & "'"
+        conn.Execute SQL
         If Err.Number <> 0 Then
             Err.Clear
         End If
@@ -1278,13 +1278,13 @@ End Function
 
 
 Public Function DesBloqueoManual(cadTabla As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 
 'Solo me interesa la tabla
 On Error Resume Next
 
-        Sql = "DELETE FROM zbloqueos WHERE codusu=" & vUsu.Codigo & " and tabla='" & cadTabla & "'"
-        conn.Execute Sql
+        SQL = "DELETE FROM zbloqueos WHERE codusu=" & vUsu.Codigo & " and tabla='" & cadTabla & "'"
+        conn.Execute SQL
         If Err.Number <> 0 Then
             Err.Clear
         End If
@@ -1475,7 +1475,7 @@ Public Sub ComprobarCobrosCliente2(CodClien As String, FechaDoc As String, Optio
 'Comprueba en la tabla de Cobros Pendientes (scobro) de la Base de datos de Contabilidad
 'si el cliente tiene alguna factura pendiente de cobro que ha vendido
 'con fecha de vencimiento anterior a la fecha del documento: Oferta, Pedido, ALbaran,...
-Dim Sql As String, vWhere As String
+Dim SQL As String, vWhere As String
 Dim codmacta As String
 Dim RS As ADODB.Recordset
 Dim cadMen As String
@@ -1486,10 +1486,10 @@ Dim Impaux As Currency
     Set RS = New ADODB.Recordset
     ImporteCred = 0
     'Obtener la cuenta del cliente de la tabla sclien en Aritaxi
-    Sql = "Select nomclien,codmacta,limcredi from sclien where codclien=" & CodClien
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    SQL = "Select nomclien,codmacta,limcredi from sclien where codclien=" & CodClien
+    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     If RS.EOF Then
-        Sql = ""
+        SQL = ""
     Else
         'CodClien = CodClien & " - " & sql
         CodClien = CodClien & " - " & RS!nomclien
@@ -1498,19 +1498,19 @@ Dim Impaux As Currency
         codmacta = RS!codmacta
     End If
     RS.Close
-    If Sql = "" Then Exit Sub
+    If SQL = "" Then Exit Sub
     
     'AHORA FEBRERO 2010
-    Sql = "SELECT scobro.* FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+    SQL = "SELECT scobro.* FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
     vWhere = " WHERE scobro.codmacta = '" & codmacta & "'"
     vWhere = vWhere & " AND fecvenci <= ' " & Format(FechaDoc, FormatoFecha) & "' "
     'Antes mayo 2010
     'vWhere = vWhere & " AND (sforpa.tipforpa between 0 and 3)"
     vWhere = vWhere & " AND recedocu=0 ORDER BY fecfaccl, codfaccl"
-    Sql = Sql & vWhere
+    SQL = SQL & vWhere
     
     'Lee de la Base de Datos de CONTABILIDAD
-    RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     Importe = 0
     While Not RS.EOF
     
@@ -1599,36 +1599,36 @@ Public Function ObtenerNSerieSiguiente(cadNSerie As String) As String
 'OUT -> RETURN: cadena con el sig. NºSerie : "0000-12-0012"
 Dim NumAux As String, numAnt As String
 Dim NumAux2 As String
-Dim i As Integer
+Dim I As Integer
 
     On Error Resume Next
     
     NumAux = cadNSerie
     numAnt = ""
     'Quitar los cararacter '-' y quedarse con la parte dcha
-    i = InStr(1, NumAux, "-")
-    While Not i = 0
-        numAnt = numAnt & Mid(NumAux, 1, i)
-        NumAux = Mid(NumAux, i + 1, Len(NumAux) - i)
-        i = InStr(1, NumAux, "-")
+    I = InStr(1, NumAux, "-")
+    While Not I = 0
+        numAnt = numAnt & Mid(NumAux, 1, I)
+        NumAux = Mid(NumAux, I + 1, Len(NumAux) - I)
+        I = InStr(1, NumAux, "-")
     Wend
     
     If NumAux <> "" Then 'Hay q coger la parte derecha del - : 0011
-        i = Len(NumAux)
+        I = Len(NumAux)
         If IsNumeric(NumAux) Then
             NumAux = CStr(NumAux + 1)
-            While Len(NumAux) < i
+            While Len(NumAux) < I
                 NumAux = "0" & NumAux
             Wend
         Else
         'Coger el nº mas a la derecha, incrementarlo y concatenarlo con el principio
-            NumAux2 = Mid(NumAux, i, Len(NumAux))
+            NumAux2 = Mid(NumAux, I, Len(NumAux))
             While IsNumeric(NumAux2)
-                i = i - 1
-                NumAux2 = Mid(NumAux, i, Len(NumAux))
+                I = I - 1
+                NumAux2 = Mid(NumAux, I, Len(NumAux))
             Wend
             NumAux2 = Right(NumAux2, Len(NumAux2) - 1)
-            numAnt = numAnt & Mid(NumAux, 1, i)
+            numAnt = numAnt & Mid(NumAux, 1, I)
             NumAux = CStr(NumAux2 + 1)
             While Len(NumAux) < Len(NumAux2)
                 NumAux = "0" & NumAux
@@ -1725,16 +1725,16 @@ Public Function ComprobarNumRepHco(numSerie As String, codArtic As String) As In
 'IN -> numserie, codartic
 'RETURN -> Nº Reparaciones
 Dim RS As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo ENumRep
 
-    Sql = " SELECT count(numrepar) FROM schrep "
-    Sql = Sql & " WHERE numserie=" & DBSet(numSerie, "T") & " and "
-    Sql = Sql & " codartic=" & DBSet(codArtic, "T")
+    SQL = " SELECT count(numrepar) FROM schrep "
+    SQL = SQL & " WHERE numserie=" & DBSet(numSerie, "T") & " and "
+    SQL = SQL & " codartic=" & DBSet(codArtic, "T")
 
     Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RS.EOF Then
         ComprobarNumRepHco = RS.Fields(0).Value
     Else
@@ -1788,23 +1788,23 @@ EPoblacion:
 End Function
 
 
-Public Sub ObtenerCtasBancoPropio2(banPr As String, ctaBan As String, ctaCble As String)
+Public Sub ObtenerCtasBancoPropio2(BanPr As String, ctaBan As String, ctaCble As String)
 'obtener la cuenta bancaria y la cuenta contable del banco propio
 '(IN) banPr: cod. banco propio
 '(OUT) ctaBan: cuenta bancaria
 '(OUT) ctaCble: cuenta contable
 Dim RS As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 Dim Aux As String
 
     ctaBan = ""
     ctaCble = ""
 
-    Sql = "SELECT codbanco,codsucur,digcontr,cuentaba,codmacta"
-    Sql = Sql & " from sbanpr where codbanpr=" & banPr
+    SQL = "SELECT codbanco,codsucur,digcontr,cuentaba,codmacta"
+    SQL = SQL & " from sbanpr where codbanpr=" & BanPr
 
     Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     If Not RS.EOF Then
         Aux = Right("0000" & DBLet(RS!codbanco, "T"), 4)
         ctaBan = Aux & "-"
@@ -1813,9 +1813,9 @@ Dim Aux As String
         ctaBan = ctaBan & DBLet(RS!digcontr, "T") & "-" & DBLet(RS!cuentaba, "T")
         ctaCble = DBLet(RS!codmacta, "T")
         'obtener el nombre de la cuenta contable
-        Sql = ""
-        Sql = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", ctaCble, "T")
-        If Sql <> "" Then ctaCble = ctaCble & "-" & Sql
+        SQL = ""
+        SQL = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", ctaCble, "T")
+        If SQL <> "" Then ctaCble = ctaCble & "-" & SQL
     End If
     Set RS = Nothing
 End Sub
@@ -1825,14 +1825,14 @@ End Sub
 Public Function ObtenerSQLcomponentes(cadWHERE As String) As String
 'Obtiene la consulta SQL que selecciona los articulos con nº de serie
 'agrupados por tipo de articulo
-Dim Sql As String
+Dim SQL As String
 
-    Sql = "Select distinct sserie.codtipar, nomtipar, count(numserie) as cantidad "
-    Sql = Sql & "FROM sserie INNER JOIN stipar ON sserie.codtipar=stipar.codtipar "
-    Sql = Sql & cadWHERE
-    Sql = Sql & " GROUP by codtipar "
+    SQL = "Select distinct sserie.codtipar, nomtipar, count(numserie) as cantidad "
+    SQL = SQL & "FROM sserie INNER JOIN stipar ON sserie.codtipar=stipar.codtipar "
+    SQL = SQL & cadWHERE
+    SQL = SQL & " GROUP by codtipar "
     
-    ObtenerSQLcomponentes = Sql
+    ObtenerSQLcomponentes = SQL
 End Function
 
 
@@ -1842,14 +1842,14 @@ Public Function ComprobarStock(codArtic As String, codAlmac As String, cant As S
 'stock suficiente para poder realizar el traspaso
 Dim vStock As String
 Dim vArtic As CArticulo
-Dim b As Boolean
+Dim B As Boolean
 
     Set vArtic = New CArticulo
-    b = vArtic.Existe(codArtic)
-    If b Then
-        b = vArtic.ExisteEnAlmacen(codAlmac, vStock)
-        If b Then
-            b = ComprobarHayStock(CSng(vStock), CSng(cant), codArtic, vArtic.Nombre, CodTipMov)
+    B = vArtic.Existe(codArtic)
+    If B Then
+        B = vArtic.ExisteEnAlmacen(codAlmac, vStock)
+        If B Then
+            B = ComprobarHayStock(CSng(vStock), CSng(cant), codArtic, vArtic.Nombre, CodTipMov)
 '            If Not ComprobarHayStock(CSng(vStock), CSng(cant), codArtic, vArtic.Nombre, CodTipMov) Then
 '                b = False
 '            Else
@@ -1858,7 +1858,7 @@ Dim b As Boolean
         End If
     End If
     Set vArtic = Nothing
-    ComprobarStock = b
+    ComprobarStock = B
 End Function
 
 
@@ -1946,21 +1946,21 @@ Public Function CApos(Texto As String) As String
 '-- (RAFA/ALZIRA) 07092006
 '-- Esta función procesa caracteres extraños y de control para sentencias SQL
 
-    Dim i As Integer
+    Dim I As Integer
     Dim i2 As Integer
     i2 = 1
-    i = InStr(i2, Texto, "'")
-    While i <> 0
-        Texto = Mid(Texto, 1, i) & "'" & Mid(Texto, i + 1, Len(Texto) - i)
-        i2 = i + 2
-        i = InStr(i2, Texto, "'")
+    I = InStr(i2, Texto, "'")
+    While I <> 0
+        Texto = Mid(Texto, 1, I) & "'" & Mid(Texto, I + 1, Len(Texto) - I)
+        i2 = I + 2
+        I = InStr(i2, Texto, "'")
     Wend
     i2 = 1
-    i = InStr(i2, Texto, "\")
-    While i <> 0
-        Texto = Mid(Texto, 1, i) & "\" & Mid(Texto, i + 1, Len(Texto) - i)
-        i2 = i + 2
-        i = InStr(i2, Texto, "\")
+    I = InStr(i2, Texto, "\")
+    While I <> 0
+        Texto = Mid(Texto, 1, I) & "\" & Mid(Texto, I + 1, Len(Texto) - I)
+        i2 = I + 2
+        I = InStr(i2, Texto, "\")
     Wend
 
 End Function
@@ -2175,7 +2175,7 @@ Public Function SugerirCodAutomatico(marca As String, categoria As String, model
     Dim superior As String
     Dim comun As String
     Dim Codigo As String
-    Dim Sql As String
+    Dim SQL As String
     Dim RS As ADODB.Recordset
     Dim Valor As Integer
     '-- Primero trimeamos los valores por si acaso.
@@ -2228,12 +2228,12 @@ End Function
 '                                                                       CINCO DECIMALES
 Public Function ArticuloConTasaReciclado(ArticuloLinea As String, ByRef ImporteSng As Single) As Boolean
 Dim RT As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
         On Error GoTo EArticuloConTasaReciclado
         ArticuloConTasaReciclado = False
-        Sql = "select tasareciclado from sunida,sartic where sunida.codunida =sartic.codunida and sartic.codartic=" & DBSet(ArticuloLinea, "T")
+        SQL = "select tasareciclado from sunida,sartic where sunida.codunida =sartic.codunida and sartic.codartic=" & DBSet(ArticuloLinea, "T")
         Set RT = New ADODB.Recordset
-        RT.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        RT.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         If Not RT.EOF Then
             If Not IsNull(RT!tasareciclado) Then
@@ -2251,12 +2251,12 @@ End Function
 
 
 
-Public Function DevuelveUltimoAlmacen(Tabla As String, Where As String) As Integer
+Public Function DevuelveUltimoAlmacen(tabla As String, Where As String) As Integer
 Dim C As String
 Dim RS As ADODB.Recordset
 
     DevuelveUltimoAlmacen = -1
-    C = "Select codalmac FROM " & Tabla & Where & " ORDER BY numlinea DESC"
+    C = "Select codalmac FROM " & tabla & Where & " ORDER BY numlinea DESC"
     Set RS = New ADODB.Recordset
     RS.Open C, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RS.EOF Then
@@ -2355,8 +2355,8 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
     Dim mTag As CTag
     Dim Aux As String
     Dim cad As String
-    Dim Sql As String
-    Dim Tabla As String
+    Dim SQL As String
+    Dim tabla As String
     Dim Rc As Byte
 
     On Error GoTo EObtenerBusqueda
@@ -2364,7 +2364,7 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
     'Exit Function
     Set mTag = New CTag
     ObtenerBusquedaNew = ""
-    Sql = ""
+    SQL = ""
 
     'Recorremos los text en busca de ">>" o "<<"
     For Each Control In formulario.Controls
@@ -2389,22 +2389,22 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
                                 cad = cad & mTag.columna & ")"
                         End Select
                         
-                        Sql = "Select " & cad & " from " & mTag.Tabla
-                        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
-                        Sql = ObtenerMaximoMinimoNew(Sql, vBD)
+                        SQL = "Select " & cad & " from " & mTag.tabla
+                        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
+                        SQL = ObtenerMaximoMinimoNew(SQL, vBD)
                         Select Case mTag.TipoDato
                         Case "N"
-                            Sql = mTag.Tabla & "." & mTag.columna & " = " & TransformaComasPuntos(Sql)
+                            SQL = mTag.tabla & "." & mTag.columna & " = " & TransformaComasPuntos(SQL)
                         Case "F"
-                            Sql = mTag.Tabla & "." & mTag.columna & " = '" & Format(Sql, "yyyy-mm-dd") & "'"
+                            SQL = mTag.tabla & "." & mTag.columna & " = '" & Format(SQL, "yyyy-mm-dd") & "'"
                         Case "FHF"
-                            Sql = "date(" & mTag.Tabla & "." & mTag.columna & ") = '" & Format(Sql, "yyyy-mm-dd") & "'"
+                            SQL = "date(" & mTag.tabla & "." & mTag.columna & ") = '" & Format(SQL, "yyyy-mm-dd") & "'"
                         Case "FHH"
-                            Sql = "time(" & mTag.Tabla & "." & mTag.columna & ") = '" & Format(Sql, "hh:mm:ss") & "'"
+                            SQL = "time(" & mTag.tabla & "." & mTag.columna & ") = '" & Format(SQL, "hh:mm:ss") & "'"
                         Case Else
-                            Sql = mTag.Tabla & "." & mTag.columna & " = '" & Sql & "'"
+                            SQL = mTag.tabla & "." & mTag.columna & " = '" & SQL & "'"
                         End Select
-                        Sql = "(" & Sql & ")"
+                        SQL = "(" & SQL & ")"
                     End If
                 End If
             End If
@@ -2421,8 +2421,8 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
                 Carga = mTag.Cargar(Control)
                 If Carga Then
 
-                    Sql = mTag.Tabla & "." & mTag.columna & " is NULL"
-                    Sql = "(" & Sql & ")"
+                    SQL = mTag.tabla & "." & mTag.columna & " is NULL"
+                    SQL = "(" & SQL & ")"
                     Control.Text = ""
                 End If
             End If
@@ -2440,15 +2440,15 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
 '                    Debug.Print Control.Tag
                     Aux = Trim(Control.Text)
                     If Aux <> "" Then
-                        If mTag.Tabla <> "" Then
-                            Tabla = mTag.Tabla & "."
+                        If mTag.tabla <> "" Then
+                            tabla = mTag.tabla & "."
                             Else
-                            Tabla = ""
+                            tabla = ""
                         End If
-                        Rc = SeparaCampoBusqueda(mTag.TipoDato, Tabla & mTag.columna, Aux, cad)
+                        Rc = SeparaCampoBusqueda(mTag.TipoDato, tabla & mTag.columna, Aux, cad)
                         If Rc = 0 Then
-                            If Sql <> "" Then Sql = Sql & " AND "
-                            Sql = Sql & "(" & cad & ")"
+                            If SQL <> "" Then SQL = SQL & " AND "
+                            SQL = SQL & "(" & cad & ")"
                         End If
                     End If
                 Else
@@ -2469,9 +2469,9 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
                         Else
                             cad = ValorParaSQL(Control.List(Control.ListIndex), mTag)
                         End If
-                        cad = mTag.Tabla & "." & mTag.columna & " = " & cad
-                        If Sql <> "" Then Sql = Sql & " AND "
-                        Sql = Sql & "(" & cad & ")"
+                        cad = mTag.tabla & "." & mTag.columna & " = " & cad
+                        If SQL <> "" Then SQL = SQL & " AND "
+                        SQL = SQL & "(" & cad & ")"
                     End If
                 End If
             End If
@@ -2483,26 +2483,26 @@ Public Function ObtenerBusquedaNew(ByRef formulario As Form, Optional CHECK As S
                 If mTag.Cargado Then
                     Aux = ""
                     If CHECK <> "" Then
-                        Tabla = DBLet(Control.Index, "T")
-                        If Tabla <> "" Then Tabla = "(" & Tabla & ")"
-                        Tabla = Control.Name & Tabla & "|"
-                        If InStr(1, CHECK, Tabla, vbTextCompare) > 0 Then Aux = Control.Value
+                        tabla = DBLet(Control.Index, "T")
+                        If tabla <> "" Then tabla = "(" & tabla & ")"
+                        tabla = Control.Name & tabla & "|"
+                        If InStr(1, CHECK, tabla, vbTextCompare) > 0 Then Aux = Control.Value
                     Else
                         If Control.Value = 1 Then Aux = "1"
                     End If
                     If Aux <> "" Then
 '                    If Control.Value = 1 Then
                         cad = Control.Value
-                        cad = mTag.Tabla & "." & mTag.columna & " = " & cad
-                        If Sql <> "" Then Sql = Sql & " AND "
-                        Sql = Sql & "(" & cad & ")"
+                        cad = mTag.tabla & "." & mTag.columna & " = " & cad
+                        If SQL <> "" Then SQL = SQL & " AND "
+                        SQL = SQL & "(" & cad & ")"
                     End If
                 End If
             End If
             '===================
         End If
     Next Control
-    ObtenerBusquedaNew = Sql
+    ObtenerBusquedaNew = SQL
 Exit Function
 EObtenerBusqueda:
     ObtenerBusquedaNew = ""
@@ -2529,16 +2529,16 @@ End Function
 
 
 Public Function TieneChofer(Socio As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim RS As ADODB.Recordset
 
 
     TieneChofer = False
     Set RS = New ADODB.Recordset
 
-    Sql = "select * from sclien_chofer where codsocio=" & DBSet(Socio, "N") & " and (fechabaj is null or fechabaj <= '" & Format(Date, FormatoFecha)
-    Sql = Sql & "')"
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    SQL = "select * from sclien_chofer where codsocio=" & DBSet(Socio, "N") & " and (fechabaj is null or fechabaj <= '" & Format(Date, FormatoFecha)
+    SQL = SQL & "')"
+    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RS.EOF Then
         TieneChofer = True
     End If
@@ -2547,3 +2547,26 @@ Dim RS As ADODB.Recordset
 End Function
 
 
+Public Sub AyudaTiposDocumentos(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1405|;S|txtAux(1)|T|Descripción|3000|;S|txtAux(2)|T|Fichero|2595|;"
+    frmBas.CadenaConsulta = "SELECT scryst.codcryst, scryst.nomcryst, scryst.documrpt "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM scryst "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código Documento|N|N|||scryst|codcryst|0000|S|"
+    frmBas.Tag2 = "Descripción|T|N|||scryst|nomcryst|||"
+    frmBas.Tag3 = "Fichero rpt|T|N|||scryst|documrpt|||"
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 30
+    frmBas.Maxlen3 = 100
+    
+    frmBas.tabla = "scryst"
+    frmBas.CampoCP = "codcryst"
+    frmBas.Caption = "Tipos de Documentos"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    frmBas.Show vbModal
+End Sub

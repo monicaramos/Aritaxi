@@ -5,22 +5,87 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmConfTipoMov 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Tipos de Movimiento"
-   ClientHeight    =   5850
+   ClientHeight    =   6225
    ClientLeft      =   45
-   ClientTop       =   735
-   ClientWidth     =   7650
+   ClientTop       =   435
+   ClientWidth     =   9975
    Icon            =   "frmConfTipoMov.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5850
-   ScaleWidth      =   7650
+   ScaleHeight     =   6225
+   ScaleWidth      =   9975
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   240
+      TabIndex        =   11
+      Top             =   90
+      Width           =   3105
+      Begin VB.CheckBox chkVistaPrevia 
+         Caption         =   "Vista previa"
+         Height          =   195
+         Left            =   3750
+         TabIndex        =   12
+         Top             =   270
+         Visible         =   0   'False
+         Width           =   1215
+      End
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   13
+         Top             =   180
+         Width           =   2745
+         _ExtentX        =   4842
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   6
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+               Object.Tag             =   "0"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.TextBox txtAux 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   4
       Left            =   6000
@@ -34,15 +99,15 @@ Begin VB.Form frmConfTipoMov
    Begin VB.Frame Frame1 
       Height          =   555
       Left            =   240
-      TabIndex        =   10
-      Top             =   5140
+      TabIndex        =   9
+      Top             =   5535
       Width           =   2355
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -51,8 +116,8 @@ Begin VB.Form frmConfTipoMov
          EndProperty
          Height          =   255
          Left            =   240
-         TabIndex        =   11
-         Top             =   240
+         TabIndex        =   10
+         Top             =   180
          Width           =   1920
       End
    End
@@ -60,6 +125,15 @@ Begin VB.Form frmConfTipoMov
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   3
       Left            =   4920
@@ -74,6 +148,15 @@ Begin VB.Form frmConfTipoMov
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   2
       Left            =   3480
@@ -87,6 +170,15 @@ Begin VB.Form frmConfTipoMov
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   1
       Left            =   1080
@@ -100,6 +192,15 @@ Begin VB.Form frmConfTipoMov
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   0
       Left            =   240
@@ -112,7 +213,16 @@ Begin VB.Form frmConfTipoMov
    End
    Begin VB.ComboBox CboMueveStock 
       Appearance      =   0  'Flat
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       ItemData        =   "frmConfTipoMov.frx":000C
       Left            =   2520
       List            =   "frmConfTipoMov.frx":000E
@@ -124,57 +234,39 @@ Begin VB.Form frmConfTipoMov
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   5040
+      Left            =   7560
       TabIndex        =   7
-      Top             =   5265
+      Top             =   5655
       Visible         =   0   'False
       Width           =   1035
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
-      Height          =   375
-      Left            =   6195
-      TabIndex        =   8
-      Top             =   5265
-      Width           =   1035
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   9
-      Top             =   0
-      Width           =   7650
-      _ExtentX        =   13494
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   5
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Insertar"
-            Object.Tag             =   "0"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "1"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "0"
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
+      Height          =   375
+      Left            =   8715
+      TabIndex        =   8
+      Top             =   5655
+      Width           =   1035
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -224,30 +316,30 @@ Begin VB.Form frmConfTipoMov
       _Version        =   393216
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Height          =   4410
+      Height          =   4545
       Left            =   240
       TabIndex        =   0
-      Top             =   600
-      Width           =   7100
-      _ExtentX        =   12515
-      _ExtentY        =   7779
+      Top             =   900
+      Width           =   9495
+      _ExtentX        =   16748
+      _ExtentY        =   8017
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -291,6 +383,8 @@ Begin VB.Form frmConfTipoMov
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnNuevo 
          Caption         =   "&Nuevo"
          Shortcut        =   ^N
@@ -327,6 +421,7 @@ Private CadAncho As Boolean  'Para saber si hemos fijado el ancho de los campos
 
 Dim Modo As Byte
 Dim PrimeraVez As Boolean
+Dim cadB As String
 
 
 Private Sub CboMueveStock_KeyPress(KeyAscii As Integer)
@@ -334,26 +429,35 @@ Private Sub CboMueveStock_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim i As String
+Dim I As String
 On Error Resume Next
 
     Select Case Modo
-        Case 1 'Insertar
-            If DatosOk Then
+        Case 1 ' Buscar
+            cadB = ObtenerBusqueda(Me, False)
+            If cadB <> "" Then
+                CargaGrid cadB
+                PonerModo 2
+'                lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
+                PonerFocoGrid Me.DataGrid1
+            End If
+    
+        Case 3 'Insertar
+            If DatosOK Then
                If InsertarDesdeForm(Me) Then
                   CargaGrid
                   BotonAnyadir
                 End If
             End If
-        Case 2  'Modificar
-            If DatosOk Then
+        Case 4  'Modificar
+            If DatosOK Then
                 If ModificaDesdeFormulario(Me, 3) Then
                     TerminaBloquear
-                    i = Data1.Recordset.Fields(0)
+                    I = Data1.Recordset.Fields(0)
                     PonerModo 0
                     CancelaADODC Me.Data1
                     CargaGrid
-                    Data1.Recordset.Find (Data1.Recordset.Fields(0).Name & " ='" & i & "'")
+                    Data1.Recordset.Find (Data1.Recordset.Fields(0).Name & " ='" & I & "'")
                 End If
                 Me.DataGrid1.SetFocus
                 'Data1.Recordset.MoveFirst
@@ -367,11 +471,11 @@ End Sub
 Private Sub cmdCancelar_Click()
     TerminaBloquear
     Select Case Modo
-        Case 1 'Insertar
+        Case 3 'Insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
             If Not Data1.Recordset.EOF Then Data1.Recordset.MoveFirst
-        Case 3
+        Case 1
             CargaGrid
     End Select
     PonerModo 0
@@ -399,19 +503,38 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim Sql As String
+Dim SQL As String
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
-    ' ICONITOS DE LA BARRA
+'    ' ICONITOS DE LA BARRA
+'    With Me.Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 3   'Insertar
+'        .Buttons(2).Image = 4   'Modificar
+'        .Buttons(3).Image = 5   'Eliminar
+'        .Buttons(5).Image = 15  'Salir
+'    End With
+        
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
+        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
         .Buttons(1).Image = 3   'Insertar
         .Buttons(2).Image = 4   'Modificar
         .Buttons(3).Image = 5   'Eliminar
-        .Buttons(5).Image = 15  'Salir
+        .Buttons(5).Image = 1  'buscar
+        .Buttons(6).Image = 2  'buscar
     End With
+    
+    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+        
+        
         
     DataGrid1.ClearFields
     CadAncho = False
@@ -421,8 +544,8 @@ Dim Sql As String
     'Ordenacion = " ORDER BY codtipom"
            
     'ASignamos un SQL al DATA1
-    Sql = "Select codtipom, nomtipom, If(muevesto=1,""Si"",""No"") AS MovStock, contador, letraser, tipodocu "
-    CadenaConsulta = Sql & " from " & NombreTabla
+    SQL = "Select codtipom, nomtipom, If(muevesto=1,""Si"",""No"") AS MovStock, contador, letraser, tipodocu "
+    CadenaConsulta = SQL & " from " & NombreTabla
  
     CargaGrid
     CargaCombo
@@ -447,47 +570,53 @@ Private Sub mnSalir_Click()
 End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+
     Select Case Button.Index
         Case 1 'Insertar
-            mnNuevo_Click
+            BotonAnyadir
         Case 2  'Modificar
-            mnModificar_Click
+            BotonModificar
         Case 3  'Eliminar
-            mnEliminar_Click
-        Case 5 'Salir
-            mnSalir_Click
+            BotonEliminar
+        Case 5
+            BotonBuscar
+        Case 6
+            BotonVerTodos
     End Select
+
 End Sub
 
 
 Private Sub BotonAnyadir()
 Dim anc As Single
-Dim i As Byte
+Dim I As Byte
     
     lblIndicador.Caption = "INSERTAR"
     
     'Situamos el grid al final
+    Data1.Recordset.MoveLast
     AnyadirLinea DataGrid1, Me.Data1
       
     If DataGrid1.Row < 0 Then
-        anc = 820
+        anc = DataGrid1.Top + 250
     Else
-        anc = DataGrid1.RowTop(DataGrid1.Row) + 600
+        anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.Top + 5  '+ 600
     End If
 
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).Text = ""
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Text = ""
+    Next I
     Me.CboMueveStock.ListIndex = 1
     
     CargaTxtAux anc, 0
-    PonerModo 1
+    Modo = 3
+    PonerModo Modo
     PonerFoco txtAux(0)
 End Sub
 
 
 Private Sub BotonModificar()
-Dim i As Integer
+Dim I As Integer
 Dim anc As Single
 
     If Data1.Recordset.EOF Then Exit Sub
@@ -497,15 +626,15 @@ Dim anc As Single
     Me.lblIndicador.Caption = "MODIFICAR"
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     
     If DataGrid1.Row < 0 Then
         anc = 290
     Else
-        anc = DataGrid1.RowTop(DataGrid1.Row) + 600
+        anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.Top
     End If
     
     'Llamamos al form
@@ -523,7 +652,8 @@ Dim anc As Single
     End Select
     
     CargaTxtAux anc, 1
-    PonerModo 2
+    Modo = 4
+    PonerModo Modo
     If Not BLOQUEADesdeFormulario(Me) Then
         cmdCancelar_Click
         Exit Sub
@@ -540,20 +670,20 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Sql As String
+Dim SQL As String
     On Error GoTo Error2
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     If Not SepuedeBorrar Then Exit Sub
     
     '### a mano
-    Sql = "¿Seguro que desea eliminar el Tipo de Movimiento?"
-    Sql = Sql & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    Sql = Sql & vbCrLf & "Denominación: " & Data1.Recordset.Fields(1)
-    If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
+    SQL = "¿Seguro que desea eliminar el Tipo de Movimiento?"
+    SQL = SQL & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    SQL = SQL & vbCrLf & "Denominación: " & Data1.Recordset.Fields(1)
+    If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
         'Hay que eliminar
-        Sql = "Delete from stipom where codtipom='" & Data1.Recordset!codtipom & "'"
-        conn.Execute Sql
+        SQL = "Delete from stipom where codtipom='" & Data1.Recordset!codtipom & "'"
+        conn.Execute SQL
         CancelaADODC Me.Data1
         CargaGrid ""
         CancelaADODC Me.Data1
@@ -565,56 +695,78 @@ Error2:
 End Sub
 
 
-Private Sub CargaGrid(Optional Sql As String)
-Dim i As Byte
+Private Sub BotonVerTodos()
+    CargaGrid ""
+End Sub
+
+Private Sub BotonBuscar()
+
+
+    Modo = 1
     
-    If Sql <> "" Then
-        Sql = CadenaConsulta & " WHERE " & Sql
+    PonerModo Modo
+
+'    cmdCancelar.visible = True
+'    cmdCancelar.SetFocus
+    CargaGrid "codtipom is null"
+    'Buscar
+    txtAux(0).Text = "":    txtAux(1).Text = "": txtAux(2).Text = "": txtAux(3).Text = "": txtAux(4).Text = ""
+    CboMueveStock.ListIndex = -1
+    CargaTxtAux DataGrid1.Top + 250, 1
+    PonerFoco txtAux(0)
+End Sub
+
+Private Sub CargaGrid(Optional SQL As String)
+Dim I As Byte
+    
+    If SQL <> "" Then
+        SQL = CadenaConsulta & " WHERE " & SQL
     Else
-        Sql = CadenaConsulta
+        SQL = CadenaConsulta
     End If
     
-    CargaGridGnral DataGrid1, Me.Data1, Sql, PrimeraVez
+    CargaGridGnral DataGrid1, Me.Data1, SQL, PrimeraVez
     
+    DataGrid1.RowHeight = 350
     
-    i = 0  'Código
-        DataGrid1.Columns(i).Caption = "Código"
-        DataGrid1.Columns(i).Width = 600
+    I = 0  'Código
+        DataGrid1.Columns(I).Caption = "Código"
+        DataGrid1.Columns(I).Width = 800
     
-    i = 1  'Nombre Tipo Movimiento
-        DataGrid1.Columns(i).Caption = "Denominación"
-        DataGrid1.Columns(i).Width = 2200
+    I = 1  'Nombre Tipo Movimiento
+        DataGrid1.Columns(I).Caption = "Denominación"
+        DataGrid1.Columns(I).Width = 3300
 '        TotalAncho = TotalAncho + DataGrid1.Columns(i).Width
             
-    i = 2   'Mueve stock: Si o No
-        DataGrid1.Columns(i).Caption = "Mueve Stock"
-        DataGrid1.Columns(i).Width = 1100
-        DataGrid1.Columns(i).Alignment = dbgCenter
+    I = 2   'Mueve stock: Si o No
+        DataGrid1.Columns(I).Caption = "Mueve Stock"
+        DataGrid1.Columns(I).Width = 1400
+        DataGrid1.Columns(I).Alignment = dbgCenter
 '        TotalAncho = TotalAncho + DataGrid1.Columns(i).Width
             
-    i = 3   'Contador
-        DataGrid1.Columns(i).Caption = "Contador"
-        DataGrid1.Columns(i).Width = 900
+    I = 3   'Contador
+        DataGrid1.Columns(I).Caption = "Contador"
+        DataGrid1.Columns(I).Width = 1100
 '        TotalAncho = TotalAncho + DataGrid1.Columns(i).Width
-        DataGrid1.Columns(i).NumberFormat = "0000000"
-        DataGrid1.Columns(i).Alignment = dbgCenter
+        DataGrid1.Columns(I).NumberFormat = "0000000"
+        DataGrid1.Columns(I).Alignment = dbgCenter
         
-    i = 4  'Letra Serie
-        DataGrid1.Columns(i).Caption = "Letra Serie"
-        DataGrid1.Columns(i).Width = 900
-        DataGrid1.Columns(i).Alignment = dbgCenter
+    I = 4  'Letra Serie
+        DataGrid1.Columns(I).Caption = "Letra Serie"
+        DataGrid1.Columns(I).Width = 1300
+        DataGrid1.Columns(I).Alignment = dbgCenter
 '        TotalAncho = TotalAncho + DataGrid1.Columns(i).Width
         
-    i = 5  'Tipo de Documento
-        DataGrid1.Columns(i).Caption = "T.Docum."
-        DataGrid1.Columns(i).Width = 760
-        DataGrid1.Columns(i).Alignment = dbgCenter
+    I = 5  'Tipo de Documento
+        DataGrid1.Columns(I).Caption = "T.Docum."
+        DataGrid1.Columns(I).Width = 960
+        DataGrid1.Columns(I).Alignment = dbgCenter
 '        TotalAncho = TotalAncho + DataGrid1.Columns(i).Width
 
    'No permitir cambiar tamaño de columnas
-   For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-   Next i
+   For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+   Next I
    
    DataGrid1.Enabled = True
    DataGrid1.ScrollBars = dbgAutomatic
@@ -623,12 +775,12 @@ Dim i As Byte
 End Sub
 
 
-Private Function DatosOk() As Boolean
-Dim b As Boolean
+Private Function DatosOK() As Boolean
+Dim B As Boolean
             
-    DatosOk = False
-    b = CompForm(Me, 3)
-    DatosOk = b
+    DatosOK = False
+    B = CompForm(Me, 3)
+    DatosOK = B
 End Function
 
 
@@ -641,27 +793,27 @@ End Sub
 
 
 Private Sub PonerModo(vModo As Byte)
-Dim b As Boolean
-Dim i As Byte
+Dim B As Boolean
+Dim I As Byte
 
     Modo = vModo
-    b = (Modo = 0)
+    B = (Modo = 0 Or Modo = 2)
 
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).visible = Not b
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).visible = Not B
+    Next I
     
-    Me.CboMueveStock.visible = Not b
+    Me.CboMueveStock.visible = Not B
     
 '    If b Then Me.lblIndicador.Caption = ""
     
-    If b And Not Data1.Recordset.EOF Then
+    If B And Not Data1.Recordset.EOF Then
         Me.lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
     Else
         Me.lblIndicador.Caption = ""
     End If
-    cmdAceptar.visible = Not b
-    cmdCancelar.visible = Not b
+    cmdAceptar.visible = Not B
+    cmdCancelar.visible = Not B
 
     'Si estamo modificar or insert
     If Modo = 2 Then
@@ -670,18 +822,26 @@ Dim i As Byte
         txtAux(0).BackColor = &H80000005
     End If
     
-    Me.DataGrid1.Enabled = (Modo <> 1 And Modo <> 2)
+    Me.DataGrid1.Enabled = (Modo <> 3 And Modo <> 4)
     cmdAceptar.Enabled = (vUsu.Nivel <= 1)
 
     'Solo usuario root puede Insertar, Modificar y Borrar
     'Usuario administrador solo puede modificar campos "contador", "letra serie", y "Tipo Documento"
     'Modo 2: Modificar,  1: Insertar
-    txtAux(0).Enabled = (Modo = 1) And (vUsu.Nivel = 0)
-    txtAux(1).Enabled = ((Modo = 1) Or (Modo = 2)) And (vUsu.Nivel = 0)
-    Me.CboMueveStock.Enabled = ((Modo = 1) Or (Modo = 2)) And (vUsu.Nivel = 0)
-    txtAux(2).Enabled = (((Modo = 1) Or (Modo = 2)) And (vUsu.Nivel = 0)) Or (Modo = 2 And vUsu.Nivel = 1)
-    txtAux(3).Enabled = (((Modo = 1) Or (Modo = 2)) And (vUsu.Nivel = 0)) Or (Modo = 2 And vUsu.Nivel = 1)
-    txtAux(4).Enabled = (((Modo = 1) Or (Modo = 2)) And (vUsu.Nivel = 0)) Or (Modo = 2 And vUsu.Nivel = 1)
+    
+    
+    
+    txtAux(0).Enabled = (Modo = 3) And (vUsu.Nivel = 0)
+    txtAux(1).Enabled = ((Modo = 3) Or (Modo = 4)) And (vUsu.Nivel = 0)
+    Me.CboMueveStock.Enabled = ((Modo = 3) Or (Modo = 4)) And (vUsu.Nivel = 0)
+    txtAux(2).Enabled = (((Modo = 3) Or (Modo = 4)) And (vUsu.Nivel = 0)) Or (Modo = 4 And vUsu.Nivel = 1)
+    txtAux(3).Enabled = (((Modo = 3) Or (Modo = 4)) And (vUsu.Nivel = 0)) Or (Modo = 4 And vUsu.Nivel = 1)
+    txtAux(4).Enabled = (((Modo = 3) Or (Modo = 42)) And (vUsu.Nivel = 0)) Or (Modo = 4 And vUsu.Nivel = 1)
+    
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Enabled = (txtAux(I).Enabled Or Modo = 1)
+    Next I
+    
     
     PonerModoOpcionesMenu
     PonerOpcionesMenu
@@ -690,15 +850,41 @@ End Sub
 
 
 Private Sub PonerModoOpcionesMenu()
-Dim b As Boolean
-    b = (Modo = 1) Or (Modo = 2) '1:insertar, 2: Modificar
-    'Añadir
-    Me.Toolbar1.Buttons(1).Enabled = Not b
-    Me.mnNuevo.Enabled = Not b
+Dim B As Boolean
+'    B = (Modo = 1) Or (Modo = 2) '1:insertar, 2: Modificar
+'    'Añadir
+'    Me.Toolbar1.Buttons(1).Enabled = Not B
+'    Me.mnNuevo.Enabled = Not B
+'    'Modificar
+'    Me.Toolbar1.Buttons(2).Enabled = Not B
+'    Me.mnModificar.Enabled = Not B
+''    Me.Toolbar1.Buttons(2).Enabled = (Not b) 'Modificar
+
+
+
+    B = (Modo = 2) Or Modo = 0
+    'Busqueda
+    Toolbar1.Buttons(5).Enabled = B
+'    Me.mnBuscar.Enabled = b
+    'Ver Todos
+    Toolbar1.Buttons(6).Enabled = B
+'    Me.mnVerTodos.Enabled = b
+    
+    'Insertar
+    Toolbar1.Buttons(1).Enabled = B
+    Me.mnNuevo.Enabled = B
+    
+    B = (B And Data1.Recordset.RecordCount > 0)
     'Modificar
-    Me.Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnModificar.Enabled = Not b
-'    Me.Toolbar1.Buttons(2).Enabled = (Not b) 'Modificar
+    Toolbar1.Buttons(2).Enabled = B
+    Me.mnModificar.Enabled = B
+    'Eliminar
+    Toolbar1.Buttons(3).Enabled = B
+    Me.mnEliminar.Enabled = B
+    
+
+
+
 End Sub
 
 Private Sub CargaCombo()
@@ -714,14 +900,14 @@ End Sub
 
 
 Private Sub CargaTxtAux(alto As Single, xModo As Byte)
-Dim i As Byte
+Dim I As Byte
 
     DeseleccionaGrid Me.DataGrid1
     
     'Fijamos el ancho
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).Top = alto
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Top = alto
+    Next I
     CboMueveStock.Top = alto - 15
     
     txtAux(0).Left = DataGrid1.Left + 330
@@ -744,20 +930,22 @@ Dim i As Byte
 End Sub
 
 
-Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFoco txtAux(Index), 3
+Private Sub txtaux_GotFocus(Index As Integer)
+    ConseguirFoco txtAux(Index), Modo
 End Sub
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     KEYdown KeyCode
 End Sub
 
-Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub txtaux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
 Private Sub txtAux_LostFocus(Index As Integer)
     'Quitar espacios en blanco por los lados
+    If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
+
     txtAux(Index).Text = Trim(txtAux(Index).Text)
     If txtAux(Index).Text = "" Then Exit Sub
 
@@ -775,12 +963,12 @@ End Sub
 
 
 Private Function SepuedeBorrar() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim cad As String
 
     SepuedeBorrar = False
-    Sql = DevuelveDesdeBD(1, "detamovi", "smoval", "detamovi", Data1.Recordset!codtipom, "T")
-    If Sql <> "" Then
+    SQL = DevuelveDesdeBD(1, "detamovi", "smoval", "detamovi", Data1.Recordset!codtipom, "T")
+    If SQL <> "" Then
         cad = "No se puede eliminar la fila. " & vbCrLf
         MsgBox cad & "Esta vinculada con Movimientos de Artículos", vbExclamation
         Exit Function
