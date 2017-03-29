@@ -421,7 +421,6 @@ Begin VB.Form frmConfParamGral
       Enabled         =   0   'False
       Height          =   240
       Left            =   1395
-      Picture         =   "frmConfParamGral.frx":0596
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   2250
@@ -730,8 +729,8 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
     
     'Icono de e-mail
-    Me.ImgMail(0).Picture = frmPpal.imgListComun.ListImages(20).Picture
-
+    Me.ImgMail(0).Picture = frmPpal.imgIcoForms.ListImages(4).Picture
+    Me.imgBuscar.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
@@ -747,9 +746,6 @@ Private Sub Form_Load()
 '        .ImageList = frmPpal.imgListComun
 '        .Buttons(1).Image = 12
 '    End With
-    
-    
-    
     
     VieneDeBuscar = False
     
@@ -801,14 +797,14 @@ End Sub
 
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
-Dim Indice As Byte
+Dim indice As Byte
 Dim devuelve As String
 
-    Indice = 3
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-    Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve)  'Poblacion
+    indice = 3
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
+    Text1(indice + 1).Text = ObtenerPoblacion(Text1(indice).Text, devuelve)  'Poblacion
     'provincia
-    Text1(Indice + 2).Text = devuelve
+    Text1(indice + 2).Text = devuelve
 End Sub
 
 Private Sub imgBuscar_Click()

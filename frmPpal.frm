@@ -425,7 +425,7 @@ Begin VB.MDIForm frmPpal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "9:02"
+            TextSave        =   "11:24"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1060,6 +1060,36 @@ Begin VB.MDIForm frmPpal
          EndProperty
          BeginProperty ListImage45 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpal.frx":F61AC
+            Key             =   ""
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.ImageList imgIcoForms 
+      Left            =   6300
+      Top             =   5490
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   16
+      ImageHeight     =   16
+      MaskColor       =   12632256
+      _Version        =   393216
+      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+         NumListImages   =   4
+         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F6BBE
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F75D0
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F766B
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpal.frx":F807D
             Key             =   ""
          EndProperty
       EndProperty

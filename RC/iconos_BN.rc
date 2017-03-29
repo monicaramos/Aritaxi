@@ -20,7 +20,7 @@
 116  ICON  MOVEABLE PURE   "imprimir_BN.ico"
 117  ICON  MOVEABLE PURE   "users1_BN.ico"
 118  ICON  MOVEABLE PURE   "undo_BN.ico"
-119  ICON  MOVEABLE PURE   "find_BN.ico"
+119  ICON  MOVEABLE PURE   "buscar_BN.ico"
 120  ICON  MOVEABLE PURE   "mail_BN.ico"
 121  ICON  MOVEABLE PURE   "window_gear_BN.ico" 
 122  ICON  MOVEABLE PURE   "calculator_BN.ico"
@@ -47,3 +47,4 @@
 143  ICON  MOVEABLE PURE   "documents_preferences_BN.ico"
 144  ICON  MOVEABLE PURE   "document_text_BN.ico"
 145  ICON  MOVEABLE PURE   "users_family_BN.ico"
+146  ICON  MOVEABLE PURE   "find_BN.ico"

@@ -210,7 +210,6 @@ Form=frmGesSocios.frm
 Form=frmLiqHcoFacSoc.frm
 Form=frmFacClientes.frm
 Module=modEnumResIcons; modEnumRes.bas
-Form=frmBasico.frm
 Form=frmBasico2.frm
 IconForm="frmPpal"
 Startup="Sub Main"

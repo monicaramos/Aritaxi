@@ -20,7 +20,7 @@
 116  ICON  MOVEABLE PURE   "imprimir.ico"
 117  ICON  MOVEABLE PURE   "users1.ico"
 118  ICON  MOVEABLE PURE   "undo.ico"
-119  ICON  MOVEABLE PURE   "find.ico"
+119  ICON  MOVEABLE PURE   "buscar.ico"
 120  ICON  MOVEABLE PURE   "mail.ico"
 121  ICON  MOVEABLE PURE   "window_gear.ico" 
 122  ICON  MOVEABLE PURE   "calculator.ico"
@@ -47,3 +47,4 @@
 143  ICON  MOVEABLE PURE   "documents_preferences.ico"
 144  ICON  MOVEABLE PURE   "document_text.ico"
 145  ICON  MOVEABLE PURE   "users_family.ico"
+146  ICON  MOVEABLE PURE   "find.ico"
