@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacFormasPago 
    BorderStyle     =   3  'Fixed Dialog
@@ -6,16 +7,140 @@ Begin VB.Form frmFacFormasPago
    ClientHeight    =   5280
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   8205
+   ClientWidth     =   8430
    Icon            =   "frmFacFormasPago.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5280
-   ScaleWidth      =   8205
+   ScaleWidth      =   8430
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Tag             =   "Digitos 1er nivel|N|N|||empresa|numdigi1|||"
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   3390
+      TabIndex        =   34
+      Top             =   60
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   35
+         Top             =   210
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   180
+      TabIndex        =   32
+      Top             =   60
+      Width           =   3075
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   33
+         Top             =   180
+         Width           =   2655
+         _ExtentX        =   4683
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+               Object.Tag             =   "0"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   6090
+      TabIndex        =   31
+      Top             =   180
+      Width           =   1605
+   End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
       BeginProperty Font 
@@ -29,12 +154,12 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   360
       Index           =   5
-      Left            =   4200
+      Left            =   5040
       MaxLength       =   5
       TabIndex        =   6
       Tag             =   "% Gastos Financieros|N|S|0|99.90|sforpa|porgasfi|#0.00|N|"
       Text            =   "Text1"
-      Top             =   1680
+      Top             =   1860
       Width           =   765
    End
    Begin VB.Frame Frame3 
@@ -53,7 +178,7 @@ Begin VB.Form frmFacFormasPago
       Left            =   120
       TabIndex        =   26
       Top             =   3480
-      Width           =   7695
+      Width           =   8025
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
          BeginProperty Font 
@@ -65,7 +190,7 @@ Begin VB.Form frmFacFormasPago
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   7
          Left            =   1965
          MaxLength       =   30
@@ -85,15 +210,15 @@ Begin VB.Form frmFacFormasPago
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   9
-         Left            =   6120
+         Left            =   6510
          MaxLength       =   5
          TabIndex        =   10
          Tag             =   "% Adelantado|N|S|0|99.90|sforpa|poradela|#0.00|N|"
          Text            =   "Text1"
          Top             =   360
-         Width           =   765
+         Width           =   1305
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -106,7 +231,7 @@ Begin VB.Form frmFacFormasPago
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   7
          Left            =   1320
          MaxLength       =   15
@@ -119,7 +244,7 @@ Begin VB.Form frmFacFormasPago
       Begin VB.Image imgFPago 
          Height          =   240
          Index           =   1
-         Left            =   980
+         Left            =   1065
          ToolTipText     =   "Buscar forma de pago"
          Top             =   390
          Width           =   240
@@ -137,10 +262,10 @@ Begin VB.Form frmFacFormasPago
          EndProperty
          Height          =   255
          Index           =   11
-         Left            =   5040
+         Left            =   4890
          TabIndex        =   28
          Top             =   375
-         Width           =   975
+         Width           =   1455
       End
       Begin VB.Label Label1 
          Caption         =   "F. Pago"
@@ -158,7 +283,7 @@ Begin VB.Form frmFacFormasPago
          Left            =   270
          TabIndex        =   27
          Top             =   375
-         Width           =   975
+         Width           =   795
       End
    End
    Begin VB.TextBox Text1 
@@ -179,8 +304,8 @@ Begin VB.Form frmFacFormasPago
       TabIndex        =   0
       Tag             =   "Código Forma de Pago|N|N|0|999|sforpa|codforpa|000|S|"
       Text            =   "Text1"
-      Top             =   960
-      Width           =   645
+      Top             =   1140
+      Width           =   675
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
@@ -195,13 +320,13 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   360
       Index           =   4
-      Left            =   2800
+      Left            =   3615
       MaxLength       =   5
       TabIndex        =   5
       Tag             =   "Resto Vencimientos|T|S|||sforpa|restoven||N|"
       Text            =   "Text1"
-      Top             =   1680
-      Width           =   885
+      Top             =   1860
+      Width           =   1185
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
@@ -216,13 +341,13 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   360
       Index           =   3
-      Left            =   1580
+      Left            =   2175
       MaxLength       =   5
       TabIndex        =   4
       Tag             =   "Primer Vencimiento|N|N|0||sforpa|primerve|0|N|"
       Text            =   "Text1"
-      Top             =   1680
-      Width           =   885
+      Top             =   1860
+      Width           =   1095
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
@@ -242,7 +367,7 @@ Begin VB.Form frmFacFormasPago
       TabIndex        =   3
       Tag             =   "Nº Vencimientos|N|N|1|99999|sforpa|numerove||N|"
       Text            =   "Text1"
-      Top             =   1680
+      Top             =   1860
       Width           =   1005
    End
    Begin VB.ComboBox Combo1 
@@ -257,20 +382,29 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   360
       ItemData        =   "frmFacFormasPago.frx":000C
-      Left            =   4200
+      Left            =   5040
       List            =   "frmFacFormasPago.frx":000E
       Style           =   2  'Dropdown List
       TabIndex        =   2
       Tag             =   "Tipo de Pago|N|N|||sforpa|tipforpa||N|"
-      Top             =   960
+      Top             =   1140
       Width           =   2700
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   6780
+      Left            =   7110
       TabIndex        =   12
-      Top             =   4755
+      Top             =   4770
       Visible         =   0   'False
       Width           =   1035
    End
@@ -291,8 +425,8 @@ Begin VB.Form frmFacFormasPago
       TabIndex        =   1
       Tag             =   "Nombre de la Forma de Pago|T|N|||sforpa|nomforpa|||"
       Text            =   "Text1"
-      Top             =   960
-      Width           =   2685
+      Top             =   1140
+      Width           =   3795
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -303,26 +437,53 @@ Begin VB.Form frmFacFormasPago
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   17
-         Top             =   210
+         Top             =   180
          Width           =   2715
       End
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   6780
+      Left            =   7110
       TabIndex        =   13
       Top             =   4755
       Width           =   1035
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   5520
+      Left            =   5850
       TabIndex        =   11
       Top             =   4755
       Width           =   1035
@@ -389,8 +550,8 @@ Begin VB.Form frmFacFormasPago
       Height          =   975
       Left            =   120
       TabIndex        =   24
-      Top             =   2280
-      Width           =   7695
+      Top             =   2400
+      Width           =   8055
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -402,7 +563,7 @@ Begin VB.Form frmFacFormasPago
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   6
          Left            =   1320
          MaxLength       =   15
@@ -432,9 +593,9 @@ Begin VB.Form frmFacFormasPago
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   8
-         Left            =   6120
+         Left            =   6510
          MaxLength       =   15
          TabIndex        =   8
          Tag             =   "Importe Mínimo|N|S|0||sforpa|impormin|#,###,###,##0.00|N|"
@@ -453,7 +614,7 @@ Begin VB.Form frmFacFormasPago
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   6
          Left            =   1965
          MaxLength       =   30
@@ -478,7 +639,7 @@ Begin VB.Form frmFacFormasPago
          Left            =   270
          TabIndex        =   29
          Top             =   375
-         Width           =   945
+         Width           =   765
       End
       Begin VB.Label Label1 
          Caption         =   "Importe Mínimo"
@@ -496,12 +657,12 @@ Begin VB.Form frmFacFormasPago
          Left            =   4920
          TabIndex        =   25
          Top             =   375
-         Width           =   1095
+         Width           =   1545
       End
       Begin VB.Image imgFPago 
          Height          =   240
          Index           =   0
-         Left            =   960
+         Left            =   1050
          Tag             =   "-1"
          ToolTipText     =   "Buscar forma de pago"
          Top             =   390
@@ -521,9 +682,9 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   255
       Index           =   5
-      Left            =   4200
+      Left            =   5040
       TabIndex        =   30
-      Top             =   1440
+      Top             =   1620
       Width           =   1575
    End
    Begin VB.Label Label1 
@@ -539,10 +700,10 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   255
       Index           =   4
-      Left            =   2800
+      Left            =   3615
       TabIndex        =   23
-      Top             =   1440
-      Width           =   855
+      Top             =   1620
+      Width           =   1185
    End
    Begin VB.Label Label1 
       Caption         =   "Primer Vto."
@@ -557,10 +718,10 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   255
       Index           =   3
-      Left            =   1580
+      Left            =   2175
       TabIndex        =   22
-      Top             =   1440
-      Width           =   855
+      Top             =   1620
+      Width           =   1095
    End
    Begin VB.Label Label1 
       Caption         =   "Nº Vencimientos"
@@ -577,8 +738,8 @@ Begin VB.Form frmFacFormasPago
       Index           =   2
       Left            =   240
       TabIndex        =   21
-      Top             =   1440
-      Width           =   1215
+      Top             =   1620
+      Width           =   1785
    End
    Begin VB.Label Label1 
       Caption         =   "Tipo de Pago"
@@ -591,12 +752,12 @@ Begin VB.Form frmFacFormasPago
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   255
       Index           =   10
-      Left            =   4200
+      Left            =   5040
       TabIndex        =   20
-      Top             =   720
-      Width           =   1080
+      Top             =   900
+      Width           =   1830
    End
    Begin VB.Label Label1 
       Caption         =   "Denominación"
@@ -611,9 +772,9 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   255
       Index           =   1
-      Left            =   1000
+      Left            =   1005
       TabIndex        =   19
-      Top             =   720
+      Top             =   900
       Width           =   1695
    End
    Begin VB.Label Label1 
@@ -629,10 +790,10 @@ Begin VB.Form frmFacFormasPago
       EndProperty
       Height          =   255
       Index           =   0
-      Left            =   300
+      Left            =   240
       TabIndex        =   18
-      Top             =   720
-      Width           =   495
+      Top             =   900
+      Width           =   705
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
@@ -685,6 +846,8 @@ Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmFPa As frmBasico2
+Attribute frmFPa.VB_VarHelpID = -1
 
 '  Variables comunes a todos los formularios
 Private Modo As Byte
@@ -731,11 +894,11 @@ Dim cad As String, Indicador As String
                 If ModificaDesdeFormulario(Me, 1) Then
                     ModificarENTesoeria
                     TerminaBloquear
-                    cad = "(codforpa=" & text1(0).Text & ")"
+                    cad = "(codforpa=" & Text1(0).Text & ")"
                     If SituarData(Data1, cad, Indicador) Then
                         PonerModo 2
                         lblIndicador.Caption = Indicador
-                        PonerFoco text1(0)
+                        PonerFoco Text1(0)
                     Else
                         LimpiarCampos
                         PonerModo 0
@@ -768,9 +931,9 @@ Private Sub BotonAnyadir()
     LimpiarCampos
     'Añadiremos el boton de aceptar y demas objetos para insertar
     PonerModo 3
-    text1(0).Text = SugerirCodigoSiguienteStr("sforpa", "codforpa")
-    FormateaCampo text1(0)
-    PonerFoco text1(0)
+    Text1(0).Text = SugerirCodigoSiguienteStr("sforpa", "codforpa")
+    FormateaCampo Text1(0)
+    PonerFoco Text1(0)
 End Sub
 
 
@@ -780,14 +943,14 @@ Private Sub BotonBuscar()
         PonerModo 1
         '### A mano
         'Si pasamos el control aqui lo ponemos en amarillo
-        PonerFoco text1(0)
-        text1(0).BackColor = vbYellow
+        PonerFoco Text1(0)
+        Text1(0).BackColor = vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            text1(kCampo).Text = ""
-            text1(kCampo).BackColor = vbYellow
-            PonerFoco text1(kCampo)
+            Text1(kCampo).Text = ""
+            Text1(kCampo).BackColor = vbYellow
+            PonerFoco Text1(kCampo)
         End If
     End If
 End Sub
@@ -807,7 +970,7 @@ End Sub
 
 Private Sub Desplazamiento(Index As Integer)
 'Para desplazarse por los registros de control Data
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
     lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
 End Sub
@@ -818,12 +981,12 @@ Private Sub BotonModificar()
     PonerModo 4
     '### A mano
     'Bloquear importe minimo y %adelantado si las formas de pago estan vacias
-    If text1(6).Text = "" Then BloquearTxt text1(8), True
-    If text1(7).Text = "" Then BloquearTxt text1(9), True
+    If Text1(6).Text = "" Then BloquearTxt Text1(8), True
+    If Text1(7).Text = "" Then BloquearTxt Text1(9), True
     'Bloquear Restos Vencimientos si nº vencimientos=1
-    If Val(text1(2).Text) = 1 Then BloquearTxt text1(4), True
+    If Val(Text1(2).Text) = 1 Then BloquearTxt Text1(4), True
     
-    PonerFoco text1(1)
+    PonerFoco Text1(1)
 End Sub
 
 
@@ -851,7 +1014,7 @@ Dim cad As String
         
         
         'Para eliminar en tesoreria
-        cad = "DELETE FROM sforpa WHERE codforpa = " & text1(0).Text
+        cad = "DELETE FROM sforpa WHERE codforpa = " & Text1(0).Text
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
         Else 'Solo habia un registro
@@ -896,29 +1059,44 @@ End Sub
 
 Private Sub Form_Activate()
     Screen.MousePointer = vbDefault
-    If Modo = 1 Then PonerFoco text1(1)
+    If Modo = 1 Then PonerFoco Text1(1)
 End Sub
 
 Private Sub Form_Load()
+Dim Im
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
     ' ICONITOS DE LA BARRA
-    btnPrimero = 13
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Todos
-        .Buttons(5).Image = 3   'Insertar Nuevo
-        .Buttons(6).Image = 4   'Modificar
-        .Buttons(7).Image = 5   'Borrar
-        .Buttons(10).Image = 15  'Salir
-        .Buttons(13).Image = 6  'Primero
-        .Buttons(14).Image = 7  'Anterior
-        .Buttons(15).Image = 8  'Siguiente
-        .Buttons(16).Image = 9  'Último
+        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .Buttons(5).Image = 1
+        .Buttons(6).Image = 2
+        .Buttons(1).Image = 3   'Anyadir
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Eliminar
     End With
-    For Each Im In Me.FPago
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+'    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+
+    For Each Im In Me.imgFPago
         Im.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
     
@@ -1023,12 +1201,12 @@ Dim indice As Integer
             Screen.MousePointer = vbHourglass
     
             indice = Val(Me.imgFPago(0).Tag)
-            text1(indice + 6).Text = Format(RecuperaValor(CadenaDevuelta, 1), "000")
+            Text1(indice + 6).Text = Format(RecuperaValor(CadenaDevuelta, 1), "000")
             Text2(indice + 6).Text = RecuperaValor(CadenaDevuelta, 2)
 
             If Modo = 3 Then
-                 text1(indice + 8).Locked = False
-                 text1(indice + 8).BackColor = vbWhite
+                 Text1(indice + 8).Locked = False
+                 Text1(indice + 8).BackColor = vbWhite
             End If
         Else
             HaDevueltoDatos = True
@@ -1036,7 +1214,7 @@ Dim indice As Integer
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
             cadB = ""
-            Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
+            Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
             cadB = Aux
             '   Como la clave principal es unica, con poner el sql apuntando
             '   al valor devuelto sobre la clave ppal es suficiente
@@ -1052,6 +1230,17 @@ Dim indice As Integer
 End Sub
     
     
+Private Sub frmFPa_DatoSeleccionado(CadenaSeleccion As String)
+Dim cadB As String
+    cadB = "codforpa = " & RecuperaValor(CadenaSeleccion, 1)
+    
+    'Se muestran en el mismo form
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+    PonerCadenaBusqueda
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 Private Sub imgFPago_Click(Index As Integer)
     If Modo = 2 Or Modo = 5 Or Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
@@ -1061,7 +1250,7 @@ Private Sub imgFPago_Click(Index As Integer)
     imgFPago(0).Tag = Index
     MandaBusquedaPrevia ""
     imgFPago(0).Tag = -1
-    PonerFoco text1(Index + 6)
+    PonerFoco Text1(Index + 6)
     Screen.MousePointer = vbDefault
 End Sub
 
@@ -1095,7 +1284,7 @@ End Sub
 'Los descomentamos cuando esten puestos ya los controles
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
-    ConseguirFoco text1(Index), Modo
+    ConseguirFoco Text1(Index), Modo
 End Sub
 
 
@@ -1118,7 +1307,7 @@ End Sub
 '----------------------------------------------------------------
 Private Sub Text1_LostFocus(Index As Integer)
    
-    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
     If Screen.ActiveForm.Name <> Me.Name Then Exit Sub
@@ -1126,43 +1315,43 @@ Private Sub Text1_LostFocus(Index As Integer)
     'Si queremos hacer algo ..
     Select Case Index
         Case 0 'Cod Forma de Pago
-           If PonerFormatoEntero(text1(Index)) Then
+           If PonerFormatoEntero(Text1(Index)) Then
                 If Modo = 3 Then 'Insertar
-                    If ExisteCP(text1(Index)) Then PonerFoco text1(Index)
+                    If ExisteCP(Text1(Index)) Then PonerFoco Text1(Index)
                 End If
            End If
             
         Case 2 'Numero Vencimientos
-            PonerFormatoEntero text1(Index)
-            If Val(text1(Index).Text) = 1 Then
-                text1(4).Text = ""
-                BloquearTxt text1(4), True
+            PonerFormatoEntero Text1(Index)
+            If Val(Text1(Index).Text) = 1 Then
+                Text1(4).Text = ""
+                BloquearTxt Text1(4), True
             Else
-                BloquearTxt text1(4), False
+                BloquearTxt Text1(4), False
             End If
                 
         Case 3, 4 'nº vencimientos
-            PonerFormatoEntero text1(Index)
+            PonerFormatoEntero Text1(Index)
         
         Case 5, 9 '5: %Gastos Financieros, 9: %Adelantado
              'Formato tipo 4: Decimal(4,2)
-             PonerFormatoDecimal text1(Index), 4
+             PonerFormatoDecimal Text1(Index), 4
 
         Case 8       '8:Importe Mínimo
             'Formato tipo 1: Decimal(12,2)
-             PonerFormatoDecimal text1(Index), 1
+             PonerFormatoDecimal Text1(Index), 1
         
         Case 6, 7 ' 6: Forma de Pago Alternativa
                   ' 7: Forma de Pago por Adelantado
-             If PonerFormatoEntero(text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(text1(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
-                If Text2(Index).Text = "" Then PonerFoco text1(Index)
-                BloquearTxt text1(Index + 2), False
+             If PonerFormatoEntero(Text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+                If Text2(Index).Text = "" Then PonerFoco Text1(Index)
+                BloquearTxt Text1(Index + 2), False
              Else
                  Text2(Index).Text = ""
-                 text1(Index + 2).Text = "" 'Importe Mínimo
+                 Text1(Index + 2).Text = "" 'Importe Mínimo
                  'Modo 1: Busqueda
-                 If Modo <> 1 Then BloquearTxt text1(Index + 2), True
+                 If Modo <> 1 Then BloquearTxt Text1(Index + 2), True
             End If
     End Select
 End Sub
@@ -1184,41 +1373,12 @@ End Sub
 Private Sub MandaBusquedaPrevia(cadB As String)
 Dim cad As String
 
-        'Llamamos a al form
-        '##A mano
-        cad = ""
-        cad = cad & ParaGrid(text1(0), 30, "Código")
-        cad = cad & ParaGrid(text1(1), 70, "Denominacion")
-        If cad <> "" Then
-            Screen.MousePointer = vbHourglass
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = cad
-            frmB.vTabla = NombreTabla
-            frmB.vSQL = cadB
-            
-            HaDevueltoDatos = False
-            frmB.vDevuelve = "0|1|" 'Campos de la tabla que devuelve
-            frmB.vTitulo = "Formas de Pago"
-            frmB.vselElem = 1
-            frmB.vConexionGrid = 1 'Conexión a BD: Aritaxi
-'            If imgFPago(0).Tag = -1 Then
-'                frmB.vBuscaPrevia = chkVistaPrevia
-'            Else
-'                frmB.vBuscaPrevia = True
-'            End If
-            frmB.vCargaFrame = False
-            frmB.Show vbModal
-            Set frmB = Nothing
-            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-            'tendremos que cerrar el form lanzando el evento
-''            If HaDevueltoDatos Then
-'                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                    cmdRegresar_Click
-'            Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'                PonerFoco Text1(kCampo)
-'                PonerModo Modo
-'            End If
-        End If
+    Set frmFPa = New frmBasico2
+    
+    AyudaFormasPago frmFPa, , cadB
+    
+    Set frmFPa = Nothing
+
 End Sub
 
 
@@ -1231,7 +1391,7 @@ On Error GoTo EEPonerBusq
     If Data1.Recordset.RecordCount <= 0 Then
         If Modo = 1 Then 'Busqueda
              MsgBox "No hay ningún registro en la tabla " & NombreTabla & " para ese criterio de Búsqueda.", vbInformation
-             PonerFoco text1(0)
+             PonerFoco Text1(0)
         Else
             MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         End If
@@ -1260,8 +1420,8 @@ Private Sub PonerCampos()
 
     If Data1.Recordset.EOF Then Exit Sub
     PonerCamposForma Me, Me.Data1
-    Text2(6).Text = PonerNombreDeCod(text1(6), 1, "sforpa", "nomforpa", "codforpa")
-    Text2(7).Text = PonerNombreDeCod(text1(7), 1, "sforpa", "nomforpa", "codforpa")
+    Text2(6).Text = PonerNombreDeCod(Text1(6), 1, "sforpa", "nomforpa", "codforpa")
+    Text2(7).Text = PonerNombreDeCod(Text1(7), 1, "sforpa", "nomforpa", "codforpa")
     
     '-- Esto permanece para saber donde estamos
     lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
@@ -1282,13 +1442,13 @@ Dim NumReg As Byte
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To text1.Count - 1
-        text1(i).BackColor = vbWhite
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
     Next i
     
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
-    b = (Kmodo = 2)
+    b = (Kmodo = 2) Or Kmodo = 0
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
     If DatosADevolverBusqueda <> "" Then
         cmdRegresar.visible = b
@@ -1302,7 +1462,8 @@ Dim NumReg As Byte
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
     
     
     '----------------------------------------------
@@ -1330,7 +1491,7 @@ Dim NumReg As Byte
     'Campos Importe Mínimo y % Adelantado
     If b Then
         For i = 8 To 9
-            BloquearTxt text1(i), True
+            BloquearTxt Text1(i), True
         Next i
     End If
 
@@ -1356,21 +1517,21 @@ Dim b As Boolean
 
     b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     mnEliminar.Enabled = b
     
     b = (Modo >= 3)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = Not b
+    Toolbar1.Buttons(1).Enabled = Not b
     Me.mnNuevo.Enabled = Not b
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not b
+    Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'VerTodos
-    Toolbar1.Buttons(2).Enabled = Not b
+    Toolbar1.Buttons(6).Enabled = Not b
     Me.mnVerTodos.Enabled = Not b
 End Sub
 
@@ -1384,10 +1545,10 @@ Dim cad As String
     If Not b Then Exit Function
      
     If Modo = 3 Then 'Insertar
-        If ExisteCP(text1(0)) Then b = False
+        If ExisteCP(Text1(0)) Then b = False
         
         If b Then
-            cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", text1(0), "N")
+            cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
             If cad <> "" Then
                 MsgBox "Esta Forma de Pago ya existe en Tesorería. Revise.", vbExclamation
                 b = False
@@ -1398,8 +1559,8 @@ Dim cad As String
     If Not b Then Exit Function
     
     'Comprobar que si nº vencimientos es 1, el campo resto vencimientos no tiene valor
-    If Val(text1(2).Text) = 1 Then
-        If Not EsVacio(text1(4)) Then
+    If Val(Text1(2).Text) = 1 Then
+        If Not EsVacio(Text1(4)) Then
             MsgBox "El campo Resto Vencimientos no puede tener valor si NºVtos=1", vbInformation
             b = False
         End If
@@ -1407,10 +1568,10 @@ Dim cad As String
     If Not b Then Exit Function
      
     'Comprobar el campo resto vencimientos
-    If Not EsVacio(text1(2)) And Not EsVacio(text1(3)) Then
-        If Val(text1(2).Text) > 1 And EsVacio(text1(4)) Then
+    If Not EsVacio(Text1(2)) And Not EsVacio(Text1(3)) Then
+        If Val(Text1(2).Text) > 1 And EsVacio(Text1(4)) Then
             MsgBox "El Campo Resto Vencimientos debe tener valor", vbInformation
-            PonerFoco text1(4)
+            PonerFoco Text1(4)
             b = False
         End If
     End If
@@ -1418,13 +1579,13 @@ Dim cad As String
     
     'Comprobar el importe Mínimo
     'Requerido si se selecciona una forma de pago alternativa
-    If Not EsVacio(text1(6)) And EsVacio(text1(8)) Then
+    If Not EsVacio(Text1(6)) And EsVacio(Text1(8)) Then
        MsgBox "El campo Importe Mínimo debe tener valor", vbInformation
-       PonerFoco text1(8)
+       PonerFoco Text1(8)
        b = False
     End If
     'Verificar que el campo Importe Minimo no tiene valor si la forma de pago es vacio
-    If EsVacio(text1(6)) And Not EsVacio(text1(8)) Then
+    If EsVacio(Text1(6)) And Not EsVacio(Text1(8)) Then
         MsgBox "El campo Importe Mínimo no puede tener valor si no selecciona Forma de Pago.", vbInformation
         b = False
     End If
@@ -1433,13 +1594,13 @@ Dim cad As String
     
     'Porcentaje Adelantado
     'Requerido si se selecciona una forma de pago por adelantado
-    If Not EsVacio(text1(7)) And EsVacio(text1(9)) Then
+    If Not EsVacio(Text1(7)) And EsVacio(Text1(9)) Then
         MsgBox "El campo % Adelantado debe tener valor", vbInformation
-        PonerFoco text1(9)
+        PonerFoco Text1(9)
         b = False
     End If
     'Verificar que el campo %adelantado no tiene valor si la forma de pago es vacio
-    If EsVacio(text1(7)) And Not EsVacio(text1(9)) Then
+    If EsVacio(Text1(7)) And Not EsVacio(Text1(9)) Then
         MsgBox "El campo %Adelantado no puede tener valor si no selecciona Forma de Pago.", vbInformation
         b = False
     End If
@@ -1464,20 +1625,16 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1  'Buscar
+        Case 5  'Buscar
             mnBuscar_Click
-        Case 2  'Todos
+        Case 6  'Todos
             mnVerTodos_Click
-        Case 5  'Nuevo
+        Case 1  'Nuevo
             mnNuevo_Click
-        Case 6  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 7  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
-        Case 10  'Salir
-            mnSalir_Click
-        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -1499,11 +1656,11 @@ Private Function PuedeModificarFPenContab() As Boolean
     PuedeModificarFPenContab = False
     Set miRsAux = New ADODB.Recordset
     NumRegElim = 0
-    miRsAux.Open "Select count(*) from scobro where codforpa=" & text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    miRsAux.Open "Select count(*) from scobro where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
     If Not miRsAux.EOF Then NumRegElim = NumRegElim + DBLet(miRsAux.Fields(0), "N")
     miRsAux.Close
     
-    miRsAux.Open "Select count(*) from spagop where codforpa=" & text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    miRsAux.Open "Select count(*) from spagop where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
     If Not miRsAux.EOF Then NumRegElim = NumRegElim + DBLet(miRsAux.Fields(0), "N")
     miRsAux.Close
     
@@ -1526,8 +1683,8 @@ End Function
 Private Sub ModificarENTesoeria()
 Dim C As String
 
-    C = "UPDATE sforpa set nomforpa = '" & DevNombreSQL(text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
-    C = C & " WHERE codforpa = " & text1(0).Text
+    C = "UPDATE sforpa set nomforpa = '" & DevNombreSQL(Text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
+    C = C & " WHERE codforpa = " & Text1(0).Text
     ConnConta.Execute C
 End Sub
 
@@ -1536,9 +1693,18 @@ Private Sub InsertarEnTesoreria()
 
     On Error Resume Next
     
-    ConnConta.Execute "INSERT INTO sforpa(codforpa,nomforpa, tipforpa) VALUES (" & text1(0).Text & ",'" & DevNombreSQL(text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
+    ConnConta.Execute "INSERT INTO sforpa(codforpa,nomforpa, tipforpa) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
     If Err.Number <> 0 Then
         MsgBox "Error insertando en tesoreria: " & vbCrLf & Err.Description, vbExclamation
         Err.Clear
     End If
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
+
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
 End Sub

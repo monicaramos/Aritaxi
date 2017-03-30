@@ -156,7 +156,7 @@ Begin VB.Form frmBasico2
       Height          =   5265
       Left            =   120
       TabIndex        =   7
-      Top             =   360
+      Top             =   365
       Width           =   7575
       _ExtentX        =   13361
       _ExtentY        =   9287
@@ -410,6 +410,7 @@ Public DeConsulta As Boolean
 
 Public CadenaConsulta As String
 
+Public pConn As Byte
 
 Public Tag1 As String
 Public Tag2 As String
@@ -418,7 +419,7 @@ Public Maxlen1 As Integer
 Public Maxlen2 As Integer
 Public Maxlen3 As Integer
 Public CadenaTots As String
-Public tabla As String
+Public Tabla As String
 Public CampoCP As String
 Public Report As String
 
@@ -436,38 +437,40 @@ Dim Modo As Byte
 '   4.-  Modificar
 '--------------------------------------------------
 Dim PrimeraVez As Boolean
-Dim Indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim I As Integer
+Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
+Dim i As Integer
 Dim vTag1 As CTag
 Dim vTag3 As CTag
 
 
 Private Sub PonerModo(vModo)
-Dim B As Boolean
+Dim b As Boolean
 
     Modo = vModo
     
-    B = (Modo = 2)
-    If B Then
+    b = (Modo = 2)
+    If b Then
         PonerContRegIndicador
     Else
         PonerIndicador lblIndicador, Modo
     End If
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).BackColor = vbWhite
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).visible = Not B
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).visible = Not b
+    Next i
     
-    cmdAceptar.visible = Not B
-    cmdCancelar.visible = Not B
-    DataGrid1.Enabled = B
+    If Tag3 = "" Then txtAux(2).visible = False
+    
+    cmdAceptar.visible = Not b
+    cmdCancelar.visible = Not b
+    DataGrid1.Enabled = b
     
     'Si es regresar
-    If DatosADevolverBusqueda <> "" Then cmdRegresar.visible = B
+    If DatosADevolverBusqueda <> "" Then cmdRegresar.visible = b
     
     PonerLongCampos
     PonerModoOpcionesMenu 'Activar/Desact botones de menu segun Modo
@@ -478,28 +481,28 @@ End Sub
 
 Private Sub PonerModoOpcionesMenu()
 'Activa/Desactiva botones del la toobar y del menu, segun el modo en que estemos
-Dim B As Boolean
+Dim b As Boolean
 
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Busqueda
-    Toolbar1.Buttons(1).Enabled = B
-    Me.mnBuscar.Enabled = B
+    Toolbar1.Buttons(1).Enabled = b
+    Me.mnBuscar.Enabled = b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = B
-    Me.mnVerTodos.Enabled = B
+    Toolbar1.Buttons(2).Enabled = b
+    Me.mnVerTodos.Enabled = b
     
     
 End Sub
 
 Private Sub BotonAnyadir()
-    Dim NumF As String
+    Dim numF As String
     Dim anc As Single
     
     CargaGrid 'primer de tot carregue tot el grid
     CadB = ""
     '******************** canviar taula i camp **************************
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
-        NumF = NuevoCodigo
+        numF = NuevoCodigo
     End If
          
     anc = DataGrid1.Top
@@ -508,11 +511,11 @@ Private Sub BotonAnyadir()
     Else
         anc = anc + DataGrid1.RowTop(DataGrid1.Row) + 5
     End If
-    txtAux(0).Text = NumF
+    txtAux(0).Text = numF
     FormateaCampo txtAux(0)
-    For I = 1 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 1 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
 
     LLamaLineas anc, 3 'Pone el form en Modo=3, Insertar
        
@@ -531,22 +534,22 @@ Private Sub BotonBuscar()
     CargaGrid CampoCP & " is null "
     '*******************************************************************************
     'Buscar
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     LLamaLineas DataGrid1.Top + 230, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(0)
 End Sub
 
 Private Sub BotonModificar()
     Dim anc As Single
-    Dim I As Integer
+    Dim i As Integer
     
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -573,14 +576,14 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Top = alto
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Top = alto
+    Next i
     ' ### [Monica] 12/09/2006
 End Sub
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 Dim temp As Boolean
 
     On Error GoTo Error2
@@ -588,15 +591,15 @@ Dim temp As Boolean
     If adodc1.Recordset.EOF Then Exit Sub
     
     '*************** canviar els noms i el DELETE **********************************
-    SQL = "¿Seguro que desea eliminar el registro de " & Me.Caption & "?"
-    SQL = SQL & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
-    SQL = SQL & vbCrLf & "Descripción: " & adodc1.Recordset.Fields(1)
+    Sql = "¿Seguro que desea eliminar el registro de " & Me.Caption & "?"
+    Sql = Sql & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
+    Sql = Sql & vbCrLf & "Descripción: " & adodc1.Recordset.Fields(1)
     
-    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
-        SQL = "Delete from " & tabla & " where " & CampoCP & "=" & adodc1.Recordset.Fields(0).Value
-        conn.Execute SQL
+        Sql = "Delete from " & Tabla & " where " & CampoCP & "=" & adodc1.Recordset.Fields(0).Value
+        conn.Execute Sql
         CargaGrid CadB
         PonerModoOpcionesMenu
         adodc1.Recordset.Cancel
@@ -618,7 +621,7 @@ Private Sub PonerLongCampos()
 End Sub
 
 Private Sub cmdAceptar_Click()
-    Dim I As Variant ' Integer
+    Dim i As Variant ' Integer
 
     Select Case Modo
         Case 1 'BUSQUEDA
@@ -630,7 +633,7 @@ Private Sub cmdAceptar_Click()
             End If
             
         Case 3 'INSERTAR
-            If DatosOK Then
+            If DatosOk Then
                 If InsertarDesdeForm(Me) Then
                     CargaGrid
                     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
@@ -647,14 +650,14 @@ Private Sub cmdAceptar_Click()
             End If
             
         Case 4 'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                 If ModificaDesdeFormulario(Me, 3) Then
                     TerminaBloquear
-                    I = adodc1.Recordset.Fields(0)
+                    i = adodc1.Recordset.Fields(0)
                     PonerModo 2
                     CargaGrid CadB
 
-                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & DBSet(I, RecuperaValor(Tag1, 2)))
+                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & DBSet(i, RecuperaValor(Tag1, 2)))
                     PonerFocoGrid Me.DataGrid1
                 End If
             End If
@@ -683,8 +686,8 @@ Private Sub cmdCancelar_Click()
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
-Dim I As Integer
+Dim Cad As String
+Dim i As Integer
 Dim J As Integer
 Dim Aux As String
 
@@ -692,18 +695,18 @@ Dim Aux As String
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
-    I = 0
+    Cad = ""
+    i = 0
     Do
-        J = I + 1
-        I = InStr(J, DatosADevolverBusqueda, "|")
-        If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, I - J)
+        J = i + 1
+        i = InStr(J, DatosADevolverBusqueda, "|")
+        If i > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
-    Loop Until I = 0
-    RaiseEvent DatoSeleccionado(cad)
+    Loop Until i = 0
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -716,7 +719,7 @@ Private Sub DataGrid1_DblClick()
 End Sub
 
 Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
-Dim cad As String
+Dim Cad As String
 
     If adodc1.Recordset Is Nothing Then Exit Sub
     If adodc1.Recordset.EOF Then Exit Sub
@@ -765,7 +768,7 @@ Private Sub Form_Activate()
         Else
             PonerModo 2
              If Me.CodigoActual <> "" Then
-                SituarData Me.adodc1, CampoCP & "=", "", True
+                SituarData Me.adodc1, CampoCP & "=" & Me.CodigoActual, "", True
             End If
         End If
     End If
@@ -803,6 +806,20 @@ Private Sub Form_Load()
     vTag1.Cargar txtAux(0)
     Set vTag3 = New CTag
     vTag3.Cargar txtAux(0)
+            
+    If pConn = 2 Then
+        FrameBotonGnral.visible = True
+        FrameBotonGnral.Enabled = True
+        
+        Me.DataGrid1.Top = Me.DataGrid1.Top + 500
+        Me.Frame1(1).Top = Me.Frame1(1).Top + 500
+        Me.cmdAceptar.Top = Me.cmdAceptar.Top + 500
+        Me.cmdCancelar.Top = Me.cmdCancelar.Top + 500
+        Me.cmdRegresar.Top = Me.cmdRegresar.Top + 500
+        
+        Me.Height = Me.Height + 500
+    End If
+            
             
 End Sub
 
@@ -854,22 +871,25 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub CargaGrid(Optional vSQL As String)
-    Dim SQL As String
+    Dim Sql As String
     Dim tots As String
     
-'    adodc1.ConnectionString = Conn
-    If vSQL <> "" Then
-        SQL = CadenaConsulta & " AND " & vSQL
+    If pConn = 1 Then
+        adodc1.ConnectionString = conn
     Else
-        SQL = CadenaConsulta
+        adodc1.ConnectionString = ConnConta
+    End If
+    
+    If vSQL <> "" Then
+        Sql = CadenaConsulta & " AND " & vSQL
+    Else
+        Sql = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
-    SQL = SQL & " ORDER BY " & CampoOrden & " " & TipoOrden
+    Sql = Sql & " ORDER BY " & CampoOrden & " " & TipoOrden
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, SQL, PrimeraVez
-    
-    
+    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = CadenaTots
@@ -882,7 +902,36 @@ Private Sub CargaGrid(Optional vSQL As String)
 
 End Sub
 
-Private Sub txtaux_GotFocus(Index As Integer)
+Private Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, Sql As String, PrimeraVez As Boolean)
+On Error GoTo ECargaGrid
+
+    vDataGrid.Enabled = True
+    '    vdata.Recordset.Cancel
+'    vData.ConnectionString = conn
+    vData.RecordSource = Sql
+    vData.CursorType = adOpenDynamic
+    vData.LockType = adLockPessimistic
+    vDataGrid.ScrollBars = dbgNone
+    vData.Refresh
+    
+    Set vDataGrid.DataSource = vData
+    vDataGrid.AllowRowSizing = False
+    vDataGrid.AllowUpdate = False
+    vDataGrid.RowHeight = 290
+
+    If PrimeraVez Then
+        vDataGrid.ClearFields
+        vDataGrid.ReBind
+        vDataGrid.Refresh
+    End If
+    
+ECargaGrid:
+    If Err.Number <> 0 Then MuestraError Err.Number, "CargaGrid", Err.Description
+End Sub
+
+
+
+Private Sub txtAux_GotFocus(Index As Integer)
     ConseguirFoco txtAux(Index), Modo
 End Sub
 
@@ -909,21 +958,21 @@ Private Sub txtAux_LostFocus(Index As Integer)
     
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 'Dim Datos As String
-Dim B As Boolean
-Dim SQL As String
+Dim b As Boolean
+Dim Sql As String
 Dim Mens As String
 
 
-    B = CompForm(Me, 3)
-    If Not B Then Exit Function
+    b = CompForm(Me, 3)
+    If Not b Then Exit Function
     
     If Modo = 3 Then   'Estamos insertando
-         If ExisteCP(txtAux(0)) Then B = False
+         If ExisteCP(txtAux(0)) Then b = False
     End If
     
-    DatosOK = B
+    DatosOk = b
 End Function
 
 Private Sub PonerOpcionesMenu()
@@ -955,11 +1004,11 @@ End Sub
 '  WheelUnHook
 'End Sub
 
-Private Sub txtaux_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub
