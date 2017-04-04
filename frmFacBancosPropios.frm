@@ -1258,7 +1258,7 @@ Private VieneDeBuscar As Boolean
 'de busqueda poner el valor de poblacion seleccionado y no volver a recuperar de la Base de Datos
 
 Dim BuscaChekc As String
-Dim IndCodigo As Integer
+Dim indCodigo As Integer
 
 Private Sub cmdAceptar_Click()
     Screen.MousePointer = vbHourglass
@@ -1366,22 +1366,22 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Cad As String
+Dim cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
     '### a mano
-    Cad = "¿Seguro que desea eliminar el Banco Propio? " & vbCrLf
-    Cad = Cad & vbCrLf & "Cod. Banco : " & Format(Data1.Recordset.Fields(0), "0000")
-    Cad = Cad & vbCrLf & "Desc. Banco: " & Data1.Recordset.Fields(1)
+    cad = "¿Seguro que desea eliminar el Banco Propio? " & vbCrLf
+    cad = cad & vbCrLf & "Cod. Banco : " & Format(Data1.Recordset.Fields(0), "0000")
+    cad = cad & vbCrLf & "Desc. Banco: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then     'Borramos
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then     'Borramos
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        Cad = "Delete from sbanpr where codbanpr=" & Data1.Recordset!codbanpr
-        conn.Execute Cad
+        cad = "Delete from sbanpr where codbanpr=" & Data1.Recordset!codbanpr
+        conn.Execute cad
 '        Data1.Recordset.Delete
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
@@ -1398,16 +1398,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    Cad = Data1.Recordset.Fields(0) & "|"
-    Cad = Cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Data1.Recordset.Fields(0) & "|"
+    cad = cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -1496,7 +1496,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim CadB As String
+Dim cadB As String
 Dim Aux As String
 Dim indice As Byte
     
@@ -1517,10 +1517,10 @@ Dim indice As Byte
             Screen.MousePointer = vbHourglass
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
-            CadB = ""
+            cadB = ""
             Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            CadB = Aux
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+            cadB = Aux
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
             PonerCadenaBusqueda
             Screen.MousePointer = vbDefault
         End If
@@ -1528,11 +1528,11 @@ Dim indice As Byte
 End Sub
 
 Private Sub frmBPr_DatoSeleccionado(CadenaSeleccion As String)
-Dim CadB As String
-    CadB = "codbanpr = " & RecuperaValor(CadenaSeleccion, 1)
+Dim cadB As String
+    cadB = "codbanpr = " & RecuperaValor(CadenaSeleccion, 1)
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
     PonerCadenaBusqueda
     Screen.MousePointer = vbDefault
 End Sub
@@ -1547,10 +1547,10 @@ End Sub
 
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
-Dim CadB As String
+Dim cadB As String
     If CadenaSeleccion <> "" Then
-        Text1(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-        Text2(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+        Text1(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+        Text2(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
     End If
 End Sub
 
@@ -1575,15 +1575,15 @@ Private Sub imgCuentas_Click(Index As Integer)
     If Modo = 2 Or Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
 
-    IndCodigo = Index + 14
+    indCodigo = Index + 14
 
     Set frmCtas = New frmBasico2
     
-    AyudaCuentasContables frmCtas, Text1(IndCodigo).Text, "apudirec='S'"
+    AyudaCuentasContables frmCtas, Text1(indCodigo).Text, "apudirec='S'"
     
     Set frmCtas = Nothing
 
-    PonerFoco Text1(IndCodigo)
+    PonerFoco Text1(indCodigo)
 
 
     Screen.MousePointer = vbDefault
@@ -1737,84 +1737,27 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim CadB As String
+Dim cadB As String
 
-    CadB = ObtenerBusqueda(Me, False)
+    cadB = ObtenerBusqueda(Me, False)
     
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia CadB
+        MandaBusquedaPrevia cadB
     Else
         'Se muestran en el mismo form
-        If CadB <> "" Then
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        If cadB <> "" Then
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
             PonerCadenaBusqueda
         End If
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(CadB As String)
-''Carga el formulario frmBuscaGrid con los valores correspondientes
-'Dim cad As String
-'Dim Tabla As String
-'Dim Titulo As String
-'Dim Conexion As Byte
-'Dim CargaF As Boolean 'Para saber si se carga el frame o no en el BuscaGrid
-'
-'        'Llamamos a al form
-'        '##A mano
-'        cad = ""
-'        If Val(Me.imgCuentas(0).Tag) >= 0 Then
-'        'Se llama a Busqueda desde un campo de Cuenta
-'            '#A MANO: Porque busca en la tabla Cuentas
-'            'de la base de datos de Contabilidad
-'            cad = cad & "Código|cuentas|codmacta|T||30·Denominacion|cuentas|nommacta|T||70·"
-'            Tabla = "cuentas"
-'            Titulo = "Cuentas"
-'            Conexion = conConta    'Conexión a BD: Conta
-'            CargaF = True
-'        Else
-'            'Busqueda de un Banco Propio
-'            cad = cad & ParaGrid(Text1(0), 30, "Código")
-'            cad = cad & ParaGrid(Text1(1), 70, "Denominacion")
-'            Tabla = "sbanpr"
-'            Titulo = "Bancos Propios"
-'            Conexion = conAri    'Conexión a BD: Aritaxi
-'            CargaF = False
-'        End If
-'
-'        If cad <> "" Then
-'            Screen.MousePointer = vbHourglass
-'            Set frmB = New frmBuscaGrid
-'            frmB.vCampos = cad
-'            frmB.vTabla = Tabla
-'            frmB.vSQL = cadB
-'            HaDevueltoDatos = False
-'            '###A mano
-'            frmB.vDevuelve = "0|1|"
-'            frmB.vTitulo = Titulo
-'            frmB.vselElem = 1
-'            frmB.vConexionGrid = Conexion
-''            frmB.vBuscaPrevia = chkVistaPrevia
-'            frmB.vCargaFrame = CargaF
-'            '#
-'            frmB.Show vbModal
-'            Set frmB = Nothing
-'            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'            'tendremos que cerrar el form lanzando el evento
-'            If HaDevueltoDatos Then
-''                If kCampo < 17 Then Text1(kCampo + 1).SetFocus
-''                If kCampo = 17 Then cmdAceptar.SetFocus
-''                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                    cmdRegresar_Click
-'            Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'                PonerFoco Text1(kCampo)
-'            End If
-'        End If
+Private Sub MandaBusquedaPrevia(cadB As String)
 
     Set frmBPr = New frmBasico2
     
-    AyudaBancosPropios frmBPr, , CadB
+    AyudaBancosPropios frmBPr, , cadB
     
     Set frmBPr = Nothing
 
@@ -2053,11 +1996,11 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim Cad As String
+Dim cad As String
 Dim Indicador As String
 
-    Cad = "(codbanpr=" & Text1(0).Text & ")"
-    If SituarData(Data1, Cad, Indicador) Then
+    cad = "(codbanpr=" & Text1(0).Text & ")"
+    If SituarData(Data1, cad, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else

@@ -822,7 +822,7 @@ Dim NumReg As Byte
     b = (Kmodo = 2)
     
     For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
+        txtAux(i).BackColor = vbWhite
     Next i
     
     PonerIndicador Me.lblIndicador, Modo

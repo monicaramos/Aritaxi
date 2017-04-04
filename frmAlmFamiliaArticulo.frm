@@ -19,7 +19,7 @@ Begin VB.Form frmAlmFamiliaArticulo
    Tag             =   "Digitos 1er nivel|N|N|||empresa|numdigi1|||"
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   3210
+      Left            =   3330
       TabIndex        =   36
       Top             =   0
       Width           =   2415
@@ -59,7 +59,7 @@ Begin VB.Form frmAlmFamiliaArticulo
    End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
-      Left            =   0
+      Left            =   120
       TabIndex        =   34
       Top             =   0
       Width           =   3075
@@ -194,10 +194,10 @@ Begin VB.Form frmAlmFamiliaArticulo
       EndProperty
       ForeColor       =   &H00972E0B&
       Height          =   1095
-      Left            =   120
+      Left            =   90
       TabIndex        =   26
       Top             =   3630
-      Width           =   9555
+      Width           =   9585
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -808,7 +808,7 @@ Begin VB.Form frmAlmFamiliaArticulo
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   0
-      Left            =   975
+      Left            =   1005
       ToolTipText     =   "Buscar centro coste"
       Top             =   4890
       Width           =   240
@@ -950,7 +950,7 @@ Dim btnPrimero As Byte
 '-------------------------------------------------------------------------
 Private HaDevueltoDatos As Boolean
 
-Dim IndCodigo As Integer
+Dim indCodigo As Integer
 
 Private Sub chkInstalac_GotFocus()
     ConseguirfocoChk Modo
@@ -1077,7 +1077,7 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Cad As String
+Dim cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
@@ -1087,12 +1087,12 @@ Dim Cad As String
     
     
     '### a mano
-    Cad = "¿Seguro que desea eliminar la Familia de Artículo?:" & vbCrLf
-    Cad = Cad & vbCrLf & "Cod. : " & Format(Data1.Recordset.Fields(0), FormatoCampo(Text1(0)))
-    Cad = Cad & vbCrLf & "Desc.: " & Data1.Recordset.Fields(1)
+    cad = "¿Seguro que desea eliminar la Familia de Artículo?:" & vbCrLf
+    cad = cad & vbCrLf & "Cod. : " & Format(Data1.Recordset.Fields(0), FormatoCampo(Text1(0)))
+    cad = cad & vbCrLf & "Desc.: " & Data1.Recordset.Fields(1)
 
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
@@ -1116,16 +1116,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = Data1.Recordset.Fields(0) & "|"
-    Cad = Cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Data1.Recordset.Fields(0) & "|"
+    cad = cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -1223,7 +1223,7 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim CadB As String
+Dim cadB As String
 Dim Aux As String
 Dim indice As Byte
     
@@ -1248,16 +1248,16 @@ Dim indice As Byte
             Screen.MousePointer = vbHourglass
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
-            CadB = ""
+            cadB = ""
             Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            CadB = Aux
+            cadB = Aux
             '   Como la clave principal es unica, con poner el sql apuntando
             '   al valor devuelto sobre la clave ppal es suficiente
             'Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 2)
             'If CadB <> "" Then CadB = CadB & " AND "
             'CadB = CadB & Aux
             'Se muestran en el mismo form
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
             PonerCadenaBusqueda
             Screen.MousePointer = vbDefault
         End If
@@ -1266,19 +1266,19 @@ End Sub
 
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
-Dim CadB As String
+Dim cadB As String
     If CadenaSeleccion <> "" Then
-        Text1(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-        Text2(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+        Text1(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+        Text2(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
     End If
 End Sub
 
 Private Sub frmFam_DatoSeleccionado(CadenaSeleccion As String)
-Dim CadB As String
-    CadB = "codfamia = " & RecuperaValor(CadenaSeleccion, 1)
+Dim cadB As String
+    cadB = "codfamia = " & RecuperaValor(CadenaSeleccion, 1)
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
     PonerCadenaBusqueda
     Screen.MousePointer = vbDefault
 
@@ -1324,13 +1324,13 @@ Private Sub imgCuentas_Click(Index As Integer)
 '    PonerFoco Text1(Index + 2)
 '    Screen.MousePointer = vbDefault
 
-    IndCodigo = Index + 2
+    indCodigo = Index + 2
 
     Set frmCtas = New frmBasico2
-    AyudaCuentasContables frmCtas, Text1(IndCodigo).Text, "apudirec='S'"
+    AyudaCuentasContables frmCtas, Text1(indCodigo).Text, "apudirec='S'"
     Set frmCtas = Nothing
 
-    PonerFoco Text1(IndCodigo)
+    PonerFoco Text1(indCodigo)
 
     Screen.MousePointer = vbDefault
 
@@ -1418,23 +1418,23 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim CadB As String
+Dim cadB As String
     
-    CadB = ObtenerBusqueda(Me, False)
+    cadB = ObtenerBusqueda(Me, False)
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia CadB
+        MandaBusquedaPrevia cadB
     Else
         'Se muestran en el mismo form
-        If CadB <> "" Then
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        If cadB <> "" Then
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
             PonerCadenaBusqueda
         End If
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
 ''Carga el formulario frmBuscaGrid con los valores correspondientes
 'Dim cad As String
 'Dim Tabla As String
@@ -1500,7 +1500,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 
     Set frmFam = New frmBasico2
     
-    AyudaFamiliasArticulos frmFam, , CadB
+    AyudaFamiliasArticulos frmFam, , cadB
     
     Set frmFam = Nothing
 
@@ -1721,10 +1721,10 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 
-    Cad = "(codfamia=" & Text1(0).Text & ")"
-    If SituarData(Data1, Cad, Indicador) Then
+    cad = "(codfamia=" & Text1(0).Text & ")"
+    If SituarData(Data1, cad, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else

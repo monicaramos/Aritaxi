@@ -5,84 +5,251 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmAlmMovimArticulos 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Movimientos Articulos"
-   ClientHeight    =   6420
+   ClientHeight    =   7245
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   11790
+   ClientWidth     =   12930
    ClipControls    =   0   'False
    Icon            =   "frmAlmMovimArticulos.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6420
-   ScaleWidth      =   11790
+   ScaleHeight     =   7245
+   ScaleWidth      =   12930
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Visible         =   0   'False
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   2340
+      TabIndex        =   34
+      Top             =   30
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   35
+         Top             =   210
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   210
+      TabIndex        =   32
+      Top             =   30
+      Width           =   2055
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   33
+         Top             =   180
+         Width           =   1605
+         _ExtentX        =   2831
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   6
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+               Object.Tag             =   "0"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   10110
+      TabIndex        =   31
+      Top             =   270
+      Width           =   1605
+   End
    Begin VB.Frame Frame2 
       Caption         =   "Totales"
-      Height          =   975
-      Left            =   9240
-      TabIndex        =   28
-      Top             =   5400
-      Width           =   2415
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1065
+      Left            =   9840
+      TabIndex        =   26
+      Top             =   6150
+      Width           =   2925
       Begin VB.TextBox Text2 
          Alignment       =   1  'Right Justify
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
-         Left            =   840
-         Locked          =   -1  'True
-         TabIndex        =   31
-         Text            =   "Text2"
-         Top             =   600
-         Width           =   1455
-      End
-      Begin VB.TextBox Text2 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H80000018&
-         Height          =   285
-         Index           =   3
-         Left            =   840
+         Left            =   1200
          Locked          =   -1  'True
          TabIndex        =   29
          Text            =   "Text2"
+         Top             =   600
+         Width           =   1545
+      End
+      Begin VB.TextBox Text2 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H80000018&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   3
+         Left            =   1200
+         Locked          =   -1  'True
+         TabIndex        =   27
+         Text            =   "Text2"
          Top             =   240
-         Width           =   1455
+         Width           =   1545
       End
       Begin VB.Label Label5 
-         Caption         =   "IMPOR."
-         Height          =   255
-         Left            =   120
-         TabIndex        =   32
-         Top             =   600
-         Width           =   1335
-      End
-      Begin VB.Label Label4 
-         Caption         =   "CANTID."
+         Caption         =   "IMPORTE"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   120
          TabIndex        =   30
-         Top             =   240
+         Top             =   630
+         Width           =   1335
+      End
+      Begin VB.Label Label4 
+         Caption         =   "CANTIDAD"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   120
+         TabIndex        =   28
+         Top             =   270
          Width           =   1335
       End
    End
    Begin VB.TextBox Text2 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
-      Left            =   2760
+      Left            =   2730
       Locked          =   -1  'True
-      TabIndex        =   26
+      TabIndex        =   24
       Text            =   "Text2"
-      Top             =   6000
+      Top             =   6390
       Width           =   2175
    End
    Begin VB.TextBox txtAux 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   8
       Left            =   10200
       Locked          =   -1  'True
@@ -98,7 +265,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000013&
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   5
       Left            =   7200
       Locked          =   -1  'True
@@ -115,7 +291,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   4
       Left            =   6120
       Locked          =   -1  'True
@@ -132,7 +317,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000013&
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   3
       Left            =   5040
       Locked          =   -1  'True
@@ -149,7 +343,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   2
       Left            =   2280
       Locked          =   -1  'True
@@ -163,33 +366,60 @@ Begin VB.Form frmAlmMovimArticulos
    Begin VB.Frame Frame1 
       Height          =   540
       Index           =   0
-      Left            =   120
-      TabIndex        =   24
-      Top             =   5760
+      Left            =   180
+      TabIndex        =   22
+      Top             =   6240
       Width           =   2505
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   240
-         Left            =   240
-         TabIndex        =   25
+         Left            =   450
+         TabIndex        =   23
          Top             =   180
          Width           =   1515
       End
    End
    Begin VB.TextBox Text2 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   2
-      Left            =   5040
+      Left            =   5010
       Locked          =   -1  'True
-      TabIndex        =   22
+      TabIndex        =   20
       Text            =   "Text2"
-      Top             =   6000
-      Width           =   3975
+      Top             =   6390
+      Width           =   4545
    End
    Begin VB.ComboBox cboAux 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   4200
       Style           =   2  'Dropdown List
@@ -204,7 +434,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000013&
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   7
       Left            =   9120
       MaxLength       =   7
@@ -219,7 +458,16 @@ Begin VB.Form frmAlmMovimArticulos
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   6
       Left            =   8280
       Locked          =   -1  'True
@@ -235,7 +483,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000013&
       BorderStyle     =   0  'None
-      Height          =   320
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   1
       Left            =   1200
       MaxLength       =   11
@@ -250,7 +507,16 @@ Begin VB.Form frmAlmMovimArticulos
       Appearance      =   0  'Flat
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   0
       Left            =   120
       MaxLength       =   3
@@ -264,16 +530,34 @@ Begin VB.Form frmAlmMovimArticulos
    Begin VB.CommandButton cmdAux 
       Appearance      =   0  'Flat
       Caption         =   "+"
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Left            =   960
-      TabIndex        =   21
+      TabIndex        =   19
       ToolTipText     =   "Buscar almacen"
       Top             =   4800
       Visible         =   0   'False
       Width           =   195
    End
    Begin VB.ComboBox cboAux 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   3360
       Style           =   2  'Dropdown List
@@ -284,111 +568,97 @@ Begin VB.Form frmAlmMovimArticulos
       Width           =   855
    End
    Begin VB.TextBox Text1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
-      Left            =   1800
+      Left            =   1500
       MaxLength       =   16
       TabIndex        =   0
       Tag             =   "Cod. Articulo|T|N|||smoval|codartic||N|"
       Text            =   "Text1"
-      Top             =   600
+      Top             =   930
       Width           =   1815
    End
    Begin VB.TextBox Text2 
       BackColor       =   &H80000018&
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
-      Left            =   3675
+      Left            =   3375
       Locked          =   -1  'True
-      TabIndex        =   19
+      TabIndex        =   17
       Text            =   "Text2"
-      Top             =   600
+      Top             =   930
       Width           =   4695
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   9360
+      Left            =   10560
       TabIndex        =   12
-      Top             =   5910
+      Top             =   6420
       Width           =   1035
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   10515
+      Left            =   11715
       TabIndex        =   13
-      Top             =   5910
+      Top             =   6420
       Width           =   1035
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   10515
-      TabIndex        =   18
-      Top             =   5910
+      Left            =   11700
+      TabIndex        =   16
+      Top             =   6420
       Visible         =   0   'False
       Width           =   1035
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   15
-      Top             =   0
-      Width           =   11790
-      _ExtentX        =   20796
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   11
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver Todos"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   315
-         Left            =   6600
-         TabIndex        =   17
-         Top             =   0
-         Width           =   1215
-      End
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -486,33 +756,33 @@ Begin VB.Form frmAlmMovimArticulos
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmAlmMovimArticulos.frx":000C
-      Height          =   4130
-      Left            =   240
+      Height          =   4545
+      Left            =   210
       TabIndex        =   14
-      Top             =   1080
-      Width           =   11295
-      _ExtentX        =   19923
-      _ExtentY        =   7276
+      Top             =   1410
+      Width           =   12560
+      _ExtentX        =   22146
+      _ExtentY        =   8017
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True
       BorderStyle     =   0
       ColumnHeaders   =   -1  'True
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       FormatLocked    =   -1  'True
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -556,35 +826,61 @@ Begin VB.Form frmAlmMovimArticulos
    End
    Begin VB.Label Label3 
       Caption         =   "Desc. Almacen"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
-      Left            =   2760
-      TabIndex        =   27
-      Top             =   5800
-      Width           =   1335
+      Left            =   2730
+      TabIndex        =   25
+      Top             =   6165
+      Width           =   1905
    End
    Begin VB.Label Label2 
       Caption         =   "Cliente/Proveedor/Trabajador"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
-      Left            =   5040
-      TabIndex        =   23
-      Top             =   5800
-      Width           =   2775
+      Left            =   5010
+      TabIndex        =   21
+      Top             =   6165
+      Width           =   2985
    End
    Begin VB.Label Label1 
-      Caption         =   "Cod. Artículo"
+      Caption         =   "Artículo"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   240
-      TabIndex        =   20
-      Top             =   600
-      Width           =   1095
+      TabIndex        =   18
+      Top             =   930
+      Width           =   975
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   0
-      Left            =   1500
-      Picture         =   "frmAlmMovimArticulos.frx":0021
+      Left            =   1230
       ToolTipText     =   "Buscar artículo"
-      Top             =   645
+      Top             =   975
       Width           =   240
    End
    Begin VB.Label Label10 
@@ -600,7 +896,7 @@ Begin VB.Form frmAlmMovimArticulos
       EndProperty
       Height          =   255
       Left            =   240
-      TabIndex        =   16
+      TabIndex        =   15
       Top             =   8220
       Visible         =   0   'False
       Width           =   3495
@@ -621,6 +917,8 @@ Private WithEvents frmA As frmAlmAlPropios 'Almacen Origen/Destino
 Attribute frmA.VB_VarHelpID = -1
 Private WithEvents frmArtic As frmAlmArticulos  'Articulos
 Attribute frmArtic.VB_VarHelpID = -1
+Private WithEvents frmMov As frmBasico2
+Attribute frmMov.VB_VarHelpID = -1
 
 Dim NombreTabla As String
 Dim Ordenacion As String
@@ -857,20 +1155,52 @@ Private Sub Form_Load()
     'Icono del formulario
     Me.Icon = frmPpal.Icon
    
-    'ICONOS de La toolbar
-    btnPrimero = 8 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
-    With Toolbar1
-        .ImageList = frmPpal.imgListComun
-        'ASignamos botones
-        .Buttons(1).Image = 1   'Buscar
-        .Buttons(2).Image = 2 'Ver Todos
-        .Buttons(5).Image = 16 'Imprimir
-        .Buttons(6).Image = 15 'Salir
-        .Buttons(btnPrimero).Image = 6 'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+'    'ICONOS de La toolbar
+'    btnPrimero = 8 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
+'    With Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        'ASignamos botones
+'        .Buttons(1).Image = 1   'Buscar
+'        .Buttons(2).Image = 2 'Ver Todos
+'        .Buttons(5).Image = 16 'Imprimir
+'        .Buttons(6).Image = 15 'Salir
+'        .Buttons(btnPrimero).Image = 6 'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+'    End With
+        'Icono de busqueda
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+
+
+    ' ICONITOS DE LA BARRA
+    With Me.Toolbar1
+        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .Buttons(1).Image = 1
+        .Buttons(2).Image = 2
+        .Buttons(4).Image = 16  'Imprimir
     End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+'    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
     
     LimpiarCampos   'Limpia los campos TextBox
     PrimeraVez = True
@@ -910,16 +1240,16 @@ Dim Sql As String
     
     'Cod. Almac
     DataGrid1.Columns(1).Caption = "Almacen"
-    DataGrid1.Columns(1).Width = 900
+    DataGrid1.Columns(1).Width = 1000
     DataGrid1.Columns(1).NumberFormat = "000"
     
     'Fecha Mov
     DataGrid1.Columns(3).Caption = "Fecha"
-    DataGrid1.Columns(3).Width = 1050
+    DataGrid1.Columns(3).Width = 1400
     
     'Hora Movim
     DataGrid1.Columns(4).Caption = "Hora"
-    DataGrid1.Columns(4).Width = 850
+    DataGrid1.Columns(4).Width = 950
     DataGrid1.Columns(4).NumberFormat = "hh:mm:ss"
     
     'Tipo Movim
@@ -929,7 +1259,7 @@ Dim Sql As String
     
     'Detalle Movim
     DataGrid1.Columns(6).Caption = "Detalle"
-    DataGrid1.Columns(6).Width = 700
+    DataGrid1.Columns(6).Width = 800
     DataGrid1.Columns(6).Alignment = dbgCenter
     
     'Cantidad
@@ -940,14 +1270,14 @@ Dim Sql As String
     
     'Importe Movimiento
     DataGrid1.Columns(8).Caption = "Importe"
-    DataGrid1.Columns(8).Width = 1400
+    DataGrid1.Columns(8).Width = 1600
     DataGrid1.Columns(8).Alignment = dbgRight
     DataGrid1.Columns(8).NumberFormat = FormatoImporte
     
     
     'Cod. Cliente/Proveedor
     DataGrid1.Columns(9).Caption = "Cli./Prov."
-    DataGrid1.Columns(9).Width = 900
+    DataGrid1.Columns(9).Width = 1000
     DataGrid1.Columns(9).Alignment = dbgCenter
     DataGrid1.Columns(9).NumberFormat = "000000"
     
@@ -957,17 +1287,17 @@ Dim Sql As String
        
     'Nº Documento
     DataGrid1.Columns(11).Caption = "Nº Documento"
-    DataGrid1.Columns(11).Width = 1400
+    DataGrid1.Columns(11).Width = 1600
     DataGrid1.Columns(11).Alignment = dbgCenter
     DataGrid1.Columns(11).NumberFormat = "0000000"
     
     'Nº Linea
     DataGrid1.Columns(12).Caption = "Nº Linea"
-    DataGrid1.Columns(12).Width = 900
+    DataGrid1.Columns(12).Width = 1000
     DataGrid1.Columns(12).Alignment = dbgCenter
     
     DataGrid1.ScrollBars = dbgAutomatic
-    
+    DataGrid1.RowHeight = 350
     For i = 0 To DataGrid1.Columns.Count - 1
         DataGrid1.Columns(i).AllowSizing = False
     Next i
@@ -1004,7 +1334,7 @@ Dim alto As Single
     
 
     If Not visible Then
-        alto = 280
+        alto = 290
         'Fijamos el alto (ponerlo en la parte inferior del form)
         For i = 0 To txtAux.Count - 1
             txtAux(i).Top = alto
@@ -1031,7 +1361,7 @@ Dim alto As Single
         End If
 
         If DataGrid1.Row < 0 Then
-            alto = DataGrid1.Top + 210
+            alto = DataGrid1.Top + 230
         Else
             alto = DataGrid1.Top + DataGrid1.RowTop(DataGrid1.Row) + 10
         End If
@@ -1224,12 +1554,8 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             BotonBuscar
         Case 2 'Ver Todos
             BotonVerTodos
-        Case 5 'Imprimir
+        Case 4 'Imprimir
             Imprimir
-        Case 6  'Salir
-            Unload Me
-        Case 8 To 11 'Flechas de Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -1262,7 +1588,9 @@ Dim NumReg As Byte
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+
 
    'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -1315,7 +1643,7 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
     CargaGrid True
 '    CalcularTotales
@@ -1361,7 +1689,7 @@ Dim i As Integer
             Sql = Sql & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
         End If
     Else
-        Sql = Sql & " WHERE codartic = '-1'"
+        Sql = Sql & " WHERE false " 'codartic = '-1'
     End If
     Sql = Sql & " " & Ordenacion & " DESC "
     '---- Laura: 27/09/2006
@@ -1580,40 +1908,49 @@ Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    cad = ""
-            
-    cad = cad & "Código|smoval|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
-    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
-    Tabla = Tabla & " GROUP BY smoval.codartic "
-    Titulo = "Movimientos de Articulos"
+'    'Llamamos a al form
+'    cad = ""
+'
+'    cad = cad & "Código|smoval|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
+'    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
+'    Tabla = Tabla & " GROUP BY smoval.codartic "
+'    Titulo = "Movimientos de Articulos"
+'
+'
+'    If cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = cadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
+'            Toolbar1.Buttons(5).Enabled = True 'Imprimir
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-           
-    If cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = cadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-            Toolbar1.Buttons(5).Enabled = True 'Imprimir
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmMov = New frmBasico2
+    
+    AyudaMovimientosArticulos frmMov, , cadB
+    
+    Set frmMov = Nothing
+
+
+
 End Sub
 
 
@@ -1669,4 +2006,28 @@ Dim RS As ADODB.Recordset
     
 ErrTotales:
     MuestraError Err.Number, "Calcular totales.", Err.Description
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
+
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
+
+Private Sub frmMov_DatoSeleccionado(CadenaSeleccion As String)
+Dim cadB As String
+
+    cadB = "codartic = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+    
+    'Se muestran en el mismo form
+    CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+    PonerCadenaBusqueda
+    
+    cadB = RecuperaValor(CadenaSeleccion, 1)
+    cadSeleccion = "{smoval.codartic}=""" & cadB & """"
+    
+    Screen.MousePointer = vbDefault
 End Sub
