@@ -199,7 +199,7 @@ Begin VB.Form frmConfParamAplic
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   3
+      Tab             =   1
       TabsPerRow      =   6
       TabHeight       =   520
       ForeColor       =   9907723
@@ -244,14 +244,21 @@ Begin VB.Form frmConfParamAplic
       Tab(0).ControlCount=   26
       TabCaption(1)   =   "Datos Facturación"
       TabPicture(1)   =   "frmConfParamAplic.frx":0028
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame15"
-      Tab(1).Control(1)=   "Frame10"
-      Tab(1).Control(2)=   "Frame3"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "Frame12"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Frame4"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "Frame9"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Frame2"
-      Tab(1).Control(4)=   "Frame9"
-      Tab(1).Control(5)=   "Frame4"
-      Tab(1).Control(6)=   "Frame12"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "Frame3"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "Frame10"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "Frame15"
+      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).ControlCount=   7
       TabCaption(2)   =   "Internet"
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
@@ -263,7 +270,7 @@ Begin VB.Form frmConfParamAplic
       Tab(2).ControlCount=   4
       TabCaption(3)   =   "Datos Contabilidad "
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
-      Tab(3).ControlEnabled=   -1  'True
+      Tab(3).ControlEnabled=   0   'False
       Tab(3).Control(0)=   "Label1(15)"
       Tab(3).Control(0).Enabled=   0   'False
       Tab(3).Control(1)=   "Label1(17)"
@@ -448,7 +455,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   825
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   252
          Top             =   5910
          Width           =   10635
@@ -796,7 +803,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2535
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   212
          Top             =   3210
          Width           =   10665
@@ -1487,7 +1494,7 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   2910
+         Left            =   -72090
          Style           =   2  'Dropdown List
          TabIndex        =   177
          Tag             =   "Modo analítica|N|N|0|9|spara1|modanalitica|||"
@@ -1508,7 +1515,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   50
-         Left            =   2910
+         Left            =   -72090
          MaxLength       =   2
          TabIndex        =   168
          Tag             =   "NºConta|N|S|1|99|spara1|conta_B|||"
@@ -1530,7 +1537,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   52
-         Left            =   2880
+         Left            =   -72120
          MaxLength       =   2
          TabIndex        =   56
          Tag             =   "IVAexento|N|S|0||spara1|IvaIntracom|||"
@@ -1551,7 +1558,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   52
-         Left            =   3600
+         Left            =   -71400
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   166
@@ -1570,7 +1577,7 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   7200
+         Left            =   -67800
          Style           =   2  'Dropdown List
          TabIndex        =   54
          Tag             =   "Orden Descuentos|N|S|||spara1|obsfactura|||"
@@ -1590,7 +1597,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   48
-         Left            =   3600
+         Left            =   -71400
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   160
@@ -1611,7 +1618,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   48
-         Left            =   2880
+         Left            =   -72120
          MaxLength       =   2
          TabIndex        =   55
          Tag             =   "IVAexento|N|S|0||spara1|ivaexento|||"
@@ -1632,7 +1639,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   3735
-         Left            =   60
+         Left            =   -74940
          TabIndex        =   143
          Top             =   2970
          Width           =   10905
@@ -2988,7 +2995,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   23
-         Left            =   2910
+         Left            =   -72090
          MaxLength       =   30
          TabIndex        =   50
          Tag             =   "Servidor Contabilidad|T|S|||spara1|serconta|||"
@@ -3009,7 +3016,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   22
-         Left            =   9930
+         Left            =   -65070
          MaxLength       =   2
          TabIndex        =   53
          Tag             =   "Nº Contabilidad|N|S|||spara1|numconta|||"
@@ -3029,7 +3036,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   21
-         Left            =   5430
+         Left            =   -69570
          MaxLength       =   20
          TabIndex        =   51
          Tag             =   "Usuario Contabilidad|T|S|||spara1|usuconta|||"
@@ -3050,7 +3057,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   360
          IMEMode         =   3  'DISABLE
          Index           =   20
-         Left            =   7200
+         Left            =   -67800
          MaxLength       =   20
          PasswordChar    =   "*"
          TabIndex        =   52
@@ -3090,7 +3097,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   855
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   116
          Top             =   630
          Width           =   10665
@@ -3228,7 +3235,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1425
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   113
          Top             =   1680
          Width           =   10665
@@ -4317,7 +4324,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   735
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   162
          Top             =   6000
          Visible         =   0   'False
@@ -4406,7 +4413,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   735
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   124
          Top             =   6000
          Visible         =   0   'False
@@ -4782,7 +4789,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   975
-         Left            =   -74790
+         Left            =   210
          TabIndex        =   170
          Top             =   4230
          Visible         =   0   'False
@@ -5136,7 +5143,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00000000&
          Height          =   195
          Index           =   58
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   176
          Top             =   1560
          Width           =   1515
@@ -5156,7 +5163,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00000000&
          Height          =   255
          Index           =   51
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   169
          Top             =   1125
          Visible         =   0   'False
@@ -5176,7 +5183,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00000000&
          Height          =   195
          Index           =   47
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   167
          Top             =   2520
          Width           =   1725
@@ -5184,7 +5191,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   45
-         Left            =   2520
+         Left            =   -72480
          Tag             =   "-1"
          ToolTipText     =   "Buscar I.V.A."
          Top             =   2520
@@ -5205,7 +5212,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00000000&
          Height          =   240
          Index           =   53
-         Left            =   4590
+         Left            =   -70410
          TabIndex        =   165
          Top             =   1125
          Width           =   2610
@@ -5213,7 +5220,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   41
-         Left            =   2520
+         Left            =   -72480
          Tag             =   "-1"
          ToolTipText     =   "Buscar I.V.A."
          Top             =   2085
@@ -5233,7 +5240,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00000000&
          Height          =   195
          Index           =   50
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   161
          Top             =   2085
          Width           =   1155
@@ -5252,7 +5259,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00000000&
          Height          =   195
          Index           =   49
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   159
          Top             =   600
          Width           =   1185
@@ -5279,7 +5286,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   19
-         Left            =   1980
+         Left            =   -73020
          TabIndex        =   123
          Top             =   600
          Width           =   900
@@ -5297,7 +5304,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   18
-         Left            =   9000
+         Left            =   -66000
          TabIndex        =   122
          Top             =   600
          Width           =   1290
@@ -5315,7 +5322,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   17
-         Left            =   4590
+         Left            =   -70410
          TabIndex        =   121
          Top             =   600
          Width           =   780
@@ -5333,7 +5340,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   15
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   120
          Top             =   600
          Width           =   840

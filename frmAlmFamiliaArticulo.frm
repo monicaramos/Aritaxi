@@ -1318,11 +1318,6 @@ Private Sub imgCuentas_Click(Index As Integer)
     If Modo = 2 Or Modo = 5 Or Modo = 0 Then Exit Sub
  
     Screen.MousePointer = vbHourglass
-'    imgCuentas(0).Tag = Index
-'    MandaBusquedaPrevia "apudirec='S'"
-'    imgCuentas(0).Tag = -1
-'    PonerFoco Text1(Index + 2)
-'    Screen.MousePointer = vbDefault
 
     indCodigo = Index + 2
 

@@ -2798,9 +2798,42 @@ Public Sub AyudaProveedoresV(frmBas As frmBasico2, Optional CodActual As String,
     frmBas.CodigoActual = 0
     If CodActual <> "" Then frmBas.CodigoActual = CodActual
     
-    
     Redimensiona frmBas, -1500
     
     frmBas.Show vbModal
 End Sub
+
+
+
+Public Sub AyudaProveedores(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1000|;S|txtAux(1)|T|Nombre|4000|;S|txtAux(2)|T|Nombre Comercial|4000|;"
+    frmBas.CadenaConsulta = "SELECT sprove.codprove, sprove.nomprove, sprove.nomcomer "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM sprove "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código Proveedor|N|N|0|999999|sprove|codprove|000000|S|"
+    frmBas.Tag2 = "Nombre Proveedor|T|N|||sprove|nomprove||N|"
+    frmBas.Tag3 = "Nombre Comercial|T|N|||sprove|nomcomer||N|"
+    
+    frmBas.Maxlen1 = 6
+    frmBas.Maxlen2 = 75
+    frmBas.Maxlen3 = 75
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "sprove"
+    frmBas.CampoCP = "codprove"
+    frmBas.Caption = "Proveedores"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    Redimensiona frmBas, 2010
+    
+    
+    frmBas.Show vbModal
+End Sub
+
 

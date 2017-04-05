@@ -1672,9 +1672,8 @@ Private Function PuedeModificarFPenContab() As Boolean
             MsgBox "Existen " & NumRegElim & " vencimientos en la tesoreria con esa forma de pago", vbExclamation
             Exit Function
         End If
-            
-            
     End If
+    
     'Si llega aqui puede seguir
     PuedeModificarFPenContab = True
 End Function
@@ -1700,9 +1699,11 @@ Private Sub InsertarEnTesoreria()
     End If
 End Sub
 
+
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
     Desplazamiento (Button.Index)
 End Sub
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol

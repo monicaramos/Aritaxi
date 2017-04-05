@@ -468,8 +468,10 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
+    
     Me.Icon = frmPpal.Icon
     PrimeraVez = True
+    
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
         .ImageList = frmPpal.imgListComun
@@ -482,9 +484,6 @@ Private Sub Form_Load()
         .Buttons(11).Image = 15  'Botón Salir
     End With
     
-  
-
-
     'Cadena consulta
     CadenaConsulta = "Select * from sllama"
     ElSQL = "  date(feholla)='" & Format(Now, FormatoFecha) & "'"
