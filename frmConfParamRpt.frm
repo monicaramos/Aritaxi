@@ -708,7 +708,7 @@ Dim actualiza As Boolean
             
         Case 3, 4
 
-            If DatosOK Then
+            If DatosOk Then
                 'Modifica datos en la Tabla: scryst
         '        I = ModificaDesdeFormulario(Me)
                 'Actualizar campos de la clase
@@ -1002,11 +1002,11 @@ Private Sub BotonModificar()
 End Sub
 
 
-Private Function DatosOK() As Boolean
-Dim B As Boolean
-    DatosOK = False
-    B = CompForm(Me, 1)
-    DatosOK = B
+Private Function DatosOk() As Boolean
+Dim b As Boolean
+    DatosOk = False
+    b = CompForm(Me, 1)
+    DatosOk = b
 End Function
 
 
@@ -1018,11 +1018,11 @@ Dim cerrar As Boolean
 End Sub
 
 
-Private Sub PonerBotonCabecera(B As Boolean)
-    Me.cmdAceptar.visible = Not B
-    Me.cmdCancelar.visible = Not B
+Private Sub PonerBotonCabecera(b As Boolean)
+    Me.cmdAceptar.visible = Not b
+    Me.cmdCancelar.visible = Not b
 '    Me.cmdSalir.visible = B
-    If B Then Me.lblIndicador.Caption = ""
+    If b Then Me.lblIndicador.Caption = ""
 End Sub
 
 
@@ -1058,7 +1058,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim B As Boolean
+Dim b As Boolean
 Dim NumReg As Byte
 Dim I As Integer
 
@@ -1081,15 +1081,15 @@ Dim I As Integer
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    B = (Kmodo = 2) Or (Kmodo = 0)
+    b = (Kmodo = 2) Or (Kmodo = 0)
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible B And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
         
     
     '------------------------------------------------------
     'Modo insertar o modificar
-    B = (Kmodo >= 3) Or Modo = 1  '-->Luego not b sera kmodo<3
-    PonerBotonCabecera Not B
+    b = (Kmodo >= 3) Or Modo = 1  '-->Luego not b sera kmodo<3
+    PonerBotonCabecera Not b
     If cmdCancelar.visible Then
         cmdCancelar.Cancel = True
     Else
@@ -1113,12 +1113,12 @@ Private Sub DesplazamientoVisible(bol As Boolean)
 End Sub
 
 Private Sub PonerModoOpcionesMenu()
-Dim B As Boolean
-    B = (Modo = 3) Or (Modo = 4)
-    Me.Toolbar1.Buttons(1).Enabled = Not B 'Insertar
-    Me.mnNuevo.Enabled = Not B
-    Me.Toolbar1.Buttons(2).Enabled = (Not B) 'Modificar
-    Me.mnModificar.Enabled = Not B
+Dim b As Boolean
+    b = (Modo = 3) Or (Modo = 4)
+    Me.Toolbar1.Buttons(1).Enabled = Not b 'Insertar
+    Me.mnNuevo.Enabled = Not b
+    Me.Toolbar1.Buttons(2).Enabled = (Not b) 'Modificar
+    Me.mnModificar.Enabled = Not b
 End Sub
 
 
@@ -1216,6 +1216,8 @@ Private Sub Desplazamiento(Index As Integer)
     DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
+
+
 
 
 
