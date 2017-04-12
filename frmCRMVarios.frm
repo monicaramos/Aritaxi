@@ -248,7 +248,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   0
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0000
          Top             =   1560
          Width           =   240
       End
@@ -374,7 +373,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   5
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0102
          Top             =   6120
          Width           =   240
       End
@@ -402,7 +400,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   4
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0204
          Top             =   5760
          Width           =   240
       End
@@ -410,7 +407,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   3
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0306
          Top             =   4320
          Width           =   240
       End
@@ -438,7 +434,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   2
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0408
          Top             =   4920
          Width           =   240
       End
@@ -466,7 +461,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   1
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":050A
          Top             =   4320
          Width           =   240
       End
@@ -474,7 +468,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   0
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":060C
          Top             =   3960
          Width           =   240
       End
@@ -482,7 +475,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   1
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":070E
          Top             =   3360
          Width           =   240
       End
@@ -510,7 +502,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   0
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0810
          Top             =   3000
          Width           =   240
       End
@@ -538,7 +529,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   0
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0912
          Top             =   1080
          Width           =   240
       End
@@ -546,7 +536,6 @@ Begin VB.Form frmCRMVarios
          Height          =   240
          Index           =   0
          Left            =   960
-         Picture         =   "frmCRMVarios.frx":0A14
          Top             =   720
          Width           =   240
       End
@@ -670,6 +659,22 @@ Dim W As Integer
         Me.txtDescTra(0).Text = miSQL
         miSQL = ""
     End If
+    
+    For H = 0 To Me.imgAccion.Count - 1
+        imgAccion(H).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For H = 0 To Me.imgFecha.Count - 1
+        imgFecha(H).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+    For H = 0 To Me.imgCliente.Count - 1
+        imgCliente(H).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For H = 0 To Me.imgTecnico.Count - 1
+        imgTecnico(H).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+    For H = 0 To Me.imgVarios.Count - 1
+        imgVarios(H).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
     
     Me.cmdCancelar(Opcion).Cancel = True
     Me.Height = H
@@ -999,7 +1004,7 @@ Private Sub GenerarEntradaMasivaAccionesComerciales()
         'tipo, medio observaciones
         miSQL = miSQL & txtAccion(0).Text & "," & DBSet(miRsAux!medio, "T") & "," & DBSet(miRsAux!Observaciones, "T")
         miSQL = miSQL & " FROM sclien where codclien in (" & CadenaDesdeOtroForm & ")"
-        Ejecutar miSQL, False
+        ejecutar miSQL, False
     
     End If
     miRsAux.Close

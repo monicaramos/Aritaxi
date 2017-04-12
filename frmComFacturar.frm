@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmComFacturar 
    BorderStyle     =   3  'Fixed Dialog
@@ -627,7 +627,6 @@ Begin VB.Form frmComFacturar
          Height          =   240
          Index           =   1
          Left            =   4895
-         Picture         =   "frmComFacturar.frx":0A0E
          ToolTipText     =   "Buscar fecha"
          Top             =   150
          Width           =   240
@@ -635,8 +634,7 @@ Begin VB.Form frmComFacturar
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   3070
-         Picture         =   "frmComFacturar.frx":0A99
+         Left            =   3090
          ToolTipText     =   "Buscar fecha"
          Top             =   120
          Width           =   240
@@ -645,7 +643,6 @@ Begin VB.Form frmComFacturar
          Height          =   240
          Index           =   2
          Left            =   6600
-         Picture         =   "frmComFacturar.frx":0B24
          ToolTipText     =   "Buscar banco propio"
          Top             =   1035
          Width           =   240
@@ -654,7 +651,6 @@ Begin VB.Form frmComFacturar
          Height          =   240
          Index           =   0
          Left            =   240
-         Picture         =   "frmComFacturar.frx":0C26
          ToolTipText     =   "Buscar proveedor"
          Top             =   1030
          Width           =   240
@@ -681,7 +677,6 @@ Begin VB.Form frmComFacturar
          Height          =   240
          Index           =   1
          Left            =   6600
-         Picture         =   "frmComFacturar.frx":0D28
          ToolTipText     =   "Buscar trabajador"
          Top             =   420
          Width           =   240
@@ -1025,6 +1020,8 @@ End Sub
 
 
 Private Sub Form_Load()
+Dim i As Integer
+
     'Icono del formulario
     Me.Icon = frmPpal.Icon
     
@@ -1036,6 +1033,13 @@ Private Sub Form_Load()
         .Buttons(3).Image = 26   'Generar FActura
         .Buttons(6).Image = 15   'Salir
     End With
+    
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
     
     cadWHERE = ""
     
@@ -1100,33 +1104,33 @@ End Sub
 
 
 Private Sub frmF_Selec(vFecha As Date)
-Dim Indice As Byte
-    Indice = CByte(Me.imgFecha(0).Tag)
-    Text1(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim indice As Byte
+    indice = CByte(Me.imgFecha(0).Tag)
+    Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento de Proveedores
-Dim Indice As Byte
+Dim indice As Byte
     
-    Indice = 3
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Proveedor
-    FormateaCampo Text1(Indice)
-    Text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom proveedor
+    indice = 3
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Proveedor
+    FormateaCampo Text1(indice)
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom proveedor
 End Sub
 
 Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Trabajadores
-Dim Indice As Byte
-    Indice = 4
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Trabajador
-    FormateaCampo Text1(Indice)
-    Text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Trabajador
+Dim indice As Byte
+    indice = 4
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Trabajador
+    FormateaCampo Text1(indice)
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Trabajador
 End Sub
 
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     If Modo2 = 2 Or Modo2 = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
@@ -1137,46 +1141,46 @@ Dim Indice As Byte
             frmProv.DatosADevolverBusqueda = "0"
             frmProv.Show vbModal
             Set frmProv = Nothing
-            Indice = 3
+            indice = 3
             
         Case 1 'Operador. Trabajador
-            Indice = 4
+            indice = 4
             Set frmT = New frmAdmTrabajadores
             frmT.DatosADevolverBusqueda = "0"
             frmT.Show vbModal
             Set frmT = Nothing
        
        Case 2 'Bancos Propios
-            Indice = 5
+            indice = 5
             Set frmBanPr = New frmFacBancosPropios
             frmBanPr.DatosADevolverBusqueda = "0|1|"
             frmBanPr.Show vbModal
             Set frmBanPr = Nothing
     End Select
     
-    PonerFoco Text1(Indice)
+    PonerFoco Text1(indice)
     Screen.MousePointer = vbDefault
 End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
    If Modo2 = 2 Or Modo2 = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
    
    Set frmF = New frmCal
    frmF.Fecha = Now
-   Indice = Index + 1
-   Me.imgFecha(0).Tag = Indice
+   indice = Index + 1
+   Me.imgFecha(0).Tag = indice
    
-   PonerFormatoFecha Text1(Indice)
-   If Text1(Indice).Text <> "" Then frmF.Fecha = CDate(Text1(Indice).Text)
+   PonerFormatoFecha Text1(indice)
+   If Text1(indice).Text <> "" Then frmF.Fecha = CDate(Text1(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco Text1(Indice)
+   PonerFoco Text1(indice)
 End Sub
 
 Private Sub ListView1_ItemCheck(ByVal item As MSComctlLib.ListItem)
@@ -1708,7 +1712,7 @@ End Sub
 Private Sub CargarAlbaranes()
 'Recupera de la BD y muestra en el Listview todos los albaranes de compra
 'que tiene el proveedor introducido.
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim ItmX As ListItem
 On Error GoTo ECargar
@@ -1719,16 +1723,16 @@ On Error GoTo ECargar
     'si no hay proveedor salir
     If Text1(3).Text = "" Then Exit Sub
     
-    SQL = "SELECT scaalp.numalbar,scaalp.fechaalb,scaalp.codforpa,sforpa.nomforpa,scaalp.dtoppago,scaalp.dtognral, "
-    SQL = SQL & " sum(slialp.importel) as bruto "
-    SQL = SQL & " FROM (scaalp LEFT OUTER JOIN sforpa ON scaalp.codforpa=sforpa.codforpa) "
-    SQL = SQL & " INNER JOIN slialp ON scaalp.numalbar = slialp.numalbar  AND scaalp.fechaalb=slialp.fechaalb AND scaalp.codprove=slialp.codprove "
-    SQL = SQL & " WHERE scaalp.codprove =" & Text1(3).Text
-    SQL = SQL & " GROUP BY scaalp.numalbar, scaalp.fechaalb, scaalp.codforpa, scaalp.dtoppago,scaalp.dtognral "
-    SQL = SQL & " ORDER BY scaalp.numalbar"
+    Sql = "SELECT scaalp.numalbar,scaalp.fechaalb,scaalp.codforpa,sforpa.nomforpa,scaalp.dtoppago,scaalp.dtognral, "
+    Sql = Sql & " sum(slialp.importel) as bruto "
+    Sql = Sql & " FROM (scaalp LEFT OUTER JOIN sforpa ON scaalp.codforpa=sforpa.codforpa) "
+    Sql = Sql & " INNER JOIN slialp ON scaalp.numalbar = slialp.numalbar  AND scaalp.fechaalb=slialp.fechaalb AND scaalp.codprove=slialp.codprove "
+    Sql = Sql & " WHERE scaalp.codprove =" & Text1(3).Text
+    Sql = Sql & " GROUP BY scaalp.numalbar, scaalp.fechaalb, scaalp.codforpa, scaalp.dtoppago,scaalp.dtognral "
+    Sql = Sql & " ORDER BY scaalp.numalbar"
 
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     InicializarListView
     
@@ -1770,7 +1774,7 @@ End Sub
 
 Private Sub CalcularDatosFactura()
 Dim i As Integer
-Dim SQL As String
+Dim Sql As String
 Dim cadAux As String
 Dim vFactu As CFacturaCom
 
@@ -1789,12 +1793,12 @@ Dim vFactu As CFacturaCom
             ForPa = ListView1.ListItems(i).SubItems(2)
             dtoPP = ListView1.ListItems(i).SubItems(4)
             dtoGn = ListView1.ListItems(i).SubItems(5)
-            SQL = "(numalbar=" & DBSet(ListView1.ListItems(i).Text, "T") & " and "
-            SQL = SQL & "fechaalb=" & DBSet(ListView1.ListItems(i).SubItems(1), "F") & ")"
+            Sql = "(numalbar=" & DBSet(ListView1.ListItems(i).Text, "T") & " and "
+            Sql = Sql & "fechaalb=" & DBSet(ListView1.ListItems(i).SubItems(1), "F") & ")"
             If cadAux = "" Then
-                cadAux = SQL
+                cadAux = Sql
             Else
-                cadAux = cadAux & " OR " & SQL
+                cadAux = cadAux & " OR " & Sql
             End If
         End If
     Next i
@@ -1870,7 +1874,7 @@ Private Function SeleccionaRegistros() As Boolean
 'Comprueba que se seleccionan albaranes en la base de datos
 'es decir que hay albaranes marcados
 'cuando se van marcando albaranes se van añadiendo el la cadena cadWhere
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ESel
     SeleccionaRegistros = False
@@ -1878,9 +1882,9 @@ Dim SQL As String
     If cadWHERE = "" Then Exit Function
     cadWHERE = Replace(cadWHERE, "slialp", "scaalp")
     
-    SQL = "Select count(*) FROM scaalp"
-    SQL = SQL & " WHERE " & cadWHERE
-    If RegistrosAListar(SQL) <> 0 Then SeleccionaRegistros = True
+    Sql = "Select count(*) FROM scaalp"
+    Sql = Sql & " WHERE " & cadWHERE
+    If RegistrosAListar(Sql) <> 0 Then SeleccionaRegistros = True
     Exit Function
     
 ESel:
@@ -2022,22 +2026,22 @@ End Function
 
 Private Sub RefrescarAlbaranes()
 Dim i As Integer
-Dim SQL As String
+Dim Sql As String
 Dim Itm As ListItem
 Dim RS As ADODB.Recordset
     
 
     For i = 1 To ListView1.ListItems.Count
-        SQL = "SELECT scaalp.numalbar,scaalp.fechaalb,scaalp.codforpa,sforpa.nomforpa,scaalp.dtoppago,scaalp.dtognral, "
-        SQL = SQL & " sum(slialp.importel) as bruto "
-        SQL = SQL & " FROM (scaalp LEFT OUTER JOIN sforpa ON scaalp.codforpa=sforpa.codforpa) "
-        SQL = SQL & " INNER JOIN slialp ON scaalp.numalbar = slialp.numalbar  AND scaalp.fechaalb=slialp.fechaalb AND scaalp.codprove=slialp.codprove "
-        SQL = SQL & " WHERE scaalp.codprove =" & Text1(3).Text & " AND scaalp.numalbar=" & DBSet(ListView1.ListItems(i).Text, "T") & " AND scaalp.fechaalb=" & DBSet(ListView1.ListItems(i).SubItems(1), "F")
-        SQL = SQL & " GROUP BY scaalp.numalbar, scaalp.fechaalb, scaalp.codforpa, scaalp.dtoppago,scaalp.dtognral "
-        SQL = SQL & " ORDER BY scaalp.numalbar"
+        Sql = "SELECT scaalp.numalbar,scaalp.fechaalb,scaalp.codforpa,sforpa.nomforpa,scaalp.dtoppago,scaalp.dtognral, "
+        Sql = Sql & " sum(slialp.importel) as bruto "
+        Sql = Sql & " FROM (scaalp LEFT OUTER JOIN sforpa ON scaalp.codforpa=sforpa.codforpa) "
+        Sql = Sql & " INNER JOIN slialp ON scaalp.numalbar = slialp.numalbar  AND scaalp.fechaalb=slialp.fechaalb AND scaalp.codprove=slialp.codprove "
+        Sql = Sql & " WHERE scaalp.codprove =" & Text1(3).Text & " AND scaalp.numalbar=" & DBSet(ListView1.ListItems(i).Text, "T") & " AND scaalp.fechaalb=" & DBSet(ListView1.ListItems(i).SubItems(1), "F")
+        Sql = Sql & " GROUP BY scaalp.numalbar, scaalp.fechaalb, scaalp.codforpa, scaalp.dtoppago,scaalp.dtognral "
+        Sql = Sql & " ORDER BY scaalp.numalbar"
 
         Set RS = New ADODB.Recordset
-        RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
         If Not RS.EOF Then 'Actualizamos los datos de este item en el list
             ListView1.ListItems(i).SubItems(2) = RS!codforpa

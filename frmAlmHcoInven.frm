@@ -51,7 +51,6 @@ Begin VB.Form frmAlmHcoInven
          Height          =   240
          Index           =   0
          Left            =   795
-         Picture         =   "frmAlmHcoInven.frx":000C
          ToolTipText     =   "Buscar artículo"
          Top             =   270
          Width           =   240
@@ -310,7 +309,7 @@ Begin VB.Form frmAlmHcoInven
       _Version        =   393216
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmAlmHcoInven.frx":010E
+      Bindings        =   "frmAlmHcoInven.frx":000C
       Height          =   4170
       Left            =   360
       TabIndex        =   7
@@ -582,6 +581,8 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
+Dim i As Integer
+
     'Icono del formulario
     Me.Icon = frmPpal.Icon
    
@@ -602,6 +603,10 @@ Private Sub Form_Load()
         .Buttons(btnPrimero + 2).Image = 8 'Siguiente
         .Buttons(btnPrimero + 3).Image = 9 'Ultimo
     End With
+    
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
     
     LimpiarCampos   'Limpia los campos TextBox
     PrimeraVez = True

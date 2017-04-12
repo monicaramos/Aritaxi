@@ -396,24 +396,24 @@ Begin VB.Form frmComProveedores
       TabCaption(1)   =   "Datos Contacto"
       TabPicture(1)   =   "frmComProveedores.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label2(10)"
-      Tab(1).Control(1)=   "Label2(11)"
-      Tab(1).Control(2)=   "imgWeb"
-      Tab(1).Control(3)=   "imgCuentas(5)"
-      Tab(1).Control(4)=   "Text1(27)"
-      Tab(1).Control(5)=   "Text1(28)"
-      Tab(1).Control(6)=   "Frame1"
-      Tab(1).Control(7)=   "Frame2(13)"
+      Tab(1).Control(0)=   "Frame2(13)"
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(2)=   "Text1(28)"
+      Tab(1).Control(3)=   "Text1(27)"
+      Tab(1).Control(4)=   "imgCuentas(5)"
+      Tab(1).Control(5)=   "imgWeb"
+      Tab(1).Control(6)=   "Label2(11)"
+      Tab(1).Control(7)=   "Label2(10)"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmComProveedores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Text1(30)"
-      Tab(2).Control(1)=   "Toolbar2"
-      Tab(2).Control(2)=   "lw1"
-      Tab(2).Control(3)=   "Label2(0)"
-      Tab(2).Control(4)=   "imgFecha(2)"
-      Tab(2).Control(5)=   "Label3"
+      Tab(2).Control(0)=   "Label3"
+      Tab(2).Control(1)=   "imgFecha(2)"
+      Tab(2).Control(2)=   "Label2(0)"
+      Tab(2).Control(3)=   "lw1"
+      Tab(2).Control(4)=   "Toolbar2"
+      Tab(2).Control(5)=   "Text1(30)"
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1601,7 +1601,6 @@ Begin VB.Form frmComProveedores
          Height          =   240
          Index           =   1
          Left            =   9045
-         Picture         =   "frmComProveedores.frx":067C
          ToolTipText     =   "Buscar fecha"
          Top             =   1335
          Width           =   240
@@ -1610,7 +1609,6 @@ Begin VB.Form frmComProveedores
          Height          =   240
          Index           =   0
          Left            =   9045
-         Picture         =   "frmComProveedores.frx":0707
          ToolTipText     =   "Buscar fecha"
          Top             =   900
          Width           =   240
@@ -2134,7 +2132,7 @@ Dim Modo As Byte
 
 Dim BuscaChekc As String
 
-Dim IndCodigo As Integer
+Dim indCodigo As Integer
 
 
 
@@ -2245,6 +2243,8 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
+Dim i As Integer
+
     'Icono del formularios
     Me.Icon = frmPpal.Icon
    
@@ -2258,6 +2258,14 @@ Private Sub Form_Load()
     For kCampo = 0 To Me.ImgMail.Count - 1
         Me.ImgMail(kCampo).Picture = frmPpal.imgIcoForms.ListImages(4).Picture
     Next kCampo
+   
+
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+
+   
+   
    
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
@@ -2422,8 +2430,8 @@ End Sub
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 Dim cadB As String
     If CadenaSeleccion <> "" Then
-        Text1(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-        Text2(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+        Text1(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+        Text2(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
     End If
 End Sub
 
@@ -2447,13 +2455,13 @@ Dim indice As Byte
 '            indice = 12
 
 
-                IndCodigo = 12
+                indCodigo = 12
             
                 Set frmCtas = New frmBasico2
-                AyudaCuentasContables frmCtas, Text1(IndCodigo).Text, "apudirec='S'"
+                AyudaCuentasContables frmCtas, Text1(indCodigo).Text, "apudirec='S'"
                 Set frmCtas = Nothing
             
-                PonerFoco Text1(IndCodigo)
+                PonerFoco Text1(indCodigo)
             
 
         Case 1 'Forma de Pago

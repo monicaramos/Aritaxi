@@ -309,22 +309,22 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0A2A
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameObserva"
-      Tab(1).Control(1)=   "DataGrid1"
-      Tab(1).Control(2)=   "txtAux(8)"
-      Tab(1).Control(3)=   "txtAux(7)"
-      Tab(1).Control(4)=   "txtAux(6)"
-      Tab(1).Control(5)=   "txtAux(4)"
-      Tab(1).Control(6)=   "txtAux(0)"
-      Tab(1).Control(7)=   "txtAux(1)"
-      Tab(1).Control(8)=   "txtAux(2)"
-      Tab(1).Control(9)=   "txtAux(3)"
-      Tab(1).Control(10)=   "txtAux(5)"
-      Tab(1).Control(11)=   "txtAux(9)"
-      Tab(1).Control(12)=   "txtAux(10)"
-      Tab(1).Control(13)=   "cmdaux"
-      Tab(1).Control(14)=   "txtAux(11)"
-      Tab(1).Control(15)=   "cmdObserva"
+      Tab(1).Control(0)=   "cmdObserva"
+      Tab(1).Control(1)=   "txtAux(11)"
+      Tab(1).Control(2)=   "cmdaux"
+      Tab(1).Control(3)=   "txtAux(10)"
+      Tab(1).Control(4)=   "txtAux(9)"
+      Tab(1).Control(5)=   "txtAux(5)"
+      Tab(1).Control(6)=   "txtAux(3)"
+      Tab(1).Control(7)=   "txtAux(2)"
+      Tab(1).Control(8)=   "txtAux(1)"
+      Tab(1).Control(9)=   "txtAux(0)"
+      Tab(1).Control(10)=   "txtAux(4)"
+      Tab(1).Control(11)=   "txtAux(6)"
+      Tab(1).Control(12)=   "txtAux(7)"
+      Tab(1).Control(13)=   "txtAux(8)"
+      Tab(1).Control(14)=   "DataGrid1"
+      Tab(1).Control(15)=   "FrameObserva"
       Tab(1).ControlCount=   16
       Begin VB.Frame FrameCliente 
          Caption         =   "Datos Socio"
@@ -2522,8 +2522,11 @@ Private Sub Form_Load()
     
      'Icono de busqueda
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgListComun.ListImages(19).Picture
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next kCampo
+
+
+
 
     ' ICONITOS DE LA BARRA
     btnPrimero = 15

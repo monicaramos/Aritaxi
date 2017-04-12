@@ -769,7 +769,6 @@ Begin VB.Form frmAdmTrabajadores
             Height          =   240
             Index           =   2
             Left            =   3675
-            Picture         =   "frmAdmTrabajadores.frx":00B4
             ToolTipText     =   "Buscar fecha"
             Top             =   840
             Width           =   240
@@ -787,7 +786,6 @@ Begin VB.Form frmAdmTrabajadores
             Height          =   240
             Index           =   1
             Left            =   3675
-            Picture         =   "frmAdmTrabajadores.frx":013F
             ToolTipText     =   "Buscar fecha"
             Top             =   450
             Width           =   240
@@ -805,7 +803,6 @@ Begin VB.Form frmAdmTrabajadores
             Height          =   240
             Index           =   0
             Left            =   1155
-            Picture         =   "frmAdmTrabajadores.frx":01CA
             ToolTipText     =   "Buscar fecha"
             Top             =   450
             Width           =   240
@@ -1114,7 +1111,7 @@ Begin VB.Form frmAdmTrabajadores
          Width           =   825
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Bindings        =   "frmAdmTrabajadores.frx":0255
+         Bindings        =   "frmAdmTrabajadores.frx":00B4
          Height          =   3510
          Left            =   -74520
          TabIndex        =   58
@@ -1184,7 +1181,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid2 
-         Bindings        =   "frmAdmTrabajadores.frx":026A
+         Bindings        =   "frmAdmTrabajadores.frx":00C9
          Height          =   3510
          Left            =   -74520
          TabIndex        =   62
@@ -1254,7 +1251,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid3 
-         Bindings        =   "frmAdmTrabajadores.frx":027F
+         Bindings        =   "frmAdmTrabajadores.frx":00DE
          Height          =   3510
          Left            =   -74520
          TabIndex        =   63
@@ -1324,7 +1321,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid4 
-         Bindings        =   "frmAdmTrabajadores.frx":0294
+         Bindings        =   "frmAdmTrabajadores.frx":00F3
          Height          =   3510
          Left            =   -74520
          TabIndex        =   64
@@ -1394,7 +1391,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid5 
-         Bindings        =   "frmAdmTrabajadores.frx":02A9
+         Bindings        =   "frmAdmTrabajadores.frx":0108
          Height          =   3510
          Left            =   -74520
          TabIndex        =   65
@@ -1476,7 +1473,6 @@ Begin VB.Form frmAdmTrabajadores
          Height          =   240
          Index           =   2
          Left            =   1005
-         Picture         =   "frmAdmTrabajadores.frx":02BE
          Tag             =   "-1"
          ToolTipText     =   "Buscar centro coste"
          Top             =   3750
@@ -1495,7 +1491,6 @@ Begin VB.Form frmAdmTrabajadores
          Height          =   240
          Index           =   1
          Left            =   1005
-         Picture         =   "frmAdmTrabajadores.frx":03C0
          Tag             =   "-1"
          ToolTipText     =   "Buscar almacen"
          Top             =   3351
@@ -1541,7 +1536,6 @@ Begin VB.Form frmAdmTrabajadores
          Height          =   240
          Index           =   0
          Left            =   1005
-         Picture         =   "frmAdmTrabajadores.frx":04C2
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   1376
@@ -2378,6 +2372,8 @@ End Sub
 
 
 Private Sub Form_Load()
+Dim i As Integer
+
     'Icono del form
     Me.Icon = frmPpal.Icon
     
@@ -2407,6 +2403,14 @@ Private Sub Form_Load()
         .Buttons(btnPrimero + 2).Image = 8 'Siguiente
         .Buttons(btnPrimero + 3).Image = 9 'Último
     End With
+    
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next i
+    
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next i
     
     Me.SSTab1.Tab = 0
       

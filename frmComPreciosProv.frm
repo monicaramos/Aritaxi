@@ -89,7 +89,6 @@ Begin VB.Form frmComPreciosProv
          Height          =   240
          Index           =   0
          Left            =   1260
-         Picture         =   "frmComPreciosProv.frx":000C
          ToolTipText     =   "Buscar proveedor"
          Top             =   550
          Width           =   240
@@ -98,7 +97,6 @@ Begin VB.Form frmComPreciosProv
          Height          =   240
          Index           =   1
          Left            =   1260
-         Picture         =   "frmComPreciosProv.frx":010E
          ToolTipText     =   "Buscar artículo"
          Top             =   180
          Width           =   240
@@ -232,7 +230,6 @@ Begin VB.Form frmComPreciosProv
          Height          =   240
          Index           =   2
          Left            =   1050
-         Picture         =   "frmComPreciosProv.frx":0210
          ToolTipText     =   "Buscar fecha"
          Top             =   692
          Width           =   240
@@ -250,7 +247,6 @@ Begin VB.Form frmComPreciosProv
          Height          =   240
          Index           =   1
          Left            =   1050
-         Picture         =   "frmComPreciosProv.frx":029B
          ToolTipText     =   "Buscar fecha"
          Top             =   320
          Width           =   240
@@ -381,7 +377,6 @@ Begin VB.Form frmComPreciosProv
          Height          =   240
          Index           =   0
          Left            =   2955
-         Picture         =   "frmComPreciosProv.frx":0326
          ToolTipText     =   "Buscar fecha"
          Top             =   1090
          Width           =   240
@@ -537,7 +532,7 @@ Begin VB.Form frmComPreciosProv
       End
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmComPreciosProv.frx":03B1
+      Bindings        =   "frmComPreciosProv.frx":000C
       Height          =   2295
       Left            =   360
       TabIndex        =   17
@@ -861,6 +856,8 @@ End Sub
 
 
 Private Sub Form_Load()
+Dim i As Integer
+
     'Icono del formulario
     Me.Icon = frmPpal.Icon
     
@@ -881,6 +878,17 @@ Private Sub Form_Load()
         .Buttons(btnPrimero + 2).Image = 8 'Siguiente
         .Buttons(btnPrimero + 3).Image = 9 'Ultimo
     End With
+    
+
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+
+    
+    
     
     LimpiarCampos   'Limpia los campos TextBox
     DataGrid1.ClearFields

@@ -5,16 +5,16 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmLlamadas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Llamadas"
-   ClientHeight    =   6915
+   ClientHeight    =   6645
    ClientLeft      =   -105
    ClientTop       =   -15
-   ClientWidth     =   14220
+   ClientWidth     =   15225
    Icon            =   "frmLlamadas.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6915
-   ScaleWidth      =   14220
+   ScaleHeight     =   6645
+   ScaleWidth      =   15225
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
@@ -81,26 +81,26 @@ Begin VB.Form frmLlamadas
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmLlamadas.frx":000C
-      Height          =   5055
-      Left            =   120
+      Height          =   4905
+      Left            =   90
       TabIndex        =   3
       TabStop         =   0   'False
       Top             =   930
-      Width           =   13935
-      _ExtentX        =   24580
-      _ExtentY        =   8916
+      Width           =   14940
+      _ExtentX        =   26353
+      _ExtentY        =   8652
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
       RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -160,16 +160,16 @@ Begin VB.Form frmLlamadas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13080
+      Left            =   14010
       TabIndex        =   0
-      Top             =   6360
+      Top             =   6090
       Width           =   1035
    End
    Begin VB.Frame Frame1 
       Height          =   555
       Left            =   90
       TabIndex        =   1
-      Top             =   6180
+      Top             =   5970
       Width           =   2145
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -589,11 +589,12 @@ Dim i As Byte
 
     CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
 
-    
+    DataGrid1.RowHeight = 350
+
     'Nombre producto
     i = 0
         DataGrid1.Columns(i).Caption = "Fecha/Hora"
-        DataGrid1.Columns(i).Width = 1700
+        DataGrid1.Columns(i).Width = 2200
         DataGrid1.Columns(i).NumberFormat = "dd/mm/yyyy hh:mm:ss"
     
     'Leemos del vector en 2
@@ -602,22 +603,22 @@ Dim i As Byte
         DataGrid1.Columns(i).Width = 1175
             
     i = 2
-        DataGrid1.Columns(i).Caption = "Cod.Cli."
-        DataGrid1.Columns(i).Width = 970
+        DataGrid1.Columns(i).Caption = "Código"
+        DataGrid1.Columns(i).Width = 870
                     
     i = 3
         DataGrid1.Columns(i).Caption = "Cliente"
-        DataGrid1.Columns(i).Width = 2900
+        DataGrid1.Columns(i).Width = 3400
                
     i = 4
         DataGrid1.Columns(i).Caption = "Teléfono"
-        DataGrid1.Columns(i).Width = 1475
+        DataGrid1.Columns(i).Width = 1250
                           
                
                
     i = 5
-        DataGrid1.Columns(i).Caption = "Trab."
-        DataGrid1.Columns(i).Width = 800
+        DataGrid1.Columns(i).Caption = "Trabajador"
+        DataGrid1.Columns(i).Width = 1200
     'select feholla,usuario,codclien,nomclien,codtraba,nomtraba,nomllama1 from"
     
     i = 6
@@ -626,7 +627,7 @@ Dim i As Byte
     
     i = 7
         DataGrid1.Columns(i).Caption = "Motivo"
-        DataGrid1.Columns(i).Width = 2175
+        DataGrid1.Columns(i).Width = 2075
     
     
 

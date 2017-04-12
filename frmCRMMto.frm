@@ -369,7 +369,6 @@ Begin VB.Form frmCRMMto
       Height          =   240
       Index           =   2
       Left            =   6240
-      Picture         =   "frmCRMMto.frx":001A
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   2040
@@ -379,7 +378,6 @@ Begin VB.Form frmCRMMto
       Height          =   240
       Index           =   5
       Left            =   1080
-      Picture         =   "frmCRMMto.frx":011C
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   2040
@@ -389,7 +387,6 @@ Begin VB.Form frmCRMMto
       Height          =   240
       Index           =   4
       Left            =   6120
-      Picture         =   "frmCRMMto.frx":021E
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   1200
@@ -417,7 +414,6 @@ Begin VB.Form frmCRMMto
       Height          =   240
       Index           =   3
       Left            =   1080
-      Picture         =   "frmCRMMto.frx":0320
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   1260
@@ -832,6 +828,8 @@ End Sub
 
 Private Sub Form_Load()
 Dim Vac As Boolean
+Dim i As Integer
+
     'Icono del formulario
     PrimeraVez = True
     Me.Icon = frmPpal.Icon
@@ -851,6 +849,13 @@ Dim Vac As Boolean
         .Buttons(15).Image = 8  'Siguiente
         .Buttons(16).Image = 9  'Último
     End With
+    
+
+    For i = 2 To 5
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    
+    
     
     CargaComboMediosCRM Me.Combo1(1)
     CargaComboEstadoCRM Me.Combo1(0)

@@ -204,8 +204,7 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   5
-         Left            =   2430
-         Picture         =   "frmGesHisLlam.frx":00CC
+         Left            =   2400
          Tag             =   "-1"
          ToolTipText     =   "Ver Observaciones"
          Top             =   1020
@@ -214,8 +213,7 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   4
-         Left            =   2430
-         Picture         =   "frmGesHisLlam.frx":01CE
+         Left            =   2400
          Tag             =   "-1"
          ToolTipText     =   "Ver Observaciones"
          Top             =   630
@@ -224,15 +222,14 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   2430
-         Picture         =   "frmGesHisLlam.frx":02D0
+         Left            =   2400
          Tag             =   "-1"
          ToolTipText     =   "Ver Observaciones"
          Top             =   240
          Width           =   240
       End
       Begin VB.Label Label1 
-         Caption         =   "Observaciones II:"
+         Caption         =   "Observaciones II"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -250,7 +247,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1875
       End
       Begin VB.Label Label1 
-         Caption         =   "Observaciones Cliente:"
+         Caption         =   "Observaciones Cliente"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -268,7 +265,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   2325
       End
       Begin VB.Label Label1 
-         Caption         =   "Observaciones:"
+         Caption         =   "Observaciones"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -522,7 +519,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   975
       End
       Begin VB.Label Label1 
-         Caption         =   "Propina:"
+         Caption         =   "Propina"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -540,7 +537,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1155
       End
       Begin VB.Label Label1 
-         Caption         =   "Peaje:"
+         Caption         =   "Peaje"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -558,7 +555,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1155
       End
       Begin VB.Label Label1 
-         Caption         =   "Suplemento:"
+         Caption         =   "Suplemento"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -576,7 +573,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1275
       End
       Begin VB.Label Label1 
-         Caption         =   "Distancia:"
+         Caption         =   "Distancia"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -594,7 +591,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1155
       End
       Begin VB.Label Label1 
-         Caption         =   "Ext.Venta:"
+         Caption         =   "Ext.Venta"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -612,7 +609,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1155
       End
       Begin VB.Label Label1 
-         Caption         =   "Ext.Compra:"
+         Caption         =   "Ext.Compra"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -630,7 +627,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1725
       End
       Begin VB.Label Label1 
-         Caption         =   "Imp. Venta:"
+         Caption         =   "Imp. Venta"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -648,7 +645,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1725
       End
       Begin VB.Label Label1 
-         Caption         =   "Imp. Compra:"
+         Caption         =   "Imp. Compra"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -666,7 +663,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1845
       End
       Begin VB.Label Label1 
-         Caption         =   "Imp. TX:"
+         Caption         =   "Imp. TX"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -931,7 +928,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1305
       End
       Begin VB.Label Label1 
-         Caption         =   "Ope.Des:"
+         Caption         =   "Ope.Des"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -949,7 +946,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1095
       End
       Begin VB.Label Label1 
-         Caption         =   "Ope.Res:"
+         Caption         =   "Ope.Res"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -970,7 +967,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   5
          Left            =   1320
-         Picture         =   "frmGesHisLlam.frx":03D2
+         Picture         =   "frmGesHisLlam.frx":00CC
          ToolTipText     =   "Buscar fecha"
          Top             =   1770
          Width           =   240
@@ -979,7 +976,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   4
          Left            =   1320
-         Picture         =   "frmGesHisLlam.frx":045D
+         Picture         =   "frmGesHisLlam.frx":0157
          ToolTipText     =   "Buscar fecha"
          Top             =   1410
          Width           =   240
@@ -988,7 +985,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   3
          Left            =   1320
-         Picture         =   "frmGesHisLlam.frx":04E8
+         Picture         =   "frmGesHisLlam.frx":01E2
          ToolTipText     =   "Buscar fecha"
          Top             =   1050
          Width           =   240
@@ -997,13 +994,13 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   2
          Left            =   1320
-         Picture         =   "frmGesHisLlam.frx":0573
+         Picture         =   "frmGesHisLlam.frx":026D
          ToolTipText     =   "Buscar fecha"
          Top             =   690
          Width           =   240
       End
       Begin VB.Label Label1 
-         Caption         =   "Finalizado:"
+         Caption         =   "Finalizado"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1021,7 +1018,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1065
       End
       Begin VB.Label Label1 
-         Caption         =   "Ocupado:"
+         Caption         =   "Ocupado"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1039,7 +1036,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1065
       End
       Begin VB.Label Label1 
-         Caption         =   "Llegada:"
+         Caption         =   "Llegada"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1057,7 +1054,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1065
       End
       Begin VB.Label Label1 
-         Caption         =   "Aviso:"
+         Caption         =   "Aviso"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1075,7 +1072,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1065
       End
       Begin VB.Label Label1 
-         Caption         =   "Reserva:"
+         Caption         =   "Reserva"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1096,7 +1093,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   1
          Left            =   1320
-         Picture         =   "frmGesHisLlam.frx":05FE
+         Picture         =   "frmGesHisLlam.frx":02F8
          ToolTipText     =   "Buscar fecha"
          Top             =   330
          Width           =   240
@@ -1714,7 +1711,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   960
       End
       Begin VB.Label Label1 
-         Caption         =   "Destino:"
+         Caption         =   "Destino"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1732,7 +1729,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1425
       End
       Begin VB.Label Label1 
-         Caption         =   "Nº/Puerta:"
+         Caption         =   "Nº/Puerta"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1750,7 +1747,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1545
       End
       Begin VB.Label Label1 
-         Caption         =   "Nombre:"
+         Caption         =   "Nombre"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1768,7 +1765,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1305
       End
       Begin VB.Label Label1 
-         Caption         =   "Autorización:"
+         Caption         =   "Autorización"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1786,7 +1783,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1485
       End
       Begin VB.Label Label1 
-         Caption         =   "Usuario:"
+         Caption         =   "Usuario"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1806,8 +1803,7 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   1020
-         Picture         =   "frmGesHisLlam.frx":0689
+         Left            =   1170
          ToolTipText     =   "Buscar fecha"
          Top             =   270
          Width           =   240
@@ -1816,14 +1812,13 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   3
          Left            =   4980
-         Picture         =   "frmGesHisLlam.frx":0714
          Tag             =   "-1"
          ToolTipText     =   "Buscar Socio"
          Top             =   270
          Width           =   240
       End
       Begin VB.Label Label1 
-         Caption         =   "Cliente:"
+         Caption         =   "Cliente"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1841,7 +1836,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   705
       End
       Begin VB.Label Label1 
-         Caption         =   "Teléfono:"
+         Caption         =   "Teléfono"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1859,7 +1854,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1425
       End
       Begin VB.Label Label1 
-         Caption         =   "Hora:"
+         Caption         =   "Hora"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1877,7 +1872,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   495
       End
       Begin VB.Label Label1 
-         Caption         =   "Fecha:"
+         Caption         =   "Fecha"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1898,14 +1893,13 @@ Begin VB.Form frmGesHisLlam
          Height          =   240
          Index           =   1
          Left            =   3990
-         Picture         =   "frmGesHisLlam.frx":0816
          Tag             =   "-1"
          ToolTipText     =   "Buscar cliente"
          Top             =   1110
          Width           =   240
       End
       Begin VB.Label Label1 
-         Caption         =   "Matrícula:"
+         Caption         =   "Matrícula"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1923,7 +1917,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1245
       End
       Begin VB.Label Label1 
-         Caption         =   "Identificación:"
+         Caption         =   "Identificación"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1941,7 +1935,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1485
       End
       Begin VB.Label Label1 
-         Caption         =   "Nº Vehículo:"
+         Caption         =   "Nº Vehículo"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1959,7 +1953,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1275
       End
       Begin VB.Label Label1 
-         Caption         =   "Tipo de servicio:"
+         Caption         =   "Tipo de servicio"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1977,7 +1971,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1725
       End
       Begin VB.Label Label1 
-         Caption         =   "Licencia:"
+         Caption         =   "Licencia"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1995,7 +1989,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1245
       End
       Begin VB.Label Label1 
-         Caption         =   "Provincia:"
+         Caption         =   "Provincia"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -2013,7 +2007,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1425
       End
       Begin VB.Label Label1 
-         Caption         =   "Población:"
+         Caption         =   "Población"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -2033,15 +2027,14 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   4020
-         Picture         =   "frmGesHisLlam.frx":0918
+         Left            =   4050
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   2670
          Width           =   240
       End
       Begin VB.Label Label1 
-         Caption         =   "CP:"
+         Caption         =   "CP"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -2056,10 +2049,10 @@ Begin VB.Form frmGesHisLlam
          Left            =   3690
          TabIndex        =   53
          Top             =   2640
-         Width           =   735
+         Width           =   255
       End
       Begin VB.Label Label1 
-         Caption         =   "Domicilio:"
+         Caption         =   "Domicilio"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -2077,7 +2070,7 @@ Begin VB.Form frmGesHisLlam
          Width           =   1425
       End
       Begin VB.Label Label1 
-         Caption         =   "Socio:"
+         Caption         =   "Socio"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -2477,6 +2470,8 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
+Dim I As Integer
+
     'Icono del form
     Me.Icon = frmPpal.Icon
     
@@ -2530,7 +2525,13 @@ Private Sub Form_Load()
 '    End With
     
     
-    
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+
     
       
     LimpiarCampos   'Limpia los campos TextBox
@@ -2705,7 +2706,7 @@ Dim I As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = b
+    Toolbar1.Buttons(1).Enabled = b
     
     b = (Modo = 2 Or Modo = 5)
     'Modificar
@@ -3366,11 +3367,5 @@ End Function
 
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
     Desplazamiento (Button.Index)
-End Sub
-
-
-Private Sub DesplazamientoVisible(bol As Boolean)
-    FrameDesplazamiento.visible = bol
-    FrameDesplazamiento.Enabled = bol
 End Sub
 

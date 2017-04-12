@@ -88,7 +88,9 @@ Begin VB.Form frmLLamadasDatos2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
+      ItemData        =   "frmLLamadasDatos.frx":0012
       Left            =   2520
+      List            =   "frmLLamadasDatos.frx":0014
       Style           =   2  'Dropdown List
       TabIndex        =   9
       Tag             =   "Motivo|N|N|||sllama|codllama1||N|"
@@ -680,15 +682,15 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     PrimeVez = True
     'Icono del formulario
     Me.Icon = frmPpal.Icon
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next i
 
     LimpiarCampos
 
@@ -723,30 +725,30 @@ Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim I As Integer
+Dim i As Integer
     CadenaDesdeOtroForm = ""
     If Index = 0 Then
         Set frmCl = New frmFacClientes
         frmCl.DatosADevolverBusqueda = "0"
         frmCl.Show vbModal
         Set frmCl = Nothing
-        I = 3
+        i = 3
     Else
         Set frmT = New frmAdmTrabajadores
         frmT.DatosADevolverBusqueda = "0|"
         frmT.Show vbModal
         Set frmT = Nothing
-        I = 6 + Index
+        i = 6 + Index
     End If
     
     If CadenaDesdeOtroForm <> "" Then
-        Text1(I).Text = CadenaDesdeOtroForm
-        PonerFoco Text1(I)
-        Text1_LostFocus I
+        Text1(i).Text = CadenaDesdeOtroForm
+        PonerFoco Text1(i)
+        Text1_LostFocus i
         CadenaDesdeOtroForm = ""
-        If I = 3 Then
+        If i = 3 Then
             PonerFoco Text1(7)  'traba
-        ElseIf I = 7 Then
+        ElseIf i = 7 Then
             PonerFoco Text1(8)
         Else
             PonerFocoCbo Me.Combo1
@@ -861,21 +863,8 @@ Dim b As Boolean
     DatosOk = b
 End Function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 Private Sub AccionesVarias()
-Dim I As Integer
+Dim i As Integer
 
     On Error GoTo ER
     
@@ -890,7 +879,7 @@ Dim I As Integer
     While Not miRsAux.EOF
         Combo1.AddItem miRsAux!nomllama1
         Combo1.ItemData(Combo1.NewIndex) = CInt(miRsAux!codllama1)
-        I = I + 1
+        i = i + 1
         miRsAux.MoveNext
     Wend
     miRsAux.Close
@@ -916,18 +905,10 @@ Dim I As Integer
         Text1(1).Text = Sql
         Text1(11).Text = Sql
         
-        
-
-        
-        
         CadenaDesdeOtroForm = ""
             
-        
     End If
         
- 
-    
-    
 ER:
     If Err.Number <> 0 Then MuestraError Err.Number, Sql
     Set miRsAux = Nothing
@@ -936,11 +917,11 @@ End Sub
 
 Private Sub PonerModo()
 Dim b As Boolean
-Dim I As Integer
+Dim i As Integer
 
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     b = vModo = 1
     BloquearTxt Text1(0), Not b, True

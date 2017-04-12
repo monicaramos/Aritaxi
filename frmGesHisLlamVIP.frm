@@ -236,7 +236,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   0
          Left            =   1020
-         Picture         =   "frmGesHisLlamVIP.frx":0000
          ToolTipText     =   "Buscar fecha"
          Top             =   270
          Width           =   240
@@ -245,7 +244,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   3
          Left            =   2940
-         Picture         =   "frmGesHisLlamVIP.frx":008B
          Tag             =   "-1"
          ToolTipText     =   "Buscar Socio"
          Top             =   240
@@ -291,7 +289,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   1
          Left            =   780
-         Picture         =   "frmGesHisLlamVIP.frx":018D
          Tag             =   "-1"
          ToolTipText     =   "Buscar cliente"
          Top             =   1080
@@ -364,7 +361,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   0
          Left            =   780
-         Picture         =   "frmGesHisLlamVIP.frx":028F
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   2190
@@ -435,7 +431,7 @@ Begin VB.Form frmGesHisLlamVIP
          MaxLength       =   200
          TabIndex        =   36
          Tag             =   "Observaciones Cliente|T|S|||shilla|observa1|||"
-         Text            =   $"frmGesHisLlamVIP.frx":0391
+         Text            =   $"frmGesHisLlamVIP.frx":0000
          Top             =   600
          Width           =   7485
       End
@@ -454,7 +450,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   5
          Left            =   1800
-         Picture         =   "frmGesHisLlamVIP.frx":045D
          Tag             =   "-1"
          ToolTipText     =   "Ver Observaciones"
          Top             =   960
@@ -464,7 +459,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   4
          Left            =   1800
-         Picture         =   "frmGesHisLlamVIP.frx":055F
          Tag             =   "-1"
          ToolTipText     =   "Ver Observaciones"
          Top             =   600
@@ -474,7 +468,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   2
          Left            =   1800
-         Picture         =   "frmGesHisLlamVIP.frx":0661
          Tag             =   "-1"
          ToolTipText     =   "Ver Observaciones"
          Top             =   240
@@ -917,7 +910,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   5
          Left            =   1080
-         Picture         =   "frmGesHisLlamVIP.frx":0763
          ToolTipText     =   "Buscar fecha"
          Top             =   1830
          Width           =   240
@@ -926,7 +918,6 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   240
          Index           =   4
          Left            =   1080
-         Picture         =   "frmGesHisLlamVIP.frx":07EE
          ToolTipText     =   "Buscar fecha"
          Top             =   1470
          Width           =   240
@@ -1245,7 +1236,7 @@ Private Sub Check1_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim i As Long
+Dim I As Long
 Dim cadB As String
 Dim cad As String
 Dim Indicador As String
@@ -1418,6 +1409,8 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
+Dim I As Integer
+
     'Icono del form
     Me.Icon = frmPpal.Icon
     
@@ -1441,6 +1434,15 @@ Private Sub Form_Load()
         .Buttons(btnPrimero + 2).Image = 8 'Siguiente
         .Buttons(btnPrimero + 3).Image = 9 'Último
     End With
+    
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    
+    imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    imgFecha(4).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    imgFecha(5).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    
     
       
     LimpiarCampos   'Limpia los campos TextBox
@@ -1505,7 +1507,7 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
@@ -1515,9 +1517,9 @@ On Error GoTo EPonerModo
     
     BuscaChekc = ""
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     Modo = Kmodo
@@ -1556,14 +1558,14 @@ On Error GoTo EPonerModo
 '    For i = 0 To 2
 '        Check1(i).Enabled = b
 '    Next i
-    For i = 3 To 4
-        Check1(i).Enabled = (Modo = 1)
-    Next i
+    For I = 3 To 4
+        Check1(I).Enabled = (Modo = 1)
+    Next I
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     ' No hay icono para las observaciones de 60 de longitud maxima
     Me.imgBuscar(2).Enabled = False
@@ -1580,9 +1582,9 @@ On Error GoTo EPonerModo
     
     
     
-    For i = 4 To 5
-        Me.imgFecha(i).Enabled = b
-    Next i
+    For I = 4 To 5
+        Me.imgFecha(I).Enabled = b
+    Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -1609,7 +1611,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar

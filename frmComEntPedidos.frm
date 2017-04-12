@@ -122,7 +122,6 @@ Begin VB.Form frmComEntPedidos
          Height          =   240
          Index           =   0
          Left            =   6735
-         Picture         =   "frmComEntPedidos.frx":000C
          ToolTipText     =   "Buscar proveedor"
          Top             =   520
          Width           =   240
@@ -149,7 +148,6 @@ Begin VB.Form frmComEntPedidos
          Height          =   240
          Index           =   2
          Left            =   6735
-         Picture         =   "frmComEntPedidos.frx":010E
          ToolTipText     =   "Buscar trabajador"
          Top             =   160
          Width           =   240
@@ -167,7 +165,6 @@ Begin VB.Form frmComEntPedidos
          Height          =   240
          Index           =   0
          Left            =   2475
-         Picture         =   "frmComEntPedidos.frx":0210
          ToolTipText     =   "Buscar fecha"
          Top             =   180
          Width           =   240
@@ -472,6 +469,7 @@ Begin VB.Form frmComEntPedidos
       _ExtentY        =   7805
       _Version        =   393216
       Style           =   1
+      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -484,8 +482,8 @@ Begin VB.Form frmComEntPedidos
          Strikethrough   =   0   'False
       EndProperty
       TabCaption(0)   =   "Datos básicos"
-      TabPicture(0)   =   "frmComEntPedidos.frx":029B
-      Tab(0).ControlEnabled=   -1  'True
+      TabPicture(0)   =   "frmComEntPedidos.frx":000C
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "DataGrid1"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "txtAux(0)"
@@ -516,29 +514,39 @@ Begin VB.Form frmComEntPedidos
       Tab(0).Control(13).Enabled=   0   'False
       Tab(0).ControlCount=   14
       TabCaption(1)   =   "Otros Datos"
-      TabPicture(1)   =   "frmComEntPedidos.frx":02B7
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
-      Tab(1).Control(1)=   "FrameDirFactura"
-      Tab(1).Control(2)=   "FrameDirMercancia"
-      Tab(1).Control(3)=   "Text1(21)"
+      TabPicture(1)   =   "frmComEntPedidos.frx":0028
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "Label1(45)"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Text1(17)"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "Text1(18)"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "Text1(19)"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Text1(20)"
-      Tab(1).Control(5)=   "Text1(19)"
-      Tab(1).Control(6)=   "Text1(18)"
-      Tab(1).Control(7)=   "Text1(17)"
-      Tab(1).Control(8)=   "Label1(45)"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "Text1(21)"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "FrameDirMercancia"
+      Tab(1).Control(6).Enabled=   0   'False
+      Tab(1).Control(7)=   "FrameDirFactura"
+      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).Control(8)=   "FrameHco"
+      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).ControlCount=   9
       TabCaption(2)   =   "Totales"
-      TabPicture(2)   =   "frmComEntPedidos.frx":02D3
+      TabPicture(2)   =   "frmComEntPedidos.frx":0044
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameFactura"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.CommandButton cmdAux 
          Appearance      =   0  'Flat
          Caption         =   "+"
          Height          =   315
          Index           =   2
-         Left            =   11040
+         Left            =   -63960
          TabIndex        =   132
          ToolTipText     =   "Buscar centro coste"
          Top             =   3960
@@ -551,7 +559,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   8
-         Left            =   10440
+         Left            =   -64560
          MaxLength       =   4
          TabIndex        =   45
          Tag             =   "centro coste"
@@ -573,7 +581,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1970
-         Left            =   -67200
+         Left            =   7800
          TabIndex        =   126
          Top             =   2350
          Width           =   3495
@@ -655,7 +663,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   9
             Left            =   960
-            Picture         =   "frmComEntPedidos.frx":02EF
             ToolTipText     =   "Buscar trabajador"
             Top             =   660
             Width           =   240
@@ -673,7 +680,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   10
             Left            =   1080
-            Picture         =   "frmComEntPedidos.frx":03F1
             ToolTipText     =   "Buscar incidencia"
             Top             =   1320
             Width           =   240
@@ -1087,7 +1093,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1900
-         Left            =   -69000
+         Left            =   6000
          TabIndex        =   72
          Top             =   420
          Width           =   5175
@@ -1168,7 +1174,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   5
             Left            =   720
-            Picture         =   "frmComEntPedidos.frx":04F3
             ToolTipText     =   "Buscar dirección"
             Top             =   360
             Width           =   240
@@ -1223,7 +1228,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1900
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   62
          Top             =   420
          Width           =   5175
@@ -1340,7 +1345,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   4
             Left            =   720
-            Picture         =   "frmComEntPedidos.frx":05F5
             ToolTipText     =   "Buscar dirección"
             Top             =   360
             Width           =   240
@@ -1348,7 +1352,7 @@ Begin VB.Form frmComEntPedidos
       End
       Begin VB.Frame FrameCliente 
          Height          =   1770
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   51
          Top             =   310
          Width           =   11415
@@ -1529,7 +1533,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   8
             Left            =   6645
-            Picture         =   "frmComEntPedidos.frx":06F7
             ToolTipText     =   "Buscar trabajador"
             Top             =   560
             Width           =   240
@@ -1547,7 +1550,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   7
             Left            =   6645
-            Picture         =   "frmComEntPedidos.frx":07F9
             ToolTipText     =   "Buscar cliente"
             Top             =   210
             Width           =   240
@@ -1565,7 +1567,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   6
             Left            =   900
-            Picture         =   "frmComEntPedidos.frx":08FB
             ToolTipText     =   "Buscar proveedor varios"
             Top             =   210
             Visible         =   0   'False
@@ -1585,7 +1586,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   1
             Left            =   900
-            Picture         =   "frmComEntPedidos.frx":09FD
             ToolTipText     =   "Buscar población"
             Top             =   940
             Width           =   240
@@ -1657,7 +1657,6 @@ Begin VB.Form frmComEntPedidos
             Height          =   240
             Index           =   3
             Left            =   6645
-            Picture         =   "frmComEntPedidos.frx":0AFF
             ToolTipText     =   "Buscar forma de pago"
             Top             =   930
             Width           =   240
@@ -1677,7 +1676,7 @@ Begin VB.Form frmComEntPedidos
          Caption         =   "+"
          Height          =   315
          Index           =   1
-         Left            =   2640
+         Left            =   -72360
          TabIndex        =   50
          ToolTipText     =   "Buscar artículo"
          Top             =   3960
@@ -1689,7 +1688,7 @@ Begin VB.Form frmComEntPedidos
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   49
          ToolTipText     =   "Buscar almacen"
          Top             =   3960
@@ -1702,7 +1701,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   2
-         Left            =   2880
+         Left            =   -72120
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   40
@@ -1719,7 +1718,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   7
-         Left            =   9360
+         Left            =   -65640
          MaxLength       =   12
          TabIndex        =   47
          Tag             =   "Importe"
@@ -1735,7 +1734,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   6
-         Left            =   8880
+         Left            =   -66120
          MaxLength       =   30
          TabIndex        =   44
          Tag             =   "Descuento 2"
@@ -1751,7 +1750,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   5
-         Left            =   8280
+         Left            =   -66720
          MaxLength       =   5
          TabIndex        =   43
          Tag             =   "Descuento 1"
@@ -1767,7 +1766,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   4
-         Left            =   7320
+         Left            =   -67680
          MaxLength       =   12
          TabIndex        =   42
          Tag             =   "Precio"
@@ -1783,7 +1782,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   3
-         Left            =   6000
+         Left            =   -69000
          MaxLength       =   16
          TabIndex        =   41
          Tag             =   "Cantidad"
@@ -1798,7 +1797,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   1
-         Left            =   1200
+         Left            =   -73800
          MaxLength       =   18
          TabIndex        =   39
          Tag             =   "Código Artículo"
@@ -1813,7 +1812,7 @@ Begin VB.Form frmComEntPedidos
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   15
          TabIndex        =   38
          Tag             =   "Código Almacen"
@@ -1825,7 +1824,7 @@ Begin VB.Form frmComEntPedidos
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   21
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   80
          TabIndex        =   26
          Tag             =   "Observación 5|T|S|||scappr|observa5||N|"
@@ -1835,7 +1834,7 @@ Begin VB.Form frmComEntPedidos
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   20
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   80
          TabIndex        =   25
          Tag             =   "Observación 4|T|S|||scappr|observa4||N|"
@@ -1845,7 +1844,7 @@ Begin VB.Form frmComEntPedidos
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   19
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   80
          TabIndex        =   24
          Tag             =   "Observación 3|T|S|||scappr|observa3||N|"
@@ -1855,7 +1854,7 @@ Begin VB.Form frmComEntPedidos
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   18
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   80
          TabIndex        =   23
          Tag             =   "Observación 2|T|S|||scappr|observa2||N|"
@@ -1865,7 +1864,7 @@ Begin VB.Form frmComEntPedidos
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   17
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   80
          TabIndex        =   22
          Tag             =   "Observación 1|T|S|||scappr|observa1||N|"
@@ -1873,9 +1872,9 @@ Begin VB.Form frmComEntPedidos
          Width           =   7485
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Bindings        =   "frmComEntPedidos.frx":0C01
+         Bindings        =   "frmComEntPedidos.frx":0060
          Height          =   2025
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   48
          Top             =   2130
          Width           =   11415
@@ -1945,7 +1944,7 @@ Begin VB.Form frmComEntPedidos
          Caption         =   "Observaciones"
          Height          =   255
          Index           =   45
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   37
          Top             =   2640
          Width           =   1095
@@ -2691,6 +2690,7 @@ End Sub
 
 Private Sub Form_Load()
 Dim SelectInicial As String
+Dim i As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -2722,6 +2722,16 @@ Dim SelectInicial As String
           
     '## A mano
      Me.FrameHco.visible = EsHistorico
+    
+
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+
+    
     
     
     'Si no lleva datosdvolverbusqueda

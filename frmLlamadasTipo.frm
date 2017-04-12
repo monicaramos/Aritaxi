@@ -139,12 +139,12 @@ Begin VB.Form frmLlamadasTipo
       HeadLines       =   1
       RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -443,7 +443,7 @@ Dim b As Boolean
     Me.mnEliminar.Enabled = b
     
     'Imprimir
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(8).Enabled = False
 End Sub
 
 
@@ -775,13 +775,13 @@ Dim b As Boolean
     'Nombre producto
     i = 0
         DataGrid1.Columns(i).Caption = "Codigo"
-        DataGrid1.Columns(i).Width = 900
+        DataGrid1.Columns(i).Width = 1200
         DataGrid1.Columns(i).NumberFormat = FormatoCod
     
     'Leemos del vector en 2
     i = 1
         DataGrid1.Columns(i).Caption = "Denominación"
-        DataGrid1.Columns(i).Width = 3730
+        DataGrid1.Columns(i).Width = 4430
             
     'Fiajamos el cadancho
     If Not CadAncho Then
@@ -797,9 +797,10 @@ Dim b As Boolean
    Next i
    
     'Habilitamos botones Modificar y Eliminar
-   If Toolbar1.Buttons(1).Enabled = True Then
-        Toolbar1.Buttons(1).Enabled = Not Adodc1.Recordset.EOF
+   
+   If Toolbar1.Buttons(2).Enabled = True Then
         Toolbar1.Buttons(2).Enabled = Not Adodc1.Recordset.EOF
+        Toolbar1.Buttons(3).Enabled = Not Adodc1.Recordset.EOF
         mnModificar.Enabled = Not Adodc1.Recordset.EOF
         mnEliminar.Enabled = Not Adodc1.Recordset.EOF
     End If

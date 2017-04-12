@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmCuotasContaFac 
    Caption         =   "AriTaxi"
    ClientHeight    =   4470
@@ -156,7 +156,6 @@ Begin VB.Form frmCuotasContaFac
       Height          =   240
       Index           =   5
       Left            =   3930
-      Picture         =   "frmCuotasContaFac.frx":0000
       ToolTipText     =   "Buscar Fecha"
       Top             =   2160
       Width           =   240
@@ -174,7 +173,6 @@ Begin VB.Form frmCuotasContaFac
       Height          =   240
       Index           =   4
       Left            =   1350
-      Picture         =   "frmCuotasContaFac.frx":008B
       ToolTipText     =   "Buscar Fecha"
       Top             =   2160
       Width           =   240
@@ -294,10 +292,10 @@ Dim CambiaConta As Boolean
         'que guardamos en vbles Orden1,Orden2
         
         'fechaini del ejercicio de la conta
-        If txtCodigo(31).Text = "" Then txtCodigo(31).Text = Orden1
+        If txtcodigo(31).Text = "" Then txtcodigo(31).Text = Orden1
      
         'fecha fin del ejercicio de la conta
-        If txtCodigo(32).Text = "" Then txtCodigo(32).Text = Orden2
+        If txtcodigo(32).Text = "" Then txtcodigo(32).Text = Orden2
      
         'Comprobar que el intervalo de fechas D/H esta dentro del ejercicio de la
         'contabilidad par ello mirar en la BD de la Conta los parámetros
@@ -305,7 +303,7 @@ Dim CambiaConta As Boolean
         If Not ComprobarFechasConta(32) Then Exit Sub
     
     
-    devuelve = CadenaDesdeHasta(txtCodigo(31).Text, txtCodigo(32).Text, Codigo, "F", "Fecha Factura")
+    devuelve = CadenaDesdeHasta(txtcodigo(31).Text, txtcodigo(32).Text, Codigo, "F", "Fecha Factura")
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
     'Parametro D/H Fecha
     If devuelve <> "" And param <> "" Then
@@ -315,7 +313,7 @@ Dim CambiaConta As Boolean
     
     
     '- cadena para select en BDatos
-    cadSelect = CadenaDesdeHastaBD(txtCodigo(31).Text, txtCodigo(32).Text, Codigo, "F")
+    cadSelect = CadenaDesdeHastaBD(txtcodigo(31).Text, txtcodigo(32).Text, Codigo, "F")
     
     
     '== Cadena para seleccion Desde y Hasta NºFactura ==
@@ -397,7 +395,7 @@ On Error GoTo EComprobar
 
     ComprobarFechasConta = False
     
-    If txtCodigo(Ind).Text <> "" Then
+    If txtcodigo(Ind).Text <> "" Then
         FechaIni = "Select fechaini,fechafin From parametros"
         Set RS = New ADODB.Recordset
         RS.Open FechaIni, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -414,12 +412,12 @@ On Error GoTo EComprobar
             Orden1 = FechaIni
             Orden2 = FechaFin
         
-            If Not EntreFechas(FechaIni, txtCodigo(Ind).Text, FechaFin) Then
+            If Not EntreFechas(FechaIni, txtcodigo(Ind).Text, FechaFin) Then
                  cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
                  cad = cad & "    Desde: " & FechaIni & vbCrLf
                  cad = cad & "    Hasta: " & FechaFin
                  MsgBox cad, vbExclamation
-                 txtCodigo(Ind).Text = ""
+                 txtcodigo(Ind).Text = ""
             Else
                 ComprobarFechasConta = True
             End If
@@ -465,12 +463,12 @@ Dim CCoste2 As Byte
      'comprobar que se han rellenado los dos campos de fecha
      'sino rellenar con fechaini o fechafin del ejercicio
      'que guardamos en vbles Orden1,Orden2
-     If txtCodigo(31).Text = "" Then
-        txtCodigo(31).Text = vEmpresa.FechaIni  'fechaini del ejercicio de la conta
+     If txtcodigo(31).Text = "" Then
+        txtcodigo(31).Text = vEmpresa.FechaIni  'fechaini del ejercicio de la conta
      End If
 
-     If txtCodigo(32).Text = "" Then
-        txtCodigo(32).Text = vEmpresa.FechaFin  'fecha fin del ejercicio de la conta
+     If txtcodigo(32).Text = "" Then
+        txtcodigo(32).Text = vEmpresa.FechaFin  'fecha fin del ejercicio de la conta
      End If
 
 
@@ -484,7 +482,7 @@ Dim CCoste2 As Byte
     'La comprobacion solo lo hago para facturas nuestras, ya que mas adelante
     'el programa hara cdate(text1(31) cuando contabilice las facturas y dara error de tipos
     If cadTabla = "scafac" Then
-        If Me.txtCodigo(31).Text = "" Then
+        If Me.txtcodigo(31).Text = "" Then
             MsgBox "Fecha inicio incorrecta", vbExclamation
             Exit Function
         End If
@@ -495,7 +493,7 @@ Dim CCoste2 As Byte
     'comprobar si existen en Aritaxi facturas anteriores al periodo solicitado
     'sin contabilizar.
     
-    If Me.txtCodigo(31).Text <> "" Then 'anteriores a fechadesde
+    If Me.txtcodigo(31).Text <> "" Then 'anteriores a fechadesde
         Sql = "SELECT COUNT(*) FROM " & cadTabla
         If Check1.Value = 0 Then
             If Me.OptNormales.Value Then
@@ -507,7 +505,7 @@ Dim CCoste2 As Byte
             Sql = Sql & " WHERE codtipom='FRC' and "
         End If
         Sql = Sql & "fecfactu <"
-        Sql = Sql & DBSet(txtCodigo(31), "F") & " AND intconta=0 "
+        Sql = Sql & DBSet(txtcodigo(31), "F") & " AND intconta=0 "
         
         
         If RegistrosAListar(Sql) > 0 Then
@@ -558,7 +556,7 @@ Dim CCoste2 As Byte
     '-----------------------------------------------------------------------
     If cadTabla = "scafac" Then
         Me.lblProgess(1).Caption = "Comprobando Nº Facturas en contabilidad ..."
-        Sql = "anofaccl>=" & Year(txtCodigo(31).Text) & " AND anofaccl<= " & Year(txtCodigo(32).Text)
+        Sql = "anofaccl>=" & Year(txtcodigo(31).Text) & " AND anofaccl<= " & Year(txtcodigo(32).Text)
         b = ComprobarNumFacturas_new(cadTabla, Sql)
         IncrementarProgres Me.ProgressBar1, 20
         Me.Refresh
@@ -829,11 +827,11 @@ End Sub
 Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     
-     If txtCodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtCodigo(indD).Text
+     If txtcodigo(indD).Text <> "" Then
+        cad = cad & "desde " & txtcodigo(indD).Text
      End If
-    If txtCodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtCodigo(indH).Text
+    If txtcodigo(indH).Text <> "" Then
+        cad = cad & "  hasta " & txtcodigo(indH).Text
     End If
     
     AnyadirParametroDH = cad
@@ -1282,12 +1280,20 @@ Private Sub cmdCancel_Click(Index As Integer)
 End Sub
 
 Private Sub Form_Load()
-    txtCodigo(31).Text = Date
-    txtCodigo(32).Text = Date
+Dim i As Integer
+
+    txtcodigo(31).Text = Date
+    txtcodigo(32).Text = Date
     
     'Icono del form
     Me.Icon = frmPpal.Icon
     Me.ProgressBar1.visible = False
+    
+    For i = 4 To 5
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+    
+    
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
@@ -1295,27 +1301,27 @@ Private Sub frmCal_Selec(vFecha As Date)
 End Sub
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     Set frmCal = New frmCal
     frmCal.Fecha = Now
 
     Select Case Index
         Case 4
-            Indice = 31
-            PonerFormatoFecha txtCodigo(Indice)
-            If txtCodigo(Indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(Indice).Text)
+            indice = 31
+            PonerFormatoFecha txtcodigo(indice)
+            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
         Case 5
-            Indice = 32
-            PonerFormatoFecha txtCodigo(Indice)
-            If txtCodigo(Indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(Indice).Text)
+            indice = 32
+            PonerFormatoFecha txtcodigo(indice)
+            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
     End Select
     frmCal.Show vbModal
     If IsDate(Fecha) Then
-        txtCodigo(Indice) = Fecha
+        txtcodigo(indice) = Fecha
     End If
     Set frmCal = Nothing
-    PonerFoco txtCodigo(Indice)
+    PonerFoco txtcodigo(indice)
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1338,12 +1344,12 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 
     Select Case Index
         Case 31
-            If txtCodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtcodigo(Index)
             End If
         Case 32
-            If txtCodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtcodigo(Index)
             End If
     End Select
 End Sub
