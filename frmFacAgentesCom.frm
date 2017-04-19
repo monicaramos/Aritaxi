@@ -345,7 +345,6 @@ Begin VB.Form frmFacAgentesCom
    Begin VB.Image imgBuscar 
       Height          =   240
       Left            =   2025
-      Picture         =   "frmFacAgentesCom.frx":000C
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   1860
@@ -742,6 +741,11 @@ Private Sub Form_Load()
         PonerModo 1
         Text1(0).BackColor = vbYellow
     End If
+    
+    imgBuscar.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    
+    
+    
 End Sub
 
 
@@ -993,13 +997,13 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim i As Integer
+Dim I As Integer
 
     Modo = Kmodo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
 
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos

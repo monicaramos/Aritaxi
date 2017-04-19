@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmGesTraspaso 
@@ -170,7 +170,6 @@ Begin VB.Form frmGesTraspaso
          Height          =   240
          Index           =   23
          Left            =   810
-         Picture         =   "frmGesTraspaso.frx":0000
          Top             =   780
          Width           =   240
       End
@@ -186,7 +185,6 @@ Begin VB.Form frmGesTraspaso
          Height          =   240
          Index           =   0
          Left            =   810
-         Picture         =   "frmGesTraspaso.frx":008B
          ToolTipText     =   "Buscar Fichero"
          Top             =   360
          Width           =   240
@@ -296,6 +294,9 @@ Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
 Dim CargarServicios As Boolean
+
+Dim kCampo As Integer
+
 
 Private Function RScontador(CADENA As String) As Currency
     
@@ -594,7 +595,7 @@ Private Sub ActualizarTabla()
 Dim Sql As String
 Dim SQL1 As String
 Dim RS As ADODB.Recordset
-Dim Linea As String
+Dim linea As String
 Dim values As String
 Dim Contador As Currency
 Dim total As Currency
@@ -621,7 +622,7 @@ Dim cWhere As String
         Exit Sub
     End If
     Contador = 0
-    Linea = ""
+    linea = ""
     values = ""
     ProgressBar1.Value = 0
     Label1(2).Caption = "Actualizando Bases de datos"
@@ -646,289 +647,289 @@ Dim cWhere As String
         If ExisteEnShilla(cWhere) Then
             '[Monica]13/11/2014: sólo en el caso de que sea de credito actualizamos
             If EsdeCredito(cWhere) Then
-                Linea = " fecha = " & DBSet(RS!Fecha, "F")
-                Linea = Linea & ",hora = " & DBSet(RS!hora, "H")
-                Linea = Linea & ",codsocio = " & DBSet(RS!codSocio, "N")
-                Linea = Linea & ",numeruve = " & DBSet(RS!NumerUve, "N")
-                Linea = Linea & ",codclien = " & DBSet(RS!CodClien, "N")
-                Linea = Linea & ",codusuar = " & DBSet(RS!codusuar, "T")
-                Linea = Linea & ",nomclien = " & DBSet(RS!nomclien, "T")
-                Linea = Linea & ",dirllama = " & DBSet(RS!dirllama, "T")
-                Linea = Linea & ",numllama = " & DBSet(RS!numllama, "T")
-                Linea = Linea & ",puerllama = " & DBSet(RS!puerllama, "T")
-                Linea = Linea & ",ciudadre = " & DBSet(RS!ciudadre, "T")
-                Linea = Linea & ",tipservi = " & DBSet(RS!tipservi, "N")
-                Linea = Linea & ",telefono = " & DBSet(RS!Telefono, "T")
-                Linea = Linea & ",observac2 = " & DBSet(RS!observac2, "T")
-                Linea = Linea & ",codautor = " & DBSet(RS!codautor, "T")
-                Linea = Linea & ",observa1 = " & DBSet(RS!observa1, "T")
-                Linea = Linea & ",licencia = " & DBSet(RS!Licencia, "T")
-                Linea = Linea & ",matricul = " & DBSet(RS!matricul, "T")
-                Linea = Linea & ",idservic = " & DBSet(RS!idservic, "T")
-                Linea = Linea & ",opereser = " & DBSet(RS!opereser, "T")
-                Linea = Linea & ",opedespa = " & DBSet(RS!opedespa, "T")
-                Linea = Linea & ",estado = " & DBSet(RS!Estado, "T")
-                Linea = Linea & ",observa2 = " & DBSet(RS!observa2, "T")
-                Linea = Linea & ",fecreser = " & DBSet(RS!fecreser, "F")
-                Linea = Linea & ",horreser = " & DBSet(RS!horreser, "H")
-                Linea = Linea & ",fecaviso = " & DBSet(RS!fecaviso, "F")
-                Linea = Linea & ",horaviso = " & DBSet(RS!horaviso, "H")
-                Linea = Linea & ",fecllega = " & DBSet(RS!fecllega, "F")
-                Linea = Linea & ",horllega = " & DBSet(RS!horllega, "H")
-                Linea = Linea & ",fecocupa = " & DBSet(RS!fecocupa, "F")
-                Linea = Linea & ",horocupa = " & DBSet(RS!horocupa, "H")
-                Linea = Linea & ",fecfinal = " & DBSet(RS!fecfinal, "F")
-                Linea = Linea & ",horfinal = " & DBSet(RS!horfinal, "H")
-                Linea = Linea & ",importtx = " & DBSet(RS!importtx, "N")
-                Linea = Linea & ",impcompr = " & DBSet(RS!impcompr, "N")
-                Linea = Linea & ",extcompr = " & DBSet(RS!extcompr, "N")
-                Linea = Linea & ",impventa = " & DBSet(RS!impventa, "N")
-                Linea = Linea & ",extventa = " & DBSet(RS!extventa, "N")
-                Linea = Linea & ",distanci = " & DBSet(RS!distanci, "N")
-                Linea = Linea & ",suplemen = " & DBSet(RS!suplemen, "N")
-                Linea = Linea & ",imppeaje = " & DBSet(RS!imppeaje, "N")
-                Linea = Linea & ",imppropi = " & DBSet(RS!imppropi, "N")
-                Linea = Linea & ",facturad = " & DBSet(RS!facturad, "N")
-                Linea = Linea & ",abonados = " & DBSet(RS!abonados, "N")
-                Linea = Linea & ",validado = " & DBSet(RS!validado, "N")
-                Linea = Linea & ",destino = " & DBSet(RS!Destino, "T")
-                Linea = Linea & " where " & cWhere
+                linea = " fecha = " & DBSet(RS!Fecha, "F")
+                linea = linea & ",hora = " & DBSet(RS!hora, "H")
+                linea = linea & ",codsocio = " & DBSet(RS!codSocio, "N")
+                linea = linea & ",numeruve = " & DBSet(RS!NumerUve, "N")
+                linea = linea & ",codclien = " & DBSet(RS!CodClien, "N")
+                linea = linea & ",codusuar = " & DBSet(RS!codusuar, "T")
+                linea = linea & ",nomclien = " & DBSet(RS!nomclien, "T")
+                linea = linea & ",dirllama = " & DBSet(RS!dirllama, "T")
+                linea = linea & ",numllama = " & DBSet(RS!numllama, "T")
+                linea = linea & ",puerllama = " & DBSet(RS!puerllama, "T")
+                linea = linea & ",ciudadre = " & DBSet(RS!ciudadre, "T")
+                linea = linea & ",tipservi = " & DBSet(RS!tipservi, "N")
+                linea = linea & ",telefono = " & DBSet(RS!Telefono, "T")
+                linea = linea & ",observac2 = " & DBSet(RS!observac2, "T")
+                linea = linea & ",codautor = " & DBSet(RS!codautor, "T")
+                linea = linea & ",observa1 = " & DBSet(RS!observa1, "T")
+                linea = linea & ",licencia = " & DBSet(RS!Licencia, "T")
+                linea = linea & ",matricul = " & DBSet(RS!matricul, "T")
+                linea = linea & ",idservic = " & DBSet(RS!idservic, "T")
+                linea = linea & ",opereser = " & DBSet(RS!opereser, "T")
+                linea = linea & ",opedespa = " & DBSet(RS!opedespa, "T")
+                linea = linea & ",estado = " & DBSet(RS!Estado, "T")
+                linea = linea & ",observa2 = " & DBSet(RS!observa2, "T")
+                linea = linea & ",fecreser = " & DBSet(RS!fecreser, "F")
+                linea = linea & ",horreser = " & DBSet(RS!horreser, "H")
+                linea = linea & ",fecaviso = " & DBSet(RS!fecaviso, "F")
+                linea = linea & ",horaviso = " & DBSet(RS!horaviso, "H")
+                linea = linea & ",fecllega = " & DBSet(RS!fecllega, "F")
+                linea = linea & ",horllega = " & DBSet(RS!horllega, "H")
+                linea = linea & ",fecocupa = " & DBSet(RS!fecocupa, "F")
+                linea = linea & ",horocupa = " & DBSet(RS!horocupa, "H")
+                linea = linea & ",fecfinal = " & DBSet(RS!fecfinal, "F")
+                linea = linea & ",horfinal = " & DBSet(RS!horfinal, "H")
+                linea = linea & ",importtx = " & DBSet(RS!importtx, "N")
+                linea = linea & ",impcompr = " & DBSet(RS!impcompr, "N")
+                linea = linea & ",extcompr = " & DBSet(RS!extcompr, "N")
+                linea = linea & ",impventa = " & DBSet(RS!impventa, "N")
+                linea = linea & ",extventa = " & DBSet(RS!extventa, "N")
+                linea = linea & ",distanci = " & DBSet(RS!distanci, "N")
+                linea = linea & ",suplemen = " & DBSet(RS!suplemen, "N")
+                linea = linea & ",imppeaje = " & DBSet(RS!imppeaje, "N")
+                linea = linea & ",imppropi = " & DBSet(RS!imppropi, "N")
+                linea = linea & ",facturad = " & DBSet(RS!facturad, "N")
+                linea = linea & ",abonados = " & DBSet(RS!abonados, "N")
+                linea = linea & ",validado = " & DBSet(RS!validado, "N")
+                linea = linea & ",destino = " & DBSet(RS!Destino, "T")
+                linea = linea & " where " & cWhere
                 
-                conn.Execute SqlUpdate & Linea
+                conn.Execute SqlUpdate & linea
             End If
         Else
             
             If IsNull(RS!Fecha) Then
-                Linea = "(NULL,"
+                linea = "(NULL,"
             Else
-                Linea = "(" & DBSet(RS!Fecha, "F") & ","
+                linea = "(" & DBSet(RS!Fecha, "F") & ","
             End If
             If IsNull(RS!hora) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!hora, FormatoHora) & "',"
+                linea = linea & "'" & Format(RS!hora, FormatoHora) & "',"
             End If
             If IsNull(RS!codSocio) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!codSocio, "N") & ","
+                linea = linea & DBSet(RS!codSocio, "N") & ","
             End If
             If IsNull(RS!NumerUve) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!NumerUve, "N") & ","
+                linea = linea & DBSet(RS!NumerUve, "N") & ","
             End If
             If IsNull(RS!CodClien) Or RS!CodClien = 0 Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!CodClien, "N") & ","
+                linea = linea & DBSet(RS!CodClien, "N") & ","
             End If
             If IsNull(RS!codusuar) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!codusuar, "T") & ","
+                linea = linea & DBSet(RS!codusuar, "T") & ","
             End If
             If IsNull(RS!nomclien) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!nomclien, "T") & ","
+                linea = linea & DBSet(RS!nomclien, "T") & ","
             End If
             If IsNull(RS!dirllama) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!dirllama, "T") & ","
+                linea = linea & DBSet(RS!dirllama, "T") & ","
             End If
             If IsNull(RS!numllama) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!numllama, "T") & ","
+                linea = linea & DBSet(RS!numllama, "T") & ","
             End If
             If IsNull(RS!puerllama) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!puerllama, "T") & ","
+                linea = linea & DBSet(RS!puerllama, "T") & ","
             End If
             If IsNull(RS!ciudadre) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!ciudadre, "T") & ","
+                linea = linea & DBSet(RS!ciudadre, "T") & ","
             End If
             If IsNull(RS!tipservi) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!tipservi, "N") & ","
+                linea = linea & DBSet(RS!tipservi, "N") & ","
             End If
             If IsNull(RS!Telefono) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!Telefono, "T") & ","
+                linea = linea & DBSet(RS!Telefono, "T") & ","
             End If
             If IsNull(RS!observac2) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!observac2, "T") & ","
+                linea = linea & DBSet(RS!observac2, "T") & ","
             End If
             If IsNull(RS!codautor) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!codautor, "T") & ","
+                linea = linea & DBSet(RS!codautor, "T") & ","
             End If
             If IsNull(RS!observa1) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!observa1, "T") & ","
+                linea = linea & DBSet(RS!observa1, "T") & ","
             End If
             If IsNull(RS!Licencia) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!Licencia, "T") & ","
+                linea = linea & DBSet(RS!Licencia, "T") & ","
             End If
             If IsNull(RS!matricul) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!matricul, "T") & ","
+                linea = linea & DBSet(RS!matricul, "T") & ","
             End If
             If IsNull(RS!idservic) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!idservic, "T") & ","
+                linea = linea & DBSet(RS!idservic, "T") & ","
             End If
             If IsNull(RS!opereser) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!opereser, "T") & ","
+                linea = linea & DBSet(RS!opereser, "T") & ","
             End If
             If IsNull(RS!opedespa) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!opedespa, "T") & ","
+                linea = linea & DBSet(RS!opedespa, "T") & ","
             End If
             If IsNull(RS!Estado) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!Estado, "T") & ","
+                linea = linea & DBSet(RS!Estado, "T") & ","
             End If
             If IsNull(RS!observa2) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!observa2, "T") & ","
+                linea = linea & DBSet(RS!observa2, "T") & ","
             End If
             If IsNull(RS!fecreser) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!fecreser, FormatoFecha) & "',"
+                linea = linea & "'" & Format(RS!fecreser, FormatoFecha) & "',"
             End If
             If IsNull(RS!horreser) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!horreser, FormatoHora) & "',"
+                linea = linea & "'" & Format(RS!horreser, FormatoHora) & "',"
             End If
             If IsNull(RS!fecaviso) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!fecaviso, FormatoFecha) & "',"
+                linea = linea & "'" & Format(RS!fecaviso, FormatoFecha) & "',"
             End If
             If IsNull(RS!horaviso) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!horaviso, FormatoHora) & "',"
+                linea = linea & "'" & Format(RS!horaviso, FormatoHora) & "',"
             End If
             If IsNull(RS!fecllega) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!fecllega, FormatoFecha) & "',"
+                linea = linea & "'" & Format(RS!fecllega, FormatoFecha) & "',"
             End If
             If IsNull(RS!horllega) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!horllega, FormatoHora) & "',"
+                linea = linea & "'" & Format(RS!horllega, FormatoHora) & "',"
             End If
             If IsNull(RS!fecocupa) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!fecocupa, FormatoFecha) & "',"
+                linea = linea & "'" & Format(RS!fecocupa, FormatoFecha) & "',"
             End If
             If IsNull(RS!horocupa) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!horocupa, FormatoHora) & "',"
+                linea = linea & "'" & Format(RS!horocupa, FormatoHora) & "',"
             End If
             If IsNull(RS!fecfinal) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!fecfinal, FormatoFecha) & "',"
+                linea = linea & "'" & Format(RS!fecfinal, FormatoFecha) & "',"
             End If
             If IsNull(RS!horfinal) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & "'" & Format(RS!horfinal, FormatoHora) & "',"
+                linea = linea & "'" & Format(RS!horfinal, FormatoHora) & "',"
             End If
             If IsNull(RS!importtx) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!importtx, "N") & ","
+                linea = linea & DBSet(RS!importtx, "N") & ","
             End If
             If IsNull(RS!impcompr) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!impcompr, "N") & ","
+                linea = linea & DBSet(RS!impcompr, "N") & ","
             End If
             If IsNull(RS!extcompr) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!extcompr, "N") & ","
+                linea = linea & DBSet(RS!extcompr, "N") & ","
             End If
             If IsNull(RS!impventa) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!impventa, "N") & ","
+                linea = linea & DBSet(RS!impventa, "N") & ","
             End If
             If IsNull(RS!extventa) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!extventa, "N") & ","
+                linea = linea & DBSet(RS!extventa, "N") & ","
             End If
             If IsNull(RS!distanci) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!distanci, "N") & ","
+                linea = linea & DBSet(RS!distanci, "N") & ","
             End If
             If IsNull(RS!suplemen) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!suplemen, "N") & ","
+                linea = linea & DBSet(RS!suplemen, "N") & ","
             End If
             If IsNull(RS!imppeaje) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!imppeaje, "N") & ","
+                linea = linea & DBSet(RS!imppeaje, "N") & ","
             End If
             If IsNull(RS!imppropi) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!imppropi, "N") & ","
+                linea = linea & DBSet(RS!imppropi, "N") & ","
             End If
             If IsNull(RS!facturad) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!facturad, "N") & ","
+                linea = linea & DBSet(RS!facturad, "N") & ","
             End If
             If IsNull(RS!abonados) Then
-                Linea = Linea & "NULL,"
+                linea = linea & "NULL,"
             Else
-                Linea = Linea & DBSet(RS!abonados, "N") & ","
+                linea = linea & DBSet(RS!abonados, "N") & ","
             End If
             If IsNull(RS!validado) Then
-                Linea = Linea & "NULL)"
+                linea = linea & "NULL)"
             Else
-                Linea = Linea & DBSet(RS!validado, "N") & ","
+                linea = linea & DBSet(RS!validado, "N") & ","
             End If
             If IsNull(RS!Destino) Then
-                Linea = Linea & "NULL)"
+                linea = linea & "NULL)"
             Else
-                Linea = Linea & DBSet(RS!Destino, "T") & ")"
+                linea = linea & DBSet(RS!Destino, "T") & ")"
             End If
-            values = values & Linea & ","
+            values = values & linea & ","
             'If Len(values) > 100000 Then
                 'quitamos la ultima coma
                 values = Mid(values, 1, Len(values) - 1)
@@ -1010,6 +1011,15 @@ Private Sub Form_Load()
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
+
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 23 To 23
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+
+
     txtcodigo(85).Text = Format(Now, "dd/mm/yyyy")
 
     EnTomaDeDatos
@@ -1032,7 +1042,7 @@ Private Function ProcesarFichero_new() As Boolean
 Dim NF As Integer
 Dim LlevoFichero As Currency
 Dim values As String
-Dim Linea As String
+Dim linea As String
 Dim Sql As String
 
 
@@ -1045,12 +1055,12 @@ Dim Sql As String
     LlevoFichero = 0
     Me.ProgressBar1.visible = True
     DoEvents
-    Linea = "(id,telefono,codclien,codautor,codusuar,nomclien,tipservi,observa1,numeruve,licencia,matricul,"
-    Linea = Linea & "dirllama,ciudadre,numllama,puerllama,fecha,hora,idservic,opereser,opedespa,estado,"
-    Linea = Linea & "observa2,fecreser,horreser,fecaviso,horaviso,fecllega,horllega,fecocupa,horocupa,fecfinal,"
-    Linea = Linea & "horfinal,importtx,impcompr,extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,"
+    linea = "(id,telefono,codclien,codautor,codusuar,nomclien,tipservi,observa1,numeruve,licencia,matricul,"
+    linea = linea & "dirllama,ciudadre,numllama,puerllama,fecha,hora,idservic,opereser,opedespa,estado,"
+    linea = linea & "observa2,fecreser,horreser,fecaviso,horaviso,fecllega,horllega,fecocupa,horocupa,fecfinal,"
+    linea = linea & "horfinal,importtx,impcompr,extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,"
     '[Monica]03/10/2014: añadimos el taxi del destino
-    Linea = Linea & "abonados,validado,destino,error1,error)"
+    linea = linea & "abonados,validado,destino,error1,error)"
     values = ""
     Contador = 0
     'Empezamos
@@ -1097,7 +1107,7 @@ Dim Sql As String
         If Len(values) > 100000 Then
             'quitamos la ultima coma
             values = Mid(values, 1, Len(values) - 1)
-            Sql = "INSERT INTO tmptaxi " & Linea & " VALUES " & values
+            Sql = "INSERT INTO tmptaxi " & linea & " VALUES " & values
             conn.Execute Sql
             values = ""
         End If
@@ -1117,7 +1127,7 @@ Dim Sql As String
         'quitamos la ultima coma
         values = Mid(values, 1, Len(values) - 1)
     
-        Sql = "INSERT INTO tmptaxi " & Linea & " VALUES " & values
+        Sql = "INSERT INTO tmptaxi " & linea & " VALUES " & values
         conn.Execute Sql
     End If
     
@@ -1816,7 +1826,7 @@ End If
 End Function
 Private Sub Insertar(CADENA As String, Tabla As String, Optional Error As String)
 Dim Telefono As String
-Dim Linea As String, values As String
+Dim linea As String, values As String
 Dim Sql As String
 Dim Socio As String
 
@@ -1824,7 +1834,7 @@ On Error GoTo EInsert
 
 'armamos los registros segun la cadena
 Telefono = Trim(Mid(CADENA, 1, 11))
-Linea = "telefono"
+linea = "telefono"
 
 If Telefono = "" Then
     values = "NULL"
@@ -1833,7 +1843,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 11, 4))
-Linea = Linea & "," & "codclien"
+linea = linea & "," & "codclien"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -1845,7 +1855,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 15, 14))
-Linea = Linea & "," & "codautor"
+linea = linea & "," & "codautor"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1853,7 +1863,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 29, 30))
-Linea = Linea & "," & "codusuar"
+linea = linea & "," & "codusuar"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1861,7 +1871,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 59, 30))
-Linea = Linea & "," & "nomclien"
+linea = linea & "," & "nomclien"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1869,7 +1879,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 89, 1))
-Linea = Linea & "," & "tipservi"
+linea = linea & "," & "tipservi"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1885,14 +1895,14 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 93, 200))
-Linea = Linea & "," & "observa1"
+linea = linea & "," & "observa1"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
     values = values & "," & DBSet(Telefono, "T")
 End If
 
-Linea = Linea & "," & "numeruve"
+linea = linea & "," & "numeruve"
 If Not IsNumeric(vehiculo) Then
     values = values & ",NULL"
     Tabla = "tmpErr"
@@ -1911,10 +1921,10 @@ Else
         values = values & "," & CInt(Socio)
     End If
 End If
-Linea = Linea & "," & "codsocio"
+linea = linea & "," & "codsocio"
 
 Telefono = Trim(Mid(CADENA, 297, 10))
-Linea = Linea & "," & "licencia"
+linea = linea & "," & "licencia"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1922,7 +1932,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 307, 10))
-Linea = Linea & "," & "matricul"
+linea = linea & "," & "matricul"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1930,7 +1940,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 317, 30))
-Linea = Linea & "," & "dirllama"
+linea = linea & "," & "dirllama"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1938,7 +1948,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 347, 30))
-Linea = Linea & "," & "ciudadre"
+linea = linea & "," & "ciudadre"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1946,7 +1956,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 377, 10))
-Linea = Linea & "," & "numllama"
+linea = linea & "," & "numllama"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1954,14 +1964,14 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 387, 10))
-Linea = Linea & "," & "puerllama"
+linea = linea & "," & "puerllama"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
     values = values & "," & DBSet(Telefono, "T")
 End If
 
-Linea = Linea & "," & "fecha"
+linea = linea & "," & "fecha"
 If Fecha = "" Then
     values = values & ",NULL"
     Tabla = "tmpErr"
@@ -1974,7 +1984,7 @@ Else
     values = values & "," & DBSet(Format(CDate(Fecha), FormatoFecha), "T")
 End If
 
-Linea = Linea & "," & "hora"
+linea = linea & "," & "hora"
 If hora = "" Then
     values = values & ",NULL"
     Tabla = "tmpErr"
@@ -1988,7 +1998,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 415, 6))
-Linea = Linea & "," & "idservic"
+linea = linea & "," & "idservic"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -1997,7 +2007,7 @@ End If
 
 
 Telefono = Trim(Mid(CADENA, 421, 30))
-Linea = Linea & "," & "opereser"
+linea = linea & "," & "opereser"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -2005,7 +2015,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 451, 30))
-Linea = Linea & "," & "opedespa"
+linea = linea & "," & "opedespa"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -2013,7 +2023,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 481, 4))
-Linea = Linea & "," & "estado"
+linea = linea & "," & "estado"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -2021,7 +2031,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 485, 200))
-Linea = Linea & "," & "observa2"
+linea = linea & "," & "observa2"
 If Telefono = "" Then
     values = values & ",NULL"
 Else
@@ -2029,7 +2039,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 685, 10))
-Linea = Linea & "," & "fecreser"
+linea = linea & "," & "fecreser"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2041,7 +2051,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 695, 8))
-Linea = Linea & "," & "horreser"
+linea = linea & "," & "horreser"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2053,7 +2063,7 @@ Else
 End If
 
 Telefono = Trim(Trim(Mid(CADENA, 721, 10)))
-Linea = Linea & "," & "fecaviso"
+linea = linea & "," & "fecaviso"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2065,7 +2075,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 731, 8))
-Linea = Linea & "," & "horaviso"
+linea = linea & "," & "horaviso"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2077,7 +2087,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 739, 10))
-Linea = Linea & "," & "fecllega"
+linea = linea & "," & "fecllega"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2089,7 +2099,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 749, 8))
-Linea = Linea & "," & "horllega"
+linea = linea & "," & "horllega"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2101,7 +2111,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 757, 10))
-Linea = Linea & "," & "fecocupa"
+linea = linea & "," & "fecocupa"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2113,7 +2123,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 767, 8))
-Linea = Linea & "," & "horocupa"
+linea = linea & "," & "horocupa"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2125,7 +2135,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 775, 10))
-Linea = Linea & "," & "fecfinal"
+linea = linea & "," & "fecfinal"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2137,7 +2147,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 785, 8))
-Linea = Linea & "," & "horfinal"
+linea = linea & "," & "horfinal"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsDate(Telefono) Then
@@ -2149,7 +2159,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 793, 15))
-Linea = Linea & "," & "importtx"
+linea = linea & "," & "importtx"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2161,7 +2171,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 808, 15))
-Linea = Linea & "," & "impcompr"
+linea = linea & "," & "impcompr"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2173,7 +2183,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 823, 15))
-Linea = Linea & "," & "extcompr"
+linea = linea & "," & "extcompr"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2185,7 +2195,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 838, 15))
-Linea = Linea & "," & "impventa"
+linea = linea & "," & "impventa"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2197,7 +2207,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 853, 15))
-Linea = Linea & "," & "extventa"
+linea = linea & "," & "extventa"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2209,7 +2219,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 868, 15))
-Linea = Linea & "," & "distanci"
+linea = linea & "," & "distanci"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2221,7 +2231,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 883, 15))
-Linea = Linea & "," & "suplemen"
+linea = linea & "," & "suplemen"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2233,7 +2243,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 898, 15))
-Linea = Linea & "," & "imppeaje"
+linea = linea & "," & "imppeaje"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2245,7 +2255,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 913, 15))
-Linea = Linea & "," & "imppropi"
+linea = linea & "," & "imppropi"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2257,7 +2267,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 931, 1))
-Linea = Linea & "," & "facturad"
+linea = linea & "," & "facturad"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2269,7 +2279,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 935, 1))
-Linea = Linea & "," & "abonados"
+linea = linea & "," & "abonados"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2281,7 +2291,7 @@ Else
 End If
 
 Telefono = Trim(Mid(CADENA, 939, 1))
-Linea = Linea & "," & "validado"
+linea = linea & "," & "validado"
 If Telefono = "" Then
     values = values & ",NULL"
 ElseIf Not IsNumeric(Telefono) Then
@@ -2293,13 +2303,13 @@ Else
 End If
 
 If Tabla = "tmpTaxi" Then
-    Linea = Linea & ",error1"
+    linea = linea & ",error1"
     values = values & ",0"
 Else
-   Linea = Linea & ",error1,error"
+   linea = linea & ",error1,error"
    values = values & ",1," & DBSet(Error, "T")
 End If
-Sql = "INSERT INTO tmptaxi (" & Linea & ") VALUES ("
+Sql = "INSERT INTO tmptaxi (" & linea & ") VALUES ("
 Sql = Sql & values & ")"
 conn.Execute Sql
 
@@ -2396,7 +2406,7 @@ End Function
 Private Function ComprobarFichero(Escliente As Boolean) As Boolean
 Dim NF As Long
 Dim cad As String
-Dim i As Integer
+Dim I As Integer
 Dim longitud As Long
 Dim RS As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2417,7 +2427,7 @@ Dim b As Boolean
     Open Text1.Text For Input As #NF
     
     Line Input #NF, cad
-    i = 0
+    I = 0
     
     conn.Execute "delete from tmpinformes where codusu = " & vUsu.Codigo
     
@@ -2434,10 +2444,10 @@ Dim b As Boolean
     b = True
 
     While Not EOF(NF) And b
-        i = i + 1
+        I = I + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         b = ComprobarRegistro(cad, Escliente)
@@ -2447,10 +2457,10 @@ Dim b As Boolean
     Close #NF
     
     If cad <> "" Then
-        i = i + 1
+        I = I + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         b = ComprobarRegistro(cad, Escliente)
@@ -2637,7 +2647,7 @@ End Function
 Private Function TraspasoFichero(EsClien As Boolean) As Boolean
 Dim NF As Long
 Dim cad As String
-Dim i As Integer
+Dim I As Integer
 Dim longitud As Long
 Dim RS As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2670,7 +2680,7 @@ Dim SqlServ As String
     Open Text1.Text For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
     
     Line Input #NF, cad
-    i = 0
+    I = 0
     
     Label1(0).Caption = "Procesando Fichero: " & Text1.Text
     
@@ -2691,10 +2701,10 @@ Dim SqlServ As String
         
     b = True
     While Not EOF(NF)
-        i = i + 1
+        I = I + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
@@ -2752,7 +2762,7 @@ Dim SqlServ As String
     
     If cad <> "" Then
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes

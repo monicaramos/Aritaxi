@@ -141,7 +141,6 @@ Begin VB.Form frmFacBonificacion
          Height          =   240
          Index           =   2
          Left            =   180
-         Picture         =   "frmFacBonificacion.frx":000C
          ToolTipText     =   "Buscar artículo"
          Top             =   1200
          Width           =   240
@@ -166,7 +165,6 @@ Begin VB.Form frmFacBonificacion
          Height          =   240
          Index           =   1
          Left            =   180
-         Picture         =   "frmFacBonificacion.frx":010E
          ToolTipText     =   "Buscar artículo"
          Top             =   600
          Width           =   240
@@ -376,7 +374,6 @@ Begin VB.Form frmFacBonificacion
       Height          =   240
       Index           =   0
       Left            =   1380
-      Picture         =   "frmFacBonificacion.frx":0210
       ToolTipText     =   "Buscar artículo"
       Top             =   765
       Width           =   240
@@ -564,6 +561,8 @@ End Sub
 
 
 Private Sub Form_Load()
+Dim I As Integer
+
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
@@ -605,6 +604,12 @@ Private Sub Form_Load()
         Text1(0).BackColor = vbYellow
     End If
     Screen.MousePointer = vbDefault
+    
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    
+    
 End Sub
 
 
@@ -768,16 +773,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     'Modo 2. Hay datos y estamos visualizandolos
@@ -810,9 +815,9 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
+    Next I
     
     'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
     'debe ser mayor para adminir intervalos de busqueda.

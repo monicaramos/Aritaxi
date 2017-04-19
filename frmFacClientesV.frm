@@ -270,7 +270,6 @@ Begin VB.Form frmFacClientesV
    Begin VB.Image imgBuscar 
       Height          =   240
       Left            =   1000
-      Picture         =   "frmFacClientesV.frx":000C
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
       Top             =   2190
@@ -626,6 +625,9 @@ Dim AbreModo1 As Boolean
         .Buttons(16).Image = 9  'Último
     End With
     
+    imgBuscar.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    
+    
     LimpiarCampos
     VieneDeBuscar = False
     
@@ -892,15 +894,15 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '--------------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos

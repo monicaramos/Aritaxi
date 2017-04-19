@@ -188,7 +188,6 @@ Begin VB.Form frmFacPreciosEspecial
          Height          =   240
          Index           =   0
          Left            =   4005
-         Picture         =   "frmFacPreciosEspecial.frx":000C
          ToolTipText     =   "Buscar fecha"
          Top             =   315
          Width           =   240
@@ -429,7 +428,7 @@ Begin VB.Form frmFacPreciosEspecial
       End
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmFacPreciosEspecial.frx":0097
+      Bindings        =   "frmFacPreciosEspecial.frx":000C
       Height          =   2535
       Left            =   480
       TabIndex        =   12
@@ -802,7 +801,10 @@ Private Sub Form_Load()
     
     'Icono de busqueda
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgListComun.ListImages(19).Picture
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next kCampo
     
     
@@ -858,7 +860,7 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim Inicio As Byte
 Dim Sql As String
 On Error GoTo ECarga
@@ -901,9 +903,9 @@ On Error GoTo ECarga
     
     DataGrid1.ScrollBars = dbgAutomatic
     
-    For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+    Next I
     DataGrid1.Enabled = b
     PrimeraVez = False
 ECarga:
@@ -1109,16 +1111,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador Me.lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '===========================================
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1142,13 +1144,13 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
+    Next I
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b
+    Next I
     
     PonerModoOpcionesMenu 'Activar opciones de menu según modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel

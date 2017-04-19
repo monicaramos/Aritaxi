@@ -155,7 +155,6 @@ Begin VB.Form frmFacActPrecios
       Height          =   240
       Index           =   0
       Left            =   2355
-      Picture         =   "frmFacActPrecios.frx":000C
       Top             =   960
       Width           =   240
    End
@@ -308,6 +307,8 @@ End Sub
 
 
 Private Sub Form_Load()
+Dim I As Integer
+
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
@@ -315,6 +316,13 @@ Private Sub Form_Load()
     Me.lblProgreso(0).visible = False
     Me.lblProgreso(1).visible = False
     Me.Height = 4100
+    
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+    
+    
+    
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
@@ -386,7 +394,7 @@ Private Sub ProcesoActualizarPrecios_Actuales(cadWHERE As String, totReg As Long
 '   - si slista.codlista es la tarifa de los parametros de la aplicacion: actualizar PVP del articulo
 Dim Sql As String
 Dim RS As ADODB.Recordset
-Dim i As Long
+Dim I As Long
 Dim hayErr As Boolean
 
     On Error GoTo ErrActPreu
@@ -397,8 +405,8 @@ Dim hayErr As Boolean
     Me.lblProgreso(0).visible = True
     Me.lblProgreso(1).visible = True
     CargarProgresNew Me.ProgressBar1, 100
-    i = 0
-    Me.lblProgreso(1).Caption = CLng((i * 100) / totReg) & " %"
+    I = 0
+    Me.lblProgreso(1).Caption = CLng((I * 100) / totReg) & " %"
     Me.ProgressBar1.visible = True
     
     
@@ -417,10 +425,10 @@ Dim hayErr As Boolean
         
         '-- actualizar la progress bar
 '        IncrementarProgresNew Me.ProgressBar1, 1
-        i = i + 1
-        Me.ProgressBar1.Value = CInt((i * 100) / totReg)
-        Me.lblProgreso(1).Caption = CLng((i * 100) / totReg) & " %"
-        Me.lblProgreso(0).Caption = "Actualizando precios actuales.     (" & i & " de " & totReg & ")"
+        I = I + 1
+        Me.ProgressBar1.Value = CInt((I * 100) / totReg)
+        Me.lblProgreso(1).Caption = CLng((I * 100) / totReg) & " %"
+        Me.lblProgreso(0).Caption = "Actualizando precios actuales.     (" & I & " de " & totReg & ")"
         
         RS.MoveNext
     Wend
@@ -431,11 +439,11 @@ Dim hayErr As Boolean
     
     Screen.MousePointer = vbDefault
     If Not hayErr Then
-        Me.lblProgreso(0).Caption = "Proceso finalizado correctamente.     (" & i & " de " & totReg & ")"
+        Me.lblProgreso(0).Caption = "Proceso finalizado correctamente.     (" & I & " de " & totReg & ")"
 '        MsgBox "Proceso actualización precios actuales finalizado correctamente.", vbInformation
         menErrProceso = "Proceso actualización precios actuales finalizado correctamente." & vbCrLf
     Else
-        Me.lblProgreso(0).Caption = "Proceso finalizado con errores.     (" & i & " de " & totReg & ")"
+        Me.lblProgreso(0).Caption = "Proceso finalizado con errores.     (" & I & " de " & totReg & ")"
         'MsgBox "Algunos precios actuales no se actualizaron correctamente.", vbExclamation
         menErrProceso = "Algunos precios actuales no se actualizaron correctamente." & vbCrLf
     End If
@@ -541,7 +549,7 @@ Private Sub ProcesoActualizarPrecios_Especiales(cadWHERE As String, totReg As Lo
 '   - poner a nulos los valores nuevos
 Dim Sql As String
 Dim RS As ADODB.Recordset
-Dim i As Long
+Dim I As Long
 Dim hayErr As Boolean
 
     On Error GoTo ErrActPreu
@@ -552,8 +560,8 @@ Dim hayErr As Boolean
     Me.lblProgreso(0).visible = True
     Me.lblProgreso(1).visible = True
     CargarProgresNew Me.ProgressBar1, 100 'CInt(totReg)
-    i = 0
-    Me.lblProgreso(1).Caption = CLng((i * 100) / totReg) & " %"
+    I = 0
+    Me.lblProgreso(1).Caption = CLng((I * 100) / totReg) & " %"
     Me.ProgressBar1.visible = True
     
     
@@ -573,10 +581,10 @@ Dim hayErr As Boolean
         
         '-- actualizar la progress bar
 '        IncrementarProgresNew Me.ProgressBar1, 1
-        i = i + 1
-        Me.ProgressBar1.Value = CInt((i * 100) / totReg)
-        Me.lblProgreso(1).Caption = CLng((i * 100) / totReg) & " %"
-        Me.lblProgreso(0).Caption = "Actualizando precios especiales.     (" & i & " de " & totReg & ")"
+        I = I + 1
+        Me.ProgressBar1.Value = CInt((I * 100) / totReg)
+        Me.lblProgreso(1).Caption = CLng((I * 100) / totReg) & " %"
+        Me.lblProgreso(0).Caption = "Actualizando precios especiales.     (" & I & " de " & totReg & ")"
         
         RS.MoveNext
     Wend
@@ -586,11 +594,11 @@ Dim hayErr As Boolean
     
     Screen.MousePointer = vbDefault
     If Not hayErr Then
-        Me.lblProgreso(0).Caption = "Proceso finalizado correctamente.     (" & i & " de " & totReg & ")"
+        Me.lblProgreso(0).Caption = "Proceso finalizado correctamente.     (" & I & " de " & totReg & ")"
         'MsgBox "Proceso actualización precios especiales finalizado correctamente.", vbInformation
         menErrProceso = menErrProceso & "Proceso actualización precios especiales finalizado correctamente."
     Else
-        Me.lblProgreso(0).Caption = "Proceso finalizado con errores.     (" & i & " de " & totReg & ")"
+        Me.lblProgreso(0).Caption = "Proceso finalizado con errores.     (" & I & " de " & totReg & ")"
         'MsgBox "Algunos precios especiales no se actualizaron correctamente.", vbExclamation
          menErrProceso = menErrProceso & "Algunos precios especiales no se actualizaron correctamente."
     End If

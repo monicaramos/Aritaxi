@@ -166,7 +166,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   13
       Left            =   3810
-      Picture         =   "frmPubliFacSoc.frx":0000
       Top             =   2595
       Width           =   240
    End
@@ -213,7 +212,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   12
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":008B
       Top             =   2595
       Width           =   240
    End
@@ -240,7 +238,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   5
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":0116
       Tag             =   "-1"
       ToolTipText     =   "Buscar cuenta"
       Top             =   4800
@@ -268,7 +265,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   4
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":0218
       Tag             =   "-1"
       ToolTipText     =   "Buscar socio"
       Top             =   1680
@@ -278,7 +274,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   3
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":031A
       Tag             =   "-1"
       ToolTipText     =   "Buscar socio"
       Top             =   2040
@@ -322,7 +317,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   1
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":041C
       Tag             =   "-1"
       ToolTipText     =   "Buscar forma de pago"
       Top             =   3510
@@ -332,7 +326,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   0
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":051E
       Tag             =   "-1"
       ToolTipText     =   "Ver observaciones"
       Top             =   3990
@@ -342,7 +335,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   2
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":0620
       Tag             =   "-1"
       ToolTipText     =   "Buscar cliente"
       Top             =   960
@@ -352,7 +344,6 @@ Begin VB.Form frmPubliFacSoc
       Height          =   240
       Index           =   2
       Left            =   1230
-      Picture         =   "frmPubliFacSoc.frx":0722
       ToolTipText     =   "Buscar fecha"
       Top             =   3030
       Width           =   240
@@ -483,6 +474,8 @@ Dim Modo As Byte
 Dim cad As String
 Dim indCodigo As Integer
 
+Dim kCampo As Integer
+
 
 Private Sub cmdAceptar_Click()
 Dim Sql As String
@@ -491,7 +484,7 @@ Dim SQL2 As String
     Set miRsAux = New ADODB.Recordset
     Screen.MousePointer = vbHourglass
     
-    If DatosOK Then
+    If DatosOk Then
         If HaySocios Then
             Sql = "select * from sclien_publicidad where codclien=" & Text1(0).Text & " and situacio=0 and codsocio >=" & Text1(3).Text & " and codsocio <=" & Text1(5).Text & " and situacio=0 and sclien_publicidad.desdefec >= " & DBSet(Text1(7).Text, "F") & " and sclien_publicidad.hastafec <=" & DBSet(Text1(8).Text, "F")
             SQL2 = "select nomclien,sclien_publicidad.importes,sclien_publicidad.desdefec,sclien_publicidad.hastafec from sclien_publicidad inner join sclien on "
@@ -551,10 +544,10 @@ End If
 
 End Function
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim Sql As String
 
-    DatosOK = False
+    DatosOk = False
     
     'cliente
     If Text1(0).Text = "" Then
@@ -605,7 +598,7 @@ Dim Sql As String
         End If
     End If
     
-    DatosOK = True
+    DatosOk = True
 
 End Function
 
@@ -666,7 +659,7 @@ Dim vSocio As CSocio
             End If
         End If
         'busco contador de cada socio y lo incremento
-        NumFactu = ContadorSocio(miRsAux!CodSocio, cad, True)
+        NumFactu = ContadorSocio(miRsAux!codSocio, cad, True)
         If NumFactu = 0 Then
             DesBloqueoManual ("PUBLIFAC")
             TerminaBloquear
@@ -682,13 +675,13 @@ Dim vSocio As CSocio
         fac.FecFactu = FecFactu
         fac.NumFactu = NumFactu
         
-        fac.Proveedor = miRsAux!CodSocio
-        fac.NombreProv = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", miRsAux!CodSocio, "T")
-        fac.DomicilioProv = DevuelveDesdeBD(conAri, "domclien", "sclien", "codclien", miRsAux!CodSocio, "T")
-        fac.CPostalProv = DevuelveDesdeBD(conAri, "codpobla", "sclien", "codclien", miRsAux!CodSocio, "T")
-        fac.PoblacionProv = DevuelveDesdeBD(conAri, "pobclien", "sclien", "codclien", miRsAux!CodSocio, "T")
-        fac.ProvinciaProv = DevuelveDesdeBD(conAri, "proclien", "sclien", "codclien", miRsAux!CodSocio, "T")
-        fac.NIFProv = DevuelveDesdeBD(conAri, "nifclien", "sclien", "codclien", miRsAux!CodSocio, "T")
+        fac.Proveedor = miRsAux!codSocio
+        fac.NombreProv = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", miRsAux!codSocio, "T")
+        fac.DomicilioProv = DevuelveDesdeBD(conAri, "domclien", "sclien", "codclien", miRsAux!codSocio, "T")
+        fac.CPostalProv = DevuelveDesdeBD(conAri, "codpobla", "sclien", "codclien", miRsAux!codSocio, "T")
+        fac.PoblacionProv = DevuelveDesdeBD(conAri, "pobclien", "sclien", "codclien", miRsAux!codSocio, "T")
+        fac.ProvinciaProv = DevuelveDesdeBD(conAri, "proclien", "sclien", "codclien", miRsAux!codSocio, "T")
+        fac.NIFProv = DevuelveDesdeBD(conAri, "nifclien", "sclien", "codclien", miRsAux!codSocio, "T")
         fac.ForPago = Text1(2).Text
         
         'Cuenta Prevista de Cobro de las Facturas
@@ -696,7 +689,7 @@ Dim vSocio As CSocio
         fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
         'cuenta contable de proveedor
         'comprobamos q la cuenta contable exista en contabilidad
-        Socio = miRsAux!CodSocio
+        Socio = miRsAux!codSocio
         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
         cuenta = Trim(vParamAplic.Raiz_Cta_Soc_publi & Format(Socio, FormatSocio))
         Sql = ""
@@ -705,7 +698,7 @@ Dim vSocio As CSocio
             MsgBox "La cuenta contable del socio: " & Text1(0).Text & " no existe.", vbExclamation
             DesBloqueoManual ("PUBLIFAC")
             TerminaBloquear
-            ContadorSocio miRsAux!CodSocio, cad, False
+            ContadorSocio miRsAux!codSocio, cad, False
             conn.RollbackTrans
             ConnConta.RollbackTrans
             Exit Function
@@ -727,7 +720,7 @@ Dim vSocio As CSocio
         
         'sfactusoc
         Sql = "INSERT INTO sfactusoc (codtipom,codsocio,numfactu,fecfactu,concepto,importel,baseiva1,impoiva1,"
-        Sql = Sql & "codiiva1,porciva1,totalfac,impreten,intconta,codforpa) VALUES (" & DBSet(cad, "T") & "," & miRsAux!CodSocio & ","
+        Sql = Sql & "codiiva1,porciva1,totalfac,impreten,intconta,codforpa) VALUES (" & DBSet(cad, "T") & "," & miRsAux!codSocio & ","
         Sql = Sql & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & DBSet(Text1(4).Text, "T") & ","
         Sql = Sql & TransformaComasPuntos(CStr(miRsAux!Importes)) & "," & TransformaComasPuntos(CStr(miRsAux!Importes)) & ","
         Sql = Sql & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(iva)) & "," & TransformaComasPuntos(CStr(porIva)) & ","
@@ -736,7 +729,7 @@ Dim vSocio As CSocio
         If Not ejecutar(Sql, False) Then
             DesBloqueoManual ("PUBLIFAC")
             TerminaBloquear
-            ContadorSocio miRsAux!CodSocio, cad, False
+            ContadorSocio miRsAux!codSocio, cad, False
             Exit Function
         End If
       
@@ -759,7 +752,7 @@ If Err.Number <> 0 Or Not b Then
     MsgBox "ERROR AL GENERAR FACTURAS:" & Err.Description
     DesBloqueoManual ("PUBLIFAC")
     TerminaBloquear
-    ContadorSocio miRsAux!CodSocio, cad, False
+    ContadorSocio miRsAux!codSocio, cad, False
     conn.RollbackTrans
     ConnConta.RollbackTrans
 End If
@@ -833,6 +826,17 @@ Private Sub Form_Load()
     'Icono del form
     Me.Icon = frmPpal.Icon
     
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    
+    Me.imgFecha(2).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For kCampo = 12 To 13
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    
+    
+    
     Text1(1).Text = Date
     Text1(4).Text = vParamAplic.ConFactuPubli
     Modo = 0
@@ -864,7 +868,7 @@ Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
     Select Case Index
         Case 0
             CadenaDesdeOtroForm = Text1(4).Text
@@ -887,17 +891,17 @@ Dim Indice As Byte
             PonerFoco Text1(0)
         Case 4, 3
             If Index = 4 Then
-                Indice = 3
+                indice = 3
             Else
-                Indice = 5
+                indice = 5
             End If
             Set frmSoc = New frmGesSocios
             frmSoc.DatosADevolverBusqueda = "0|1|"
             frmSoc.Show vbModal
             Set frmSoc = Nothing
             If CadenaDesdeOtroForm <> "" Then
-                Text1(Indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                Text2(Indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                Text1(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
+                Text2(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
         Case 5
             Set frmMtoBancosPro = New frmFacBancosPropios
@@ -1084,7 +1088,7 @@ Dim MenError As String
         Set vFactu = New CFacturaSoc
         Set vSocio = New CSocio
         
-        If vSocio.LeerDatos(miRsAux!CodSocio) Then
+        If vSocio.LeerDatos(miRsAux!codSocio) Then
             NumFactu = vSocio.ConseguirContador(codtipom)
             
             vFactu.tipoMov = codtipom

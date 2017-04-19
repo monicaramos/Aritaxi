@@ -215,7 +215,6 @@ Begin VB.Form frmCuotasReImp
       Height          =   240
       Index           =   1
       Left            =   1410
-      Picture         =   "frmCuotasReImp.frx":0000
       Tag             =   "-1"
       ToolTipText     =   "Buscar V Socio"
       Top             =   2910
@@ -225,7 +224,6 @@ Begin VB.Form frmCuotasReImp
       Height          =   240
       Index           =   0
       Left            =   1410
-      Picture         =   "frmCuotasReImp.frx":0102
       Tag             =   "-1"
       ToolTipText     =   "Buscar V Socio"
       Top             =   2550
@@ -269,7 +267,6 @@ Begin VB.Form frmCuotasReImp
       Height          =   240
       Index           =   4
       Left            =   1410
-      Picture         =   "frmCuotasReImp.frx":0204
       Tag             =   "-1"
       ToolTipText     =   "Buscar Socio"
       Top             =   1950
@@ -279,7 +276,6 @@ Begin VB.Form frmCuotasReImp
       Height          =   240
       Index           =   3
       Left            =   1410
-      Picture         =   "frmCuotasReImp.frx":0306
       Tag             =   "-1"
       ToolTipText     =   "Buscar Socio"
       Top             =   1590
@@ -323,7 +319,6 @@ Begin VB.Form frmCuotasReImp
       Height          =   240
       Index           =   24
       Left            =   3660
-      Picture         =   "frmCuotasReImp.frx":0408
       Top             =   4380
       Width           =   240
    End
@@ -389,7 +384,6 @@ Begin VB.Form frmCuotasReImp
       Height          =   240
       Index           =   23
       Left            =   1410
-      Picture         =   "frmCuotasReImp.frx":0493
       Top             =   4350
       Width           =   240
    End
@@ -614,14 +608,26 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del form
     Me.Icon = frmPpal.Icon
     
-    For I = 0 To imgAyuda.Count - 1
-        imgAyuda(I).Picture = frmPpal.ImageListB.ListImages(10).Picture
-    Next I
+    For i = 0 To imgAyuda.Count - 1
+        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
+    Next i
+    
+    For i = 0 To 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next i
+    For i = 3 To 4
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next i
+    
+    For i = 23 To 24
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next i
+    
     
     PrimeraVez = True
 End Sub
@@ -664,13 +670,13 @@ End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub imgAyuda_Click(Index As Integer)
@@ -689,7 +695,7 @@ Dim vCadena As String
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     Select Case Index
         Case 4, 3
@@ -703,8 +709,8 @@ Dim Indice As Byte
             frmSoc.Show vbModal
             Set frmSoc = Nothing
             If CadenaDesdeOtroForm <> "" Then
-                txtcodigo(Indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                txtNombre(Indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                txtcodigo(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
+                txtnombre(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
             
         Case 0, 1 ' Vsocio
@@ -771,15 +777,15 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 5, 3 'socio
-            txtNombre(Index).Text = ""
+            txtnombre(Index).Text = ""
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtNombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", txtcodigo(Index).Text, "N")
+                txtnombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", txtcodigo(Index).Text, "N")
             End If
             
         Case 0, 1 'v socio
-            txtNombre(Index).Text = ""
+            txtnombre(Index).Text = ""
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtNombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "numeruve", txtcodigo(Index).Text, "N")
+                txtnombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "numeruve", txtcodigo(Index).Text, "N")
             End If
             
     

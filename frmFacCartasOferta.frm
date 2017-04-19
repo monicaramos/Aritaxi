@@ -308,7 +308,6 @@ Begin VB.Form frmFacCartasOferta
       Height          =   240
       Index           =   0
       Left            =   1290
-      Picture         =   "frmFacCartasOferta.frx":0222
       Tag             =   "-1"
       ToolTipText     =   "Ver observaciones"
       Top             =   1680
@@ -318,7 +317,7 @@ Begin VB.Form frmFacCartasOferta
       Height          =   240
       Index           =   2
       Left            =   1290
-      Picture         =   "frmFacCartasOferta.frx":0324
+      Picture         =   "frmFacCartasOferta.frx":0222
       Tag             =   "-1"
       ToolTipText     =   "Ver observaciones"
       Top             =   3690
@@ -556,6 +555,8 @@ End Sub
 
 
 Private Sub Form_Load()
+Dim I As Integer
+
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
@@ -579,6 +580,12 @@ Private Sub Form_Load()
     LimpiarCampos   'Limpia los campos TextBox
     
     Me.imgDoc(1).Picture = frmPpal.ImageListTPV.ListImages(8).Picture
+
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+
+
 
     'Vemos como esta guardado el valor del check
     chkVistaPrevia.Value = CheckValueLeer(Name)
@@ -834,11 +841,11 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim i As Integer
+Dim I As Integer
 
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     Modo = Kmodo
     PonerIndicador Me.lblIndicador, Modo

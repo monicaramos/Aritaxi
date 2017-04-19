@@ -203,7 +203,6 @@ Begin VB.Form frmDocAltaBaja
             Height          =   240
             Index           =   6
             Left            =   1710
-            Picture         =   "frmDocAltaBaja.frx":000C
             ToolTipText     =   "Buscar forma pago"
             Top             =   2250
             Width           =   240
@@ -231,7 +230,6 @@ Begin VB.Form frmDocAltaBaja
             Height          =   240
             Index           =   5
             Left            =   1710
-            Picture         =   "frmDocAltaBaja.frx":010E
             ToolTipText     =   "Buscar forma pago"
             Top             =   1890
             Width           =   240
@@ -240,7 +238,6 @@ Begin VB.Form frmDocAltaBaja
             Height          =   240
             Index           =   4
             Left            =   1710
-            Picture         =   "frmDocAltaBaja.frx":0210
             ToolTipText     =   "Buscar concepto"
             Top             =   1530
             Width           =   240
@@ -249,7 +246,6 @@ Begin VB.Form frmDocAltaBaja
             Height          =   240
             Index           =   3
             Left            =   1710
-            Picture         =   "frmDocAltaBaja.frx":0312
             ToolTipText     =   "Buscar concepto"
             Top             =   1140
             Width           =   240
@@ -258,7 +254,6 @@ Begin VB.Form frmDocAltaBaja
             Height          =   240
             Index           =   2
             Left            =   1710
-            Picture         =   "frmDocAltaBaja.frx":0414
             ToolTipText     =   "Buscar diario"
             Top             =   390
             Width           =   240
@@ -287,7 +282,6 @@ Begin VB.Form frmDocAltaBaja
             Height          =   240
             Index           =   1
             Left            =   1710
-            Picture         =   "frmDocAltaBaja.frx":0516
             ToolTipText     =   "Buscar cuenta"
             Top             =   750
             Width           =   240
@@ -448,7 +442,7 @@ Begin VB.Form frmDocAltaBaja
       Begin VB.CommandButton Command8 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmDocAltaBaja.frx":0618
+         Picture         =   "frmDocAltaBaja.frx":000C
          Style           =   1  'Graphical
          TabIndex        =   18
          Top             =   2215
@@ -458,7 +452,7 @@ Begin VB.Form frmDocAltaBaja
       Begin VB.CommandButton Command7 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmDocAltaBaja.frx":0922
+         Picture         =   "frmDocAltaBaja.frx":0316
          Style           =   1  'Graphical
          TabIndex        =   17
          Top             =   1440
@@ -489,7 +483,6 @@ Begin VB.Form frmDocAltaBaja
          Height          =   240
          Index           =   0
          Left            =   1080
-         Picture         =   "frmDocAltaBaja.frx":0C2C
          ToolTipText     =   "Buscar fecha"
          Top             =   1380
          Width           =   240
@@ -576,7 +569,6 @@ Begin VB.Form frmDocAltaBaja
          Height          =   240
          Index           =   0
          Left            =   1080
-         Picture         =   "frmDocAltaBaja.frx":0CB7
          Top             =   900
          Width           =   240
       End
@@ -800,7 +792,7 @@ Private Function InsertarAsiento() As Boolean
 Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim Lineas As String
-Dim i As Integer
+Dim I As Integer
 
 Dim Mc As Contadores
 Dim cad As String
@@ -835,7 +827,7 @@ Dim Documento As String
     If Mc.ConseguirContador("0", (CDate(txtcodigo(3).Text) <= CDate(vEmpresa.FechaFin)), True) = 0 Then
     
         Obs = "Alta de Socios "
-        i = 0
+        I = 0
     
         codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(txtcodigo(0).Text, "N"))
         Documento = "SOC-" & Format(codSocio, "000000")
@@ -865,10 +857,10 @@ Dim Documento As String
                 ImpTotal = ImpTotal + ImpTitulo  ' vParamAplic.ImpTituloAlta
                 
                 ' apunte al debe
-                i = i + 1
+                I = I + 1
                 
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(i, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(I, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpTitulo > 0 Then
@@ -890,9 +882,9 @@ Dim Documento As String
                 CadValues = CadValues & cad
                 
                 ' apunte al haber
-                i = i + 1
+                I = I + 1
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(i, "N") & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(I, "N") & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpTitulo > 0 Then
@@ -919,10 +911,10 @@ Dim Documento As String
                 ImpTotal = ImpTotal + ImpGasto
                 
                 ' apunte al debe
-                i = i + 1
+                I = I + 1
                 
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(i, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(I, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpGasto > 0 Then
@@ -944,9 +936,9 @@ Dim Documento As String
                 CadValues = CadValues & cad
                 
                 ' apunte al haber
-                i = i + 1
+                I = I + 1
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(i, "N") & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(I, "N") & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpGasto > 0 Then
@@ -1208,14 +1200,14 @@ Private Sub cmdCancel_Click(Index As Integer)
 End Sub
 
 Private Sub Form_Activate()
-Dim i As Integer
+Dim I As Integer
 
     If PrimeraVez Then
         PrimeraVez = False
         PonerFoco txtcodigo(2)
-        For i = 1 To Check1.Count
-            Check1(i).Value = 1
-        Next i
+        For I = 1 To Check1.Count
+            Check1(I).Value = 1
+        Next I
         ' Numero de uve
         txtcodigo(0).Text = NumCod
         PonerFormatoEntero txtcodigo(0)
@@ -1229,7 +1221,7 @@ Dim i As Integer
 End Sub
 
 Private Sub Form_Load()
-Dim H As Integer, W As Integer
+Dim H As Integer, W As Integer, I As Integer
 Dim List As Collection
     
     'Icono del formulario
@@ -1251,6 +1243,15 @@ Dim List As Collection
 '    Me.cmdCancel(indFrame).Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
+    
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next
+    For I = 0 To Me.imgFec.Count - 1
+        imgFec(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+    
+    
 End Sub
 
 
@@ -1598,7 +1599,7 @@ Private Function InsertarLinAsientoDia(cad As String, cadErr As String) As Boole
 Dim RS As ADODB.Recordset
 Dim Aux As String
 Dim Sql As String
-Dim i As Byte
+Dim I As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 
     On Error GoTo EInLinea
@@ -1636,7 +1637,7 @@ Dim CadValues3 As String
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single 'importe para insertar en la svenci
 Dim ImpVenci2 As Single 'importe para insertar en conta.scobro
-Dim i As Byte
+Dim I As Byte
 Dim TotalFactura2 As Currency   'Por si acaso lleva aportacion al terminal
 '1 Julio 2009. Los graba en scobro
 Dim CadenaDatosFiscales As String
@@ -1713,7 +1714,7 @@ Dim LEtra As String
                     '                    Añadire a la cadena fija esta los valores de textcsb41,txcs
                     CadValuesAuxConta = CadValuesAuxConta & vTextosCSB & ","
                     '-------- Primer Vencimiento
-                    i = 1
+                    I = 1
                     'FECHA VTO
                     FecVenci = CDate(txtcodigo(3).Text)
                     '=== Laura 23/01/2007
@@ -1734,8 +1735,8 @@ Dim LEtra As String
                     End If
                     
                     'Comprobar si cliente tiene dia de vencimiento atrasado
-                    CadValues = cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                    CadValues2 = CadValuesAuxConta & i & ", "
+                    CadValues = cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues2 = CadValuesAuxConta & I & ", "
                     CadValues2 = CadValues2 & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                     'IMPORTE del Vencimiento
@@ -1776,7 +1777,7 @@ Dim LEtra As String
                     
                     'Resto Vencimientos
                     '--------------------------------------------------------------------
-                    For i = 2 To rsVenci!numerove
+                    For I = 2 To rsVenci!numerove
                        'FECHA Resto Vencimientos
                         '=== Laura 23/01/2007
                         'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -1794,8 +1795,8 @@ Dim LEtra As String
                             FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
                         End If
 
-                        CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                        CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ", " & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                        CadValues = CadValues & ", " & cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                        CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ", " & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
 
                         'IMPORTE Resto de Vendimientos
                         ImpVenci = Round2(TotalFactura2 / rsVenci!numerove, 2)
@@ -1814,7 +1815,7 @@ Dim LEtra As String
                         End If
                         
 
-                    Next i
+                    Next I
                     
                 End If
                 RS.Close

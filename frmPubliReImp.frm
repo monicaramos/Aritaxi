@@ -269,6 +269,10 @@ Dim codtipom As String
 Dim cadSelect As String
 Dim indCodigo As Long
 
+Dim kCampo As Integer
+
+
+
 Private WithEvents frmF As frmCal 'Calendario de Fechas
 Attribute frmF.VB_VarHelpID = -1
 
@@ -367,6 +371,9 @@ Private Sub Form_Load()
     'Icono del form
     Me.Icon = frmPpal.Icon
     
+    For kCampo = 23 To 24
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
 
 '    CargarComboAnyo
 '    Combo2.Text = Year(Date)
@@ -374,11 +381,11 @@ Private Sub Form_Load()
 
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim encontrado As String
 Dim Codigo As String
 
-    DatosOK = True
+    DatosOk = True
     
 End Function
 

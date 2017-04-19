@@ -197,7 +197,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   5
          Left            =   1710
-         Picture         =   "frmLiqListReten.frx":0000
          Tag             =   "-1"
          ToolTipText     =   "Buscar cuenta"
          Top             =   4290
@@ -207,7 +206,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   21
          Left            =   1710
-         Picture         =   "frmLiqListReten.frx":0102
          Top             =   3270
          Width           =   240
       End
@@ -294,7 +292,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   38
          Left            =   1725
-         Picture         =   "frmLiqListReten.frx":018D
          ToolTipText     =   "Buscar socio"
          Top             =   1230
          Width           =   240
@@ -330,7 +327,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   39
          Left            =   1725
-         Picture         =   "frmLiqListReten.frx":028F
          ToolTipText     =   "Buscar socio"
          Top             =   1590
          Width           =   240
@@ -339,7 +335,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   14
          Left            =   1710
-         Picture         =   "frmLiqListReten.frx":0391
          Top             =   2190
          Width           =   240
       End
@@ -347,7 +342,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   13
          Left            =   3840
-         Picture         =   "frmLiqListReten.frx":041C
          Top             =   2190
          Width           =   240
       End
@@ -413,7 +407,6 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   8
          Left            =   1695
-         Picture         =   "frmLiqListReten.frx":04A7
          ToolTipText     =   "Buscar f.pago"
          Top             =   3780
          Width           =   240
@@ -582,7 +575,7 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   0
          Left            =   5370
-         Picture         =   "frmLiqListReten.frx":05A9
+         Picture         =   "frmLiqListReten.frx":0000
          ToolTipText     =   "Buscar fecha"
          Top             =   3690
          Visible         =   0   'False
@@ -651,7 +644,7 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   24
          Left            =   1410
-         Picture         =   "frmLiqListReten.frx":0634
+         Picture         =   "frmLiqListReten.frx":008B
          Top             =   2910
          Width           =   240
       End
@@ -717,7 +710,7 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   23
          Left            =   1410
-         Picture         =   "frmLiqListReten.frx":06BF
+         Picture         =   "frmLiqListReten.frx":0116
          Top             =   2520
          Width           =   240
       End
@@ -744,7 +737,7 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   1
          Left            =   1410
-         Picture         =   "frmLiqListReten.frx":074A
+         Picture         =   "frmLiqListReten.frx":01A1
          Top             =   1710
          Width           =   240
       End
@@ -791,7 +784,7 @@ Begin VB.Form frmLiqListReten
          Height          =   240
          Index           =   0
          Left            =   1410
-         Picture         =   "frmLiqListReten.frx":084C
+         Picture         =   "frmLiqListReten.frx":02A3
          Top             =   1365
          Width           =   240
       End
@@ -846,6 +839,8 @@ Dim NomArtic As String
 
 Dim tipoMov As String
 Dim codSocio As String
+
+Dim kCampo As Integer
 
 Private Sub InicializarVbles()
     cadFormula = ""
@@ -1010,7 +1005,7 @@ Dim devuelve As String
 End Sub
 
 Private Sub BotonReimprimir()
-Dim SQL As String
+Dim Sql As String
 Dim cadFormula As String
 Dim cadParam As String
 Dim numParam As Byte
@@ -1065,7 +1060,7 @@ End Sub
 
 
 Private Function ActualizarRegistros() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 Dim RS As ADODB.Recordset
 Dim Sql2Values As String
@@ -1092,11 +1087,11 @@ Dim Mens As String
     conn.BeginTrans
     ConnConta.BeginTrans
     
-    SQL = "select * from tmpinformes where codusu = " & vUsu.Codigo
-    SQL = SQL & " order by codigo1, importe1"
+    Sql = "select * from tmpinformes where codusu = " & vUsu.Codigo
+    Sql = Sql & " order by codigo1, importe1"
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
     SQL2 = "insert into sreten (codsocio, numeruve, fecfactu, numfactu, impreten, tiporeten, desdefec, hastafec) values "
     b = True
@@ -1131,9 +1126,9 @@ Dim Mens As String
         Socio = DBLet(RS!Codigo1, "N")
         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
         cuenta = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
-        SQL = ""
-        SQL = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", cuenta, "T")
-        If SQL = "" Then
+        Sql = ""
+        Sql = DevuelveDesdeBD(conConta, "nommacta", "cuentas", "codmacta", cuenta, "T")
+        If Sql = "" Then
             MsgBox "La cuenta contable del socio: " & Format(Socio, "000000") & " no existe.", vbExclamation
             conn.RollbackTrans
             ConnConta.RollbackTrans
@@ -1194,7 +1189,7 @@ End Function
 
 
 Private Function CargarTablaTemporal(Tabla As String, cadSelect As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim SqlValues As String
 Dim Importe As Currency
@@ -1210,16 +1205,16 @@ Dim Importe As Currency
     Screen.MousePointer = vbHourglass
     
     
-    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute Sql
 
-    SQL = "select codsocio, numeruve, sum(if(impreten is null,0,impreten)) as Importe from sreten "
-    If cadSelect <> "" Then SQL = SQL & " where " & cadSelect
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " order by 1 "
+    Sql = "select codsocio, numeruve, sum(if(impreten is null,0,impreten)) as Importe from sreten "
+    If cadSelect <> "" Then Sql = Sql & " where " & cadSelect
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " order by 1 "
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     SqlValues = ""
     While Not RS.EOF
@@ -1233,10 +1228,10 @@ Dim Importe As Currency
     Wend
     
     If SqlValues <> "" Then
-        SQL = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values "
-        SQL = SQL & Mid(SqlValues, 1, Len(SqlValues) - 1)
+        Sql = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values "
+        Sql = Sql & Mid(SqlValues, 1, Len(SqlValues) - 1)
         
-        conn.Execute SQL
+        conn.Execute Sql
     
     End If
     
@@ -1275,8 +1270,26 @@ Dim H As Integer, W As Integer
     'Icono del form
     Me.Icon = frmPpal.Icon
     
-    Me.frameListado.visible = False
+    Me.FrameListado.visible = False
     Me.FrameRecibosReten.visible = False
+    
+    For kCampo = 0 To 1
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 38 To 39
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    Me.imgBuscarOfer(5).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Me.imgBuscarOfer(8).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    
+    Me.imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(13).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(14).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(21).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(23).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(24).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    
+    
     
     Select Case OpcionListado
         Case 0
@@ -1315,7 +1328,7 @@ Private Sub PonerFrameListadoVisible(visible As Boolean, ByRef H As Integer, ByR
 
     H = 6405
     W = 7095
-    PonerFrameVisible Me.frameListado, visible, H, W
+    PonerFrameVisible Me.FrameListado, visible, H, W
 
 End Sub
 
@@ -1638,7 +1651,7 @@ Private Function GenerarFacturaRetenciones() As Boolean
 Dim vC As CTiposMov
 Dim fac As CFactura
 Dim cad As String
-Dim SQL As String
+Dim Sql As String
 Dim totfactu As Currency
 Dim BaseImp As Currency
 Dim base0 As Currency
@@ -1656,7 +1669,7 @@ Dim NumFactu As Long
 Dim codtipom As String
 Dim Cantidad As Currency
 Dim total As Currency
-Dim i As Currency
+Dim I As Currency
 Dim J As Integer
 Dim SqlArt As String
 Dim RsArt As ADODB.Recordset
@@ -1688,8 +1701,8 @@ Dim vSQL As String
     CodTraba = DevuelveDesdeBD(conAri, "codtraba", "straba", "login", vUsu.Login, "T")
     If CodTraba = "" Then CodTraba = DevuelveValor("select min(codtraba) from straba")
     'busco el minimo almacen y el minimo proveedor
-    SQL = "select min(codalmac) from salmpr"
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = "select min(codalmac) from salmpr"
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not miRsAux.EOF Then
         almac = miRsAux.Fields(0)
@@ -1697,8 +1710,8 @@ Dim vSQL As String
         
     miRsAux.Close
         
-    SQL = "select min(codprove) from sprove"
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = "select min(codprove) from sprove"
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not miRsAux.EOF Then
         Prove = miRsAux.Fields(0)
@@ -1799,11 +1812,11 @@ Dim vSQL As String
         cad = cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
         cad = cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
         cad = cad & DBSet(RS!codbanco, "N", "S") & "," & DBSet(RS!codsucur, "N", "S") & "," & DBSet(RS!digcontr, "T", "S") & "," & DBSet(RS!cuentaba, "T", "S") & "," & DBSet(RS!Iban, "T") & ")"
-        SQL = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
-        SQL = SQL & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-        SQL = SQL & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
-        SQL = SQL & cad
-        If Not ejecutar(SQL, False) Then
+        Sql = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
+        Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
+        Sql = Sql & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
+        Sql = Sql & cad
+        If Not ejecutar(Sql, False) Then
             vC.DevolverContador vC.TipoMovimiento, vC.Contador
             Exit Function
         Else
@@ -1818,10 +1831,10 @@ Dim vSQL As String
             cad = cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
             cad = cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
     
-            SQL = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
-            SQL = SQL & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
-            SQL = SQL & cad & ")"
-            conn.Execute SQL
+            Sql = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
+            Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
+            Sql = Sql & cad & ")"
+            conn.Execute Sql
             'slifac
             cad = ""
 
@@ -1829,10 +1842,10 @@ Dim vSQL As String
             cad = cad & DBSet(vParamAplic.ArtRetenciones, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
             cad = cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
             cad = cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & ValorNulo & ",1)"
-            SQL = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-            SQL = SQL & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
-            SQL = SQL & cad
-            conn.Execute SQL
+            Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
+            Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
+            Sql = Sql & cad
+            conn.Execute Sql
         
         End If
         

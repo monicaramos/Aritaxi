@@ -91,7 +91,6 @@ Begin VB.Form frmLiqPdteLiquida
       Height          =   240
       Index           =   0
       Left            =   1170
-      Picture         =   "frmLiqPdteLiquida.frx":0000
       Top             =   1635
       Width           =   240
    End
@@ -138,7 +137,6 @@ Begin VB.Form frmLiqPdteLiquida
       Height          =   240
       Index           =   1
       Left            =   1170
-      Picture         =   "frmLiqPdteLiquida.frx":0102
       Top             =   1980
       Width           =   240
    End
@@ -165,7 +163,6 @@ Begin VB.Form frmLiqPdteLiquida
       Height          =   240
       Index           =   23
       Left            =   1170
-      Picture         =   "frmLiqPdteLiquida.frx":0204
       Top             =   2970
       Width           =   240
    End
@@ -231,7 +228,6 @@ Begin VB.Form frmLiqPdteLiquida
       Height          =   240
       Index           =   24
       Left            =   3510
-      Picture         =   "frmLiqPdteLiquida.frx":028F
       Top             =   3000
       Width           =   240
    End
@@ -275,6 +271,8 @@ Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmMtoV As frmGesVSocio ' V socios
 Attribute frmMtoV.VB_VarHelpID = -1
 
+
+Dim kCampo As Integer
 
 Private Sub InicializarVbles()
     cadFormula = ""
@@ -332,7 +330,7 @@ Private Sub LlamarImprimir(duplicado As Boolean)
         'El nombre es el del documento
         .NombreRPT = DevuelveDesdeBDNew(conAri, "scryst", "documrpt", "codcryst", "50", "N")
         .Opcion = 101
-        .ConSubinforme = False
+        .ConSubInforme = False
         .Show vbModal
     End With
 End Sub
@@ -345,7 +343,7 @@ Private Sub Form_Activate()
     cadFormula = ""
     numParam = 0
     cadParam = ""
-
+    
     PonerFoco txtcodigo(0)
 
 End Sub
@@ -357,13 +355,20 @@ Private Sub Form_Load()
     
     Tabla = "shilla"
 
+    For kCampo = 0 To Me.imgBuscarOfer.Count - 1
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 23 To 24
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim encontrado As String
 Dim Codigo As String
 
-    DatosOK = True
+    DatosOk = True
     
 End Function
 

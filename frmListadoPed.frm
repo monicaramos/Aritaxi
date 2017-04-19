@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmListadoPed 
    BorderStyle     =   3  'Fixed Dialog
@@ -324,7 +324,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   22
             Left            =   1920
-            Picture         =   "frmListadoPed.frx":000C
             Top             =   2520
             Width           =   240
          End
@@ -371,7 +370,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   23
             Left            =   1920
-            Picture         =   "frmListadoPed.frx":010E
             Top             =   2880
             Width           =   240
          End
@@ -398,7 +396,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   20
             Left            =   1920
-            Picture         =   "frmListadoPed.frx":0210
             Top             =   1680
             Width           =   240
          End
@@ -406,7 +403,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   21
             Left            =   1920
-            Picture         =   "frmListadoPed.frx":0312
             Top             =   2040
             Width           =   240
          End
@@ -491,7 +487,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   12
             Left            =   2280
-            Picture         =   "frmListadoPed.frx":0414
             Top             =   1215
             Width           =   240
          End
@@ -538,7 +533,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   13
             Left            =   4680
-            Picture         =   "frmListadoPed.frx":049F
             Top             =   1215
             Width           =   240
          End
@@ -712,7 +706,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   14
             Left            =   2280
-            Picture         =   "frmListadoPed.frx":052A
             Top             =   240
             Width           =   240
          End
@@ -740,7 +733,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   24
             Left            =   1920
-            Picture         =   "frmListadoPed.frx":05B5
             Top             =   600
             Width           =   240
          End
@@ -979,7 +971,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   12
             Left            =   1080
-            Picture         =   "frmListadoPed.frx":06B7
             Top             =   720
             Width           =   240
          End
@@ -1026,7 +1017,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   11
             Left            =   1080
-            Picture         =   "frmListadoPed.frx":07B9
             Top             =   360
             Width           =   240
          End
@@ -1084,7 +1074,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   26
             Left            =   1080
-            Picture         =   "frmListadoPed.frx":08BB
             Top             =   750
             Width           =   240
          End
@@ -1131,7 +1120,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   25
             Left            =   1080
-            Picture         =   "frmListadoPed.frx":09BD
             Top             =   390
             Width           =   240
          End
@@ -1293,7 +1281,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   34
             Left            =   1200
-            Picture         =   "frmListadoPed.frx":0ABF
             Top             =   1680
             Visible         =   0   'False
             Width           =   240
@@ -1322,7 +1309,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   33
             Left            =   1200
-            Picture         =   "frmListadoPed.frx":0BC1
             Top             =   1320
             Visible         =   0   'False
             Width           =   240
@@ -1350,7 +1336,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   13
             Left            =   1200
-            Picture         =   "frmListadoPed.frx":0CC3
             Top             =   600
             Width           =   240
          End
@@ -1397,7 +1382,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   3
             Left            =   1200
-            Picture         =   "frmListadoPed.frx":0DC5
             Top             =   240
             Width           =   240
          End
@@ -1405,9 +1389,9 @@ Begin VB.Form frmListadoPed
       Begin VB.ComboBox cmbTipAlbaran 
          Height          =   315
          Index           =   1
-         ItemData        =   "frmListadoPed.frx":0EC7
+         ItemData        =   "frmListadoPed.frx":000C
          Left            =   2640
-         List            =   "frmListadoPed.frx":0ED4
+         List            =   "frmListadoPed.frx":0019
          Style           =   2  'Dropdown List
          TabIndex        =   169
          Top             =   4920
@@ -1492,7 +1476,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   1
             Left            =   1080
-            Picture         =   "frmListadoPed.frx":0F07
             Top             =   360
             Width           =   240
          End
@@ -1539,7 +1522,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   2
             Left            =   1080
-            Picture         =   "frmListadoPed.frx":1009
             Top             =   720
             Width           =   240
          End
@@ -1677,7 +1659,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   6
             Left            =   960
-            Picture         =   "frmListadoPed.frx":110B
             Top             =   480
             Width           =   240
          End
@@ -1724,7 +1705,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   7
             Left            =   960
-            Picture         =   "frmListadoPed.frx":120D
             Top             =   840
             Width           =   240
          End
@@ -1801,7 +1781,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   4
             Left            =   960
-            Picture         =   "frmListadoPed.frx":130F
             Top             =   360
             Width           =   240
          End
@@ -1848,7 +1827,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   5
             Left            =   960
-            Picture         =   "frmListadoPed.frx":1411
             Top             =   720
             Width           =   240
          End
@@ -1886,7 +1864,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   7
          Left            =   3840
-         Picture         =   "frmListadoPed.frx":1513
          Top             =   1440
          Width           =   240
       End
@@ -1951,7 +1928,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   6
          Left            =   1440
-         Picture         =   "frmListadoPed.frx":159E
          Top             =   1440
          Width           =   240
       End
@@ -1984,9 +1960,9 @@ Begin VB.Form frmListadoPed
       Begin VB.ComboBox cmbTipAlbaran 
          Height          =   315
          Index           =   0
-         ItemData        =   "frmListadoPed.frx":1629
+         ItemData        =   "frmListadoPed.frx":004C
          Left            =   1920
-         List            =   "frmListadoPed.frx":1636
+         List            =   "frmListadoPed.frx":0059
          Style           =   2  'Dropdown List
          TabIndex        =   56
          Top             =   5040
@@ -2146,7 +2122,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   19
             Left            =   960
-            Picture         =   "frmListadoPed.frx":1669
             Top             =   740
             Width           =   240
          End
@@ -2174,7 +2149,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   18
             Left            =   960
-            Picture         =   "frmListadoPed.frx":176B
             Top             =   380
             Width           =   240
          End
@@ -2331,7 +2305,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   10
          Left            =   1440
-         Picture         =   "frmListadoPed.frx":186D
          Top             =   1200
          Width           =   240
       End
@@ -2397,7 +2370,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   11
          Left            =   3600
-         Picture         =   "frmListadoPed.frx":18F8
          Top             =   1200
          Width           =   240
       End
@@ -2405,7 +2377,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   16
          Left            =   1440
-         Picture         =   "frmListadoPed.frx":1983
          Top             =   2895
          Width           =   240
       End
@@ -2452,7 +2423,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   17
          Left            =   1440
-         Picture         =   "frmListadoPed.frx":1A85
          Top             =   3255
          Width           =   240
       End
@@ -2498,7 +2468,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   15
          Left            =   1440
-         Picture         =   "frmListadoPed.frx":1B87
          Top             =   2280
          Width           =   240
       End
@@ -2545,7 +2514,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   14
          Left            =   1440
-         Picture         =   "frmListadoPed.frx":1C89
          Top             =   1920
          Width           =   240
       End
@@ -2615,7 +2583,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   32
             Left            =   705
-            Picture         =   "frmListadoPed.frx":1D8B
             Top             =   120
             Width           =   240
          End
@@ -2741,7 +2708,6 @@ Begin VB.Form frmListadoPed
             Height          =   240
             Index           =   0
             Left            =   0
-            Picture         =   "frmListadoPed.frx":1E8D
             Top             =   240
             Width           =   240
          End
@@ -2885,7 +2851,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   0
          Left            =   2040
-         Picture         =   "frmListadoPed.frx":1F8F
          Top             =   3840
          Width           =   240
       End
@@ -2912,7 +2877,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   10
          Left            =   840
-         Picture         =   "frmListadoPed.frx":201A
          Top             =   3360
          Width           =   240
       End
@@ -2939,7 +2903,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   9
          Left            =   840
-         Picture         =   "frmListadoPed.frx":211C
          Top             =   2640
          Width           =   240
       End
@@ -3004,7 +2967,6 @@ Begin VB.Form frmListadoPed
          Height          =   240
          Index           =   8
          Left            =   840
-         Picture         =   "frmListadoPed.frx":221E
          Top             =   1920
          Width           =   240
       End
@@ -3038,7 +3000,7 @@ Public CodClien As String 'Para seleccionar inicialmente las ofertas del Proveed
 '#Laura 14/11/2006 Recuperar facturas Alzira
 Public EstaRecupFact As Boolean ' si esta recuperando facturas (para albaranes de mostrador)
 
-Public EsCliente As Boolean
+Public Escliente As Boolean
 
 'Private HaDevueltoDatos As Boolean
 Private NomTabla As String
@@ -3086,6 +3048,8 @@ Private conSubRPT As Boolean 'si tiene subinformes para enlazarlos a las tablas 
 Dim indCodigo As Integer 'indice para txtCodigo
 
 Dim PrimeraVez As Boolean
+
+Dim kCampo As Integer
 
 
 Private Sub KEYpress(KeyAscii As Integer)
@@ -3486,7 +3450,7 @@ End Sub
 
 '#### Laura 14/11/2006 Recuperar facturas ALZIRA
 Private Function ComprobarCliente_RecuperarFac(cadSelAlb As String, FecFac As String, NumFac As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim codMacta1 As String 'cliente factura aritaxi
 Dim codMacta2 As String 'cliente factura conta
@@ -3496,12 +3460,12 @@ Dim LEtra As String
     ComprobarCliente_RecuperarFac = False
     
     'codmacta del cliente del albaran a facturar en Aritaxi
-    SQL = "select scaalb.codclien,sclien.codmacta"
-    SQL = SQL & " from scaalb inner join sclien on scaalb.codclien=sclien.codclien "
-    SQL = SQL & " Where " & cadSelAlb
+    Sql = "select scaalb.codclien,sclien.codmacta"
+    Sql = Sql & " from scaalb inner join sclien on scaalb.codclien=sclien.codclien "
+    Sql = Sql & " Where " & cadSelAlb
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RS.EOF Then
         codMacta1 = DBLet(RS!codmacta, "T")
     
@@ -3511,10 +3475,10 @@ Dim LEtra As String
     
     'codmacta en la contabilidad
     LEtra = ObtenerLetraSerie("FAV")
-    SQL = "SELECT codmacta FROM cabfact "
-    SQL = SQL & " WHERE numserie=" & DBSet(LEtra, "T") & " AND codfaccl=" & NumFac & " AND anofaccl=" & Year(FecFac)
+    Sql = "SELECT codmacta FROM cabfact "
+    Sql = Sql & " WHERE numserie=" & DBSet(LEtra, "T") & " AND codfaccl=" & NumFac & " AND anofaccl=" & Year(FecFac)
     Set RS = New ADODB.Recordset
-    RS.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RS.EOF Then
         codMacta2 = DBLet(RS!codmacta, "T")
     End If
@@ -3879,7 +3843,7 @@ Private Sub cmdAceptarPedxArtic_Click()
 '49: Informe de Albaranes por Artículo
 Dim campo As String
 Dim cad As String
-Dim SQL As String
+Dim Sql As String
 Dim cadFormula2 As String
 Dim cadSelect2 As String
 Dim cadSelect3 As String
@@ -3932,10 +3896,10 @@ Dim indice As Integer
             cadFormula2 = cadFormula
             cadSelect2 = cadSelect
             'obtenemos el periodo anterior de ventas
-            cad = "": SQL = ""
+            cad = "": Sql = ""
             If txtcodigo(11).Text <> "" Then cad = Day(txtcodigo(11).Text) & "/" & Month(txtcodigo(11).Text) & "/" & Year(txtcodigo(11).Text) - 1
-            If txtcodigo(12).Text <> "" Then SQL = Day(txtcodigo(12).Text) & "/" & Month(txtcodigo(12).Text) & "/" & Year(txtcodigo(12).Text) - 1
-            cadSelect3 = CadenaDesdeHastaBD(cad, SQL, campo, "F")
+            If txtcodigo(12).Text <> "" Then Sql = Day(txtcodigo(12).Text) & "/" & Month(txtcodigo(12).Text) & "/" & Year(txtcodigo(12).Text) - 1
+            cadSelect3 = CadenaDesdeHastaBD(cad, Sql, campo, "F")
         
         ElseIf OpcionListado = 41 Or OpcionListado = 42 Then '42:Disponibilidad Stock
         'pasar D/H fecha como parametro para enlazar con la cabecera de pedidos proveedor
@@ -4025,13 +3989,13 @@ Dim indice As Integer
             
         If txtcodigo(1).Text <> "" Then
             'seleccionar solo los clientes que el total de la BaseImp supere esa cantidad
-            If cadSelect <> "" Then SQL = cadSelect2 & " AND "
+            If cadSelect <> "" Then Sql = cadSelect2 & " AND "
             If OpcionListado = 230 Then
                 cad = ObtenerClientes(cadSelect, cad, True)
             Else
                 cad = ObtenerClientes(cadSelect, cad)
             End If
-            cadSelect = SQL & cad
+            cadSelect = Sql & cad
 '            If cadSelect3 <> "" Then cadSelect3 = cadSelect3 & " AND "
 '            cadSelect3 = cadSelect3 & cad
             If cadFormula2 <> "" Then cadFormula2 = cadFormula2 & " AND "
@@ -4139,17 +4103,17 @@ Dim indice As Integer
         'Orden del Informe
         If Me.OptOrdenCodclien.Value Then
             cad = "{tmpinformes.codigo1}"
-            SQL = "Orden: Cod. cliente"
+            Sql = "Orden: Cod. cliente"
         ElseIf Me.OptOrdenNomclien.Value Then
             cad = "{tmpinformes.nombre1}"
-            SQL = "Orden: Nombre cliente"
+            Sql = "Orden: Nombre cliente"
         ElseIf Me.OptOrdenVentas.Value Then
             cad = "{tmpinformes.importe5}"
-            SQL = "Orden: Volumen ventas"
+            Sql = "Orden: Volumen ventas"
         End If
         cadParam = cadParam & "pOrden=" & cad & "|"
         numParam = numParam + 1
-        cadParam = cadParam & "pCadOrden=""" & SQL & """|"
+        cadParam = cadParam & "pCadOrden=""" & Sql & """|"
         numParam = numParam + 1
         
         
@@ -4181,17 +4145,17 @@ Dim indice As Integer
         'Orden del Informe
         If Me.OptOrdenCodclien.Value Then
             cad = "{tmpinformes.codigo1}"
-            SQL = "Orden: Cod. cliente"
+            Sql = "Orden: Cod. cliente"
         ElseIf Me.OptOrdenNomclien.Value Then
             cad = "{tmpinformes.nombre1}"
-            SQL = "Orden: Nombre cliente"
+            Sql = "Orden: Nombre cliente"
         ElseIf Me.OptOrdenVentas.Value Then
             cad = "{tmpinformes.importe5}"
-            SQL = "Orden: Volumen ventas"
+            Sql = "Orden: Volumen ventas"
         End If
         cadParam = cadParam & "pOrden=" & cad & "|"
         numParam = numParam + 1
-        cadParam = cadParam & "pCadOrden=""" & SQL & """|"
+        cadParam = cadParam & "pCadOrden=""" & Sql & """|"
         numParam = numParam + 1
         
         
@@ -4210,13 +4174,13 @@ Dim indice As Integer
         numParam = numParam + 1
         
         'MArzo 2010
-        SQL = ""
+        Sql = ""
         If txtcodigo(6).Text <> "" Or txtcodigo(7).Text <> "" Then
             campo = "{scaped.codagent}"
             'Parametro Desde/Hasta agente
             cad = "@=""Agente: "
             If Not PonerDesdeHasta(campo, "N", 6, 7, cad) Then Exit Sub
-            SQL = Mid(cad, 4)
+            Sql = Mid(cad, 4)
         End If
         
         
@@ -4231,11 +4195,11 @@ End Sub
 Private Sub cmdAceptarPreFac_Click()
 'Prevision de Facturacion de Albaranes
 Dim campo As String, cad As String
-Dim B As Boolean
+Dim b As Boolean
 Dim indice As Integer
 
     InicializarVbles
-    B = (OpcionListado = 50)
+    b = (OpcionListado = 50)
     
     'If (Not B) Or (B And codClien = "ALV") Then
         'Pasar nombre de la Empresa como parametro
@@ -4277,7 +4241,7 @@ Dim indice As Integer
         If Not PonerDesdeHasta(campo, "N", 28, 29, cad) Then Exit Sub
     End If
 
-    If B Then 'opcionlistado=50
+    If b Then 'opcionlistado=50
         'Cadena para seleccion FORMA PAGO
         '--------------------------------------------
         If txtcodigo(30).Text <> "" Or txtcodigo(31).Text <> "" Then
@@ -4448,7 +4412,7 @@ Dim indice As Integer
         cad = "INSERT INTO tmpstockfec (codusu,codartic,codalmac,stock) " & cad
         conn.Execute cad
         
-        B = False 'PARA QUE NO ENTRE EN LO DE ABAJO y vaya a imprimir
+        b = False 'PARA QUE NO ENTRE EN LO DE ABAJO y vaya a imprimir
     End If
     
     'If b And codClien <> "ALV" Then 'OpcionListado = 50 'NO Imprime, mostrar resultado en pantalla
@@ -4515,6 +4479,27 @@ Dim indFrame As Single
 
     PrimeraVez = True
     limpiar Me
+    
+    'buscar
+    For kCampo = 0 To 26
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 32 To 34
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    
+    'fecha
+    Me.imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For kCampo = 6 To 7
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    For kCampo = 10 To 14
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    
+    
+    
+    
 
     'Ocultar todos los Frames de Formulario
     Me.FramePedxArtic.visible = False
@@ -4646,7 +4631,7 @@ Dim indFrame As Single
             End If
             
             
-            If EsCliente And OpcionListado = 222 Then
+            If Escliente And OpcionListado = 222 Then
                 cmdAceptarFacCli.visible = True
                 cmdAceptarFacCli.Enabled = True
                 cmdAceptarFac.visible = False
@@ -5166,7 +5151,7 @@ End Sub
 
 Private Sub PonerFramePreFacVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Pone el Frame del Prevision Facturacion Albaran Visible y Ajustado al Formulario, y visualiza los controles
-Dim B As Boolean
+Dim b As Boolean
 Dim cad As String
 
     H = 5600
@@ -5179,27 +5164,27 @@ Dim cad As String
     'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
     PonerFrameVisible Me.FramePreFacturar, visible, H, W
     If visible = True Then
-        B = (OpcionListado = 50)
-        Label4(41).visible = B
-        Me.imgBuscarOfer(16).visible = B
-        Me.imgBuscarOfer(17).visible = B
-        Me.txtcodigo(30).visible = B
-        Me.txtcodigo(31).visible = B
-        Me.txtnombre(30).visible = B
-        Me.txtnombre(31).visible = B
-        Me.Frame6.visible = Not B
+        b = (OpcionListado = 50)
+        Label4(41).visible = b
+        Me.imgBuscarOfer(16).visible = b
+        Me.imgBuscarOfer(17).visible = b
+        Me.txtcodigo(30).visible = b
+        Me.txtcodigo(31).visible = b
+        Me.txtnombre(30).visible = b
+        Me.txtnombre(31).visible = b
+        Me.Frame6.visible = Not b
         Me.Frame6.Top = 2900
         Me.Frame6.Left = 460
         'solo albaranes a facturar
-        Me.chkSoloFacturar.visible = B
+        Me.chkSoloFacturar.visible = b
         Me.chkSoloFacturar.Value = 1
         
         'Detalle o resumen
-        Me.Frame7.visible = B And CodClien = "ALV"
-        Me.Frame7.visible = B 'And CodClien = "ALV"
+        Me.Frame7.visible = b And CodClien = "ALV"
+        Me.Frame7.visible = b 'And CodClien = "ALV"
         Me.OptDetalle(0).Value = True
         
-        If Not B Then
+        If Not b Then
             Me.Label9(0).Caption = "Incum. plazos entrega"
         Else 'Prevision Facturacion
             Select Case CodClien 'aqui guardamos el tipo de movimiento
@@ -5331,8 +5316,8 @@ End Sub
 
 
 
-Private Function ObtenerClientes(cadW As String, Importe As String, Optional EsCliente As Boolean) As String
-Dim SQL As String
+Private Function ObtenerClientes(cadW As String, Importe As String, Optional Escliente As Boolean) As String
+Dim Sql As String
 Dim RS As ADODB.Recordset
 
     On Error GoTo EClientes
@@ -5340,36 +5325,36 @@ Dim RS As ADODB.Recordset
     cadW = Replace(cadW, "{", "")
     cadW = Replace(cadW, "}", "")
     
-    SQL = "select codclien,nomclien,sum(baseimp1),sum(baseimp2),sum(baseimp3),sum(baseimp1)+ sum(if(isnull(baseimp2),0,baseimp2))+ sum(if(isnull(baseimp3),0,baseimp3)) as BaseImp"
-    If EsCliente Then
-        SQL = SQL & " From scafaccli "
+    Sql = "select codclien,nomclien,sum(baseimp1),sum(baseimp2),sum(baseimp3),sum(baseimp1)+ sum(if(isnull(baseimp2),0,baseimp2))+ sum(if(isnull(baseimp3),0,baseimp3)) as BaseImp"
+    If Escliente Then
+        Sql = Sql & " From scafaccli "
     Else
-        SQL = SQL & " From scafac "
+        Sql = Sql & " From scafac "
     End If
-    If cadW <> "" Then SQL = SQL & " where " & cadW
-    SQL = SQL & " group by codclien "
-    If Importe <> "" Then SQL = SQL & "having baseimp>" & Importe
+    If cadW <> "" Then Sql = Sql & " where " & cadW
+    Sql = Sql & " group by codclien "
+    If Importe <> "" Then Sql = Sql & "having baseimp>" & Importe
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    SQL = ""
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = ""
     While Not RS.EOF
 '        If RS!BaseImp >= CCur(Importe) Then
-            SQL = SQL & RS!CodClien & ","
+            Sql = Sql & RS!CodClien & ","
 '        End If
         RS.MoveNext
     Wend
     RS.Close
     Set RS = Nothing
-    If SQL <> "" Then
-        SQL = Mid(SQL, 1, Len(SQL) - 1)
-        If EsCliente Then
-            SQL = "( {scafaccli.codclien} IN [" & SQL & "] )"
+    If Sql <> "" Then
+        Sql = Mid(Sql, 1, Len(Sql) - 1)
+        If Escliente Then
+            Sql = "( {scafaccli.codclien} IN [" & Sql & "] )"
         Else
-            SQL = "( {scafac.codclien} IN [" & SQL & "] )"
+            Sql = "( {scafac.codclien} IN [" & Sql & "] )"
         End If
     End If
-    ObtenerClientes = SQL
+    ObtenerClientes = Sql
     
 EClientes:
    If Err.Number <> 0 Then MuestraError Err.Number, , Err.Description

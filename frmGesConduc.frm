@@ -438,7 +438,6 @@ Begin VB.Form frmGesConduc
          Height          =   240
          Index           =   2
          Left            =   6450
-         Picture         =   "frmGesConduc.frx":0000
          Tag             =   "-1"
          ToolTipText     =   "Ver observaciones"
          Top             =   1830
@@ -448,7 +447,6 @@ Begin VB.Form frmGesConduc
          Height          =   240
          Index           =   1
          Left            =   840
-         Picture         =   "frmGesConduc.frx":0102
          Tag             =   "-1"
          ToolTipText     =   "Buscar situación"
          Top             =   2760
@@ -521,7 +519,6 @@ Begin VB.Form frmGesConduc
          Height          =   240
          Index           =   0
          Left            =   810
-         Picture         =   "frmGesConduc.frx":0204
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   1320
@@ -758,7 +755,7 @@ Private VieneDeBuscar As Boolean
 Dim cadB1 As String
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim cadB As String
 Dim cad As String
 
@@ -1071,6 +1068,9 @@ Private Sub Form_Load()
         .Buttons(btnPrimero + 3).Image = 9 'Último
     End With
     
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
       
     LimpiarCampos   'Limpia los campos TextBox
     VieneDeBuscar = False
@@ -1101,7 +1101,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
@@ -1109,9 +1109,9 @@ On Error GoTo EPonerModo
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     Modo = Kmodo
@@ -1146,9 +1146,9 @@ On Error GoTo EPonerModo
     cmdAceptar.visible = b
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -1178,7 +1178,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
@@ -1455,34 +1455,34 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim i As Byte
+Dim I As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux1.Count - 1 'TextBox
-            txtAux1(i).Top = 290
-            txtAux1(i).visible = visible
-        Next i
+        For I = 0 To txtAux1.Count - 1 'TextBox
+            txtAux1(I).Top = 290
+            txtAux1(I).visible = visible
+        Next I
         cmdAux(0).Top = 290
         cmdAux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For i = 0 To txtAux1.Count - 1
-                txtAux1(i).Text = ""
-                BloquearTxt txtAux1(i), False
-            Next i
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = ""
+                BloquearTxt txtAux1(I), False
+            Next I
         Else 'Vamos a modificar
-            For i = 0 To txtAux1.Count - 1
-                txtAux1(i).Text = DataGrid1.Columns(i + 2).Text
-                If i = 0 Then
-                    txtAux1(i).Locked = True
-                    txtAux1(i).BackColor = &H80000005
-                    cmdAux(i).Enabled = False
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = DataGrid1.Columns(I + 2).Text
+                If I = 0 Then
+                    txtAux1(I).Locked = True
+                    txtAux1(I).BackColor = &H80000005
+                    cmdAux(I).Enabled = False
                 Else
-                    txtAux1(i).Locked = False
+                    txtAux1(I).Locked = False
                 End If
-            Next i
+            Next I
         End If
         
 
@@ -1490,10 +1490,10 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 20)
         
-        For i = 0 To txtAux1.Count - 1
-            txtAux1(i).Top = alto
-            txtAux1(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To txtAux1.Count - 1
+            txtAux1(I).Top = alto
+            txtAux1(I).Height = DataGrid1.RowHeight
+        Next I
         
         
 '        'Fijamos anchura y posicion Left
@@ -1530,9 +1530,9 @@ Dim i As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux1.Count - 1
-            txtAux1(i).visible = visible
-        Next i
+        For I = 0 To txtAux1.Count - 1
+            txtAux1(I).visible = visible
+        Next I
         Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
         Me.cmdAux(0).Top = alto
         Me.cmdAux(0).visible = visible
@@ -1798,7 +1798,7 @@ On Error Resume Next
 End Sub
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Integer
+Dim I As Integer
 
 On Error GoTo ECargaGrid
 
@@ -1820,10 +1820,10 @@ On Error GoTo ECargaGrid
     
     
     vDataGrid.Enabled = (Modo = 0) Or (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
-    For i = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(i).Locked = True
-        vDataGrid.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(I).Locked = True
+        vDataGrid.Columns(I).AllowSizing = False
+    Next I
     
     vDataGrid.ScrollBars = dbgAutomatic
     

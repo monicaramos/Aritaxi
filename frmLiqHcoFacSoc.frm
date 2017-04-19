@@ -250,23 +250,40 @@ Begin VB.Form frmLiqHcoFacSoc
       TabCaption(1)   =   "Llamadas"
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "txtAux2(0)"
-      Tab(1).Control(1)=   "txtAux3(12)"
-      Tab(1).Control(2)=   "txtAux3(11)"
-      Tab(1).Control(3)=   "txtAux3(10)"
-      Tab(1).Control(4)=   "txtAux3(9)"
-      Tab(1).Control(5)=   "txtAux3(8)"
-      Tab(1).Control(6)=   "txtAux3(7)"
-      Tab(1).Control(7)=   "txtAux3(6)"
+      Tab(1).Control(0)=   "Label1(48)"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Data2"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "DataGrid1"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "txtAux3(2)"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "txtAux3(1)"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "txtAux3(0)"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "txtAux3(3)"
+      Tab(1).Control(6).Enabled=   0   'False
+      Tab(1).Control(7)=   "txtAux3(4)"
+      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "txtAux3(5)"
-      Tab(1).Control(9)=   "txtAux3(4)"
-      Tab(1).Control(10)=   "txtAux3(3)"
-      Tab(1).Control(11)=   "txtAux3(0)"
-      Tab(1).Control(12)=   "txtAux3(1)"
-      Tab(1).Control(13)=   "txtAux3(2)"
-      Tab(1).Control(14)=   "DataGrid1"
-      Tab(1).Control(15)=   "Data2"
-      Tab(1).Control(16)=   "Label1(48)"
+      Tab(1).Control(8).Enabled=   0   'False
+      Tab(1).Control(9)=   "txtAux3(6)"
+      Tab(1).Control(9).Enabled=   0   'False
+      Tab(1).Control(10)=   "txtAux3(7)"
+      Tab(1).Control(10).Enabled=   0   'False
+      Tab(1).Control(11)=   "txtAux3(8)"
+      Tab(1).Control(11).Enabled=   0   'False
+      Tab(1).Control(12)=   "txtAux3(9)"
+      Tab(1).Control(12).Enabled=   0   'False
+      Tab(1).Control(13)=   "txtAux3(10)"
+      Tab(1).Control(13).Enabled=   0   'False
+      Tab(1).Control(14)=   "txtAux3(11)"
+      Tab(1).Control(14).Enabled=   0   'False
+      Tab(1).Control(15)=   "txtAux3(12)"
+      Tab(1).Control(15).Enabled=   0   'False
+      Tab(1).Control(16)=   "txtAux2(0)"
+      Tab(1).Control(16).Enabled=   0   'False
       Tab(1).ControlCount=   17
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
@@ -1452,8 +1469,8 @@ On Error GoTo EModFact
                     'Eliminar de la spagop
 '[Monica]10/07/2012: tanto liquidaciones como rectificativas han de estar en la spagop
 '                    If Text1(1).Text = "FLI" Then
-                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(Data1.Recordset.Fields!NumFactu) & "'"
-                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(data1.Recordset.Fields!NumFactu) & "'"
+                        Sql = Sql & " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                         ConnConta.Execute "Delete from spagop WHERE " & Sql
 '                    Else
 '                        Sql = " codmacta='" & vFactu.CtaSocio & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu & " "
@@ -1888,10 +1905,10 @@ Private Sub PosicionarData()
 Dim Indicador As String
 Dim vWhere As String
 
-    If Not Data1.Recordset.EOF Then
+    If Not data1.Recordset.EOF Then
         'Hay datos en el Data1 bien porque se ha hecho VerTodos o una Busqueda
          vWhere = "(" & ObtenerWhereCP(False) & ")"
-         If SituarDataMULTI(Data1, vWhere, Indicador) Then
+         If SituarDataMULTI(data1, vWhere, Indicador) Then
              PonerModo 2
              lblIndicador.Caption = Indicador
         Else
@@ -1984,16 +2001,16 @@ Dim cad As String
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
         PonerModo 2
         DataGrid1.Enabled = True
-        If Not Data1.Recordset.EOF Then _
-            Me.lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+        If Not data1.Recordset.EOF Then _
+            Me.lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
 
     Else 'Se llama desde algún Prismatico de otro Form al Mantenimiento de Trabajadores
-        If Data1.Recordset.EOF Then
+        If data1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Data1.Recordset.Fields(0) & "|"
-        cad = cad & Data1.Recordset.Fields(1) & "|"
+        cad = data1.Recordset.Fields(0) & "|"
+        cad = cad & data1.Recordset.Fields(1) & "|"
         RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
@@ -2034,7 +2051,7 @@ Private Sub Form_Activate()
     If UnaVez Then
         UnaVez = False
         If hcoCodMovim <> "" Then
-            If Data1.Recordset.EOF Then
+            If data1.Recordset.EOF Then
                 PonerCadenaBusqueda
             Else
                 PonerCampos
@@ -2110,10 +2127,10 @@ Private Sub Form_Load()
     End If
   
   '**
-    Data1.ConnectionString = conn
-    Data1.RecordSource = CadenaConsulta
+    data1.ConnectionString = conn
+    data1.RecordSource = CadenaConsulta
     
-    Data1.Refresh
+    data1.Refresh
     
     Me.SSTab1.Tab = 0
    
@@ -2134,7 +2151,7 @@ Private Sub Form_Load()
         LimpiarDataGrids
         PrimeraVez = False
     Else
-        If Data1.Recordset.EOF Then
+        If data1.Recordset.EOF Then
             PonerModo 0
         Else
             PonerModo 2
@@ -2180,7 +2197,7 @@ Dim anc As Single
         LLamaLineas 1, anc, "DataGrid1"
     Else
         HacerBusqueda
-        If Data1.Recordset.EOF Then
+        If data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbYellow
             PonerFoco Text1(kCampo)
@@ -2298,7 +2315,7 @@ Dim indice As Byte
                     CadenaDesdeOtroForm = Text1(3).Text
                 Else
                     CadenaDesdeOtroForm = ""
-                    If Not Me.Data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Data1.Recordset!Concepto, "T")
+                    If Not Me.data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(data1.Recordset!Concepto, "T")
                 End If
                 frmFacClienteObser.Modificar = Modo >= 3
                 frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -2934,8 +2951,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    If data1.Recordset.EOF Then Exit Sub
+    DesplazamientoData data1, Index
     PonerCampos
 End Sub
 
@@ -3069,7 +3086,7 @@ Dim EstaEnTesoreria As String
     On Error GoTo EEliminar
 
     'Ciertas comprobaciones
-    If Data1.Recordset.EOF Then Exit Sub
+    If data1.Recordset.EOF Then Exit Sub
     
     'solo se puede modificar la factura si no esta contabilizada
     If FactContabilizada(EstaEnTesoreria) Then Exit Sub
@@ -3088,7 +3105,7 @@ Dim EstaEnTesoreria As String
     If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         Screen.MousePointer = vbHourglass
-        NumRegElim = Data1.Recordset.AbsolutePosition
+        NumRegElim = data1.Recordset.AbsolutePosition
         CodTipoMov = Text1(1).Text
         
         If Not Eliminar Then
@@ -3099,7 +3116,7 @@ Dim EstaEnTesoreria As String
             LOG.Insertar 8, vUsu, "Factura eliminada: " & Text1(1).Text & Text1(0).Text & " " & Text1(2).Text & " " & Text1(4).Text & vbCrLf & EstaEnTesoreria
             Set LOG = Nothing
         
-            If SituarDataTrasEliminar(Data1, NumRegElim) Then
+            If SituarDataTrasEliminar(data1, NumRegElim) Then
                 PonerCampos
             Else
                 LimpiarCampos
@@ -3122,9 +3139,9 @@ Private Sub PonerCadenaBusqueda()
 
     On Error GoTo EEPonerBusq
 
-    Data1.RecordSource = CadenaConsulta
-    Data1.Refresh
-    If Data1.Recordset.RecordCount <= 0 Then
+    data1.RecordSource = CadenaConsulta
+    data1.Refresh
+    If data1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -3134,7 +3151,7 @@ Private Sub PonerCadenaBusqueda()
         LimpiarDataGrids
         Exit Sub
     Else
-        Data1.Recordset.MoveFirst
+        data1.Recordset.MoveFirst
         PonerModo 2
         PonerCampos
         
@@ -3177,8 +3194,8 @@ Dim b As Boolean
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
     If Modo = 2 Then
-        If Not Data1.Recordset.EOF Then
-            If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+        If Not data1.Recordset.EOF Then
+            If data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
         End If
     End If
     DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
@@ -3281,7 +3298,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 Private Sub PonerLongCampos()
@@ -3295,11 +3312,11 @@ Dim BrutoFac As Single
     
     On Error Resume Next
     
-    If Data1.Recordset.EOF Then
+    If data1.Recordset.EOF Then
         LimpiarDataGrids
         Exit Sub
     End If
-    PonerCamposForma Me, Data1
+    PonerCamposForma Me, data1
     
     BrutoFac = CSng(Text1(13).Text)
     Text1(14).Text = Format(BrutoFac, FormatoImporte)
@@ -3317,7 +3334,7 @@ Dim BrutoFac As Single
     
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+    lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 Private Sub KEYpress(KeyAscii As Integer)
@@ -3601,7 +3618,7 @@ Dim bol As Boolean
 
         b = False
         Eliminar = False
-        If Data1.Recordset.EOF Then Exit Function
+        If data1.Recordset.EOF Then Exit Function
         
         conn.BeginTrans
         ConnConta.BeginTrans
@@ -3619,8 +3636,8 @@ Dim bol As Boolean
             If bol Then
 '[Monica]10/07/2012: tanto liquidaciones como rectificativas han de estar en la spagop
 '                If Text1(1).Text = "FLI" Then
-                    Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
-                    Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                    Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & data1.Recordset.Fields!NumFactu & "'"
+                    Sql = Sql & " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                     ConnConta.Execute "Delete from spagop WHERE " & Sql
                 
 '                Else
@@ -3647,15 +3664,15 @@ Dim bol As Boolean
                     
                         'retenciones de la sreten
                         If Text1(1).Text = "FLI" Then
-                            conn.Execute "delete from sreten where numfactu='" & Data1.Recordset.Fields!NumFactu & "'" & _
-                                         " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
-                                         " AND codsocio= " & Data1.Recordset.Fields!codSocio & _
+                            conn.Execute "delete from sreten where numfactu='" & data1.Recordset.Fields!NumFactu & "'" & _
+                                         " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
+                                         " AND codsocio= " & data1.Recordset.Fields!codSocio & _
                                          " AND tiporeten=0 "
                         Else
                             ' rectificativa de liquidacion de socio
-                            conn.Execute "delete from sreten where numfactu='" & Data1.Recordset.Fields!NumFactu & "'" & _
-                                         " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
-                                         " AND codsocio= " & Data1.Recordset.Fields!codSocio & _
+                            conn.Execute "delete from sreten where numfactu='" & data1.Recordset.Fields!NumFactu & "'" & _
+                                         " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
+                                         " AND codsocio= " & data1.Recordset.Fields!codSocio & _
                                          " AND tiporeten=2 "
                         End If
                     

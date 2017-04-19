@@ -144,7 +144,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   18
          Left            =   1680
-         Picture         =   "frmListado2.frx":0000
          Top             =   855
          Width           =   240
       End
@@ -152,7 +151,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   19
          Left            =   4680
-         Picture         =   "frmListado2.frx":008B
          Top             =   840
          Width           =   240
       End
@@ -236,7 +234,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   8
          Left            =   840
-         Picture         =   "frmListado2.frx":0116
          Top             =   2400
          Width           =   240
       End
@@ -273,7 +270,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   9
          Left            =   840
-         Picture         =   "frmListado2.frx":0218
          Top             =   2760
          Width           =   240
       End
@@ -487,7 +483,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   4
          Left            =   720
-         Picture         =   "frmListado2.frx":031A
          Top             =   1320
          Width           =   240
       End
@@ -515,7 +510,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   3
          Left            =   720
-         Picture         =   "frmListado2.frx":041C
          Top             =   840
          Width           =   240
       End
@@ -614,7 +608,7 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   3
          Left            =   1320
-         Picture         =   "frmListado2.frx":051E
+         Picture         =   "frmListado2.frx":0000
          ToolTipText     =   "Quitar al haber"
          Top             =   2880
          Width           =   240
@@ -623,7 +617,7 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   2
          Left            =   1680
-         Picture         =   "frmListado2.frx":0668
+         Picture         =   "frmListado2.frx":014A
          ToolTipText     =   "Puntear al haber"
          Top             =   2880
          Width           =   240
@@ -652,7 +646,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   6
          Left            =   1080
-         Picture         =   "frmListado2.frx":07B2
          Top             =   2280
          Width           =   240
       End
@@ -689,7 +682,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   5
          Left            =   1080
-         Picture         =   "frmListado2.frx":08B4
          Top             =   1920
          Width           =   240
       End
@@ -706,7 +698,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   30
          Left            =   4440
-         Picture         =   "frmListado2.frx":09B6
          Top             =   1080
          Width           =   240
       End
@@ -723,7 +714,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   29
          Left            =   1320
-         Picture         =   "frmListado2.frx":0A41
          Top             =   1080
          Width           =   240
       End
@@ -951,7 +941,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   840
-         Picture         =   "frmListado2.frx":0ACC
          Top             =   4680
          Width           =   240
       End
@@ -988,7 +977,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   840
-         Picture         =   "frmListado2.frx":0BCE
          Top             =   4320
          Width           =   240
       End
@@ -996,7 +984,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   2
          Left            =   840
-         Picture         =   "frmListado2.frx":0CD0
          Top             =   3480
          Width           =   240
       End
@@ -1049,7 +1036,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   10
          Left            =   4320
-         Picture         =   "frmListado2.frx":0DD2
          Top             =   975
          Width           =   240
       End
@@ -1077,7 +1063,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   840
-         Picture         =   "frmListado2.frx":0E5D
          Top             =   3120
          Width           =   240
       End
@@ -1085,7 +1070,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   4
          Left            =   960
-         Picture         =   "frmListado2.frx":0F5F
          Top             =   2175
          Width           =   240
       End
@@ -1093,7 +1077,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   3
          Left            =   960
-         Picture         =   "frmListado2.frx":1061
          Top             =   1800
          Width           =   240
       End
@@ -1170,7 +1153,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   9
          Left            =   960
-         Picture         =   "frmListado2.frx":1163
          Top             =   960
          Width           =   240
       End
@@ -1279,7 +1261,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   6
          Left            =   840
-         Picture         =   "frmListado2.frx":11EE
          Top             =   2640
          Width           =   240
       End
@@ -1296,7 +1277,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   5
          Left            =   840
-         Picture         =   "frmListado2.frx":12F0
          Top             =   2280
          Width           =   240
       End
@@ -1333,7 +1313,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   28
          Left            =   3600
-         Picture         =   "frmListado2.frx":13F2
          Top             =   1320
          Width           =   240
       End
@@ -1350,7 +1329,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   27
          Left            =   960
-         Picture         =   "frmListado2.frx":147D
          Top             =   1320
          Width           =   240
       End
@@ -1451,7 +1429,7 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   600
-         Picture         =   "frmListado2.frx":1508
+         Picture         =   "frmListado2.frx":0294
          ToolTipText     =   "Puntear al haber"
          Top             =   3840
          Width           =   240
@@ -1460,7 +1438,7 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   240
-         Picture         =   "frmListado2.frx":1652
+         Picture         =   "frmListado2.frx":03DE
          ToolTipText     =   "Quitar al haber"
          Top             =   3840
          Width           =   240
@@ -1648,7 +1626,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   4080
-         Picture         =   "frmListado2.frx":179C
          Top             =   3000
          Width           =   240
       End
@@ -1780,7 +1757,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   1440
-         Picture         =   "frmListado2.frx":1827
          Top             =   2280
          Width           =   240
       End
@@ -1808,7 +1784,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   1440
-         Picture         =   "frmListado2.frx":1929
          Top             =   1920
          Width           =   240
       End
@@ -1816,7 +1791,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   1440
-         Picture         =   "frmListado2.frx":1A2B
          Top             =   3000
          Width           =   240
       End
@@ -1844,7 +1818,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   1440
-         Picture         =   "frmListado2.frx":1AB6
          Top             =   1200
          Width           =   240
       End
@@ -1852,7 +1825,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   1440
-         Picture         =   "frmListado2.frx":1BB8
          Top             =   840
          Width           =   240
       End
@@ -1929,7 +1901,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   720
-         Picture         =   "frmListado2.frx":1CBA
          Top             =   1320
          Width           =   240
       End
@@ -1957,7 +1928,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   3
          Left            =   3960
-         Picture         =   "frmListado2.frx":1DBC
          Top             =   2040
          Width           =   240
       End
@@ -1974,7 +1944,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   2
          Left            =   1440
-         Picture         =   "frmListado2.frx":1E47
          Top             =   2040
          Width           =   240
       End
@@ -2114,7 +2083,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   2
          Left            =   1680
-         Picture         =   "frmListado2.frx":1ED2
          Top             =   1560
          Width           =   240
       End
@@ -2142,7 +2110,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   31
          Left            =   1680
-         Picture         =   "frmListado2.frx":1FD4
          Top             =   1080
          Width           =   240
       End
@@ -2282,7 +2249,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   0
          Left            =   1200
-         Picture         =   "frmListado2.frx":205F
          Top             =   1800
          Width           =   240
       End
@@ -2319,7 +2285,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   1
          Left            =   1200
-         Picture         =   "frmListado2.frx":2161
          Top             =   2160
          Width           =   240
       End
@@ -2327,7 +2292,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   25
          Left            =   4080
-         Picture         =   "frmListado2.frx":2263
          Top             =   960
          Width           =   240
       End
@@ -2373,7 +2337,6 @@ Begin VB.Form frmListado2
          Height          =   240
          Index           =   24
          Left            =   1680
-         Picture         =   "frmListado2.frx":22EE
          Top             =   975
          Width           =   240
       End
@@ -2502,7 +2465,7 @@ Dim miSQL As String
 Private Cadena_frmB As String
 Private cadImpresion As String  'Facturacion
 
-
+Dim kCampo As Integer
 
 Private Sub cboTablas_Click()
     cboCampos.Clear
@@ -2967,7 +2930,7 @@ End Sub
 
 
 Private Sub cmdSituAlbaran_Click()
-Dim i As Integer
+Dim I As Integer
     InicializarVbles
     cadTitulo = ""
     cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
@@ -2992,20 +2955,20 @@ Dim i As Integer
     devuelve = ""
     miSQL = ""
     IndiceImg = 0
-    For i = 0 To List1.ListCount - 1
-        If List1.Selected(i) Then
+    For I = 0 To List1.ListCount - 1
+        If List1.Selected(I) Then
             IndiceImg = IndiceImg + 1
-            NumRegElim = InStrRev(List1.List(i), "(")
+            NumRegElim = InStrRev(List1.List(I), "(")
             If NumRegElim = 0 Then
                 MsgBox "No se ha encontrado (", vbExclamation
                 Exit Sub
             End If
-            campo = Mid(List1.List(i), NumRegElim + 1, 3)
+            campo = Mid(List1.List(I), NumRegElim + 1, 3)
             miSQL = miSQL & " - " & campo
             devuelve = devuelve & ", '" & campo & "'"
             
         End If
-    Next i
+    Next I
     If devuelve = "" Then
         MsgBox "Seleccione algun tipo de albarán", vbExclamation
         Exit Sub
@@ -3207,6 +3170,56 @@ Dim IndiceCancel As Integer
     
     PrimeraVez = True
     limpiar Me
+    
+    For kCampo = 0 To Me.imgCliente.Count - 1
+        Me.imgCliente(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 0 To Me.imgDpto.Count - 1
+        Me.imgDpto(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 0 To 1
+        Me.imgProveedor(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 8 To 9
+        Me.imgProveedor(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    Me.imgTecnico(0).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For kCampo = 3 To 6
+        Me.imgTecnico(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 0 To 1
+        Me.imgAgente(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 1 To 2
+        Me.imgArticulo(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    
+    Me.imgBancoPr(2).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    
+    
+    
+    For kCampo = 0 To 3
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    For kCampo = 9 To 10
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    
+    For kCampo = 18 To 19
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    For kCampo = 24 To 25
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    For kCampo = 27 To 31
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    
+    
+    
+    
+    
+    
     FrListadoReparaciones.visible = False
     FrEstadisticasReparacionTecnico.visible = False
     FrameMultibase.visible = False
@@ -3387,18 +3400,18 @@ Private Sub imgBancoPr_Click(Index As Integer)
 End Sub
 
 Private Sub imgCheck_Click(Index As Integer)
-Dim i As Integer
+Dim I As Integer
 
     If Index < 2 Then
         'Seleecionar otras ofertas
-        For i = 1 To Me.lw1.ListItems.Count
-            lw1.ListItems(i).Checked = Index = 1
-        Next i
+        For I = 1 To Me.lw1.ListItems.Count
+            lw1.ListItems(I).Checked = Index = 1
+        Next I
     ElseIf Index < 4 Then
         'Seleccionar Tipos albaran para listado situacion labaranes
-        For i = 0 To List1.ListCount - 1
-            List1.Selected(i) = Index = 2
-        Next i
+        For I = 0 To List1.ListCount - 1
+            List1.Selected(I) = Index = 2
+        Next I
     End If
     
 End Sub
@@ -4496,7 +4509,7 @@ End Sub
 
 Private Sub HacerCambiosMultibase(numlinea As Integer)
 Dim TotalReg As Long
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 Dim Claves As Integer
 Dim Campos As Integer
@@ -4576,13 +4589,13 @@ Dim T1 As Single
         End If
         
         cadSelect = "" 'LOS UPDATES
-        For i = Claves To Campos
-            If Not IsNull(miRsAux.Fields(i)) Then
-                cadParam = miRsAux.Fields(i)  'Cojo el valor del field
+        For I = Claves To Campos
+            If Not IsNull(miRsAux.Fields(I)) Then
+                cadParam = miRsAux.Fields(I)  'Cojo el valor del field
                 cadNomRPT = RevisaCaracterMultibase(cadParam)  'Obtengo la modificaicon por campos multibase
                 If cadParam <> cadNomRPT Then
                     'HAY que modificar ya que son disitintos el de laBD y el calculado por el modulo de multibase
-                    cadSelect = cadSelect & ", " & miRsAux.Fields(i).Name & " = '" & DevNombreSQL(cadNomRPT) & "'"
+                    cadSelect = cadSelect & ", " & miRsAux.Fields(I).Name & " = '" & DevNombreSQL(cadNomRPT) & "'"
                 End If
             End If
         Next
@@ -4598,9 +4611,9 @@ Dim T1 As Single
 
                 Select Case Codigo
                 Case "F"
-                    cadParam = cadParam & "'" & Format(miRsAux.Fields(i).Value, FormatoFecha) & "'"
+                    cadParam = cadParam & "'" & Format(miRsAux.Fields(I).Value, FormatoFecha) & "'"
                 Case "T"
-                    cadParam = cadParam & "'" & miRsAux.Fields(i).Value & "'"
+                    cadParam = cadParam & "'" & miRsAux.Fields(I).Value & "'"
                 Case Else  'NUMERICO
                     cadParam = cadParam & miRsAux.Fields(J).Value
                 End Select
@@ -5077,7 +5090,7 @@ Private Sub CargarCamposTabla()
 'Dim Cad As String
 'Dim Aux As String
 Dim RS As ADODB.Recordset
-Dim i As Integer
+Dim I As Integer
 Dim TieneClaves As Boolean
 
     
@@ -5087,28 +5100,28 @@ Dim TieneClaves As Boolean
     
  
         TieneClaves = False
-        For i = 0 To RS.Fields.Count - 1
+        For I = 0 To RS.Fields.Count - 1
            
             
             
             'SOLO TEXTOS
-            If RS.Fields(i).Type = 129 Or RS.Fields(i).Type = 200 Or RS.Fields(i).Type = adVarChar Then
+            If RS.Fields(I).Type = 129 Or RS.Fields(I).Type = 200 Or RS.Fields(I).Type = adVarChar Then
     
        
   
-                If RS.Fields(i).Properties(18).Value Then
+                If RS.Fields(I).Properties(18).Value Then
                     'NO HACEMOS NADA. Es campo clave
                 
                 Else
-                    cboCampos.AddItem RS.Fields(i).Name
+                    cboCampos.AddItem RS.Fields(I).Name
                 End If
                 
             End If
             
             'Para saber si tiene claves
-            If RS.Fields(i).Properties(18).Value Then TieneClaves = True
+            If RS.Fields(I).Properties(18).Value Then TieneClaves = True
             
-        Next i
+        Next I
         
         
         
@@ -5125,7 +5138,7 @@ End Sub
 
 
 Private Sub UpdatearTablaRoot()
-Dim i As Integer
+Dim I As Integer
 Dim TienDatos As Boolean
 
     On Error GoTo EUpdatearTablaRoot
@@ -5149,28 +5162,28 @@ Dim TienDatos As Boolean
             If miSQL <> devuelve Then
                     'La clave
                     cadFrom = ""
-                    For i = 0 To miRsAux.Fields.Count - 1
-                        If miRsAux.Fields(i).Properties(18).Value Then
-                            Select Case miRsAux.Fields(i).Type
+                    For I = 0 To miRsAux.Fields.Count - 1
+                        If miRsAux.Fields(I).Properties(18).Value Then
+                            Select Case miRsAux.Fields(I).Type
                             Case 133
-                                campo = CStr(miRsAux.Fields(i))
+                                campo = CStr(miRsAux.Fields(I))
                                 campo = "'" & Format(campo, "yyyy-mm-dd") & "'"
             
                             Case 135 'Fecha/Hora
-                                campo = DBSet(miRsAux.Fields(i), "FH", "S")
+                                campo = DBSet(miRsAux.Fields(I), "FH", "S")
                             'Numero normal, sin decimales
                             Case 2, 3, 16 To 19
-                                campo = miRsAux.Fields(i)
+                                campo = miRsAux.Fields(I)
                             Case 129, 200
-                                campo = DBSet(miRsAux.Fields(i), "T")
+                                campo = DBSet(miRsAux.Fields(I), "T")
                             Case Else
-                                MsgBox "No tratado: " & miRsAux.Fields(i).Type, vbExclamation
+                                MsgBox "No tratado: " & miRsAux.Fields(I).Type, vbExclamation
                                 Exit Sub
                                 
                             End Select
-                            cadFrom = cadFrom & " AND " & miRsAux.Fields(i).Name & " = " & campo
+                            cadFrom = cadFrom & " AND " & miRsAux.Fields(I).Name & " = " & campo
                         End If
-                    Next i
+                    Next I
                     cadFrom = Mid(cadFrom, 6)
                     devuelve = DevNombreSQL(devuelve)
                     miSQL = "UPDATE " & Me.cboTablas.List(cboTablas.ListIndex) & " SET " & Me.cboCampos.List(cboCampos.ListIndex)

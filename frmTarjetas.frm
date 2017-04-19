@@ -687,7 +687,6 @@ Begin VB.Form frmTarjetas
          Height          =   240
          Index           =   0
          Left            =   780
-         Picture         =   "frmTarjetas.frx":013F
          ToolTipText     =   "Buscar socio"
          Top             =   180
          Width           =   240
@@ -1347,7 +1346,7 @@ End Sub
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim i As Integer
+Dim I As Integer
 
     On Error GoTo Error1
 
@@ -1355,9 +1354,9 @@ Dim i As Integer
         CargaForaGrid
         Exit Sub
     Else
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Text = ""
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Text = ""
+        Next I
     End If
     Exit Sub
     
@@ -1387,6 +1386,11 @@ End Sub
 Private Sub Form_Load()
     'Icono del formulario
     Me.Icon = frmPpal.Icon
+
+
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
 
     ' ICONITOS DE LA BARRA
     btnAnyadir = 5
@@ -1502,10 +1506,10 @@ End Sub
 
 Private Sub frmA_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Agentes
-Dim Indice As Byte
-    Indice = 17
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Agente
-    FormateaCampo Text1(Indice)
+Dim indice As Byte
+    indice = 17
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Agente
+    FormateaCampo Text1(indice)
 End Sub
 
 Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
@@ -1560,47 +1564,47 @@ End Sub
 
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
-Dim Indice As Byte
+Dim indice As Byte
 Dim devuelve As String
 
-    Indice = 9
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-    Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve) 'Poblacion
+    indice = 9
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
+    Text1(indice + 1).Text = ObtenerPoblacion(Text1(indice).Text, devuelve) 'Poblacion
     'provincia
-    Text1(Indice + 2).Text = devuelve
+    Text1(indice + 2).Text = devuelve
     
 End Sub
 
 
 Private Sub frmCV_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Clientes Varios
-Dim Indice As Byte
+Dim indice As Byte
 
-    Indice = 6
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
-    Text1(Indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
+    indice = 6
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'NIF
+    Text1(indice - 1).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Clien
     
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date) 'Calendario Fechas
-Dim Indice As Byte
-    Indice = CByte(Me.cmdAux(0).Tag) + 1
-    txtAux(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim indice As Byte
+    indice = CByte(Me.cmdAux(0).Tag) + 1
+    txtAux(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
 Private Sub frmFE_DatoSeleccionado(CadenaSeleccion As String)
 'Formas de Envio
-Dim Indice As Byte
-    Indice = 29
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Envio
+Dim indice As Byte
+    indice = 29
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Envio
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
-Dim Indice As Byte
-    Indice = 14
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
+Dim indice As Byte
+    indice = 14
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
 End Sub
 
 
@@ -1660,14 +1664,14 @@ End Sub
 
 Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Trabajadores
-Dim Indice As Byte
-    Indice = Val(Me.imgBuscar(3).Tag)
-    Text1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
+Dim indice As Byte
+    indice = Val(Me.imgBuscar(3).Tag)
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'Cod Trabajador
 End Sub
 
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     If Modo = 2 Or Modo = 0 Then Exit Sub
     TerminaBloquear
@@ -1682,7 +1686,7 @@ Dim Indice As Byte
             Screen.MousePointer = vbDefault
             frmC.Show vbModal
             Set frmC = Nothing
-            Indice = 5
+            indice = 5
             If HaDevueltoDatos Then
                 txtAnterior = ""
                 Text1_LostFocus 0
@@ -1693,11 +1697,11 @@ Dim Indice As Byte
             frmCV.DatosADevolverBusqueda = "0"
             frmCV.Show vbModal
             Set frmCV = Nothing
-            Indice = 6
+            indice = 6
             
     End Select
     
-    PonerFoco Text1(Indice)
+    PonerFoco Text1(indice)
     Screen.MousePointer = vbDefault
     
     If Modo = 4 Then
@@ -1707,22 +1711,22 @@ End Sub
 
 
 Private Sub cmdAux_Click(Index As Integer) 'Abre calendario Fechas
-Dim Indice As Byte
+Dim indice As Byte
 
    If Modo = 2 Or Modo = 0 Then Exit Sub
    Screen.MousePointer = vbHourglass
    Set frmF = New frmCal
    frmF.Fecha = Now
-   Indice = Index + 1
+   indice = Index + 1
    Me.cmdAux(0).Tag = Index
 
-   PonerFormatoFecha txtAux(Indice)
-   If txtAux(Indice).Text <> "" Then frmF.Fecha = CDate(txtAux(Indice).Text)
+   PonerFormatoFecha txtAux(indice)
+   If txtAux(indice).Text <> "" Then frmF.Fecha = CDate(txtAux(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtAux(Indice)
+   PonerFoco txtAux(indice)
 End Sub
 
 
@@ -1946,7 +1950,7 @@ End Sub
 Private Sub HacerBusquedaTarjeta()
 Dim cadB As String
 Dim CADENA As String
-Dim i As Integer
+Dim I As Integer
     'Poner el valor del combo Tipos de Movimiento Asociado
 '    If Me.cboTipomov.ListIndex <> -1 Then
 '        Text1(30).Text = ObtenerCodTipom
@@ -2019,7 +2023,7 @@ End Sub
 
 
 Private Sub PonerCadenaBusqueda()
-Dim i As Integer
+Dim I As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo EEPonerBusq
@@ -2060,15 +2064,15 @@ End Sub
 
 Private Sub PonerCamposLineas()
 'Carga las Pestañas con las tablas de lineas del Trabajador seleccionado para mostrar
-Dim i As Integer
+Dim I As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo EPonerLineas
 
     'Limpiar campos
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).Text = ""
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Text = ""
+    Next I
 
 
     'Datos de la tabla slipre
@@ -2108,7 +2112,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2117,9 +2121,9 @@ Dim b As Boolean
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     
@@ -2154,13 +2158,13 @@ Dim b As Boolean
     b = (Modo = 3) Or (Modo = 4) Or (Modo = 1)
     
     'Si no es modo lineas Boquear los TxtAux
-    For i = 0 To txtAux.Count - 1
-        BloquearTxt txtAux(i), (Modo <> 5) And Not BusquedaTarjetas
-    Next i
+    For I = 0 To txtAux.Count - 1
+        BloquearTxt txtAux(I), (Modo <> 5) And Not BusquedaTarjetas
+    Next I
     
-    For i = 0 To 2
-        txtAux(i).visible = (Modo = 5 And (ModificaLineas = 1 Or ModificaLineas = 2)) Or (Modo = 1 And BusquedaTarjetas) 'Not ((Modo <> 5) And Not BusquedaTarjetas)
-    Next i
+    For I = 0 To 2
+        txtAux(I).visible = (Modo = 5 And (ModificaLineas = 1 Or ModificaLineas = 2)) Or (Modo = 1 And BusquedaTarjetas) 'Not ((Modo <> 5) And Not BusquedaTarjetas)
+    Next I
     
     Text1(0).Enabled = (Modo = 3) Or (Modo = 1 And Not BusquedaTarjetas)
     Text1(1).Enabled = (Modo = 3) Or (Modo = 1 And Not BusquedaTarjetas)
@@ -2175,9 +2179,9 @@ Dim b As Boolean
     cmdAceptar.visible = b Or (Modo = 5 And BusquedaTarjetas)
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
 '    Me.imgBuscar(0).visible = False
 '    Me.imgBuscar(0).Enabled = (Modo = 1)
               
@@ -2237,7 +2241,7 @@ End Function
 
 Private Function DatosOkLinea() As Boolean
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim Aux As String
 
     On Error GoTo EDatosOkLinea
@@ -2451,7 +2455,7 @@ ECargaGrid:
 End Sub
 
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Byte
+Dim I As Byte
 Dim tots As String
 
     On Error GoTo ECargaGrid
@@ -2479,38 +2483,38 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim i As Byte
+Dim I As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To 2 'TextBox
-            txtAux(i).Top = 290
-            txtAux(i).visible = visible
-        Next i
+        For I = 0 To 2 'TextBox
+            txtAux(I).Top = 290
+            txtAux(I).visible = visible
+        Next I
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
         imgFich(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For i = 0 To txtAux.Count - 1
-                txtAux(i).Text = ""
-                BloquearTxt txtAux(i), False
-            Next i
+            For I = 0 To txtAux.Count - 1
+                txtAux(I).Text = ""
+                BloquearTxt txtAux(I), False
+            Next I
             
         Else 'Vamos a modificar
-            For i = 0 To 2
-                If i < 3 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 3).Text
-                ElseIf i = 3 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 4).Text
-                ElseIf i >= 4 And i < 9 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 5).Text
-                ElseIf i = 9 Then
-                    txtAux(i).Text = DataGrid1.Columns(14).Text
-                ElseIf i = 10 Then
+            For I = 0 To 2
+                If I < 3 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 3).Text
+                ElseIf I = 3 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 4).Text
+                ElseIf I >= 4 And I < 9 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 5).Text
+                ElseIf I = 9 Then
+                    txtAux(I).Text = DataGrid1.Columns(14).Text
+                ElseIf I = 10 Then
                     'txtAux(i).Text = DataGrid1.Columns(8).Text
-                ElseIf i > 10 Then
+                ElseIf I > 10 Then
                     ' ---- [19/10/2009] [LAURA] : centro de coste si hay conta analitica
 '                    If vEmpresa.TieneAnalitica Then
 '                        'txtAux(i).Text = DataGrid1.Columns(i + 4).Text
@@ -2521,8 +2525,8 @@ Dim i As Byte
 '                    End If
                     
                 End If
-                txtAux(i).Locked = False
-            Next i
+                txtAux(I).Locked = False
+            Next I
         End If
         
         cmdAux(0).Enabled = True
@@ -2534,10 +2538,10 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 10)
         
-        For i = 0 To 2
-            txtAux(i).Top = alto
-            txtAux(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To 2
+            txtAux(I).Top = alto
+            txtAux(I).Height = DataGrid1.RowHeight
+        Next I
         cmdAux(0).Top = alto
         cmdAux(1).Top = alto
 '        cmdAux(9).Top = alto
@@ -2562,9 +2566,9 @@ Dim i As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To 2
-             txtAux(i).visible = visible
-        Next i
+        For I = 0 To 2
+             txtAux(I).visible = visible
+        Next I
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
     End If
@@ -2901,11 +2905,11 @@ End Function
 
 
 Private Sub LimpiarDatosTarjeta()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).Text = ""
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Text = ""
+    Next I
 End Sub
     
 
@@ -3158,7 +3162,7 @@ Private Sub InsertarLineasFactu(cadWHERE)
 'cadSerie = cadSerie & " SELECT '" & Text1(30).Text & "' as codtipom," & Text1(0).Text & " as numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre FROM slifac WHERE " & CadenaSeleccion
  Dim RS As ADODB.Recordset
  Dim Sql As String
- Dim i As Integer
+ Dim I As Integer
  Dim cadI As String
  Dim numlin As String
  

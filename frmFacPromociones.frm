@@ -110,7 +110,6 @@ Begin VB.Form frmFacPromociones
          Height          =   240
          Index           =   2
          Left            =   1190
-         Picture         =   "frmFacPromociones.frx":000C
          ToolTipText     =   "Buscar fecha"
          Top             =   360
          Width           =   240
@@ -119,7 +118,6 @@ Begin VB.Form frmFacPromociones
          Height          =   240
          Index           =   3
          Left            =   1200
-         Picture         =   "frmFacPromociones.frx":0097
          ToolTipText     =   "Buscar fecha"
          Top             =   765
          Width           =   240
@@ -202,7 +200,6 @@ Begin VB.Form frmFacPromociones
          Height          =   240
          Index           =   1
          Left            =   1190
-         Picture         =   "frmFacPromociones.frx":0122
          ToolTipText     =   "Buscar fecha"
          Top             =   760
          Width           =   240
@@ -211,7 +208,6 @@ Begin VB.Form frmFacPromociones
          Height          =   240
          Index           =   0
          Left            =   1190
-         Picture         =   "frmFacPromociones.frx":01AD
          ToolTipText     =   "Buscar fecha"
          Top             =   360
          Width           =   240
@@ -691,8 +687,12 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
     
     'Icono de busqueda
-    Me.imgBuscar(0).Picture = frmPpal.imgListComun.ListImages(19).Picture
-    Me.imgBuscar(1).Picture = frmPpal.imgListComun.ListImages(19).Picture
+    Me.imgBuscar(0).Picture = frmPpal.imgIcoForms.ListImages(19).Picture
+    Me.imgBuscar(1).Picture = frmPpal.imgIcoForms.ListImages(19).Picture
+    
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
     
 
     'ICONOS de La toolbar
@@ -938,16 +938,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     'Modo 2. Hay datos y estamos visualizandolos
@@ -981,13 +981,13 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
+    Next I
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b 'Si es insertar o modificar
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b 'Si es insertar o modificar
+    Next I
     
     Me.chkPermiteDto.Enabled = (Modo = 3) Or (Modo = 4)
     

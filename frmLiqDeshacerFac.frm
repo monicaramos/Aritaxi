@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmLiqDeshacerFac 
    Caption         =   "Informes"
    ClientHeight    =   6300
@@ -205,7 +205,6 @@ Begin VB.Form frmLiqDeshacerFac
       Height          =   240
       Index           =   0
       Left            =   1170
-      Picture         =   "frmLiqDeshacerFac.frx":0000
       ToolTipText     =   "Buscar fecha"
       Top             =   4470
       Width           =   240
@@ -214,7 +213,6 @@ Begin VB.Form frmLiqDeshacerFac
       Height          =   240
       Index           =   0
       Left            =   1170
-      Picture         =   "frmLiqDeshacerFac.frx":008B
       Top             =   3045
       Width           =   240
    End
@@ -261,7 +259,6 @@ Begin VB.Form frmLiqDeshacerFac
       Height          =   240
       Index           =   1
       Left            =   1170
-      Picture         =   "frmLiqDeshacerFac.frx":018D
       Top             =   3390
       Width           =   240
    End
@@ -318,9 +315,9 @@ Dim numParam As Byte
 Dim codtipom As String
 Dim cadSelect As String
 Dim indCodigo As Long
-Dim CadNombreRPT As String
+Dim cadNombreRPT As String
 Dim cadTitulo As String
-Dim ConSubinforme As Boolean
+Dim ConSubInforme As Boolean
 Dim conSubRPT As Boolean
 
 Private WithEvents frmF As frmCal 'Calendario de Fechas
@@ -338,10 +335,13 @@ Dim BaseReten As Currency
 Dim ImpoIva As Currency
 Dim ImpoReten As Currency
 Dim vPorcIva As String
-Dim PorceIva As Currency
+Dim PorceIVA As Currency
 
 Dim tipoMov As String
 Dim codSocio As String
+
+Dim kCampo As Integer
+
 
 Private Sub InicializarVbles()
     cadFormula = ""
@@ -368,13 +368,13 @@ Dim devuelve As String
    
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
+    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".numeruve}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
     End If
     
     ' las facturas correspondientes a la fecha de liquidacion que se le indique
-    If Not AnyadirAFormula(cadSelect, "sfactusoc.fecfactu = " & DBSet(txtcodigo(2).Text, "F")) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, "sfactusoc.fecfactu = " & DBSet(txtCodigo(2).Text, "F")) Then Exit Sub
     If Not AnyadirAFormula(cadSelect, "sfactusoc.codtipom = 'FLI'") Then Exit Sub
     
     If Not HayRegParaInforme(Tabla, cadSelect) Then Exit Sub
@@ -390,7 +390,7 @@ Dim devuelve As String
     End If
 
     ' proceso de deshacer liquidacion a socios
-    If ProcesoDeshacerLiquidacionSocio(cadSelect, txtcodigo(2).Text) Then
+    If ProcesoDeshacerLiquidacionSocio(cadSelect, txtCodigo(2).Text) Then
         MsgBox "Proceso realizado correctamente.", vbExclamation
 
 
@@ -401,7 +401,7 @@ End Sub
 
 Private Function HaySociosConLiquidacionesPosteriores(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim vSocio As CSocio
 Dim CadSocios As String
 Dim RS As ADODB.Recordset
@@ -411,7 +411,7 @@ Dim RS As ADODB.Recordset
 
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
-    SQL = "Select codsocio, numfactu FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select codsocio, numfactu FROM " & QuitarCaracterACadena(cTabla, "_1")
     
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
@@ -419,11 +419,11 @@ Dim RS As ADODB.Recordset
         cWhere = QuitarCaracterACadena(cWhere, "_1")
         cWhere = Replace(cWhere, "[", "(")
         cWhere = Replace(cWhere, "]", ")")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
     Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     CadSocios = ""
     
@@ -462,7 +462,7 @@ End Function
 
 Private Function HayFacturasContabilizadas(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim vSocio As CSocio
 Dim CadSocios As String
 Dim RS As ADODB.Recordset
@@ -472,7 +472,7 @@ Dim RS As ADODB.Recordset
 
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
-    SQL = "Select count(*) FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select count(*) FROM " & QuitarCaracterACadena(cTabla, "_1")
     
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
@@ -480,12 +480,12 @@ Dim RS As ADODB.Recordset
         cWhere = QuitarCaracterACadena(cWhere, "_1")
         cWhere = Replace(cWhere, "[", "(")
         cWhere = Replace(cWhere, "]", ")")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
-    SQL = SQL & " and intconta = 1    "
+    Sql = Sql & " and intconta = 1    "
     
-    HayFacturasContabilizadas = (DevuelveValor(SQL) > 0)
+    HayFacturasContabilizadas = (DevuelveValor(Sql) > 0)
     
     If HayFacturasContabilizadas Then
         MsgBox "Hay facturas contabilizadas. No podemos deshacer proceso de liquidación", vbExclamation
@@ -512,7 +512,7 @@ Private Sub Form_Activate()
     numParam = 0
     cadParam = ""
 
-    PonerFoco txtcodigo(8)
+    PonerFoco txtCodigo(8)
 End Sub
 
 Private Sub Form_Load()
@@ -520,6 +520,14 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
     
     Tabla = "sfactusoc"
+    
+    For kCampo = 0 To Me.imgBuscarOfer.Count - 1
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    
     
     ActivarCLAVE
 End Sub
@@ -529,7 +537,7 @@ Dim encontrado As String
 Dim Codigo As String
 
     DatosOk = True
-    If txtcodigo(2).Text = "" Then
+    If txtCodigo(2).Text = "" Then
         MsgBox "Debe introducir obligatoriamente la fecha de liquidación.", vbExclamation
         DatosOk = False
         Exit Function
@@ -542,7 +550,7 @@ Dim devuelve As String
 Dim cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -551,7 +559,7 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
@@ -567,11 +575,11 @@ End Function
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
@@ -593,7 +601,7 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             Set frmFP = Nothing
     
     End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 
 End Sub
 
@@ -609,23 +617,23 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = 3
    End Select
    
-   PonerFormatoFecha txtcodigo(indCodigo)
-   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtcodigo(indCodigo)
+   PonerFoco txtCodigo(indCodigo)
 End Sub
 
 Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
-    If txtcodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtcodigo(indD).Text
+    If txtCodigo(indD).Text <> "" Then
+        cad = cad & "desde " & txtCodigo(indD).Text
         If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
     End If
-    If txtcodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtcodigo(indH).Text
+    If txtCodigo(indH).Text <> "" Then
+        cad = cad & "  hasta " & txtCodigo(indH).Text
         If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
     End If
     AnyadirParametroDH = cad
@@ -633,7 +641,7 @@ On Error Resume Next
 End Function
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -665,7 +673,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -674,56 +682,56 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 0, 1 'V Socio
-            PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' fecha de liquidacion
-            PonerFormatoFecha txtcodigo(Index)
+            PonerFormatoFecha txtCodigo(Index)
             
         Case 8
-            If txtcodigo(Index).Text = "" Then Exit Sub
-            If Trim(txtcodigo(Index).Text) <> Trim(txtcodigo(Index).Tag) Then
+            If txtCodigo(Index).Text = "" Then Exit Sub
+            If Trim(txtCodigo(Index).Text) <> Trim(txtCodigo(Index).Tag) Then
                 MsgBox "    ACCESO DENEGADO    ", vbExclamation
-                txtcodigo(Index).Text = ""
-                PonerFoco txtcodigo(Index)
+                txtCodigo(Index).Text = ""
+                PonerFoco txtCodigo(Index)
             Else
                 DesactivarCLAVE
-                PonerFoco txtcodigo(0)
+                PonerFoco txtCodigo(0)
             End If
     End Select
 End Sub
 
 Private Sub ActivarCLAVE()
-Dim i As Integer
+Dim I As Integer
     
-    For i = 0 To 2
-        txtcodigo(i).Enabled = False
-    Next i
-    txtcodigo(8).Enabled = True
-    For i = 0 To 1
-        imgBuscarOfer(i).Enabled = False
-        imgBuscarOfer(i).visible = False
-    Next i
+    For I = 0 To 2
+        txtCodigo(I).Enabled = False
+    Next I
+    txtCodigo(8).Enabled = True
+    For I = 0 To 1
+        imgBuscarOfer(I).Enabled = False
+        imgBuscarOfer(I).visible = False
+    Next I
     
     imgFecha(0).Enabled = False
     cmdAceptar.Enabled = False
     cmdCancelar.Enabled = True
     
-    txtcodigo(8).Text = ""
-    PonerFoco txtcodigo(8)
+    txtCodigo(8).Text = ""
+    PonerFoco txtCodigo(8)
 End Sub
 
 Private Sub DesactivarCLAVE()
-Dim i As Integer
+Dim I As Integer
 
-    For i = 0 To 2
-        txtcodigo(i).Enabled = True
-    Next i
-    txtcodigo(8).Enabled = False
-    For i = 0 To 1
-        imgBuscarOfer(i).Enabled = True
-        imgBuscarOfer(i).visible = True
-    Next i
+    For I = 0 To 2
+        txtCodigo(I).Enabled = True
+    Next I
+    txtCodigo(8).Enabled = False
+    For I = 0 To 1
+        imgBuscarOfer(I).Enabled = True
+        imgBuscarOfer(I).visible = True
+    Next I
     imgFecha(0).Enabled = True
     cmdAceptar.Enabled = True
     cmdCancelar.Enabled = False
@@ -732,8 +740,8 @@ End Sub
 Private Function ProcesoDeshacerLiquidacionSocio(cadWHERE As String, FecFac As String) As Boolean
 'Desde Historico de facturas deshace el proceso de liquidacion
 Dim RSalb As ADODB.Recordset 'Ordenados por: codsocio
-Dim B As Boolean
-Dim SQL As String
+Dim b As Boolean
+Dim Sql As String
 
 'Aqui Guardamos los datos del Albaran Anterior para comparar con el actual
 Dim antSocio As Long
@@ -786,35 +794,35 @@ Dim Existe As Boolean
         Exit Function
     End If
     
-    SQL = "select numfactu, codsocio from sfactusoc where " & cadWHERE
+    Sql = "select numfactu, codsocio from sfactusoc where " & cadWHERE
     
-    nTotal = TotalRegistrosConsulta(SQL)
+    nTotal = TotalRegistrosConsulta(Sql)
     Pb1.Max = nTotal
     
     FrameProgress.visible = True
     
     Set RSalb = New ADODB.Recordset
-    RSalb.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RSalb.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    B = True
+    b = True
     
-    While Not RSalb.EOF And B
+    While Not RSalb.EOF And b
         IncrementarProgresNew Pb1, 1
         
-        B = DesmarcarLLamadas(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
+        b = DesmarcarLLamadas(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
         
-        If B Then
-            B = BorrarLineasFactura(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
+        If b Then
+            b = BorrarLineasFactura(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
         End If
         
-        If B Then
-            B = EliminarFactura(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
+        If b Then
+            b = EliminarFactura(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
         End If
         
         
         Set vSocio = New CSocio
         
-        B = vSocio.DevolverContador(RSalb!codSocio, RSalb!NumFactu, tipoMov) = 1
+        b = vSocio.DevolverContador(RSalb!codSocio, RSalb!NumFactu, tipoMov) = 1
         
         Set vSocio = Nothing
     
@@ -824,7 +832,7 @@ Dim Existe As Boolean
     Set RSalb = Nothing
     
 ETraspasoAlbFac:
-    If Err.Number <> 0 Or Not B Then
+    If Err.Number <> 0 Or Not b Then
         If Err.Number <> 0 Then MuestraError Err.Number, "Deshacer Liquidación Socio:", Err.Description
         conn.RollbackTrans
         ProcesoDeshacerLiquidacionSocio = False
@@ -840,10 +848,10 @@ End Function
 'desmarca la llamada como liquidada por socio
 Private Function DesmarcarLLamadas(tipoMov As String, NumFactu As String, FecFac As String, Socio As String) As Boolean
 Dim Precio As Currency
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 Dim SqlValues As String
-Dim Linea As Long
+Dim linea As Long
 Dim MensError As String
 Dim RS As ADODB.Recordset
     
@@ -853,16 +861,16 @@ Dim RS As ADODB.Recordset
     
     MensError = ""
     
-    SQL = "update shilla, sfactusoc_serv set  shilla.liquidadosocio = 0 where "
-    SQL = SQL & " sfactusoc_serv.codtipom = " & DBSet(tipoMov, "T")
-    SQL = SQL & " and sfactusoc_serv.numfactu = " & DBSet(NumFactu, "N")
-    SQL = SQL & " and sfactusoc_serv.codsocio = " & DBSet(Socio, "N")
-    SQL = SQL & " and sfactusoc_serv.fecfactu = " & DBSet(FecFac, "F")
-    SQL = SQL & " and shilla.fecha = sfactusoc_serv.fecha "
-    SQL = SQL & " and shilla.hora = sfactusoc_serv.hora "
-    SQL = SQL & " and shilla.numeruve = sfactusoc_serv.numeruve "
+    Sql = "update shilla, sfactusoc_serv set  shilla.liquidadosocio = 0 where "
+    Sql = Sql & " sfactusoc_serv.codtipom = " & DBSet(tipoMov, "T")
+    Sql = Sql & " and sfactusoc_serv.numfactu = " & DBSet(NumFactu, "N")
+    Sql = Sql & " and sfactusoc_serv.codsocio = " & DBSet(Socio, "N")
+    Sql = Sql & " and sfactusoc_serv.fecfactu = " & DBSet(FecFac, "F")
+    Sql = Sql & " and shilla.fecha = sfactusoc_serv.fecha "
+    Sql = Sql & " and shilla.hora = sfactusoc_serv.hora "
+    Sql = Sql & " and shilla.numeruve = sfactusoc_serv.numeruve "
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     DesmarcarLLamadas = True
     
@@ -880,10 +888,10 @@ End Function
 'eliminar lineas de la factura
 Private Function BorrarLineasFactura(tipoMov As String, NumFactu As String, FecFac As String, Socio As String) As Boolean
 Dim Precio As Currency
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 Dim SqlValues As String
-Dim Linea As Long
+Dim linea As Long
 Dim MensError As String
 Dim RS As ADODB.Recordset
     
@@ -893,13 +901,13 @@ Dim RS As ADODB.Recordset
     
     MensError = ""
     
-    SQL = "delete from sfactusoc_serv where "
-    SQL = SQL & " sfactusoc_serv.codtipom = " & DBSet(tipoMov, "T")
-    SQL = SQL & " and sfactusoc_serv.numfactu = " & DBSet(NumFactu, "N")
-    SQL = SQL & " and sfactusoc_serv.codsocio = " & DBSet(Socio, "N")
-    SQL = SQL & " and sfactusoc_serv.fecfactu = " & DBSet(FecFac, "F")
+    Sql = "delete from sfactusoc_serv where "
+    Sql = Sql & " sfactusoc_serv.codtipom = " & DBSet(tipoMov, "T")
+    Sql = Sql & " and sfactusoc_serv.numfactu = " & DBSet(NumFactu, "N")
+    Sql = Sql & " and sfactusoc_serv.codsocio = " & DBSet(Socio, "N")
+    Sql = Sql & " and sfactusoc_serv.fecfactu = " & DBSet(FecFac, "F")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     
     BorrarLineasFactura = True
@@ -917,10 +925,10 @@ End Function
 'eliminar la factura
 Private Function EliminarFactura(tipoMov As String, NumFactu As String, FecFac As String, Socio As String) As Boolean
 Dim Precio As Currency
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 Dim SqlValues As String
-Dim Linea As Long
+Dim linea As Long
 Dim MensError As String
 Dim RS As ADODB.Recordset
     
@@ -930,13 +938,13 @@ Dim RS As ADODB.Recordset
     
     MensError = ""
     
-    SQL = "delete from sfactusoc where "
-    SQL = SQL & " sfactusoc.codtipom = " & DBSet(tipoMov, "T")
-    SQL = SQL & " and sfactusoc.numfactu = " & DBSet(NumFactu, "N")
-    SQL = SQL & " and sfactusoc.codsocio = " & DBSet(Socio, "N")
-    SQL = SQL & " and sfactusoc.fecfactu = " & DBSet(FecFac, "F")
+    Sql = "delete from sfactusoc where "
+    Sql = Sql & " sfactusoc.codtipom = " & DBSet(tipoMov, "T")
+    Sql = Sql & " and sfactusoc.numfactu = " & DBSet(NumFactu, "N")
+    Sql = Sql & " and sfactusoc.codsocio = " & DBSet(Socio, "N")
+    Sql = Sql & " and sfactusoc.fecfactu = " & DBSet(FecFac, "F")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     
     EliminarFactura = True
@@ -954,10 +962,10 @@ End Function
 'Actualizar llamadas
 Private Function ActualizarLlamadas(Uve As String, cadWHERE As String) As Boolean
 Dim Precio As Currency
-Dim SQL As String
+Dim Sql As String
 Dim SQL2 As String
 Dim SqlValues As String
-Dim Linea As Long
+Dim linea As Long
 Dim MensError As String
 
     On Error GoTo eInsertLinea
@@ -966,9 +974,9 @@ Dim MensError As String
     
     MensError = ""
     
-    SQL = "update shilla set liquidadosocio = 1 where " & cadWHERE & " and numeruve = " & DBSet(Uve, "N")
+    Sql = "update shilla set liquidadosocio = 1 where " & cadWHERE & " and numeruve = " & DBSet(Uve, "N")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     ActualizarLlamadas = True
     

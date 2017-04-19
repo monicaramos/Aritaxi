@@ -327,7 +327,7 @@ Begin VB.Form frmFCliRectif
       _ExtentY        =   7938
       _Version        =   393216
       Style           =   1
-      Tab             =   1
+      Tab             =   2
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -342,27 +342,44 @@ Begin VB.Form frmFCliRectif
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFCliRectif.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "txtAux(11)"
-      Tab(0).Control(1)=   "txtAux(10)"
-      Tab(0).Control(2)=   "cmdAux(9)"
-      Tab(0).Control(3)=   "txtAux(9)"
-      Tab(0).Control(4)=   "txtAux(5)"
-      Tab(0).Control(5)=   "FrameCliente"
-      Tab(0).Control(6)=   "cmdAux(1)"
-      Tab(0).Control(7)=   "cmdAux(0)"
+      Tab(0).Control(0)=   "DataGrid1"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "txtAux(0)"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "txtAux(1)"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "txtAux(3)"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "txtAux(4)"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "txtAux(6)"
+      Tab(0).Control(5).Enabled=   0   'False
+      Tab(0).Control(6)=   "txtAux(7)"
+      Tab(0).Control(6).Enabled=   0   'False
+      Tab(0).Control(7)=   "txtAux(8)"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "txtAux(2)"
-      Tab(0).Control(9)=   "txtAux(8)"
-      Tab(0).Control(10)=   "txtAux(7)"
-      Tab(0).Control(11)=   "txtAux(6)"
-      Tab(0).Control(12)=   "txtAux(4)"
-      Tab(0).Control(13)=   "txtAux(3)"
-      Tab(0).Control(14)=   "txtAux(1)"
-      Tab(0).Control(15)=   "txtAux(0)"
-      Tab(0).Control(16)=   "DataGrid1"
+      Tab(0).Control(8).Enabled=   0   'False
+      Tab(0).Control(9)=   "cmdAux(0)"
+      Tab(0).Control(9).Enabled=   0   'False
+      Tab(0).Control(10)=   "cmdAux(1)"
+      Tab(0).Control(10).Enabled=   0   'False
+      Tab(0).Control(11)=   "FrameCliente"
+      Tab(0).Control(11).Enabled=   0   'False
+      Tab(0).Control(12)=   "txtAux(5)"
+      Tab(0).Control(12).Enabled=   0   'False
+      Tab(0).Control(13)=   "txtAux(9)"
+      Tab(0).Control(13).Enabled=   0   'False
+      Tab(0).Control(14)=   "cmdAux(9)"
+      Tab(0).Control(14).Enabled=   0   'False
+      Tab(0).Control(15)=   "txtAux(10)"
+      Tab(0).Control(15).Enabled=   0   'False
+      Tab(0).Control(16)=   "txtAux(11)"
+      Tab(0).Control(16).Enabled=   0   'False
       Tab(0).ControlCount=   17
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFCliRectif.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(3)"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(5)"
@@ -424,13 +441,14 @@ Begin VB.Form frmFCliRectif
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmFCliRectif.frx":0044
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "FrameFactura"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.Frame FrameFacRec 
          Caption         =   "Datos Factura a rectificar "
          Height          =   1815
-         Left            =   8250
+         Left            =   -66750
          TabIndex        =   137
          Top             =   420
          Width           =   3615
@@ -557,7 +575,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   39
-         Left            =   3840
+         Left            =   -71160
          MaxLength       =   7
          TabIndex        =   145
          Tag             =   "Nº Venta|N|S|||scaalbcli|numventa|0000000|N|"
@@ -568,7 +586,7 @@ Begin VB.Form frmFCliRectif
       End
       Begin VB.Frame FrameHco 
          Height          =   2055
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   126
          Top             =   2310
          Width           =   4455
@@ -632,7 +650,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   11
             Left            =   1080
-            Picture         =   "frmFCliRectif.frx":0060
             ToolTipText     =   "Buscar incidencia"
             Top             =   1320
             Width           =   240
@@ -650,7 +667,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   10
             Left            =   1080
-            Picture         =   "frmFCliRectif.frx":0162
             ToolTipText     =   "Buscar trabajador"
             Top             =   600
             Width           =   240
@@ -684,7 +700,7 @@ Begin VB.Form frmFCliRectif
       End
       Begin VB.Frame FrameFactura 
          Height          =   3300
-         Left            =   -74040
+         Left            =   960
          TabIndex        =   93
          Top             =   600
          Width           =   10575
@@ -1150,7 +1166,7 @@ Begin VB.Form frmFCliRectif
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   28
-         Left            =   2400
+         Left            =   -72600
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   84
@@ -1163,7 +1179,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   27
-         Left            =   1680
+         Left            =   -73320
          MaxLength       =   30
          TabIndex        =   24
          Tag             =   "Trabajador pedido|N|S|0|9999|scaalbcli|codtrab1|0000|N|"
@@ -1176,7 +1192,7 @@ Begin VB.Form frmFCliRectif
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   27
-         Left            =   2400
+         Left            =   -72600
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   82
@@ -1189,7 +1205,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   2
-         Left            =   2760
+         Left            =   -72240
          MaxLength       =   10
          TabIndex        =   80
          Tag             =   "Semana Entrega|N|S|||scaalbcli|sementre||N|"
@@ -1201,7 +1217,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   25
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   7
          TabIndex        =   77
          Tag             =   "Nº Pedido|N|S|||scaalbcli|numpedcl|0000000|N|"
@@ -1214,7 +1230,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   26
-         Left            =   1320
+         Left            =   -73680
          MaxLength       =   10
          TabIndex        =   76
          Tag             =   "Fecha Pedido|F|S|||scaalbcli|fecpedcl|dd/mm/yyyy|N|"
@@ -1226,7 +1242,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   24
-         Left            =   4800
+         Left            =   -70200
          MaxLength       =   10
          TabIndex        =   72
          Tag             =   "Fecha Oferta|F|S|||scaalbcli|fecofert|dd/mm/yyyy|N|"
@@ -1238,7 +1254,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   23
-         Left            =   3840
+         Left            =   -71160
          MaxLength       =   7
          TabIndex        =   71
          Tag             =   "Nº Oferta|N|S|||scaalbcli|numofert|0000000|N|"
@@ -1519,7 +1535,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   9
             Left            =   6600
-            Picture         =   "frmFCliRectif.frx":0264
             ToolTipText     =   "Buscar forma de envio"
             Top             =   165
             Width           =   240
@@ -1568,7 +1583,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   6
             Left            =   855
-            Picture         =   "frmFCliRectif.frx":0366
             ToolTipText     =   "Buscar población"
             Top             =   867
             Width           =   240
@@ -1588,7 +1602,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   2
             Left            =   6600
-            Picture         =   "frmFCliRectif.frx":0468
             ToolTipText     =   "Buscar direc./dpto"
             Top             =   165
             Visible         =   0   'False
@@ -1634,7 +1647,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   1
             Left            =   855
-            Picture         =   "frmFCliRectif.frx":056A
             ToolTipText     =   "Buscar cliente varios"
             Top             =   165
             Visible         =   0   'False
@@ -1653,7 +1665,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   5
             Left            =   6600
-            Picture         =   "frmFCliRectif.frx":066C
             ToolTipText     =   "Buscar agente"
             Top             =   516
             Width           =   240
@@ -1698,7 +1709,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   4
             Left            =   6600
-            Picture         =   "frmFCliRectif.frx":076E
             ToolTipText     =   "Buscar forma de pago"
             Top             =   867
             Width           =   240
@@ -1864,7 +1874,7 @@ Begin VB.Form frmFCliRectif
          Width           =   615
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Bindings        =   "frmFCliRectif.frx":0870
+         Bindings        =   "frmFCliRectif.frx":0060
          Height          =   2040
          Left            =   -74805
          TabIndex        =   53
@@ -1936,7 +1946,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   38
-         Left            =   4800
+         Left            =   -70200
          MaxLength       =   10
          TabIndex        =   144
          Tag             =   "Nº terminal|N|S|||scaalbcli|numtermi||N|"
@@ -1947,7 +1957,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   18
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   80
          TabIndex        =   26
          Tag             =   "Observación 1|T|S|||scaalbcli|observa01||N|"
@@ -1957,7 +1967,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   19
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   80
          TabIndex        =   27
          Tag             =   "Observación 2|T|S|||scaalbcli|observa02||N|"
@@ -1967,7 +1977,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   20
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   80
          TabIndex        =   28
          Tag             =   "Observación 3|T|S|||scaalbcli|observa03||N|"
@@ -1977,7 +1987,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   21
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   80
          TabIndex        =   29
          Tag             =   "Observación 4|T|S|||scaalbcli|observa04||N|"
@@ -1987,7 +1997,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.TextBox Text1 
          Height          =   280
          Index           =   22
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   80
          TabIndex        =   30
          Tag             =   "Observación 5|T|S|||scaalbcli|observa05||N|"
@@ -1998,7 +2008,7 @@ Begin VB.Form frmFCliRectif
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   28
-         Left            =   1770
+         Left            =   -73230
          MaxLength       =   30
          TabIndex        =   25
          Tag             =   "Preparador Material|N|N|0|9999|scaalbcli|codtrab2|0000|N|"
@@ -2008,7 +2018,7 @@ Begin VB.Form frmFCliRectif
       End
       Begin VB.Frame Frame3 
          Height          =   1815
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   160
          Top             =   840
          Visible         =   0   'False
@@ -2039,7 +2049,6 @@ Begin VB.Form frmFCliRectif
             Height          =   240
             Index           =   40
             Left            =   1320
-            Picture         =   "frmFCliRectif.frx":0885
             ToolTipText     =   "Buscar fecha"
             Top             =   1200
             Visible         =   0   'False
@@ -2060,7 +2069,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Observaciones"
          Height          =   255
          Index           =   45
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   38
          Top             =   480
          Width           =   1095
@@ -2069,7 +2078,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Preparador Material"
          Height          =   255
          Index           =   23
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   85
          Top             =   1800
          Visible         =   0   'False
@@ -2078,8 +2087,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   8
-         Left            =   1545
-         Picture         =   "frmFCliRectif.frx":0910
+         Left            =   -73455
          ToolTipText     =   "Buscar trabajador"
          Top             =   1800
          Visible         =   0   'False
@@ -2089,7 +2097,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Trabajador Pedido"
          Height          =   255
          Index           =   9
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   83
          Top             =   1335
          Visible         =   0   'False
@@ -2098,8 +2106,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   7
-         Left            =   1545
-         Picture         =   "frmFCliRectif.frx":0A12
+         Left            =   -73455
          ToolTipText     =   "Buscar trabajador"
          Top             =   1335
          Visible         =   0   'False
@@ -2109,7 +2116,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Sem. Entrega"
          Height          =   255
          Index           =   12
-         Left            =   2355
+         Left            =   -72645
          TabIndex        =   81
          Top             =   480
          Visible         =   0   'False
@@ -2119,7 +2126,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Nº Pedido"
          Height          =   255
          Index           =   11
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   79
          Top             =   480
          Width           =   735
@@ -2128,7 +2135,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Fecha Pedido"
          Height          =   255
          Index           =   10
-         Left            =   1095
+         Left            =   -73905
          TabIndex        =   78
          Top             =   480
          Visible         =   0   'False
@@ -2138,7 +2145,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Fecha Oferta"
          Height          =   255
          Index           =   5
-         Left            =   4800
+         Left            =   -70200
          TabIndex        =   74
          Top             =   480
          Visible         =   0   'False
@@ -2148,7 +2155,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "Nº Oferta"
          Height          =   255
          Index           =   3
-         Left            =   3840
+         Left            =   -71160
          TabIndex        =   73
          Top             =   480
          Visible         =   0   'False
@@ -2275,7 +2282,6 @@ Begin VB.Form frmFCliRectif
          Height          =   240
          Index           =   0
          Left            =   6660
-         Picture         =   "frmFCliRectif.frx":0B14
          ToolTipText     =   "Buscar cliente"
          Top             =   510
          Width           =   240
@@ -2302,7 +2308,6 @@ Begin VB.Form frmFCliRectif
          Height          =   240
          Index           =   3
          Left            =   6660
-         Picture         =   "frmFCliRectif.frx":0C16
          ToolTipText     =   "Buscar trabajador"
          Top             =   150
          Width           =   240
@@ -2319,8 +2324,7 @@ Begin VB.Form frmFCliRectif
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   3360
-         Picture         =   "frmFCliRectif.frx":0D18
+         Left            =   3450
          ToolTipText     =   "Buscar fecha"
          Top             =   120
          Width           =   240
@@ -2690,7 +2694,7 @@ Dim Sql As String
     If b Then
         b = ModificaDesdeFormulario(Me, 1)
         If b Then
-            Sql = "UPDATE scaalbcli SET nomdirec=" & DBSet(Text2(12).Text, "T") & " WHERE codtipom=" & DBSet(CodTipoMov, "T") & " and numalbar=" & Data1.Recordset!NumAlbar
+            Sql = "UPDATE scaalbcli SET nomdirec=" & DBSet(Text2(12).Text, "T") & " WHERE codtipom=" & DBSet(CodTipoMov, "T") & " and numalbar=" & data1.Recordset!NumAlbar
             conn.Execute Sql
         End If
 
@@ -2699,12 +2703,12 @@ Dim Sql As String
             'o si se ha cambiado la fecha del albaran
             'If (CInt(Me.Data1.Recordset!CodClien) <> CInt(Text1(4).Text)) Or (CDate(Data1.Recordset!FechaAlb) <> CDate(Text1(1).Text)) Then
             'DAVID.   No es un CINT. Tiene que ser un clng o val
-            If (Val(Me.Data1.Recordset!CodClien) <> Val(Text1(4).Text)) Or (CDate(Data1.Recordset!FechaAlb) <> CDate(Text1(1).Text)) Then
+            If (Val(Me.data1.Recordset!CodClien) <> Val(Text1(4).Text)) Or (CDate(data1.Recordset!FechaAlb) <> CDate(Text1(1).Text)) Then
                 'si hay numeros de serie en ese albaran, actualizamos el cliente
                 'al nuevo cliente
                 Sql = "UPDATE sserie SET codclien=" & DBSet(Text1(4).Text, "N") & ","
                 Sql = Sql & " fechavta=" & DBSet(Text1(1).Text, "F")
-                Sql = Sql & " WHERE codtipom='" & CodTipoMov & "'" & " AND numalbar=" & Data1.Recordset!NumAlbar & " and fechavta=" & DBSet(Data1.Recordset!FechaAlb, "F")
+                Sql = Sql & " WHERE codtipom='" & CodTipoMov & "'" & " AND numalbar=" & data1.Recordset!NumAlbar & " and fechavta=" & DBSet(data1.Recordset!FechaAlb, "F")
                 conn.Execute Sql
                 
                 'Modificar el cliente en la smoval
@@ -2713,7 +2717,7 @@ Dim Sql As String
                 Sql = Sql & ", horamovi= concat(" & DBSet(Text1(1).Text, "F") & ",' ',hour(horamovi),':',minute(horamovi),':',second(horamovi))"
                 Sql = Sql & " WHERE detamovi='" & CodTipoMov & "'"
                 Sql = Sql & " AND document='" & Text1(0).Text & "'"
-                Sql = Sql & " and fechamov=" & DBSet(Data1.Recordset!FechaAlb, "F")
+                Sql = Sql & " and fechamov=" & DBSet(data1.Recordset!FechaAlb, "F")
                 conn.Execute Sql
             End If
         End If
@@ -3016,7 +3020,7 @@ Private Sub BotonBuscar()
 '        Combo1.visible = True
     Else
         HacerBusqueda
-        If Data1.Recordset.EOF Then
+        If data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbYellow
             PonerFoco Text1(kCampo)
@@ -3054,8 +3058,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    If data1.Recordset.EOF Then Exit Sub
+    DesplazamientoData data1, Index
     PonerCampos
 End Sub
 
@@ -3149,7 +3153,7 @@ Dim NumAlbElim As Long
     On Error GoTo EEliminar
 
     'Ciertas comprobaciones
-    If Data1.Recordset.EOF Then Exit Sub
+    If data1.Recordset.EOF Then Exit Sub
 
     cad = "Cabecera de Albaranes." & vbCrLf
     cad = cad & "------------------------------------       " & vbCrLf & vbCrLf
@@ -3172,8 +3176,8 @@ Dim NumAlbElim As Long
         
         Screen.MousePointer = vbHourglass
         
-        NumRegElim = Data1.Recordset.AbsolutePosition
-        NumAlbElim = Data1.Recordset.Fields(1).Value
+        NumRegElim = data1.Recordset.AbsolutePosition
+        NumAlbElim = data1.Recordset.Fields(1).Value
         CodTipoMov = Text1(30).Text
         
         If Not Eliminar(NumAlbElim) Then
@@ -3254,8 +3258,8 @@ Dim Port As Integer      'Port: para saber si ha metido/Modificado el articulo d
         ' ----
     
         PonerModo 2
-        If Not Data1.Recordset.EOF Then _
-            Me.lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+        If Not data1.Recordset.EOF Then _
+            Me.lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
         If DataGrid1.Row >= 0 Then
             If Port = 0 Then    'Si  ha metido/modifgicado portes no hago nada (port>0)
             
@@ -3269,12 +3273,12 @@ Dim Port As Integer      'Port: para saber si ha metido/Modificado el articulo d
         End If
         
     Else 'Se llama desde algún Prismatico de otro Form al Mantenimiento de Trabajadores
-        If Data1.Recordset.EOF Then
+        If data1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Data1.Recordset.Fields(0) & "|"
-        cad = cad & Data1.Recordset.Fields(1) & "|"
+        cad = data1.Recordset.Fields(0) & "|"
+        cad = cad & data1.Recordset.Fields(1) & "|"
         RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
@@ -3370,7 +3374,7 @@ Private Sub Form_Activate()
     End If
         
     'Viene de DblClick en frmAlmMovimArticulos y carga el form con los valores
-    If hcoCodMovim <> "" And Not Data1.Recordset.EOF And Modo <> 5 Then PonerCadenaBusqueda
+    If hcoCodMovim <> "" And Not data1.Recordset.EOF And Modo <> 5 Then PonerCadenaBusqueda
 End Sub
 
 
@@ -3411,7 +3415,14 @@ Private Sub Form_Load()
         End If
     End With
     Me.SSTab1.Tab = 0
-      
+    
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    
+    Me.imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(40).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    
     LimpiarCampos   'Limpia los campos TextBox
     
     CargarComboFacturacion
@@ -3514,9 +3525,9 @@ Private Sub Form_Load()
         CadenaConsulta = CadenaConsulta & " where numalbar=-1"
     End If
 
-    Data1.ConnectionString = conn
-    Data1.RecordSource = CadenaConsulta
-    Data1.Refresh
+    data1.ConnectionString = conn
+    data1.RecordSource = CadenaConsulta
+    data1.Refresh
         
     'Cargar el DataGrid de lineas de Revisiones inicialmente a nada DATA2
     PrimeraVez = True
@@ -4287,9 +4298,9 @@ Private Sub PonerCadenaBusqueda()
     Screen.MousePointer = vbHourglass
     On Error GoTo EEPonerBusq
 
-    Data1.RecordSource = CadenaConsulta
-    Data1.Refresh
-    If Data1.Recordset.RecordCount <= 0 Then
+    data1.RecordSource = CadenaConsulta
+    data1.Refresh
+    If data1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -4299,7 +4310,7 @@ Private Sub PonerCadenaBusqueda()
         End If
         Exit Sub
     Else
-        Data1.Recordset.MoveFirst
+        data1.Recordset.MoveFirst
         PonerModo 2
         PonerCampos
     End If
@@ -4337,10 +4348,10 @@ Dim b As Boolean
 
     On Error Resume Next
 
-    If Data1.Recordset.EOF Then Exit Sub
+    If data1.Recordset.EOF Then Exit Sub
     
      'Si es un Albaran de Ticket visualizamos unos datos y sino otros
-    b = (Data1.Recordset!EsTicket = 1)
+    b = (data1.Recordset!EsTicket = 1)
     Me.Toolbar1.Buttons(11).Enabled = (Not b) And (Not EsHistorico)
     
 
@@ -4380,7 +4391,7 @@ Dim b As Boolean
     End If
     Text1(30).visible = True
 '    Combo1.visible = False
-    PonerCamposForma Me, Data1
+    PonerCamposForma Me, data1
     
     Text2(3).Text = PonerNombreDeCod(Text1(3), conAri, "straba", "nomtraba", "codtraba")
     Text2(27).Text = PonerNombreDeCod(Text1(27), conAri, "straba", "nomtraba", "codtraba")
@@ -4404,7 +4415,7 @@ Dim b As Boolean
     CalcularDatosFactura
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+    lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -4443,8 +4454,8 @@ Dim b As Boolean
         
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
-    If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not data1.Recordset.EOF Then
+        If data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
     DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
         
@@ -4680,7 +4691,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             
             
                 'procedimiento normal
-                If Data1.Recordset!codtipom = "ART" Then
+                If data1.Recordset!codtipom = "ART" Then
                     'Comprobar nº serie de las facturas rectificativas
                     DevolverNumSeries
                 End If
@@ -4689,7 +4700,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
                 'Comprobar que esta marcada para facturar
 '                If Data1.Recordset!codTipoM <> "ALM" Then Exit Sub
                 If Me.chkFacturar.Value = 1 Then
-                    NumRegElim = Data1.Recordset.AbsolutePosition
+                    NumRegElim = data1.Recordset.AbsolutePosition
                     
                     'Facturacion de Albaran de Mostrador
                     frmListadoPed.CodClien = CodTipoMov  'utilizamos esta vble para pasarle el tipo de movimiento
@@ -4901,8 +4912,8 @@ Dim ImpReciclado As Single
                 If CStr(Data2.Recordset!codArtic) <> txtAux(1).Text Then
                     'si la linea tenia numero de serie vaciar los campos correspondien al albaran venta
                     Sql = "UPDATE sserie SET codclien=" & ValorNulo & ",codtipom=" & ValorNulo & ", fechavta=" & ValorNulo & ",numalbar=" & ValorNulo & ",numline1=" & ValorNulo
-                    Sql = Sql & " WHERE codartic=" & DBSet(Data2.Recordset!codArtic, "T") & " and codtipom='" & CodTipoMov & "' and fechavta=" & DBSet(Data1.Recordset!FechaAlb, "F")
-                    Sql = Sql & " AND numalbar=" & Data1.Recordset!NumAlbar & " AND numline1=" & Data2.Recordset!numlinea
+                    Sql = Sql & " WHERE codartic=" & DBSet(Data2.Recordset!codArtic, "T") & " and codtipom='" & CodTipoMov & "' and fechavta=" & DBSet(data1.Recordset!FechaAlb, "F")
+                    Sql = Sql & " AND numalbar=" & data1.Recordset!NumAlbar & " AND numline1=" & Data2.Recordset!numlinea
                     conn.Execute Sql
                 End If
             End If
@@ -5636,7 +5647,7 @@ Dim MenError As String
             'Actualizar los posibles num. serie de ese albaran. vaciar los campos
             Sql = "UPDATE  sserie SET codclien=" & ValorNulo & ", codtipom=" & ValorNulo & ","
             Sql = Sql & " fechavta=" & ValorNulo & ", numalbar=" & ValorNulo & ", numline1=" & ValorNulo
-            Sql = Sql & " WHERE codtipom='" & CodTipoMov & "' AND numalbar=" & Data1.Recordset!NumAlbar & " AND fechavta=" & DBSet(Data1.Recordset!FechaAlb, "F")
+            Sql = Sql & " WHERE codtipom='" & CodTipoMov & "' AND numalbar=" & data1.Recordset!NumAlbar & " AND fechavta=" & DBSet(data1.Recordset!FechaAlb, "F")
             conn.Execute Sql
             
             
@@ -5674,11 +5685,11 @@ Private Sub PosicionarData()
 Dim Indicador As String
 Dim vWhere As String
 
-    If Not Data1.Recordset.EOF Then
+    If Not data1.Recordset.EOF Then
         'Hay datos en el Data1 bien porque se ha hecho VerTodos o una Busqueda
          vWhere = "(" & ObtenerWhereCP(False) & ")"
          vWhere = Replace(vWhere, NombreTabla & ".", "")
-         If SituarDataMULTI(Data1, vWhere, Indicador) Then
+         If SituarDataMULTI(data1, vWhere, Indicador) Then
 '         If SituarDataGral(Data1, Text1(30).Text, "T", Text1(0).Text, "N", Indicador) Then
              PonerModo 2
              lblIndicador.Caption = Indicador
@@ -5756,7 +5767,7 @@ Dim b As Boolean
         b = ((Modo = 2) Or (Modo = 5 And ModificaLineas = 0))
         'Insertar
         Toolbar1.Buttons(5).Enabled = (b Or Modo = 0) And Not EsHistorico
-        Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
+        Me.mnnuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
         'Modificar
         Toolbar1.Buttons(6).Enabled = b And Not EsHistorico
         Me.mnModificar.Enabled = b And Not EsHistorico
@@ -5790,7 +5801,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 Private Sub CargarComboFacturacion()
@@ -5958,8 +5969,8 @@ Dim ImpReciclado As Single
 
     'si la linea tenia numero de serie vaciar los campos correspondien al albaran venta
     Sql = "UPDATE sserie SET codclien=" & ValorNulo & ",codtipom=" & ValorNulo & ", fechavta=" & ValorNulo & ",numalbar=" & ValorNulo & ",numline1=" & ValorNulo
-    Sql = Sql & " WHERE codartic=" & DBSet(Data2.Recordset!codArtic, "T") & " and codtipom='" & CodTipoMov & "' and fechavta=" & DBSet(Data1.Recordset!FechaAlb, "F")
-    Sql = Sql & " AND numalbar=" & Data1.Recordset!NumAlbar & " AND numline1=" & Data2.Recordset!numlinea
+    Sql = Sql & " WHERE codartic=" & DBSet(Data2.Recordset!codArtic, "T") & " and codtipom='" & CodTipoMov & "' and fechavta=" & DBSet(data1.Recordset!FechaAlb, "F")
+    Sql = Sql & " AND numalbar=" & data1.Recordset!NumAlbar & " AND numline1=" & Data2.Recordset!numlinea
     conn.Execute Sql
     
 EEliminarLinea:
@@ -6388,7 +6399,7 @@ Private Sub BotonNSeries()
 Dim cadWHERE As String, Sql As String
 Dim RSLineas As ADODB.Recordset
 
-    If Me.Data1.Recordset!EsTicket Then
+    If Me.data1.Recordset!EsTicket Then
         MsgBox "Albaranes provenientes de Ticket no tienen control de Nº Serie.", vbInformation
         Exit Sub
     End If
@@ -6600,11 +6611,11 @@ End Function
 Private Sub PosicionarDataTrasEliminar()
 Dim HayDatos As Boolean
 'Despues Eliminar y hacer refresh del Data, situar el Data en el registro siguiente
-    HayDatos = SituarDataTrasEliminar(Data1, NumRegElim)
+    HayDatos = SituarDataTrasEliminar(data1, NumRegElim)
     If HayDatos Then
-        If Data1.Recordset.EOF Or Data1.Recordset.BOF Then
-            Data1.Recordset.MoveLast
-            If Data1.Recordset.EOF Then HayDatos = False
+        If data1.Recordset.EOF Or data1.Recordset.BOF Then
+            data1.Recordset.MoveLast
+            If data1.Recordset.EOF Then HayDatos = False
         End If
     End If
     If HayDatos Then
@@ -7118,7 +7129,7 @@ Dim RS As ADODB.Recordset
     '-- LAURA: 02/07/2007
 '    SQL = SQL & " inner join scafac1 on scafac1.codtipom=scaalbcli.codtipmf and scafac1.numfactu=scaalbcli.numfactu and scafac1.fecfactu=scaalbcli.fecfactu "
 '    SQL = SQL & " inner join sserie on scafac1.codtipoa=sserie.codtipom and scafac1.numalbar=sserie.numalbar and scafac1.fechaalb=sserie.fechavta "
-    Sql = Sql & cadWHERE & " and scaalbcli.numfactu=" & CStr(Me.Data1.Recordset!NumFactu)
+    Sql = Sql & cadWHERE & " and scaalbcli.numfactu=" & CStr(Me.data1.Recordset!NumFactu)
 '    If Me.Data1.Recordset!codtipmf = "FAV" Then SQL = SQL & " AND codtipom='ALV'"
     '--
 
@@ -7142,7 +7153,7 @@ Dim RS As ADODB.Recordset
         Sql = Sql & " inner join sserie on slialbcli.codartic=sserie.codartic and sserie.numfactu=scaalbcli.numfactu  and sserie.codclien=scaalbcli.codclien "
         '--
         Sql = Sql & " inner join sartic on sserie.codartic=sartic.codartic "
-        Sql = Sql & cadWHERE & " and scaalbcli.numfactu=" & CStr(Me.Data1.Recordset!NumFactu)
+        Sql = Sql & cadWHERE & " and scaalbcli.numfactu=" & CStr(Me.data1.Recordset!NumFactu)
     
         MostrarNSeries RS, , Sql
     End If
@@ -7205,7 +7216,7 @@ Private Sub BotonRecuperarFactura()
 
     'Comprobar que esta marcada para facturar
     If Me.chkFacturar.Value = 1 Then
-        NumRegElim = Data1.Recordset.AbsolutePosition
+        NumRegElim = data1.Recordset.AbsolutePosition
         
         'Facturacion de Albaran de Mostrador
         frmListadoPed.CodClien = CodTipoMov  'utilizamos esta vble para pasarle el tipo de movimiento
@@ -7636,7 +7647,7 @@ Dim Ol As Integer
 Dim C As String
 
     N = -1
-    If Not IsNull(Data1.Recordset!CodDirec) Then N = Data1.Recordset!CodDirec
+    If Not IsNull(data1.Recordset!CodDirec) Then N = data1.Recordset!CodDirec
     
     Ol = -1
     If Text1(12).Text <> "" Then Ol = CInt(Text1(12).Text)

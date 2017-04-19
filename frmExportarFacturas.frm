@@ -158,7 +158,6 @@ Begin VB.Form frmExportarFacturas
          Height          =   240
          Index           =   0
          Left            =   2250
-         Picture         =   "frmExportarFacturas.frx":000C
          ToolTipText     =   "Buscar fecha"
          Top             =   930
          Width           =   240
@@ -167,7 +166,6 @@ Begin VB.Form frmExportarFacturas
          Height          =   240
          Index           =   1
          Left            =   2250
-         Picture         =   "frmExportarFacturas.frx":0097
          ToolTipText     =   "Buscar fecha"
          Top             =   1290
          Width           =   240
@@ -292,6 +290,7 @@ End Function
 
 
 Private Sub Form_Load()
+Dim I As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -302,6 +301,12 @@ Private Sub Form_Load()
     CargaCombo
     
     Combo1(1).ListIndex = 0
+    
+    
+    For I = 0 To Me.imgFec.Count - 1
+        imgFec(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next
+    
     
 
    '[Monica]05/09/2012: la carpeta de destino la tenemos en parámetros
@@ -409,7 +414,7 @@ Private Sub CargaFacturasLiq(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -473,8 +478,8 @@ Dim cadParam As String
         
         RS.MoveFirst
         While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -545,7 +550,7 @@ Private Sub CargaFacturasCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -590,8 +595,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -661,7 +666,7 @@ Private Sub CargaFacturasCuotasSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -707,8 +712,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -769,7 +774,7 @@ Private Sub CargaFacturasPublicidadSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -816,8 +821,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -880,7 +885,7 @@ Private Sub CargaFacturasPublicidadCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -927,8 +932,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -990,7 +995,7 @@ Private Sub CargaFacturasVentaSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -1037,8 +1042,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -1099,7 +1104,7 @@ End Sub
 Private Sub CargaCombo()
 Dim ini As Integer
 Dim Fin As Integer
-Dim i As Integer
+Dim I As Integer
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
 '    For I = 0 To Combo1.Count - 1
@@ -1129,26 +1134,26 @@ End Sub
 
 
 Private Function IntentaMatar(FicheroPDF As String) As Boolean
-Dim i As Integer
+Dim I As Integer
 
     On Error Resume Next
-    i = 1
+    I = 1
     IntentaMatar = False
     Do
         If Dir(FicheroPDF, vbArchive) <> "" Then
             Kill FicheroPDF
             If Err.Number <> 0 Then
                 Err.Clear
-                i = i + 1
+                I = I + 1
             Else
                 IntentaMatar = True
-                i = 6
+                I = 6
             End If
         Else
             IntentaMatar = True
-            i = 6
+            I = 6
         End If
-    Loop Until i < 5 Or IntentaMatar = True
+    Loop Until I < 5 Or IntentaMatar = True
     
     
 End Function

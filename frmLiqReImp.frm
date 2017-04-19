@@ -140,8 +140,7 @@ Begin VB.Form frmLiqReImp
       Height          =   240
       Index           =   1
       Left            =   1170
-      Picture         =   "frmLiqReImp.frx":0000
-      Top             =   1800
+      Top             =   1830
       Width           =   240
    End
    Begin VB.Label Label9 
@@ -187,7 +186,6 @@ Begin VB.Form frmLiqReImp
       Height          =   240
       Index           =   0
       Left            =   1170
-      Picture         =   "frmLiqReImp.frx":0102
       Top             =   1455
       Width           =   240
    End
@@ -195,7 +193,6 @@ Begin VB.Form frmLiqReImp
       Height          =   240
       Index           =   23
       Left            =   1170
-      Picture         =   "frmLiqReImp.frx":0204
       Top             =   3540
       Width           =   240
    End
@@ -261,7 +258,6 @@ Begin VB.Form frmLiqReImp
       Height          =   240
       Index           =   24
       Left            =   3420
-      Picture         =   "frmLiqReImp.frx":028F
       Top             =   3540
       Width           =   240
    End
@@ -370,6 +366,8 @@ Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmMtoV As frmGesVSocio ' V socios
 Attribute frmMtoV.VB_VarHelpID = -1
 
+Dim kCampo As Integer
+
 Private Sub InicializarVbles()
     cadFormula = ""
     cadSelect = ""
@@ -455,7 +453,7 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 End Sub
 
 'Insertar Resumen
-Private Function InsertResumen(cadwhere As String) As Boolean
+Private Function InsertResumen(cadWHERE As String) As Boolean
 Dim MensError As String
 Dim Sql As String
     
@@ -470,7 +468,7 @@ Dim Sql As String
                                         ' codtipom, numfactu, codsocio, fecfactu
     Sql = "insert into tmpinformes (codusu, nombre1, importe1, codigo1, fecha1) select " & vUsu.Codigo & ","
     Sql = Sql & "codtipom, numfactu, codsocio, fecfactu from sfactusoc "
-    If cadwhere <> "" Then Sql = Sql & " where " & cadwhere
+    If cadWHERE <> "" Then Sql = Sql & " where " & cadWHERE
     
     conn.Execute Sql
     
@@ -526,13 +524,21 @@ Private Sub Form_Load()
 '    Combo2.Text = Year(Date)
 '    CalcularFacturas True
 
+    For kCampo = 0 To 1
+        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    
+    For kCampo = 23 To 24
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
+    
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim encontrado As String
 Dim Codigo As String
 
-    DatosOK = True
+    DatosOk = True
     
 End Function
 

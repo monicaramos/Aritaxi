@@ -61,29 +61,29 @@ Begin VB.Form frmRepNumSerie2
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame4"
+      Tab(1).Control(0)=   "Label1(15)"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Frame3"
+      Tab(1).Control(1)=   "Label1(7)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "txtAux(2)"
+      Tab(1).Control(2)=   "txtAux2(2)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "txtAux2(1)"
+      Tab(1).Control(3)=   "chkAux"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "txtAux2(0)"
+      Tab(1).Control(4)=   "DataGrid1"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux(1)"
+      Tab(1).Control(5)=   "txtAux(0)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux(0)"
+      Tab(1).Control(6)=   "txtAux(1)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "DataGrid1"
+      Tab(1).Control(7)=   "txtAux2(0)"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "chkAux"
+      Tab(1).Control(8)=   "txtAux2(1)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux2(2)"
+      Tab(1).Control(9)=   "txtAux(2)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Label1(7)"
+      Tab(1).Control(10)=   "Frame3"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "Label1(15)"
+      Tab(1).Control(11)=   "Frame4"
       Tab(1).Control(11).Enabled=   0   'False
       Tab(1).ControlCount=   12
       Begin VB.Frame Frame4 
@@ -675,7 +675,6 @@ Begin VB.Form frmRepNumSerie2
             Height          =   240
             Index           =   2
             Left            =   720
-            Picture         =   "frmRepNumSerie.frx":004C
             ToolTipText     =   "Buscar fecha"
             Top             =   220
             Width           =   240
@@ -844,7 +843,7 @@ Begin VB.Form frmRepNumSerie2
          End
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Bindings        =   "frmRepNumSerie.frx":00D7
+         Bindings        =   "frmRepNumSerie.frx":004C
          Height          =   2625
          Left            =   -74840
          TabIndex        =   55
@@ -1089,7 +1088,6 @@ Begin VB.Form frmRepNumSerie2
          Height          =   240
          Index           =   0
          Left            =   8760
-         Picture         =   "frmRepNumSerie.frx":00EC
          ToolTipText     =   "Buscar fecha"
          Top             =   600
          Width           =   240
@@ -1114,7 +1112,6 @@ Begin VB.Form frmRepNumSerie2
          Height          =   240
          Index           =   1
          Left            =   8760
-         Picture         =   "frmRepNumSerie.frx":0177
          ToolTipText     =   "Buscar fecha"
          Top             =   980
          Width           =   240
@@ -1148,7 +1145,6 @@ Begin VB.Form frmRepNumSerie2
          Height          =   240
          Index           =   1
          Left            =   1065
-         Picture         =   "frmRepNumSerie.frx":0202
          ToolTipText     =   "Buscar tipo artículo"
          Top             =   960
          Width           =   240
@@ -1697,7 +1693,10 @@ Private Sub Form_Load()
     
     'Icono de busqueda
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgListComun.ListImages(19).Picture
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    For kCampo = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next kCampo
 
     'ICONOS de La toolbar
@@ -2106,16 +2105,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
@@ -2159,14 +2158,14 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
+    For I = 0 To Me.imgBuscar.Count - 1
 '        Me.imgBuscar(i).Enabled = b
-        BloquearImg Me.imgBuscar(i), Not b
-    Next i
+        BloquearImg Me.imgBuscar(I), Not b
+    Next I
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b 'Si es insertar o modificar
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b 'Si es insertar o modificar
+    Next I
     
     'Si Modificar y se ha insertado un nº Albaran no modificar datos
     'del proveedor

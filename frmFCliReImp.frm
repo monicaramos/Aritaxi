@@ -148,7 +148,6 @@ Begin VB.Form frmFCliReImp
       Height          =   240
       Index           =   1
       Left            =   1170
-      Picture         =   "frmFCliReImp.frx":0000
       Top             =   1800
       Width           =   240
    End
@@ -195,7 +194,6 @@ Begin VB.Form frmFCliReImp
       Height          =   240
       Index           =   0
       Left            =   1170
-      Picture         =   "frmFCliReImp.frx":0102
       Top             =   1455
       Width           =   240
    End
@@ -203,7 +201,6 @@ Begin VB.Form frmFCliReImp
       Height          =   240
       Index           =   23
       Left            =   1170
-      Picture         =   "frmFCliReImp.frx":0204
       Top             =   3540
       Width           =   240
    End
@@ -269,7 +266,6 @@ Begin VB.Form frmFCliReImp
       Height          =   240
       Index           =   24
       Left            =   3420
-      Picture         =   "frmFCliReImp.frx":028F
       Top             =   3540
       Width           =   240
    End
@@ -503,7 +499,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-
+Dim I As Integer
     'Icono del form
     Me.Icon = frmPpal.Icon
     
@@ -511,14 +507,21 @@ Private Sub Form_Load()
 '    CargarComboAnyo
 '    Combo2.Text = Year(Date)
 '    CalcularFacturas True
-
+    For I = 0 To Me.imgBuscarOfer.Count - 1
+        Me.imgBuscarOfer(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next I
+    
+    For I = 23 To 24
+        Me.imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next I
+    
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 Dim encontrado As String
 Dim Codigo As String
 
-    DatosOK = True
+    DatosOk = True
     
 End Function
 

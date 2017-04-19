@@ -125,7 +125,6 @@ Begin VB.Form frmPubliFacCli
       Height          =   240
       Index           =   3
       Left            =   1590
-      Picture         =   "frmPubliFacCli.frx":0000
       Tag             =   "-1"
       ToolTipText     =   "Buscar cuenta"
       Top             =   3510
@@ -153,7 +152,6 @@ Begin VB.Form frmPubliFacCli
       Height          =   240
       Index           =   1
       Left            =   1590
-      Picture         =   "frmPubliFacCli.frx":0102
       Tag             =   "-1"
       ToolTipText     =   "Buscar forma de pago"
       Top             =   1920
@@ -163,7 +161,6 @@ Begin VB.Form frmPubliFacCli
       Height          =   240
       Index           =   0
       Left            =   1590
-      Picture         =   "frmPubliFacCli.frx":0204
       Tag             =   "-1"
       ToolTipText     =   "Ver observaciones"
       Top             =   2880
@@ -173,7 +170,6 @@ Begin VB.Form frmPubliFacCli
       Height          =   240
       Index           =   2
       Left            =   1590
-      Picture         =   "frmPubliFacCli.frx":0306
       Tag             =   "-1"
       ToolTipText     =   "Buscar cliente"
       Top             =   960
@@ -183,7 +179,6 @@ Begin VB.Form frmPubliFacCli
       Height          =   240
       Index           =   2
       Left            =   1590
-      Picture         =   "frmPubliFacCli.frx":0408
       ToolTipText     =   "Buscar fecha"
       Top             =   1470
       Width           =   240
@@ -325,23 +320,25 @@ Dim NumFactu As Long
 Dim FecFactu As Date
 Dim numParam As Integer
 Dim Modo As Byte
-Dim Cad As String
+Dim cad As String
 
+
+Dim kCampo As Integer
 
 Private Sub cmdAceptar_Click()
-Dim SQL As String
+Dim Sql As String
     
     Set miRsAux = New ADODB.Recordset
     Screen.MousePointer = vbHourglass
     
     If DatosOk Then
-        SQL = "select count(*) from sclien_publicidad where codclien=" & Text1(0).Text
-        miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Sql = "select count(*) from sclien_publicidad where codclien=" & Text1(0).Text
+        miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If miRsAux.EOF Then
             MsgBox "No hay vehiculos con esa publicidad.", vbExclamation
         Else
-            SQL = miRsAux.Fields(0) & " vehiculos con publicidad del cliente " & Text1(0).Text
-            MsgBox SQL, vbOKOnly
+            Sql = miRsAux.Fields(0) & " vehiculos con publicidad del cliente " & Text1(0).Text
+            MsgBox Sql, vbOKOnly
         End If
         
         DesBloqueoManual ("PUBLIFAC") 'facturas de publicidad
@@ -412,8 +409,8 @@ End Sub
 Private Function GenerarFacturas() As Boolean
 Dim vC As CTiposMov
 Dim fac As CFactura
-Dim Cad As String
-Dim SQL As String
+Dim cad As String
+Dim Sql As String
 Dim iva As String
 Dim porIva As Currency
 Dim totfactu As Currency
@@ -437,15 +434,15 @@ Dim vDevuelve As String
     On Error GoTo EGenFactu
 
     GenerarFacturas = False
-    Cad = "FPC"
+    cad = "FPC"
 
     Set vC = New CTiposMov
     Set cli = New CCliente
     Set fac = New CFactura
     
 
-    If vC.TipoMovimiento <> Cad Then
-        If Not vC.Leer(Cad) Then
+    If vC.TipoMovimiento <> cad Then
+        If Not vC.Leer(cad) Then
             miRsAux.Close
             If NumRegElim > 0 Then MsgBox "Se han generado " & NumRegElim & " factura(s) antes del error", vbExclamation
             Exit Function
@@ -464,10 +461,10 @@ Dim vDevuelve As String
     ImpIVA = (BaseImp * porIva) / 100
     totfactu = BaseImp + ImpIVA
     fac.TotalFac = totfactu
-    fac.codtipom = Cad
+    fac.codtipom = cad
     FecFactu = Text1(1).Text
     fac.FecFactu = FecFactu
-    fac.LetraSerie = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", Cad, "T")
+    fac.LetraSerie = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", cad, "T")
     NumFactu = vC.Contador
     fac.NumFactu = NumFactu
     'Cuenta Prevista de Cobro de las Facturas
@@ -487,8 +484,8 @@ Dim vDevuelve As String
     'datos del cliente
     Set miRsAux = New ADODB.Recordset
     
-    SQL = "select * from scliente where codclien= " & Text1(0).Text
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = "select * from scliente where codclien= " & Text1(0).Text
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     fac.Cliente = Text1(0).Text
     
@@ -511,8 +508,8 @@ Dim vDevuelve As String
         fac.Banco = Format(miRsAux!codbanco, "0000")
         cli.Sucursal = Format(miRsAux!codsucur, "0000")
         fac.Sucursal = Format(miRsAux!codsucur, "0000")
-        cli.DigControl = DBLet(miRsAux!DigContr, "T")
-        fac.DigControl = DBLet(miRsAux!DigContr, "T")
+        cli.DigControl = DBLet(miRsAux!digcontr, "T")
+        fac.DigControl = DBLet(miRsAux!digcontr, "T")
         cli.CuentaBan = DBLet(miRsAux!cuentaba, "T")
         fac.CuentaBan = DBLet(miRsAux!cuentaba, "T")
         cli.Iban = DBLet(miRsAux!Iban, "T")
@@ -523,19 +520,19 @@ Dim vDevuelve As String
     miRsAux.Close
     
     'scafac
-    SQL = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
-    SQL = SQL & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-    SQL = SQL & "imporiv1,totalfac,intconta,coddirec, iban, codbanco, codsucur, digcontr, cuentaba ) VALUES ("
-    SQL = SQL & DBSet(Cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & Text1(0).Text & ","
-    SQL = SQL & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
-    SQL = SQL & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
-    SQL = SQL & "," & Text1(2).Text & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
-    SQL = SQL & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
-    SQL = SQL & DBSet(fac.Iban, "T") & "," & DBSet(fac.Banco, "N", "S") & "," & DBSet(fac.Sucursal, "N", "S") & "," & DBSet(fac.DigControl, "T", "S") & "," & DBSet(fac.CuentaBan, "T", "S") & ")"
+    Sql = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
+    Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
+    Sql = Sql & "imporiv1,totalfac,intconta,coddirec, iban, codbanco, codsucur, digcontr, cuentaba ) VALUES ("
+    Sql = Sql & DBSet(cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & Text1(0).Text & ","
+    Sql = Sql & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
+    Sql = Sql & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
+    Sql = Sql & "," & Text1(2).Text & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
+    Sql = Sql & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
+    Sql = Sql & DBSet(fac.Iban, "T") & "," & DBSet(fac.Banco, "N", "S") & "," & DBSet(fac.Sucursal, "N", "S") & "," & DBSet(fac.DigControl, "T", "S") & "," & DBSet(fac.CuentaBan, "T", "S") & ")"
     
     fac.ForPago = Text1(2).Text
     
-    If Not ejecutar(SQL, False) Then
+    If Not ejecutar(Sql, False) Then
         vC.DevolverContador vC.TipoMovimiento, vC.Contador
         Exit Function
     Else
@@ -570,19 +567,19 @@ Dim vDevuelve As String
         '[Monica]04/02/2015: si entrabamos como root no hacia nada
         If CodTraba = "" And vUsu.Login = "root" Then CodTraba = DevuelveValor("select min(codtraba) from straba")
         
-        SQL = "INSERT INTO scafaccli1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
-        SQL = SQL & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
-        SQL = SQL & DBSet(Cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
-        SQL = SQL & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
-        SQL = SQL & "," & CodTraba & "," & DBSet(o1, "T") & "," & DBSet(o2, "T") & "," & DBSet(o3, "T") & ","
-        SQL = SQL & DBSet(o4, "T") & "," & DBSet(o5, "T") & ",NULL)"
+        Sql = "INSERT INTO scafaccli1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
+        Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
+        Sql = Sql & DBSet(cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
+        Sql = Sql & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+        Sql = Sql & "," & CodTraba & "," & DBSet(o1, "T") & "," & DBSet(o2, "T") & "," & DBSet(o3, "T") & ","
+        Sql = Sql & DBSet(o4, "T") & "," & DBSet(o5, "T") & ",NULL)"
         
-        conn.Execute SQL
+        conn.Execute Sql
         'slifac
         
         'busco el minimo almacen y el minimo proveedor
-        SQL = "select min(codalmac) from salmpr"
-        miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Sql = "select min(codalmac) from salmpr"
+        miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
         If Not miRsAux.EOF Then
             almac = miRsAux.Fields(0)
@@ -590,8 +587,8 @@ Dim vDevuelve As String
         
         miRsAux.Close
         
-        SQL = "select min(codprove) from sprove"
-        miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Sql = "select min(codprove) from sprove"
+        miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
         If Not miRsAux.EOF Then
             Prove = miRsAux.Fields(0)
@@ -599,14 +596,14 @@ Dim vDevuelve As String
         'busco el nombre del articulo
         NomArtic = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", vParamAplic.CodarticTfnia, "T")
         
-        SQL = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-        SQL = SQL & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
-        SQL = SQL & DBSet(Cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,0," & almac & ","
-        SQL = SQL & DBSet(vParamAplic.CodarticTfnia, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & TransformaComasPuntos(CStr(BaseImp)) & ","
-        SQL = SQL & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
-        SQL = SQL & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & ")"
+        Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
+        Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
+        Sql = Sql & DBSet(cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,0," & almac & ","
+        Sql = Sql & DBSet(vParamAplic.CodarticTfnia, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & TransformaComasPuntos(CStr(BaseImp)) & ","
+        Sql = Sql & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
+        Sql = Sql & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & ")"
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         'insertar en tesoreria
         fac.Agente = vParamAplic.PorDefecto_Agente
@@ -657,6 +654,14 @@ Private Sub Form_Load()
     'Icono del form
     Me.Icon = frmPpal.Icon
 
+    For kCampo = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Next kCampo
+    
+    Me.imgFecha(2).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+
+
+
     Text1(1).Text = Date
     Text1(4).Text = vParamAplic.ConFactuPubli
     Modo = 0
@@ -666,7 +671,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    Cad = CadenaDevuelta
+    cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)

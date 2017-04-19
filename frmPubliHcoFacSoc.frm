@@ -900,11 +900,11 @@ Dim cadB1 As String
 Dim UnaVez As Boolean
 
 Private Sub ComprobarDatosTotales()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 13 To 14
-        Text1(i).Text = ComprobarCero(Text1(i).Text)
-    Next i
+    For I = 13 To 14
+        Text1(I).Text = ComprobarCero(Text1(I).Text)
+    Next I
 End Sub
 
 
@@ -1041,15 +1041,15 @@ EModFact:
 End Function
 
 Private Function CalcularDatosFactura() As Boolean
-Dim i As Integer
+Dim I As Integer
 Dim vFactu As CFacturaCom
 Dim FacOK As Boolean
 
     'Limpiar en el form los datos calculados de la factura
     'y volvemos a recalcular
-    For i = 22 To 38
-         Text1(i).Text = ""
-    Next i
+    For I = 22 To 38
+         Text1(I).Text = ""
+    Next I
     
     
     Set vFactu = New CFacturaCom
@@ -1139,7 +1139,7 @@ End Function
 
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -1357,12 +1357,12 @@ Dim vWhere As String
 End Sub
 
 Private Sub FormatoDatosTotales()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 16 To 19
+    For I = 16 To 19
 '        Text1(I).Text = QuitarCero(Text1(I).Text)
-        FormateaCampo Text1(i)
-    Next i
+        FormateaCampo Text1(I)
+    Next I
     
 '    For i = 24 To 26
 '        If Text1(i).Text <> "" Then
@@ -1456,9 +1456,10 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
     
      'Icono de busqueda
-    Me.imgBuscar(0).Picture = frmPpal.imgListComun.ListImages(19).Picture
-    Me.imgBuscar(5).Picture = frmPpal.imgListComun.ListImages(19).Picture
-    Me.imgBuscar(5).Picture = frmPpal.imgListComun.ListImages(19).Picture
+    Me.imgBuscar(0).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Me.imgBuscar(2).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Me.imgBuscar(3).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Me.imgBuscar(5).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
 
     ' ICONITOS DE LA BARRA
     btnPrimero = 12
@@ -2092,14 +2093,14 @@ EEPonerBusq:
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
 
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
@@ -2139,9 +2140,9 @@ Dim b As Boolean
     BloquearTxt Text1(3), b And Modo <> 4 'referencia
     
     'Importes siempre bloqueados, excepto para busquedas. ivas y aportacion tb bloqueado
-    For i = 13 To 19
-        BloquearTxt Text1(i), (Modo <> 1) And (Modo <> 3)
-    Next i
+    For I = 13 To 19
+        BloquearTxt Text1(I), (Modo <> 1) And (Modo <> 3)
+    Next I
     'Campo B.Imp y Imp. IVA siempre en azul
     BloquearTxt Text1(14), True
     Text1(14).BackColor = &HFFFFC0
@@ -2588,7 +2589,7 @@ End Function
 Private Sub CargaCombo()
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim i As Byte
+Dim I As Byte
     
     Combo1.Clear
     
@@ -2600,8 +2601,8 @@ Dim i As Byte
         Sql = RS!nomtipom
         Sql = Replace(Sql, "Factura", "")
         Combo1.AddItem RS!codtipom & "-" & Sql
-        Combo1.ItemData(Combo1.NewIndex) = i
-        i = i + 1
+        Combo1.ItemData(Combo1.NewIndex) = I
+        I = I + 1
         RS.MoveNext
     Wend
     RS.Close

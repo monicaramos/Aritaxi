@@ -59,58 +59,58 @@ Begin VB.Form frmRepEntReparaciones
       TabCaption(1)   =   "Presupuesto / S.A.T."
       TabPicture(1)   =   "frmRepEntReparaciones.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label2(3)"
-      Tab(1).Control(1)=   "Label2(2)"
-      Tab(1).Control(2)=   "imgFecha(4)"
-      Tab(1).Control(3)=   "Label9(3)"
-      Tab(1).Control(4)=   "Label1(13)"
-      Tab(1).Control(5)=   "imgFecha(3)"
-      Tab(1).Control(6)=   "Label9(2)"
-      Tab(1).Control(7)=   "imgFecha(2)"
-      Tab(1).Control(8)=   "Label9(1)"
-      Tab(1).Control(9)=   "Label2(1)"
-      Tab(1).Control(10)=   "Label11(0)"
-      Tab(1).Control(11)=   "Label1(12)"
-      Tab(1).Control(12)=   "Line1"
-      Tab(1).Control(13)=   "Line2"
-      Tab(1).Control(14)=   "Label12(0)"
-      Tab(1).Control(15)=   "Label12(1)"
-      Tab(1).Control(16)=   "Label11(1)"
-      Tab(1).Control(17)=   "imgFecha(5)"
-      Tab(1).Control(18)=   "Label9(4)"
-      Tab(1).Control(19)=   "Label9(5)"
-      Tab(1).Control(20)=   "imgBuscar(8)"
-      Tab(1).Control(21)=   "Text1(22)"
-      Tab(1).Control(22)=   "Text2(21)"
-      Tab(1).Control(23)=   "Text1(21)"
-      Tab(1).Control(24)=   "Text1(20)"
-      Tab(1).Control(25)=   "Text1(19)"
-      Tab(1).Control(26)=   "Text1(18)"
-      Tab(1).Control(27)=   "Text1(17)"
-      Tab(1).Control(28)=   "Text1(16)"
-      Tab(1).Control(29)=   "Combo1"
-      Tab(1).Control(30)=   "Check1"
-      Tab(1).Control(31)=   "Text1(25)"
-      Tab(1).Control(32)=   "Text1(26)"
-      Tab(1).Control(33)=   "Text1(27)"
+      Tab(1).Control(0)=   "Text1(27)"
+      Tab(1).Control(1)=   "Text1(26)"
+      Tab(1).Control(2)=   "Text1(25)"
+      Tab(1).Control(3)=   "Check1"
+      Tab(1).Control(4)=   "Combo1"
+      Tab(1).Control(5)=   "Text1(16)"
+      Tab(1).Control(6)=   "Text1(17)"
+      Tab(1).Control(7)=   "Text1(18)"
+      Tab(1).Control(8)=   "Text1(19)"
+      Tab(1).Control(9)=   "Text1(20)"
+      Tab(1).Control(10)=   "Text1(21)"
+      Tab(1).Control(11)=   "Text2(21)"
+      Tab(1).Control(12)=   "Text1(22)"
+      Tab(1).Control(13)=   "imgBuscar(8)"
+      Tab(1).Control(14)=   "Label9(5)"
+      Tab(1).Control(15)=   "Label9(4)"
+      Tab(1).Control(16)=   "imgFecha(5)"
+      Tab(1).Control(17)=   "Label11(1)"
+      Tab(1).Control(18)=   "Label12(1)"
+      Tab(1).Control(19)=   "Label12(0)"
+      Tab(1).Control(20)=   "Line2"
+      Tab(1).Control(21)=   "Line1"
+      Tab(1).Control(22)=   "Label1(12)"
+      Tab(1).Control(23)=   "Label11(0)"
+      Tab(1).Control(24)=   "Label2(1)"
+      Tab(1).Control(25)=   "Label9(1)"
+      Tab(1).Control(26)=   "imgFecha(2)"
+      Tab(1).Control(27)=   "Label9(2)"
+      Tab(1).Control(28)=   "imgFecha(3)"
+      Tab(1).Control(29)=   "Label1(13)"
+      Tab(1).Control(30)=   "Label9(3)"
+      Tab(1).Control(31)=   "imgFecha(4)"
+      Tab(1).Control(32)=   "Label2(2)"
+      Tab(1).Control(33)=   "Label2(3)"
       Tab(1).ControlCount=   34
       TabCaption(2)   =   "Lineas"
       TabPicture(2)   =   "frmRepEntReparaciones.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "cmdAux(2)"
-      Tab(2).Control(1)=   "txtAux(8)"
-      Tab(2).Control(2)=   "cmdAux(1)"
-      Tab(2).Control(3)=   "cmdAux(0)"
-      Tab(2).Control(4)=   "txtAux(2)"
-      Tab(2).Control(5)=   "txtAux(7)"
-      Tab(2).Control(6)=   "txtAux(6)"
-      Tab(2).Control(7)=   "txtAux(5)"
-      Tab(2).Control(8)=   "txtAux(4)"
-      Tab(2).Control(9)=   "txtAux(3)"
-      Tab(2).Control(10)=   "txtAux(1)"
-      Tab(2).Control(11)=   "txtAux(0)"
-      Tab(2).Control(12)=   "DataGrid1"
-      Tab(2).Control(13)=   "Label1(16)"
+      Tab(2).Control(0)=   "Label1(16)"
+      Tab(2).Control(1)=   "DataGrid1"
+      Tab(2).Control(2)=   "txtAux(0)"
+      Tab(2).Control(3)=   "txtAux(1)"
+      Tab(2).Control(4)=   "txtAux(3)"
+      Tab(2).Control(5)=   "txtAux(4)"
+      Tab(2).Control(6)=   "txtAux(5)"
+      Tab(2).Control(7)=   "txtAux(6)"
+      Tab(2).Control(8)=   "txtAux(7)"
+      Tab(2).Control(9)=   "txtAux(2)"
+      Tab(2).Control(10)=   "cmdAux(0)"
+      Tab(2).Control(11)=   "cmdAux(1)"
+      Tab(2).Control(12)=   "txtAux(8)"
+      Tab(2).Control(13)=   "cmdAux(2)"
       Tab(2).ControlCount=   14
       Begin VB.CommandButton cmdAux 
          Appearance      =   0  'Flat
@@ -662,7 +662,6 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   240
             Index           =   7
             Left            =   1440
-            Picture         =   "frmRepEntReparaciones.frx":0091
             ToolTipText     =   "Buscar tipo trabajo"
             Top             =   2160
             Width           =   240
@@ -680,7 +679,6 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   240
             Index           =   6
             Left            =   1080
-            Picture         =   "frmRepEntReparaciones.frx":0193
             ToolTipText     =   "Buscar tipo avería"
             Top             =   720
             Width           =   240
@@ -697,7 +695,7 @@ Begin VB.Form frmRepEntReparaciones
          Begin VB.Image imgVerAlbaran 
             Height          =   240
             Left            =   9600
-            Picture         =   "frmRepEntReparaciones.frx":0295
+            Picture         =   "frmRepEntReparaciones.frx":0091
             Top             =   2880
             Width           =   240
          End
@@ -775,7 +773,6 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   240
             Index           =   5
             Left            =   1920
-            Picture         =   "frmRepEntReparaciones.frx":0C97
             ToolTipText     =   "Buscar motivo"
             Top             =   1575
             Width           =   240
@@ -1158,7 +1155,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   240
             Index           =   1
             Left            =   1095
-            Picture         =   "frmRepEntReparaciones.frx":0D99
+            Picture         =   "frmRepEntReparaciones.frx":0A93
             ToolTipText     =   "Buscar fecha"
             Top             =   1500
             Width           =   240
@@ -1184,7 +1181,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   240
             Index           =   0
             Left            =   1095
-            Picture         =   "frmRepEntReparaciones.frx":0E24
+            Picture         =   "frmRepEntReparaciones.frx":0B1E
             ToolTipText     =   "Buscar fecha"
             Top             =   1140
             Width           =   240
@@ -1287,7 +1284,6 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   8
          Left            =   -72600
-         Picture         =   "frmRepEntReparaciones.frx":0EAF
          ToolTipText     =   "Buscar servicio"
          Top             =   2640
          Width           =   240
@@ -1332,7 +1328,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   5
          Left            =   -72600
-         Picture         =   "frmRepEntReparaciones.frx":0FB1
+         Picture         =   "frmRepEntReparaciones.frx":0BA9
          ToolTipText     =   "Buscar fecha"
          Top             =   4680
          Width           =   240
@@ -1429,7 +1425,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   2
          Left            =   -68920
-         Picture         =   "frmRepEntReparaciones.frx":103C
+         Picture         =   "frmRepEntReparaciones.frx":0C34
          ToolTipText     =   "Buscar fecha"
          Top             =   1080
          Width           =   240
@@ -1447,7 +1443,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   3
          Left            =   -68920
-         Picture         =   "frmRepEntReparaciones.frx":10C7
+         Picture         =   "frmRepEntReparaciones.frx":0CBF
          ToolTipText     =   "Buscar fecha"
          Top             =   1560
          Width           =   240
@@ -1484,7 +1480,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   4
          Left            =   -72600
-         Picture         =   "frmRepEntReparaciones.frx":1152
+         Picture         =   "frmRepEntReparaciones.frx":0D4A
          ToolTipText     =   "Buscar fecha"
          Top             =   3120
          Width           =   240
@@ -1586,7 +1582,6 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   0
          Left            =   795
-         Picture         =   "frmRepEntReparaciones.frx":11DD
          ToolTipText     =   "Buscar Nº Serie"
          Top             =   200
          Width           =   240
@@ -2244,9 +2239,11 @@ Private Sub Form_Load()
     
     'Icono de busqueda
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgListComun.ListImages(19).Picture
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next kCampo
-    
+    For kCampo = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Next kCampo
 
     'ICONOS de La toolbar
     btnAnyadir = 5
@@ -3042,16 +3039,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim b2 As Boolean
 Dim NumReg As Byte
 
     On Error GoTo EPonerModo
 
-    For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -3112,31 +3109,31 @@ Dim NumReg As Byte
 
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        If i < 5 Then
-            BloquearImg Me.imgBuscar(i), Not b
+    For I = 0 To Me.imgBuscar.Count - 1
+        If I < 5 Then
+            BloquearImg Me.imgBuscar(I), Not b
         Else
             'SAT, tipo averia...
-            BloquearImg Me.imgBuscar(i), Not b2
+            BloquearImg Me.imgBuscar(I), Not b2
         End If
-    Next i
+    Next I
     'Me.imgBuscar(1).Enabled = (Modo = 1)
     Me.imgBuscar(1).Enabled = b2
     'La imagen del TRABAJO REALIZADO no se tiene que mostrar a no ser que haya entrado como reparacion
     Me.imgBuscar(7).visible = Me.imgBuscar(7).visible And ControlRep
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b 'Si es insertar o modificar
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b 'Si es insertar o modificar
+    Next I
     
       '  Text1(1).TabIndex = 1
     
     
     b = Modo = 1 And EsHistorico
-    For i = 1 To 4
+    For I = 1 To 4
         'Text2(i).Enabled = EsHistorico
-        BloquearTxt Text2(i), Not b
-    Next i
+        BloquearTxt Text2(I), Not b
+    Next I
     
     
     If EsHistorico Then
@@ -3181,7 +3178,7 @@ End Sub
 
 Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 
     'Modo 2. Hay datos y estamos visualizandolos
     b = ((Not ControlRep) Or (ControlRep And Modo = 5)) And (Not EsHistorico)
@@ -3195,9 +3192,9 @@ Dim i As Byte
     Toolbar1.Buttons(9).visible = Not EsHistorico
     Me.mnBarra2.visible = Not EsHistorico
     
-    For i = 10 To 11
-        Toolbar1.Buttons(i).visible = ControlRep
-    Next i
+    For I = 10 To 11
+        Toolbar1.Buttons(I).visible = ControlRep
+    Next I
     
     b = (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
     'Modificar
@@ -3308,7 +3305,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim i As Byte
+Dim I As Byte
     'Escondemos el navegador y ponemos Modo Modificar
     PonerModo 4
     
@@ -3325,9 +3322,9 @@ Dim i As Byte
     If ControlRep Then
         Me.chkPresupuesto.Enabled = False
         Text1(0).Locked = True
-        For i = 3 To 7
-            Text1(i).Locked = True
-        Next i
+        For I = 3 To 7
+            Text1(I).Locked = True
+        Next I
         Me.imgBuscar(5).Enabled = True
         PonerFoco Text1(8)
     Else
@@ -3786,11 +3783,11 @@ End Sub
 
 
 Private Sub LimpiarDatosCliente()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 28 To 34
-        Text1(i).Text = ""
-    Next i
+    For I = 28 To 34
+        Text1(I).Text = ""
+    Next I
     Text1(6).Text = ""
     Text1(7).Text = ""
     
@@ -4265,16 +4262,16 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim i As Byte
+Dim I As Byte
 
     On Error Resume Next
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux.Count - 1 'TextBox
-            txtAux(i).Top = 290
-            txtAux(i).visible = visible
-        Next i
+        For I = 0 To txtAux.Count - 1 'TextBox
+            txtAux(I).Top = 290
+            txtAux(I).visible = visible
+        Next I
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
         
@@ -4282,19 +4279,19 @@ Dim i As Byte
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For i = 0 To txtAux.Count - 1
-                txtAux(i).Text = ""
-                BloquearTxt txtAux(i), False
-            Next i
+            For I = 0 To txtAux.Count - 1
+                txtAux(I).Text = ""
+                BloquearTxt txtAux(I), False
+            Next I
         Else 'Vamos a modificar
-            For i = 0 To txtAux.Count - 1
-                If i < 3 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 2).Text
+            For I = 0 To txtAux.Count - 1
+                If I < 3 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 2).Text
                 Else
-                    txtAux(i).Text = DataGrid1.Columns(i + 3).Text
+                    txtAux(I).Text = DataGrid1.Columns(I + 3).Text
                 End If
-                BloquearTxt txtAux(i), False
-            Next i
+                BloquearTxt txtAux(I), False
+            Next I
             'El campo Nom Artic lo bloqueamos inicialmente
             BloquearTxt txtAux(2), True
         End If
@@ -4306,10 +4303,10 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 20)
         alto = alto '+ SSTab1.Top
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Top = alto
-            txtAux(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Top = alto
+            txtAux(I).Height = DataGrid1.RowHeight
+        Next I
         cmdAux(0).Top = alto
         cmdAux(1).Top = alto
         cmdAux(0).Height = DataGrid1.RowHeight
@@ -4333,33 +4330,33 @@ Dim i As Byte
         txtAux(3).Width = DataGrid1.Columns(6).Width - 10
         'Precio, Dto1, Dto2, Precio
         
-        For i = 4 To 7
-            txtAux(i).Left = txtAux(i - 1).Left + txtAux(i - 1).Width + 10
-            txtAux(i).Width = DataGrid1.Columns(i + 3).Width - 10
-        Next i
+        For I = 4 To 7
+            txtAux(I).Left = txtAux(I - 1).Left + txtAux(I - 1).Width + 10
+            txtAux(I).Width = DataGrid1.Columns(I + 3).Width - 10
+        Next I
         
         
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To 7
-            txtAux(i).visible = visible
-        Next i
+        For I = 0 To 7
+            txtAux(I).visible = visible
+        Next I
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
         cmdAux(2).visible = False
         If visible Then
             If vEmpresa.TieneAnalitica Then
-                i = 8
-                txtAux(i).visible = True
-                txtAux(i).Left = txtAux(i - 1).Left + txtAux(i - 1).Width + 10
-                txtAux(i).Width = DataGrid1.Columns(i + 3).Width - 10
-                txtAux(i).Locked = True
+                I = 8
+                txtAux(I).visible = True
+                txtAux(I).Left = txtAux(I - 1).Left + txtAux(I - 1).Width + 10
+                txtAux(I).Width = DataGrid1.Columns(I + 3).Width - 10
+                txtAux(I).Locked = True
                 If vParamAplic.ModoAnalitica = 2 Then
                     cmdAux(2).Top = cmdAux(1).Top
                     cmdAux(2).visible = True
-                    txtAux(i).Locked = False
-                    cmdAux(2).Left = txtAux(i).Left + txtAux(i).Width - 90
+                    txtAux(I).Locked = False
+                    cmdAux(2).Left = txtAux(I).Left + txtAux(I).Width - 90
                 End If
             End If
         End If
@@ -4438,7 +4435,7 @@ End Sub
 
 
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Byte
+Dim I As Byte
     On Error GoTo ECargaGrid
 
     vData.Refresh
@@ -4468,52 +4465,52 @@ Dim i As Byte
         vDataGrid.Columns(6).Alignment = dbgRight
         vDataGrid.Columns(6).NumberFormat = FormatoImporte
         
-        i = 7
-        vDataGrid.Columns(i).Caption = "Precio"
-        vDataGrid.Columns(i).Width = 950
-        vDataGrid.Columns(i).Alignment = dbgRight
-        vDataGrid.Columns(i).NumberFormat = FormatoPrecio
+        I = 7
+        vDataGrid.Columns(I).Caption = "Precio"
+        vDataGrid.Columns(I).Width = 950
+        vDataGrid.Columns(I).Alignment = dbgRight
+        vDataGrid.Columns(I).NumberFormat = FormatoPrecio
         
             
-        i = i + 1
-        vDataGrid.Columns(i).Caption = "Dto.1"
-        vDataGrid.Columns(i).Width = 600
-        vDataGrid.Columns(i).Alignment = dbgRight
-        vDataGrid.Columns(i).NumberFormat = FormatoDescuento
+        I = I + 1
+        vDataGrid.Columns(I).Caption = "Dto.1"
+        vDataGrid.Columns(I).Width = 600
+        vDataGrid.Columns(I).Alignment = dbgRight
+        vDataGrid.Columns(I).NumberFormat = FormatoDescuento
                 
-        i = i + 1
-        vDataGrid.Columns(i).Caption = "Dto.2"
-        vDataGrid.Columns(i).Width = 600
+        I = I + 1
+        vDataGrid.Columns(I).Caption = "Dto.2"
+        vDataGrid.Columns(I).Width = 600
 
-        vDataGrid.Columns(i).Alignment = dbgRight
-        vDataGrid.Columns(i).NumberFormat = FormatoDescuento
+        vDataGrid.Columns(I).Alignment = dbgRight
+        vDataGrid.Columns(I).NumberFormat = FormatoDescuento
     
-        i = i + 1
-        vDataGrid.Columns(i).Caption = "Importe Línea"
+        I = I + 1
+        vDataGrid.Columns(I).Caption = "Importe Línea"
 '        If conServidas Then
 '            vDataGrid.Columns(i).Width = 1250
 '        Else
-            vDataGrid.Columns(i).Width = 1300
+            vDataGrid.Columns(I).Width = 1300
 '        End If
-        vDataGrid.Columns(i).Alignment = dbgRight
-        vDataGrid.Columns(i).NumberFormat = FormatoImporte
+        vDataGrid.Columns(I).Alignment = dbgRight
+        vDataGrid.Columns(I).NumberFormat = FormatoImporte
     
         If Not vEmpresa.TieneAnalitica Then
             
             'Hay 1 columnas menos
             
         Else
-            i = i + 1
-            vDataGrid.Columns(i).Caption = "C.Coste"
-            vDataGrid.Columns(i).Width = 800
+            I = I + 1
+            vDataGrid.Columns(I).Caption = "C.Coste"
+            vDataGrid.Columns(I).Width = 800
 
             
         End If
     
-        For i = 0 To vDataGrid.Columns.Count - 1
-            vDataGrid.Columns(i).Locked = True
-            vDataGrid.Columns(i).AllowSizing = False
-        Next i
+        For I = 0 To vDataGrid.Columns.Count - 1
+            vDataGrid.Columns(I).Locked = True
+            vDataGrid.Columns(I).AllowSizing = False
+        Next I
         vDataGrid.HoldFields
         Exit Sub
         
@@ -4820,7 +4817,7 @@ Private Function DatosOkLinea() As Boolean
 'Comprueba si los datos de una linea son correctos antes de Insertar o Modificar
 'una linea del Pedido
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim vArtic As CArticulo
 Dim Mal As Boolean
 
@@ -4833,16 +4830,16 @@ Dim Mal As Boolean
     
     
     'Comprobar que los campos NOT NULL tienen valor
-    For i = 0 To txtAux.Count - 1
+    For I = 0 To txtAux.Count - 1
         
-        If txtAux(i).Text = "" Then
-            If i = 5 Or i = 6 Then
+        If txtAux(I).Text = "" Then
+            If I = 5 Or I = 6 Then
                 'LOS DESCUENTOS
                 'Si los descuentos estan a blancos, pinto el cero yo
-                txtAux(i).Text = "0"
+                txtAux(I).Text = "0"
             Else
                 Mal = False
-                If i = 8 Then
+                If I = 8 Then
                     If vEmpresa.TieneAnalitica Then Mal = True
                 Else
                     Mal = True
@@ -4850,13 +4847,13 @@ Dim Mal As Boolean
                 
                 If Mal Then
                     b = False
-                    MsgBox "Campo " & txtAux(i).Tag & " no puede estar vacio", vbExclamation
-                    PonerFoco txtAux(i)
+                    MsgBox "Campo " & txtAux(I).Tag & " no puede estar vacio", vbExclamation
+                    PonerFoco txtAux(I)
                     Exit Function
                 End If
             End If
         End If
-    Next i
+    Next I
    
     'Comprobar que existe el articulo en el almacen seleccionado
     Set vArtic = New CArticulo
@@ -5379,11 +5376,11 @@ End Sub
 
 
 Private Sub HabilitarDatosCliente(Habilitar As Boolean)
-Dim i As Integer
+Dim I As Integer
 
-    For i = 28 To 34
-        BloquearTxt Text1(i), Not Habilitar
-    Next i
+    For I = 28 To 34
+        BloquearTxt Text1(I), Not Habilitar
+    Next I
     imgBuscar(9).visible = Habilitar
     'Text1(28).Text = vCliente.NIF
     'Text1(29).Text = vCliente.TfnoClien
