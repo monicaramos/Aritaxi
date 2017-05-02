@@ -396,24 +396,24 @@ Begin VB.Form frmComProveedores
       TabCaption(1)   =   "Datos Contacto"
       TabPicture(1)   =   "frmComProveedores.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame2(13)"
-      Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(2)=   "Text1(28)"
-      Tab(1).Control(3)=   "Text1(27)"
-      Tab(1).Control(4)=   "imgCuentas(5)"
-      Tab(1).Control(5)=   "imgWeb"
-      Tab(1).Control(6)=   "Label2(11)"
-      Tab(1).Control(7)=   "Label2(10)"
+      Tab(1).Control(0)=   "Label2(10)"
+      Tab(1).Control(1)=   "Label2(11)"
+      Tab(1).Control(2)=   "imgWeb"
+      Tab(1).Control(3)=   "imgCuentas(5)"
+      Tab(1).Control(4)=   "Text1(27)"
+      Tab(1).Control(5)=   "Text1(28)"
+      Tab(1).Control(6)=   "Frame1"
+      Tab(1).Control(7)=   "Frame2(13)"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmComProveedores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label3"
-      Tab(2).Control(1)=   "imgFecha(2)"
-      Tab(2).Control(2)=   "Label2(0)"
-      Tab(2).Control(3)=   "lw1"
-      Tab(2).Control(4)=   "Toolbar2"
-      Tab(2).Control(5)=   "Text1(30)"
+      Tab(2).Control(0)=   "Text1(30)"
+      Tab(2).Control(1)=   "Toolbar2"
+      Tab(2).Control(2)=   "lw1"
+      Tab(2).Control(3)=   "Label2(0)"
+      Tab(2).Control(4)=   "imgFecha(2)"
+      Tab(2).Control(5)=   "Label3"
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -2155,7 +2155,7 @@ Private Sub chkProveV_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 
 
     Screen.MousePointer = vbHourglass
@@ -2169,9 +2169,9 @@ Dim i As Integer
     Case 2, 4 'MODIFICAR
         If DatosOk Then
             If Data1.Recordset.EOF Then
-                i = InsertarDesdeForm(Me)
+                I = InsertarDesdeForm(Me)
             Else
-                i = ModificaDesdeFormulario(Me, 1)
+                I = ModificaDesdeFormulario(Me, 1)
                 TerminaBloquear
                 PosicionarData
             End If
@@ -2243,7 +2243,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del formularios
     Me.Icon = frmPpal.Icon
@@ -2260,8 +2260,8 @@ Dim i As Integer
     Next kCampo
    
 
-    For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
 
    
@@ -2792,16 +2792,16 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 '
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2)
@@ -2894,6 +2894,7 @@ Private Sub PonerCampos()
 
     'Rellenar Text2 con nombre asociado al codigo
     Text2(1).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", Text1(13).Text, "N")
+    
     Text2(2).Text = DevuelveDesdeBDNew(conAri, "sbanpr", "nombanpr", "codbanpr", Text1(14).Text, "N")
         
     'Poner la situacion

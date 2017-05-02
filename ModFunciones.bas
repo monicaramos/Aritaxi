@@ -1788,7 +1788,7 @@ EPoblacion:
 End Function
 
 
-Public Sub ObtenerCtasBancoPropio2(BanPr As String, ctaBan As String, ctaCble As String)
+Public Sub ObtenerCtasBancoPropio2(banPr As String, ctaBan As String, ctaCble As String)
 'obtener la cuenta bancaria y la cuenta contable del banco propio
 '(IN) banPr: cod. banco propio
 '(OUT) ctaBan: cuenta bancaria
@@ -1801,7 +1801,7 @@ Dim Aux As String
     ctaCble = ""
 
     Sql = "SELECT codbanco,codsucur,digcontr,cuentaba,codmacta"
-    Sql = Sql & " from sbanpr where codbanpr=" & BanPr
+    Sql = Sql & " from sbanpr where codbanpr=" & banPr
 
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -2547,6 +2547,20 @@ Dim RS As ADODB.Recordset
 End Function
 
 
+Public Function MiFormat(Valor As String, Formato As String) As String
+    If Trim(Valor) = "" Then
+       MiFormat = ""
+    Else
+        If Formato = "" Then
+            MiFormat = Valor
+        Else
+            MiFormat = Format(Valor, Formato)
+        End If
+    End If
+End Function
+
+
+
 Public Sub AyudaTiposDocumentos(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
 ' en total son 7000 = 1405 + 3000 + 2595  hay que quitarle al width 0
     frmBas.CadenaTots = "S|txtAux(0)|T|Código|1405|;S|txtAux(1)|T|Descripción|3000|;S|txtAux(2)|T|Fichero|2595|;"
@@ -2836,4 +2850,82 @@ Public Sub AyudaProveedores(frmBas As frmBasico2, Optional CodActual As String, 
     frmBas.Show vbModal
 End Sub
 
+
+
+Public Sub AyudaTrabajadores(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 1000+4000+2000 no hay que quitarle al width nada
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1000|;S|txtAux(1)|T|Nombre|4000|;S|txtAux(2)|T|Nif|2000|;"
+    frmBas.CadenaConsulta = "SELECT straba.codtraba, straba.nomtraba, straba.niftraba "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM straba "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    
+    frmBas.Tag1 = "Código|N|N|||straba|codtraba|0000|S|"
+    frmBas.Tag2 = "Nombre|T|N|||straba|nomtraba||N|"
+    frmBas.Tag3 = "Nif|T|N|||straba|niftraba||N|"
+    
+    frmBas.Maxlen1 = 10
+    frmBas.Maxlen2 = 30
+    frmBas.Maxlen3 = 15
+    
+    
+    frmBas.pConn = conAri
+    
+    
+    frmBas.Tabla = "straba"
+    frmBas.CampoCP = "codtraba"
+    frmBas.Caption = "Trabajadores"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    frmBas.Show vbModal
+End Sub
+
+
+
+Public Sub AyudaCentroCoste(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|905|;S|txtAux(1)|T|Descripción|4595|;"
+    If vParamAplic.ContabilidadNueva Then
+        frmBas.CadenaConsulta = "SELECT ccoste.codccost, ccoste.nomccost "
+        frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM ccoste "
+        frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+        If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+        frmBas.Tag1 = "Código|T|N|||ccoste|codccost||S|"
+        frmBas.Tag2 = "Descripción|T|N|||ccoste|nomccost|||"
+    Else
+        frmBas.CadenaConsulta = "SELECT cabccost.codccost, cabccost.nomccost "
+        frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM cabccost "
+        frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+        If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+        frmBas.Tag1 = "Código|T|N|||cabccost|codccost||S|"
+        frmBas.Tag2 = "Descripción|T|N|||cabccost|nomccost|||"
+    
+    End If
+    frmBas.Tag3 = ""
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 130
+    frmBas.Maxlen3 = 0
+    
+    frmBas.pConn = conConta
+    If vParamAplic.ContabilidadNueva Then
+        frmBas.Tabla = "ccoste"
+    Else
+        frmBas.Tabla = "cabccost"
+    End If
+    frmBas.CampoCP = "codccost"
+    frmBas.Caption = "Centros de Coste"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    
+    Redimensiona frmBas, -1500
+    
+    frmBas.Show vbModal
+End Sub
 

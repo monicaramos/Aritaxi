@@ -1435,16 +1435,16 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1481,18 +1481,18 @@ Dim NumReg As Byte
     BloquearCmb Me.Combo1, Modo = 0 Or Modo = 2
     
     'Formas de Pago
-    For i = 0 To Text2.Count - 1
-        BloquearTxt Text2(i), True
-    Next i
+    For I = 0 To Text2.Count - 1
+        BloquearTxt Text2(I), True
+    Next I
     
     Combo1.Enabled = (Modo = 3) Or (Modo = 4) Or (Modo = 1)
     
     b = (Modo = 3) 'Insertar
     'Campos Importe Mínimo y % Adelantado
     If b Then
-        For i = 8 To 9
-            BloquearTxt Text1(i), True
-        Next i
+        For I = 8 To 9
+            BloquearTxt Text1(I), True
+        Next I
     End If
 
      
@@ -1548,7 +1548,11 @@ Dim cad As String
         If ExisteCP(Text1(0)) Then b = False
         
         If b Then
-            cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
+            If vParamAplic.ContabilidadNueva Then
+                cad = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", Text1(0), "N")
+            Else
+                cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
+            End If
             If cad <> "" Then
                 MsgBox "Esta Forma de Pago ya existe en Tesorería. Revise.", vbExclamation
                 b = False
@@ -1682,7 +1686,11 @@ End Function
 Private Sub ModificarENTesoeria()
 Dim C As String
 
-    C = "UPDATE sforpa set nomforpa = '" & DevNombreSQL(Text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
+    If vParamAplic.ContabilidadNueva Then
+        C = "UPDATE formapago set nomforpa = '" & DevNombreSQL(Text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
+    Else
+        C = "UPDATE sforpa set nomforpa = '" & DevNombreSQL(Text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
+    End If
     C = C & " WHERE codforpa = " & Text1(0).Text
     ConnConta.Execute C
 End Sub
@@ -1692,7 +1700,11 @@ Private Sub InsertarEnTesoreria()
 
     On Error Resume Next
     
-    ConnConta.Execute "INSERT INTO sforpa(codforpa,nomforpa, tipforpa) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
+    If vParamAplic.ContabilidadNueva Then
+        ConnConta.Execute "INSERT INTO formapago(codforpa,nomforpa, tipforpa) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
+    Else
+        ConnConta.Execute "INSERT INTO sforpa(codforpa,nomforpa, tipforpa) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
+    End If
     If Err.Number <> 0 Then
         MsgBox "Error insertando en tesoreria: " & vbCrLf & Err.Description, vbExclamation
         Err.Clear

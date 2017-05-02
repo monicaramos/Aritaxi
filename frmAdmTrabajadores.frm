@@ -20,7 +20,7 @@ Begin VB.Form frmAdmTrabajadores
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
-      Left            =   240
+      Left            =   210
       TabIndex        =   88
       Top             =   90
       Width           =   3585
@@ -156,10 +156,10 @@ Begin VB.Form frmAdmTrabajadores
       Width           =   1035
    End
    Begin VB.Frame Frame2 
-      Height          =   615
-      Left            =   240
+      Height          =   705
+      Left            =   210
       TabIndex        =   78
-      Top             =   915
+      Top             =   855
       Width           =   11175
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -172,14 +172,14 @@ Begin VB.Form frmAdmTrabajadores
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   0
          Left            =   1065
          MaxLength       =   4
          TabIndex        =   0
          Tag             =   "Código Trabajador|N|N|0|9999|straba|codtraba|0000|S|"
          Text            =   "Text"
-         Top             =   200
+         Top             =   225
          Width           =   870
       End
       Begin VB.TextBox Text1 
@@ -192,14 +192,14 @@ Begin VB.Form frmAdmTrabajadores
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   1
          Left            =   2985
          MaxLength       =   30
          TabIndex        =   1
          Tag             =   "Nombre Trabajador|T|N|||straba|nomtraba||N|"
          Text            =   "Text1"
-         Top             =   200
+         Top             =   225
          Width           =   4485
       End
       Begin VB.Label Label1 
@@ -217,7 +217,7 @@ Begin VB.Form frmAdmTrabajadores
          Index           =   0
          Left            =   255
          TabIndex        =   80
-         Top             =   195
+         Top             =   255
          Width           =   735
       End
       Begin VB.Label Label1 
@@ -235,7 +235,7 @@ Begin VB.Form frmAdmTrabajadores
          Index           =   1
          Left            =   2160
          TabIndex        =   79
-         Top             =   200
+         Top             =   255
          Width           =   735
       End
    End
@@ -405,7 +405,7 @@ Begin VB.Form frmAdmTrabajadores
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   2
+      Tab             =   5
       TabsPerRow      =   6
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -421,47 +421,81 @@ Begin VB.Form frmAdmTrabajadores
       TabPicture(0)   =   "frmAdmTrabajadores.frx":000C
       Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Label1(13)"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(14)"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "Label1(34)"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "Label1(15)"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "Label1(36)"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Label1(37)"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "imgBuscar(0)"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "Label1(12)"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "Label1(24)"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "Label1(25)"
+      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "Label1(26)"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).Control(11)=   "imgBuscar(1)"
+      Tab(0).Control(11).Enabled=   0   'False
       Tab(0).Control(12)=   "ImgMail(0)"
+      Tab(0).Control(12).Enabled=   0   'False
       Tab(0).Control(13)=   "imgBuscar(2)"
+      Tab(0).Control(13).Enabled=   0   'False
       Tab(0).Control(14)=   "Label1(2)"
+      Tab(0).Control(14).Enabled=   0   'False
       Tab(0).Control(15)=   "Text1(3)"
+      Tab(0).Control(15).Enabled=   0   'False
       Tab(0).Control(16)=   "Text1(4)"
+      Tab(0).Control(16).Enabled=   0   'False
       Tab(0).Control(17)=   "Text1(5)"
+      Tab(0).Control(17).Enabled=   0   'False
       Tab(0).Control(18)=   "Text1(6)"
+      Tab(0).Control(18).Enabled=   0   'False
       Tab(0).Control(19)=   "Text1(9)"
+      Tab(0).Control(19).Enabled=   0   'False
       Tab(0).Control(20)=   "frameBancos"
+      Tab(0).Control(20).Enabled=   0   'False
       Tab(0).Control(21)=   "frameDptoPersonal"
+      Tab(0).Control(21).Enabled=   0   'False
       Tab(0).Control(22)=   "Text1(8)"
+      Tab(0).Control(22).Enabled=   0   'False
       Tab(0).Control(23)=   "Text1(23)"
+      Tab(0).Control(23).Enabled=   0   'False
       Tab(0).Control(24)=   "Text1(7)"
+      Tab(0).Control(24).Enabled=   0   'False
       Tab(0).Control(25)=   "Text1(2)"
+      Tab(0).Control(25).Enabled=   0   'False
       Tab(0).Control(26)=   "Text1(24)"
+      Tab(0).Control(26).Enabled=   0   'False
       Tab(0).Control(27)=   "Text2(24)"
+      Tab(0).Control(27).Enabled=   0   'False
       Tab(0).Control(28)=   "Text2(10)"
+      Tab(0).Control(28).Enabled=   0   'False
       Tab(0).Control(29)=   "Text1(10)"
+      Tab(0).Control(29).Enabled=   0   'False
       Tab(0).ControlCount=   30
       TabCaption(1)   =   "Estudios/Formación"
       TabPicture(1)   =   "frmAdmTrabajadores.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "DataGrid1"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "txtAux1(0)"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "txtAux1(1)"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "FrameToolAux(4)"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Habilidades"
       TabPicture(2)   =   "frmAdmTrabajadores.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "DataGrid2"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "txtAux2"
@@ -473,29 +507,45 @@ Begin VB.Form frmAdmTrabajadores
       TabPicture(3)   =   "frmAdmTrabajadores.frx":0060
       Tab(3).ControlEnabled=   0   'False
       Tab(3).Control(0)=   "DataGrid3"
+      Tab(3).Control(0).Enabled=   0   'False
       Tab(3).Control(1)=   "TxtAux3(0)"
+      Tab(3).Control(1).Enabled=   0   'False
       Tab(3).Control(2)=   "TxtAux3(1)"
+      Tab(3).Control(2).Enabled=   0   'False
       Tab(3).Control(3)=   "FrameToolAux(2)"
+      Tab(3).Control(3).Enabled=   0   'False
       Tab(3).ControlCount=   4
       TabCaption(4)   =   "Formación Realizada"
       TabPicture(4)   =   "frmAdmTrabajadores.frx":007C
       Tab(4).ControlEnabled=   0   'False
       Tab(4).Control(0)=   "DataGrid4"
+      Tab(4).Control(0).Enabled=   0   'False
       Tab(4).Control(1)=   "TxtAux4(0)"
+      Tab(4).Control(1).Enabled=   0   'False
       Tab(4).Control(2)=   "TxtAux4(1)"
+      Tab(4).Control(2).Enabled=   0   'False
       Tab(4).Control(3)=   "TxtAux4(2)"
+      Tab(4).Control(3).Enabled=   0   'False
       Tab(4).Control(4)=   "TxtAux4(3)"
+      Tab(4).Control(4).Enabled=   0   'False
       Tab(4).Control(5)=   "TxtAux4(4)"
+      Tab(4).Control(5).Enabled=   0   'False
       Tab(4).Control(6)=   "FrameToolAux(3)"
+      Tab(4).Control(6).Enabled=   0   'False
       Tab(4).ControlCount=   7
       TabCaption(5)   =   "Formación Empresa"
       TabPicture(5)   =   "frmAdmTrabajadores.frx":0098
-      Tab(5).ControlEnabled=   0   'False
+      Tab(5).ControlEnabled=   -1  'True
       Tab(5).Control(0)=   "DataGrid5"
+      Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "TxtAux5(0)"
+      Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "TxtAux5(1)"
+      Tab(5).Control(2).Enabled=   0   'False
       Tab(5).Control(3)=   "TxtAux5(2)"
+      Tab(5).Control(3).Enabled=   0   'False
       Tab(5).Control(4)=   "FrameToolAux(0)"
+      Tab(5).Control(4).Enabled=   0   'False
       Tab(5).ControlCount=   5
       Begin VB.Frame FrameToolAux 
          Height          =   555
@@ -602,7 +652,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Frame FrameToolAux 
          Height          =   555
          Index           =   1
-         Left            =   450
+         Left            =   -74550
          TabIndex        =   92
          Top             =   300
          Width           =   1605
@@ -636,7 +686,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Frame FrameToolAux 
          Height          =   555
          Index           =   0
-         Left            =   -74550
+         Left            =   450
          TabIndex        =   90
          Top             =   270
          Width           =   1605
@@ -822,7 +872,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -68160
+         Left            =   6840
          MaxLength       =   15
          TabIndex        =   74
          Tag             =   "Resultado|T|N|||strab5|resforma||N|"
@@ -845,7 +895,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -72840
+         Left            =   2160
          MaxLength       =   50
          TabIndex        =   73
          Tag             =   "Formación|T|N|||strab5|formaci2||N|"
@@ -868,7 +918,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74400
+         Left            =   600
          MaxLength       =   12
          TabIndex        =   72
          Tag             =   "Fecha Formación|F|N|||strab5|fecforma||N|"
@@ -1051,7 +1101,7 @@ Begin VB.Form frmAdmTrabajadores
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   840
+         Left            =   -74160
          MaxLength       =   70
          TabIndex        =   64
          Tag             =   "Habilidad|T|N|||strab2|habilida||N|"
@@ -1657,7 +1707,7 @@ Begin VB.Form frmAdmTrabajadores
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ForeColor       =   &H00000080&
+            ForeColor       =   &H00000000&
             Height          =   255
             Index           =   20
             Left            =   180
@@ -1748,7 +1798,7 @@ Begin VB.Form frmAdmTrabajadores
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ForeColor       =   &H00000080&
+            ForeColor       =   &H00000000&
             Height          =   255
             Index           =   43
             Left            =   180
@@ -1930,7 +1980,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin MSDataGridLib.DataGrid DataGrid2 
          Bindings        =   "frmAdmTrabajadores.frx":00C9
          Height          =   3510
-         Left            =   480
+         Left            =   -74520
          TabIndex        =   60
          Top             =   885
          Width           =   7815
@@ -2073,8 +2123,8 @@ Begin VB.Form frmAdmTrabajadores
          Left            =   -74520
          TabIndex        =   62
          Top             =   915
-         Width           =   10335
-         _ExtentX        =   18230
+         Width           =   10735
+         _ExtentX        =   18944
          _ExtentY        =   6191
          _Version        =   393216
          AllowUpdate     =   -1  'True
@@ -2140,11 +2190,11 @@ Begin VB.Form frmAdmTrabajadores
       Begin MSDataGridLib.DataGrid DataGrid5 
          Bindings        =   "frmAdmTrabajadores.frx":0108
          Height          =   3510
-         Left            =   -74520
+         Left            =   480
          TabIndex        =   63
          Top             =   855
-         Width           =   8655
-         _ExtentX        =   15266
+         Width           =   8855
+         _ExtentX        =   15610
          _ExtentY        =   6191
          _Version        =   393216
          AllowUpdate     =   -1  'True
@@ -2704,8 +2754,10 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmTra As frmBasico2 'Form para busquedas trabajadores
+Attribute frmTra.VB_VarHelpID = -1
+Private WithEvents frmCC As frmBasico2 'Form para busquedas trabajadores
+Attribute frmCC.VB_VarHelpID = -1
 Private WithEvents frmF As frmCal 'Form Calendario Fecha
 Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
@@ -2761,7 +2813,7 @@ Private VieneDeBuscar As Boolean
 '============================================================================
 
 Private Sub cmdAceptar_Click()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -2785,22 +2837,22 @@ Dim Cad As String, Indicador As String
                 
          Case 5 'INSERTAR MODIFICAR LINEA
             'Actualizar el registro en la tabla de lineas 'sdirec' (Direcciones/Departamentos)
-            Cad = "Select * from " & NomTablaLineas & " where codtraba= " & Data1.Recordset!CodTraba
-            Cad = Cad & " order by numlinea"
+            cad = "Select * from " & NomTablaLineas & " where codtraba= " & Data1.Recordset!CodTraba
+            cad = cad & " order by numlinea"
             
             If ModificaLineas = 1 Then 'INSERTAR lineas
                 If InsertarLinea Then
                     Select Case Me.SSTab1.Tab
                         Case 1 'Estudios/Formacion - Datos de la tabla strab1
-                            CargaGrid DataGrid1, Data2, Cad
+                            CargaGrid DataGrid1, Data2, cad
                         Case 2 'Habilidades
-                            CargaGrid DataGrid2, Data3, Cad
+                            CargaGrid DataGrid2, Data3, cad
                         Case 3 'Experiencia Laboral
-                            CargaGrid DataGrid3, Data4, Cad
+                            CargaGrid DataGrid3, Data4, cad
                         Case 4 'Formacion Realizada
-                            CargaGrid DataGrid4, Data5, Cad
+                            CargaGrid DataGrid4, Data5, cad
                         Case 5 'Formacion Empresa
-                            CargaGrid DataGrid5, Data6, Cad
+                            CargaGrid DataGrid5, Data6, cad
                     End Select
                     BotonAnyadirLinea
                 End If
@@ -2905,7 +2957,8 @@ Private Sub cmdCancelar_Click()
                         If Not Data6.Recordset.EOF Then Data6.Recordset.MoveFirst
                     End If
             End Select
-            PonerBotonCabecera True
+'            PonerBotonCabecera True
+            PonerModo 2
             ModificaLineas = 0
     End Select
 End Sub
@@ -2983,7 +3036,7 @@ Private Sub BotonBuscar()
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+'            Text1(kCampo).BackColor = vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -3081,21 +3134,21 @@ End Sub
 
 Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de trabajadores (straba)
-Dim Cad As String
+Dim cad As String
 On Error GoTo EEliminar
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    Cad = "Cabecera de Trabajadores." & vbCrLf
-    Cad = Cad & "------------------------------" & vbCrLf & vbCrLf
-    Cad = Cad & "Va a eliminar el Trabajador:"
-    Cad = Cad & vbCrLf & "Código:   " & Format(Data1.Recordset.Fields(0), "000000")
-    Cad = Cad & vbCrLf & "Descripción:   " & Data1.Recordset.Fields(1)
-    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    cad = "Cabecera de Trabajadores." & vbCrLf
+    cad = cad & "------------------------------" & vbCrLf & vbCrLf
+    cad = cad & "Va a eliminar el Trabajador:"
+    cad = cad & vbCrLf & "Código:   " & Format(Data1.Recordset.Fields(0), "000000")
+    cad = cad & vbCrLf & "Descripción:   " & Data1.Recordset.Fields(1)
+    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
     
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
@@ -3191,7 +3244,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera tambien
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -3203,9 +3256,9 @@ Dim Cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Data1.Recordset.Fields(0) & "|"
-        Cad = Cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Data1.Recordset.Fields(0) & "|"
+        cad = cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -3327,6 +3380,8 @@ Dim i As Integer
     Data1.RecordSource = "Select * from " & NombreTabla & " where codtraba=-1"
     Data1.Refresh
     
+    LimpiarDataGrids
+    
     If DatosADevolverBusqueda = "" Then
         PonerModo 0
     Else
@@ -3356,21 +3411,21 @@ Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim CadB As String
+Private Sub frmCC_Selecionado(CadenaDevuelta As String)
+Dim cadB As String
       
     If CadenaDevuelta <> "" Then
-        HaDevueltoDatos = True
-        If Me.imgFecha(0).Tag = 0 Then
-            Screen.MousePointer = vbHourglass
-            CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
-            PonerCadenaBusqueda
-        Else
+'        HaDevueltoDatos = True
+'        If Me.imgFecha(0).Tag = 0 Then
+'            Screen.MousePointer = vbHourglass
+'            cadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+'            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+'            PonerCadenaBusqueda
+'        Else
             'Centro de coste
             Text1(10).Text = RecuperaValor(CadenaDevuelta, 1)
             Text2(10).Text = RecuperaValor(CadenaDevuelta, 2)
-        End If
+'        End If
     End If
     Screen.MousePointer = vbDefault
 End Sub
@@ -3397,6 +3452,18 @@ Dim indice As Byte
 End Sub
 
 
+Private Sub frmTra_DatoSeleccionado(CadenaSeleccion As String)
+Dim cadB As String
+
+    cadB = "codtraba = " & RecuperaValor(CadenaSeleccion, 1)
+    
+    'Se muestran en el mismo form
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & Ordenacion
+    PonerCadenaBusqueda
+    
+    Screen.MousePointer = vbDefault
+End Sub
+
 Private Sub imgBuscar_Click(Index As Integer)
 Dim indice As Byte
 
@@ -3422,26 +3489,12 @@ Dim indice As Byte
         Case 2 'Centros de coste de la conta
             Me.imgFecha(0).Tag = 10
                
-          
+            Set frmCC = New frmBasico2
+            
+            AyudaCentroCoste frmCC
+            
+            Set frmCC = Nothing
         
-            Screen.MousePointer = vbHourglass
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = "Codigo|cabccost|codccost|T||20·Descripción|cabccost|nomccost|T||70·"
-            frmB.vTabla = "cabccost"
-            frmB.vSQL = ""
-            HaDevueltoDatos = False
-            '###A mano
-            frmB.vDevuelve = "0|1|"
-            frmB.vTitulo = "Centros de coste"
-            frmB.vselElem = 0
-            frmB.vConexionGrid = conConta
-    
-            
-            frmB.Show vbModal
-            Set frmB = Nothing
-            
-               
-               
     End Select
     PonerFoco Text1(indice)
     Screen.MousePointer = vbDefault
@@ -3696,14 +3749,14 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim CadB As String
+Dim cadB As String
 
-    CadB = ObtenerBusqueda(Me, False)
+    cadB = ObtenerBusqueda(Me, False)
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia CadB
-    ElseIf CadB <> "" Then
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then
         'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         PonerFoco Text1(0)
@@ -3711,48 +3764,18 @@ Dim CadB As String
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(0), 14, "Código")
-    Cad = Cad & ParaGrid(Text1(1), 65, "Nombre")
-    Cad = Cad & ParaGrid(Text1(6), 18, "NIF")
-'            cad = cad & ParaGrid(Text1(2), 40, "Nombre Comercial")
-    Tabla = "straba"
-    Titulo = "Trabajadores"
-    Me.imgFecha(0).Tag = 0
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 1
-        frmB.vConexionGrid = conAri
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                cmdRegresar_Click
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmTra = New frmBasico2
+    
+    AyudaTrabajadores frmTra, , cadB
+    
+    Set frmTra = Nothing
+
 End Sub
 
 
@@ -3767,7 +3790,6 @@ On Error GoTo EEPonerBusq
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
             PonerFoco Text1(0)
-            Text1(0).BackColor = vbYellow
         End If
         Exit Sub
     Else
@@ -3937,7 +3959,7 @@ End Sub
 
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
-Dim b As Boolean
+Dim b As Boolean, bAux As Boolean
 Dim i As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
@@ -3973,6 +3995,29 @@ Dim i As Byte
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
     Me.mnVerTodos.Enabled = Not b
+    
+    b = (Modo = 2 Or Modo = 3 Or Modo = 4)
+    For i = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
+        ToolAux(i).Buttons(1).Enabled = b
+        Select Case i
+            Case 0
+                If b Then bAux = (b And Me.Data6.Recordset.RecordCount > 0)
+            Case 1
+                If b Then bAux = (b And Me.Data3.Recordset.RecordCount > 0)
+            Case 2
+                If b Then bAux = (b And Me.Data4.Recordset.RecordCount > 0)
+            Case 3
+                If b Then bAux = (b And Me.Data5.Recordset.RecordCount > 0)
+            Case 4
+                If b Then bAux = (b And Me.Data2.Recordset.RecordCount > 0)
+        End Select
+        ToolAux(i).Buttons(2).Enabled = bAux
+        ToolAux(i).Buttons(3).Enabled = bAux
+    Next i
+        
+    
+    
+    
 End Sub
 
 
@@ -4147,10 +4192,22 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
     Modo = 5
     
     NumTabMto = Me.SSTab1.Tab
-'    TituloLinea = Cad
+    TituloLinea = Me.SSTab1.TabCaption(SSTab1.Tab)
     PonerModo 5
     
-    
+    Select Case Index
+        Case 0
+            NomTablaLineas = "strab5"
+        Case 1
+            NomTablaLineas = "strab2"
+        Case 2
+            NomTablaLineas = "strab3"
+        Case 3
+            NomTablaLineas = "strab4"
+        Case 4
+            NomTablaLineas = "strab1"
+    End Select
+
     Select Case Button.Index
         Case 1
             BotonAnyadirLinea
@@ -4160,7 +4217,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
             BotonEliminarLinea
         Case Else
     End Select
-    'End If
+
 End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
@@ -4349,7 +4406,7 @@ On Error GoTo ECargaGrid
 
     Select Case vDataGrid.Name
         Case "DataGrid1" 'Estudios / Formacion
-                vDataGrid.Columns(2).Caption = "Periodo"
+                vDataGrid.Columns(2).Caption = "Período"
                 vDataGrid.Columns(2).Width = 2100
                 vDataGrid.Columns(3).visible = True
                 vDataGrid.Columns(3).Caption = "Formación"
@@ -4364,10 +4421,10 @@ On Error GoTo ECargaGrid
                 vDataGrid.Columns(3).Caption = "Experiencia"
                 vDataGrid.Columns(3).Width = 6450
         Case "DataGrid4" 'Formacion Realizada
-                vDataGrid.Columns(2).Caption = "Fecha Formac."
-                vDataGrid.Columns(2).Width = 1450
-                vDataGrid.Columns(3).Caption = "Fecha Eval."
-                vDataGrid.Columns(3).Width = 1450
+                vDataGrid.Columns(2).Caption = "Fec.Formación"
+                vDataGrid.Columns(2).Width = 1650
+                vDataGrid.Columns(3).Caption = "Fec.Evaluación"
+                vDataGrid.Columns(3).Width = 1650
                 vDataGrid.Columns(4).Caption = "Formación"
                 vDataGrid.Columns(4).Width = 4000
                 vDataGrid.Columns(5).Caption = "Centro"
@@ -4375,8 +4432,8 @@ On Error GoTo ECargaGrid
                 vDataGrid.Columns(6).Caption = "Evaluación"
                 vDataGrid.Columns(6).Width = 1160
         Case "DataGrid5" 'Formacion Empresa
-                vDataGrid.Columns(2).Caption = "Fecha Formac."
-                vDataGrid.Columns(2).Width = 1500
+                vDataGrid.Columns(2).Caption = "Fec.Formación"
+                vDataGrid.Columns(2).Width = 1700
                 vDataGrid.Columns(3).Caption = "Formación"
                 vDataGrid.Columns(3).Width = 4670
                 vDataGrid.Columns(4).Caption = "Resultado"
@@ -4679,10 +4736,10 @@ Private Sub txtAux1_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, cad As String)
         Me.SSTab1.Tab = numTab
         NumTabMto = numTab
-        TituloLinea = Cad
+        TituloLinea = cad
         PonerModo 5
         PonerBotonCabecera True
 End Sub
@@ -4819,19 +4876,19 @@ End Function
 
 Private Sub LimpiarDataGrids()
 'Pone los Grids sin datos, apuntando a ningún registro
-Dim Cad As String
+Dim cad As String
 On Error Resume Next
 
-    Cad = "Select * from strab1 where codtraba= -1"
-    CargaGrid DataGrid1, Data2, Cad
-    Cad = "Select * from strab2 where codtraba= -1"
-    CargaGrid DataGrid2, Data3, Cad
-    Cad = "Select * from strab3 where codtraba= -1"
-    CargaGrid DataGrid3, Data4, Cad
-    Cad = "Select * from strab4 where codtraba= -1"
-    CargaGrid DataGrid4, Data5, Cad
-    Cad = "Select * from strab5 where codtraba= -1"
-    CargaGrid DataGrid5, Data6, Cad
+    cad = "Select * from strab1 where codtraba is null"
+    CargaGrid DataGrid1, Data2, cad
+    cad = "Select * from strab2 where codtraba is null"
+    CargaGrid DataGrid2, Data3, cad
+    cad = "Select * from strab3 where codtraba is null"
+    CargaGrid DataGrid3, Data4, cad
+    cad = "Select * from strab4 where codtraba is null"
+    CargaGrid DataGrid4, Data5, cad
+    cad = "Select * from strab5 where codtraba is null"
+    CargaGrid DataGrid5, Data6, cad
     
     PrimeraVez = False
     If Err.Number <> 0 Then Err.Clear
@@ -4839,10 +4896,10 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 
-    Cad = "(codtraba=" & Text1(0).Text & ")"
-    If SituarData(Data1, Cad, Indicador) Then
+    cad = "(codtraba=" & Text1(0).Text & ")"
+    If SituarData(Data1, cad, Indicador) Then
        PonerModo 2
        lblIndicador.Caption = Indicador
     Else

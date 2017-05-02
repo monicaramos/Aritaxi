@@ -8,10 +8,10 @@ Begin VB.Form frmGesSocios
    ClientHeight    =   7425
    ClientLeft      =   60
    ClientTop       =   750
-   ClientWidth     =   11385
+   ClientWidth     =   11610
    LinkTopic       =   "Form1"
    ScaleHeight     =   7425
-   ScaleWidth      =   11385
+   ScaleWidth      =   11610
    StartUpPosition =   2  'CenterScreen
    Begin MSAdodcLib.Adodc Adodc4 
       Height          =   330
@@ -112,17 +112,27 @@ Begin VB.Form frmGesSocios
       Left            =   120
       TabIndex        =   41
       Top             =   1500
-      Width           =   11085
-      _ExtentX        =   19553
+      Width           =   11445
+      _ExtentX        =   20188
       _ExtentY        =   8916
       _Version        =   393216
       Tabs            =   7
+      Tab             =   1
       TabsPerRow      =   7
       TabHeight       =   520
       BackColor       =   -2147483624
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       TabCaption(0)   =   "Datos"
       TabPicture(0)   =   "frmGesSocios.frx":0000
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "imgFecha(1)"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(14)"
@@ -218,7 +228,7 @@ Begin VB.Form frmGesSocios
       Tab(0).ControlCount=   46
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "LabelCRM"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "lwCRM"
@@ -320,41 +330,77 @@ Begin VB.Form frmGesSocios
       Tab(6).ControlCount=   4
       Begin VB.CheckBox Check1 
          Caption         =   "Facturación Elec."
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   2
-         Left            =   9420
+         Left            =   -65700
          TabIndex        =   18
          Tag             =   "Facturacion Electrónica|N|N|0|1|sclien|facturae|||"
          Top             =   1920
-         Width           =   1545
+         Width           =   2025
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   28
-         Left            =   7950
+         Left            =   -66930
          MaxLength       =   4
          TabIndex        =   19
          Tag             =   "IBAN|T|S|||sclien|iban|||"
          Text            =   "9999"
          Top             =   2340
-         Width           =   495
+         Width           =   555
       End
       Begin VB.CheckBox Check1 
          Caption         =   "Es Contado"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   1
-         Left            =   9420
+         Left            =   -65700
          TabIndex        =   17
          Tag             =   "Facturado|N|N|0|1|sclien|escontado|||"
          Top             =   1560
-         Width           =   1185
+         Width           =   1515
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   27
-         Left            =   7920
+         Left            =   -66930
          MaxLength       =   10
          TabIndex        =   15
          Tag             =   "Importe a Cuenta|N|S|||sclien|impacuenta|###,##0.00||"
@@ -365,6 +411,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   0
          Left            =   -74100
@@ -380,6 +435,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   1
          Left            =   -73020
@@ -394,6 +458,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   2
          Left            =   -70950
@@ -421,6 +494,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   2
          Left            =   -70230
@@ -435,6 +517,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   1
          Left            =   -72330
@@ -448,6 +539,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   0
          Left            =   -74220
@@ -473,7 +573,16 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.TextBox Text1 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   26
          Left            =   -65550
          TabIndex        =   90
@@ -486,7 +595,7 @@ Begin VB.Form frmGesSocios
          Caption         =   "Frame3"
          Height          =   4215
          Index           =   2
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   83
          Top             =   390
          Width           =   615
@@ -572,7 +681,7 @@ Begin VB.Form frmGesSocios
       Begin VB.CommandButton cmdAccCRM 
          Height          =   375
          Index           =   0
-         Left            =   -65520
+         Left            =   9480
          Picture         =   "frmGesSocios.frx":00C4
          Style           =   1  'Graphical
          TabIndex        =   82
@@ -584,7 +693,7 @@ Begin VB.Form frmGesSocios
       Begin VB.CommandButton cmdAccCRM 
          Height          =   375
          Index           =   1
-         Left            =   -64470
+         Left            =   10530
          Picture         =   "frmGesSocios.frx":0AC6
          Style           =   1  'Graphical
          TabIndex        =   81
@@ -596,7 +705,7 @@ Begin VB.Form frmGesSocios
       Begin VB.CommandButton cmdAccCRM 
          Height          =   375
          Index           =   2
-         Left            =   -65040
+         Left            =   9960
          Picture         =   "frmGesSocios.frx":1050
          Style           =   1  'Graphical
          TabIndex        =   80
@@ -607,9 +716,18 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   25
-         Left            =   7920
+         Left            =   -66930
          MaxLength       =   10
          TabIndex        =   14
          Tag             =   "Sumplemento Cuota|N|S|||sclien|suplecuota|###,##0.00||"
@@ -618,56 +736,101 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   19
-         Left            =   8490
+         Left            =   -66390
          MaxLength       =   4
          TabIndex        =   20
          Tag             =   "Codigo Banco|N|N|||sclien|codbanco|0000||"
          Text            =   "9999"
          Top             =   2340
-         Width           =   495
+         Width           =   555
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   20
-         Left            =   9030
+         Left            =   -65850
          MaxLength       =   4
          TabIndex        =   21
          Tag             =   "Codigo Sucursal|N|N|||sclien|codsucur|0000||"
          Text            =   "9999"
          Top             =   2340
-         Width           =   465
+         Width           =   555
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   21
-         Left            =   9540
+         Left            =   -65280
          MaxLength       =   2
          TabIndex        =   22
          Tag             =   "Digito Control|T|N|||sclien|digcontr|00||"
          Text            =   "99"
          Top             =   2340
-         Width           =   285
+         Width           =   345
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   22
-         Left            =   9870
+         Left            =   -64920
          MaxLength       =   10
          TabIndex        =   23
          Tag             =   "Cuenta Banco|T|N|||sclien|cuentaba|0000000000||"
          Text            =   "9999999999"
          Top             =   2340
-         Width           =   1005
+         Width           =   1185
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   7
-         Left            =   7920
+         Left            =   -66930
          MaxLength       =   9
          TabIndex        =   11
          Tag             =   "CIF|T|N|||sclien|nifclien|||"
@@ -676,9 +839,18 @@ Begin VB.Form frmGesSocios
          Width           =   1155
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   35
          TabIndex        =   4
          Tag             =   "Domicilio|T|N|||sclien|domclien|||"
@@ -687,9 +859,18 @@ Begin VB.Form frmGesSocios
          Width           =   4905
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   6
          TabIndex        =   5
          Tag             =   "CP|T|N|||sclien|codpobla|||"
@@ -698,9 +879,18 @@ Begin VB.Form frmGesSocios
          Width           =   975
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
-         Left            =   3510
+         Left            =   -71490
          MaxLength       =   35
          TabIndex        =   6
          Tag             =   "Población|T|N|||sclien|pobclien|||"
@@ -709,9 +899,18 @@ Begin VB.Form frmGesSocios
          Width           =   2985
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   6
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   35
          TabIndex        =   7
          Tag             =   "Provincia|T|N|||sclien|proclien|||"
@@ -720,9 +919,18 @@ Begin VB.Form frmGesSocios
          Width           =   4905
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   8
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   10
          TabIndex        =   8
          Tag             =   "Telefono|T|S|||sclien|telclie1|||"
@@ -731,9 +939,18 @@ Begin VB.Form frmGesSocios
          Width           =   1215
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   9
-         Left            =   5010
+         Left            =   -69990
          MaxLength       =   10
          TabIndex        =   9
          Tag             =   "Movil|T|S|||sclien|movclien|||"
@@ -742,9 +959,18 @@ Begin VB.Form frmGesSocios
          Width           =   1485
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   10
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   40
          TabIndex        =   10
          Tag             =   "Mail|T|S|||sclien|maiclie1|||"
@@ -753,9 +979,18 @@ Begin VB.Form frmGesSocios
          Width           =   4905
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   12
-         Left            =   7920
+         Left            =   -66930
          MaxLength       =   10
          TabIndex        =   12
          Tag             =   "Fecha Alta|F|N|||sclien|fechaalt||dd/mm/yyyy|"
@@ -764,9 +999,18 @@ Begin VB.Form frmGesSocios
          Width           =   1155
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   13
-         Left            =   7920
+         Left            =   -66930
          MaxLength       =   10
          TabIndex        =   13
          Tag             =   "Fecha Baja|F|S|||sclien|fechabaj||dd/mm/yyyy|"
@@ -775,26 +1019,44 @@ Begin VB.Form frmGesSocios
          Width           =   1155
       End
       Begin VB.TextBox Text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1485
          Index           =   17
-         Left            =   6720
+         Left            =   -68280
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   30
          Tag             =   "Observaciones|T|S|||sclien|observac|||"
          Text            =   "frmGesSocios.frx":1A52
          Top             =   3120
-         Width           =   4095
+         Width           =   4545
       End
       Begin VB.CheckBox Check1 
          Caption         =   "Es Socio"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   0
-         Left            =   9420
+         Left            =   -65700
          TabIndex        =   16
          Tag             =   "Facturado|N|N|0|1|sclien|essocio|||"
          Top             =   1230
-         Width           =   1005
+         Width           =   1305
       End
       Begin VB.Frame Frame3 
          Caption         =   "Datos del Vehículo"
@@ -809,12 +1071,21 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   2145
          Index           =   1
-         Left            =   270
+         Left            =   -74730
          TabIndex        =   56
          Top             =   2490
          Width           =   6315
          Begin VB.TextBox Text1 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   24
             Left            =   4890
             MaxLength       =   9
@@ -827,7 +1098,16 @@ Begin VB.Form frmGesSocios
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   1
             Left            =   2280
             TabIndex        =   63
@@ -837,7 +1117,16 @@ Begin VB.Form frmGesSocios
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   11
             Left            =   1320
             MaxLength       =   3
@@ -849,7 +1138,16 @@ Begin VB.Form frmGesSocios
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   16
             Left            =   1320
             MaxLength       =   9
@@ -862,7 +1160,16 @@ Begin VB.Form frmGesSocios
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   0
             Left            =   2040
             TabIndex        =   60
@@ -871,7 +1178,16 @@ Begin VB.Form frmGesSocios
             Width           =   4155
          End
          Begin VB.TextBox Text1 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   18
             Left            =   4890
             MaxLength       =   10
@@ -882,7 +1198,16 @@ Begin VB.Form frmGesSocios
             Width           =   1305
          End
          Begin VB.TextBox Text1 
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   15
             Left            =   1320
             MaxLength       =   10
@@ -894,7 +1219,16 @@ Begin VB.Form frmGesSocios
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
-            Height          =   315
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   14
             Left            =   1320
             MaxLength       =   5
@@ -905,54 +1239,81 @@ Begin VB.Form frmGesSocios
             Width           =   870
          End
          Begin VB.Label Label1 
-            Caption         =   "Número de Póliza:"
+            Caption         =   "Número Póliza:"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   23
-            Left            =   3210
+            Left            =   2940
             TabIndex        =   64
-            Top             =   780
-            Width           =   1455
+            Top             =   810
+            Width           =   1725
          End
          Begin VB.Image imgBuscar 
             Height          =   240
             Index           =   3
-            Left            =   1020
+            Left            =   1050
             Tag             =   "-1"
             ToolTipText     =   "Buscar vehiculo"
-            Top             =   360
+            Top             =   390
             Width           =   240
          End
          Begin VB.Image imgBuscar 
             Height          =   240
             Index           =   1
-            Left            =   1020
+            Left            =   1050
             Tag             =   "-1"
             ToolTipText     =   "Buscar situación"
-            Top             =   1620
+            Top             =   1650
             Width           =   240
          End
          Begin VB.Label Label1 
             Caption         =   "Situación:"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   12
             Left            =   120
             TabIndex        =   62
             Top             =   1620
-            Width           =   735
+            Width           =   945
          End
          Begin VB.Label Label1 
-            Caption         =   "Licencia:"
+            Caption         =   "Licencia"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   17
             Left            =   120
             TabIndex        =   61
-            Top             =   1200
+            Top             =   1230
             Width           =   1455
          End
          Begin VB.Image imgFecha 
             Height          =   240
             Index           =   2
-            Left            =   4530
+            Left            =   4620
             Picture         =   "frmGesSocios.frx":1A57
             ToolTipText     =   "Buscar fecha"
             Top             =   1200
@@ -960,30 +1321,57 @@ Begin VB.Form frmGesSocios
          End
          Begin VB.Label Label1 
             Caption         =   "Fecha Situación:"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   18
-            Left            =   3210
+            Left            =   2940
             TabIndex        =   59
             Top             =   1200
-            Width           =   1215
+            Width           =   1725
          End
          Begin VB.Label Label1 
-            Caption         =   "Matrícula:"
+            Caption         =   "Matrícula"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   16
             Left            =   120
             TabIndex        =   58
-            Top             =   780
-            Width           =   855
+            Top             =   810
+            Width           =   1095
          End
          Begin VB.Label Label1 
             Caption         =   "Vehículo"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   15
             Left            =   120
             TabIndex        =   57
             Top             =   360
-            Width           =   645
+            Width           =   885
          End
       End
       Begin VB.CommandButton cmdAux 
@@ -1000,6 +1388,15 @@ Begin VB.Form frmGesSocios
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   4
          Left            =   -70560
@@ -1023,6 +1420,15 @@ Begin VB.Form frmGesSocios
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   3
          Left            =   -71520
@@ -1036,6 +1442,15 @@ Begin VB.Form frmGesSocios
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   2
          Left            =   -72480
@@ -1050,6 +1465,15 @@ Begin VB.Form frmGesSocios
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   1
          Left            =   -73440
@@ -1062,6 +1486,15 @@ Begin VB.Form frmGesSocios
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   0
          Left            =   -74640
@@ -1088,6 +1521,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   4
          Left            =   -69240
@@ -1103,6 +1545,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   3
          Left            =   -70320
@@ -1118,6 +1569,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   2
          Left            =   -71640
@@ -1133,6 +1593,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   1
          Left            =   -73590
@@ -1146,6 +1615,15 @@ Begin VB.Form frmGesSocios
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Index           =   0
          Left            =   -74760
@@ -1168,19 +1646,19 @@ Begin VB.Form frmGesSocios
          _Version        =   393216
          AllowUpdate     =   -1  'True
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1234,19 +1712,19 @@ Begin VB.Form frmGesSocios
          _Version        =   393216
          AllowUpdate     =   0   'False
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1296,7 +1774,7 @@ Begin VB.Form frmGesSocios
          Enabled         =   0   'False
          Height          =   315
          Index           =   23
-         Left            =   1680
+         Left            =   -73320
          MaxLength       =   5
          TabIndex        =   77
          Tag             =   "Codigo Socio|N|N|||sclien|codtarif|||"
@@ -1306,7 +1784,7 @@ Begin VB.Form frmGesSocios
       End
       Begin MSComctlLib.ListView lwCRM 
          Height          =   4305
-         Left            =   -74160
+         Left            =   840
          TabIndex        =   85
          Top             =   690
          Width           =   10095
@@ -1323,6 +1801,15 @@ Begin VB.Form frmGesSocios
          BackColor       =   -2147483643
          BorderStyle     =   1
          Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          NumItems        =   0
       End
       Begin MSComctlLib.Toolbar Toolbar2 
@@ -1396,19 +1883,19 @@ Begin VB.Form frmGesSocios
          _Version        =   393216
          AllowUpdate     =   0   'False
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1473,19 +1960,19 @@ Begin VB.Form frmGesSocios
          _ExtentY        =   7276
          _Version        =   393216
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1529,9 +2016,18 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Label Label1 
          Caption         =   "Imp.a Cuenta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   21
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   106
          Top             =   2010
          Width           =   1365
@@ -1546,6 +2042,15 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -65430
          TabIndex        =   93
@@ -1581,16 +2086,25 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Label Label2 
          Caption         =   "Cálculo Cuotas"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   9450
+         Left            =   -65730
          TabIndex        =   88
          Top             =   780
-         Width           =   1170
+         Width           =   1500
       End
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   0
-         Left            =   10620
+         Left            =   -64110
          ToolTipText     =   "Cálculo Importe Cuotas "
          Top             =   750
          Width           =   390
@@ -1598,18 +2112,27 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   1
-         Left            =   10620
+         Left            =   -64110
          ToolTipText     =   "Impresión Documento Alta"
          Top             =   360
          Width           =   390
       End
       Begin VB.Label Label14 
          Caption         =   "Documento Alta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   9450
+         Left            =   -65730
          TabIndex        =   87
          Top             =   390
-         Width           =   1230
+         Width           =   1740
       End
       Begin VB.Label LabelCRM 
          Caption         =   "Label2"
@@ -1624,43 +2147,79 @@ Begin VB.Form frmGesSocios
          EndProperty
          ForeColor       =   &H00000080&
          Height          =   300
-         Left            =   -74160
+         Left            =   840
          TabIndex        =   86
          Top             =   390
          Width           =   5745
       End
       Begin VB.Label Label1 
-         Caption         =   "Suplemen.Cuota"
+         Caption         =   "Supl.Cuota"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   20
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   79
          Top             =   1620
          Width           =   1365
       End
       Begin VB.Label Label1 
          Caption         =   "IBAN Socios"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   19
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   78
          Top             =   2400
          Width           =   1155
       End
       Begin VB.Label Label1 
-         Caption         =   "Observaciones:"
+         Caption         =   "Observaciones"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   3
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   76
          Top             =   2760
-         Width           =   1125
+         Width           =   1515
       End
       Begin VB.Label Label1 
-         Caption         =   "CP:"
+         Caption         =   "CP"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   5
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   75
          Top             =   780
          Width           =   735
@@ -1668,7 +2227,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   1290
+         Left            =   -73710
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   780
@@ -1676,62 +2235,116 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Label Label1 
          Caption         =   "Población:"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   6
-         Left            =   2670
+         Left            =   -72330
          TabIndex        =   74
          Top             =   780
          Width           =   855
       End
       Begin VB.Label Label1 
-         Caption         =   "Provincia:"
+         Caption         =   "Provincia"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   7
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   73
          Top             =   1200
-         Width           =   855
+         Width           =   1005
       End
       Begin VB.Label Label1 
          Caption         =   "CIF"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   8
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   72
          Top             =   420
          Width           =   735
       End
       Begin VB.Label Label1 
-         Caption         =   "Teléfono:"
+         Caption         =   "Teléfono"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   9
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   71
          Top             =   1650
-         Width           =   735
+         Width           =   1035
       End
       Begin VB.Label Label1 
          Caption         =   "Movil:"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   10
-         Left            =   3510
+         Left            =   -71490
          TabIndex        =   70
          Top             =   1620
          Width           =   735
       End
       Begin VB.Label Label1 
          Caption         =   "E-mail"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   11
-         Left            =   390
+         Left            =   -74610
          TabIndex        =   69
          Top             =   2070
-         Width           =   465
+         Width           =   855
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   7950
+         Left            =   -66720
          Tag             =   "-1"
          ToolTipText     =   "Ver observaciones"
          Top             =   2760
@@ -1740,7 +2353,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image ImgMail 
          Height          =   240
          Index           =   1
-         Left            =   1290
+         Left            =   -73710
          Tag             =   "-1"
          ToolTipText     =   "Enviar e-mail"
          Top             =   2085
@@ -1748,18 +2361,36 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Label Label1 
          Caption         =   "Domicilio:"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   4
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   68
          Top             =   360
          Width           =   1335
       End
       Begin VB.Label Label1 
          Caption         =   "Fecha Alta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   13
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   67
          Top             =   810
          Width           =   795
@@ -1767,16 +2398,25 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   7590
+         Left            =   -67410
          ToolTipText     =   "Buscar fecha"
          Top             =   780
          Width           =   240
       End
       Begin VB.Label Label1 
          Caption         =   "Fecha Baja"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   14
-         Left            =   6720
+         Left            =   -68280
          TabIndex        =   66
          Top             =   1200
          Width           =   825
@@ -1784,7 +2424,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   1
-         Left            =   7590
+         Left            =   -67410
          ToolTipText     =   "Buscar fecha"
          Top             =   1200
          Width           =   240
@@ -1886,6 +2526,15 @@ Begin VB.Form frmGesSocios
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   8880
       TabIndex        =   31
@@ -1895,6 +2544,15 @@ Begin VB.Form frmGesSocios
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   10200
       TabIndex        =   32
@@ -1917,7 +2575,16 @@ Begin VB.Form frmGesSocios
       Top             =   510
       Width           =   11055
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
          Left            =   2670
          MaxLength       =   40
@@ -1929,9 +2596,18 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.TextBox Text1 
          BackColor       =   &H00FFFFC0&
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   8280
+         Left            =   8700
          MaxLength       =   5
          TabIndex        =   3
          Tag             =   "Num.Vehiculo|N|S|||sclien|numeruve|0000||"
@@ -1941,7 +2617,16 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   930
          MaxLength       =   5
@@ -1953,15 +2638,33 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Label Label1 
          Caption         =   "Nombre"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   0
-         Left            =   2010
+         Left            =   1920
          TabIndex        =   40
          Top             =   360
          Width           =   735
       End
       Begin VB.Label Label1 
          Caption         =   "Código"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   1
          Left            =   240
@@ -1972,8 +2675,8 @@ Begin VB.Form frmGesSocios
       Begin VB.Label Label1 
          Caption         =   "Número Vehículo"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -1994,8 +2697,8 @@ Begin VB.Form frmGesSocios
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   11385
-      _ExtentX        =   20082
+      Width           =   11610
+      _ExtentX        =   20479
       _ExtentY        =   741
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -2094,8 +2797,8 @@ Begin VB.Form frmGesSocios
          Alignment       =   2  'Center
          Caption         =   "Label"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -2343,8 +3046,8 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim i As Integer
-Dim cadB As String
-Dim cad As String
+Dim CadB As String
+Dim Cad As String
 Dim aaa As String
 
 
@@ -3019,15 +3722,15 @@ End Function
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False, BuscaChekc)
+    CadB = ObtenerBusqueda(Me, False, BuscaChekc)
     cadB1 = ObtenerBusqueda(Me, True)
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
-        CadenaConsulta = "select distinct sclien.* from ((" & NombreTabla & " LEFT JOIN sclien_cuotas ON sclien.codclien = sclien_cuotas.codsocio) LEFT JOIN sclien_chofer ON sclien.codclien = sclien_chofer.codsocio) LEFT JOIN sclien_publicidad ON sclien.codclien = sclien_publicidad.codsocio WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select distinct sclien.* from ((" & NombreTabla & " LEFT JOIN sclien_cuotas ON sclien.codclien = sclien_cuotas.codsocio) LEFT JOIN sclien_chofer ON sclien.codclien = sclien_chofer.codsocio) LEFT JOIN sclien_publicidad ON sclien.codclien = sclien_publicidad.codsocio WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         PonerFoco Text1(0)
@@ -3229,7 +3932,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -3247,9 +3950,9 @@ Dim cad As String
             Exit Sub
         End If
         
-        cad = Adodc1.Recordset.Fields(0) & "|"
-        cad = cad & Adodc1.Recordset.Fields(2) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & Adodc1.Recordset.Fields(2) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
 End Sub
@@ -3474,7 +4177,7 @@ Dim i As Byte
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(5).Enabled = b
-    Me.mnnuevo.Enabled = b
+    Me.mnNuevo.Enabled = b
     
     b = (Modo = 2 Or Modo = 5)
     'Modificar                                  '[Monica]05/12/2013: en cuotas dejamos modificar el importe
@@ -3534,7 +4237,7 @@ End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
@@ -3545,10 +4248,10 @@ Dim Aux As String
         'Recupera todo el registro de Tarifas de Precios
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
@@ -3674,14 +4377,14 @@ End Sub
 Private Sub CalculoCuotas()
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim cad As String
+Dim Cad As String
 Dim base0 As Single
 Dim base1 As Single
 Dim BaseImp As Single
 Dim iva As String
 Dim porciva As Currency
         
-        cad = "CALCULO DE IMPORTE DE CUOTAS SOCIO: " & vbCrLf & vbCrLf
+        Cad = "CALCULO DE IMPORTE DE CUOTAS SOCIO: " & vbCrLf & vbCrLf
         
         'busco el iva del articulo
         iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtCuotaSinChofer, "T")
@@ -3691,7 +4394,7 @@ Dim porciva As Currency
         
         base0 = vParamAplic.PrecioCuotaSinChofe
         
-            cad = cad & "Cuota sin Chofer:      " & Format(base0, "###,##0.00") & vbCrLf
+            Cad = Cad & "Cuota sin Chofer:      " & Format(base0, "###,##0.00") & vbCrLf
         
         
         '[Monica]10/02/2011: si el socio tiene suplemento se le añade
@@ -3699,7 +4402,7 @@ Dim porciva As Currency
         '[Monica]10/02/2011:end
         
         If DBLet(Adodc1.Recordset!suplecuota, "N") <> 0 Then
-            cad = cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
+            Cad = Cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
         End If
         
         BaseImp = base0
@@ -3708,19 +4411,19 @@ Dim porciva As Currency
         If TieneChofer(CStr(Adodc1.Recordset!CodClien)) Then
             base1 = vParamAplic.PrecioCuotaConChofe
             BaseImp = BaseImp + base1
-            cad = cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
+            Cad = Cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
         End If
         
         If Adodc1.Recordset!essocio = 0 Then
             BaseImp = BaseImp + vParamAplic.PrecioPorAlquiler
-            cad = cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
+            Cad = Cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
         End If
     
-            cad = cad & vbCrLf
-            cad = cad & "--------------------------------" & vbCrLf
-            cad = cad & "TOTAL BRUTO:         " & Format(BaseImp, "###,##0.00")
+            Cad = Cad & vbCrLf
+            Cad = Cad & "--------------------------------" & vbCrLf
+            Cad = Cad & "TOTAL BRUTO:         " & Format(BaseImp, "###,##0.00")
 
-        MsgBox cad, vbInformation, "Cálculo de Cuotas"
+        MsgBox Cad, vbInformation, "Cálculo de Cuotas"
 
 
 End Sub
@@ -4191,8 +4894,8 @@ End Sub
 
 
 
-Private Sub BotonMtoLineas(cad As String)
-        Select Case cad
+Private Sub BotonMtoLineas(Cad As String)
+        Select Case Cad
             Case "Choferes"
                 SSTab1.Tab = 2
             Case "Publicidad"
@@ -5068,28 +5771,28 @@ End Sub
 
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
     '##A mano
-    cad = ""
-    cad = cad & ParaGrid(Text1(0), 14, "Código")
-    cad = cad & ParaGrid(Text1(2), 55, "Nombre")
-    cad = cad & ParaGrid(Text1(1), 14, "Uve")
-    cad = cad & ParaGrid(Text1(8), 14, "Teléfono")
+    Cad = ""
+    Cad = Cad & ParaGrid(Text1(0), 14, "Código")
+    Cad = Cad & ParaGrid(Text1(2), 55, "Nombre")
+    Cad = Cad & ParaGrid(Text1(1), 14, "Uve")
+    Cad = Cad & ParaGrid(Text1(8), 14, "Teléfono")
 
     Tabla = "sclien LEFT JOIN sclien_cuotas ON sclien.codclien = sclien_cuotas.codsocio "
     Titulo = "Socios"
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|2|"
@@ -5124,10 +5827,10 @@ Dim dirMail As String
 End Sub
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
-    cad = "(codclien=" & Text1(0).Text & ")"
-    If SituarData(Adodc1, cad, Indicador) Then
+    Cad = "(codclien=" & Text1(0).Text & ")"
+    If SituarData(Adodc1, Cad, Indicador) Then
        PonerModo 2
        lblIndicador(0).Caption = Indicador
         'data4 para el grid contadores
@@ -5458,7 +6161,7 @@ Dim bs As Byte
 End Sub
 
 Private Sub CargaDatosLWDoc2()
-Dim cad As String
+Dim Cad As String
 Dim RS As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -5484,22 +6187,22 @@ Dim EsDTOFam As Boolean
     Select Case CByte(RecuperaValor(lw1.Tag, 1))
     Case 2
         'LLAMADAS
-        cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
-        cad = cad & " codsocio=" & Adodc1.Recordset!CodClien
+        Cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
+        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
         GroupBy = "1,2,3"
         BuscaChekc = "fecha"
         
     Case 3
         'FACTURAS como cliente
-        cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
-        cad = cad & " codclien=" & Adodc1.Recordset!CodClien
+        Cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
+        Cad = Cad & " codclien=" & Adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
     Case 4
         'FACTURAS COMO PROVEEDOR
-        cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
-        cad = cad & " codsocio=" & Adodc1.Recordset!CodClien
+        Cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
+        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
@@ -5507,20 +6210,20 @@ Dim EsDTOFam As Boolean
     
     
     'La fecha
-    If BuscaChekc <> "" Then cad = cad & " and " & BuscaChekc & " >='" & Format(imgFecha(3).Tag, FormatoFecha) & "'"
+    If BuscaChekc <> "" Then Cad = Cad & " and " & BuscaChekc & " >='" & Format(imgFecha(3).Tag, FormatoFecha) & "'"
     
     'El group by
-    If GroupBy <> "" Then cad = cad & " GROUP BY " & GroupBy
+    If GroupBy <> "" Then Cad = Cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    cad = cad & " ORDER BY " & BuscaChekc & " DESC"
+    Cad = Cad & " ORDER BY " & BuscaChekc & " DESC"
     
     BuscaChekc = ""
     
     lw1.ListItems.Clear
-    If cad <> "" Then
+    If Cad <> "" Then
         Set RS = New ADODB.Recordset
-        RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        RS.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not RS.EOF
             Set It = lw1.ListItems.Add()
             If lw1.ColumnHeaders(1).Tag <> "" Then
@@ -5726,7 +6429,7 @@ Dim bs As Byte
 End Sub
 
 Private Sub CargaDatosLWcrm2()
-Dim cad As String
+Dim Cad As String
 Dim RS As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -5754,18 +6457,18 @@ Dim MeteIT As Boolean
     Select Case Kopc
     Case 0
         'Nros de serie
-        cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
-        cad = cad & " and sserie.codtipar = stipar.codtipar  "
-        cad = cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
+        Cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
+        Cad = Cad & " and sserie.codtipar = stipar.codtipar  "
+        Cad = Cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
         GroupBy = ""
         BuscaChekc = "nomtipar, sserie.codartic, numserie "
     End Select
     
     'El group by
-    If GroupBy <> "" Then cad = cad & " GROUP BY " & GroupBy
+    If GroupBy <> "" Then Cad = Cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    cad = cad & " ORDER BY " & BuscaChekc
+    Cad = Cad & " ORDER BY " & BuscaChekc
 '     If Kopc <> 4 Then cad = cad & " DESC"
 
     BuscaChekc = ""
@@ -5774,10 +6477,10 @@ Dim MeteIT As Boolean
    
     Set RS = New ADODB.Recordset
     If Kopc <> 3 Then
-        RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        RS.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     Else
         'Va contra la contabilidad
-        RS.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        RS.Open Cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     End If
     While Not RS.EOF
         If Kopc <> 3 Then
@@ -5809,15 +6512,15 @@ Dim MeteIT As Boolean
                         Else
                         
                             
-                            cad = RS.Fields(NumRegElim - 1)
+                            Cad = RS.Fields(NumRegElim - 1)
                             'no TIENE FORMATO. sEGUN LO QUE SEA puedo hacer unas cosas u otras
-                            If NumRegElim = 4 And Kopc = 1 Then cad = Replace(cad, vbCrLf, " ")
+                            If NumRegElim = 4 And Kopc = 1 Then Cad = Replace(Cad, vbCrLf, " ")
                             'Medio
                             If NumRegElim = 3 And Kopc = 0 Then 'DevuelveMedio cad
                             End If
-                            If NumRegElim = 3 And Kopc = 4 Then cad = Replace(cad, vbCrLf, " ")
+                            If NumRegElim = 3 And Kopc = 4 Then Cad = Replace(Cad, vbCrLf, " ")
                             
-                            It.SubItems(NumRegElim - 1) = cad
+                            It.SubItems(NumRegElim - 1) = Cad
                         
                             
                             
@@ -5854,14 +6557,14 @@ ECargaDatosLW:
     Set RS = Nothing
 End Sub
 
-Private Sub DevuelveMedio(ByRef cad As String)
+Private Sub DevuelveMedio(ByRef Cad As String)
     'pendiente,en curso finalizada
-    If cad = "0" Then
-        cad = "Pendiente"
-    ElseIf cad = "1" Then
-        cad = "En curso"
+    If Cad = "0" Then
+        Cad = "Pendiente"
+    ElseIf Cad = "1" Then
+        Cad = "En curso"
     Else
-        cad = "Finalizada"
+        Cad = "Finalizada"
     End If
 End Sub
 
