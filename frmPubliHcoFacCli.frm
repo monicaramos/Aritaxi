@@ -2461,7 +2461,7 @@ Private Sub Check1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -2486,9 +2486,9 @@ Dim I As Integer
                     TerminaBloquear
                     PosicionarData
                     FormatoDatosTotales
-                    I = Data3.Recordset.AbsolutePosition
+                    i = Data3.Recordset.AbsolutePosition
                     PonerCamposLineas
-                    SituarDataPosicion Data3, CLng(I), ""
+                    SituarDataPosicion Data3, CLng(i), ""
                 End If
             End If
             
@@ -2894,28 +2894,28 @@ Private Sub cmdObserva_Click()
 End Sub
 
 Private Sub BloqueaText3()
-Dim I As Byte
+Dim i As Byte
 Dim b As Boolean
 
     'bloquear los Text3 que son las lineas de scafaccli1
     'b = Modo <> 4 And Modo <> 1
     b = Modo <> 1
-    For I = 0 To 3
-        BloquearTxt Text3(I), b
-    Next I
+    For i = 0 To 3
+        BloquearTxt Text3(i), b
+    Next i
     BloquearTxt Text3(16), b
     
     
 '    If Me.FrameObserva.visible Then
-        For I = 9 To 13
-            BloquearTxt Text3(I), (Modo <> 4 And Modo <> 1)
-        Next I
+        For i = 9 To 13
+            BloquearTxt Text3(i), (Modo <> 4 And Modo <> 1)
+        Next i
 '    End If
     
     b = Modo <> 1
-    For I = 4 To 8
-        BloquearTxt Text3(I), b
-    Next I
+    For i = 4 To 8
+        BloquearTxt Text3(i), b
+    Next i
     'datos venta TPV
     BloquearTxt Text3(14), True
     BloquearTxt Text3(15), True
@@ -3008,7 +3008,7 @@ End Sub
 
 
 Private Sub DataGrid2_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-Dim I As Byte
+Dim i As Byte
 
     If Not Data3.Recordset.EOF Then
         'Trabajador Albaran
@@ -3062,12 +3062,12 @@ Dim I As Byte
         'Datos de la tabla slipre
         CargaGrid DataGrid1, Data2, True
     Else
-        For I = 0 To Text3.Count - 1
-            Text3(I).Text = ""
-        Next I
-        For I = 0 To 3
-            Text2(I).Text = ""
-        Next I
+        For i = 0 To Text3.Count - 1
+            Text3(i).Text = ""
+        Next i
+        For i = 0 To 3
+            Text2(i).Text = ""
+        Next i
         'Datos de la tabla slipre
         CargaGrid DataGrid1, Data2, False
     End If
@@ -4042,7 +4042,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -4050,9 +4050,9 @@ Dim b As Boolean
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
 
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).BackColor = vbWhite
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
 
     ActualizarToolbar Modo, Kmodo
     Text1(3).visible = False  'SIEMPRE VISIBLE FALSE
@@ -4097,14 +4097,14 @@ Dim b As Boolean
     BloquearTxt Text1(14), b 'agente
     BloquearTxt Text1(13), b 'direccion / departamento
     
-    For I = 18 To 21
-        BloquearTxt Text1(I), b
-    Next I
+    For i = 18 To 21
+        BloquearTxt Text1(i), b
+    Next i
     
     'Importes siempre bloqueados, excepto para busquedas. ivas y aportacion tb bloqueado
-    For I = 22 To 45
-        BloquearTxt Text1(I), (Modo <> 1)
-    Next I
+    For i = 22 To 45
+        BloquearTxt Text1(i), (Modo <> 1)
+    Next i
     'Campo B.Imp y Imp. IVA siempre en azul
     BloquearTxt Text1(25), True
     Text1(25).BackColor = &HFFFFC0
@@ -4126,17 +4126,17 @@ Dim b As Boolean
 '        BloquearTxt Text3(16), False
     End If
     'Si no es modo lineas Boquear los TxtAux
-    For I = 0 To txtAux.Count - 1
-        BloquearTxt txtAux(I), (Modo <> 5)
-    Next I
+    For i = 0 To txtAux.Count - 1
+        BloquearTxt txtAux(i), (Modo <> 5)
+    Next i
     BloquearTxt txtAux(8), True
     BloquearTxt txtAux(10), True
     BloquearTxt txtAux(11), True
     
     'Si no es modo Busqueda Bloquear los TxtAux3 (son los txtaux de los albaranes de factura)
-    For I = 0 To txtAux3.Count - 1
-        BloquearTxt txtAux3(I), (Modo <> 1)
-    Next I
+    For i = 0 To txtAux3.Count - 1
+        BloquearTxt txtAux3(i), (Modo <> 1)
+    Next i
     
     'ampliacion linea
     b = Me.DataGrid1.visible And Me.SSTab1.Tab = 1
@@ -4168,14 +4168,14 @@ Dim b As Boolean
 '    Next I
 '
 '    Me.imgBuscar(1).visible = False
-    For I = 0 To 5
-        Me.imgBuscar(I).Enabled = (Modo = 1)
-        If I = 5 Then Me.imgBuscar(I).Enabled = (Modo = 1 Or Modo = 4)
+    For i = 0 To 5
+        Me.imgBuscar(i).Enabled = (Modo = 1)
+        If i = 5 Then Me.imgBuscar(i).Enabled = (Modo = 1 Or Modo = 4)
 
-    Next I
-    For I = 6 To 9
-        Me.imgBuscar(I).Enabled = False 'B And (Modo <> 1)
-    Next I
+    Next i
+    For i = 6 To 9
+        Me.imgBuscar(i).Enabled = False 'B And (Modo <> 1)
+    Next i
     
     Me.imgBuscar(1).visible = False
 
@@ -4224,23 +4224,23 @@ End Function
 
 Private Function DatosOkLinea() As Boolean
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 
     On Error GoTo EDatosOkLinea
 
     DatosOkLinea = False
     b = True
 
-    For I = 0 To txtAux.Count - 1
-        If I = 4 Or I = 6 Or I = 7 Then
-            If txtAux(I).Text = "" Then
-                MsgBox "El campo " & txtAux(I).Tag & " no puede ser nulo", vbExclamation
+    For i = 0 To txtAux.Count - 1
+        If i = 4 Or i = 6 Or i = 7 Then
+            If txtAux(i).Text = "" Then
+                MsgBox "El campo " & txtAux(i).Tag & " no puede ser nulo", vbExclamation
                 b = False
-                PonerFoco txtAux(I)
+                PonerFoco txtAux(i)
                 Exit Function
             End If
         End If
-    Next I
+    Next i
             
     'PRoveedor
     If txtAux(9).Text <> "" And txtAux2(9).Text = "" Then
@@ -4654,9 +4654,15 @@ Dim cContaFra As cContabilizarFacturas
 '        ConnConta.Execute "Delete from cabfact WHERE " & SQL
         
         'cobros
-        Sql = " numserie='" & LEtra & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
-        Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-        ConnConta.Execute "Delete from scobro WHERE " & Sql
+        If vParamAplic.ContabilidadNueva Then
+            Sql = " numserie='" & LEtra & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu
+            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from cobros WHERE " & Sql
+        
+        Else
+            Sql = " numserie='" & LEtra & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
+            Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from scobro WHERE " & Sql
         b = True
     Else
         b = False
@@ -4929,11 +4935,11 @@ End Sub
 
 
 Private Sub LimpiarDatosCliente()
-Dim I As Byte
+Dim i As Byte
     
-    For I = 4 To 13
-        Text1(I).Text = ""
-    Next I
+    For i = 4 To 13
+        Text1(i).Text = ""
+    Next i
     If (Modo = 3 Or Modo = 4) Then PonerFoco Text1(4)
 End Sub
     
@@ -5239,10 +5245,18 @@ Dim recalcular As Boolean
                 End If
               
                 If bol Then
-                    'Eliminar de la scobro
-                    Sql = " numserie='" & vFactura.LetraSerie & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
-                    Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from scobro WHERE " & Sql
+                    If vParamAplic.ContabilidadNueva Then
+                        'Eliminar de la scobro
+                        Sql = " numserie='" & vFactura.LetraSerie & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from cobros WHERE " & Sql
+                    
+                    Else
+                        'Eliminar de la scobro
+                        Sql = " numserie='" & vFactura.LetraSerie & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
+                        Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from scobro WHERE " & Sql
+                    End If
                     bol = True
 
                     'Volvemos a Insertar los Vencimientos de la Factura. Tabla: svenci
@@ -5278,15 +5292,15 @@ End Function
 
 
 Private Function CalcularDatosFactura() As Boolean
-Dim I As Integer
+Dim i As Integer
 Dim vFactu As CFactura
 Dim FacOK As Boolean
 
     'Limpiar en el form los datos calculados de la factura
     'y volvemos a recalcular
-    For I = 22 To 38
-         Text1(I).Text = ""
-    Next I
+    For i = 22 To 38
+         Text1(i).Text = ""
+    Next i
     
     
     Set vFactu = New CFactura
@@ -5324,39 +5338,39 @@ End Function
 
 
 Private Sub FormatoDatosTotales()
-Dim I As Byte
+Dim i As Byte
 
-    For I = 22 To 25
-        Text1(I).Text = QuitarCero(Text1(I).Text)
-        Text1(I).Text = Format(Text1(I).Text, FormatoImporte)
-    Next I
+    For i = 22 To 25
+        Text1(i).Text = QuitarCero(Text1(i).Text)
+        Text1(i).Text = Format(Text1(i).Text, FormatoImporte)
+    Next i
     
     'Desglose B.Imponible por IVA
-    For I = 32 To 34
-        If Text1(I).Text <> "" Then
-             If CSng(Text1(I).Text) = 0 And Text1(I - 6).Text = "" Then
-                Text1(I).Text = QuitarCero(Text1(I).Text)
-                Text1(I - 3).Text = QuitarCero(Text1(I - 3).Text)
-                Text1(I - 6).Text = QuitarCero(Text1(I - 6).Text)
-                Text1(I + 3).Text = QuitarCero(Text1(I).Text)
+    For i = 32 To 34
+        If Text1(i).Text <> "" Then
+             If CSng(Text1(i).Text) = 0 And Text1(i - 6).Text = "" Then
+                Text1(i).Text = QuitarCero(Text1(i).Text)
+                Text1(i - 3).Text = QuitarCero(Text1(i - 3).Text)
+                Text1(i - 6).Text = QuitarCero(Text1(i - 6).Text)
+                Text1(i + 3).Text = QuitarCero(Text1(i).Text)
             Else
-                Text1(I).Text = Format(Text1(I).Text, FormatoImporte)
-                Text1(I - 3) = Format(Text1(I - 3).Text, FormatoDescuento)
+                Text1(i).Text = Format(Text1(i).Text, FormatoImporte)
+                Text1(i - 3) = Format(Text1(i - 3).Text, FormatoDescuento)
     '            Text3(i - 6) = Format(Text3(i - 6).Text, "000")
-                Text1(I + 3).Text = Format(Text1(I + 3).Text, FormatoImporte)
+                Text1(i + 3).Text = Format(Text1(i + 3).Text, FormatoImporte)
             End If
         End If
-    Next I
+    Next i
 End Sub
 
 
 
 Private Sub ComprobarDatosTotales()
-Dim I As Byte
+Dim i As Byte
 
-    For I = 22 To 25
-        Text1(I).Text = ComprobarCero(Text1(I).Text)
-    Next I
+    For i = 22 To 25
+        Text1(i).Text = ComprobarCero(Text1(i).Text)
+    Next i
 End Sub
 
 
@@ -5389,7 +5403,11 @@ Dim LEtra As String, numasien As String
         'comprobar en la contabilidad si esta contabilizada
       
         If LEtra <> "" Then
-            numasien = DevuelveDesdeBDNew(conConta, "cabfact", "numasien", "numserie", LEtra, "T", , "codfaccl", Text1(0).Text, "N", "anofaccl", Year(Text1(2).Text), "N")
+            If vParamAplic.ContabilidadNueva Then
+                numasien = DevuelveDesdeBDNew(conConta, "factcli", "numasien", "numserie", LEtra, "T", , "numfactu", Text1(0).Text, "N", "anofactu", Year(Text1(2).Text), "N")
+            Else
+                numasien = DevuelveDesdeBDNew(conConta, "cabfact", "numasien", "numserie", LEtra, "T", , "codfaccl", Text1(0).Text, "N", "anofaccl", Year(Text1(2).Text), "N")
+            End If
             If Val(ComprobarCero(numasien)) <> 0 Then
 '                FactContabilizada = True
 '                MsgBox "La factura esta contabilizada y no se puede modificar.", vbInformation
@@ -5398,10 +5416,6 @@ Dim LEtra As String, numasien As String
             Else
                 numasien = ""
             End If
-            
-            
-            
-            
         Else
 '            MsgBox "Las factura de venta no tienen asignada una letra de serie", vbInformation
             numasien = ""
@@ -5483,7 +5497,7 @@ End Sub
 
 
 Private Sub BloquearDatosCliente(bol As Boolean)
-Dim I As Byte
+Dim i As Byte
 
     'bloquear/desbloquear campos de datos segun sea de varios o no
     If Modo <> 5 Then
@@ -5491,9 +5505,9 @@ Dim I As Byte
         Me.imgBuscar(1).Enabled = bol
         Me.imgBuscar(2).Enabled = bol
         
-        For I = 5 To 11 'si no es de varios no se pueden modificar los datos
-            BloquearTxt Text1(I), Not bol
-        Next I
+        For i = 5 To 11 'si no es de varios no se pueden modificar los datos
+            BloquearTxt Text1(i), Not bol
+        Next i
     End If
 End Sub
 
@@ -5605,7 +5619,7 @@ End Function
 Private Sub CargaCombo()
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim I As Byte
+Dim i As Byte
     
     Combo1.Clear
     
@@ -5617,8 +5631,8 @@ Dim I As Byte
         Sql = RS!nomtipom
         Sql = Replace(Sql, "Factura", "")
         Combo1.AddItem RS!codtipom & "-" & Sql
-        Combo1.ItemData(Combo1.NewIndex) = I
-        I = I + 1
+        Combo1.ItemData(Combo1.NewIndex) = i
+        i = i + 1
         RS.MoveNext
     Wend
     RS.Close
@@ -5746,10 +5760,15 @@ Dim cad As String
 On Error GoTo EComprobarCobroArimoney
     ComprobarCobroArimoney = False
     Set vR = New ADODB.Recordset
-    cad = "Select * from scobro where numserie='" & LEtra & "'"
-    cad = cad & " AND codfaccl =" & Codfaccl
-    cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
-    
+    If vParamAplic.ContabilidadB Then
+        cad = "Select * from cobros where numserie='" & LEtra & "'"
+        cad = cad & " AND numfactu =" & Codfaccl
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    Else
+        cad = "Select * from scobro where numserie='" & LEtra & "'"
+        cad = cad & " AND codfaccl =" & Codfaccl
+        cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
+    End If
     '
     vTesoreria = ""
     vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -5765,9 +5784,7 @@ On Error GoTo EComprobarCobroArimoney
                 If DBLet(vR!recedocu, "N") = 1 Then
                     cad = "Documento recibido"
                 Else
-                    If DBLet(vR!Estacaja, "N") = 1 Then
-                        cad = "Cobrado por caja"
-                    Else
+                    If vParamAplic.ContabilidadNueva Then
                         If DBLet(vR!transfer, "N") = 1 Then
                             cad = "Esta en una transferencia"
                         Else
@@ -5776,7 +5793,21 @@ On Error GoTo EComprobarCobroArimoney
                             
                                     'Si hubeira que poner mas coas iria aqui
                         End If 'transfer
-                    End If 'estacaja
+                    Else
+                    
+                        If DBLet(vR!Estacaja, "N") = 1 Then
+                            cad = "Cobrado por caja"
+                        Else
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
+                            
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                        End If 'estacaja
+                    End If
                 End If 'recdedocu
             End If 'remesado
             If cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & cad & vbCrLf

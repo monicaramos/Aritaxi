@@ -1435,16 +1435,16 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte
+Dim i As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1481,18 +1481,18 @@ Dim NumReg As Byte
     BloquearCmb Me.Combo1, Modo = 0 Or Modo = 2
     
     'Formas de Pago
-    For I = 0 To Text2.Count - 1
-        BloquearTxt Text2(I), True
-    Next I
+    For i = 0 To Text2.Count - 1
+        BloquearTxt Text2(i), True
+    Next i
     
     Combo1.Enabled = (Modo = 3) Or (Modo = 4) Or (Modo = 1)
     
     b = (Modo = 3) 'Insertar
     'Campos Importe Mínimo y % Adelantado
     If b Then
-        For I = 8 To 9
-            BloquearTxt Text1(I), True
-        Next I
+        For i = 8 To 9
+            BloquearTxt Text1(i), True
+        Next i
     End If
 
      
@@ -1660,11 +1660,19 @@ Private Function PuedeModificarFPenContab() As Boolean
     PuedeModificarFPenContab = False
     Set miRsAux = New ADODB.Recordset
     NumRegElim = 0
-    miRsAux.Open "Select count(*) from scobro where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    If vParamAplic.ContabilidadNueva Then
+        miRsAux.Open "Select count(*) from cobros where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    Else
+        miRsAux.Open "Select count(*) from scobro where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    End If
     If Not miRsAux.EOF Then NumRegElim = NumRegElim + DBLet(miRsAux.Fields(0), "N")
     miRsAux.Close
     
-    miRsAux.Open "Select count(*) from spagop where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    If vParamAplic.ContabilidadNueva Then
+        miRsAux.Open "Select count(*) from pagos where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    Else
+        miRsAux.Open "Select count(*) from spagop where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+    End If
     If Not miRsAux.EOF Then NumRegElim = NumRegElim + DBLet(miRsAux.Fields(0), "N")
     miRsAux.Close
     
@@ -1678,6 +1686,27 @@ Private Function PuedeModificarFPenContab() As Boolean
         End If
     End If
     
+    'añadido en al nueva contabilidad tb pueden estar en las facturas
+    If vParamAplic.ContabilidadNueva Then
+        miRsAux.Open "Select count(*) from factcli where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+        If Not miRsAux.EOF Then NumRegElim = DBLet(miRsAux.Fields(0), "N")
+        miRsAux.Close
+        
+        miRsAux.Open "Select count(*) from factpro where codforpa=" & Text1(0).Text, ConnConta, adOpenForwardOnly, adLockPessimistic
+        If Not miRsAux.EOF Then NumRegElim = NumRegElim + DBLet(miRsAux.Fields(0), "N")
+        miRsAux.Close
+        
+        If NumRegElim > 0 Then
+            If Modo = 4 Then
+                If MsgBox("Existen " & NumRegElim & " facturas en la contabilidad con esa forma de pago. ¿Continuar con el proceso?", vbQuestion + vbYesNo) = vbNo Then Exit Function
+            Else
+                'NO DEJO CONTINUAR
+                MsgBox "Existen " & NumRegElim & " facturas en la contabilidad con esa forma de pago", vbExclamation
+                Exit Function
+            End If
+        End If
+    End If
+    
     'Si llega aqui puede seguir
     PuedeModificarFPenContab = True
 End Function
@@ -1688,6 +1717,8 @@ Dim C As String
 
     If vParamAplic.ContabilidadNueva Then
         C = "UPDATE formapago set nomforpa = '" & DevNombreSQL(Text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
+        C = C & ", numerove = " & DBSet(Text1(2).Text, "N") & ", primerve = " & DBSet(Text1(3).Text, "N") & ", restoven = " & DBSet(Text1(4).Text, "N")
+        
     Else
         C = "UPDATE sforpa set nomforpa = '" & DevNombreSQL(Text1(1).Text) & "', tipforpa=" & Me.Combo1.ItemData(Combo1.ListIndex)
     End If
@@ -1697,11 +1728,12 @@ End Sub
 
 
 Private Sub InsertarEnTesoreria()
+Dim Sql As String
 
     On Error Resume Next
     
     If vParamAplic.ContabilidadNueva Then
-        ConnConta.Execute "INSERT INTO formapago(codforpa,nomforpa, tipforpa) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
+        ConnConta.Execute "INSERT INTO formapago(codforpa,nomforpa, tipforpa,numerove,primerve,restoven) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & "," & DBSet(Text1(2).Text, "N") & "," & DBSet(Text1(3).Text, "N") & "," & DBSet(Text1(4).Text, "N") & ")"
     Else
         ConnConta.Execute "INSERT INTO sforpa(codforpa,nomforpa, tipforpa) VALUES (" & Text1(0).Text & ",'" & DevNombreSQL(Text1(1).Text) & "'," & Me.Combo1.ItemData(Combo1.ListIndex) & ")"
     End If

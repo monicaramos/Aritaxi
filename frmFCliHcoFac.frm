@@ -5467,9 +5467,16 @@ Dim cContaFra As cContabilizarFacturas
 '        ConnConta.Execute "Delete from cabfact WHERE " & SQL
 '
         'cobros
-        Sql = " numserie='" & LEtra & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
-        Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-        ConnConta.Execute "Delete from scobro WHERE " & Sql
+        If vParamAplic.ContabilidadNueva Then
+            Sql = " numserie='" & LEtra & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu
+            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from cobros WHERE " & Sql
+        
+        Else
+            Sql = " numserie='" & LEtra & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
+            Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from scobro WHERE " & Sql
+        End If
         b = True
     Else
         b = False
@@ -6122,9 +6129,15 @@ Dim Sql4 As String
               
                 If bol Then
                     'Eliminar de la scobro
-                    Sql = " numserie='" & vFactura.LetraSerie & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
-                    Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from scobro WHERE " & Sql
+                    If vParamAplic.ContabilidadNueva Then
+                        Sql = " numserie='" & vFactura.LetraSerie & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from cobros WHERE " & Sql
+                    Else
+                        Sql = " numserie='" & vFactura.LetraSerie & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu
+                        Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from scobro WHERE " & Sql
+                    End If
                     bol = True
 
                     'Volvemos a Insertar los Vencimientos de la Factura. Tabla: svenci
@@ -6390,7 +6403,11 @@ Dim LEtra As String, numasien As String
         'comprobar en la contabilidad si esta contabilizada
       
         If LEtra <> "" Then
-            numasien = DevuelveDesdeBDNew(conConta, "cabfact", "numasien", "numserie", LEtra, "T", , "codfaccl", Text1(0).Text, "N", "anofaccl", Year(Text1(2).Text), "N")
+            If vParamAplic.ContabilidadNueva Then
+                numasien = DevuelveDesdeBDNew(conConta, "factcli", "numasien", "numserie", LEtra, "T", , "numfactu", Text1(0).Text, "N", "anofactu", Year(Text1(2).Text), "N")
+            Else
+                numasien = DevuelveDesdeBDNew(conConta, "cabfact", "numasien", "numserie", LEtra, "T", , "codfaccl", Text1(0).Text, "N", "anofaccl", Year(Text1(2).Text), "N")
+            End If
             If Val(ComprobarCero(numasien)) <> 0 Then
 '                FactContabilizada = True
 '                MsgBox "La factura esta contabilizada y no se puede modificar.", vbInformation
@@ -6728,10 +6745,15 @@ Dim cad As String
 On Error GoTo EComprobarCobroArimoney
     ComprobarCobroArimoney = False
     Set vR = New ADODB.Recordset
-    cad = "Select * from scobro where numserie='" & LEtra & "'"
-    cad = cad & " AND codfaccl =" & Codfaccl
-    cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
-    
+    If vParamAplic.ContabilidadNueva Then
+        cad = "Select * from cobros where numserie='" & LEtra & "'"
+        cad = cad & " AND numfactu =" & Codfaccl
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    Else
+        cad = "Select * from scobro where numserie='" & LEtra & "'"
+        cad = cad & " AND codfaccl =" & Codfaccl
+        cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
+    End If
     '
     vTesoreria = ""
     vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -6747,18 +6769,32 @@ On Error GoTo EComprobarCobroArimoney
                 If DBLet(vR!recedocu, "N") = 1 Then
                     cad = "Documento recibido"
                 Else
-                    If DBLet(vR!Estacaja, "N") = 1 Then
-                        cad = "Cobrado por caja"
-                    Else
-                        If DBLet(vR!transfer, "N") = 1 Then
-                            cad = "Esta en una transferencia"
-                        Else
-                           If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
-                        
+                
+                    If vParamAplic.ContabilidadNueva Then
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
                             
-                                    'Si hubeira que poner mas coas iria aqui
-                        End If 'transfer
-                    End If 'estacaja
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                    
+                    Else
+                
+                        If DBLet(vR!Estacaja, "N") = 1 Then
+                            cad = "Cobrado por caja"
+                        Else
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
+                            
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                        End If 'estacaja
+                    End If
                 End If 'recdedocu
             End If 'remesado
             If cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & cad & vbCrLf

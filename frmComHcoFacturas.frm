@@ -284,9 +284,9 @@ Begin VB.Form frmComHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComHcoFacturas.frx":0A0E
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(0)=   "FrameFactura"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "FrameFactura"
+      Tab(0).Control(1)=   "FrameCliente"
       Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Albaranes"
@@ -3524,10 +3524,19 @@ Dim b As Boolean
         
         'Eliminar en la tabla pagos de la Contabilidad: spagop
         '------------------------------------------------
+        
         cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
-        Sql = " ctaprove='" & cta & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
-        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-        ConnConta.Execute "Delete from spagop WHERE " & Sql
+        
+        If vParamAplic.ContabilidadNueva Then
+            Sql = " codmacta='" & cta & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from pagos WHERE " & Sql
+        
+        Else
+            Sql = " ctaprove='" & cta & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+            ConnConta.Execute "Delete from spagop WHERE " & Sql
+        End If
         b = True
         
         
@@ -3843,10 +3852,16 @@ On Error GoTo EModFact
                 
                 If bol Then
                     'Eliminar de la spagop
-                    Sql = " ctaprove='" & vFactu.CtaProve & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
-                    Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from spagop WHERE " & Sql
+                    If vParamAplic.ContabilidadNueva Then
+                        Sql = " codmacta='" & vFactu.CtaProve & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from pagos WHERE " & Sql
                     
+                    Else
+                        Sql = " ctaprove='" & vFactu.CtaProve & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from spagop WHERE " & Sql
+                    End If
                     'Volvemos a grabar en TESORERIA. Tabla de Contabilidad: sconta.spagop
                     If bol Then
                         bol = vFactu.InsertarEnTesoreria(MenError)

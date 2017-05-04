@@ -792,7 +792,7 @@ Private Function InsertarAsiento() As Boolean
 Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim Lineas As String
-Dim I As Integer
+Dim i As Integer
 
 Dim Mc As Contadores
 Dim cad As String
@@ -827,7 +827,7 @@ Dim Documento As String
     If Mc.ConseguirContador("0", (CDate(txtcodigo(3).Text) <= CDate(vEmpresa.FechaFin)), True) = 0 Then
     
         Obs = "Alta de Socios "
-        I = 0
+        i = 0
     
         codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(txtcodigo(0).Text, "N"))
         Documento = "SOC-" & Format(codSocio, "000000")
@@ -857,10 +857,10 @@ Dim Documento As String
                 ImpTotal = ImpTotal + ImpTitulo  ' vParamAplic.ImpTituloAlta
                 
                 ' apunte al debe
-                I = I + 1
+                i = i + 1
                 
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(I, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(i, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpTitulo > 0 Then
@@ -882,9 +882,9 @@ Dim Documento As String
                 CadValues = CadValues & cad
                 
                 ' apunte al haber
-                I = I + 1
+                i = i + 1
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(I, "N") & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(i, "N") & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpTitulo > 0 Then
@@ -911,10 +911,10 @@ Dim Documento As String
                 ImpTotal = ImpTotal + ImpGasto
                 
                 ' apunte al debe
-                I = I + 1
+                i = i + 1
                 
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(I, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(i, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpGasto > 0 Then
@@ -936,9 +936,9 @@ Dim Documento As String
                 CadValues = CadValues & cad
                 
                 ' apunte al haber
-                I = I + 1
+                i = i + 1
                 cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
-                cad = cad & DBSet(I, "N") & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'" & Documento & "',"
+                cad = cad & DBSet(i, "N") & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpGasto > 0 Then
@@ -1200,14 +1200,14 @@ Private Sub cmdCancel_Click(Index As Integer)
 End Sub
 
 Private Sub Form_Activate()
-Dim I As Integer
+Dim i As Integer
 
     If PrimeraVez Then
         PrimeraVez = False
         PonerFoco txtcodigo(2)
-        For I = 1 To Check1.Count
-            Check1(I).Value = 1
-        Next I
+        For i = 1 To Check1.Count
+            Check1(i).Value = 1
+        Next i
         ' Numero de uve
         txtcodigo(0).Text = NumCod
         PonerFormatoEntero txtcodigo(0)
@@ -1221,7 +1221,7 @@ Dim I As Integer
 End Sub
 
 Private Sub Form_Load()
-Dim H As Integer, W As Integer, I As Integer
+Dim H As Integer, W As Integer, i As Integer
 Dim List As Collection
     
     'Icono del formulario
@@ -1244,11 +1244,11 @@ Dim List As Collection
     Me.Width = W + 70
     Me.Height = H + 350
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
-    For I = 0 To Me.imgFec.Count - 1
-        imgFec(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFec.Count - 1
+        imgFec(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
     
     
@@ -1573,16 +1573,24 @@ Dim Nulo3 As String
 
     On Error GoTo EInsertar
        
+    If vParamAplic.ContabilidadNueva Then
+        cad = Format(Diario, "00") & ", " & DBSet(Fecha, "F") & "," & Format(Asiento, "000000") & ","
+        cad = cad & DBSet(Obs, "T") & "," & DBSet(Now, "FH") & "," & DBSet(vUsu.Login, "T") & ",'ARITAXI'"
+        cad = "(" & cad & ")"
+        
+        'Insertar en la contabilidad
+        Sql = "INSERT INTO hcabapu (numdiari, fechaent, numasien, obsdiari, feccreacion, usucreacion, desdeaplicacion) "
+        Sql = Sql & " VALUES " & cad
+    Else
+        cad = Format(Diario, "00") & ", " & DBSet(Fecha, "F") & "," & Format(Asiento, "000000") & ","
+        cad = cad & "''," & ValorNulo & "," & DBSet(Obs, "T")
+        cad = "(" & cad & ")"
     
-    cad = Format(Diario, "00") & ", " & DBSet(Fecha, "F") & "," & Format(Asiento, "000000") & ","
-    cad = cad & "''," & ValorNulo & "," & DBSet(Obs, "T")
-    cad = "(" & cad & ")"
-
-    'Insertar en la contabilidad
-    Sql = "INSERT INTO cabapu (numdiari, fechaent, numasien, bloqactu, numaspre, obsdiari) "
-    Sql = Sql & " VALUES " & cad
-    ConnConta.Execute Sql
-    
+        'Insertar en la contabilidad
+        Sql = "INSERT INTO cabapu (numdiari, fechaent, numasien, bloqactu, numaspre, obsdiari) "
+        Sql = Sql & " VALUES " & cad
+        ConnConta.Execute Sql
+    End If
 EInsertar:
     If Err.Number <> 0 Then
         InsertarCabAsientoDia = False
@@ -1599,15 +1607,20 @@ Private Function InsertarLinAsientoDia(cad As String, cadErr As String) As Boole
 Dim RS As ADODB.Recordset
 Dim Aux As String
 Dim Sql As String
-Dim I As Byte
+Dim i As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 
     On Error GoTo EInLinea
 
- 
-    Sql = "INSERT INTO linapu (numdiari, fechaent, numasien, linliapu, codmacta, numdocum, codconce, "
-    Sql = Sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada) "
-    Sql = Sql & " VALUES " & cad
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "INSERT INTO hlinapu (numdiari, fechaent, numasien, linliapu, codmacta, numdocum, codconce, "
+        Sql = Sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada) "
+        Sql = Sql & " VALUES " & cad
+    Else
+        Sql = "INSERT INTO linapu (numdiari, fechaent, numasien, linliapu, codmacta, numdocum, codconce, "
+        Sql = Sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada) "
+        Sql = Sql & " VALUES " & cad
+    End If
     
     ConnConta.Execute Sql
 
@@ -1637,7 +1650,7 @@ Dim CadValues3 As String
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single 'importe para insertar en la svenci
 Dim ImpVenci2 As Single 'importe para insertar en conta.scobro
-Dim I As Byte
+Dim i As Byte
 Dim TotalFactura2 As Currency   'Por si acaso lleva aportacion al terminal
 '1 Julio 2009. Los graba en scobro
 Dim CadenaDatosFiscales As String
@@ -1651,13 +1664,19 @@ Dim TipForPago As String
 Dim CuentaPrev As String
 
 Dim LEtra As String
+Dim vvIban As String
 
     On Error GoTo EInsertarTesoreria
 
     b = False
     InsertarEnTesoreria = False
 
-    vTextosCSB = "NULL,NULL,NULL"
+
+    If vParamAplic.ContabilidadNueva Then
+        vTextosCSB = "NULL"
+    Else
+        vTextosCSB = "NULL,NULL,NULL"
+    End If
     
     CadValues3 = ""
     CadValues = ""
@@ -1685,6 +1704,9 @@ Dim LEtra As String
         CadenaDatosFiscales = DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T")
         CadenaDatosFiscales = CadenaDatosFiscales & "," & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Provincia, "T")
         
+        If vParamAplic.ContabilidadNueva Then
+            CadenaDatosFiscales = CadenaDatosFiscales & "," & DBSet(vSocio.NIF, "T") & ",'ES'"
+        End If
         
         'Obtener el Nº de Vencimientos de la forma de pago
         Sql = "SELECT numerove, primerve, restoven FROM sforpa WHERE codforpa=" & ForPago
@@ -1714,7 +1736,7 @@ Dim LEtra As String
                     '                    Añadire a la cadena fija esta los valores de textcsb41,txcs
                     CadValuesAuxConta = CadValuesAuxConta & vTextosCSB & ","
                     '-------- Primer Vencimiento
-                    I = 1
+                    i = 1
                     'FECHA VTO
                     FecVenci = CDate(txtcodigo(3).Text)
                     '=== Laura 23/01/2007
@@ -1735,8 +1757,8 @@ Dim LEtra As String
                     End If
                     
                     'Comprobar si cliente tiene dia de vencimiento atrasado
-                    CadValues = cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                    CadValues2 = CadValuesAuxConta & I & ", "
+                    CadValues = cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues2 = CadValuesAuxConta & i & ", "
                     CadValues2 = CadValues2 & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                     'IMPORTE del Vencimiento
@@ -1758,26 +1780,37 @@ Dim LEtra As String
                         End If
                     End If
                     CadValues = CadValues & DBSet(ImpVenci, "N") & ")"
-                    CadValues2 = CadValues2 & DBSet(ImpVenci2, "N") & ", '" & CuentaPrev & "', " & DBSet(vSocio.Banco, "N") & ", " & DBSet(vSocio.Sucursal, "N") & ", " & DBSet(vSocio.DigControl, "T") & ", " & DBSet(vSocio.CuentaBan, "T") & ", '" & textcsb33 & "', " & DBSet(vParamAplic.PorDefecto_Agente, "N")
+                    If vParamAplic.ContabilidadNueva Then
+                        CadValues2 = CadValues2 & DBSet(ImpVenci2, "N") & ", '" & CuentaPrev & "',  '" & textcsb33 & "', " & DBSet(vParamAplic.PorDefecto_Agente, "N")
+                    Else
+                        CadValues2 = CadValues2 & DBSet(ImpVenci2, "N") & ", '" & CuentaPrev & "', " & DBSet(vSocio.Banco, "N") & ", " & DBSet(vSocio.Sucursal, "N") & ", " & DBSet(vSocio.DigControl, "T") & ", " & DBSet(vSocio.CuentaBan, "T") & ", '" & textcsb33 & "', " & DBSet(vParamAplic.PorDefecto_Agente, "N")
+                    End If
                     'departamento y transfer
                     CadValues2 = CadValues2 & "," & DBSet("", "N", "S") & ",NULL"
                     '1 Julio 2009
                     ' Datos fiscales en scobro nomclien , domclien, pobclien, cpclien, proclien
                      CadValues2 = CadValues2 & "," & CadenaDatosFiscales '& ")"
                     
-                    '[Monica]22/11/2013: tema iban
-                    If vEmpresa.HayNorma19_34Nueva = 1 Then
-                       CadValues2 = CadValues2 & "," & DBSet(vSocio.Iban, "T", "S") & ")"
+                    If vParamAplic.ContabilidadNueva Then
+                        vvIban = MiFormat(vSocio.Iban, "") & MiFormat(vSocio.Banco, "0000") & MiFormat(vSocio.Sucursal, "0000") & MiFormat(vSocio.DigControl, "00") & MiFormat(vSocio.CuentaBan, "0000000000")
+                    
+                        CadValues2 = CadValues2 & "," & DBSet(vvIban, "T", "S") & ")"
+                    
                     Else
-                       CadValues2 = CadValues2 & ")"
+                    
+                        '[Monica]22/11/2013: tema iban
+                        If vEmpresa.HayNorma19_34Nueva = 1 Then
+                           CadValues2 = CadValues2 & "," & DBSet(vSocio.Iban, "T", "S") & ")"
+                        Else
+                           CadValues2 = CadValues2 & ")"
+                        End If
+                         
                     End If
-                     
-                     
                      
                     
                     'Resto Vencimientos
                     '--------------------------------------------------------------------
-                    For I = 2 To rsVenci!numerove
+                    For i = 2 To rsVenci!numerove
                        'FECHA Resto Vencimientos
                         '=== Laura 23/01/2007
                         'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -1795,27 +1828,37 @@ Dim LEtra As String
                             FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
                         End If
 
-                        CadValues = CadValues & ", " & cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                        CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ", " & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                        CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                        CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ", " & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
 
                         'IMPORTE Resto de Vendimientos
                         ImpVenci = Round2(TotalFactura2 / rsVenci!numerove, 2)
                         ImpVenci2 = Round2((TotalFactura2) / rsVenci!numerove, 2)
                         CadValues = CadValues & DBSet(ImpVenci, "N") & ")"
-                        CadValues2 = CadValues2 & DBSet(ImpVenci2, "N") & ", " & DBSet(CuentaPrev, "T") & ", " & DBSet(vSocio.Banco, "N") & ", " & DBSet(vSocio.Sucursal, "N") & ", " & DBSet(vSocio.DigControl, "T") & ", " & DBSet(vSocio.CuentaBan, "T") & ", '" & textcsb33 & "', " & DBSet(vParamAplic.PorDefecto_Agente, "N") & ", "
+                        If vParamAplic.ContabilidadNueva Then
+                            CadValues2 = CadValues2 & DBSet(ImpVenci2, "N") & ", " & DBSet(CuentaPrev, "T") & ", '" & textcsb33 & "', " & DBSet(vParamAplic.PorDefecto_Agente, "N") & ", "
+                        Else
+                            CadValues2 = CadValues2 & DBSet(ImpVenci2, "N") & ", " & DBSet(CuentaPrev, "T") & ", " & DBSet(vSocio.Banco, "N") & ", " & DBSet(vSocio.Sucursal, "N") & ", " & DBSet(vSocio.DigControl, "T") & ", " & DBSet(vSocio.CuentaBan, "T") & ", '" & textcsb33 & "', " & DBSet(vParamAplic.PorDefecto_Agente, "N") & ", "
+                        End If
                         CadValues2 = CadValues2 & DBSet("", "N", "S") & ",NULL"
                         '1 Julio 2009
                         ' Datos fiscales en scobro nomclien , domclien, pobclien, cpclien, proclien
                         CadValues2 = CadValues2 & "," & CadenaDatosFiscales '& ")"
-                        '[Monica]22/11/2013: tema iban
-                        If vEmpresa.HayNorma19_34Nueva = 1 Then
-                           CadValues2 = CadValues2 & "," & DBSet(vSocio.Iban, "T", "S") & ")"
-                        Else
-                           CadValues2 = CadValues2 & ")"
-                        End If
                         
-
-                    Next I
+                        If vParamAplic.ContabilidadNueva Then
+                            vvIban = MiFormat(vSocio.Iban, "") & MiFormat(vSocio.Banco, "0000") & MiFormat(vSocio.Sucursal, "0000") & MiFormat(vSocio.DigControl, "00") & MiFormat(vSocio.CuentaBan, "0000000000")
+                        
+                            CadValues2 = CadValues2 & "," & DBSet(vvIban, "T", "S") & ")"
+                        
+                        Else
+                            '[Monica]22/11/2013: tema iban
+                            If vEmpresa.HayNorma19_34Nueva = 1 Then
+                               CadValues2 = CadValues2 & "," & DBSet(vSocio.Iban, "T", "S") & ")"
+                            Else
+                               CadValues2 = CadValues2 & ")"
+                            End If
+                        End If
+                    Next i
                     
                 End If
                 RS.Close
@@ -1841,20 +1884,28 @@ Dim LEtra As String
                     b = InsertarFormaPagoEnConta(CStr(ForPago), MenError)
                     
                     If b Then
-                        'Insertamos en la tabla scobro de la CONTA
-                        Sql = "INSERT INTO scobro (numserie, codfaccl, fecfaccl,text41csb ,text42csb, text43csb, numorden, codmacta, codforpa, fecvenci, impvenci,ctabanc1, codbanco, codsucur,"
-                        Sql = Sql & "digcontr, cuentaba,text33csb,agente,departamento,transfer "
-                        'JULIO 2009
-                        'nomclien,domclien,pobclien, cpclien,proclien
-                        Sql = Sql & ",nomclien,domclien,pobclien, cpclien,proclien" ')"
-                        
-                        '[Monica]22/11/2013: tema iban
-                        If vEmpresa.HayNorma19_34Nueva = 1 Then
-                           Sql = Sql & ",iban)"
+                        If vParamAplic.ContabilidadNueva Then
+                            'Insertamos en la tabla scobro de la CONTA
+                            Sql = "INSERT INTO cobros (numserie, numfactu, fecfactu,text41csb, numorden, codmacta, codforpa, fecvenci, impvenci,ctabanc1, "
+                            Sql = Sql & "text33csb,agente,departamento,transfer "
+                            'JULIO 2009
+                            'nomclien,domclien,pobclien, cpclien,proclien
+                            Sql = Sql & ",nomclien,domclien,pobclien, cpclien,proclien, nifclien,codpais, iban)" ')"
                         Else
-                           Sql = Sql & ")"
+                            'Insertamos en la tabla scobro de la CONTA
+                            Sql = "INSERT INTO scobro (numserie, codfaccl, fecfaccl,text41csb ,text42csb, text43csb, numorden, codmacta, codforpa, fecvenci, impvenci,ctabanc1, codbanco, codsucur,"
+                            Sql = Sql & "digcontr, cuentaba,text33csb,agente,departamento,transfer "
+                            'JULIO 2009
+                            'nomclien,domclien,pobclien, cpclien,proclien
+                            Sql = Sql & ",nomclien,domclien,pobclien, cpclien,proclien" ')"
+                            
+                            '[Monica]22/11/2013: tema iban
+                            If vEmpresa.HayNorma19_34Nueva = 1 Then
+                               Sql = Sql & ",iban)"
+                            Else
+                               Sql = Sql & ")"
+                            End If
                         End If
-                       
                         Sql = Sql & " VALUES " & CadValues2
                         ConnConta.Execute Sql
                     End If
@@ -1891,20 +1942,36 @@ Dim Sql As String
     'forma de pago de la factura. Sino existe insertarla
     
     'vemos si existe en la conta
-    cadAux = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", nForPa, "N")
+    If vParamAplic.ContabilidadNueva Then
+        cadAux = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", nForPa, "N")
+    Else
+        cadAux = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", nForPa, "N")
+    End If
     'si no existe la forma de pago en conta, insertamos la de aritaxi
     If cadAux = "" Then
-        cadAux2 = "tipforpa"
-        cadAux = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", nForPa, "N", cadAux2)
-        If cadAux <> "" Then
+        Sql = "select * from sforpa where codfopa = " & DBSet(nForPa, "N")
+        Set RS = New ADODB.Recordset
+        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not RS.EOF Then
             'insertamos e sforpa de la CONTA
-            Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
-            Sql = Sql & " VALUES(" & nForPa & ", " & DBSet(cadAux, "T") & ", " & cadAux2 & ")"
+            If vParamAplic.ContabilidadNueva Then
+                Sql = "INSERT INTO formapago(codforpa,nomforpa,tipforpa,numerove,primerve,restoven)"
+            Else
+                Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
+            End If
+            Sql = Sql & " VALUES(" & nForPa & ", " & DBSet(RS!nomforpa, "T") & ", " & DBSet(RS!tipforpa, "N")
+            If vParamAplic.ContabilidadNueva Then
+                Sql = Sql & "," & DBSet(RS!numerove, "N") & "," & DBSet(RS!primerve, "N") & "," & DBSet(RS!restoven, "N") & ")"
+            Else
+                Sql = Sql & ")"
+            End If
             ConnConta.Execute Sql
             InsertarFormaPagoEnConta = True
         Else
             InsertarFormaPagoEnConta = False
         End If
+        RS.Close
+        Set RS = Nothing
     Else
         InsertarFormaPagoEnConta = True
     End If

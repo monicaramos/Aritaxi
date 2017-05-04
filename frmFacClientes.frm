@@ -127,65 +127,65 @@ Begin VB.Form frmFacClientes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacClientes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "frameDptoDirec"
+      Tab(1).Control(0)=   "frameDptoVentas"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "frameDptoAdmon"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "frameDptoVentas"
+      Tab(1).Control(2)=   "frameDptoDirec"
       Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "Direcciones"
       TabPicture(2)   =   "frmFacClientes.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameDirecciones"
+      Tab(2).Control(0)=   "ToolAux"
       Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "ToolAux"
+      Tab(2).Control(1)=   "FrameDirecciones"
       Tab(2).Control(1).Enabled=   0   'False
       Tab(2).ControlCount=   2
       TabCaption(3)   =   "Documentos"
       TabPicture(3)   =   "frmFacClientes.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "LabelDoc"
+      Tab(3).Control(0)=   "Frame3(0)"
       Tab(3).Control(0).Enabled=   0   'False
-      Tab(3).Control(1)=   "imgFecha(3)"
+      Tab(3).Control(1)=   "Text1(46)"
       Tab(3).Control(1).Enabled=   0   'False
-      Tab(3).Control(2)=   "Label3"
+      Tab(3).Control(2)=   "lw1"
       Tab(3).Control(2).Enabled=   0   'False
-      Tab(3).Control(3)=   "lw1"
+      Tab(3).Control(3)=   "Label3"
       Tab(3).Control(3).Enabled=   0   'False
-      Tab(3).Control(4)=   "Text1(46)"
+      Tab(3).Control(4)=   "imgFecha(3)"
       Tab(3).Control(4).Enabled=   0   'False
-      Tab(3).Control(5)=   "Frame3(0)"
+      Tab(3).Control(5)=   "LabelDoc"
       Tab(3).Control(5).Enabled=   0   'False
       Tab(3).ControlCount=   6
       TabCaption(4)   =   "CRM"
       TabPicture(4)   =   "frmFacClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "LabelCRM"
+      Tab(4).Control(0)=   "cmdAccCRM(2)"
       Tab(4).Control(0).Enabled=   0   'False
-      Tab(4).Control(1)=   "lwCRM"
+      Tab(4).Control(1)=   "cmdAccCRM(1)"
       Tab(4).Control(1).Enabled=   0   'False
-      Tab(4).Control(2)=   "Frame3(1)"
+      Tab(4).Control(2)=   "cmdAccCRM(0)"
       Tab(4).Control(2).Enabled=   0   'False
-      Tab(4).Control(3)=   "cmdAccCRM(0)"
+      Tab(4).Control(3)=   "Frame3(1)"
       Tab(4).Control(3).Enabled=   0   'False
-      Tab(4).Control(4)=   "cmdAccCRM(1)"
+      Tab(4).Control(4)=   "lwCRM"
       Tab(4).Control(4).Enabled=   0   'False
-      Tab(4).Control(5)=   "cmdAccCRM(2)"
+      Tab(4).Control(5)=   "LabelCRM"
       Tab(4).Control(5).Enabled=   0   'False
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Subclientes"
       TabPicture(5)   =   "frmFacClientes.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Adodc2"
+      Tab(5).Control(0)=   "txtAux1(0)"
       Tab(5).Control(0).Enabled=   0   'False
-      Tab(5).Control(1)=   "DataGrid1"
+      Tab(5).Control(1)=   "txtAux1(1)"
       Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "cmdAux(0)"
       Tab(5).Control(2).Enabled=   0   'False
-      Tab(5).Control(3)=   "txtAux1(1)"
+      Tab(5).Control(3)=   "DataGrid1"
       Tab(5).Control(3).Enabled=   0   'False
-      Tab(5).Control(4)=   "txtAux1(0)"
+      Tab(5).Control(4)=   "Adodc2"
       Tab(5).Control(4).Enabled=   0   'False
       Tab(5).ControlCount=   5
       Begin VB.TextBox txtAux1 
@@ -3436,7 +3436,7 @@ End Sub
 Private Sub BotonEliminarLinea()
 'Eliminar una linea De ArticulosxAlmacen
 Dim cad As String, cad2 As String
-Dim I As Integer
+Dim i As Integer
 
     If Data2.Recordset.EOF Then Exit Sub
     If Data2.Recordset.RecordCount < 1 Then Exit Sub
@@ -3594,7 +3594,7 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
@@ -3602,8 +3602,8 @@ Dim I As Integer
     For kCampo = 0 To Me.imgBuscar.Count - 1
         Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next kCampo
-    For I = 0 To Me.imgFecha.Count - 1
-        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
 
     
@@ -3738,11 +3738,11 @@ End Sub
 
 
 Private Sub LimpiarCamposDirecciones()
-Dim I As Byte
+Dim i As Byte
     'Limpia los controles TextBox3
-    For I = 0 To Text3.Count - 1
-        Text3(I).Text = ""
-    Next I
+    For i = 0 To Text3.Count - 1
+        Text3(i).Text = ""
+    Next i
 '    lblIndicador.Caption = ""
 End Sub
 
@@ -4134,7 +4134,7 @@ End Sub
 
 Private Sub lwCRM_DblClick()
 Dim It As ListItem
-Dim I As Integer
+Dim i As Integer
     If Modo <> 2 Then Exit Sub
     If lwCRM.ListItems.Count = 0 Then Exit Sub
     If lwCRM.SelectedItem Is Nothing Then Exit Sub
@@ -4201,11 +4201,11 @@ Dim I As Integer
     
     CargaDatosLWCRM
     Set lwCRM.SelectedItem = Nothing
-    For I = 1 To lwCRM.ListItems.Count
-        If It.Text = lwCRM.ListItems(I).Text Then
-            Set lwCRM.SelectedItem = lwCRM.ListItems(I)
+    For i = 1 To lwCRM.ListItems.Count
+        If It.Text = lwCRM.ListItems(i).Text Then
+            Set lwCRM.SelectedItem = lwCRM.ListItems(i)
         Else
-            lwCRM.ListItems(I).Selected = False
+            lwCRM.ListItems(i).Selected = False
         End If
     Next
     Set It = Nothing
@@ -4633,14 +4633,14 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diversos campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
 
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -4677,9 +4677,9 @@ Dim b As Boolean
     Text1(46).Text = Me.imgFecha(3).Tag
     
     'Bloquear los Text3
-    For I = 0 To Me.Text3.Count - 1
-        BloquearTxt Me.Text3(I), Not (Modo = 5)
-    Next I
+    For i = 0 To Me.Text3.Count - 1
+        BloquearTxt Me.Text3(i), Not (Modo = 5)
+    Next i
         
         
         
@@ -4705,13 +4705,13 @@ Dim b As Boolean
     'Bloquear los checkbox
     BloquearChecks Me, Modo
     
-    For I = 0 To Me.imgFecha.Count - 1
-        If I <> 3 Then Me.imgFecha(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgFecha.Count - 1
+        If i <> 3 Then Me.imgFecha(i).Enabled = b
+    Next i
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Enabled = b
+    Next i
     imgBuscar(11).Enabled = Modo >= 2 And Modo < 5
     
     'CRM
@@ -4805,7 +4805,7 @@ End Sub
 
 
 Private Sub PonerModoFrame(Kmodo As Byte)
-Dim I As Byte
+Dim i As Byte
 On Error GoTo EPonerModoFr
 
     ModoFrame = Kmodo
@@ -4821,10 +4821,10 @@ On Error GoTo EPonerModoFr
     If SSTab1.Tab = 2 Then
     
         'Bloquear TextBox sino modo 3 o 4
-        For I = 0 To Me.Text3.Count - 1
-            If ModoFrame = 3 Then Text3(I).Text = ""
-            BloquearTxt Text3(I), (ModoFrame = 0)
-        Next I
+        For i = 0 To Me.Text3.Count - 1
+            If ModoFrame = 3 Then Text3(i).Text = ""
+            BloquearTxt Text3(i), (ModoFrame = 0)
+        Next i
         
         'Si modo es modificar bloquear Clave Primaria
         If ModoFrame = 4 Then BloquearTxt Text3(0), True
@@ -5251,7 +5251,7 @@ End Sub
  
     
 Private Function InsertarModificarLinea() As Boolean
-Dim I As Byte
+Dim i As Byte
 Dim Sql As String
 
     On Error GoTo EInsertarModificarLinea
@@ -5264,16 +5264,16 @@ Dim Sql As String
             Sql = "INSERT INTO sdirec (codclien,coddirec,nomdirec,domdirec,codpobla,pobdirec,prodirec,perdirec,teldirec,faxdirec,maidirec,codbanco,codsucur,digcontr,cuentaba) VALUES ("
             Sql = Sql & Text1(0).Text & ", "
             Sql = Sql & Text3(0).Text
-            For I = 1 To 5
+            For i = 1 To 5
                 Sql = Sql & ", "
-                Sql = Sql & DBSet(Text3(I).Text, "T")
-            Next I
+                Sql = Sql & DBSet(Text3(i).Text, "T")
+            Next i
                     
-            For I = 6 To 13 'campos opcionales
+            For i = 6 To 13 'campos opcionales
                 Sql = Sql & ", "
-                Sql = Sql & DBSet(Text3(I).Text, "T", "S")
+                Sql = Sql & DBSet(Text3(i).Text, "T", "S")
 '                If i <> 13 Then SQL = SQL & ", "
-            Next I
+            Next i
                         
             Sql = Sql & ")"
         End If
@@ -5935,10 +5935,17 @@ Dim MeteIT As Boolean
         
     Case 3
         'Cobros pendientes
-        cad = "SELECT fecvenci,concat(numserie,right(concat(""00000000"",codfaccl),7)),fecfaccl,nomforpa,"
-        cad = cad & "impvenci+if(gastos is null,0,gastos)-if(impcobro is null,0,impcobro)  tot"
-        cad = cad & " FROM  scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
-        cad = cad & " WHERE scobro.codmacta = '" & Text1(35).Text & "' AND (sforpa.tipforpa between 0 and 3) "
+        If vParamAplic.ContabilidadNueva Then
+            cad = "SELECT fecvenci,concat(numserie,right(concat(""00000000"",codfaccl),7)),fecfactu,nomforpa,"
+            cad = cad & "impvenci+if(gastos is null,0,gastos)-if(impcobro is null,0,impcobro)  tot"
+            cad = cad & " FROM  cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
+            cad = cad & " WHERE cobros.codmacta = '" & Text1(35).Text & "' AND (formapago.tipforpa between 0 and 3) "
+        Else
+            cad = "SELECT fecvenci,concat(numserie,right(concat(""00000000"",codfaccl),7)),fecfaccl,nomforpa,"
+            cad = cad & "impvenci+if(gastos is null,0,gastos)-if(impcobro is null,0,impcobro)  tot"
+            cad = cad & " FROM  scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+            cad = cad & " WHERE scobro.codmacta = '" & Text1(35).Text & "' AND (sforpa.tipforpa between 0 and 3) "
+        End If
         BuscaChekc = "fecvenci"
         
     Case 4
@@ -6178,7 +6185,7 @@ End Sub
 
 '************************************
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)   ', enlaza As Boolean)
-Dim I As Integer
+Dim i As Integer
 Dim Sql As String
 
 On Error GoTo ECargaGrid
@@ -6199,10 +6206,10 @@ On Error GoTo ECargaGrid
 
 
     vDataGrid.Enabled = (Modo = 0) Or (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
-    For I = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(I).Locked = True
-        vDataGrid.Columns(I).AllowSizing = False
-    Next I
+    For i = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(i).Locked = True
+        vDataGrid.Columns(i).AllowSizing = False
+    Next i
     vDataGrid.ScrollBars = dbgAutomatic
 
     Exit Sub
@@ -6273,32 +6280,32 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim I As Byte
+Dim i As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For I = 0 To txtAux1.Count - 1 'TextBox
-            txtAux1(I).Top = 290
-            txtAux1(I).visible = visible
-        Next I
+        For i = 0 To txtAux1.Count - 1 'TextBox
+            txtAux1(i).Top = 290
+            txtAux1(i).visible = visible
+        Next i
         Me.cmdAux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For I = 0 To txtAux1.Count - 1
-                txtAux1(I).Text = ""
-                BloquearTxt txtAux1(I), False
-            Next I
+            For i = 0 To txtAux1.Count - 1
+                txtAux1(i).Text = ""
+                BloquearTxt txtAux1(i), False
+            Next i
         Else 'Vamos a modificar
-            For I = 0 To txtAux1.Count - 1
-                txtAux1(I).Text = DataGrid1.Columns(I + 2).Text
-                If I >= 2 Then
-                    txtAux1(I).Locked = False
-                    txtAux1(I).BackColor = &H80000005
+            For i = 0 To txtAux1.Count - 1
+                txtAux1(i).Text = DataGrid1.Columns(i + 2).Text
+                If i >= 2 Then
+                    txtAux1(i).Locked = False
+                    txtAux1(i).BackColor = &H80000005
                 Else
-                    txtAux1(I).Locked = True
+                    txtAux1(i).Locked = True
                 End If
-            Next I
+            Next i
             cmdAux(0).Enabled = False
         End If
         
@@ -6306,10 +6313,10 @@ Dim I As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 20)
         
-        For I = 0 To txtAux1.Count - 1
-            txtAux1(I).Top = alto
-            txtAux1(I).Height = DataGrid1.RowHeight
-        Next I
+        For i = 0 To txtAux1.Count - 1
+            txtAux1(i).Top = alto
+            txtAux1(i).Height = DataGrid1.RowHeight
+        Next i
         
         
         'Fijamos anchura y posicion Left
@@ -6330,9 +6337,9 @@ Dim I As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For I = 0 To txtAux1.Count - 1
-            txtAux1(I).visible = visible
-        Next I
+        For i = 0 To txtAux1.Count - 1
+            txtAux1(i).visible = visible
+        Next i
         Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
         Me.cmdAux(0).Top = alto
         Me.cmdAux(0).visible = visible
@@ -6432,7 +6439,7 @@ End Function
 Private Sub BotonEliminarLinea2()
 'Eliminar una linea De ArticulosxAlmacen
 Dim cad As String, cad2 As String
-Dim I As Integer
+Dim i As Integer
 Dim Sql As String
 
 

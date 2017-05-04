@@ -567,7 +567,11 @@ Dim Sql As String
         If CuentaPrev = "" Then
             'leer la cuenta prevista de pagos de la tabla de contabilidad: conta.spagos
             'cuando vamos a borrar una factura porque modificarmos
-            Sql = DevuelveDesdeBDNew(conConta, "spagop", "ctabanc1", "ctaprove", CtaProve, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
+            If vParamAplic.ContabilidadNueva Then
+                Sql = DevuelveDesdeBDNew(conConta, "pagos", "ctabanc1", "codmacta", CtaProve, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
+            Else
+                Sql = DevuelveDesdeBDNew(conConta, "spagop", "ctabanc1", "ctaprove", CtaProve, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
+            End If
             If Sql <> "" Then
                 CuentaPrev = Sql
                 LeerDatos3 = True
@@ -618,7 +622,7 @@ Dim cadValuesAux As String 'para insertar en svenci
 Dim CadValues2 As String, CadValuesAux2 As String 'para insertar en conta.scobro
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single
-Dim I As Byte
+Dim i As Byte
 Dim vvIban As String
 
     On Error GoTo EInsertarTesoreria
@@ -643,13 +647,13 @@ Dim vvIban As String
             
             If Not RS.EOF Then
                'vamos creando la cadena para insertar en spagosp de la CONTA
-               CadValuesAux2 = ",("
+               CadValuesAux2 = "("
                If vParamAplic.ContabilidadNueva Then CadValuesAux2 = CadValuesAux2 & DBSet(SerieFraPro, "T") & ","
                CadValuesAux2 = CadValuesAux2 & "'" & CtaProve & "', " & DBSet(NumFactu, "T") & ", '" & Format(FecFactu, FormatoFecha) & "', "
               
               'Primer Vencimiento
               '------------------------------------------------------------
-              I = 1
+              i = 1
               'FECHA VTO
               FecVenci = CDate(FecFactu)
               '=== Modificado: Laura 23/01/2007
@@ -665,7 +669,7 @@ Dim vvIban As String
                   FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
               End If
              
-              CadValues2 = CadValuesAux2 & I
+              CadValues2 = CadValuesAux2 & i
               CadValues2 = CadValues2 & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                 
               'IMPORTE del Vencimiento
@@ -702,7 +706,7 @@ Dim vvIban As String
               If vParamAplic.ContabilidadNueva Then
                   vvIban = MiFormat(mCCC_Iban, "") & MiFormat(mCCC_Entidad, "0000") & MiFormat(mCCC_Oficina, "0000") & MiFormat(mCCC_CC, "00") & MiFormat(mCCC_CTa, "0000000000")
                   
-                  CadValues2 = CadValues2 & "," & DBSet(vvIban, "T") & ","
+                  CadValues2 = CadValues2 & "," & DBSet(vvIban, "T", "S") & ","
               
 'nomprove , domprove, pobprove, cpprove, proprove, nifProve, codpais
                   CadValues2 = CadValues2 & DBSet(mNomProve, "T") & "," & DBSet(mDomProve, "T") & "," & DBSet(mPobprove, "T") & "," & DBSet(mCodpobla, "T") & ","
@@ -719,7 +723,7 @@ Dim vvIban As String
 
               'Resto Vencimientos
               '--------------------------------------------------------------------
-              For I = 2 To rsVenci!numerove
+              For i = 2 To rsVenci!numerove
                  'FECHA Resto Vencimientos
                   '==== Modificado: Laura 23/01/2007
                   'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -734,7 +738,7 @@ Dim vvIban As String
                         FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
                   End If
 
-                  CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                  CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
 
                   'IMPORTE Resto de Vendimientos
                   ImpVenci = Round(TotalFac / rsVenci!numerove, 2)
@@ -761,7 +765,7 @@ Dim vvIban As String
                   If vParamAplic.ContabilidadNueva Then
                       vvIban = MiFormat(mCCC_Iban, "") & MiFormat(mCCC_Entidad, "0000") & MiFormat(mCCC_Oficina, "0000") & MiFormat(mCCC_CC, "00") & MiFormat(mCCC_CTa, "0000000000")
                       
-                      CadValues2 = CadValues2 & "," & DBSet(vvIban, "T") & ","
+                      CadValues2 = CadValues2 & "," & DBSet(vvIban, "T", "S") & ","
                   
                     'nomprove , domprove, pobprove, cpprove, proprove, nifProve, codpais
                       CadValues2 = CadValues2 & DBSet(mNomProve, "T") & "," & DBSet(mDomProve, "T") & "," & DBSet(mPobprove, "T") & "," & DBSet(mCodpobla, "T") & ","
@@ -769,12 +773,12 @@ Dim vvIban As String
                   Else
                         '[Monica]22/11/2013: tema iban
                         If vEmpresa.HayNorma19_34Nueva = 1 Then
-                            CadValues2 = CadValues2 & "," & DBSet(mCCC_Iban, "T", "S") & ")"
+                            CadValues2 = CadValues2 & "," & DBSet(mCCC_Iban, "T", "S") & "),"
                         Else
                             CadValues2 = CadValues2 & ")"
                         End If
                   End If
-              Next I
+              Next i
             End If
         End If
         RS.Close
@@ -797,16 +801,34 @@ Dim vvIban As String
         End If
         'si no existe la forma de pago en conta, insertamos la de aritaxi
         If CadValuesAux2 = "" Then
-            cadValuesAux = "tipforpa"
-            CadValuesAux2 = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", ForPago, "N", cadValuesAux)
-            'insertamos e sforpa de la CONTA
-            If vParamAplic.ContabilidadNueva Then
-                Sql = "INSERT INTO formapago(codforpa,nomforpa,tipforpa)"
-            Else
-                Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
+            
+'++
+            Dim Sql8 As String
+            Dim RS8 As ADODB.Recordset
+
+            Sql8 = "select * from sforpa where codfopa = " & DBSet(ForPago, "N")
+            Set RS8 = New ADODB.Recordset
+            RS8.Open Sql8, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            If Not RS8.EOF Then
+                'insertamos e sforpa de la CONTA
+                If vParamAplic.ContabilidadNueva Then
+                    Sql8 = "INSERT INTO formapago(codforpa,nomforpa,tipforpa,numerove,primerve,restoven)"
+                Else
+                    Sql8 = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
+                End If
+                Sql8 = Sql8 & " VALUES(" & ForPago & ", " & DBSet(RS!nomforpa, "T") & ", " & DBSet(RS!tipforpa, "N")
+                If vParamAplic.ContabilidadNueva Then
+                    Sql8 = Sql8 & "," & DBSet(RS!numerove, "N") & "," & DBSet(RS!primerve, "N") & "," & DBSet(RS!restoven, "N") & ")"
+                Else
+                    Sql8 = Sql8 & ")"
+                End If
+                ConnConta.Execute Sql8
             End If
-            Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
-            ConnConta.Execute Sql
+            RS8.Close
+            Set RS8 = Nothing
+        
+ '++
+        
         End If
 
         'Insertamos en la tabla spagop de la CONTA
@@ -825,7 +847,7 @@ Dim vvIban As String
         End If
         
         Sql = Sql & ")"
-        Sql = Sql & " VALUES " & Mid(CadValues2, 2)
+        Sql = Sql & " VALUES " & CadValues2
         ConnConta.Execute Sql
     End If
 
@@ -1108,7 +1130,7 @@ Public Function CalcularDatosFactura(cadWHERE As String, NomTabla As String, Nom
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
 Dim RS As ADODB.Recordset
-Dim I As Integer
+Dim i As Integer
 
 Dim Sql As String
 Dim cadAux As String
@@ -1136,7 +1158,7 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
     RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     TotBruto = 0
-    I = 1
+    i = 1
     While Not RS.EOF
         'Aqui vamos acumulando la suma del importe bruto de las lineas
         TotBruto = TotBruto + RS!bruto
@@ -1165,7 +1187,7 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
         TotImpIVA = TotImpIVA + ImpIVA
         
         
-        Select Case I
+        Select Case i
             Case 1  'IVA 1
                 TipoIVA1 = RS!codigiva
                 
@@ -1196,7 +1218,7 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
                 'Importe total con IVA
                 ImpIVA3 = ImpIVA
         End Select
-        I = I + 1
+        i = i + 1
         RS.MoveNext
     Wend
     

@@ -1670,9 +1670,9 @@ Dim mCCC_Oficina As String
 Dim mCCC_CC As String
 Dim mCCC_CTa As String
 
+Dim vSocio As CSocio
 
-
-Dim I As Byte
+Dim i As Byte
 
     On Error GoTo EInsertarTesoreria
 
@@ -1711,119 +1711,143 @@ Dim I As Byte
             RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
             If Not RS.EOF Then
-            
                ' se construye como en el caso de publicidad
                CtaProve = ""
                
                Socio = RsFact!codSocio
-               FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
-               CtaProve = Trim(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Socio, FormatSocio))
-            
-            
-               'vamos creando la cadena para insertar en spagosp de la CONTA
-               CadValuesAux2 = "('" & CtaProve & "', " & DBSet(RsFact!NumFactu, "T") & ", '" & Format(RsFact!FecFactu, FormatoFecha) & "', "
-              
-              'Primer Vencimiento
-              '------------------------------------------------------------
-              I = 1
-              'FECHA VTO
-              FecVenci = CDate(RsFact!FecFactu)
-              '=== Modificado: Laura 23/01/2007
-'              FecVenci = FecVenci + CByte(DBLet(rsVenci!primerve, "N"))
-              FecVenci = DateAdd("d", DBLet(rsVenci!primerve, "N"), FecVenci)
-              '==================================
-              'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
-              FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
-
-              'Comprobar si  tiene mes a no girar
-              FecVenci1 = FecVenci
-              If DBSet(RS!mesnogir, "N") <> 0 Then
-                  FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
-              End If
-             
-              CadValues2 = CadValuesAux2 & I
-              CadValues2 = CadValues2 & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+               Set vSocio = New CSocio
+               
+               If vSocio.LeerDatos(Socio) Then
+                   FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
+                   CtaProve = Trim(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Socio, FormatSocio))
                 
-              'IMPORTE del Vencimiento
-              If rsVenci!numerove = 1 Then
-                    ImpVenci = RsFact!TotalFac
-              Else
-                    ImpVenci = Round(RsFact!TotalFac / rsVenci!numerove, 2)
-                    'Comprobar que la suma de los vencimientos cuadra con el total de la factura
-                    If ImpVenci * rsVenci!numerove <> RsFact!TotalFac Then
-                        ImpVenci = Round(ImpVenci + (RsFact!TotalFac - ImpVenci * rsVenci!numerove), 2)
-                    End If
-              End If
-              
-              CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
-              
-              
-              CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CuentaPrev, "T") & ","
-              
-              'David. Para que ponga la cuenta bancaria (SI LA tiene)
-              CadValues2 = CadValues2 & DBSet(mCCC_Entidad, "T", "S") & "," & DBSet(mCCC_Oficina, "T", "S") & ","
-              CadValues2 = CadValues2 & DBSet(mCCC_CC, "T", "S") & "," & DBSet(mCCC_CTa, "T", "S") & ","
-
-
-              'David. JUNIO 07.   Los dos textos de grabacion de datos de csb
-              Sql = "Factura num.: " & RsFact!NumFactu & "-" & Format(RsFact!FecFactu, "dd/mm/yyyy")
-              CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
-              Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
-              CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"
-              
-              '[Monica]22/11/2013: tema iban
-              If vEmpresa.HayNorma19_34Nueva = 1 Then
-                  CadValues2 = CadValues2 & "," & DBSet(mCCC_Iban, "T", "S") & ")"
-              Else
-                  CadValues2 = CadValues2 & ")"
-              End If
-              
- 
-              'Resto Vencimientos
-              '--------------------------------------------------------------------
-              For I = 2 To rsVenci!numerove
-                 'FECHA Resto Vencimientos
-                  '==== Modificado: Laura 23/01/2007
-                  'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
-                  FecVenci = DateAdd("d", DBLet(rsVenci!restoven, "N"), FecVenci)
-                  '==================================================
+                   'vamos creando la cadena para insertar en spagosp de la CONTA
+                   CadValuesAux2 = "("
+                   If vParamAplic.ContabilidadNueva Then CadValuesAux2 = CadValuesAux2 & DBSet(SerieFraPro, "T") & ","
+                   CadValuesAux2 = CadValuesAux2 & "'" & CtaProve & "', " & DBSet(RsFact!NumFactu, "T") & ", '" & Format(RsFact!FecFactu, FormatoFecha) & "', "
+                  
+                  'Primer Vencimiento
+                  '------------------------------------------------------------
+                  i = 1
+                  'FECHA VTO
+                  FecVenci = CDate(RsFact!FecFactu)
+                  '=== Modificado: Laura 23/01/2007
+    '              FecVenci = FecVenci + CByte(DBLet(rsVenci!primerve, "N"))
+                  FecVenci = DateAdd("d", DBLet(rsVenci!primerve, "N"), FecVenci)
+                  '==================================
                   'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
                   FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
-
-                  'Comprobar si tiene mes a no girar
+    
+                  'Comprobar si  tiene mes a no girar
                   FecVenci1 = FecVenci
                   If DBSet(RS!mesnogir, "N") <> 0 Then
-                        FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
+                      FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
                   End If
-
-                  CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-
-                  'IMPORTE Resto de Vendimientos
-                  ImpVenci = Round(RS!TotalFac / rsVenci!numerove, 2)
-
-                  CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", '" & CuentaPrev & "',"
+                 
+                  CadValues2 = CadValuesAux2 & i
+                  CadValues2 = CadValues2 & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    
+                  'IMPORTE del Vencimiento
+                  If rsVenci!numerove = 1 Then
+                        ImpVenci = RsFact!TotalFac
+                  Else
+                        ImpVenci = Round(RsFact!TotalFac / rsVenci!numerove, 2)
+                        'Comprobar que la suma de los vencimientos cuadra con el total de la factura
+                        If ImpVenci * rsVenci!numerove <> RsFact!TotalFac Then
+                            ImpVenci = Round(ImpVenci + (RsFact!TotalFac - ImpVenci * rsVenci!numerove), 2)
+                        End If
+                  End If
+                  
+                  CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
                   
                   
-                  'David. Para que ponga la cuenta bancaria (SI LA tiene)
-                  CadValues2 = CadValues2 & DBSet(mCCC_Entidad, "T", "S") & "," & DBSet(mCCC_Oficina, "T", "S") & ","
-                  CadValues2 = CadValues2 & DBSet(mCCC_CC, "T", "S") & "," & DBSet(mCCC_CTa, "T", "S") & ","
-
+                  CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CuentaPrev, "T") & ","
+                  
+                  
+                  If Not vParamAplic.ContabilidadNueva Then
+                        'David. Para que ponga la cuenta bancaria (SI LA tiene)
+                        CadValues2 = CadValues2 & DBSet(mCCC_Entidad, "T", "S") & "," & DBSet(mCCC_Oficina, "T", "S") & ","
+                        CadValues2 = CadValues2 & DBSet(mCCC_CC, "T", "S") & "," & DBSet(mCCC_CTa, "T", "S") & ","
+                  End If
+    
+                  'David. JUNIO 07.   Los dos textos de grabacion de datos de csb
                   Sql = "Factura num.: " & RsFact!NumFactu & "-" & Format(RsFact!FecFactu, "dd/mm/yyyy")
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
                   Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"
-                  '[Monica]22/11/2013: tema iban
-                  If vEmpresa.HayNorma19_34Nueva = 1 Then
-                      CadValues2 = CadValues2 & "," & DBSet(mCCC_Iban, "T", "S") & ")"
+                  
+                  If vParamAplic.ContabilidadNueva Then
+                        CadValues2 = CadValues2 & "," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T") & ","
+                        CadValues2 = CadValues2 & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & ",'ES',"
+                        CadValues2 = CadValues2 & DBSet(vSocio.Iban, "T") & ")"
                   Else
-                      CadValues2 = CadValues2 & ")"
+                        '[Monica]22/11/2013: tema iban
+                        If vEmpresa.HayNorma19_34Nueva = 1 Then
+                            CadValues2 = CadValues2 & "," & DBSet(mCCC_Iban, "T", "S") & ")"
+                        Else
+                            CadValues2 = CadValues2 & ")"
+                        End If
                   End If
-              Next I
+     
+                  'Resto Vencimientos
+                  '--------------------------------------------------------------------
+                  For i = 2 To rsVenci!numerove
+                     'FECHA Resto Vencimientos
+                      '==== Modificado: Laura 23/01/2007
+                      'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
+                      FecVenci = DateAdd("d", DBLet(rsVenci!restoven, "N"), FecVenci)
+                      '==================================================
+                      'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
+                      FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+    
+                      'Comprobar si tiene mes a no girar
+                      FecVenci1 = FecVenci
+                      If DBSet(RS!mesnogir, "N") <> 0 Then
+                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
+                      End If
+    
+                      CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+    
+                      'IMPORTE Resto de Vendimientos
+                      ImpVenci = Round(RS!TotalFac / rsVenci!numerove, 2)
+    
+                      CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", '" & CuentaPrev & "',"
+                      
+                      
+                      'David. Para que ponga la cuenta bancaria (SI LA tiene)
+                      If Not vParamAplic.ContabilidadNueva Then
+                            CadValues2 = CadValues2 & DBSet(mCCC_Entidad, "T", "S") & "," & DBSet(mCCC_Oficina, "T", "S") & ","
+                            CadValues2 = CadValues2 & DBSet(mCCC_CC, "T", "S") & "," & DBSet(mCCC_CTa, "T", "S") & ","
+                      End If
+                      
+                      Sql = "Factura num.: " & RsFact!NumFactu & "-" & Format(RsFact!FecFactu, "dd/mm/yyyy")
+                      CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
+                      Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
+                      CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"
+                      
+                      If vParamAplic.ContabilidadNueva Then
+                            CadValues2 = CadValues2 & "," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T") & ","
+                            CadValues2 = CadValues2 & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & ",'ES',"
+                            CadValues2 = CadValues2 & DBSet(vSocio.Iban, "T") & ")"
+                      Else
+                            '[Monica]22/11/2013: tema iban
+                            If vEmpresa.HayNorma19_34Nueva = 1 Then
+                                CadValues2 = CadValues2 & "," & DBSet(mCCC_Iban, "T", "S") & ")"
+                            Else
+                                CadValues2 = CadValues2 & ")"
+                            End If
+                      End If
+                  Next i
+                End If
+                
+                Set vSocio = Nothing
+            
             End If
         End If
         RS.Close
         Set RS = Nothing
     End If
+    
     rsVenci.Close
     Set rsVenci = Nothing
     
@@ -1834,28 +1858,60 @@ Dim I As Byte
         'forma de pago de la factura. Sino existe insertarla
 
         'vemos si existe en la conta
-        CadValuesAux2 = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", ForPago, "N")
+        If vParamAplic.ContabilidadNueva Then
+            CadValuesAux2 = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", ForPago, "N")
+        Else
+            CadValuesAux2 = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", ForPago, "N")
+        End If
         'si no existe la forma de pago en conta, insertamos la de aritaxi
         If CadValuesAux2 = "" Then
-            cadValuesAux = "tipforpa"
-            CadValuesAux2 = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", ForPago, "N", cadValuesAux)
-            'insertamos e sforpa de la CONTA
-            Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
-            Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
-            ConnConta.Execute Sql
+        
+'++
+
+            Dim Sql8 As String
+            Dim RS8 As ADODB.Recordset
+
+            Sql8 = "select * from sforpa where codfopa = " & DBSet(ForPago, "N")
+            Set RS8 = New ADODB.Recordset
+            RS8.Open Sql8, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            If Not RS8.EOF Then
+                'insertamos e sforpa de la CONTA
+                If vParamAplic.ContabilidadNueva Then
+                    Sql8 = "INSERT INTO formapago(codforpa,nomforpa,tipforpa,numerove,primerve,restoven)"
+                Else
+                    Sql8 = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
+                End If
+                Sql8 = Sql8 & " VALUES(" & ForPago & ", " & DBSet(RS!nomforpa, "T") & ", " & DBSet(RS!tipforpa, "N")
+                If vParamAplic.ContabilidadNueva Then
+                    Sql8 = Sql8 & "," & DBSet(RS!numerove, "N") & "," & DBSet(RS!primerve, "N") & "," & DBSet(RS!restoven, "N") & ")"
+                Else
+                    Sql8 = Sql8 & ")"
+                End If
+                ConnConta.Execute Sql8
+            End If
+            RS8.Close
+            Set RS8 = Nothing
+        
+'++
+        
+        
         End If
 
         'Insertamos en la tabla spagop de la CONTA
         'SQL = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1) "
         'David. Cuenta bancaria y descripcion textos
-        Sql = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba,text1csb,text2csb" ') "
-        '[Monica]22/11/2013: tema iban
-        If vEmpresa.HayNorma19_34Nueva = 1 Then
-            Sql = Sql & ",iban)"
+        If vParamAplic.ContabilidadNueva Then
+            Sql = "INSERT INTO pagos (numserie, codmacta, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,text1csb,text2csb," ') "
+            Sql = Sql & "nomprove,domprove,pobprove,cpprove,proprove,nifprove,codpais,iban)"
         Else
-            Sql = Sql & ")"
+            Sql = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba,text1csb,text2csb" ') "
+            '[Monica]22/11/2013: tema iban
+            If vEmpresa.HayNorma19_34Nueva = 1 Then
+                Sql = Sql & ",iban)"
+            Else
+                Sql = Sql & ")"
+            End If
         End If
-        
         Sql = Sql & " VALUES " & CadValues2
         ConnConta.Execute Sql
     End If

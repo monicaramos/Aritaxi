@@ -624,8 +624,11 @@ Dim cad As String
         Exit Sub
     End If
     
-    
-    cad = DevuelveDesdeBD(conConta, "count(*)", "scobro", "agente", CStr(Data1.Recordset!codagent))
+    If vParamAplic.ContabilidadNueva Then
+        cad = DevuelveDesdeBD(conConta, "count(*)", "cobros", "agente", CStr(Data1.Recordset!codagent))
+    Else
+        cad = DevuelveDesdeBD(conConta, "count(*)", "scobro", "agente", CStr(Data1.Recordset!codagent))
+    End If
     If cad <> "" Then
         If Val(cad) = 0 Then cad = ""
     End If
@@ -997,13 +1000,13 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim I As Integer
+Dim i As Integer
 
     Modo = Kmodo
     
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos

@@ -1821,10 +1821,16 @@ Dim Sql As String
 Dim Impor As Currency
 Dim Borrame As Currency
 
-    Sql = "SELECT numserie, codfaccl, fecfaccl, fecvenci, impvenci, impcobro ,gastos"
-    Sql = Sql & " FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
-    Sql = Sql & cadWHERE
-
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "SELECT numserie, numfactu, fecfactu, fecvenci, impvenci, impcobro ,gastos"
+        Sql = Sql & " FROM cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
+        Sql = Sql & cadWHERE
+    Else
+        Sql = "SELECT numserie, codfaccl, fecfaccl, fecvenci, impvenci, impcobro ,gastos"
+        Sql = Sql & " FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+        Sql = Sql & cadWHERE
+    End If
+    
     Set RS = New ADODB.Recordset
     RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
      

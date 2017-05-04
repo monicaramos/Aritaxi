@@ -1469,9 +1469,16 @@ On Error GoTo EModFact
                     'Eliminar de la spagop
 '[Monica]10/07/2012: tanto liquidaciones como rectificativas han de estar en la spagop
 '                    If Text1(1).Text = "FLI" Then
-                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(data1.Recordset.Fields!NumFactu) & "'"
-                        Sql = Sql & " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                        ConnConta.Execute "Delete from spagop WHERE " & Sql
+                        If vParamAplic.ContabilidadNueva Then
+                            Sql = " numserie = " & DBSet(SerieFraPro, "T")
+                            Sql = Sql & " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(Data1.Recordset.Fields!NumFactu) & "'"
+                            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                            ConnConta.Execute "Delete from pagos WHERE " & Sql
+                        Else
+                            Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(Data1.Recordset.Fields!NumFactu) & "'"
+                            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                            ConnConta.Execute "Delete from spagop WHERE " & Sql
+                        End If
 '                    Else
 '                        Sql = " codmacta='" & vFactu.CtaSocio & "' AND codfaccl=" & Data1.Recordset.Fields!NumFactu & " "
 '                        Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
@@ -1905,10 +1912,10 @@ Private Sub PosicionarData()
 Dim Indicador As String
 Dim vWhere As String
 
-    If Not data1.Recordset.EOF Then
+    If Not Data1.Recordset.EOF Then
         'Hay datos en el Data1 bien porque se ha hecho VerTodos o una Busqueda
          vWhere = "(" & ObtenerWhereCP(False) & ")"
-         If SituarDataMULTI(data1, vWhere, Indicador) Then
+         If SituarDataMULTI(Data1, vWhere, Indicador) Then
              PonerModo 2
              lblIndicador.Caption = Indicador
         Else
@@ -2001,16 +2008,16 @@ Dim cad As String
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
         PonerModo 2
         DataGrid1.Enabled = True
-        If Not data1.Recordset.EOF Then _
-            Me.lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
+        If Not Data1.Recordset.EOF Then _
+            Me.lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
 
     Else 'Se llama desde algún Prismatico de otro Form al Mantenimiento de Trabajadores
-        If data1.Recordset.EOF Then
+        If Data1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = data1.Recordset.Fields(0) & "|"
-        cad = cad & data1.Recordset.Fields(1) & "|"
+        cad = Data1.Recordset.Fields(0) & "|"
+        cad = cad & Data1.Recordset.Fields(1) & "|"
         RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
@@ -2051,7 +2058,7 @@ Private Sub Form_Activate()
     If UnaVez Then
         UnaVez = False
         If hcoCodMovim <> "" Then
-            If data1.Recordset.EOF Then
+            If Data1.Recordset.EOF Then
                 PonerCadenaBusqueda
             Else
                 PonerCampos
@@ -2127,10 +2134,10 @@ Private Sub Form_Load()
     End If
   
   '**
-    data1.ConnectionString = conn
-    data1.RecordSource = CadenaConsulta
+    Data1.ConnectionString = conn
+    Data1.RecordSource = CadenaConsulta
     
-    data1.Refresh
+    Data1.Refresh
     
     Me.SSTab1.Tab = 0
    
@@ -2151,7 +2158,7 @@ Private Sub Form_Load()
         LimpiarDataGrids
         PrimeraVez = False
     Else
-        If data1.Recordset.EOF Then
+        If Data1.Recordset.EOF Then
             PonerModo 0
         Else
             PonerModo 2
@@ -2197,7 +2204,7 @@ Dim anc As Single
         LLamaLineas 1, anc, "DataGrid1"
     Else
         HacerBusqueda
-        If data1.Recordset.EOF Then
+        If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbYellow
             PonerFoco Text1(kCampo)
@@ -2315,7 +2322,7 @@ Dim indice As Byte
                     CadenaDesdeOtroForm = Text1(3).Text
                 Else
                     CadenaDesdeOtroForm = ""
-                    If Not Me.data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(data1.Recordset!Concepto, "T")
+                    If Not Me.Data1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Data1.Recordset!Concepto, "T")
                 End If
                 frmFacClienteObser.Modificar = Modo >= 3
                 frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -2567,7 +2574,11 @@ Dim LEtra As String, numasien As String
         'comprobar en la contabilidad si esta contabilizada
       
         If LEtra <> "" Then
-            numasien = DevuelveDesdeBDNew(conConta, "cabfact", "numasien", "numserie", LEtra, "T", , "codfaccl", Text1(0).Text, "N", "anofaccl", Year(Text1(2).Text), "N")
+            If vParamAplic.ContabilidadNueva Then
+                numasien = DevuelveDesdeBDNew(conConta, "factcli", "numasien", "numserie", LEtra, "T", , "numfactu", Text1(0).Text, "N", "anofactu", Year(Text1(2).Text), "N")
+            Else
+                numasien = DevuelveDesdeBDNew(conConta, "cabfact", "numasien", "numserie", LEtra, "T", , "codfaccl", Text1(0).Text, "N", "anofaccl", Year(Text1(2).Text), "N")
+            End If
             If Val(ComprobarCero(numasien)) <> 0 Then
 '                FactContabilizada = True
 '                MsgBox "La factura esta contabilizada y no se puede modificar.", vbInformation
@@ -2706,7 +2717,7 @@ Private Function FactContabilizada(ByRef EstaEnTesoreria As String) As Boolean
 Dim cta As String, numasien As String
 Dim vSocio As CSocio
 Dim LEtra As String
-Dim NumFac As String
+Dim numFac As String
 
 
     On Error GoTo EContab
@@ -2741,8 +2752,8 @@ Dim NumFac As String
     '        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
             If vSocio.CtaSocioLiq <> "" Then
                 LEtra = DevuelveDesdeBDNew(conAri, "stipom", "letraser", "codtipom", Text1(1).Text, "T")
-                NumFac = LEtra & Text1(0).Text
-                numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", vSocio.CtaSocioLiq, "T", , "numfacpr", NumFac, "T", "fecfacpr", Text1(2).Text, "F")
+                numFac = LEtra & Text1(0).Text
+                numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", vSocio.CtaSocioLiq, "T", , "numfacpr", numFac, "T", "fecfacpr", Text1(2).Text, "F")
                 If numasien <> "" Then
 '                    FactContabilizada = True
 '                    MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
@@ -2951,8 +2962,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData data1, Index
+    If Data1.Recordset.EOF Then Exit Sub
+    DesplazamientoData Data1, Index
     PonerCampos
 End Sub
 
@@ -3086,7 +3097,7 @@ Dim EstaEnTesoreria As String
     On Error GoTo EEliminar
 
     'Ciertas comprobaciones
-    If data1.Recordset.EOF Then Exit Sub
+    If Data1.Recordset.EOF Then Exit Sub
     
     'solo se puede modificar la factura si no esta contabilizada
     If FactContabilizada(EstaEnTesoreria) Then Exit Sub
@@ -3105,7 +3116,7 @@ Dim EstaEnTesoreria As String
     If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         Screen.MousePointer = vbHourglass
-        NumRegElim = data1.Recordset.AbsolutePosition
+        NumRegElim = Data1.Recordset.AbsolutePosition
         CodTipoMov = Text1(1).Text
         
         If Not Eliminar Then
@@ -3116,7 +3127,7 @@ Dim EstaEnTesoreria As String
             LOG.Insertar 8, vUsu, "Factura eliminada: " & Text1(1).Text & Text1(0).Text & " " & Text1(2).Text & " " & Text1(4).Text & vbCrLf & EstaEnTesoreria
             Set LOG = Nothing
         
-            If SituarDataTrasEliminar(data1, NumRegElim) Then
+            If SituarDataTrasEliminar(Data1, NumRegElim) Then
                 PonerCampos
             Else
                 LimpiarCampos
@@ -3139,9 +3150,9 @@ Private Sub PonerCadenaBusqueda()
 
     On Error GoTo EEPonerBusq
 
-    data1.RecordSource = CadenaConsulta
-    data1.Refresh
-    If data1.Recordset.RecordCount <= 0 Then
+    Data1.RecordSource = CadenaConsulta
+    Data1.Refresh
+    If Data1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -3151,7 +3162,7 @@ Private Sub PonerCadenaBusqueda()
         LimpiarDataGrids
         Exit Sub
     Else
-        data1.Recordset.MoveFirst
+        Data1.Recordset.MoveFirst
         PonerModo 2
         PonerCampos
         
@@ -3194,8 +3205,8 @@ Dim b As Boolean
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
     If Modo = 2 Then
-        If Not data1.Recordset.EOF Then
-            If data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+        If Not Data1.Recordset.EOF Then
+            If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
         End If
     End If
     DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
@@ -3298,7 +3309,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnvertodos.Enabled = Not b
+        Me.mnVerTodos.Enabled = Not b
 End Sub
 
 Private Sub PonerLongCampos()
@@ -3312,11 +3323,11 @@ Dim BrutoFac As Single
     
     On Error Resume Next
     
-    If data1.Recordset.EOF Then
+    If Data1.Recordset.EOF Then
         LimpiarDataGrids
         Exit Sub
     End If
-    PonerCamposForma Me, data1
+    PonerCamposForma Me, Data1
     
     BrutoFac = CSng(Text1(13).Text)
     Text1(14).Text = Format(BrutoFac, FormatoImporte)
@@ -3334,7 +3345,7 @@ Dim BrutoFac As Single
     
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
+    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 Private Sub KEYpress(KeyAscii As Integer)
@@ -3432,11 +3443,18 @@ Dim cad As String
 On Error GoTo EComprobarCobroArimoney
     ComprobarCobroArimoney = False
     Set vR = New ADODB.Recordset
-    cad = "Select * from scobro where numserie='" & LEtra & "'"
-    cad = cad & " AND codfaccl =" & Codfaccl
-    cad = cad & " AND codmacta =" & DBSet(codmacta, "T")
-    cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
     
+    If vParamAplic.ContabilidadNueva Then
+        cad = "Select * from cobros where numserie='" & LEtra & "'"
+        cad = cad & " AND numfactu =" & Codfaccl
+        cad = cad & " AND codmacta =" & DBSet(codmacta, "T")
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    Else
+        cad = "Select * from scobro where numserie='" & LEtra & "'"
+        cad = cad & " AND codfaccl =" & Codfaccl
+        cad = cad & " AND codmacta =" & DBSet(codmacta, "T")
+        cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
+    End If
     '
     vTesoreria = ""
     vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -3452,9 +3470,9 @@ On Error GoTo EComprobarCobroArimoney
                 If DBLet(vR!recedocu, "N") = 1 Then
                     cad = "Documento recibido"
                 Else
-                    If DBLet(vR!Estacaja, "N") = 1 Then
-                        cad = "Cobrado por caja"
-                    Else
+                
+                    If vParamAplic.ContabilidadNueva Then
+                            
                         If DBLet(vR!transfer, "N") = 1 Then
                             cad = "Esta en una transferencia"
                         Else
@@ -3463,7 +3481,21 @@ On Error GoTo EComprobarCobroArimoney
                             
                                     'Si hubeira que poner mas coas iria aqui
                         End If 'transfer
-                    End If 'estacaja
+                    
+                    Else
+                        If DBLet(vR!Estacaja, "N") = 1 Then
+                            cad = "Cobrado por caja"
+                        Else
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
+                            
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                        End If 'estacaja
+                    End If
                 End If 'recdedocu
             End If 'remesado
             If cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & cad & vbCrLf
@@ -3505,9 +3537,16 @@ On Error GoTo EComprobarPagoArimoney
     
     Set vR = New ADODB.Recordset
     
-    cad = "Select * from spagop where ctaprove='" & vCta & "'"
-    cad = cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & CLng(Codfaccl), "T")
-    cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    
+    If vParamAplic.ContabilidadNueva Then
+        cad = "Select * from spagop where ctaprove='" & vCta & "'"
+        cad = cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & CLng(Codfaccl), "T")
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    Else
+        cad = "Select * from pagos where codmacta='" & vCta & "'"
+        cad = cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & CLng(Codfaccl), "T")
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    End If
     
     '
     vTesoreria = ""
@@ -3518,18 +3557,31 @@ On Error GoTo EComprobarPagoArimoney
     Else
         While Not vR.EOF
             cad = ""
-            If DBLet(vR!Estacaja, "N") = 1 Then
-                cad = "Pagado por caja"
+            If vParamAplic.ContabilidadNueva Then
+                If DBLet(vR!Estacaja, "N") = 1 Then
+                    cad = "Pagado por caja"
+                Else
+                    If DBLet(vR!transfer, "N") <> 0 Then
+                        cad = "Esta en una transferencia"
+                    Else
+                       If DBLet(vR!imppagad, "N") > 0 Then cad = "Esta parcialmente pagado: " & vR!impcobro
+                        
+                                'Si hubeira que poner mas coas iria aqui
+                    End If 'transfer
+                End If 'estacaja
+                If cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & cad & vbCrLf
+            
             Else
-                If DBLet(vR!transfer, "N") <> 0 Then
+                If DBLet(vR!nrodocum, "N") <> 0 Then
                     cad = "Esta en una transferencia"
                 Else
-                   If DBLet(vR!imppagad, "N") > 0 Then cad = "Esta parcialmente pagado: " & vR!impcobro
+                   If DBLet(vR!imppagad, "N") > 0 Then cad = "Esta parcialmente pagado: " & vR!imppagad
                     
                             'Si hubeira que poner mas coas iria aqui
                 End If 'transfer
-            End If 'estacaja
-            If cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & cad & vbCrLf
+                If cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & cad & vbCrLf
+            
+            End If
             vR.MoveNext
         Wend
     End If
@@ -3618,7 +3670,7 @@ Dim bol As Boolean
 
         b = False
         Eliminar = False
-        If data1.Recordset.EOF Then Exit Function
+        If Data1.Recordset.EOF Then Exit Function
         
         conn.BeginTrans
         ConnConta.BeginTrans
@@ -3636,10 +3688,18 @@ Dim bol As Boolean
             If bol Then
 '[Monica]10/07/2012: tanto liquidaciones como rectificativas han de estar en la spagop
 '                If Text1(1).Text = "FLI" Then
-                    Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & data1.Recordset.Fields!NumFactu & "'"
-                    Sql = Sql & " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from spagop WHERE " & Sql
-                
+
+                    If vParamAplic.ContabilidadNueva Then
+                        Sql = " numserie = " & DBSet(SerieFraPro, "T")
+                        Sql = " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from pagos WHERE " & Sql
+                    
+                    Else
+                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from spagop WHERE " & Sql
+                    End If
 '                Else
 '                    Sql = " codmacta='" & vFactu.CtaSocio & "' AND numserie='" & ObtenerLetraSerie(CodTipoMov) & "' AND codfaccl = " & Data1.Recordset.Fields!NumFactu & " "
 '                    Sql = Sql & " AND fecfaccl='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
@@ -3664,15 +3724,15 @@ Dim bol As Boolean
                     
                         'retenciones de la sreten
                         If Text1(1).Text = "FLI" Then
-                            conn.Execute "delete from sreten where numfactu='" & data1.Recordset.Fields!NumFactu & "'" & _
-                                         " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
-                                         " AND codsocio= " & data1.Recordset.Fields!codSocio & _
+                            conn.Execute "delete from sreten where numfactu='" & Data1.Recordset.Fields!NumFactu & "'" & _
+                                         " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
+                                         " AND codsocio= " & Data1.Recordset.Fields!codSocio & _
                                          " AND tiporeten=0 "
                         Else
                             ' rectificativa de liquidacion de socio
-                            conn.Execute "delete from sreten where numfactu='" & data1.Recordset.Fields!NumFactu & "'" & _
-                                         " AND fecfactu='" & Format(data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
-                                         " AND codsocio= " & data1.Recordset.Fields!codSocio & _
+                            conn.Execute "delete from sreten where numfactu='" & Data1.Recordset.Fields!NumFactu & "'" & _
+                                         " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'" & _
+                                         " AND codsocio= " & Data1.Recordset.Fields!codSocio & _
                                          " AND tiporeten=2 "
                         End If
                     

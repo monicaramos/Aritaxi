@@ -132,6 +132,7 @@ Dim cad As String
     Else
         'ABONOS
          '
+         
         Aux = "Select scobro.codbanco as entidad,scobro.codsucur as oficina,scobro.cuentaba,scobro.digcontr as CC"
         Aux = Aux & ",nommacta,dirdatos,codposta,dirdatos,despobla,impvenci,scobro.codmacta from scobro,cuentas"
         Aux = Aux & " where cuentas.codmacta=scobro.codmacta and transfer =" & NumeroTransferencia
@@ -151,7 +152,7 @@ Dim cad As String
             
             Else
                 Im = Abs(RS!ImpVenci)
-                Aux = RellenaAceros(RS!Codmacta, False, 12)
+                Aux = RellenaAceros(RS!codmacta, False, 12)
             End If
             
             'Cad = "06"
@@ -364,7 +365,7 @@ End Function
 
 
 
-Private Sub Cabecera1(NF As Integer, ByRef CodOrde As String, Fecha As Date, Cta As String, ByRef cad As String)
+Private Sub Cabecera1(NF As Integer, ByRef CodOrde As String, Fecha As Date, cta As String, ByRef cad As String)
 
     cad = "03"
     cad = cad & "56"
@@ -374,11 +375,11 @@ Private Sub Cabecera1(NF As Integer, ByRef CodOrde As String, Fecha As Date, Cta
     cad = cad & Format(Now, "ddmmyy")
     cad = cad & Format(Fecha, "ddmmyy")
     'Cuenta bancaria
-    cad = cad & RecuperaValor(Cta, 1)
-    cad = cad & RecuperaValor(Cta, 2)
-    cad = cad & RecuperaValor(Cta, 4)
+    cad = cad & RecuperaValor(cta, 1)
+    cad = cad & RecuperaValor(cta, 2)
+    cad = cad & RecuperaValor(cta, 4)
     cad = cad & "0"  'Sin relacion
-    cad = cad & "   " & RecuperaValor(Cta, 3)  'Digito de control bancario
+    cad = cad & "   " & RecuperaValor(cta, 3)  'Digito de control bancario
     cad = RellenaABlancos(cad, True, 72)
     Print #NF, cad
 End Sub

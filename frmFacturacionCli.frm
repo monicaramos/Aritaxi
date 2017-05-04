@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmFacturacionCli 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Facturación por cliente"
@@ -326,7 +326,7 @@ Option Explicit
 Private WithEvents frmCli As frmFacClientes
 Attribute frmCli.VB_VarHelpID = -1
 
-Dim SQL As String
+Dim Sql As String
 Dim Im As Currency
 
 Private Sub cmdFacturar_Click()
@@ -336,13 +336,13 @@ Dim i As Integer
 
 
     If Me.txtclien.Text = "" Then Exit Sub
-    If Me.txtNombre.Text = "" Then Exit Sub
+    If Me.txtnombre.Text = "" Then Exit Sub
     
     If TreeView1.Nodes.Count = 0 Then Exit Sub
     
     
     'Vere si hay alguno marcado para facturar
-    SQL = ""
+    Sql = ""
     For i = 1 To TreeView1.Nodes.Count
         If Not TreeView1.Nodes(i).Parent Is Nothing Then
             If TreeView1.Nodes(i).Checked Then
@@ -352,12 +352,12 @@ Dim i As Integer
                     Exit Sub
                 End If
                 
-                SQL = "OK"
+                Sql = "OK"
                 Exit For
             End If
         End If
     Next
-    If SQL = "" Then
+    If Sql = "" Then
         MsgBox "Ninguna albarán marcado para facturar", vbExclamation
         Exit Sub
     End If
@@ -384,7 +384,7 @@ End Sub
 Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
     lblInd.Caption = ""
-    Limpiar Me
+    limpiar Me
     Set TreeView1.ImageList = frmPpal.imgListComun
     Set TreeView2.ImageList = frmPpal.imgListComun
     Set ListView1.SmallIcons = frmPpal.imgListComun
@@ -397,12 +397,12 @@ Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub imgBuscarG_Click(Index As Integer)
-    SQL = txtclien.Text
+    Sql = txtclien.Text
     Set frmCli = New frmFacClientes
     frmCli.DatosADevolverBusqueda = "0|1|"
     frmCli.Show vbModal
     Set frmCli = Nothing
-    If txtclien.Text <> SQL Then PonerFoco txtclien
+    If txtclien.Text <> Sql Then PonerFoco txtclien
         
 End Sub
 
@@ -522,17 +522,17 @@ End Sub
 Private Sub txtclien_LostFocus()
 
 
-    SQL = ""
+    Sql = ""
     txtclien.Text = Trim(txtclien.Text)
     txtSitua.Text = ""
-    txtNombre.Text = ""
+    txtnombre.Text = ""
     If txtclien.Text <> "" Then
     
         If PonerFormatoEntero(txtclien) Then
             
             Set miRsAux = New ADODB.Recordset
-            SQL = PonerCliente
-            If SQL = "" Then
+            Sql = PonerCliente
+            If Sql = "" Then
                 MsgBox "No existe el cliente: " & txtclien.Text, vbExclamation
                 txtclien.Text = ""
                 PonerFoco txtclien
@@ -545,7 +545,7 @@ Private Sub txtclien_LostFocus()
 
         End If
     End If
-    If SQL = "" Then
+    If Sql = "" Then
         Me.ListView1.ListItems.Clear
         Me.TreeView1.Nodes.Clear
         Me.TreeView2.Nodes.Clear
@@ -558,15 +558,15 @@ End Sub
 
 Private Function PonerCliente() As String
     Set miRsAux = New ADODB.Recordset
-    SQL = "Select nomclien,nomsitua,codmacta from sclien,ssitua WHERE sclien.codsitua=ssitua.codsitua AND codclien=" & txtclien.Text
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    SQL = ""
+    Sql = "Select nomclien,nomsitua,codmacta from sclien,ssitua WHERE sclien.codsitua=ssitua.codsitua AND codclien=" & txtclien.Text
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = ""
     If Not miRsAux.EOF Then
-        SQL = miRsAux!nomclien
-        Me.txtNombre.Text = SQL
+        Sql = miRsAux!nomclien
+        Me.txtnombre.Text = Sql
         PonerCliente = miRsAux!nomclien
         txtSitua = miRsAux!nomsitua
-        txtSitua.Tag = miRsAux!Codmacta
+        txtSitua.Tag = miRsAux!codmacta
     End If
     miRsAux.Close
     Set miRsAux = Nothing
@@ -606,25 +606,35 @@ Dim Im2 As Currency
 Dim Pend As Currency
 
     ListView1.ListItems.Clear
-    SQL = "SELECT scobro.* FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
-    SQL = SQL & " WHERE scobro.codmacta = '" & txtSitua.Tag & "'"
-    'SQL = SQL & " AND fecvenci <= ' " & Format(Now, FormatoFecha) & "' "
-    ' SQL = SQL & " AND (sforpa.tipforpa between 0 and 3)
-    SQL = SQL & " ORDER BY fecvenci"
-    miRsAux.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "SELECT cobros.* FROM cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
+        Sql = Sql & " WHERE cobros.codmacta = '" & txtSitua.Tag & "'"
+    
+    Else
+        Sql = "SELECT scobro.* FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+        Sql = Sql & " WHERE scobro.codmacta = '" & txtSitua.Tag & "'"
+        'SQL = SQL & " AND fecvenci <= ' " & Format(Now, FormatoFecha) & "' "
+        ' SQL = SQL & " AND (sforpa.tipforpa between 0 and 3)
+    End If
+    Sql = Sql & " ORDER BY fecvenci"
+    miRsAux.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     Im = 0
     Pend = 0
     While Not miRsAux.EOF
-        Im2 = miRsAux!ImpVenci + DBLet(miRsAux!gastos, "N") - DBLet(miRsAux!impcobro, "N")
+        Im2 = miRsAux!ImpVenci + DBLet(miRsAux!Gastos, "N") - DBLet(miRsAux!impcobro, "N")
         If Im2 <> 0 Then
     
             Set It = ListView1.ListItems.Add()
             It.Text = miRsAux!FecVenci
             It.SmallIcon = 23
             'If miRsAux!FecVenci > Now Then
-            It.SubItems(1) = miRsAux!numSerie & Format(miRsAux!Codfaccl, "00000")
-            It.SubItems(2) = Format(miRsAux!fecfaccl, "dd/mm/yyyy")
-            
+            If vParamAplic.ContabilidadNueva Then
+                It.SubItems(1) = miRsAux!numSerie & Format(miRsAux!NumFactu, "00000")
+                It.SubItems(2) = Format(miRsAux!FecFactu, "dd/mm/yyyy")
+            Else
+                It.SubItems(1) = miRsAux!numSerie & Format(miRsAux!Codfaccl, "00000")
+                It.SubItems(2) = Format(miRsAux!fecfaccl, "dd/mm/yyyy")
+            End If
             
             It.SubItems(3) = Format(Im2, FormatoImporte)
             Im = Im + Im2
@@ -654,10 +664,10 @@ Dim Col As Collection
     'antForpa = 0 'forma de pago
     'antDtoPP = 0 'dto pronto pago
     'antDtoGn = 0 'dto general
-    SQL = "Select *  FROM  scaalb  WHERE (scaalb.fechaalb <= '2010-04-06') AND (scaalb.codclien = " & txtclien.Text
-    SQL = SQL & ") AND ( scaalb.codtipom='ALV' ) AND ( scaalb.factursn=1)  and ((scaalb.codtipom,scaalb.numalbar) in (select distinct codtipom,numalbar from slialb))"
-    SQL = SQL & " ORDER BY scaalb.tipofact, scaalb.codclien, scaalb.coddirec, codforpa, dtoppago, dtognral "
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = "Select *  FROM  scaalb  WHERE (scaalb.fechaalb <= '2010-04-06') AND (scaalb.codclien = " & txtclien.Text
+    Sql = Sql & ") AND ( scaalb.codtipom='ALV' ) AND ( scaalb.factursn=1)  and ((scaalb.codtipom,scaalb.numalbar) in (select distinct codtipom,numalbar from slialb))"
+    Sql = Sql & " ORDER BY scaalb.tipofact, scaalb.codclien, scaalb.coddirec, codforpa, dtoppago, dtognral "
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     Anterior = ""
     NumRegElim = 1
     Set Col = New Collection
@@ -676,13 +686,13 @@ Dim Col As Collection
             
             Anterior = ""
         Else
-            SQL = CadenaIndentificacionAlbaran
-            If SQL <> Anterior Then
+            Sql = CadenaIndentificacionAlbaran
+            If Sql <> Anterior Then
                 'Ha cambiado algun valor
                 If Anterior <> "" Then InsertarLineaFactura Col
                 
                 
-                Anterior = SQL
+                Anterior = Sql
             End If
             CadenaAlbaran Col 'Meto el albaran en el collection
         End If
@@ -745,15 +755,15 @@ Dim TotalFra As Currency
     'Los albaranes que iran
     For i = 1 To Cole.Count
         'El importe
-        SQL = RecuperaValor(Cole.item(i), 2)
-        Im = CCur(SQL)
+        Sql = RecuperaValor(Cole.item(i), 2)
+        Im = CCur(Sql)
         TotalFra = TotalFra + Im
         
         'El importe
-        SQL = Right(Space(10) & Format(Im, FormatoImporte), 10)
-        SQL = RecuperaValor(Cole.item(i), 1) & SQL
+        Sql = Right(Space(10) & Format(Im, FormatoImporte), 10)
+        Sql = RecuperaValor(Cole.item(i), 1) & Sql
         Set N = TreeView1.Nodes.Add("FRA" & Format(NumRegElim, "000"), tvwChild)
-        N.Text = SQL
+        N.Text = Sql
         N.Image = 44
         N.Checked = True
         N.Tag = Im
@@ -779,22 +789,22 @@ Dim N As Node
 
     TreeView2.Nodes.Clear
     
-    SQL = "Select *  FROM  scaalb  WHERE (scaalb.fechaalb <= '2010-04-06') AND (scaalb.codclien = " & txtclien.Text
-    SQL = SQL & ") AND ( scaalb.codtipom='ALV' ) AND ( scaalb.factursn=0)  and ((scaalb.codtipom,scaalb.numalbar) in (select distinct codtipom,numalbar from slialb))"
-    SQL = SQL & " ORDER BY scaalb.tipofact, scaalb.codclien, scaalb.coddirec, codforpa, dtoppago, dtognral "
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = "Select *  FROM  scaalb  WHERE (scaalb.fechaalb <= '2010-04-06') AND (scaalb.codclien = " & txtclien.Text
+    Sql = Sql & ") AND ( scaalb.codtipom='ALV' ) AND ( scaalb.factursn=0)  and ((scaalb.codtipom,scaalb.numalbar) in (select distinct codtipom,numalbar from slialb))"
+    Sql = Sql & " ORDER BY scaalb.tipofact, scaalb.codclien, scaalb.coddirec, codforpa, dtoppago, dtognral "
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not miRsAux.EOF
         Set Col = New Collection
         CadenaAlbaran Col
         
-        SQL = RecuperaValor(Col.item(1), 2)
+        Sql = RecuperaValor(Col.item(1), 2)
         
         'El importe
-        SQL = Right(Space(10) & Format(SQL, FormatoImporte), 10)
-        SQL = RecuperaValor(Col.item(1), 1) & SQL
+        Sql = Right(Space(10) & Format(Sql, FormatoImporte), 10)
+        Sql = RecuperaValor(Col.item(1), 1) & Sql
         Set N = TreeView2.Nodes.Add()
-        N.Text = SQL
+        N.Text = Sql
         N.Image = 44
             
             
@@ -811,23 +821,23 @@ Private Sub HacerFacturacionCliente()
 Dim CadenaSQL As String
 Dim i As Integer
     
-    SQL = ""
+    Sql = ""
     For i = 1 To TreeView1.Nodes.Count
         If TreeView1.Nodes(i).Parent Is Nothing Then
             'NADA
             
         Else
-            If TreeView1.Nodes(i).Checked Then SQL = SQL & ", " & DevuelveNumeroAlbaran(TreeView1.Nodes(i).Text)
+            If TreeView1.Nodes(i).Checked Then Sql = Sql & ", " & DevuelveNumeroAlbaran(TreeView1.Nodes(i).Text)
    
         End If
     Next i
     
-    SQL = Mid(SQL, 3)
+    Sql = Mid(Sql, 3)
     
-    CadenaSQL = "scaalb.codtipom = 'ALV' AND scaalb.codclien=" & Me.txtclien.Text & " AND  scaalb.numalbar IN (" & SQL & ")"
-    SQL = "SELECT scaalb.*,sclien.nomclien FROM scaalb INNER JOIN sclien ON scaalb.codclien=sclien.codclien  WHERE " & CadenaSQL
+    CadenaSQL = "scaalb.codtipom = 'ALV' AND scaalb.codclien=" & Me.txtclien.Text & " AND  scaalb.numalbar IN (" & Sql & ")"
+    Sql = "SELECT scaalb.*,sclien.nomclien FROM scaalb INNER JOIN sclien ON scaalb.codclien=sclien.codclien  WHERE " & CadenaSQL
     
     i = Val(RecuperaValor(CadenaDesdeOtroForm, 3))
     
-    TraspasoAlbaranesFacturas SQL, CadenaSQL, RecuperaValor(CadenaDesdeOtroForm, 1), RecuperaValor(CadenaDesdeOtroForm, 2), Nothing, Me.lblInd, i = 1, "ALV", "", False
+    TraspasoAlbaranesFacturas Sql, CadenaSQL, RecuperaValor(CadenaDesdeOtroForm, 1), RecuperaValor(CadenaDesdeOtroForm, 2), Nothing, Me.lblInd, i = 1, "ALV", "", False
 End Sub

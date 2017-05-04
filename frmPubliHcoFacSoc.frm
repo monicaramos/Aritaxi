@@ -900,11 +900,11 @@ Dim cadB1 As String
 Dim UnaVez As Boolean
 
 Private Sub ComprobarDatosTotales()
-Dim I As Byte
+Dim i As Byte
 
-    For I = 13 To 14
-        Text1(I).Text = ComprobarCero(Text1(I).Text)
-    Next I
+    For i = 13 To 14
+        Text1(i).Text = ComprobarCero(Text1(i).Text)
+    Next i
 End Sub
 
 
@@ -1008,10 +1008,15 @@ On Error GoTo EModFact
                 
                 If bol Then
                     'Eliminar de la spagop
-                    Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu & ""
-                    Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                    ConnConta.Execute "Delete from spagop WHERE " & Sql
-                    
+                    If vParamAplic.ContabilidadNueva Then
+                        Sql = " codmacta='" & vFactu.CtaSocio & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu & ""
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from pagos WHERE " & Sql
+                    Else
+                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu & ""
+                        Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                        ConnConta.Execute "Delete from spagop WHERE " & Sql
+                    End If
                     'Volvemos a grabar en TESORERIA. Tabla de Contabilidad: sconta.spagop
                     If bol Then
                         bol = vFactu.InsertarEnTesoreria(MenError)
@@ -1041,15 +1046,15 @@ EModFact:
 End Function
 
 Private Function CalcularDatosFactura() As Boolean
-Dim I As Integer
+Dim i As Integer
 Dim vFactu As CFacturaCom
 Dim FacOK As Boolean
 
     'Limpiar en el form los datos calculados de la factura
     'y volvemos a recalcular
-    For I = 22 To 38
-         Text1(I).Text = ""
-    Next I
+    For i = 22 To 38
+         Text1(i).Text = ""
+    Next i
     
     
     Set vFactu = New CFacturaCom
@@ -1139,7 +1144,7 @@ End Function
 
 
 Private Sub cmdAceptar_Click()
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -1357,12 +1362,12 @@ Dim vWhere As String
 End Sub
 
 Private Sub FormatoDatosTotales()
-Dim I As Byte
+Dim i As Byte
 
-    For I = 16 To 19
+    For i = 16 To 19
 '        Text1(I).Text = QuitarCero(Text1(I).Text)
-        FormateaCampo Text1(I)
-    Next I
+        FormateaCampo Text1(i)
+    Next i
     
 '    For i = 24 To 26
 '        If Text1(i).Text <> "" Then
@@ -2093,14 +2098,14 @@ EEPonerBusq:
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
 
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     '## No tiene el boton modificar y no utiliza la funcion general
@@ -2140,9 +2145,9 @@ Dim b As Boolean
     BloquearTxt Text1(3), b And Modo <> 4 'referencia
     
     'Importes siempre bloqueados, excepto para busquedas. ivas y aportacion tb bloqueado
-    For I = 13 To 19
-        BloquearTxt Text1(I), (Modo <> 1) And (Modo <> 3)
-    Next I
+    For i = 13 To 19
+        BloquearTxt Text1(i), (Modo <> 1) And (Modo <> 3)
+    Next i
     'Campo B.Imp y Imp. IVA siempre en azul
     BloquearTxt Text1(14), True
     Text1(14).BackColor = &HFFFFC0
@@ -2344,10 +2349,16 @@ Dim cad As String
 On Error GoTo EComprobarCobroArimoney
     ComprobarCobroArimoney = False
     Set vR = New ADODB.Recordset
-    cad = "Select * from scobro where numserie='" & LEtra & "'"
-    cad = cad & " AND codfaccl =" & Codfaccl
-    cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
     
+    If vParamAplic.ContabilidadNueva Then
+        cad = "Select * from cobros where numserie='" & LEtra & "'"
+        cad = cad & " AND numfactu =" & Codfaccl
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    Else
+        cad = "Select * from scobro where numserie='" & LEtra & "'"
+        cad = cad & " AND codfaccl =" & Codfaccl
+        cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
+    End If
     '
     vTesoreria = ""
     vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -2363,18 +2374,32 @@ On Error GoTo EComprobarCobroArimoney
                 If DBLet(vR!recedocu, "N") = 1 Then
                     cad = "Documento recibido"
                 Else
-                    If DBLet(vR!Estacaja, "N") = 1 Then
-                        cad = "Cobrado por caja"
-                    Else
-                        If DBLet(vR!transfer, "N") = 1 Then
-                            cad = "Esta en una transferencia"
-                        Else
-                           If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
-                        
+                
+                    If vParamAplic.ContabilidadNueva Then
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
                             
-                                    'Si hubeira que poner mas coas iria aqui
-                        End If 'transfer
-                    End If 'estacaja
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                    
+                    Else
+                
+                        If DBLet(vR!Estacaja, "N") = 1 Then
+                            cad = "Cobrado por caja"
+                        Else
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
+                            
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                        End If 'estacaja
+                    End If
                 End If 'recdedocu
             End If 'remesado
             If cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & cad & vbCrLf
@@ -2476,10 +2501,16 @@ Dim bol As Boolean
         bol = vFactu.LeerDatos3(Text1(4).Text, Text1(0).Text, Text1(2).Text)
         If bol Then
             
+            If vParamAplic.ContabilidadNueva Then
+                Sql = " codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+                Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                ConnConta.Execute "Delete from pagos WHERE " & Sql
             
-            Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
-            Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-            ConnConta.Execute "Delete from spagop WHERE " & Sql
+            Else
+                Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+                Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                ConnConta.Execute "Delete from spagop WHERE " & Sql
+            End If
             b = True
             
             
@@ -2589,7 +2620,7 @@ End Function
 Private Sub CargaCombo()
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim I As Byte
+Dim i As Byte
     
     Combo1.Clear
     
@@ -2601,8 +2632,8 @@ Dim I As Byte
         Sql = RS!nomtipom
         Sql = Replace(Sql, "Factura", "")
         Combo1.AddItem RS!codtipom & "-" & Sql
-        Combo1.ItemData(Combo1.NewIndex) = I
-        I = I + 1
+        Combo1.ItemData(Combo1.NewIndex) = i
+        i = i + 1
         RS.MoveNext
     Wend
     RS.Close

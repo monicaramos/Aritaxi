@@ -1500,15 +1500,25 @@ Dim Impaux As Currency
     RS.Close
     If Sql = "" Then Exit Sub
     
-    'AHORA FEBRERO 2010
-    Sql = "SELECT scobro.* FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
-    vWhere = " WHERE scobro.codmacta = '" & codmacta & "'"
-    vWhere = vWhere & " AND fecvenci <= ' " & Format(FechaDoc, FormatoFecha) & "' "
-    'Antes mayo 2010
-    'vWhere = vWhere & " AND (sforpa.tipforpa between 0 and 3)"
-    vWhere = vWhere & " AND recedocu=0 ORDER BY fecfaccl, codfaccl"
-    Sql = Sql & vWhere
-    
+    If vParamAplic.ContabilidadNueva Then
+        'AHORA FEBRERO 2010
+        Sql = "SELECT cobros.* FROM cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
+        vWhere = " WHERE cobros.codmacta = '" & codmacta & "'"
+        vWhere = vWhere & " AND fecvenci <= ' " & Format(FechaDoc, FormatoFecha) & "' "
+        'Antes mayo 2010
+        'vWhere = vWhere & " AND (sforpa.tipforpa between 0 and 3)"
+        vWhere = vWhere & " AND recedocu=0 ORDER BY fecfactu, numfactu"
+        Sql = Sql & vWhere
+    Else
+        'AHORA FEBRERO 2010
+        Sql = "SELECT scobro.* FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+        vWhere = " WHERE scobro.codmacta = '" & codmacta & "'"
+        vWhere = vWhere & " AND fecvenci <= ' " & Format(FechaDoc, FormatoFecha) & "' "
+        'Antes mayo 2010
+        'vWhere = vWhere & " AND (sforpa.tipforpa between 0 and 3)"
+        vWhere = vWhere & " AND recedocu=0 ORDER BY fecfaccl, codfaccl"
+        Sql = Sql & vWhere
+    End If
     'Lee de la Base de Datos de CONTABILIDAD
     RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     Importe = 0
