@@ -878,7 +878,7 @@ Dim vvIban As String
             Dim Sql8 As String
             Dim RS8 As ADODB.Recordset
 
-            Sql8 = "select * from sforpa where codfopa = " & DBSet(ForPago, "N")
+            Sql8 = "select * from sforpa where codforpa = " & DBSet(ForPago, "N")
             Set RS8 = New ADODB.Recordset
             RS8.Open Sql8, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             If Not RS8.EOF Then
@@ -908,7 +908,7 @@ Dim vvIban As String
         'David. Cuenta bancaria y descripcion textos
         If vParamAplic.ContabilidadNueva Then
             Sql = "INSERT INTO pagos (numserie, codmacta, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,text1csb,text2csb, " ' ) "
-            Sql = Sql & "nomprove,domprove,pobprove,cpprove,proprove,nifprove,codpais,iban) "
+            Sql = Sql & "iban,nomprove,domprove,pobprove,cpprove,proprove,nifprove,codpais) "
         Else
             Sql = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba,text1csb,text2csb " ' ) "
             '[Monica]22/11/2013: tema iban
@@ -1698,7 +1698,7 @@ Dim Sql As String
     
     'si no existe la forma de pago en conta, insertamos la de aritaxi
     If cadAux = "" Then
-        Sql = "select * from sforpa where codfopa = " & DBSet(nForPa, "N")
+        Sql = "select * from sforpa where codforpa = " & DBSet(nForPa, "N")
         Set RS = New ADODB.Recordset
         RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not RS.EOF Then

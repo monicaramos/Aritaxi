@@ -269,7 +269,6 @@ Begin VB.Form frmComHcoFacturas
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -283,15 +282,15 @@ Begin VB.Form frmComHcoFacturas
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComHcoFacturas.frx":0A0E
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameFactura"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "FrameCliente"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "FrameCliente"
+      Tab(0).Control(1)=   "FrameFactura"
       Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmComHcoFacturas.frx":0A2A
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "imgBuscar(6)"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(9)"
@@ -353,7 +352,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   8
-         Left            =   8280
+         Left            =   -66720
          MaxLength       =   4
          TabIndex        =   111
          Tag             =   "Centro coste|T|S|||slifac|codccost||N|"
@@ -369,7 +368,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   1
-         Left            =   2040
+         Left            =   -72960
          MaxLength       =   30
          TabIndex        =   96
          Tag             =   "Fecha Albaran|F|N|||scafpa|fechaalb|dd/mm/yyyy|N|"
@@ -385,7 +384,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   0
-         Left            =   1080
+         Left            =   -73920
          MaxLength       =   15
          TabIndex        =   95
          Tag             =   "Nº Albaran|N|N|||scafpa|numalbar|0000000|N|"
@@ -401,7 +400,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   3
-         Left            =   3240
+         Left            =   -71760
          MaxLength       =   12
          TabIndex        =   86
          Tag             =   "Cantidad|N|N|0||slifac|cantidad|#,###,###,##0.00|N|"
@@ -416,7 +415,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   2
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   12
          TabIndex        =   85
          Tag             =   "Nombre Art.|T|N|||slifac|nomartic||N|"
@@ -432,7 +431,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   1
-         Left            =   1320
+         Left            =   -73680
          MaxLength       =   12
          TabIndex        =   84
          Tag             =   "Art.|T|N|||slifac|codartic||N|"
@@ -448,7 +447,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   12
          TabIndex        =   83
          Tag             =   "Almacen|N|N|0|999|slifac|codalmac|000|N|"
@@ -459,7 +458,7 @@ Begin VB.Form frmComHcoFacturas
       End
       Begin VB.CommandButton cmdObserva 
          Height          =   375
-         Left            =   4080
+         Left            =   -70920
          Style           =   1  'Graphical
          TabIndex        =   82
          Top             =   520
@@ -469,7 +468,7 @@ Begin VB.Form frmComHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   3
-         Left            =   6015
+         Left            =   -68985
          MaxLength       =   10
          TabIndex        =   73
          Tag             =   "Fecha Pedido|F|S|||scafpc|fecpedpr|dd/mm/yyyy|N|"
@@ -480,7 +479,7 @@ Begin VB.Form frmComHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   2
-         Left            =   5040
+         Left            =   -69960
          MaxLength       =   7
          TabIndex        =   72
          Tag             =   "Nº Pedido|N|S|||scafpa|numpedpr|0000000|N|"
@@ -492,7 +491,7 @@ Begin VB.Form frmComHcoFacturas
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   0
-         Left            =   7620
+         Left            =   -67380
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   71
@@ -504,7 +503,7 @@ Begin VB.Form frmComHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   0
-         Left            =   6960
+         Left            =   -68040
          MaxLength       =   30
          TabIndex        =   17
          Tag             =   "Trabajador Albaran|N|S|0|9999|scafpa|codtrab2|0000|N|"
@@ -516,7 +515,7 @@ Begin VB.Form frmComHcoFacturas
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   1
-         Left            =   7620
+         Left            =   -67380
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   70
@@ -528,7 +527,7 @@ Begin VB.Form frmComHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   1
-         Left            =   6960
+         Left            =   -68040
          MaxLength       =   30
          TabIndex        =   18
          Tag             =   "Trabajador pedido|N|S|0|9999|scafpa|codtrab1|0000|N|"
@@ -538,7 +537,7 @@ Begin VB.Form frmComHcoFacturas
       End
       Begin VB.Frame FrameFactura 
          Height          =   2220
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   39
          Top             =   2430
          Width           =   11055
@@ -1013,7 +1012,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   4
-         Left            =   4080
+         Left            =   -70920
          MaxLength       =   12
          TabIndex        =   87
          Tag             =   "Precio|N|N|0|999999.0000|slifac|precioar|###,##0.0000|N|"
@@ -1029,7 +1028,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   5
-         Left            =   5760
+         Left            =   -69240
          MaxLength       =   5
          TabIndex        =   88
          Tag             =   "Dto 1|N|N|0|99.90|slifac|dtoline1|#0.00|N|"
@@ -1045,7 +1044,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   6
-         Left            =   6480
+         Left            =   -68520
          MaxLength       =   30
          TabIndex        =   89
          Tag             =   "Dto 2|N|N|0|99.90|slifac|dtolinea|#0.00|N|"
@@ -1061,7 +1060,7 @@ Begin VB.Form frmComHcoFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   7
-         Left            =   7080
+         Left            =   -67920
          MaxLength       =   12
          TabIndex        =   92
          Tag             =   "Importe|N|N|0||slifac|importel|#,###,###,##0.00|N|"
@@ -1074,7 +1073,7 @@ Begin VB.Form frmComHcoFacturas
          Caption         =   "Datos Proveedor"
          ForeColor       =   &H00972E0B&
          Height          =   1875
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   26
          Top             =   495
          Width           =   11055
@@ -1335,7 +1334,7 @@ Begin VB.Form frmComHcoFacturas
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmComHcoFacturas.frx":0A46
          Height          =   2025
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   38
          Top             =   2625
          Width           =   11055
@@ -1404,7 +1403,7 @@ Begin VB.Form frmComHcoFacturas
       Begin MSDataGridLib.DataGrid DataGrid2 
          Bindings        =   "frmComHcoFacturas.frx":0A5B
          Height          =   1995
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   69
          Top             =   520
          Width           =   3600
@@ -1475,7 +1474,7 @@ Begin VB.Form frmComHcoFacturas
          Caption         =   "Observaciones"
          ForeColor       =   &H00972E0B&
          Height          =   2055
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   76
          Tag             =   "Observación 4|T|S|||scafac1|observa4||N|"
          Top             =   2520
@@ -1540,7 +1539,7 @@ Begin VB.Form frmComHcoFacturas
          Caption         =   "Fecha Pedido"
          Height          =   255
          Index           =   18
-         Left            =   6015
+         Left            =   -68985
          TabIndex        =   75
          Top             =   1680
          Width           =   1095
@@ -1549,7 +1548,7 @@ Begin VB.Form frmComHcoFacturas
          Caption         =   "Nº Pedido"
          Height          =   255
          Index           =   6
-         Left            =   5040
+         Left            =   -69960
          TabIndex        =   74
          Top             =   1680
          Width           =   735
@@ -1558,7 +1557,7 @@ Begin VB.Form frmComHcoFacturas
          Caption         =   "Trabajador Albaran"
          Height          =   255
          Index           =   21
-         Left            =   5040
+         Left            =   -69960
          TabIndex        =   37
          Top             =   765
          Width           =   1455
@@ -1566,7 +1565,7 @@ Begin VB.Form frmComHcoFacturas
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   5
-         Left            =   6615
+         Left            =   -68385
          ToolTipText     =   "Buscar trabajador"
          Top             =   720
          Width           =   240
@@ -1575,7 +1574,7 @@ Begin VB.Form frmComHcoFacturas
          Caption         =   "Trabajador Pedido"
          Height          =   255
          Index           =   9
-         Left            =   5040
+         Left            =   -69960
          TabIndex        =   36
          Top             =   1095
          Width           =   1425
@@ -1583,7 +1582,7 @@ Begin VB.Form frmComHcoFacturas
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   6
-         Left            =   6600
+         Left            =   -68400
          ToolTipText     =   "Buscar trabajador"
          Top             =   1095
          Width           =   240
@@ -1880,8 +1879,8 @@ Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
 Attribute frmCP.VB_VarHelpID = -1
 
-Private WithEvents frmProv As frmComProveedores  'Form Mto Proveedores
-Attribute frmProv.VB_VarHelpID = -1
+Private WithEvents frmProV As frmComProveedores  'Form Mto Proveedores
+Attribute frmProV.VB_VarHelpID = -1
 Private WithEvents frmPV As frmComProveV  'Form Mto Proveedores Varios
 Attribute frmPV.VB_VarHelpID = -1
 Private WithEvents frmFP As frmFacFormasPago 'Form Mto Formas de Pago
@@ -2565,7 +2564,7 @@ Dim indice As Byte
 End Sub
 
 
-Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
+Private Sub frmProV_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Proveedores
     Text1(2).Text = RecuperaValor(CadenaSeleccion, 1)  'Cod Prove
 End Sub
@@ -2605,10 +2604,10 @@ Dim indice As Byte
     Select Case Index
         Case 0 'Cod. Proveedor
             PonerFoco Text1(2)
-            Set frmProv = New frmComProveedores
-            frmProv.DatosADevolverBusqueda = "0"
-            frmProv.Show vbModal
-            Set frmProv = Nothing
+            Set frmProV = New frmComProveedores
+            frmProV.DatosADevolverBusqueda = "0"
+            frmProV.Show vbModal
+            Set frmProV = Nothing
             indice = 2
             PonerFoco Text1(indice)
             

@@ -806,7 +806,7 @@ Dim vvIban As String
             Dim Sql8 As String
             Dim RS8 As ADODB.Recordset
 
-            Sql8 = "select * from sforpa where codfopa = " & DBSet(ForPago, "N")
+            Sql8 = "select * from sforpa where codforpa = " & DBSet(ForPago, "N")
             Set RS8 = New ADODB.Recordset
             RS8.Open Sql8, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             If Not RS8.EOF Then

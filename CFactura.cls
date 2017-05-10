@@ -3831,7 +3831,7 @@ Dim Sql As String
     End If
     'si no existe la forma de pago en conta, insertamos la de aritaxi
     If cadAux = "" Then
-        Sql = "select * from sforpa where codfopa = " & DBSet(nForPa, "N")
+        Sql = "select * from sforpa where codforpa = " & DBSet(nForPa, "N")
         Set RS = New ADODB.Recordset
         RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not RS.EOF Then
