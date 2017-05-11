@@ -251,39 +251,22 @@ Begin VB.Form frmLiqHcoFacSoc
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(48)"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Data2"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "DataGrid1"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "txtAux3(2)"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "txtAux3(1)"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "txtAux3(0)"
-      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "txtAux3(3)"
-      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "txtAux3(4)"
-      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "txtAux3(5)"
-      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "txtAux3(6)"
-      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "txtAux3(7)"
-      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "txtAux3(8)"
-      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).Control(12)=   "txtAux3(9)"
-      Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "txtAux3(10)"
-      Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "txtAux3(11)"
-      Tab(1).Control(14).Enabled=   0   'False
       Tab(1).Control(15)=   "txtAux3(12)"
-      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).Control(16)=   "txtAux2(0)"
-      Tab(1).Control(16).Enabled=   0   'False
       Tab(1).ControlCount=   17
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
@@ -2753,7 +2736,11 @@ Dim numFac As String
             If vSocio.CtaSocioLiq <> "" Then
                 LEtra = DevuelveDesdeBDNew(conAri, "stipom", "letraser", "codtipom", Text1(1).Text, "T")
                 numFac = LEtra & Text1(0).Text
-                numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", vSocio.CtaSocioLiq, "T", , "numfacpr", numFac, "T", "fecfacpr", Text1(2).Text, "F")
+                If vParamAplic.ContabilidadNueva Then
+                    numasien = DevuelveDesdeBDNew(conConta, "factpro", "numasien", "codmacta", vSocio.CtaSocioLiq, "T", , "numfactu", numFac, "T", "fecfactu", Text1(2).Text, "F")
+                Else
+                    numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", vSocio.CtaSocioLiq, "T", , "numfacpr", numFac, "T", "fecfacpr", Text1(2).Text, "F")
+                End If
                 If numasien <> "" Then
 '                    FactContabilizada = True
 '                    MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
@@ -2801,7 +2788,7 @@ Private Sub BotonAnyadir()
 'Añadir registro en tabla de cabecera de Pedidos: scaped (Cabecera)
 Dim NomTraba As String
 Dim cad As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     LimpiarCampos 'Vacía los TextBox
     'Poner los grid sin apuntar a nada
@@ -3538,7 +3525,7 @@ On Error GoTo EComprobarPagoArimoney
     Set vR = New ADODB.Recordset
     
     
-    If vParamAplic.ContabilidadNueva Then
+    If Not vParamAplic.ContabilidadNueva Then
         cad = "Select * from spagop where ctaprove='" & vCta & "'"
         cad = cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & CLng(Codfaccl), "T")
         cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
@@ -3557,7 +3544,7 @@ On Error GoTo EComprobarPagoArimoney
     Else
         While Not vR.EOF
             cad = ""
-            If vParamAplic.ContabilidadNueva Then
+            If Not vParamAplic.ContabilidadNueva Then
                 If DBLet(vR!Estacaja, "N") = 1 Then
                     cad = "Pagado por caja"
                 Else
@@ -3691,7 +3678,7 @@ Dim bol As Boolean
 
                     If vParamAplic.ContabilidadNueva Then
                         Sql = " numserie = " & DBSet(SerieFraPro, "T")
-                        Sql = " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = Sql & " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
                         Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                         ConnConta.Execute "Delete from pagos WHERE " & Sql
                     
@@ -3954,7 +3941,7 @@ End Sub
 
 Private Function ObtenerSelFactura() As String
 Dim cad As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
@@ -3990,15 +3977,15 @@ Dim RS As ADODB.Recordset
                     cad = "SELECT codtipom,numfactu,fecfactu FROM sfactusoc "
                     cad = cad & " WHERE codtipoa=" & DBSet(hcoCodTipoM, "T") & " AND numalbar=" & hcoCodMovim & " AND fechaalb=" & DBSet(hcoFechaMov, "F")
                     
-                    Set RS = New ADODB.Recordset
-                    RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                    If Not RS.EOF Then 'where para la factura
-                        cad = " WHERE codtipom='" & RS!codtipom & "' AND numfactu= " & RS!NumFactu & " AND fecfactu=" & DBSet(RS!FecFactu, "F")
+                    Set Rs = New ADODB.Recordset
+                    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                    If Not Rs.EOF Then 'where para la factura
+                        cad = " WHERE codtipom='" & Rs!codtipom & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
                     Else
                         cad = " WHERE numfactu=-1"
                     End If
-                    RS.Close
-                    Set RS = Nothing
+                    Rs.Close
+                    Set Rs = Nothing
                 End If
     
     End If
@@ -4033,7 +4020,7 @@ End Sub
 Private Function ActualizarRetencion(Uve As String, ByRef vFac As CFacturaSoc, Inserta As Boolean) As Boolean
 Dim Precio As Currency
 Dim Sql As String
-Dim SQL2 As String
+Dim Sql2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
@@ -4075,7 +4062,7 @@ End Function
 
 
 Private Sub CargaCombo()
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim i As Byte
     
@@ -4085,18 +4072,18 @@ Dim i As Byte
     '                    y las facturas de cliente FAC y FPC
     Sql = "SELECT codtipom,nomtipom FROM stipom WHERE codtipom in ('FLI','FRL')"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
-        Sql = RS!nomtipom
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        Sql = Rs!nomtipom
         Sql = Replace(Sql, "Factura", "")
-        Combo1.AddItem RS!codtipom & "-" & Sql
+        Combo1.AddItem Rs!codtipom & "-" & Sql
         Combo1.ItemData(Combo1.NewIndex) = i
         i = i + 1
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 End Sub
 
 

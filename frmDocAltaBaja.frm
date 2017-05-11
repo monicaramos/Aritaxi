@@ -688,10 +688,10 @@ Private Sub Check1_Click(Index As Integer)
     If Index = 1 Then
         Frame2.Enabled = Check1(1).Value
         If Check1(1).Value = 0 Then
-            txtcodigo(1).Text = ""
-            txtcodigo(2).Text = ""
-            txtcodigo(4).Text = ""
-            txtcodigo(6).Text = ""
+            txtCodigo(1).Text = ""
+            txtCodigo(2).Text = ""
+            txtCodigo(4).Text = ""
+            txtCodigo(6).Text = ""
         End If
     End If
 End Sub
@@ -721,16 +721,16 @@ Dim devuelve As String
     cadTitulo = "Documentos Alta de Socios"
     
     ImpGasto = 0
-    If txtcodigo(5).Text <> "" Then
-        ImpGasto = txtcodigo(5).Text 'TransformaComasPuntos(ImporteSinFormato(txtCodigo(5).Text))
-        cadParam = cadParam & "pGasto=" & TransformaComasPuntos(ImporteSinFormato(txtcodigo(5).Text)) & "|"
+    If txtCodigo(5).Text <> "" Then
+        ImpGasto = txtCodigo(5).Text 'TransformaComasPuntos(ImporteSinFormato(txtCodigo(5).Text))
+        cadParam = cadParam & "pGasto=" & TransformaComasPuntos(ImporteSinFormato(txtCodigo(5).Text)) & "|"
         numParam = numParam + 1
     End If
     
     ImpTitulo = 0
-    If txtcodigo(9).Text <> "" Then 'check1(0).Value Then
-        ImpTitulo = txtcodigo(9).Text 'TransformaComasPuntos(ImporteSinFormato(txtCodigo(9).Text))
-        cadParam = cadParam & "pTitulo=" & TransformaComasPuntos(ImporteSinFormato(txtcodigo(9).Text)) & "|"
+    If txtCodigo(9).Text <> "" Then 'check1(0).Value Then
+        ImpTitulo = txtCodigo(9).Text 'TransformaComasPuntos(ImporteSinFormato(txtCodigo(9).Text))
+        cadParam = cadParam & "pTitulo=" & TransformaComasPuntos(ImporteSinFormato(txtCodigo(9).Text)) & "|"
         numParam = numParam + 1
     End If
     
@@ -750,7 +750,7 @@ Dim devuelve As String
     numParam = numParam + 1
     
     
-    cadParam = cadParam & "pFecha=""" & txtcodigo(3).Text & """|"
+    cadParam = cadParam & "pFecha=""" & txtCodigo(3).Text & """|"
     numParam = numParam + 1
     
     
@@ -790,7 +790,7 @@ End Sub
 
 Private Function InsertarAsiento() As Boolean
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Lineas As String
 Dim i As Integer
 
@@ -824,16 +824,16 @@ Dim Documento As String
     
     Set Mc = New Contadores
     
-    If Mc.ConseguirContador("0", (CDate(txtcodigo(3).Text) <= CDate(vEmpresa.FechaFin)), True) = 0 Then
+    If Mc.ConseguirContador("0", (CDate(txtCodigo(3).Text) <= CDate(vEmpresa.FechaFin)), True) = 0 Then
     
         Obs = "Alta de Socios "
         i = 0
     
-        codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(txtcodigo(0).Text, "N"))
+        codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(txtCodigo(0).Text, "N"))
         Documento = "SOC-" & Format(codSocio, "000000")
     
         'Insertar en la conta Cabecera Asiento
-        b = InsertarCabAsientoDia(txtcodigo(2).Text, Mc.Contador, CDate(txtcodigo(3).Text), Obs, cadMen)
+        b = InsertarCabAsientoDia(txtCodigo(2).Text, Mc.Contador, CDate(txtCodigo(3).Text), Obs, cadMen)
         cadMen = "Insertando Cab. Asiento: " & cadMen
         
         If b Then
@@ -845,8 +845,8 @@ Dim Documento As String
             CadValues = ""
             ' si hay titulo
             
-            ampliacion1 = Trim(DevuelveDesdeBDNew(conConta, "conceptos", "nomconce", "codconce", txtcodigo(4).Text, "N"))
-            ampliacion2 = Trim(DevuelveDesdeBDNew(conConta, "conceptos", "nomconce", "codconce", txtcodigo(6).Text, "N"))
+            ampliacion1 = Trim(DevuelveDesdeBDNew(conConta, "conceptos", "nomconce", "codconce", txtCodigo(4).Text, "N"))
+            ampliacion2 = Trim(DevuelveDesdeBDNew(conConta, "conceptos", "nomconce", "codconce", txtCodigo(6).Text, "N"))
             
             ImporteD = 0
             ImporteH = 0
@@ -859,19 +859,19 @@ Dim Documento As String
                 ' apunte al debe
                 i = i + 1
                 
-                cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
+                cad = DBSet(txtCodigo(2).Text, "N") & "," & DBSet(txtCodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
                 cad = cad & DBSet(i, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpTitulo > 0 Then
                     ' importe al debe en positivo
-                    cad = cad & DBSet(txtcodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & DBSet(ImpTitulo, "N") & ","
+                    cad = cad & DBSet(txtCodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & DBSet(ImpTitulo, "N") & ","
                     cad = cad & ValorNulo & "," & ValorNulo & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & ",'CONTAB',0"
                 
                     ImporteD = ImporteD + ImpTitulo
                 Else
                     ' importe al haber en positivo, cambiamos el signo
-                    cad = cad & DBSet(txtcodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & ValorNulo & ","
+                    cad = cad & DBSet(txtCodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & ValorNulo & ","
                     cad = cad & DBSet((ImpTitulo * -1), "N") & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & "," & ValorNulo & ",'CONTAB',0"
                 
                     ImporteH = ImporteH + (CCur(ImpTitulo) * (-1))
@@ -883,18 +883,18 @@ Dim Documento As String
                 
                 ' apunte al haber
                 i = i + 1
-                cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
+                cad = DBSet(txtCodigo(2).Text, "N") & "," & DBSet(txtCodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
                 cad = cad & DBSet(i, "N") & "," & DBSet(vParamAplic.CtaTituloAlta, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpTitulo > 0 Then
                     ' importe al haber en positivo
-                    cad = cad & DBSet(txtcodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & ValorNulo & ","
+                    cad = cad & DBSet(txtCodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & ValorNulo & ","
                     cad = cad & DBSet((ImpTitulo), "N") & "," & ValorNulo & "," & DBSet(mCtaSocio, "T") & ",'CONTAB',0"
                     ImporteH = ImporteH + (CCur(ImpTitulo))
                 Else
                     ' importe al debe en positivo, cambiamos el signo
-                    cad = cad & DBSet(txtcodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & DBSet(ImpTitulo * (-1), "N") & ","
+                    cad = cad & DBSet(txtCodigo(6).Text, "N") & "," & DBSet(ampliacion2, "T") & "," & DBSet(ImpTitulo * (-1), "N") & ","
                     cad = cad & ValorNulo & "," & ValorNulo & "," & DBSet(mCtaSocio, "T") & ",'CONTAB',0"
                     
                     ImporteD = ImporteD + (CCur(ImpTitulo) * (-1))
@@ -913,19 +913,19 @@ Dim Documento As String
                 ' apunte al debe
                 i = i + 1
                 
-                cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
+                cad = DBSet(txtCodigo(2).Text, "N") & "," & DBSet(txtCodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
                 cad = cad & DBSet(i, "N") & "," & DBSet(mCtaSocio, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpGasto > 0 Then
                     ' importe al debe en positivo
-                    cad = cad & DBSet(txtcodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & DBSet(ImpGasto, "N") & ","
+                    cad = cad & DBSet(txtCodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & DBSet(ImpGasto, "N") & ","
                     cad = cad & ValorNulo & "," & ValorNulo & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'CONTAB',0"
                 
                     ImporteD = ImporteD + ImpGasto
                 Else
                     ' importe al haber en positivo, cambiamos el signo
-                    cad = cad & DBSet(txtcodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & ValorNulo & ","
+                    cad = cad & DBSet(txtCodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & ValorNulo & ","
                     cad = cad & DBSet(ImpGasto * (-1), "N") & "," & ValorNulo & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'CONTAB',0"
                 
                     ImporteH = ImporteH + (ImpGasto * (-1))
@@ -937,19 +937,19 @@ Dim Documento As String
                 
                 ' apunte al haber
                 i = i + 1
-                cad = DBSet(txtcodigo(2).Text, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
+                cad = DBSet(txtCodigo(2).Text, "N") & "," & DBSet(txtCodigo(3).Text, "F") & "," & DBSet(Mc.Contador, "N") & ","
                 cad = cad & DBSet(i, "N") & "," & DBSet(vParamAplic.CtaGastoAlta, "T") & ",'" & Documento & "',"
                 
                 ' COMPROBAMOS EL SIGNO DEL IMPORTE PQ NO PERMITIMOS INTRODUCIR APUNTES CON IMPORTES NEGATIVOS
                 If ImpGasto > 0 Then
                     ' importe al haber en positivo
-                    cad = cad & DBSet(txtcodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & ValorNulo & ","
+                    cad = cad & DBSet(txtCodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & ValorNulo & ","
                     cad = cad & DBSet(ImpGasto, "N") & "," & ValorNulo & "," & DBSet(mCtaSocio, "T") & ",'CONTAB',0"
                     
                     ImporteH = ImporteH + (ImpGasto)
                 Else
                     ' importe al debe en positivo, cambiamos el signo
-                    cad = cad & DBSet(txtcodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & DBSet(ImpGasto * (-1), "N") & ","
+                    cad = cad & DBSet(txtCodigo(4).Text, "N") & "," & DBSet(ampliacion1, "T") & "," & DBSet(ImpGasto * (-1), "N") & ","
                     cad = cad & ValorNulo & "," & ValorNulo & "," & DBSet(mCtaSocio, "T") & ",'CONTAB',0"
                     ImporteD = ImporteD + (ImpGasto * (-1))
                 End If
@@ -1056,35 +1056,35 @@ Dim CtaPrev As String
 
     b = True
     
-    If txtcodigo(3).Text = "" Then
+    If txtCodigo(3).Text = "" Then
         MsgBox "Debe introducir una fecha. Revise.", vbExclamation
         b = False
     End If
     
-    If b And txtcodigo(0).Text = "" Then
+    If b And txtCodigo(0).Text = "" Then
         MsgBox "Debe introducir un Nro. de uve de socio. Revise.", vbExclamation
         b = False
     End If
     
     If b And Check1(1).Value Then ' hay contabilizacion
-        If txtcodigo(1).Text = "" Then ' si no hay banco propio
+        If txtCodigo(1).Text = "" Then ' si no hay banco propio
             MsgBox "Debe introducir el banco propio para la contabilización. Revise.", vbExclamation
             b = False
         End If
         If b Then
-            If txtcodigo(2).Text = "" Then ' si no hay diario
+            If txtCodigo(2).Text = "" Then ' si no hay diario
                 MsgBox "Debe introducir el diario para la contabilización. Revise.", vbExclamation
                 b = False
             End If
         End If
         If b Then
-            If txtcodigo(4).Text = "" Then ' si no hay concepto al debe
+            If txtCodigo(4).Text = "" Then ' si no hay concepto al debe
                 MsgBox "Debe introducir el concepto al debe para la contabilización. Revise.", vbExclamation
                 b = False
             End If
         End If
         If b Then
-            If txtcodigo(6).Text = "" Then ' si no hay concepto al debe
+            If txtCodigo(6).Text = "" Then ' si no hay concepto al debe
                 MsgBox "Debe introducir el concepto al haber para la contabilización. Revise.", vbExclamation
                 b = False
             End If
@@ -1092,7 +1092,7 @@ Dim CtaPrev As String
         ' comprobamos que las distintas cuentas existe
         ' cuenta del socio
         If b Then
-            codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(txtcodigo(0).Text, "N"))
+            codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(txtCodigo(0).Text, "N"))
             CADENA = String(vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior, "0")
             mCtaSocio = vParamAplic.Raiz_CtaAltaSoc & Format(codSocio, CADENA)
         
@@ -1105,8 +1105,8 @@ Dim CtaPrev As String
         ' cuenta de titulo
         If b Then
             ' si hay titulo
-            If txtcodigo(9).Text <> "" Then 'Check1(0).Value Then
-                ImporteTitulo = CCur(ImporteSinFormato(txtcodigo(9).Text))
+            If txtCodigo(9).Text <> "" Then 'Check1(0).Value Then
+                ImporteTitulo = CCur(ImporteSinFormato(txtCodigo(9).Text))
                 If vParamAplic.CtaTituloAlta = "" Then
                     MsgBox "No existe la cuenta contable de título en parámetros. Revise.", vbExclamation
                     b = False
@@ -1121,8 +1121,8 @@ Dim CtaPrev As String
         End If
         ' cuenta de gasto
         If b Then
-            If txtcodigo(5).Text <> "" Then
-                ImporteGasto = CCur(ImporteSinFormato(txtcodigo(5).Text))
+            If txtCodigo(5).Text <> "" Then
+                ImporteGasto = CCur(ImporteSinFormato(txtCodigo(5).Text))
                 If ImporteGasto <> 0 Then
                     If vParamAplic.CtaGastoAlta = "" Then
                         MsgBox "No existe la cuenta contable de gasto en parámetros. Revise.", vbExclamation
@@ -1139,7 +1139,7 @@ Dim CtaPrev As String
         End If
         ' cuenta de banco
         If b Then
-            mCtaBanco = DevuelveValor("select codmacta from sbanpr where codbanpr = " & DBSet(txtcodigo(1).Text, "N"))
+            mCtaBanco = DevuelveValor("select codmacta from sbanpr where codbanpr = " & DBSet(txtCodigo(1).Text, "N"))
             If mCtaBanco = "" Then
                 MsgBox "El banco no tiene asignada una cuenta contable. Revise.", vbExclamation
                 b = False
@@ -1157,12 +1157,12 @@ Dim CtaPrev As String
         ' si hay contabilizacion o documento de admision
         If Check1(1).Value Or Check1(2).Value Then
             ImporteTitulo = 0
-            If txtcodigo(9).Text <> "" Then 'Check1(0).Value Then
-                ImporteTitulo = CCur(ImporteSinFormato(txtcodigo(9).Text))
+            If txtCodigo(9).Text <> "" Then 'Check1(0).Value Then
+                ImporteTitulo = CCur(ImporteSinFormato(txtCodigo(9).Text))
             End If
             ImporteGasto = 0
-            If txtcodigo(5).Text <> "" Then
-                ImporteGasto = CCur(ImporteSinFormato(txtcodigo(5).Text))
+            If txtCodigo(5).Text <> "" Then
+                ImporteGasto = CCur(ImporteSinFormato(txtCodigo(5).Text))
             End If
             Importe = ImporteTitulo + ImporteGasto
             If Importe = 0 Then
@@ -1175,13 +1175,13 @@ Dim CtaPrev As String
     If b Then
         If Check1(1).Value Then
             If ImporteGasto <> 0 Then
-                If txtcodigo(7).Text = "" Then
+                If txtCodigo(7).Text = "" Then
                     MsgBox "Debe introducir una forma de pago de Reserva Legal Obligatoria. Revise.", vbExclamation
                     b = False
                 End If
             End If
             If b And ImporteTitulo <> 0 Then
-                If txtcodigo(8).Text = "" Then
+                If txtCodigo(8).Text = "" Then
                     MsgBox "Debe introducir una forma de pago de Aportacion Capital Social. Revise.", vbExclamation
                     b = False
                 End If
@@ -1204,18 +1204,18 @@ Dim i As Integer
 
     If PrimeraVez Then
         PrimeraVez = False
-        PonerFoco txtcodigo(2)
+        PonerFoco txtCodigo(2)
         For i = 1 To Check1.Count
             Check1(i).Value = 1
         Next i
         ' Numero de uve
-        txtcodigo(0).Text = NumCod
-        PonerFormatoEntero txtcodigo(0)
-        txtNombre(0).Text = PonerNombreDeCod(txtcodigo(0), conAri, "sclien", "nomclien", "numeruve", "N")
+        txtCodigo(0).Text = NumCod
+        PonerFormatoEntero txtCodigo(0)
+        txtnombre(0).Text = PonerNombreDeCod(txtCodigo(0), conAri, "sclien", "nomclien", "numeruve", "N")
         ' fecha de documento
-        txtcodigo(3).Text = Format(Now, "dd/mm/yyyy")
-        txtcodigo(5).Text = Format(vParamAplic.ImpGastoAlta, "###,###,##0.00")
-        txtcodigo(9).Text = Format(vParamAplic.ImpTituloAlta, "###,###,##0.00")
+        txtCodigo(3).Text = Format(Now, "dd/mm/yyyy")
+        txtCodigo(5).Text = Format(vParamAplic.ImpGastoAlta, "###,###,##0.00")
+        txtCodigo(9).Text = Format(vParamAplic.ImpTituloAlta, "###,###,##0.00")
     End If
     Screen.MousePointer = vbDefault
 End Sub
@@ -1257,13 +1257,13 @@ End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
-    txtcodigo(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtCodigo(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
     ' ********************************************
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indice).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtNombre(indice).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtCodigo(indice).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtnombre(indice).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1271,30 +1271,30 @@ Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub frmTDia_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Consulta de Clientes
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmConce_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Consulta de Clientes
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1332,7 +1332,7 @@ Private Sub imgBuscar_Click(Index As Integer)
         
         
     End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 End Sub
 
 Private Sub ListView1_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -1349,19 +1349,19 @@ Private Sub imgFec_Click(Index As Integer)
             indCodigo = 3
    End Select
    
-   PonerFormatoFecha txtcodigo(indCodigo)
-   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtcodigo(indCodigo)
+   PonerFoco txtCodigo(indCodigo)
    '*******************************
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
@@ -1374,7 +1374,7 @@ Private Sub imgFecha_Click(Index As Integer)
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1406,7 +1406,7 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 Dim cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
 '    If txtCodigo(Index).Text = "" Then Exit Sub
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
@@ -1415,42 +1415,42 @@ Dim cad As String, cadTipo As String 'tipo cliente
 
     Select Case Index
         Case 0 'V Socio
-            PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 1 ' banco propio
-            PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
         
         Case 5, 9 ' Importe
-            If txtcodigo(Index).Text <> "" Then PonerFormatoDecimal txtcodigo(Index), 1
+            If txtCodigo(Index).Text <> "" Then PonerFormatoDecimal txtCodigo(Index), 1
             
             
         Case 3 ' Fecha del documento
-            PonerFormatoFecha txtcodigo(Index)
+            PonerFormatoFecha txtCodigo(Index)
             
             
         Case 2 ' NUMERO DE DIARIO
-            If txtcodigo(Index).Text <> "" Then
-                txtNombre(Index).Text = ""
-                txtNombre(Index).Text = DevuelveDesdeBDNew(conConta, "tiposdiario", "desdiari", "numdiari", txtcodigo(Index).Text, "N")
-                If txtNombre(Index).Text = "" Then
+            If txtCodigo(Index).Text <> "" Then
+                txtnombre(Index).Text = ""
+                txtnombre(Index).Text = DevuelveDesdeBDNew(conConta, "tiposdiario", "desdiari", "numdiari", txtCodigo(Index).Text, "N")
+                If txtnombre(Index).Text = "" Then
                     MsgBox "Número de Diario no existe en la contabilidad. Reintroduzca.", vbExclamation
 '                    PonerFoco txtcodigo(Index)
                 End If
             End If
         
         Case 4, 6 'CONCEPTOS
-            If txtcodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreConcepto(txtcodigo(Index))
-            If txtNombre(Index).Text = "" Then
+            If txtCodigo(Index).Text <> "" Then txtnombre(Index).Text = PonerNombreConcepto(txtCodigo(Index))
+            If txtnombre(Index).Text = "" Then
                 MsgBox "Número de Concepto no existe en la contabilidad. Reintroduzca.", vbExclamation
 '                PonerFoco txtcodigo(Index)
             End If
             
             
         Case 7, 8 ' formas de pago
-            PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
             
     End Select
 End Sub
@@ -1506,7 +1506,7 @@ Private Sub AbrirFrmDiario(indice As Integer)
     indCodigo = 2
     Set frmTDia = New frmDiaConta
     frmTDia.DatosADevolverBusqueda = "0|1|"
-    frmTDia.CodigoActual = txtcodigo(indCodigo)
+    frmTDia.CodigoActual = txtCodigo(indCodigo)
     frmTDia.Show vbModal
     Set frmTDia = Nothing
 End Sub
@@ -1520,7 +1520,7 @@ Private Sub AbrirFrmConceptos(indice As Integer)
     End Select
     Set frmConce = New frmConceConta
     frmConce.DatosADevolverBusqueda = "0|1|"
-    frmConce.CodigoActual = txtcodigo(indCodigo)
+    frmConce.CodigoActual = txtCodigo(indCodigo)
     frmConce.Show vbModal
     Set frmConce = Nothing
 End Sub
@@ -1566,7 +1566,7 @@ End Sub
 Private Function InsertarCabAsientoDia(Diario As String, Asiento As String, Fecha As String, Obs As String, cadErr As String) As Boolean
 'Insertando en tabla conta.cabfact
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim cad As String
 Dim Nulo2 As String
 Dim Nulo3 As String
@@ -1604,7 +1604,7 @@ End Function
 
 Private Function InsertarLinAsientoDia(cad As String, cadErr As String) As Boolean
 
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Aux As String
 Dim Sql As String
 Dim i As Byte
@@ -1641,7 +1641,7 @@ Private Function InsertarEnTesoreria(Tipo As Byte, Socio As String, Importe As C
 
 'Guarda datos de Tesoreria en tablas: aritaxi.svenci y en conta.scobros
 Dim b As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim rsVenci As ADODB.Recordset
 Dim Sql As String, codmacta As String, textcsb33 As String
 Dim CadValues As String, cadValuesAux As String 'para insertar en svenci
@@ -1685,17 +1685,17 @@ Dim vvIban As String
     'campo para insertar en conta.scobro de Tesoreria
     If Tipo = 0 Then
         textcsb33 = "Cuota de ingreso" '"Reserva Legal Obligatoria"
-        ForPago = CCur(txtcodigo(7).Text)
+        ForPago = CCur(txtCodigo(7).Text)
         LEtra = "'V'"
     Else
         textcsb33 = "Aportación Capital Social"
-        ForPago = CCur(txtcodigo(8).Text)
+        ForPago = CCur(txtCodigo(8).Text)
         LEtra = "'W'"
     End If
     
     Set vSocio = New CSocio
     If vSocio.LeerDatos(Socio) Then
-        CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(1).Text, "N")
+        CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(1).Text, "N")
 
     
     
@@ -1722,23 +1722,23 @@ Dim vvIban As String
                 Sql = " SELECT  0 diapago1, 0 diapago2, 0 diapago3, 0 mesnogir, 0 diavtoat, '' codmacta "
                 Sql = Sql & " FROM sclien "
                 Sql = Sql & " WHERE codclien=" & Socio
-                Set RS = New ADODB.Recordset
-                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Set Rs = New ADODB.Recordset
+                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
                 CADENA = String(vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior, "0")
                 codmacta = vParamAplic.Raiz_CtaAltaSoc & Format(Socio, CADENA)
     
     '            textcsb33 = "'FACTURA: " & LetraSerie & "-" & Format(NumFactu, "0000000") & " de Fecha " & Format(FecFactu, "dd,mm,yyyy") & "'"
                 
-                If Not RS.EOF Then
-                    cadValuesAux = "(" & LEtra & ", " & Socio & ", '" & Format(txtcodigo(3).Text, FormatoFecha) & "', "
-                    CadValuesAuxConta = "(" & LEtra & ", " & Socio & ", '" & Format(txtcodigo(3).Text, FormatoFecha) & "', "
+                If Not Rs.EOF Then
+                    cadValuesAux = "(" & LEtra & ", " & Socio & ", '" & Format(txtCodigo(3).Text, FormatoFecha) & "', "
+                    CadValuesAuxConta = "(" & LEtra & ", " & Socio & ", '" & Format(txtCodigo(3).Text, FormatoFecha) & "', "
                     '                    Añadire a la cadena fija esta los valores de textcsb41,txcs
                     CadValuesAuxConta = CadValuesAuxConta & vTextosCSB & ","
                     '-------- Primer Vencimiento
                     i = 1
                     'FECHA VTO
-                    FecVenci = CDate(txtcodigo(3).Text)
+                    FecVenci = CDate(txtCodigo(3).Text)
                     '=== Laura 23/01/2007
                     'FecVenci = FecVenci + CByte(DBLet(rsVenci!primerve, "N"))
                     FecVenci = DateAdd("d", DBLet(rsVenci!primerve, "N"), FecVenci)
@@ -1746,14 +1746,14 @@ Dim vvIban As String
                     'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
                     TipForPago = DevuelveDesdeBDNew(conConta, "sforpa", "tipforpa", "codforpa", CStr(ForPago), "N")
                     If CCur(TipForPago) <> 0 Then
-                        FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                        FecVenci = ComprobarFechaVenci(FecVenci, DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
                     Else
                         FecVenci = ComprobarFechaVenci(FecVenci, 0, 0, 0)
                     End If
                     'Comprobar si cliente tiene mes a no girar
                     FecVenci1 = FecVenci
-                    If CInt(DBLet(RS!mesnogir, "N")) <> 0 Then
-                        FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                    If CInt(DBLet(Rs!mesnogir, "N")) <> 0 Then
+                        FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(Rs!mesnogir, "N"), DBLet(Rs!DiaVtoAt, "N"), DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
                     End If
                     
                     'Comprobar si cliente tiene dia de vencimiento atrasado
@@ -1818,14 +1818,14 @@ Dim vvIban As String
                         '===
                         'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
                         If TipForPago <> 0 Then
-                            FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                            FecVenci = ComprobarFechaVenci(FecVenci, DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
                         Else
                             FecVenci = ComprobarFechaVenci(FecVenci, 0, 0, 0)
                         End If
                         'Comprobar si cliente tiene mes a no girar
                         FecVenci1 = FecVenci
-                        If DBLet(RS!mesnogir, "N") <> "0" Then
-                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                        If DBLet(Rs!mesnogir, "N") <> "0" Then
+                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(Rs!mesnogir, "N"), DBLet(Rs!DiaVtoAt, "N"), DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
                         End If
 
                         CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
@@ -1861,13 +1861,13 @@ Dim vvIban As String
                     Next i
                     
                 End If
-                RS.Close
+                Rs.Close
             Else
                 'totalfac =0 and numerovtos >=1
                 b = True
             End If
             
-            Set RS = Nothing
+            Set Rs = Nothing
         End If
         rsVenci.Close
         Set rsVenci = Nothing
@@ -1934,7 +1934,7 @@ Private Function InsertarFormaPagoEnConta(nForPa As String, cadErr As String) As
 Dim cadAux As String
 Dim cadAux2 As String
 Dim Sql As String
-
+Dim Rs As ADODB.Recordset
     On Error GoTo ErrInsForpa
     InsertarFormaPagoEnConta = False
     
@@ -1950,18 +1950,18 @@ Dim Sql As String
     'si no existe la forma de pago en conta, insertamos la de aritaxi
     If cadAux = "" Then
         Sql = "select * from sforpa where codforpa = " & DBSet(nForPa, "N")
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If Not RS.EOF Then
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not Rs.EOF Then
             'insertamos e sforpa de la CONTA
             If vParamAplic.ContabilidadNueva Then
                 Sql = "INSERT INTO formapago(codforpa,nomforpa,tipforpa,numerove,primerve,restoven)"
             Else
                 Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
             End If
-            Sql = Sql & " VALUES(" & nForPa & ", " & DBSet(RS!nomforpa, "T") & ", " & DBSet(RS!tipforpa, "N")
+            Sql = Sql & " VALUES(" & nForPa & ", " & DBSet(Rs!nomforpa, "T") & ", " & DBSet(Rs!tipforpa, "N")
             If vParamAplic.ContabilidadNueva Then
-                Sql = Sql & "," & DBSet(RS!numerove, "N") & "," & DBSet(RS!primerve, "N") & "," & DBSet(RS!restoven, "N") & ")"
+                Sql = Sql & "," & DBSet(Rs!numerove, "N") & "," & DBSet(Rs!primerve, "N") & "," & DBSet(Rs!restoven, "N") & ")"
             Else
                 Sql = Sql & ")"
             End If
@@ -1970,8 +1970,8 @@ Dim Sql As String
         Else
             InsertarFormaPagoEnConta = False
         End If
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
     Else
         InsertarFormaPagoEnConta = True
     End If

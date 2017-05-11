@@ -1086,15 +1086,10 @@ Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Int
     KEYdown KeyCode
 End Sub
 Private Sub KEYpress(KeyAscii As Integer)
-'Dim cerrar As Boolean
-'
-'    KEYpressGnral KeyAscii, 2, cerrar
-'    If cerrar Then Unload Me
-    If KeyAscii = 13 Then 'ENTER
-        KeyAscii = 0
-        SendKeys "{tab}"
-    ElseIf KeyAscii = 27 Then Unload Me  'ESC
-    End If
+Dim cerrar As Boolean
+
+    KEYpressGnral KeyAscii, 2, cerrar
+    If cerrar Then Unload Me
 
 End Sub
 
@@ -1159,7 +1154,7 @@ Dim Inc As Integer
 Dim condicion As Boolean 'condicion que comprueba para romper la agrupacion de albaranes a 1 factura
 
 Dim nTotal As Long
-Dim SQL2 As String
+Dim Sql2 As String
 Dim NumFactu As Long
 Dim devuelve As Long
 Dim Existe As Boolean
@@ -1174,8 +1169,8 @@ Dim BancoContado As String
 
     ProcesoLiquidacionSocio = False
 
-    SQL2 = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute SQL2
+    Sql2 = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute Sql2
     
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -1429,11 +1424,11 @@ End Function
 Private Function InsertLineasFactSocio(tipoMov As String, NumFactu As String, FecFac As String, Socio As String, NumerUve As String, cadWHERE As String) As Boolean
 Dim Precio As Currency
 Dim Sql As String
-Dim SQL2 As String
+Dim Sql2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
     
     On Error GoTo eInsertLinea
     
@@ -1444,29 +1439,29 @@ Dim RS As ADODB.Recordset
     Sql = "insert into sfactusoc_serv (codtipom,codsocio,numfactu,fecfactu,numlinea,fecha,hora,numeruve,"
     Sql = Sql & "codclien,nomclien,dirllama,numllama,puerllama,ciudadre,telefono,impventa,idservic, observac2) values "
     
-    SQL2 = "select * from shilla where numeruve = " & DBSet(NumerUve, "N")
-    SQL2 = SQL2 & " and " & cadWHERE
-    SQL2 = SQL2 & " order by fecha, hora "
+    Sql2 = "select * from shilla where numeruve = " & DBSet(NumerUve, "N")
+    Sql2 = Sql2 & " and " & cadWHERE
+    Sql2 = Sql2 & " order by fecha, hora "
     
     SqlValues = ""
     linea = 0
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
+    While Not Rs.EOF
         linea = linea + 1
     
         SqlValues = SqlValues & "(" & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & ","
-        SqlValues = SqlValues & DBSet(FecFac, "F") & "," & DBSet(linea, "N") & "," & DBSet(RS!Fecha, "F") & ","
-        SqlValues = SqlValues & DBSet(RS!hora, "H") & "," & DBSet(RS!NumerUve, "N") & "," & DBSet(RS!CodClien, "N") & ","
-        SqlValues = SqlValues & DBSet(RS!nomclien, "T") & "," & DBSet(RS!dirllama, "T") & "," & DBSet(RS!numllama, "T") & ","
-        SqlValues = SqlValues & DBSet(RS!puerllama, "T") & "," & DBSet(RS!ciudadre, "T") & "," & DBSet(RS!Telefono, "T") & ","
-        SqlValues = SqlValues & DBSet(RS!impcompr, "N") & "," & DBSet(RS!idservic, "T") & "," & DBSet(RS!observac2, "T") & "),"
+        SqlValues = SqlValues & DBSet(FecFac, "F") & "," & DBSet(linea, "N") & "," & DBSet(Rs!Fecha, "F") & ","
+        SqlValues = SqlValues & DBSet(Rs!hora, "H") & "," & DBSet(Rs!NumerUve, "N") & "," & DBSet(Rs!CodClien, "N") & ","
+        SqlValues = SqlValues & DBSet(Rs!nomclien, "T") & "," & DBSet(Rs!dirllama, "T") & "," & DBSet(Rs!numllama, "T") & ","
+        SqlValues = SqlValues & DBSet(Rs!puerllama, "T") & "," & DBSet(Rs!ciudadre, "T") & "," & DBSet(Rs!Telefono, "T") & ","
+        SqlValues = SqlValues & DBSet(Rs!impcompr, "N") & "," & DBSet(Rs!idservic, "T") & "," & DBSet(Rs!observac2, "T") & "),"
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If linea <> 0 Then
         'quitamos la ultima coma
@@ -1552,7 +1547,7 @@ End Function
 Private Function ActualizarLlamadas(Uve As String, cadWHERE As String) As Boolean
 Dim Precio As Currency
 Dim Sql As String
-Dim SQL2 As String
+Dim Sql2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
@@ -1586,7 +1581,7 @@ End Function
 Private Function ActualizarLlamadas2(Uve As String, cadWHERE As String) As Boolean
 Dim Precio As Currency
 Dim Sql As String
-Dim SQL2 As String
+Dim Sql2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
@@ -1615,7 +1610,7 @@ End Function
 Private Function InsertarRetencion(Uve As String, ByRef vFac As CFacturaSoc) As Boolean
 Dim Precio As Currency
 Dim Sql As String
-Dim SQL2 As String
+Dim Sql2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
@@ -1647,7 +1642,7 @@ End Function
 Private Function InsertarEnTesoreria(tipoMov As String, NumFactu As String, FecFac As String, Socio As String) As Boolean
 'Guarda datos de Tesoreria en tablas: aritaxi.svenci y en conta.scobros
 Dim b As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim RsFact As ADODB.Recordset
 Dim rsVenci As ADODB.Recordset
 Dim Sql As String
@@ -1707,10 +1702,10 @@ Dim i As Byte
             Sql = " SELECT  diapago1, diapago2, diapago3,mesnogir "
             Sql = Sql & " FROM spara1 "
             Sql = Sql & " WHERE codigo=1"
-            Set RS = New ADODB.Recordset
-            RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            Set Rs = New ADODB.Recordset
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
-            If Not RS.EOF Then
+            If Not Rs.EOF Then
                ' se construye como en el caso de publicidad
                CtaProve = ""
                
@@ -1736,12 +1731,12 @@ Dim i As Byte
                   FecVenci = DateAdd("d", DBLet(rsVenci!primerve, "N"), FecVenci)
                   '==================================
                   'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
-                  FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                  FecVenci = ComprobarFechaVenci(FecVenci, DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
     
                   'Comprobar si  tiene mes a no girar
                   FecVenci1 = FecVenci
-                  If DBSet(RS!mesnogir, "N") <> 0 Then
-                      FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
+                  If DBSet(Rs!mesnogir, "N") <> 0 Then
+                      FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                   End If
                  
                   CadValues2 = CadValuesAux2 & i
@@ -1798,18 +1793,18 @@ Dim i As Byte
                       FecVenci = DateAdd("d", DBLet(rsVenci!restoven, "N"), FecVenci)
                       '==================================================
                       'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
-                      FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                      FecVenci = ComprobarFechaVenci(FecVenci, DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
     
                       'Comprobar si tiene mes a no girar
                       FecVenci1 = FecVenci
-                      If DBSet(RS!mesnogir, "N") <> 0 Then
-                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
+                      If DBSet(Rs!mesnogir, "N") <> 0 Then
+                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                       End If
     
                       CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
     
                       'IMPORTE Resto de Vendimientos
-                      ImpVenci = Round(RS!TotalFac / rsVenci!numerove, 2)
+                      ImpVenci = Round(Rs!TotalFac / rsVenci!numerove, 2)
     
                       CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", '" & CuentaPrev & "',"
                       
@@ -1844,8 +1839,8 @@ Dim i As Byte
             
             End If
         End If
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
     End If
     
     rsVenci.Close
@@ -1881,9 +1876,9 @@ Dim i As Byte
                 Else
                     Sql8 = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
                 End If
-                Sql8 = Sql8 & " VALUES(" & ForPago & ", " & DBSet(RS!nomforpa, "T") & ", " & DBSet(RS!tipforpa, "N")
+                Sql8 = Sql8 & " VALUES(" & ForPago & ", " & DBSet(Rs!nomforpa, "T") & ", " & DBSet(Rs!tipforpa, "N")
                 If vParamAplic.ContabilidadNueva Then
-                    Sql8 = Sql8 & "," & DBSet(RS!numerove, "N") & "," & DBSet(RS!primerve, "N") & "," & DBSet(RS!restoven, "N") & ")"
+                    Sql8 = Sql8 & "," & DBSet(Rs!numerove, "N") & "," & DBSet(Rs!primerve, "N") & "," & DBSet(Rs!restoven, "N") & ")"
                 Else
                     Sql8 = Sql8 & ")"
                 End If
@@ -1932,7 +1927,7 @@ End Function
 Private Function ActualizarSociosContado(Socio As String) As Boolean
 Dim Precio As Currency
 Dim Sql As String
-Dim SQL2 As String
+Dim Sql2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
@@ -2034,7 +2029,7 @@ Dim Inc As Integer
 Dim condicion As Boolean 'condicion que comprueba para romper la agrupacion de albaranes a 1 factura
 
 Dim nTotal As Long
-Dim SQL2 As String
+Dim Sql2 As String
 Dim NumFactu As Long
 Dim devuelve As Long
 Dim Existe As Boolean
@@ -2049,8 +2044,8 @@ Dim BancoContado As String
 
     ProcesoLiquidacionSocioNew = False
 
-    SQL2 = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute SQL2
+    Sql2 = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute Sql2
     
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -2189,6 +2184,15 @@ Dim BancoContado As String
                 vFacSoc.tipoMov = "FLI"
                 
                 vFacSoc.CtaSocio = vSocio.CtaSocioLiq
+                
+                '[Monica]11/05/2017
+                vFacSoc.NombreSocio = vSocio.Nombre
+                vFacSoc.DomicilioSocio = vSocio.Domicilio
+                vFacSoc.CPostalSocio = vSocio.CPostal
+                vFacSoc.PoblacionSocio = vSocio.Poblacion
+                vFacSoc.ProvinciaSocio = vSocio.Provincia
+                vFacSoc.nifSocio = vSocio.NIF
+                
                 
                 '[Monica]25/10/2012: socios contado ponemos la cuenta prevista como la de caja
                 If vParamAplic.Cooperativa = 0 Then
