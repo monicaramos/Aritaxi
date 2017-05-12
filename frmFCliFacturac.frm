@@ -1251,7 +1251,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
     'Icono del form
     Me.Icon = frmPpal.Icon
 
@@ -1275,9 +1275,9 @@ Dim I As Integer
         Tabla = "shilla"
     End If
     
-    For I = 0 To imgAyuda.Count - 1
-        imgAyuda(I).Picture = frmPpal.ImageListB.ListImages(10).Picture
-    Next I
+    For i = 0 To imgAyuda.Count - 1
+        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
+    Next i
     
     Me.imgBuscar(0).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     For kCampo = 3 To 5
@@ -2329,7 +2329,9 @@ Dim NomLote As String
             'insertar en tesoreria
             fac.Agente = vParamAplic.PorDefecto_Agente
             
-            b = fac.InsertarEnTesoreriaFACcli("", "Error al pasar a Tesoreria")
+            
+            Mens = "Error al pasar a Tesoreria"
+            b = fac.InsertarEnTesoreriaFACcli("", Mens)
             'b = fac.InsertarEnTesoreriaFACcli("", "Error al pasar a tesoreria")
         
         
@@ -2355,7 +2357,7 @@ Dim NomLote As String
     GenerarFacturasTeletaxiNew = True
 
 EGenFactu:
-    If Err.Number <> 0 Then
+    If Err.Number <> 0 Or Not b Then
         Mens = "Insertando Movimiento." & vbCrLf & "----------------------------" & vbCrLf & Mens
         MuestraError Err.Number, Mens, Err.Description
         b = False

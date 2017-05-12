@@ -183,7 +183,7 @@ End Function
 'Cadenacuentas  llevara (separada por comas) las cuentas que quiero comprobar si es
 '
 Public Function CuentasBloqueadas(ByRef CnnCta As Connection, ByVal CadenaCuentas As String, FechaContab As Date, ByRef CtaBloq As Collection)
-Dim SQL As String
+Dim Sql As String
 Dim Aux As String
 Dim i As Integer
 Dim RT As ADODB.Recordset
@@ -207,13 +207,13 @@ Dim RT As ADODB.Recordset
             CadenaCuentas = ""
         End If
         
-        SQL = "Select * from cuentas WHERE apudirec='S' and fecbloq<='" & Format(FechaContab, "yyyy-mm-dd") & "'"
-        SQL = SQL & " AND codmacta IN (" & Aux & ")"
-        RT.Open SQL, CnnCta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Sql = "Select * from cuentas WHERE apudirec='S' and fecbloq<='" & Format(FechaContab, "yyyy-mm-dd") & "'"
+        Sql = Sql & " AND codmacta IN (" & Aux & ")"
+        RT.Open Sql, CnnCta, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not RT.EOF
             'Devolver empipado ciertos campos, para que pueden mostrar los que quieran
-            SQL = RT!Codmacta & "|" & RT!nommacta & "|" & RT!fecbloq & "|"
-            CtaBloq.Add SQL
+            Sql = RT!codmacta & "|" & RT!nommacta & "|" & RT!fecbloq & "|"
+            CtaBloq.Add Sql
             RT.MoveNext
         Wend
         RT.Close
@@ -230,21 +230,29 @@ Public Function FechaRecepMenorQueProveedor(ByRef CnnCta As Connection, FechaRec
 End Function
 
 
-Private Function FechaUltFacturaMayor(ByRef CnnCta As Connection, fecFac As Date, Serie As String) As Boolean
+Private Function FechaUltFacturaMayor(ByRef CnnCta As Connection, FecFac As Date, Serie As String) As Boolean
 Dim RT As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim LaFecha As Date
 
     Set RT = New ADODB.Recordset
     If Serie = "" Then
-        SQL = "select max(fecrecpr) as fecha from cabfactprov "
+        If vParamAplic.ContabilidadNueva Then
+            Sql = "select max(fecharec) as fecha from factpro "
+        Else
+            Sql = "select max(fecrecpr) as fecha from cabfactprov "
+        End If
             
     Else
         'Estamos en proveedores
-        SQL = "Select max(fecfaccl)as fecha from cabfac WHERE numserie = '" & Serie & "'"
+        If vParamAplic.ContabilidadNueva Then
+            Sql = "Select max(fecfactu)as fecha from factcli WHERE numserie = '" & Serie & "'"
+        Else
+            Sql = "Select max(fecfaccl)as fecha from cabfac WHERE numserie = '" & Serie & "'"
+        End If
     End If
     LaFecha = CDate("01/01/1900")
-    RT.Open SQL, CnnCta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RT.Open Sql, CnnCta, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not RT.EOF Then
         If Not IsNull(RT!Fecha) Then LaFecha = RT!Fecha
     End If
@@ -252,7 +260,7 @@ Dim LaFecha As Date
     Set RT = Nothing
     
     
-    If LaFecha > fecFac Then
+    If LaFecha > FecFac Then
         'ERROR. La fecha factura menor k una contabilizada
         'If Serie = "" Then
         '   ' FechaUltFac = "Fecha recepcion menor que la fecha recepcion en contabilidad"
@@ -267,18 +275,18 @@ End Function
 
 
 
-Private Function LeerDatos(ByRef CN As Connection) As String
+Private Function LeerDatos(ByRef cn As Connection) As String
 Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 
     If DatosCargados Then
         LeerDatos = "" 'Ya estaban cargados
         Exit Function
     End If
     
-    SQL = "Select * from parametros "
+    Sql = "Select * from parametros "
     Set RS = New ADODB.Recordset
-    RS.Open SQL, CN, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open Sql, cn, adOpenForwardOnly, adLockOptimistic, adCmdText
     If RS.EOF Then
         'MSGBOX
         LeerDatos = "No existe parametros para la empresa"

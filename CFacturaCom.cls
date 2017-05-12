@@ -710,7 +710,7 @@ Dim vvIban As String
               
 'nomprove , domprove, pobprove, cpprove, proprove, nifProve, codpais
                   CadValues2 = CadValues2 & DBSet(mNomProve, "T") & "," & DBSet(mDomProve, "T") & "," & DBSet(mPobprove, "T") & "," & DBSet(mCodpobla, "T") & ","
-                  CadValues2 = CadValues2 & DBSet(mProprove, "T") & "," & DBSet(mNifProve, "T") & ",ES)"
+                  CadValues2 = CadValues2 & DBSet(mProprove, "T") & "," & DBSet(mNifProve, "T") & ",'ES')"
               
               Else
                     '[Monica]22/11/2013: tema iban
@@ -769,7 +769,7 @@ Dim vvIban As String
                   
                     'nomprove , domprove, pobprove, cpprove, proprove, nifProve, codpais
                       CadValues2 = CadValues2 & DBSet(mNomProve, "T") & "," & DBSet(mDomProve, "T") & "," & DBSet(mPobprove, "T") & "," & DBSet(mCodpobla, "T") & ","
-                      CadValues2 = CadValues2 & DBSet(mProprove, "T") & "," & DBSet(mNifProve, "T") & ",ES)"
+                      CadValues2 = CadValues2 & DBSet(mProprove, "T") & "," & DBSet(mNifProve, "T") & ",'ES')"
                   Else
                         '[Monica]22/11/2013: tema iban
                         If vEmpresa.HayNorma19_34Nueva = 1 Then
