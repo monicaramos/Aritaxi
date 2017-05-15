@@ -199,7 +199,7 @@ Begin VB.Form frmConfParamAplic
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   1
+      Tab             =   5
       TabsPerRow      =   6
       TabHeight       =   520
       ForeColor       =   9907723
@@ -215,36 +215,62 @@ Begin VB.Form frmConfParamAplic
       TabCaption(0)   =   "Datos Varios"
       TabPicture(0)   =   "frmConfParamAplic.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "chkHaynserie"
-      Tab(0).Control(1)=   "Text1(78)"
-      Tab(0).Control(2)=   "chkHayrepar"
-      Tab(0).Control(3)=   "Frame13"
-      Tab(0).Control(4)=   "cboCreaTarifa"
-      Tab(0).Control(5)=   "Text2(1)"
-      Tab(0).Control(6)=   "cboOrdenDtos"
-      Tab(0).Control(7)=   "cboTipodtos"
-      Tab(0).Control(8)=   "Text1(1)"
-      Tab(0).Control(9)=   "FramePrecioKm"
-      Tab(0).Control(10)=   "Text1(4)"
-      Tab(0).Control(11)=   "Text1(5)"
-      Tab(0).Control(12)=   "FrameDiasMante"
-      Tab(0).Control(13)=   "Text1(0)"
-      Tab(0).Control(14)=   "Frame16"
-      Tab(0).Control(15)=   "FrameOpciones"
-      Tab(0).Control(16)=   "Label1(77)"
-      Tab(0).Control(17)=   "Label1(76)"
-      Tab(0).Control(18)=   "Label1(59)"
-      Tab(0).Control(19)=   "imgBuscar(1)"
-      Tab(0).Control(20)=   "Label1(14)"
-      Tab(0).Control(21)=   "Label1(0)"
-      Tab(0).Control(22)=   "Label1(1)"
-      Tab(0).Control(23)=   "Label1(4)"
-      Tab(0).Control(24)=   "Label1(5)"
-      Tab(0).Control(25)=   "Label1(6)"
+      Tab(0).Control(0)=   "Label1(6)"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "Label1(5)"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "Label1(4)"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "Label1(1)"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "Label1(0)"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "Label1(14)"
+      Tab(0).Control(5).Enabled=   0   'False
+      Tab(0).Control(6)=   "imgBuscar(1)"
+      Tab(0).Control(6).Enabled=   0   'False
+      Tab(0).Control(7)=   "Label1(59)"
+      Tab(0).Control(7).Enabled=   0   'False
+      Tab(0).Control(8)=   "Label1(76)"
+      Tab(0).Control(8).Enabled=   0   'False
+      Tab(0).Control(9)=   "Label1(77)"
+      Tab(0).Control(9).Enabled=   0   'False
+      Tab(0).Control(10)=   "FrameOpciones"
+      Tab(0).Control(10).Enabled=   0   'False
+      Tab(0).Control(11)=   "Frame16"
+      Tab(0).Control(11).Enabled=   0   'False
+      Tab(0).Control(12)=   "Text1(0)"
+      Tab(0).Control(12).Enabled=   0   'False
+      Tab(0).Control(13)=   "FrameDiasMante"
+      Tab(0).Control(13).Enabled=   0   'False
+      Tab(0).Control(14)=   "Text1(5)"
+      Tab(0).Control(14).Enabled=   0   'False
+      Tab(0).Control(15)=   "Text1(4)"
+      Tab(0).Control(15).Enabled=   0   'False
+      Tab(0).Control(16)=   "FramePrecioKm"
+      Tab(0).Control(16).Enabled=   0   'False
+      Tab(0).Control(17)=   "Text1(1)"
+      Tab(0).Control(17).Enabled=   0   'False
+      Tab(0).Control(18)=   "cboTipodtos"
+      Tab(0).Control(18).Enabled=   0   'False
+      Tab(0).Control(19)=   "cboOrdenDtos"
+      Tab(0).Control(19).Enabled=   0   'False
+      Tab(0).Control(20)=   "Text2(1)"
+      Tab(0).Control(20).Enabled=   0   'False
+      Tab(0).Control(21)=   "cboCreaTarifa"
+      Tab(0).Control(21).Enabled=   0   'False
+      Tab(0).Control(22)=   "Frame13"
+      Tab(0).Control(22).Enabled=   0   'False
+      Tab(0).Control(23)=   "chkHayrepar"
+      Tab(0).Control(23).Enabled=   0   'False
+      Tab(0).Control(24)=   "Text1(78)"
+      Tab(0).Control(24).Enabled=   0   'False
+      Tab(0).Control(25)=   "chkHaynserie"
+      Tab(0).Control(25).Enabled=   0   'False
       Tab(0).ControlCount=   26
       TabCaption(1)   =   "Datos Facturación"
       TabPicture(1)   =   "frmConfParamAplic.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Frame12"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame4"
@@ -264,104 +290,143 @@ Begin VB.Form frmConfParamAplic
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Label1(80)"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "FrameEMail"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "FrameSoporte"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Text1(81)"
+      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).ControlCount=   4
       TabCaption(3)   =   "Datos Contabilidad "
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "CboModAnalitica"
+      Tab(3).Control(0)=   "Label1(15)"
       Tab(3).Control(0).Enabled=   0   'False
-      Tab(3).Control(1)=   "Text1(50)"
+      Tab(3).Control(1)=   "Label1(17)"
       Tab(3).Control(1).Enabled=   0   'False
-      Tab(3).Control(2)=   "Text1(52)"
+      Tab(3).Control(2)=   "Label1(18)"
       Tab(3).Control(2).Enabled=   0   'False
-      Tab(3).Control(3)=   "Text2(52)"
+      Tab(3).Control(3)=   "Label1(19)"
       Tab(3).Control(3).Enabled=   0   'False
-      Tab(3).Control(4)=   "cboObsFactura"
+      Tab(3).Control(4)=   "Label1(49)"
       Tab(3).Control(4).Enabled=   0   'False
-      Tab(3).Control(5)=   "Text2(48)"
+      Tab(3).Control(5)=   "Label1(50)"
       Tab(3).Control(5).Enabled=   0   'False
-      Tab(3).Control(6)=   "Text1(48)"
+      Tab(3).Control(6)=   "imgBuscar(41)"
       Tab(3).Control(6).Enabled=   0   'False
-      Tab(3).Control(7)=   "Frame8"
+      Tab(3).Control(7)=   "Label1(53)"
       Tab(3).Control(7).Enabled=   0   'False
-      Tab(3).Control(8)=   "Text1(23)"
+      Tab(3).Control(8)=   "imgBuscar(45)"
       Tab(3).Control(8).Enabled=   0   'False
-      Tab(3).Control(9)=   "Text1(22)"
+      Tab(3).Control(9)=   "Label1(47)"
       Tab(3).Control(9).Enabled=   0   'False
-      Tab(3).Control(10)=   "Text1(21)"
+      Tab(3).Control(10)=   "Label1(51)"
       Tab(3).Control(10).Enabled=   0   'False
-      Tab(3).Control(11)=   "Text1(20)"
+      Tab(3).Control(11)=   "Label1(58)"
       Tab(3).Control(11).Enabled=   0   'False
-      Tab(3).Control(12)=   "Label1(58)"
+      Tab(3).Control(12)=   "Text1(20)"
       Tab(3).Control(12).Enabled=   0   'False
-      Tab(3).Control(13)=   "Label1(51)"
+      Tab(3).Control(13)=   "Text1(21)"
       Tab(3).Control(13).Enabled=   0   'False
-      Tab(3).Control(14)=   "Label1(47)"
+      Tab(3).Control(14)=   "Text1(22)"
       Tab(3).Control(14).Enabled=   0   'False
-      Tab(3).Control(15)=   "imgBuscar(45)"
+      Tab(3).Control(15)=   "Text1(23)"
       Tab(3).Control(15).Enabled=   0   'False
-      Tab(3).Control(16)=   "Label1(53)"
+      Tab(3).Control(16)=   "Frame8"
       Tab(3).Control(16).Enabled=   0   'False
-      Tab(3).Control(17)=   "imgBuscar(41)"
+      Tab(3).Control(17)=   "Text1(48)"
       Tab(3).Control(17).Enabled=   0   'False
-      Tab(3).Control(18)=   "Label1(50)"
+      Tab(3).Control(18)=   "Text2(48)"
       Tab(3).Control(18).Enabled=   0   'False
-      Tab(3).Control(19)=   "Label1(49)"
+      Tab(3).Control(19)=   "cboObsFactura"
       Tab(3).Control(19).Enabled=   0   'False
-      Tab(3).Control(20)=   "Label1(19)"
+      Tab(3).Control(20)=   "Text2(52)"
       Tab(3).Control(20).Enabled=   0   'False
-      Tab(3).Control(21)=   "Label1(18)"
+      Tab(3).Control(21)=   "Text1(52)"
       Tab(3).Control(21).Enabled=   0   'False
-      Tab(3).Control(22)=   "Label1(17)"
+      Tab(3).Control(22)=   "Text1(50)"
       Tab(3).Control(22).Enabled=   0   'False
-      Tab(3).Control(23)=   "Label1(15)"
+      Tab(3).Control(23)=   "CboModAnalitica"
       Tab(3).Control(23).Enabled=   0   'False
       Tab(3).ControlCount=   24
       TabCaption(4)   =   "Publicidad / Cuotas"
       TabPicture(4)   =   "frmConfParamAplic.frx":007C
       Tab(4).ControlEnabled=   0   'False
       Tab(4).Control(0)=   "imgBuscar(30)"
+      Tab(4).Control(0).Enabled=   0   'False
       Tab(4).Control(1)=   "imgBuscar(25)"
+      Tab(4).Control(1).Enabled=   0   'False
       Tab(4).Control(2)=   "imgBuscar(27)"
+      Tab(4).Control(2).Enabled=   0   'False
       Tab(4).Control(3)=   "imgBuscar(26)"
+      Tab(4).Control(3).Enabled=   0   'False
       Tab(4).Control(4)=   "Label1(30)"
+      Tab(4).Control(4).Enabled=   0   'False
       Tab(4).Control(5)=   "Label1(27)"
+      Tab(4).Control(5).Enabled=   0   'False
       Tab(4).Control(6)=   "Label1(26)"
+      Tab(4).Control(6).Enabled=   0   'False
       Tab(4).Control(7)=   "Label1(25)"
+      Tab(4).Control(7).Enabled=   0   'False
       Tab(4).Control(8)=   "imgBuscar(31)"
+      Tab(4).Control(8).Enabled=   0   'False
       Tab(4).Control(9)=   "imgBuscar(29)"
+      Tab(4).Control(9).Enabled=   0   'False
       Tab(4).Control(10)=   "Label1(29)"
+      Tab(4).Control(10).Enabled=   0   'False
       Tab(4).Control(11)=   "Label1(31)"
+      Tab(4).Control(11).Enabled=   0   'False
       Tab(4).Control(12)=   "Text1(68)"
+      Tab(4).Control(12).Enabled=   0   'False
       Tab(4).Control(13)=   "Text1(64)"
+      Tab(4).Control(13).Enabled=   0   'False
       Tab(4).Control(14)=   "Text1(63)"
+      Tab(4).Control(14).Enabled=   0   'False
       Tab(4).Control(15)=   "Text1(62)"
+      Tab(4).Control(15).Enabled=   0   'False
       Tab(4).Control(16)=   "Frame7"
+      Tab(4).Control(16).Enabled=   0   'False
       Tab(4).Control(17)=   "Frame5"
+      Tab(4).Control(17).Enabled=   0   'False
       Tab(4).Control(18)=   "Text1(31)"
+      Tab(4).Control(18).Enabled=   0   'False
       Tab(4).Control(19)=   "Text2(31)"
+      Tab(4).Control(19).Enabled=   0   'False
       Tab(4).Control(20)=   "Text1(30)"
+      Tab(4).Control(20).Enabled=   0   'False
       Tab(4).Control(21)=   "Text2(30)"
+      Tab(4).Control(21).Enabled=   0   'False
       Tab(4).Control(22)=   "Text1(29)"
+      Tab(4).Control(22).Enabled=   0   'False
       Tab(4).Control(23)=   "Text2(29)"
+      Tab(4).Control(23).Enabled=   0   'False
       Tab(4).Control(24)=   "Text1(27)"
+      Tab(4).Control(24).Enabled=   0   'False
       Tab(4).Control(25)=   "Text2(27)"
+      Tab(4).Control(25).Enabled=   0   'False
       Tab(4).Control(26)=   "Text1(26)"
+      Tab(4).Control(26).Enabled=   0   'False
       Tab(4).Control(27)=   "Text2(26)"
+      Tab(4).Control(27).Enabled=   0   'False
       Tab(4).Control(28)=   "Text1(25)"
+      Tab(4).Control(28).Enabled=   0   'False
       Tab(4).Control(29)=   "Text2(25)"
+      Tab(4).Control(29).Enabled=   0   'False
       Tab(4).Control(30)=   "Frame11"
+      Tab(4).Control(30).Enabled=   0   'False
       Tab(4).Control(31)=   "Frame6"
+      Tab(4).Control(31).Enabled=   0   'False
       Tab(4).ControlCount=   32
       TabCaption(5)   =   "Varios"
       TabPicture(5)   =   "frmConfParamAplic.frx":0098
-      Tab(5).ControlEnabled=   0   'False
+      Tab(5).ControlEnabled=   -1  'True
       Tab(5).Control(0)=   "Label1(81)"
+      Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "Frame14"
+      Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "Text1(82)"
+      Tab(5).Control(2).Enabled=   0   'False
       Tab(5).ControlCount=   3
       Begin VB.CheckBox chkHaynserie 
          Caption         =   "Hay Nº Serie en Compras"
@@ -394,7 +459,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   82
-         Left            =   -72000
+         Left            =   3000
          MaxLength       =   100
          TabIndex        =   243
          Tag             =   "Impresora Tarjetas|T|S|||spara1|impretarjeta|||"
@@ -455,7 +520,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   825
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   252
          Top             =   5910
          Width           =   10635
@@ -530,7 +595,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2715
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   250
          Top             =   650
          Width           =   10695
@@ -803,7 +868,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2535
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   212
          Top             =   3210
          Width           =   10665
@@ -825,7 +890,7 @@ Begin VB.Form frmConfParamAplic
             MaxLength       =   40
             TabIndex        =   236
             Text            =   "Text2"
-            Top             =   2070
+            Top             =   2100
             Width           =   6345
          End
          Begin VB.TextBox Text1 
@@ -3097,7 +3162,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   855
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   116
          Top             =   630
          Width           =   10665
@@ -3235,7 +3300,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1425
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   113
          Top             =   1680
          Width           =   10665
@@ -4324,7 +4389,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   735
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   162
          Top             =   6000
          Visible         =   0   'False
@@ -4413,7 +4478,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   735
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   124
          Top             =   6000
          Visible         =   0   'False
@@ -4789,7 +4854,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   975
-         Left            =   210
+         Left            =   -74790
          TabIndex        =   170
          Top             =   4230
          Visible         =   0   'False
@@ -4957,7 +5022,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   81
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   261
          Top             =   3735
          Visible         =   0   'False
@@ -6073,7 +6138,7 @@ Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim I As Integer
+Dim i As Integer
     Screen.MousePointer = vbHourglass
 
     Select Case Index
@@ -6181,18 +6246,18 @@ Dim I As Integer
             If CadenaDesdeOtroForm <> "" Then
                 Select Case Index
                     Case 42
-                        I = 9 'Para la cta aportacion
+                        i = 9 'Para la cta aportacion
                     Case 6
-                        I = 65 ' cta de liquidacion
+                        i = 65 ' cta de liquidacion
                     Case 7
-                        I = 65 ' cta de titulo d alta de socio
+                        i = 65 ' cta de titulo d alta de socio
                     Case 8
-                        I = 65 ' cta de gastos de alta de socio
+                        i = 65 ' cta de gastos de alta de socio
                     Case Else
-                        I = 7
+                        i = 7
                 End Select
-                Text1(Index + I).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                Text2(Index + I).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                Text1(Index + i).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
+                Text2(Index + i).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
         
         Case 3 ' articulo de alquiler de equipos
@@ -6639,14 +6704,14 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim I As Integer
+Dim i As Integer
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
       
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
       
       
     '------------------------------------------------------

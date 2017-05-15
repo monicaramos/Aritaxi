@@ -499,6 +499,7 @@ Dim SQL2 As String
         miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If TotalRegistrosConsulta(Sql) = 0 Then
             MsgBox "No hay registros para facturar", vbExclamation
+            Screen.MousePointer = vbDefault
             Exit Sub
         End If
         If Not MostrarFacturas(SQL2) Then Exit Sub
