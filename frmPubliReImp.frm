@@ -11,6 +11,15 @@ Begin VB.Form frmPubliReImp
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox chk_duplicado 
       Caption         =   "Duplicado"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   330
       TabIndex        =   16
@@ -19,7 +28,16 @@ Begin VB.Form frmPubliReImp
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   85
       Left            =   1710
       MaxLength       =   10
@@ -29,9 +47,18 @@ Begin VB.Form frmPubliReImp
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   86
-      Left            =   3975
+      Left            =   4335
       MaxLength       =   10
       TabIndex        =   7
       Top             =   3525
@@ -39,23 +66,50 @@ Begin VB.Form frmPubliReImp
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   3360
+      Left            =   3570
       TabIndex        =   8
       Top             =   4680
       Width           =   1035
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   4560
+      Left            =   4770
       TabIndex        =   9
       Top             =   4680
       Width           =   1035
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   36
       Left            =   1710
       MaxLength       =   10
@@ -66,9 +120,18 @@ Begin VB.Form frmPubliReImp
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   37
-      Left            =   3960
+      Left            =   4320
       MaxLength       =   10
       TabIndex        =   5
       Tag             =   "codtalle|N|N|||scaord|codtalle|00|S|"
@@ -77,25 +140,52 @@ Begin VB.Form frmPubliReImp
    End
    Begin VB.Frame Frame1 
       Caption         =   "Tipo"
-      Height          =   615
-      Left            =   360
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   705
+      Left            =   300
       TabIndex        =   1
       Top             =   1200
-      Width           =   4575
+      Width           =   5595
       Begin VB.OptionButton Option2 
          Caption         =   "Socios"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   2520
+         Left            =   3300
          TabIndex        =   3
-         Top             =   240
+         Top             =   270
          Width           =   1215
       End
       Begin VB.OptionButton Option1 
          Caption         =   "Clientes"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   1020
          TabIndex        =   2
-         Top             =   240
+         Top             =   270
          Value           =   -1  'True
          Width           =   1215
       End
@@ -110,66 +200,66 @@ Begin VB.Form frmPubliReImp
    End
    Begin VB.Label Label17 
       AutoSize        =   -1  'True
-      Caption         =   "Fecha Fact."
+      Caption         =   "Fecha Factura"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   7
       Left            =   330
       TabIndex        =   15
       Top             =   3180
-      Width           =   945
+      Width           =   1500
    End
    Begin VB.Label Label14 
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   7
-      Left            =   900
+      Left            =   780
       TabIndex        =   14
       Top             =   3540
-      Width           =   450
+      Width           =   600
    End
    Begin VB.Label Label14 
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   8
-      Left            =   3210
+      Left            =   3450
       TabIndex        =   13
       Top             =   3540
-      Width           =   420
+      Width           =   570
    End
    Begin VB.Image imgFecha 
       Height          =   240
       Index           =   24
-      Left            =   3690
+      Left            =   4050
       Picture         =   "frmPubliReImp.frx":008B
       Top             =   3540
       Width           =   240
@@ -178,8 +268,8 @@ Begin VB.Form frmPubliReImp
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -187,19 +277,19 @@ Begin VB.Form frmPubliReImp
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00000000&
-      Height          =   195
+      Height          =   240
       Index           =   2
-      Left            =   930
+      Left            =   810
       TabIndex        =   12
       Top             =   2550
-      Width           =   450
+      Width           =   600
    End
    Begin VB.Label Label10 
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -207,32 +297,32 @@ Begin VB.Form frmPubliReImp
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00000000&
-      Height          =   195
+      Height          =   240
       Index           =   3
-      Left            =   3270
+      Left            =   3480
       TabIndex        =   11
       Top             =   2550
-      Width           =   420
+      Width           =   570
    End
    Begin VB.Label Label10 
       AutoSize        =   -1  'True
       Caption         =   "Nº Factura"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   4
       Left            =   330
       TabIndex        =   10
       Top             =   2220
-      Width           =   885
+      Width           =   1140
    End
    Begin VB.Label Label10 
       Caption         =   "Reimpresión Facturas Publicidad"
@@ -251,7 +341,7 @@ Begin VB.Form frmPubliReImp
       Left            =   330
       TabIndex        =   0
       Top             =   480
-      Width           =   5655
+      Width           =   5565
    End
 End
 Attribute VB_Name = "frmPubliReImp"
@@ -300,14 +390,14 @@ Dim Codigo As String
     
     'Desde/Hasta numero de FACTURA
     '---------------------------------------------
-    If txtCodigo(36).Text <> "" Or txtCodigo(37).Text <> "" Then
+    If txtcodigo(36).Text <> "" Or txtcodigo(37).Text <> "" Then
         Codigo = "{" & Tabla & ".numfactu}"
         If Not PonerDesdeHasta(Codigo, "N", 36, 37, "") Then Exit Sub
     End If
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
+    If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
         Codigo = "{" & Tabla & ".fecfactu}"
         If Not PonerDesdeHasta(Codigo, "F", 85, 86, "") Then Exit Sub
     End If
@@ -362,7 +452,7 @@ Private Sub Form_Activate()
     numParam = 0
     cadParam = ""
 
-    PonerFoco txtCodigo(36)
+    PonerFoco txtcodigo(36)
 
 End Sub
 
@@ -462,7 +552,7 @@ Dim devuelve As String
 Dim cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -471,7 +561,7 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
@@ -488,7 +578,7 @@ End Function
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
@@ -503,13 +593,13 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = Index + 62
    End Select
    
-   PonerFormatoFecha txtCodigo(indCodigo)
-   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
+   PonerFormatoFecha txtcodigo(indCodigo)
+   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtCodigo(indCodigo)
+   PonerFoco txtcodigo(indCodigo)
 End Sub
 
 'Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
@@ -546,7 +636,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -557,12 +647,12 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 85, 86  'FECHA Desde Hasta
-            If txtCodigo(Index).Text = "" Then Exit Sub
-            PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text = "" Then Exit Sub
+            PonerFormatoFecha txtcodigo(Index)
             
         Case 36, 37 'Nº de FACTURA
-            If PonerFormatoEntero(txtCodigo(Index)) Then
-                txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "0000000")
+            If PonerFormatoEntero(txtcodigo(Index)) Then
+                txtcodigo(Index).Text = Format(txtcodigo(Index).Text, "0000000")
             End If
     End Select
     

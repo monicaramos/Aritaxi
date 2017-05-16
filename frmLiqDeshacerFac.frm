@@ -11,7 +11,16 @@ Begin VB.Form frmLiqDeshacerFac
    ScaleWidth      =   6435
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtcodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       IMEMode         =   3  'DISABLE
       Index           =   8
       Left            =   2460
@@ -60,7 +69,16 @@ Begin VB.Form frmLiqDeshacerFac
       End
    End
    Begin VB.TextBox txtcodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   2
       Left            =   1470
       TabIndex        =   2
@@ -69,7 +87,16 @@ Begin VB.Form frmLiqDeshacerFac
    End
    Begin VB.TextBox txtnombre 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   2370
       Locked          =   -1  'True
@@ -79,7 +106,16 @@ Begin VB.Form frmLiqDeshacerFac
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   1470
       MaxLength       =   6
@@ -90,27 +126,54 @@ Begin VB.Form frmLiqDeshacerFac
    End
    Begin VB.TextBox txtnombre 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   2370
       Locked          =   -1  'True
       TabIndex        =   6
-      Top             =   3390
+      Top             =   3450
       Width           =   3735
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   1470
       MaxLength       =   6
       TabIndex        =   1
       Tag             =   "Num vehiculo|N|N|||shilla|numeruve|00000|S|"
-      Top             =   3390
+      Top             =   3450
       Width           =   855
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3750
       TabIndex        =   3
@@ -119,6 +182,15 @@ Begin VB.Form frmLiqDeshacerFac
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   4980
       TabIndex        =   4
@@ -128,7 +200,7 @@ Begin VB.Form frmLiqDeshacerFac
    Begin VB.Label Label6 
       Caption         =   "Password:"
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   700
@@ -139,7 +211,7 @@ Begin VB.Form frmLiqDeshacerFac
       ForeColor       =   &H00C00000&
       Height          =   345
       Index           =   1
-      Left            =   1425
+      Left            =   1275
       TabIndex        =   19
       Top             =   1800
       Width           =   2235
@@ -148,7 +220,7 @@ Begin VB.Form frmLiqDeshacerFac
       Alignment       =   2  'Center
       Caption         =   "Actualiza contadores"
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   700
@@ -168,7 +240,7 @@ Begin VB.Form frmLiqDeshacerFac
       Alignment       =   2  'Center
       Caption         =   "Este proceso borra la última liquidación a Socio"
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   700
@@ -186,15 +258,15 @@ Begin VB.Form frmLiqDeshacerFac
    Begin VB.Label Label3 
       Caption         =   "Fecha Factura"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   255
       Left            =   330
       TabIndex        =   11
@@ -220,66 +292,66 @@ Begin VB.Form frmLiqDeshacerFac
       AutoSize        =   -1  'True
       Caption         =   "V Socio"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   2
       Left            =   330
       TabIndex        =   10
       Top             =   2700
-      Width           =   600
+      Width           =   750
    End
    Begin VB.Label Label9 
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   3
-      Left            =   690
+      Left            =   540
       TabIndex        =   9
       Top             =   3045
-      Width           =   450
+      Width           =   600
    End
    Begin VB.Image imgBuscarOfer 
       Height          =   240
       Index           =   1
       Left            =   1170
-      Top             =   3390
+      Top             =   3450
       Width           =   240
    End
    Begin VB.Label Label9 
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   4
-      Left            =   690
+      Left            =   540
       TabIndex        =   8
-      Top             =   3390
-      Width           =   420
+      Top             =   3450
+      Width           =   570
    End
    Begin VB.Label Label10 
       Caption         =   "Deshacer Liquidación Socios"
@@ -297,7 +369,7 @@ Begin VB.Form frmLiqDeshacerFac
       Index           =   0
       Left            =   330
       TabIndex        =   5
-      Top             =   480
+      Top             =   360
       Width           =   5655
    End
 End
@@ -368,13 +440,13 @@ Dim devuelve As String
    
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
+    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".numeruve}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
     End If
     
     ' las facturas correspondientes a la fecha de liquidacion que se le indique
-    If Not AnyadirAFormula(cadSelect, "sfactusoc.fecfactu = " & DBSet(txtCodigo(2).Text, "F")) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, "sfactusoc.fecfactu = " & DBSet(txtcodigo(2).Text, "F")) Then Exit Sub
     If Not AnyadirAFormula(cadSelect, "sfactusoc.codtipom = 'FLI'") Then Exit Sub
     
     If Not HayRegParaInforme(Tabla, cadSelect) Then Exit Sub
@@ -390,7 +462,7 @@ Dim devuelve As String
     End If
 
     ' proceso de deshacer liquidacion a socios
-    If ProcesoDeshacerLiquidacionSocio(cadSelect, txtCodigo(2).Text) Then
+    If ProcesoDeshacerLiquidacionSocio(cadSelect, txtcodigo(2).Text) Then
         MsgBox "Proceso realizado correctamente.", vbExclamation
 
 
@@ -512,7 +584,7 @@ Private Sub Form_Activate()
     numParam = 0
     cadParam = ""
 
-    PonerFoco txtCodigo(8)
+    PonerFoco txtcodigo(8)
 End Sub
 
 Private Sub Form_Load()
@@ -537,7 +609,7 @@ Dim encontrado As String
 Dim Codigo As String
 
     DatosOk = True
-    If txtCodigo(2).Text = "" Then
+    If txtcodigo(2).Text = "" Then
         MsgBox "Debe introducir obligatoriamente la fecha de liquidación.", vbExclamation
         DatosOk = False
         Exit Function
@@ -550,7 +622,7 @@ Dim devuelve As String
 Dim cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -559,7 +631,7 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
@@ -575,11 +647,11 @@ End Function
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
@@ -601,7 +673,7 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             Set frmFP = Nothing
     
     End Select
-    PonerFoco txtCodigo(indCodigo)
+    PonerFoco txtcodigo(indCodigo)
 
 End Sub
 
@@ -617,23 +689,23 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = 3
    End Select
    
-   PonerFormatoFecha txtCodigo(indCodigo)
-   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
+   PonerFormatoFecha txtcodigo(indCodigo)
+   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtCodigo(indCodigo)
+   PonerFoco txtcodigo(indCodigo)
 End Sub
 
 Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
-    If txtCodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtCodigo(indD).Text
+    If txtcodigo(indD).Text <> "" Then
+        cad = cad & "desde " & txtcodigo(indD).Text
         If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
     End If
-    If txtCodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtCodigo(indH).Text
+    If txtcodigo(indH).Text <> "" Then
+        cad = cad & "  hasta " & txtcodigo(indH).Text
         If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
     End If
     AnyadirParametroDH = cad
@@ -641,7 +713,7 @@ On Error Resume Next
 End Function
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -673,7 +745,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -682,56 +754,56 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 0, 1 'V Socio
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' fecha de liquidacion
-            PonerFormatoFecha txtCodigo(Index)
+            PonerFormatoFecha txtcodigo(Index)
             
         Case 8
-            If txtCodigo(Index).Text = "" Then Exit Sub
-            If Trim(txtCodigo(Index).Text) <> Trim(txtCodigo(Index).Tag) Then
+            If txtcodigo(Index).Text = "" Then Exit Sub
+            If Trim(txtcodigo(Index).Text) <> Trim(txtcodigo(Index).Tag) Then
                 MsgBox "    ACCESO DENEGADO    ", vbExclamation
-                txtCodigo(Index).Text = ""
-                PonerFoco txtCodigo(Index)
+                txtcodigo(Index).Text = ""
+                PonerFoco txtcodigo(Index)
             Else
                 DesactivarCLAVE
-                PonerFoco txtCodigo(0)
+                PonerFoco txtcodigo(0)
             End If
     End Select
 End Sub
 
 Private Sub ActivarCLAVE()
-Dim I As Integer
+Dim i As Integer
     
-    For I = 0 To 2
-        txtCodigo(I).Enabled = False
-    Next I
-    txtCodigo(8).Enabled = True
-    For I = 0 To 1
-        imgBuscarOfer(I).Enabled = False
-        imgBuscarOfer(I).visible = False
-    Next I
+    For i = 0 To 2
+        txtcodigo(i).Enabled = False
+    Next i
+    txtcodigo(8).Enabled = True
+    For i = 0 To 1
+        imgBuscarOfer(i).Enabled = False
+        imgBuscarOfer(i).visible = False
+    Next i
     
     imgFecha(0).Enabled = False
     cmdAceptar.Enabled = False
     cmdCancelar.Enabled = True
     
-    txtCodigo(8).Text = ""
-    PonerFoco txtCodigo(8)
+    txtcodigo(8).Text = ""
+    PonerFoco txtcodigo(8)
 End Sub
 
 Private Sub DesactivarCLAVE()
-Dim I As Integer
+Dim i As Integer
 
-    For I = 0 To 2
-        txtCodigo(I).Enabled = True
-    Next I
-    txtCodigo(8).Enabled = False
-    For I = 0 To 1
-        imgBuscarOfer(I).Enabled = True
-        imgBuscarOfer(I).visible = True
-    Next I
+    For i = 0 To 2
+        txtcodigo(i).Enabled = True
+    Next i
+    txtcodigo(8).Enabled = False
+    For i = 0 To 1
+        imgBuscarOfer(i).Enabled = True
+        imgBuscarOfer(i).visible = True
+    Next i
     imgFecha(0).Enabled = True
     cmdAceptar.Enabled = True
     cmdCancelar.Enabled = False
@@ -797,7 +869,7 @@ Dim Existe As Boolean
     Sql = "select numfactu, codsocio from sfactusoc where " & cadWHERE
     
     nTotal = TotalRegistrosConsulta(Sql)
-    Pb1.Max = nTotal
+    PB1.Max = nTotal
     
     FrameProgress.visible = True
     
@@ -807,7 +879,7 @@ Dim Existe As Boolean
     b = True
     
     While Not RSalb.EOF And b
-        IncrementarProgresNew Pb1, 1
+        IncrementarProgresNew PB1, 1
         
         b = DesmarcarLLamadas(tipoMov, CStr(RSalb!NumFactu), FecFac, RSalb!codSocio)
         

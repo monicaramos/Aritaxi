@@ -12,6 +12,15 @@ Begin VB.Form frmCuotasContaFac
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox Check1 
       Caption         =   "Rectificativa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   300
       TabIndex        =   14
@@ -21,15 +30,15 @@ Begin VB.Form frmCuotasContaFac
    Begin VB.Frame FrameContab 
       Caption         =   "Tipo"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   620
       Left            =   300
       TabIndex        =   11
@@ -37,14 +46,32 @@ Begin VB.Form frmCuotasContaFac
       Width           =   5475
       Begin VB.OptionButton OptSocios 
          Caption         =   "Extraordinarias"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   2910
          TabIndex        =   13
          Top             =   240
-         Width           =   1695
+         Width           =   2025
       End
       Begin VB.OptionButton OptNormales 
          Caption         =   "Normales"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   315
          Left            =   720
          TabIndex        =   12
@@ -66,15 +93,33 @@ Begin VB.Form frmCuotasContaFac
    End
    Begin VB.CommandButton cmdCancel 
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   7
-      Left            =   4860
+      Left            =   4800
       TabIndex        =   7
       Top             =   3960
-      Width           =   975
+      Width           =   1035
    End
    Begin VB.CommandButton cmdAceptarRepxDia 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3660
       TabIndex        =   6
@@ -82,20 +127,38 @@ Begin VB.Form frmCuotasContaFac
       Width           =   975
    End
    Begin VB.TextBox txtCodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   32
       Left            =   4290
       TabIndex        =   4
       Top             =   2160
-      Width           =   1095
+      Width           =   1275
    End
    Begin VB.TextBox txtCodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   31
       Left            =   1710
       TabIndex        =   2
       Top             =   2160
-      Width           =   1095
+      Width           =   1275
    End
    Begin VB.Label lblProgess 
       BeginProperty Font 
@@ -155,56 +218,74 @@ Begin VB.Form frmCuotasContaFac
    Begin VB.Image imgFecha 
       Height          =   240
       Index           =   5
-      Left            =   3930
+      Left            =   4020
       ToolTipText     =   "Buscar Fecha"
       Top             =   2160
       Width           =   240
    End
    Begin VB.Label Label3 
       Caption         =   "Hasta"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   195
       Index           =   29
-      Left            =   3450
+      Left            =   3360
       TabIndex        =   3
       Top             =   2160
-      Width           =   420
+      Width           =   600
    End
    Begin VB.Image imgFecha 
       Height          =   240
       Index           =   4
-      Left            =   1350
+      Left            =   1440
       ToolTipText     =   "Buscar Fecha"
       Top             =   2160
       Width           =   240
    End
    Begin VB.Label Label2 
       Caption         =   "Desde"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   195
       Index           =   0
       Left            =   750
       TabIndex        =   1
       Top             =   2160
-      Width           =   465
+      Width           =   645
    End
    Begin VB.Label Label2 
       AutoSize        =   -1  'True
       Caption         =   "Fecha de factura:"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   2
       Left            =   330
       TabIndex        =   0
       Top             =   1800
-      Width           =   1455
+      Width           =   1860
    End
 End
 Attribute VB_Name = "frmCuotasContaFac"
