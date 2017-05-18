@@ -14,6 +14,15 @@ Begin VB.Form frmFacClienteObser
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   4575
       Left            =   120
       MultiLine       =   -1  'True
@@ -26,6 +35,15 @@ Begin VB.Form frmFacClienteObser
    Begin VB.CommandButton Command1 
       Cancel          =   -1  'True
       Caption         =   "Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   1
       Left            =   6960
@@ -35,6 +53,15 @@ Begin VB.Form frmFacClienteObser
    End
    Begin VB.CommandButton Command1 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   0
       Left            =   5760

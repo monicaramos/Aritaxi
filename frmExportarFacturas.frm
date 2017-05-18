@@ -16,6 +16,15 @@ Begin VB.Form frmExportarFacturas
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdSalir 
       Caption         =   "Salir"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3960
       TabIndex        =   6
@@ -24,6 +33,15 @@ Begin VB.Form frmExportarFacturas
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   2040
       TabIndex        =   5
@@ -38,126 +56,234 @@ Begin VB.Form frmExportarFacturas
       Width           =   5640
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
-         Left            =   2520
+         Left            =   2790
          MaxLength       =   10
          TabIndex        =   3
          Tag             =   "Código Postal|T|S|||clientes|codsocio|||"
          Top             =   1755
-         Width           =   1050
+         Width           =   1380
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
-         Left            =   2520
+         Left            =   2790
          MaxLength       =   10
          TabIndex        =   4
          Tag             =   "Código Postal|T|S|||clientes|codsocio|||"
          Top             =   2100
-         Width           =   1050
+         Width           =   1380
       End
       Begin VB.CheckBox Check2 
          Caption         =   "Incluir los ya traspasados"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   270
          TabIndex        =   13
-         Top             =   2430
+         Top             =   2490
          Value           =   1  'Checked
-         Width           =   2235
+         Width           =   3495
       End
       Begin VB.ComboBox Combo1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   1560
+         Left            =   1710
          Style           =   2  'Dropdown List
          TabIndex        =   0
          Tag             =   "Tipo|N|N|||straba|codsecci||N|"
          Top             =   240
-         Width           =   2040
+         Width           =   2490
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   2520
+         Left            =   2790
          MaxLength       =   10
          TabIndex        =   2
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
          Top             =   1290
-         Width           =   1050
+         Width           =   1380
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   2520
+         Left            =   2790
          MaxLength       =   10
          TabIndex        =   1
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   945
-         Width           =   1050
+         Top             =   915
+         Width           =   1380
       End
       Begin VB.Label Label4 
          Caption         =   "Socio / Cliente"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   2
          Left            =   270
          TabIndex        =   16
-         Top             =   1650
-         Width           =   1185
+         Top             =   1560
+         Width           =   1515
       End
       Begin VB.Label Label4 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   1
-         Left            =   1590
+         Left            =   1860
          TabIndex        =   15
          Top             =   2100
-         Width           =   420
+         Width           =   600
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   0
-         Left            =   1590
+         Left            =   1860
          TabIndex        =   14
          Top             =   1740
-         Width           =   465
+         Width           =   615
       End
       Begin VB.Label Label8 
          Caption         =   "Tipo Factura"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   255
          Left            =   270
          TabIndex        =   12
          Top             =   270
-         Width           =   1065
+         Width           =   1605
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   15
-         Left            =   1590
+         Left            =   1860
          TabIndex        =   11
          Top             =   930
-         Width           =   465
+         Width           =   645
       End
       Begin VB.Label Label4 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   14
-         Left            =   1590
+         Left            =   1860
          TabIndex        =   10
          Top             =   1290
-         Width           =   420
+         Width           =   660
       End
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   0
-         Left            =   2250
+         Left            =   2520
          ToolTipText     =   "Buscar fecha"
          Top             =   930
          Width           =   240
@@ -165,25 +291,43 @@ Begin VB.Form frmExportarFacturas
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   1
-         Left            =   2250
+         Left            =   2520
          ToolTipText     =   "Buscar fecha"
          Top             =   1290
          Width           =   240
       End
       Begin VB.Label Label4 
          Caption         =   "Fecha Factura"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   16
          Left            =   270
          TabIndex        =   9
-         Top             =   810
-         Width           =   1185
+         Top             =   720
+         Width           =   1665
       End
    End
    Begin VB.Label lblInf 
       Alignment       =   2  'Center
       Caption         =   "Información del proceso"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   240
       TabIndex        =   7
@@ -290,7 +434,7 @@ End Function
 
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -303,8 +447,8 @@ Dim I As Integer
     Combo1(1).ListIndex = 0
     
     
-    For I = 0 To Me.imgFec.Count - 1
-        imgFec(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFec.Count - 1
+        imgFec(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
     
     
@@ -414,7 +558,7 @@ Private Sub CargaFacturasLiq(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -478,8 +622,8 @@ Dim cadParam As String
         
         RS.MoveFirst
         While Not RS.EOF
-            I = I + 1
-            lblInf.Caption = "Procesando registro " & CStr(I)
+            i = i + 1
+            lblInf.Caption = "Procesando registro " & CStr(i)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -550,7 +694,7 @@ Private Sub CargaFacturasCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -595,8 +739,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            I = I + 1
-            lblInf.Caption = "Procesando registro " & CStr(I)
+            i = i + 1
+            lblInf.Caption = "Procesando registro " & CStr(i)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -666,7 +810,7 @@ Private Sub CargaFacturasCuotasSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -712,8 +856,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            I = I + 1
-            lblInf.Caption = "Procesando registro " & CStr(I)
+            i = i + 1
+            lblInf.Caption = "Procesando registro " & CStr(i)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -774,7 +918,7 @@ Private Sub CargaFacturasPublicidadSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -821,8 +965,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            I = I + 1
-            lblInf.Caption = "Procesando registro " & CStr(I)
+            i = i + 1
+            lblInf.Caption = "Procesando registro " & CStr(i)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -885,7 +1029,7 @@ Private Sub CargaFacturasPublicidadCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -932,8 +1076,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            I = I + 1
-            lblInf.Caption = "Procesando registro " & CStr(I)
+            i = i + 1
+            lblInf.Caption = "Procesando registro " & CStr(i)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -995,7 +1139,7 @@ Private Sub CargaFacturasVentaSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim RS As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -1042,8 +1186,8 @@ Dim cadParam As String
     If Not RS.EOF Then
         RS.MoveFirst
         While Not RS.EOF
-            I = I + 1
-            lblInf.Caption = "Procesando registro " & CStr(I)
+            i = i + 1
+            lblInf.Caption = "Procesando registro " & CStr(i)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -1104,7 +1248,7 @@ End Sub
 Private Sub CargaCombo()
 Dim ini As Integer
 Dim Fin As Integer
-Dim I As Integer
+Dim i As Integer
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
 '    For I = 0 To Combo1.Count - 1
@@ -1134,26 +1278,26 @@ End Sub
 
 
 Private Function IntentaMatar(FicheroPDF As String) As Boolean
-Dim I As Integer
+Dim i As Integer
 
     On Error Resume Next
-    I = 1
+    i = 1
     IntentaMatar = False
     Do
         If Dir(FicheroPDF, vbArchive) <> "" Then
             Kill FicheroPDF
             If Err.Number <> 0 Then
                 Err.Clear
-                I = I + 1
+                i = i + 1
             Else
                 IntentaMatar = True
-                I = 6
+                i = 6
             End If
         Else
             IntentaMatar = True
-            I = 6
+            i = 6
         End If
-    Loop Until I < 5 Or IntentaMatar = True
+    Loop Until i < 5 Or IntentaMatar = True
     
     
 End Function

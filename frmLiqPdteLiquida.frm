@@ -11,7 +11,16 @@ Begin VB.Form frmLiqPdteLiquida
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtNombre 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   2370
       Locked          =   -1  'True
@@ -21,7 +30,16 @@ Begin VB.Form frmLiqPdteLiquida
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   1470
       MaxLength       =   6
@@ -32,28 +50,55 @@ Begin VB.Form frmLiqPdteLiquida
    End
    Begin VB.TextBox txtNombre 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   2370
       Locked          =   -1  'True
       TabIndex        =   10
-      Top             =   1980
+      Top             =   2040
       Width           =   3735
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   1470
       MaxLength       =   6
       TabIndex        =   1
       Tag             =   "Num vehiculo|N|N|||shilla|numeruve|0000|S|"
-      Top             =   1980
+      Top             =   2040
       Width           =   855
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   85
       Left            =   1500
       MaxLength       =   10
@@ -63,7 +108,16 @@ Begin VB.Form frmLiqPdteLiquida
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   86
       Left            =   3795
       MaxLength       =   10
@@ -73,6 +127,15 @@ Begin VB.Form frmLiqPdteLiquida
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3810
       TabIndex        =   4
@@ -81,6 +144,15 @@ Begin VB.Form frmLiqPdteLiquida
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   5040
       TabIndex        =   5
@@ -98,66 +170,66 @@ Begin VB.Form frmLiqPdteLiquida
       AutoSize        =   -1  'True
       Caption         =   "V Socio"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   2
       Left            =   330
       TabIndex        =   14
       Top             =   1290
-      Width           =   600
+      Width           =   750
    End
    Begin VB.Label Label9 
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   3
-      Left            =   690
+      Left            =   540
       TabIndex        =   13
       Top             =   1635
-      Width           =   450
+      Width           =   600
    End
    Begin VB.Image imgBuscarOfer 
       Height          =   240
       Index           =   1
       Left            =   1170
-      Top             =   1980
+      Top             =   2040
       Width           =   240
    End
    Begin VB.Label Label9 
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   4
-      Left            =   690
+      Left            =   540
       TabIndex        =   12
-      Top             =   1980
-      Width           =   420
+      Top             =   2040
+      Width           =   570
    End
    Begin VB.Image imgFecha 
       Height          =   240
@@ -170,59 +242,59 @@ Begin VB.Form frmLiqPdteLiquida
       AutoSize        =   -1  'True
       Caption         =   "Fecha"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   7
       Left            =   360
       TabIndex        =   9
       Top             =   2610
-      Width           =   495
+      Width           =   630
    End
    Begin VB.Label Label14 
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   7
-      Left            =   690
+      Left            =   540
       TabIndex        =   8
       Top             =   3000
-      Width           =   450
+      Width           =   600
    End
    Begin VB.Label Label14 
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   8
-      Left            =   3030
+      Left            =   2940
       TabIndex        =   7
       Top             =   3030
-      Width           =   420
+      Width           =   570
    End
    Begin VB.Image imgFecha 
       Height          =   240
@@ -411,7 +483,7 @@ End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub imgBuscarOfer_Click(Index As Integer)
@@ -453,11 +525,11 @@ Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) A
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
         cad = cad & "desde " & txtcodigo(indD).Text
-        If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
+        If txtNombre(indD).Text <> "" Then cad = cad & " - " & txtNombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
         cad = cad & "  hasta " & txtcodigo(indH).Text
-        If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
+        If txtNombre(indH).Text <> "" Then cad = cad & " - " & txtNombre(indH).Text
     End If
     AnyadirParametroDH = cad
     If Err.Number <> 0 Then Err.Clear
@@ -510,7 +582,7 @@ Dim EsNomCod As Boolean
             
         Case 0, 1 'V Socio
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             End If
     End Select
     

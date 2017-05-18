@@ -60,6 +60,15 @@ Begin VB.Form frmFacturas
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   5400
       TabIndex        =   1
@@ -69,8 +78,17 @@ Begin VB.Form frmFacturas
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   6720
+      Left            =   6660
       TabIndex        =   2
       Top             =   4560
       Width           =   1035
@@ -85,19 +103,19 @@ Begin VB.Form frmFacturas
       _ExtentY        =   6376
       _Version        =   393216
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -147,8 +165,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Public SQL As String
-Public socio As Boolean
+Public Sql As String
+Public Socio As Boolean
 
 Private Sub cmdAceptar_Click()
     CadenaDesdeOtroForm = "DATOS"
@@ -167,7 +185,7 @@ Private Sub Form_Load()
 
     Screen.MousePointer = vbDefault
     Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = SQL
+    Adodc1.RecordSource = Sql
     Adodc1.Refresh
     
     If Not Adodc1.Recordset.EOF Then
@@ -184,7 +202,7 @@ On Error GoTo ECargaGrid
 
     vData.Refresh
     Set vDataGrid.DataSource = vData
-    If socio Then
+    If Socio Then
         vDataGrid.Columns(0).Caption = "Socio"
         vDataGrid.Columns(0).Width = 3100
         vDataGrid.Columns(1).Caption = "Importes"
@@ -205,6 +223,9 @@ On Error GoTo ECargaGrid
         vDataGrid.Columns(3).Caption = "Error"
         vDataGrid.Columns(3).Width = 4300
     End If
+    
+    vDataGrid.RowHeight = 350
+    
     
     vDataGrid.Enabled = True
     For i = 0 To vDataGrid.Columns.Count - 1

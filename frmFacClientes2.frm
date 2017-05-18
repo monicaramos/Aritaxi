@@ -20,7 +20,16 @@ Begin VB.Form frmFacClientes2
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   350
       Index           =   2
       Left            =   4320
       MaxLength       =   30
@@ -33,7 +42,16 @@ Begin VB.Form frmFacClientes2
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   350
       Index           =   0
       Left            =   120
       MaxLength       =   6
@@ -46,7 +64,16 @@ Begin VB.Form frmFacClientes2
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   350
       Index           =   1
       Left            =   1020
       MaxLength       =   40
@@ -59,18 +86,18 @@ Begin VB.Form frmFacClientes2
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmFacClientes2.frx":000C
       Height          =   4710
-      Left            =   240
+      Left            =   120
       TabIndex        =   9
       TabStop         =   0   'False
       Top             =   540
-      Width           =   8415
-      _ExtentX        =   14843
+      Width           =   8475
+      _ExtentX        =   14949
       _ExtentY        =   8308
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -81,8 +108,8 @@ Begin VB.Form frmFacClientes2
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -130,6 +157,15 @@ Begin VB.Form frmFacClientes2
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   7620
       TabIndex        =   4
@@ -138,6 +174,15 @@ Begin VB.Form frmFacClientes2
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   6420
       TabIndex        =   3
@@ -163,8 +208,8 @@ Begin VB.Form frmFacClientes2
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -172,9 +217,9 @@ Begin VB.Form frmFacClientes2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   210
          TabIndex        =   7
-         Top             =   240
+         Top             =   210
          Width           =   3120
       End
    End
@@ -375,7 +420,7 @@ Dim i As Integer
     txtAux(1).visible = Not b
     txtAux(2).visible = Not b
     
-    cmdAceptar.visible = Not b
+    CmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
     DataGrid1.Enabled = b
     
@@ -461,7 +506,7 @@ Private Sub BotonVerTodos()
 On Error Resume Next
 
     CargaGrid ""
-    If Adodc1.Recordset.RecordCount <= 0 Then
+    If adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla sactiv", vbInformation
         Screen.MousePointer = vbDefault
         Exit Sub
@@ -544,7 +589,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim i As Integer
-Dim cadB As String
+Dim CadB As String
 
     On Error Resume Next
 
@@ -561,10 +606,10 @@ Dim cadB As String
                 If InStr(1, txtAux(2).Text, "*") = 0 Then txtAux(2).Text = "*" & txtAux(2).Text & "*"
             End If
             
-            cadB = ObtenerBusqueda(Me, False)
-            If cadB <> "" Then
+            CadB = ObtenerBusqueda(Me, False)
+            If CadB <> "" Then
                 PonerModo 2
-                CargaGrid cadB
+                CargaGrid CadB
                 DataGrid1.SetFocus
             End If
         
@@ -619,16 +664,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
-    If Adodc1.Recordset.EOF Then
+    If adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = Adodc1.Recordset.Fields(0) & "|"
-    cad = cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -642,8 +687,8 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not Adodc1.Recordset.EOF Then 'And Modo = 0 Then
-        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+    If Not adodc1.Recordset.EOF Then 'And Modo = 0 Then
+        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
     End If
 End Sub
 
@@ -739,7 +784,7 @@ Dim tots As String
     End If
     Sql = Sql & " ORDER BY codclien"
 
-    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
+    CargaGridGnral DataGrid1, Me.adodc1, Sql, False
     
     '### a mano
     tots = "S|txtAux(0)|T|Cliente|900|;S|txtAux(1)|T|Nombre|3900|;S|txtAux(2)|T|Nombre Comercial|3000|;"
@@ -749,8 +794,8 @@ Dim tots As String
     DataGrid1.ScrollBars = dbgAutomatic
    
    'Actualizar indicador
-   If Not Adodc1.Recordset.EOF And (Modo = 2) Then
-        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+   If Not adodc1.Recordset.EOF And (Modo = 2) Then
+        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
    Else
         Me.lblIndicador.Caption = ""
    End If

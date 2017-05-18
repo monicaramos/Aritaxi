@@ -21,9 +21,18 @@ Begin VB.Form frmCRMVarios
       Width           =   7455
       Begin VB.TextBox txtDescAccion 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   2160
+         Left            =   2310
          Locked          =   -1  'True
          TabIndex        =   39
          Text            =   "Text1"
@@ -31,16 +40,34 @@ Begin VB.Form frmCRMVarios
          Width           =   3735
       End
       Begin VB.TextBox txtAccion 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   2
          Text            =   "Text1"
          Top             =   1560
-         Width           =   855
+         Width           =   975
       End
       Begin VB.CommandButton cmdGeneAcciones 
          Caption         =   "Generar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   4920
          TabIndex        =   11
@@ -48,19 +75,37 @@ Begin VB.Form frmCRMVarios
          Width           =   1095
       End
       Begin VB.TextBox txtNumero 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   10
          Text            =   "Text1"
          Top             =   6120
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescNumero 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   28
          Text            =   "Text1"
@@ -68,19 +113,37 @@ Begin VB.Form frmCRMVarios
          Width           =   2295
       End
       Begin VB.TextBox txtNumero 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   9
          Text            =   "Text1"
          Top             =   5760
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescNumero 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   26
          Text            =   "Text1"
@@ -88,19 +151,37 @@ Begin VB.Form frmCRMVarios
          Width           =   2295
       End
       Begin VB.TextBox txtNumero 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   8
          Text            =   "Text1"
          Top             =   5280
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescNumero 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   25
          Text            =   "Text1"
@@ -108,19 +189,37 @@ Begin VB.Form frmCRMVarios
          Width           =   2295
       End
       Begin VB.TextBox txtNumero 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   7
          Text            =   "Text1"
          Top             =   4920
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescNumero 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   23
          Text            =   "Text1"
@@ -128,19 +227,37 @@ Begin VB.Form frmCRMVarios
          Width           =   2295
       End
       Begin VB.TextBox txtNumero 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   6
          Text            =   "Text1"
          Top             =   4320
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescNumero 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   21
          Text            =   "Text1"
@@ -149,9 +266,18 @@ Begin VB.Form frmCRMVarios
       End
       Begin VB.TextBox txtDescNumero 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   20
          Text            =   "Text1"
@@ -159,19 +285,37 @@ Begin VB.Form frmCRMVarios
          Width           =   3495
       End
       Begin VB.TextBox txtNumero 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   5
          Text            =   "Text1"
          Top             =   3960
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescClie 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   19
          Text            =   "Text1"
@@ -179,28 +323,55 @@ Begin VB.Form frmCRMVarios
          Width           =   3495
       End
       Begin VB.TextBox txtCliente 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   4
          Text            =   "Text1"
          Top             =   3360
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtCliente 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   3
          Text            =   "Text1"
          Top             =   3000
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.TextBox txtDescClie 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   2280
+         Left            =   2430
          Locked          =   -1  'True
          TabIndex        =   16
          Text            =   "Text1"
@@ -209,27 +380,54 @@ Begin VB.Form frmCRMVarios
       End
       Begin VB.TextBox txtDescTra 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   2160
+         Left            =   2310
          Locked          =   -1  'True
          TabIndex        =   15
          Text            =   "Text1"
-         Top             =   1080
+         Top             =   1140
          Width           =   3735
       End
       Begin VB.TextBox txtTrab 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   1
-         Top             =   1080
-         Width           =   855
+         Top             =   1140
+         Width           =   975
       End
       Begin VB.TextBox txtFecha 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   1200
+         Left            =   1350
          TabIndex        =   0
          Text            =   "Text1"
          Top             =   720
@@ -237,17 +435,26 @@ Begin VB.Form frmCRMVarios
       End
       Begin VB.CommandButton cmdCancelar 
          Caption         =   "Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   0
          Left            =   6120
          TabIndex        =   12
          Top             =   6120
-         Width           =   1095
+         Width           =   1185
       End
       Begin VB.Image imgAccion 
          Height          =   240
          Index           =   0
-         Left            =   960
+         Left            =   1110
          Top             =   1560
          Width           =   240
       End
@@ -255,21 +462,21 @@ Begin VB.Form frmCRMVarios
          AutoSize        =   -1  'True
          Caption         =   "Accion"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   4
          Left            =   240
          TabIndex        =   38
          Top             =   1560
-         Width           =   555
+         Width           =   720
       End
       Begin VB.Line Line1 
          X1              =   120
@@ -281,8 +488,8 @@ Begin VB.Form frmCRMVarios
          Alignment       =   2  'Center
          Caption         =   "Generar entrada de acciones comerciales"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
+            Name            =   "Verdana"
+            Size            =   14.25
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -299,80 +506,152 @@ Begin VB.Form frmCRMVarios
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   5
          Left            =   360
          TabIndex        =   36
          Top             =   5760
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   4
          Left            =   360
          TabIndex        =   35
          Top             =   6120
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   3
          Left            =   360
          TabIndex        =   34
          Top             =   4920
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   2
          Left            =   360
          TabIndex        =   33
          Top             =   5280
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   1
          Left            =   360
          TabIndex        =   32
          Top             =   3960
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   0
          Left            =   360
          TabIndex        =   31
          Top             =   4320
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   58
          Left            =   360
          TabIndex        =   30
          Top             =   3000
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   59
          Left            =   360
          TabIndex        =   29
          Top             =   3360
-         Width           =   465
+         Width           =   705
       End
       Begin VB.Image imgVarios 
          Height          =   240
          Index           =   5
-         Left            =   960
+         Left            =   1110
          Top             =   6120
          Width           =   240
       End
@@ -380,60 +659,60 @@ Begin VB.Form frmCRMVarios
          AutoSize        =   -1  'True
          Caption         =   "Ruta"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   3
          Left            =   240
          TabIndex        =   27
          Top             =   5520
-         Width           =   405
+         Width           =   495
       End
       Begin VB.Image imgVarios 
          Height          =   240
          Index           =   4
-         Left            =   960
+         Left            =   1110
          Top             =   5760
          Width           =   240
       End
       Begin VB.Image imgVarios 
          Height          =   240
          Index           =   3
-         Left            =   960
-         Top             =   4320
+         Left            =   1110
+         Top             =   5310
          Width           =   240
       End
       Begin VB.Label lblDpto 
          AutoSize        =   -1  'True
          Caption         =   "Zona"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   2
          Left            =   240
          TabIndex        =   24
          Top             =   4680
-         Width           =   420
+         Width           =   540
       End
       Begin VB.Image imgVarios 
          Height          =   240
          Index           =   2
-         Left            =   960
+         Left            =   1110
          Top             =   4920
          Width           =   240
       End
@@ -441,40 +720,40 @@ Begin VB.Form frmCRMVarios
          AutoSize        =   -1  'True
          Caption         =   "Agente"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   1
          Left            =   240
          TabIndex        =   22
          Top             =   3720
-         Width           =   615
+         Width           =   780
       End
       Begin VB.Image imgVarios 
          Height          =   240
          Index           =   1
-         Left            =   960
+         Left            =   1110
          Top             =   4320
          Width           =   240
       End
       Begin VB.Image imgVarios 
          Height          =   240
          Index           =   0
-         Left            =   960
+         Left            =   1110
          Top             =   3960
          Width           =   240
       End
       Begin VB.Image imgCliente 
          Height          =   240
          Index           =   1
-         Left            =   960
+         Left            =   1110
          Top             =   3360
          Width           =   240
       End
@@ -482,26 +761,26 @@ Begin VB.Form frmCRMVarios
          AutoSize        =   -1  'True
          Caption         =   "Técnico"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   0
          Left            =   240
          TabIndex        =   18
-         Top             =   1080
-         Width           =   645
+         Top             =   1140
+         Width           =   825
       End
       Begin VB.Image imgCliente 
          Height          =   240
          Index           =   0
-         Left            =   960
+         Left            =   1110
          Top             =   3000
          Width           =   240
       End
@@ -509,33 +788,33 @@ Begin VB.Form frmCRMVarios
          AutoSize        =   -1  'True
          Caption         =   "Cliente"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   8
          Left            =   240
          TabIndex        =   17
          Top             =   2760
-         Width           =   585
+         Width           =   765
       End
       Begin VB.Image imgTecnico 
          Height          =   240
          Index           =   0
-         Left            =   960
-         Top             =   1080
+         Left            =   1110
+         Top             =   1140
          Width           =   240
       End
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   960
+         Left            =   1110
          Top             =   720
          Width           =   240
       End
@@ -543,21 +822,21 @@ Begin VB.Form frmCRMVarios
          AutoSize        =   -1  'True
          Caption         =   "Fecha "
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   33
          Left            =   240
          TabIndex        =   14
          Top             =   720
-         Width           =   540
+         Width           =   720
       End
    End
 End

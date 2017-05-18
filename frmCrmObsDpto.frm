@@ -15,6 +15,15 @@ Begin VB.Form frmCrmObsDpto
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   6000
       TabIndex        =   3
@@ -24,6 +33,15 @@ Begin VB.Form frmCrmObsDpto
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Caption         =   "Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   7200
       TabIndex        =   4
@@ -31,6 +49,15 @@ Begin VB.Form frmCrmObsDpto
       Width           =   1095
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   4095
       Left            =   360
       MultiLine       =   -1  'True
@@ -41,7 +68,16 @@ Begin VB.Form frmCrmObsDpto
       Width           =   7935
    End
    Begin VB.ComboBox Combo1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       ItemData        =   "frmCrmObsDpto.frx":0006
       Left            =   360
       List            =   "frmCrmObsDpto.frx":0013
@@ -71,6 +107,15 @@ Begin VB.Form frmCrmObsDpto
    End
    Begin VB.Label Label1 
       Caption         =   "Observaciones"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   1
       Left            =   360
@@ -80,6 +125,15 @@ Begin VB.Form frmCrmObsDpto
    End
    Begin VB.Label Label1 
       Caption         =   "Departamento"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   0
       Left            =   360
@@ -114,7 +168,7 @@ Dim C As String
         C = C & " , observa=" & DBSet(Text1.Text, "T")
         C = C & " WHERE codclien = " & Me.Tag & " AND dpto=" & Dpto
     End If
-    If Ejecutar(C, False) Then Unload Me
+    If ejecutar(C, False) Then Unload Me
 End Sub
 
 Private Sub cmdCancel_Click()

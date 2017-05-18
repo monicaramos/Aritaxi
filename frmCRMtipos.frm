@@ -28,7 +28,16 @@ Begin VB.Form frmCRMtipos
       Width           =   3165
    End
    Begin VB.ComboBox Combo1 
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       ItemData        =   "frmCRMtipos.frx":000C
       Left            =   4650
       List            =   "frmCRMtipos.frx":000E
@@ -39,6 +48,15 @@ Begin VB.Form frmCRMtipos
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   315
       Index           =   0
       Left            =   240
@@ -50,6 +68,15 @@ Begin VB.Form frmCRMtipos
       Width           =   885
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   3075
       Index           =   2
       Left            =   240
@@ -62,6 +89,15 @@ Begin VB.Form frmCRMtipos
       Width           =   7005
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   315
       Index           =   1
       Left            =   1320
@@ -82,8 +118,8 @@ Begin VB.Form frmCRMtipos
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -100,6 +136,15 @@ Begin VB.Form frmCRMtipos
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   6000
       TabIndex        =   7
@@ -108,6 +153,15 @@ Begin VB.Form frmCRMtipos
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   4800
       TabIndex        =   5
@@ -256,6 +310,15 @@ Begin VB.Form frmCRMtipos
    End
    Begin VB.Label Label1 
       Caption         =   "Medio"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   3
       Left            =   4680
@@ -265,15 +328,33 @@ Begin VB.Form frmCRMtipos
    End
    Begin VB.Label Label1 
       Caption         =   "Observaciones"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   2
       Left            =   240
       TabIndex        =   13
       Top             =   1260
-      Width           =   1215
+      Width           =   1515
    End
    Begin VB.Label Label1 
       Caption         =   "Denominación"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   1
       Left            =   1320
@@ -283,9 +364,18 @@ Begin VB.Form frmCRMtipos
    End
    Begin VB.Label Label1 
       Caption         =   "Codigo"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   0
-      Left            =   300
+      Left            =   270
       TabIndex        =   10
       Top             =   600
       Width           =   855

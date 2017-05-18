@@ -6,10 +6,10 @@ Begin VB.Form frmLiqListReten
    ClientHeight    =   5880
    ClientLeft      =   60
    ClientTop       =   450
-   ClientWidth     =   7785
+   ClientWidth     =   7590
    LinkTopic       =   "Form1"
    ScaleHeight     =   5880
-   ScaleWidth      =   7785
+   ScaleWidth      =   7590
    StartUpPosition =   2  'CenterScreen
    Begin MSAdodcLib.Adodc data1 
       Height          =   330
@@ -75,7 +75,7 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   2
          Left            =   5670
          TabIndex        =   42
@@ -94,7 +94,7 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   3
          Left            =   5670
          TabIndex        =   41
@@ -114,7 +114,7 @@ Begin VB.Form frmLiqListReten
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   5400
+         Left            =   5610
          TabIndex        =   33
          Top             =   4860
          Width           =   1035
@@ -131,7 +131,7 @@ Begin VB.Form frmLiqListReten
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4170
+         Left            =   4380
          TabIndex        =   32
          Top             =   4860
          Width           =   1035
@@ -147,12 +147,12 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   86
          Left            =   1710
          MaxLength       =   10
          TabIndex        =   30
-         Top             =   2895
+         Top             =   2925
          Width           =   1035
       End
       Begin VB.TextBox txtCodigo 
@@ -166,7 +166,7 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   85
          Left            =   1710
          MaxLength       =   10
@@ -185,13 +185,13 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   1
          Left            =   1710
          MaxLength       =   6
          TabIndex        =   28
          Tag             =   "Num vehiculo|N|N|||shilla|numeruve|00000|S|"
-         Top             =   1710
+         Top             =   1770
          Width           =   855
       End
       Begin VB.TextBox txtNombre 
@@ -205,12 +205,12 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   1
          Left            =   2580
          Locked          =   -1  'True
          TabIndex        =   31
-         Top             =   1710
+         Top             =   1770
          Width           =   3765
       End
       Begin VB.TextBox txtCodigo 
@@ -224,7 +224,7 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   0
          Left            =   1710
          MaxLength       =   6
@@ -244,7 +244,7 @@ Begin VB.Form frmLiqListReten
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   0
          Left            =   2580
          Locked          =   -1  'True
@@ -254,8 +254,17 @@ Begin VB.Form frmLiqListReten
       End
       Begin VB.CheckBox Check1 
          Caption         =   "Resumen"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   225
-         Left            =   870
+         Left            =   750
          TabIndex        =   25
          Top             =   3750
          Width           =   2265
@@ -334,7 +343,7 @@ Begin VB.Form frmLiqListReten
          Index           =   24
          Left            =   1410
          Picture         =   "frmLiqListReten.frx":008B
-         Top             =   2910
+         Top             =   2940
          Width           =   240
       End
       Begin VB.Label Label14 
@@ -351,9 +360,9 @@ Begin VB.Form frmLiqListReten
          EndProperty
          Height          =   240
          Index           =   8
-         Left            =   900
+         Left            =   750
          TabIndex        =   39
-         Top             =   2940
+         Top             =   2970
          Width           =   570
       End
       Begin VB.Label Label14 
@@ -370,7 +379,7 @@ Begin VB.Form frmLiqListReten
          EndProperty
          Height          =   240
          Index           =   7
-         Left            =   900
+         Left            =   750
          TabIndex        =   38
          Top             =   2550
          Width           =   600
@@ -384,7 +393,7 @@ Begin VB.Form frmLiqListReten
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00800000&
@@ -393,7 +402,7 @@ Begin VB.Form frmLiqListReten
          Left            =   510
          TabIndex        =   37
          Top             =   2160
-         Width           =   660
+         Width           =   630
       End
       Begin VB.Image imgFecha 
          Height          =   240
@@ -417,9 +426,9 @@ Begin VB.Form frmLiqListReten
          EndProperty
          Height          =   240
          Index           =   4
-         Left            =   900
+         Left            =   750
          TabIndex        =   36
-         Top             =   1710
+         Top             =   1770
          Width           =   570
       End
       Begin VB.Image imgBuscarOfer 
@@ -427,7 +436,7 @@ Begin VB.Form frmLiqListReten
          Index           =   1
          Left            =   1410
          Picture         =   "frmLiqListReten.frx":01A1
-         Top             =   1710
+         Top             =   1770
          Width           =   240
       End
       Begin VB.Label Label9 
@@ -444,7 +453,7 @@ Begin VB.Form frmLiqListReten
          EndProperty
          Height          =   240
          Index           =   3
-         Left            =   900
+         Left            =   750
          TabIndex        =   35
          Top             =   1365
          Width           =   600
@@ -458,7 +467,7 @@ Begin VB.Form frmLiqListReten
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00800000&
@@ -467,7 +476,7 @@ Begin VB.Form frmLiqListReten
          Left            =   510
          TabIndex        =   34
          Top             =   1020
-         Width           =   585
+         Width           =   555
       End
       Begin VB.Image imgBuscarOfer 
          Height          =   240
@@ -1350,7 +1359,7 @@ Dim Mens As String
     
         fac.TotalFac = DBLet(RS!importe2, "N")
         fac.FecFactu = txtcodigo(4).Text
-        fac.NumFactu = "R-" & Format(RS!Codigo1, "0000") & Format(RS!importe1, "0000")
+        fac.NumFactu = "R-" & Format(RS!Codigo1, "00000") & Format(RS!importe1, "00000")
         
         fac.Proveedor = DBLet(RS!Codigo1, "N")
         fac.NombreProv = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", RS!Codigo1, "T")
@@ -1570,7 +1579,7 @@ Private Sub PonerFrameListadoVisible(visible As Boolean, ByRef H As Integer, ByR
 'Frame para los listados de los mantenimientos de tabla: smarca, stipar,...
 
     H = 6405
-    W = 7095
+    W = 7515
     PonerFrameVisible Me.FrameListado, visible, H, W
 
 End Sub
@@ -1579,7 +1588,7 @@ Private Sub PonerFrameRecibosRetenVisible(visible As Boolean, ByRef H As Integer
 'Frame para los listados de los mantenimientos de tabla: smarca, stipar,...
 
     H = 6405
-    W = 7095
+    W = 7515
     PonerFrameVisible Me.FrameRecibosReten, visible, H, W
 
 End Sub
