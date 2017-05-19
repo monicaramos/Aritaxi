@@ -7,7 +7,7 @@ Begin VB.Form frmRepCargarNSerie
    Caption         =   "Introducir Nº Series"
    ClientHeight    =   6015
    ClientLeft      =   45
-   ClientTop       =   630
+   ClientTop       =   330
    ClientWidth     =   8520
    ClipControls    =   0   'False
    Icon            =   "frmRepCargarNSerie.frx":0000
@@ -19,9 +19,50 @@ Begin VB.Form frmRepCargarNSerie
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Visible         =   0   'False
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   120
+      TabIndex        =   10
+      Top             =   60
+      Width           =   1545
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   11
+         Top             =   180
+         Width           =   1065
+         _ExtentX        =   1879
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   2
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Cargar Series"
+               Object.Tag             =   "2"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.TextBox txtauz 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   320
       Left            =   2280
       Locked          =   -1  'True
@@ -33,16 +74,34 @@ Begin VB.Form frmRepCargarNSerie
    End
    Begin VB.CheckBox chkConsecutivos 
       Caption         =   "Consecutivos"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
-      Left            =   6720
+      Left            =   6240
       TabIndex        =   4
       Top             =   480
-      Width           =   1335
+      Width           =   1815
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BackColor       =   &H80000013&
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   320
       Left            =   1200
       Locked          =   -1  'True
@@ -56,15 +115,15 @@ Begin VB.Form frmRepCargarNSerie
       Height          =   540
       Index           =   0
       Left            =   120
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   5355
       Width           =   2775
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -73,15 +132,24 @@ Begin VB.Form frmRepCargarNSerie
          EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   10
+         TabIndex        =   9
          Top             =   180
          Width           =   2355
       End
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   5760
+      Left            =   6060
       TabIndex        =   2
       Top             =   5520
       Visible         =   0   'False
@@ -90,8 +158,17 @@ Begin VB.Form frmRepCargarNSerie
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   7035
+      Left            =   7335
       TabIndex        =   3
       Top             =   5520
       Visible         =   0   'False
@@ -99,44 +176,21 @@ Begin VB.Form frmRepCargarNSerie
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   7035
+      Left            =   7335
       TabIndex        =   5
       Top             =   5520
       Visible         =   0   'False
       Width           =   1035
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   7
-      Top             =   0
-      Width           =   8520
-      _ExtentX        =   15028
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   4
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Cargar Series"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-      EndProperty
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmRepCargarNSerie.frx":000C
@@ -152,20 +206,20 @@ Begin VB.Form frmRepCargarNSerie
       AllowArrows     =   -1  'True
       ColumnHeaders   =   -1  'True
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       FormatLocked    =   -1  'True
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -267,13 +321,15 @@ Begin VB.Form frmRepCargarNSerie
       EndProperty
       Height          =   255
       Left            =   240
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   8220
       Visible         =   0   'False
       Width           =   3495
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnModificar 
          Caption         =   "&Modificar"
          HelpContextID   =   2
@@ -408,13 +464,23 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
 
     'ICONOS de La toolbar
-    With Toolbar1
-        .ImageList = frmPpal.imgListComun
-        'ASignamos botones
-        .Buttons(1).Image = 4 'Modificar
-        .Buttons(2).Image = 21 'Cargar Nº Series
-        .Buttons(4).Image = 15 'Salir
+'    With Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        'ASignamos botones
+'        .Buttons(1).Image = 4 'Modificar
+'        .Buttons(2).Image = 21 'Cargar Nº Series
+'        .Buttons(4).Image = 15 'Salir
+'    End With
+    
+    With Me.Toolbar1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 4   'Modificar
+        .Buttons(2).Image = 21   'Cargar Nº Series
     End With
+    
+    
     
     PulsadoSalir = False
     PrimeraVez = True
@@ -473,6 +539,9 @@ On Error GoTo ECarga
         DataGrid1.Columns(i).Locked = True
     Next i
     DataGrid1.ScrollBars = dbgVertical
+    
+    DataGrid1.RowHeight = 350
+    
     gridCargado = True
 ECarga:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid: " & DataGrid1.Tag, Err.Description

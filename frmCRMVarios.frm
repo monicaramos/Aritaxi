@@ -924,12 +924,14 @@ End Sub
 Private Sub Form_Load()
 Dim H As Integer
 Dim W As Integer
-
+Dim i As Integer
     Me.Icon = frmPpal.Icon
     FrameGenerar.visible = False
     limpiar Me
     
     If Opcion = 0 Then
+        H = 6735
+        W = 7455
         PonerFrameVisible FrameGenerar, H, W
         txtFecha(0).Text = Format(Now, "dd/mm/yyyy")
         
@@ -939,20 +941,20 @@ Dim W As Integer
         miSQL = ""
     End If
     
-    For H = 0 To Me.imgAccion.Count - 1
-        imgAccion(H).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For i = 0 To Me.imgAccion.Count - 1
+        imgAccion(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
-    For H = 0 To Me.imgFecha.Count - 1
-        imgFecha(H).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
-    For H = 0 To Me.imgCliente.Count - 1
-        imgCliente(H).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For i = 0 To Me.imgCliente.Count - 1
+        imgCliente(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
-    For H = 0 To Me.imgTecnico.Count - 1
-        imgTecnico(H).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgTecnico.Count - 1
+        imgTecnico(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
-    For H = 0 To Me.imgVarios.Count - 1
-        imgVarios(H).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgVarios.Count - 1
+        imgVarios(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
     
     Me.cmdCancelar(Opcion).Cancel = True

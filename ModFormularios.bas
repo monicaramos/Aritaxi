@@ -1017,7 +1017,7 @@ Public Function ObtenerAlto(ByRef vDataGrid As DataGrid, Optional alto As Intege
 Dim anc As Single
     anc = vDataGrid.Top + alto
     If vDataGrid.Row < 0 Then
-        anc = anc + 230
+        anc = anc + 240 '230
     Else
         anc = anc + vDataGrid.RowTop(vDataGrid.Row)
     End If
@@ -1117,7 +1117,7 @@ End Function
 Public Function PonerFormatoEntero(ByRef T As TextBox) As Boolean
 'Comprueba que el valor del textbox es un entero y le pone el formato
 Dim mTag As CTag
-Dim cad As String
+Dim Cad As String
 Dim Formato As String
 On Error GoTo EPonerFormato
 
@@ -1127,14 +1127,14 @@ On Error GoTo EPonerFormato
     Set mTag = New CTag
     mTag.Cargar T
     If mTag.Cargado Then
-       cad = mTag.Nombre 'descripcion del campo
+       Cad = mTag.Nombre 'descripcion del campo
        Formato = mTag.Formato
     End If
     Set mTag = Nothing
 
     If Not EsEnteroNew(T.Text) Then
         PonerFormatoEntero = False
-        MsgBox "El campo " & cad & " tiene que ser un número entero.", vbExclamation
+        MsgBox "El campo " & Cad & " tiene que ser un número entero.", vbExclamation
         PonerFoco T
     Else
          T.Text = Format(T.Text, Formato)

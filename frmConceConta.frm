@@ -5,26 +5,66 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmConceConta 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Conceptos Contables"
-   ClientHeight    =   5925
+   ClientHeight    =   6330
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   5355
+   ClientTop       =   30
+   ClientWidth     =   6360
    Icon            =   "frmConceConta.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5925
-   ScaleWidth      =   5355
+   ScaleHeight     =   6330
+   ScaleWidth      =   6360
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   120
+      TabIndex        =   9
+      Top             =   90
+      Width           =   1545
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   10
+         Top             =   180
+         Width           =   1065
+         _ExtentX        =   1879
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   2
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+               Object.Tag             =   "0"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.ComboBox Combo1 
       Appearance      =   0  'Flat
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       ItemData        =   "frmConceConta.frx":000C
       Left            =   2520
       List            =   "frmConceConta.frx":000E
       Style           =   2  'Dropdown List
-      TabIndex        =   10
+      TabIndex        =   8
       Tag             =   "Tipo Concepto|N|N|0|3|conceptos|tipoconce||N|"
       Top             =   4680
       Width           =   1725
@@ -32,6 +72,15 @@ Begin VB.Form frmConceConta
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   0
       Left            =   120
@@ -45,6 +94,15 @@ Begin VB.Form frmConceConta
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   1
       Left            =   960
@@ -57,29 +115,56 @@ Begin VB.Form frmConceConta
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   2820
+      Left            =   3780
       TabIndex        =   6
-      Top             =   5340
+      Top             =   5790
       Visible         =   0   'False
       Width           =   1035
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   4080
+      Left            =   5040
       TabIndex        =   7
-      Top             =   5340
+      Top             =   5790
       Visible         =   0   'False
       Width           =   1095
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   4080
+      Left            =   5040
       TabIndex        =   2
-      Top             =   5340
+      Top             =   5790
       Visible         =   0   'False
       Width           =   1095
    End
@@ -88,14 +173,14 @@ Begin VB.Form frmConceConta
       Index           =   1
       Left            =   120
       TabIndex        =   0
-      Top             =   5175
+      Top             =   5625
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -103,9 +188,9 @@ Begin VB.Form frmConceConta
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   40
+         Left            =   45
          TabIndex        =   1
-         Top             =   240
+         Top             =   180
          Width           =   2295
       End
    End
@@ -158,30 +243,30 @@ Begin VB.Form frmConceConta
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmConceConta.frx":0010
-      Height          =   4410
+      Height          =   4545
       Left            =   120
       TabIndex        =   3
-      Top             =   540
-      Width           =   4995
-      _ExtentX        =   8811
-      _ExtentY        =   7779
+      Top             =   900
+      Width           =   5995
+      _ExtentX        =   10583
+      _ExtentY        =   8017
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -226,77 +311,10 @@ Begin VB.Form frmConceConta
          EndProperty
       EndProperty
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   8
-      Top             =   0
-      Width           =   5355
-      _ExtentX        =   9446
-      _ExtentY        =   635
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      Style           =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   11
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-      EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   8400
-         TabIndex        =   9
-         Top             =   120
-         Visible         =   0   'False
-         Width           =   1215
-      End
-   End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -378,7 +396,7 @@ Public CodigoActual As String
 
 
 Private CadenaConsulta As String
-Private cadB As String
+Private CadB As String
 
 Dim Modo As Byte
 '----------- MODOS ----------------------------
@@ -405,7 +423,7 @@ Dim i As Integer
     Next i
     
     If b Then
-        PonerContRegIndicador lblIndicador, Me.Adodc1, cadB
+        PonerContRegIndicador lblIndicador, Me.Adodc1, CadB
     Else
         PonerIndicador lblIndicador, Modo
     End If
@@ -449,32 +467,18 @@ Dim b As Boolean
     b = (Modo = 2)
 '    mnOpciones.Enabled = b
     'Buscar
-    Toolbar1.Buttons(2).Enabled = b
+    Toolbar1.Buttons(1).Enabled = b
     Me.mnBuscar.Enabled = b
     'Ver Todos
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnVerTodos.Enabled = b
     
-    'Insertar
-    Toolbar1.Buttons(6).Enabled = False
-    Me.mnNuevo.Enabled = False
-    
-'    b = (b And adodc1.Recordset.RecordCount > 0) And Not DeConsulta
-    'Modificar
-    Toolbar1.Buttons(7).Enabled = False
-    Me.mnModificar.Enabled = False
-    'Eliminar
-    Toolbar1.Buttons(8).Enabled = False
-    Me.mnEliminar.Enabled = False
-    
-    'Imprimir
-    Toolbar1.Buttons(11).Enabled = b
 End Sub
 
 
 Private Sub BotonVerTodos()
     CargaGrid ""
-    cadB = ""
+    CadB = ""
     PonerModo 2
 End Sub
 
@@ -489,7 +493,7 @@ Private Sub BotonBuscar()
     txtAux(1).Text = ""
     Combo1.ListIndex = -1
 
-    LLamaLineas DataGrid1.Top + 206, 1
+    LLamaLineas DataGrid1.Top + 240, 1
     PonerFoco txtAux(0)
 End Sub
 
@@ -505,10 +509,10 @@ End Sub
 Private Sub cmdAceptar_Click()
     Select Case Modo
         Case 1  'BUSQUEDA
-            cadB = ObtenerBusquedaNew(Me)
-            If cadB <> "" Then
+            CadB = ObtenerBusquedaNew(Me)
+            If CadB <> "" Then
                 PonerModo 2
-                CargaGrid cadB
+                CargaGrid CadB
 '                lblIndicador.Caption = "RESULTADO BUSQUEDA"
                 PonerFocoGrid Me.DataGrid1
             End If
@@ -521,8 +525,8 @@ Private Sub cmdCancelar_Click()
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            If cadB <> "" Then
-                CargaGrid cadB
+            If CadB <> "" Then
+                CargaGrid CadB
 '                lblIndicador.Caption = "RESULTADO BUSQUEDA"
             Else
                 CargaGrid ""
@@ -536,7 +540,7 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim J As Integer
 Dim Aux As String
@@ -545,7 +549,7 @@ Dim Aux As String
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
+    Cad = ""
     i = 0
     Do
         J = i + 1
@@ -553,10 +557,10 @@ Dim Aux As String
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & Adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & Adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -569,7 +573,7 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-     If Modo = 2 Then PonerContRegIndicador lblIndicador, Me.Adodc1, cadB
+     If Modo = 2 Then PonerContRegIndicador lblIndicador, Me.Adodc1, CadB
 End Sub
 
 Private Sub Form_Activate()
@@ -598,23 +602,15 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
 
     With Me.Toolbar1
-'        .HotImageList = frmPpal.imgListComun_OM
-'        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun
-        'el 1 es separadors
-        .Buttons(2).Image = 1   'Buscar
-        .Buttons(3).Image = 2   'Todos
-        'el 4 i el 5 son separadors
-        .Buttons(6).Image = 3   'Insertar
-        .Buttons(7).Image = 4   'Modificar
-        .Buttons(8).Image = 5   'Borrar
-        'el 9 i el 10 son separadors
-'        .Buttons(11).Image = 10  'Imprimir
-        .Buttons(11).Image = 11  'Salir
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 1   'Buscar
+        .Buttons(2).Image = 2   'Todos
     End With
 
     '## A mano
-    chkVistaPrevia.Value = CheckValueLeer(Name)
+'    chkVistaPrevia.Value = CheckValueLeer(Name)
       
 '    PonerOpcionesMenu  'En funcion del usuario
     '****************** canviar la consulta *********************************+
@@ -622,14 +618,13 @@ Private Sub Form_Load()
     '************************************************************************
     CargaCombo
     
-    cadB = ""
+    CadB = ""
     CargaGrid ""
 '    lblIndicador.Caption = ""
 '    PonerModo 2
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    CheckValueGuardar Me.Name, Me.chkVistaPrevia.Value
     Screen.MousePointer = vbDefault
 End Sub
 
@@ -648,20 +643,10 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 2
+        Case 1
                 BotonBuscar
-        Case 3
+        Case 2
                 BotonVerTodos
-'        Case 6
-'                BotonAnyadir
-'        Case 7
-'                mnModificar_Click
-'        Case 8
-'                BotonEliminar
-'        Case 11 'Imprimir
-'            AbrirListado (2)  'OpcionListado=2
-        Case 11 'Salir
-                mnSalir_Click
     End Select
 End Sub
 
@@ -696,9 +681,9 @@ Private Sub CargaGrid(Optional vSQL As String)
     
     
     'codmacta, nommacta
-    tots = "S|txtAux(0)|T|Código|800|;S|txtAux(1)|T|Descripción|2300|;N||||0|;S|Combo1|C|Tipo|1200|;"
-    arregla tots, DataGrid1, Me
-   
+    tots = "S|txtAux(0)|T|Código|900|;S|txtAux(1)|T|Descripción|2700|;N||||0|;S|Combo1|C|Tipo|1830|;"
+    
+    arregla tots, DataGrid1, Me, 350
    
 '    PrimeraVez = False
 

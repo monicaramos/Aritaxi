@@ -7,45 +7,82 @@ Begin VB.Form frmGesTraspaso
    ClientHeight    =   5130
    ClientLeft      =   60
    ClientTop       =   450
-   ClientWidth     =   7665
+   ClientWidth     =   7815
    LinkTopic       =   "Form1"
    ScaleHeight     =   5130
-   ScaleWidth      =   7665
+   ScaleWidth      =   7815
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame2 
       Caption         =   "Tipo"
-      Height          =   615
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   735
       Left            =   210
       TabIndex        =   13
       Top             =   750
-      Width           =   6975
+      Width           =   7485
       Begin VB.OptionButton Option1 
          Caption         =   "Servicios Socios"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   2
          Left            =   4620
          TabIndex        =   16
-         Top             =   210
-         Width           =   1815
+         Top             =   300
+         Width           =   2175
       End
       Begin VB.OptionButton Option1 
          Caption         =   "Llamadas"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   0
-         Left            =   780
+         Left            =   630
          TabIndex        =   15
-         Top             =   210
+         Top             =   300
          Value           =   -1  'True
-         Width           =   1215
+         Width           =   1575
       End
       Begin VB.OptionButton Option1 
          Caption         =   "Servicios Clientes"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   1
-         Left            =   2430
+         Left            =   2280
          TabIndex        =   14
-         Top             =   210
-         Width           =   1755
+         Top             =   300
+         Width           =   2115
       End
    End
    Begin MSAdodcLib.Adodc Adodc1 
@@ -98,16 +135,34 @@ Begin VB.Form frmGesTraspaso
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   6210
+      Left            =   6690
       TabIndex        =   4
       Top             =   4560
       Width           =   975
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   5130
+      Left            =   5610
       TabIndex        =   3
       Top             =   4560
       Width           =   975
@@ -117,8 +172,8 @@ Begin VB.Form frmGesTraspaso
       Left            =   180
       TabIndex        =   8
       Top             =   3450
-      Width           =   6975
-      _ExtentX        =   12303
+      Width           =   7455
+      _ExtentX        =   13150
       _ExtentY        =   556
       _Version        =   393216
       Appearance      =   1
@@ -128,29 +183,56 @@ Begin VB.Form frmGesTraspaso
       Left            =   210
       TabIndex        =   6
       Top             =   1590
-      Width           =   6975
+      Width           =   7455
       Begin VB.TextBox txtcodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   85
-         Left            =   1080
+         Left            =   1200
          MaxLength       =   10
          TabIndex        =   1
          Top             =   780
          Width           =   1215
       End
       Begin VB.TextBox txtcodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
-         Left            =   1080
+         Left            =   1200
          MaxLength       =   30
          TabIndex        =   2
          Top             =   1230
          Width           =   4605
       End
       Begin VB.TextBox Text1 
-         Height          =   285
-         Left            =   1080
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   1200
          Locked          =   -1  'True
          TabIndex        =   0
          Top             =   360
@@ -159,38 +241,65 @@ Begin VB.Form frmGesTraspaso
       Begin VB.Label Label17 
          AutoSize        =   -1  'True
          Caption         =   "Fecha"
-         Height          =   195
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
          Index           =   7
          Left            =   120
          TabIndex        =   12
          Top             =   780
-         Width           =   450
+         Width           =   600
       End
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   23
-         Left            =   810
-         Top             =   780
+         Left            =   930
+         Top             =   810
          Width           =   240
       End
       Begin VB.Label Label6 
          Caption         =   "Concepto"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   120
          TabIndex        =   11
          Top             =   1230
-         Width           =   885
+         Width           =   975
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   810
+         Left            =   930
          ToolTipText     =   "Buscar Fichero"
-         Top             =   360
+         Top             =   390
          Width           =   240
       End
       Begin VB.Label Label1 
          Caption         =   "Fichero"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   1
          Left            =   120
@@ -222,7 +331,7 @@ Begin VB.Form frmGesTraspaso
       Left            =   210
       TabIndex        =   10
       Top             =   4170
-      Width           =   6945
+      Width           =   7425
    End
    Begin VB.Label Label1 
       BeginProperty Font 
@@ -240,7 +349,7 @@ Begin VB.Form frmGesTraspaso
       Left            =   210
       TabIndex        =   9
       Top             =   3840
-      Width           =   6945
+      Width           =   7425
    End
    Begin VB.Label lblTitulo 
       Caption         =   "Traspaso TaxiTronic"
@@ -2405,8 +2514,8 @@ End Function
 
 Private Function ComprobarFichero(Escliente As Boolean) As Boolean
 Dim NF As Long
-Dim cad As String
-Dim I As Integer
+Dim Cad As String
+Dim i As Integer
 Dim longitud As Long
 Dim RS As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2426,8 +2535,8 @@ Dim b As Boolean
     NF = FreeFile
     Open Text1.Text For Input As #NF
     
-    Line Input #NF, cad
-    I = 0
+    Line Input #NF, Cad
+    i = 0
     
     conn.Execute "delete from tmpinformes where codusu = " & vUsu.Codigo
     
@@ -2444,26 +2553,26 @@ Dim b As Boolean
     b = True
 
     While Not EOF(NF) And b
-        I = I + 1
+        i = i + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & I
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
-        b = ComprobarRegistro(cad, Escliente)
+        b = ComprobarRegistro(Cad, Escliente)
         
-        Line Input #NF, cad
+        Line Input #NF, Cad
     Wend
     Close #NF
     
-    If cad <> "" Then
-        I = I + 1
+    If Cad <> "" Then
+        i = i + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & I
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
-        b = ComprobarRegistro(cad, Escliente)
+        b = ComprobarRegistro(Cad, Escliente)
     End If
     
     ProgressBar1.visible = False
@@ -2478,7 +2587,7 @@ eComprobarFichero:
 End Function
 
 
-Private Function ComprobarRegistro(cad As String, EsClien As Boolean) As Boolean
+Private Function ComprobarRegistro(Cad As String, EsClien As Boolean) As Boolean
 Dim Sql As String
 Dim c_Importe As Currency
 Dim Mens As String
@@ -2497,13 +2606,13 @@ Dim RS As ADODB.Recordset
     ComprobarRegistro = True
 
     If EsClien Then ' facturacion a clientes
-        Id = Mid(cad, 1, 6)
-        Importe = Mid(cad, 352, 10)
-        NServicios = Mid(cad, 362, 5)
+        Id = Mid(Cad, 1, 6)
+        Importe = Mid(Cad, 352, 10)
+        NServicios = Mid(Cad, 362, 5)
     Else ' liquidacion a socios
-        Id = Mid(cad, 1, 6)
-        Importe = Mid(cad, 375, 10)
-        NServicios = Mid(cad, 385, 5)
+        Id = Mid(Cad, 1, 6)
+        Importe = Mid(Cad, 375, 10)
+        NServicios = Mid(Cad, 385, 5)
     End If
     
     c_Importe = Replace(ComprobarCero(Importe), ".", ",")
@@ -2646,8 +2755,8 @@ End Function
 
 Private Function TraspasoFichero(EsClien As Boolean) As Boolean
 Dim NF As Long
-Dim cad As String
-Dim I As Integer
+Dim Cad As String
+Dim i As Integer
 Dim longitud As Long
 Dim RS As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2679,8 +2788,8 @@ Dim SqlServ As String
     
     Open Text1.Text For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
     
-    Line Input #NF, cad
-    I = 0
+    Line Input #NF, Cad
+    i = 0
     
     Label1(0).Caption = "Procesando Fichero: " & Text1.Text
     
@@ -2701,20 +2810,20 @@ Dim SqlServ As String
         
     b = True
     While Not EOF(NF)
-        I = I + 1
+        i = i + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & I
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 352, 10)
-            NServicios = Mid(cad, 362, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 352, 10)
+            NServicios = Mid(Cad, 362, 5)
         Else ' liquidacion a socios
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 375, 10)
-            NServicios = Mid(cad, 385, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 375, 10)
+            NServicios = Mid(Cad, 385, 5)
         End If
     
         If EsClien Then
@@ -2756,23 +2865,23 @@ Dim SqlServ As String
 '                conn.Execute SqlServ
             End If
         End If
-        Line Input #NF, cad
+        Line Input #NF, Cad
     Wend
     Close #NF
     
-    If cad <> "" Then
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
-        Label1(2).Caption = "Linea " & I
+    If Cad <> "" Then
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 352, 10)
-            NServicios = Mid(cad, 362, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 352, 10)
+            NServicios = Mid(Cad, 362, 5)
         Else ' liquidacion a socios
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 375, 10)
-            NServicios = Mid(cad, 385, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 375, 10)
+            NServicios = Mid(Cad, 385, 5)
         End If
         
         

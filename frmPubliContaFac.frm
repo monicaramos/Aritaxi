@@ -12,6 +12,15 @@ Begin VB.Form frmPubliContaFac
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox Check1 
       Caption         =   "Rectificativas"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   225
       Left            =   270
       TabIndex        =   17
@@ -22,37 +31,46 @@ Begin VB.Form frmPubliContaFac
       BorderStyle     =   0  'None
       Caption         =   "Frame1"
       Height          =   675
-      Left            =   300
+      Left            =   270
       TabIndex        =   14
-      Top             =   2490
+      Top             =   2610
       Width           =   5235
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   1380
          TabIndex        =   15
-         Top             =   360
+         Top             =   270
          Width           =   1095
       End
       Begin VB.Label Label2 
          AutoSize        =   -1  'True
          Caption         =   "Fecha Recepción:"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00800000&
+         Height          =   240
          Index           =   1
          Left            =   0
          TabIndex        =   16
          Top             =   0
-         Width           =   1455
+         Width           =   1860
       End
       Begin VB.Image imgFecha 
          Height          =   240
@@ -76,15 +94,33 @@ Begin VB.Form frmPubliContaFac
    End
    Begin VB.CommandButton cmdCancel 
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   7
       Left            =   4860
       TabIndex        =   10
       Top             =   4380
-      Width           =   975
+      Width           =   1035
    End
    Begin VB.CommandButton cmdAceptarRepxDia 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3660
       TabIndex        =   9
@@ -92,33 +128,51 @@ Begin VB.Form frmPubliContaFac
       Width           =   975
    End
    Begin VB.TextBox txtCodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   32
       Left            =   4260
       TabIndex        =   7
-      Top             =   2160
+      Top             =   2100
       Width           =   1095
    End
    Begin VB.TextBox txtCodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   31
       Left            =   1680
       TabIndex        =   5
-      Top             =   2160
+      Top             =   2100
       Width           =   1095
    End
    Begin VB.Frame FrameContab 
       Caption         =   " Facturas "
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   620
       Left            =   270
       TabIndex        =   0
@@ -126,6 +180,15 @@ Begin VB.Form frmPubliContaFac
       Width           =   5475
       Begin VB.OptionButton OptClientes 
          Caption         =   "Clientes"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   1140
          TabIndex        =   2
@@ -135,6 +198,15 @@ Begin VB.Form frmPubliContaFac
       End
       Begin VB.OptionButton OptSocios 
          Caption         =   "Socios"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   3150
          TabIndex        =   1
@@ -144,10 +216,10 @@ Begin VB.Form frmPubliContaFac
    End
    Begin VB.Label lblProgess 
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "Verdana"
          Size            =   8.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -162,10 +234,10 @@ Begin VB.Form frmPubliContaFac
    End
    Begin VB.Label lblProgess 
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "Verdana"
          Size            =   8.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -207,12 +279,21 @@ Begin VB.Form frmPubliContaFac
    End
    Begin VB.Label Label3 
       Caption         =   "Hasta"
-      Height          =   195
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   225
       Index           =   29
-      Left            =   3420
+      Left            =   3270
       TabIndex        =   6
       Top             =   2160
-      Width           =   420
+      Width           =   630
    End
    Begin VB.Image imgFecha 
       Height          =   240
@@ -224,32 +305,41 @@ Begin VB.Form frmPubliContaFac
    End
    Begin VB.Label Label2 
       Caption         =   "Desde"
-      Height          =   195
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   225
       Index           =   0
-      Left            =   720
+      Left            =   570
       TabIndex        =   4
       Top             =   2160
-      Width           =   465
+      Width           =   675
    End
    Begin VB.Label Label2 
       AutoSize        =   -1  'True
       Caption         =   "Fecha de factura:"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   2
       Left            =   300
       TabIndex        =   3
       Top             =   1800
-      Width           =   1455
+      Width           =   1860
    End
 End
 Attribute VB_Name = "frmPubliContaFac"
@@ -309,9 +399,9 @@ Dim CambiaConta As Boolean
 ' ====
 
     If Me.OptSocios Then
-        If txtCodigo(0).Text = "" Then
+        If txtcodigo(0).Text = "" Then
             MsgBox "Debe introducir una fecha de Recepción de factura. Revise.", vbExclamation
-            PonerFoco txtCodigo(0)
+            PonerFoco txtcodigo(0)
             Exit Sub
         End If
     End If
@@ -352,10 +442,10 @@ Dim CambiaConta As Boolean
     If Me.OptClientes Then
         
         'fechaini del ejercicio de la conta
-        If txtCodigo(31).Text = "" Then txtCodigo(31).Text = Orden1
+        If txtcodigo(31).Text = "" Then txtcodigo(31).Text = Orden1
      
         'fecha fin del ejercicio de la conta
-        If txtCodigo(32).Text = "" Then txtCodigo(32).Text = Orden2
+        If txtcodigo(32).Text = "" Then txtcodigo(32).Text = Orden2
      
         'Comprobar que el intervalo de fechas D/H esta dentro del ejercicio de la
         'contabilidad par ello mirar en la BD de la Conta los parámetros
@@ -370,7 +460,7 @@ Dim CambiaConta As Boolean
     
     
     
-    devuelve = CadenaDesdeHasta(txtCodigo(31).Text, txtCodigo(32).Text, Codigo, "F", "Fecha Factura")
+    devuelve = CadenaDesdeHasta(txtcodigo(31).Text, txtcodigo(32).Text, Codigo, "F", "Fecha Factura")
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
     'Parametro D/H Fecha
     If devuelve <> "" And param <> "" Then
@@ -380,7 +470,7 @@ Dim CambiaConta As Boolean
     
     
     '- cadena para select en BDatos
-    cadSelect = CadenaDesdeHastaBD(txtCodigo(31).Text, txtCodigo(32).Text, Codigo, "F")
+    cadSelect = CadenaDesdeHastaBD(txtcodigo(31).Text, txtcodigo(32).Text, Codigo, "F")
     
     
     '== Cadena para seleccion Desde y Hasta NºFactura ==
@@ -454,14 +544,14 @@ Private Function ComprobarFechasConta(Ind As Integer) As Boolean
 'comprobar que el periodo de fechas a contabilizar esta dentro del
 'periodo de fechas del ejercicio de la contabilidad
 Dim FechaIni As String, FechaFin As String
-Dim cad As String
+Dim Cad As String
 Dim RS As ADODB.Recordset
     
 On Error GoTo EComprobar
 
     ComprobarFechasConta = False
     
-    If txtCodigo(Ind).Text <> "" Then
+    If txtcodigo(Ind).Text <> "" Then
         FechaIni = "Select fechaini,fechafin From parametros"
         Set RS = New ADODB.Recordset
         RS.Open FechaIni, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -478,12 +568,12 @@ On Error GoTo EComprobar
             Orden1 = FechaIni
             Orden2 = FechaFin
         
-            If Not EntreFechas(FechaIni, txtCodigo(Ind).Text, FechaFin) Then
-                 cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
-                 cad = cad & "    Desde: " & FechaIni & vbCrLf
-                 cad = cad & "    Hasta: " & FechaFin
-                 MsgBox cad, vbExclamation
-                 txtCodigo(Ind).Text = ""
+            If Not EntreFechas(FechaIni, txtcodigo(Ind).Text, FechaFin) Then
+                 Cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
+                 Cad = Cad & "    Desde: " & FechaIni & vbCrLf
+                 Cad = Cad & "    Hasta: " & FechaFin
+                 MsgBox Cad, vbExclamation
+                 txtcodigo(Ind).Text = ""
             Else
                 ComprobarFechasConta = True
             End If
@@ -529,12 +619,12 @@ Dim CCoste2 As Byte
      'comprobar que se han rellenado los dos campos de fecha
      'sino rellenar con fechaini o fechafin del ejercicio
      'que guardamos en vbles Orden1,Orden2
-     If txtCodigo(31).Text = "" Then
-        txtCodigo(31).Text = vEmpresa.FechaIni  'fechaini del ejercicio de la conta
+     If txtcodigo(31).Text = "" Then
+        txtcodigo(31).Text = vEmpresa.FechaIni  'fechaini del ejercicio de la conta
      End If
 
-     If txtCodigo(32).Text = "" Then
-        txtCodigo(32).Text = vEmpresa.FechaFin  'fecha fin del ejercicio de la conta
+     If txtcodigo(32).Text = "" Then
+        txtcodigo(32).Text = vEmpresa.FechaFin  'fecha fin del ejercicio de la conta
      End If
 
 
@@ -548,7 +638,7 @@ Dim CCoste2 As Byte
     'La comprobacion solo lo hago para facturas nuestras, ya que mas adelante
     'el programa hara cdate(text1(31) cuando contabilice las facturas y dara error de tipos
     If cadTabla = "scafaccli" Then
-        If Me.txtCodigo(31).Text = "" Then
+        If Me.txtcodigo(31).Text = "" Then
             MsgBox "Fecha inicio incorrecta", vbExclamation
             Exit Function
         End If
@@ -559,7 +649,7 @@ Dim CCoste2 As Byte
     'comprobar si existen en Aritaxi facturas anteriores al periodo solicitado
     'sin contabilizar.
     
-    If Me.txtCodigo(31).Text <> "" Then 'anteriores a fechadesde
+    If Me.txtcodigo(31).Text <> "" Then 'anteriores a fechadesde
         Sql = "SELECT COUNT(*) FROM " & cadTabla
         If Me.OptClientes.Value Then
             Sql = Sql & " WHERE codtipom=" & DBSet(codtipom, "T") & " and "
@@ -567,7 +657,7 @@ Dim CCoste2 As Byte
             Sql = Sql & " WHERE codtipom=" & DBSet(codtipom, "T") & " and "
         End If
         Sql = Sql & "fecfactu <"
-        Sql = Sql & DBSet(txtCodigo(31), "F") & " AND intconta=0 "
+        Sql = Sql & DBSet(txtcodigo(31), "F") & " AND intconta=0 "
         
         
         
@@ -619,7 +709,7 @@ Dim CCoste2 As Byte
     '-----------------------------------------------------------------------
     If cadTabla = "scafaccli" Then
         Me.lblProgess(1).Caption = "Comprobando Nº Facturas en contabilidad ..."
-        Sql = "anofaccl>=" & Year(txtCodigo(31).Text) & " AND anofaccl<= " & Year(txtCodigo(32).Text)
+        Sql = "anofaccl>=" & Year(txtcodigo(31).Text) & " AND anofaccl<= " & Year(txtcodigo(32).Text)
         b = ComprobarNumFacturas_new(cadTabla, Sql)
         If Not b Then Exit Function
     End If
@@ -896,17 +986,17 @@ Private Sub InicializarVbles()
     pPdfRpt = ""
 End Sub
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     
-     If txtCodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtCodigo(indD).Text
+     If txtcodigo(indD).Text <> "" Then
+        Cad = Cad & "desde " & txtcodigo(indD).Text
      End If
-    If txtCodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtCodigo(indH).Text
+    If txtcodigo(indH).Text <> "" Then
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
     End If
     
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 'Ccoste
@@ -1163,9 +1253,9 @@ Private Function InsertarLinFact_Local(cadTabla As String, cadWHERE As String, c
 'codtipom=x and numfactu=y and fecfactu=z
 Dim Sql As String
 Dim SQLaux As String
-Dim Sql2 As String
+Dim SQL2 As String
 Dim RS As ADODB.Recordset
-Dim cad As String, Aux As String
+Dim Cad As String, Aux As String
 Dim i As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
@@ -1189,13 +1279,13 @@ Dim cuenta As String
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
-    cad = ""
+    Cad = ""
     i = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
     While Not RS.EOF
-        SQLaux = cad
+        SQLaux = Cad
         'calculamos la Base Imp del total del importe para cada cta cble ventas
         ImpLinea = RS!Importe - CCur(CalcularPorcentaje(RS!Importe, DtoPPago, 2))
         ImpLinea = ImpLinea - CCur(CalcularPorcentaje(RS!Importe, DtoGnral, 2))
@@ -1204,9 +1294,9 @@ Dim cuenta As String
         
         'concatenamos linea para insertar en la tabla de conta.linfact
         Sql = ""
-        Sql2 = ""
+        SQL2 = ""
         
-            Sql = numRegis & "," & Year(CDate(txtCodigo(0).Text)) & "," & i & ","
+            Sql = numRegis & "," & Year(CDate(txtcodigo(0).Text)) & "," & i & ","
             'calculo la cuenta
 '            Socio = RS!codSocio
 '            FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
@@ -1216,7 +1306,7 @@ Dim cuenta As String
             Sql = Sql & DBSet(cuenta, "T")
 
         
-        Sql2 = Sql & "," 'nos guardamos la linea sin el importe por si a la última hay q descontarle para q coincida con total factura
+        SQL2 = Sql & "," 'nos guardamos la linea sin el importe por si a la última hay q descontarle para q coincida con total factura
         Sql = Sql & "," & DBSet(ImpLinea, "N") & ","
         
         
@@ -1225,7 +1315,7 @@ Dim cuenta As String
             
         Sql = Sql & ValorNulo
         
-        cad = cad & "(" & Sql & ")" & ","
+        Cad = Cad & "(" & Sql & ")" & ","
         
         i = i + 1
         RS.MoveNext
@@ -1242,11 +1332,11 @@ Dim cuenta As String
     Set RS = Nothing
 
     'Insertar en la contabilidad
-    If cad <> "" Then
-        cad = Mid(cad, 1, Len(cad) - 1) 'quitar la ult. coma
+    If Cad <> "" Then
+        Cad = Mid(Cad, 1, Len(Cad) - 1) 'quitar la ult. coma
         Sql = "INSERT INTO linfactprov (numregis,anofacpr,numlinea,codtbase,impbaspr,codccost) "
 
-        Sql = Sql & " VALUES " & cad
+        Sql = Sql & " VALUES " & Cad
         ConnConta.Execute Sql
     End If
 
@@ -1265,9 +1355,9 @@ Private Function InsertarLinFact_LocalContaNueva(cadTabla As String, cadWHERE As
 'codtipom=x and numfactu=y and fecfactu=z
 Dim Sql As String
 Dim SQLaux As String
-Dim Sql2 As String
+Dim SQL2 As String
 Dim RS As ADODB.Recordset
-Dim cad As String, Aux As String
+Dim Cad As String, Aux As String
 Dim i As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
@@ -1292,13 +1382,13 @@ Dim cuenta As String
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
-    cad = ""
+    Cad = ""
     i = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
     While Not RS.EOF
-        SQLaux = cad
+        SQLaux = Cad
         'calculamos la Base Imp del total del importe para cada cta cble ventas
         ImpLinea = RS!Importe - CCur(CalcularPorcentaje(RS!Importe, DtoPPago, 2))
         ImpLinea = ImpLinea - CCur(CalcularPorcentaje(RS!Importe, DtoGnral, 2))
@@ -1307,9 +1397,9 @@ Dim cuenta As String
         
         'concatenamos linea para insertar en la tabla de conta.linfact
         Sql = ""
-        Sql2 = ""
+        SQL2 = ""
         
-        Sql = DBSet(SerieFraPro, "T") & "," & numRegis & "," & DBSet(txtCodigo(0).Text, "F") & "," & Year(CDate(txtCodigo(0).Text)) & "," & i & ","
+        Sql = DBSet(SerieFraPro, "T") & "," & numRegis & "," & DBSet(txtcodigo(0).Text, "F") & "," & Year(CDate(txtcodigo(0).Text)) & "," & i & ","
         'calculo la cuenta
 '            Socio = RS!codSocio
 '            FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
@@ -1319,7 +1409,7 @@ Dim cuenta As String
         Sql = Sql & DBSet(cuenta, "T")
 
         
-        Sql2 = Sql & "," 'nos guardamos la linea sin el importe por si a la última hay q descontarle para q coincida con total factura
+        SQL2 = Sql & "," 'nos guardamos la linea sin el importe por si a la última hay q descontarle para q coincida con total factura
         'Sql = Sql & "," & DBSet(ImpLinea, "N") & ","
         
         
@@ -1331,7 +1421,7 @@ Dim cuenta As String
         Sql = Sql & "," & DBSet(RS!codiiva1, "N") & "," & DBSet(RS!porciva1, "N") & "," & ValorNulo & "," & DBSet(RS!BaseIVA1, "N") & "," & DBSet(RS!impoiva1, "N")
         Sql = Sql & "," & ValorNulo & "," & 0
         
-        cad = cad & "(" & Sql & ")" & ","
+        Cad = Cad & "(" & Sql & ")" & ","
         
         i = i + 1
         RS.MoveNext
@@ -1348,12 +1438,12 @@ Dim cuenta As String
     Set RS = Nothing
 
     'Insertar en la contabilidad
-    If cad <> "" Then
-        cad = Mid(cad, 1, Len(cad) - 1) 'quitar la ult. coma
+    If Cad <> "" Then
+        Cad = Mid(Cad, 1, Len(Cad) - 1) 'quitar la ult. coma
 
         Sql = "INSERT INTO factpro_lineas (numserie,numregis,fecharec,anofactu,numlinea,codmacta,codccost,codigiva,porciva,porcrec,baseimpo,impoiva,imporec,aplicret) "
 
-        Sql = Sql & " VALUES " & cad
+        Sql = Sql & " VALUES " & Cad
         ConnConta.Execute Sql
     End If
 
@@ -1372,10 +1462,10 @@ Private Function InsertarCabFactProv_Local(cadWHERE As String, cadErr As String,
 'Insertando en tabla conta.cabfact
 '(OUT) AnyoFacPr: aqui devolvemos el año de fecha recepcion para insertarlo en las lineas de factura de proveedor de la conta
 Dim Sql As String
-Dim Sql2 As String
+Dim SQL2 As String
 
 Dim RS As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
 Dim Nulo2 As String
 Dim Nulo3 As String
 Dim Socio As String
@@ -1399,7 +1489,7 @@ Dim ImporAux As Currency
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    cad = ""
+    Cad = ""
     If Not RS.EOF Then
         Socio = RS!codSocio
         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
@@ -1407,7 +1497,7 @@ Dim ImporAux As Currency
         
         NumFactura = DevuelveValor("select letraser from stipom where codtipom = 'FPS'") & Format(RS!NumFactu, "0000000")
         
-        If Mc.ConseguirContador("1", (CDate(txtCodigo(0).Text) <= CDate(FechaFin) - 365), True) = 0 Then            'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
+        If Mc.ConseguirContador("1", (CDate(txtcodigo(0).Text) <= CDate(FechaFin) - 365), True) = 0 Then            'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
             
             vCF.NumeroFactura = Mc.Contador
             vCF.Anofac = Year(DBLet(RS!FecFactu))
@@ -1419,14 +1509,14 @@ Dim ImporAux As Currency
                 DtoGnral = 0
                 BaseImp = RS!BaseIVA1
                 TotalFac = RS!TotalFac
-                AnyoFacPr = Year(CDate(txtCodigo(0).Text))
+                AnyoFacPr = Year(CDate(txtcodigo(0).Text))
                 
                 
                 Nulo2 = "N"
                 Nulo3 = "N"
                 Sql = ""
                 If vParamAplic.ContabilidadNueva Then Sql = Sql & DBSet(SerieFraPro, "T") & ","
-                Sql = Sql & Mc.Contador & "," & DBSet(RS!FecFactu, "F") & "," & AnyoFacPr & "," & DBSet(txtCodigo(0).Text, "F") & "," & DBSet(NumFactura, "T") & "," & DBSet(cuenta, "T") & ","
+                Sql = Sql & Mc.Contador & "," & DBSet(RS!FecFactu, "F") & "," & AnyoFacPr & "," & DBSet(txtcodigo(0).Text, "F") & "," & DBSet(NumFactura, "T") & "," & DBSet(cuenta, "T") & ","
                 
     '            Select Case vParamAplic.ObsFactura
     '            Case 0
@@ -1454,13 +1544,13 @@ Dim ImporAux As Currency
                     'NULOS
                     Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
                     Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & DBSet(RS!FecFactu, "F") & ",0"
-                    cad = cad & "(" & Sql & ")"
+                    Cad = Cad & "(" & Sql & ")"
                     
                     'Insertar en la contabilidad
                     Sql = "INSERT INTO cabfactprov (numregis,fecfacpr,anofacpr,fecrecpr,numfacpr,codmacta,confacpr,ba1facpr,ba2facpr,ba3facpr,"
                     Sql = Sql & "pi1facpr,pi2facpr,pi3facpr,pr1facpr,pr2facpr,pr3facpr,ti1facpr,ti2facpr,ti3facpr,tr1facpr,tr2facpr,tr3facpr,"
                     Sql = Sql & "totfacpr,tp1facpr,tp2facpr,tp3facpr,extranje,retfacpr,trefacpr,cuereten,numdiari,fechaent,numasien,fecliqpr,nodeducible) "
-                    Sql = Sql & " VALUES " & cad
+                    Sql = Sql & " VALUES " & Cad
                     ConnConta.Execute Sql
                 Else
     '**********************
@@ -1492,12 +1582,12 @@ Dim ImporAux As Currency
                     'para las lineas
                     'factpro_totales(numserie,numregis,fecharec,anofactu,numlinea,baseimpo,codigiva,porciva,porcrec,impoiva,imporec)
                     'IVA 1, siempre existe
-                    Aux = "'" & SerieFraPro & "'," & Mc.Contador & "," & DBSet(txtCodigo(0).Text, "F") & "," & DBSet(Year(CDate(txtCodigo(0).Text)), "N") & ","
+                    Aux = "'" & SerieFraPro & "'," & Mc.Contador & "," & DBSet(txtcodigo(0).Text, "F") & "," & DBSet(Year(CDate(txtcodigo(0).Text)), "N") & ","
                     
                     
-                    Sql2 = Aux & "1," & DBSet(RS!BaseIVA1, "N") & "," & RS!codiiva1 & "," & DBSet(RS!porciva1, "N") & ","
-                    Sql2 = Sql2 & ValorNulo & "," & DBSet(RS!impoiva1, "N") & "," & ValorNulo
-                    CadenaInsertFaclin2 = CadenaInsertFaclin2 & "(" & Sql2 & ")"
+                    SQL2 = Aux & "1," & DBSet(RS!BaseIVA1, "N") & "," & RS!codiiva1 & "," & DBSet(RS!porciva1, "N") & ","
+                    SQL2 = SQL2 & ValorNulo & "," & DBSet(RS!impoiva1, "N") & "," & ValorNulo
+                    CadenaInsertFaclin2 = CadenaInsertFaclin2 & "(" & SQL2 & ")"
                     vTipoIva(0) = RS!codiiva1
                     vPorcIva(0) = RS!porciva1
                     vPorcRec(0) = 0
@@ -1521,14 +1611,14 @@ Dim ImporAux As Currency
                     'retencion NULOS
                     Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0,"
                     
-                    Sql = Sql & DBSet(txtCodigo(0).Text, "F")
+                    Sql = Sql & DBSet(txtcodigo(0).Text, "F")
                     
-                    cad = cad & "(" & Sql & ")"
+                    Cad = Cad & "(" & Sql & ")"
                 
                     Sql = "INSERT INTO factpro(numserie,numregis,fecfactu,anofactu,fecharec,numfactu,codmacta,observa,nommacta,"
                     Sql = Sql & "dirdatos,codpobla,despobla,desprovi,nifdatos,codpais,codforpa,codopera,codconce340,codintra,"
                     Sql = Sql & "totbases,totbasesret,totivas,totfacpr,retfacpr , trefacpr, cuereten, tiporeten, fecliqpr)"
-                    Sql = Sql & " VALUES " & cad
+                    Sql = Sql & " VALUES " & Cad
                     ConnConta.Execute Sql
                 
                 
@@ -1570,10 +1660,10 @@ End Sub
 
 
 Private Sub Form_Load()
-    txtCodigo(31).Text = Date
-    txtCodigo(32).Text = Date
+    txtcodigo(31).Text = Date
+    txtcodigo(32).Text = Date
     
-    txtCodigo(0).Text = Date
+    txtcodigo(0).Text = Date
     
     'fecha
     Me.imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
@@ -1607,19 +1697,19 @@ Dim indice As Byte
     Select Case Index
         Case 4
             indice = 31
-            PonerFormatoFecha txtCodigo(indice)
-            If txtCodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(indice).Text)
+            PonerFormatoFecha txtcodigo(indice)
+            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
         Case 5
             indice = 32
-            PonerFormatoFecha txtCodigo(indice)
-            If txtCodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(indice).Text)
+            PonerFormatoFecha txtcodigo(indice)
+            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
     End Select
     frmCal.Show vbModal
     If IsDate(Fecha) Then
-        txtCodigo(indice) = Fecha
+        txtcodigo(indice) = Fecha
     End If
     Set frmCal = Nothing
-    PonerFoco txtCodigo(indice)
+    PonerFoco txtcodigo(indice)
 End Sub
 
 
@@ -1664,16 +1754,16 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 
     Select Case Index
         Case 0
-            If txtCodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtcodigo(Index)
             End If
         Case 31
-            If txtCodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtcodigo(Index)
             End If
         Case 32
-            If txtCodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtcodigo(Index)
             End If
     End Select
 End Sub
