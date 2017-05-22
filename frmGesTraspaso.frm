@@ -1253,6 +1253,7 @@ If Err.Number <> 0 Then
 End If
 If NF > 0 Then Close #NF
 End Function
+
 Private Sub ArmarCadena(CADENA As String, ByRef values1 As String)
 Dim Telefono As String
 Dim values As String

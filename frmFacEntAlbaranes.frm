@@ -289,15 +289,15 @@ Begin VB.Form frmFacEntAlbaranes
          BackColor       =   &H8000000F&
          BorderStyle     =   0  'None
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00008000&
+         ForeColor       =   &H00972E0B&
          Height          =   285
          Index           =   0
          Left            =   8400
@@ -309,7 +309,7 @@ Begin VB.Form frmFacEntAlbaranes
       End
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
-         BackColor       =   &H00C0FFC0&
+         BackColor       =   &H00FFFFC0&
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -319,7 +319,7 @@ Begin VB.Form frmFacEntAlbaranes
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   56
          Left            =   9960
          MaxLength       =   15
@@ -395,7 +395,6 @@ Begin VB.Form frmFacEntAlbaranes
       _ExtentY        =   7938
       _Version        =   393216
       Style           =   1
-      Tab             =   2
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -409,7 +408,7 @@ Begin VB.Form frmFacEntAlbaranes
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFacEntAlbaranes.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "DataGrid1"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "txtAux(0)"
@@ -448,70 +447,40 @@ Begin VB.Form frmFacEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacEntAlbaranes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(3)"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label1(5)"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Label1(10)"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Label1(11)"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "Label1(12)"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "imgBuscar(7)"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "Label1(9)"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "imgBuscar(8)"
-      Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "Label1(23)"
-      Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "Label1(45)"
-      Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Text1(39)"
-      Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "Frame3"
-      Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "Text1(28)"
-      Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "Text1(22)"
-      Tab(1).Control(13).Enabled=   0   'False
+      Tab(1).Control(0)=   "FrameFacRec"
+      Tab(1).Control(1)=   "FrameHco"
+      Tab(1).Control(2)=   "Text2(28)"
+      Tab(1).Control(3)=   "Text1(27)"
+      Tab(1).Control(4)=   "Text2(27)"
+      Tab(1).Control(5)=   "Text1(2)"
+      Tab(1).Control(6)=   "Text1(25)"
+      Tab(1).Control(7)=   "Text1(26)"
+      Tab(1).Control(8)=   "Text1(24)"
+      Tab(1).Control(9)=   "Text1(23)"
+      Tab(1).Control(10)=   "Text1(38)"
+      Tab(1).Control(11)=   "Text1(18)"
+      Tab(1).Control(12)=   "Text1(19)"
+      Tab(1).Control(13)=   "Text1(20)"
       Tab(1).Control(14)=   "Text1(21)"
-      Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "Text1(20)"
-      Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "Text1(19)"
-      Tab(1).Control(16).Enabled=   0   'False
-      Tab(1).Control(17)=   "Text1(18)"
-      Tab(1).Control(17).Enabled=   0   'False
-      Tab(1).Control(18)=   "Text1(38)"
-      Tab(1).Control(18).Enabled=   0   'False
-      Tab(1).Control(19)=   "Text1(23)"
-      Tab(1).Control(19).Enabled=   0   'False
-      Tab(1).Control(20)=   "Text1(24)"
-      Tab(1).Control(20).Enabled=   0   'False
-      Tab(1).Control(21)=   "Text1(26)"
-      Tab(1).Control(21).Enabled=   0   'False
-      Tab(1).Control(22)=   "Text1(25)"
-      Tab(1).Control(22).Enabled=   0   'False
-      Tab(1).Control(23)=   "Text1(2)"
-      Tab(1).Control(23).Enabled=   0   'False
-      Tab(1).Control(24)=   "Text2(27)"
-      Tab(1).Control(24).Enabled=   0   'False
-      Tab(1).Control(25)=   "Text1(27)"
-      Tab(1).Control(25).Enabled=   0   'False
-      Tab(1).Control(26)=   "Text2(28)"
-      Tab(1).Control(26).Enabled=   0   'False
-      Tab(1).Control(27)=   "FrameHco"
-      Tab(1).Control(27).Enabled=   0   'False
-      Tab(1).Control(28)=   "FrameFacRec"
-      Tab(1).Control(28).Enabled=   0   'False
+      Tab(1).Control(15)=   "Text1(22)"
+      Tab(1).Control(16)=   "Text1(28)"
+      Tab(1).Control(17)=   "Frame3"
+      Tab(1).Control(18)=   "Text1(39)"
+      Tab(1).Control(19)=   "Label1(45)"
+      Tab(1).Control(20)=   "Label1(23)"
+      Tab(1).Control(21)=   "imgBuscar(8)"
+      Tab(1).Control(22)=   "Label1(9)"
+      Tab(1).Control(23)=   "imgBuscar(7)"
+      Tab(1).Control(24)=   "Label1(12)"
+      Tab(1).Control(25)=   "Label1(11)"
+      Tab(1).Control(26)=   "Label1(10)"
+      Tab(1).Control(27)=   "Label1(5)"
+      Tab(1).Control(28)=   "Label1(3)"
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmFacEntAlbaranes.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameFactura"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.Frame FrameFacRec 
          Caption         =   "Datos Factura a rectificar "
@@ -623,7 +592,7 @@ Begin VB.Form frmFacEntAlbaranes
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   11
-         Left            =   -62400
+         Left            =   12600
          MaxLength       =   15
          TabIndex        =   158
          Text            =   "numlote"
@@ -647,7 +616,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   -67560
+         Left            =   7440
          MaxLength       =   5
          TabIndex        =   43
          Tag             =   "Bultos"
@@ -661,7 +630,7 @@ Begin VB.Form frmFacEntAlbaranes
          Caption         =   "+"
          Height          =   315
          Index           =   9
-         Left            =   -62640
+         Left            =   12360
          TabIndex        =   154
          ToolTipText     =   "Buscar proveedor"
          Top             =   3960
@@ -684,7 +653,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   -63360
+         Left            =   11640
          MaxLength       =   6
          TabIndex        =   49
          Tag             =   "proveedor"
@@ -881,7 +850,7 @@ Begin VB.Form frmFacEntAlbaranes
       End
       Begin VB.Frame FrameFactura 
          Height          =   3300
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   93
          Top             =   600
          Width           =   10575
@@ -1334,19 +1303,19 @@ Begin VB.Form frmFacEntAlbaranes
          End
          Begin VB.TextBox Text3 
             Alignment       =   1  'Right Justify
-            BackColor       =   &H00C0FFC0&
+            BackColor       =   &H00FFFFC0&
             BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   285
+            Height          =   360
             Index           =   55
-            Left            =   6120
+            Left            =   6930
             MaxLength       =   15
             TabIndex        =   94
             Text            =   "Text1 7"
@@ -1578,21 +1547,21 @@ Begin VB.Form frmFacEntAlbaranes
          Begin VB.Label Label1 
             Caption         =   "TOTAL ALBARAN"
             BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   700
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ForeColor       =   &H00008000&
+            ForeColor       =   &H00972E0B&
             Height          =   285
             Index           =   39
-            Left            =   4200
+            Left            =   5040
             TabIndex        =   113
-            Top             =   2655
-            Width           =   1530
+            Top             =   2685
+            Width           =   1860
          End
          Begin VB.Label Label1 
             Caption         =   "% IVA"
@@ -1748,7 +1717,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   -66120
+         Left            =   8880
          Locked          =   -1  'True
          MaxLength       =   1
          TabIndex        =   45
@@ -1760,7 +1729,7 @@ Begin VB.Form frmFacEntAlbaranes
       End
       Begin VB.Frame FrameCliente 
          Height          =   1950
-         Left            =   -74800
+         Left            =   200
          TabIndex        =   56
          Top             =   315
          Width           =   11820
@@ -1777,13 +1746,13 @@ Begin VB.Form frmFacEntAlbaranes
             EndProperty
             Height          =   360
             Index           =   29
-            Left            =   7830
+            Left            =   8040
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   166
             Text            =   "Text2"
             Top             =   165
-            Width           =   3405
+            Width           =   3615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1804,7 +1773,7 @@ Begin VB.Form frmFacEntAlbaranes
             Tag             =   "Cod. Envío|N|N|0|999|scaalb|codenvio|000|N|"
             Text            =   "Text1"
             Top             =   165
-            Width           =   540
+            Width           =   750
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -2044,7 +2013,7 @@ Begin VB.Form frmFacEntAlbaranes
             Tag             =   "Cod. Agente|N|N|0|9999|scaalb|codagent|0000|N|"
             Text            =   "Text1"
             Top             =   513
-            Width           =   540
+            Width           =   750
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -2059,13 +2028,13 @@ Begin VB.Form frmFacEntAlbaranes
             EndProperty
             Height          =   360
             Index           =   17
-            Left            =   7830
+            Left            =   8040
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   63
             Text            =   "Text2"
             Top             =   513
-            Width           =   3405
+            Width           =   3615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -2086,7 +2055,7 @@ Begin VB.Form frmFacEntAlbaranes
             Tag             =   "Forma de Pago|N|N|0|999|scaalb|codforpa|000|N|"
             Text            =   "Text1"
             Top             =   861
-            Width           =   540
+            Width           =   750
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -2101,13 +2070,13 @@ Begin VB.Form frmFacEntAlbaranes
             EndProperty
             Height          =   360
             Index           =   14
-            Left            =   7830
+            Left            =   8040
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   58
             Text            =   "Text2"
             Top             =   861
-            Width           =   3405
+            Width           =   3615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -2128,7 +2097,7 @@ Begin VB.Form frmFacEntAlbaranes
             Tag             =   "Descuento P.Pago|N|N|0|99.90|scaalb|dtoppago|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1209
-            Width           =   540
+            Width           =   750
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -2149,7 +2118,7 @@ Begin VB.Form frmFacEntAlbaranes
             Tag             =   "Descuento General|N|N|0|99.90|scaalb|dtognral|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1560
-            Width           =   540
+            Width           =   750
          End
          Begin VB.ComboBox cboFacturacion 
             BeginProperty Font 
@@ -2512,7 +2481,7 @@ Begin VB.Form frmFacEntAlbaranes
          Caption         =   "+"
          Height          =   315
          Index           =   1
-         Left            =   -72360
+         Left            =   2640
          TabIndex        =   55
          ToolTipText     =   "Buscar artículo"
          Top             =   3960
@@ -2524,7 +2493,7 @@ Begin VB.Form frmFacEntAlbaranes
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   -74040
+         Left            =   960
          TabIndex        =   54
          ToolTipText     =   "Buscar almacen"
          Top             =   3960
@@ -2546,7 +2515,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72120
+         Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   41
@@ -2572,7 +2541,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   -64440
+         Left            =   10560
          MaxLength       =   12
          TabIndex        =   48
          Tag             =   "Importe"
@@ -2597,7 +2566,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   -65040
+         Left            =   9960
          MaxLength       =   30
          TabIndex        =   47
          Tag             =   "Descuento 2"
@@ -2622,7 +2591,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   -65640
+         Left            =   9360
          MaxLength       =   5
          TabIndex        =   46
          Tag             =   "Descuento 1"
@@ -2647,7 +2616,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   -66960
+         Left            =   8040
          MaxLength       =   12
          TabIndex        =   44
          Tag             =   "Precio"
@@ -2672,7 +2641,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   -68880
+         Left            =   6120
          MaxLength       =   16
          TabIndex        =   42
          Tag             =   "Cantidad"
@@ -2696,7 +2665,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73800
+         Left            =   1200
          MaxLength       =   18
          TabIndex        =   40
          Tag             =   "Código Artículo"
@@ -2720,7 +2689,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   15
          TabIndex        =   39
          Tag             =   "Código Almacen"
@@ -2732,7 +2701,7 @@ Begin VB.Form frmFacEntAlbaranes
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFacEntAlbaranes.frx":0060
          Height          =   2040
-         Left            =   -74805
+         Left            =   195
          TabIndex        =   53
          Top             =   2325
          Width           =   11820
@@ -3031,7 +3000,7 @@ Begin VB.Form frmFacEntAlbaranes
          Left            =   -74880
          TabIndex        =   38
          Top             =   480
-         Width           =   1095
+         Width           =   1455
       End
       Begin VB.Label Label1 
          Caption         =   "Preparador Material"
@@ -4120,14 +4089,14 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
 '        Text1(30).visible = False
 '        Combo1.visible = True
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue ' vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -4645,7 +4614,7 @@ Dim i As Integer
             PonerModo 0
         Else
             PonerModo 1
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue ' vbYellow
         End If
         'Poner los grid sin apuntar a nada
         LimpiarDataGrids
@@ -5412,7 +5381,7 @@ Private Sub PonerCadenaBusqueda()
         If Modo = 1 Then
             Me.cboFacturacion.ListIndex = -1
             PonerFoco Text1(kCampo)
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue 'vbYellow
         End If
         Exit Sub
     Else
@@ -5630,7 +5599,7 @@ Dim b As Boolean
     '---------------------------------------------
     b = (Modo <> 0 And Modo <> 2 And Modo <> 5)
     cmdCancelar.visible = b
-    CmdAceptar.visible = b
+    cmdAceptar.visible = b
     
     Me.imgFecha(0).Enabled = b
     Me.imgFecha(40).Enabled = b
@@ -5748,7 +5717,7 @@ End Function
 
 Private Sub Text2_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Index = 16 And KeyCode = 40 Then 'campo Amliacion Linea y Flecha hacia abajo
-        PonerFocoBtn Me.CmdAceptar
+        PonerFocoBtn Me.cmdAceptar
     Else
         KEYdown KeyCode
     End If
@@ -5757,7 +5726,7 @@ End Sub
 
 Private Sub Text2_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 16 And KeyAscii = 13 Then 'campo Amliacion Linea y ENTER
-        PonerFocoBtn Me.CmdAceptar
+        PonerFocoBtn Me.cmdAceptar
     End If
 End Sub
 
@@ -6122,7 +6091,7 @@ Private Sub PonerBotonCabecera(b As Boolean)
 'o Pone los botones de Aceptar y cancelar en Insert,update o delete lineas
     On Error Resume Next
     
-    Me.CmdAceptar.visible = Not b
+    Me.cmdAceptar.visible = Not b
     Me.cmdCancelar.visible = Not b
     Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
@@ -6193,7 +6162,7 @@ Dim i As Byte
             vDataGrid.Columns(i).visible = False
             i = 7
             vDataGrid.Columns(i).Caption = "Cantidad"
-            vDataGrid.Columns(i).Width = 850
+            vDataGrid.Columns(i).Width = 1050
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoImporte
             
@@ -6202,7 +6171,7 @@ Dim i As Byte
                 
             i = i + 1 '9
             vDataGrid.Columns(i).Caption = "Precio"
-            vDataGrid.Columns(i).Width = 950
+            vDataGrid.Columns(i).Width = 1150
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoPrecio
             
@@ -6213,19 +6182,19 @@ Dim i As Byte
             
             i = i + 1
             vDataGrid.Columns(i).Caption = "Dto. 1"
-            vDataGrid.Columns(i).Width = 600
+            vDataGrid.Columns(i).Width = 700
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoDescuento
             
             i = i + 1
             vDataGrid.Columns(i).Caption = "Dto. 2"
-            vDataGrid.Columns(i).Width = 600
+            vDataGrid.Columns(i).Width = 700
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoDescuento
                 
             i = i + 1
             vDataGrid.Columns(i).Caption = "Importe linea"
-            vDataGrid.Columns(i).Width = 1500
+            vDataGrid.Columns(i).Width = 1600
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoImporte
            

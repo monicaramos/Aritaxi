@@ -483,67 +483,67 @@ Begin VB.Form frmAdmTrabajadores
       TabCaption(1)   =   "Estudios/Formación"
       TabPicture(1)   =   "frmAdmTrabajadores.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "DataGrid1"
+      Tab(1).Control(0)=   "FrameToolAux(4)"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "txtAux1(0)"
+      Tab(1).Control(1)=   "txtAux1(1)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "txtAux1(1)"
+      Tab(1).Control(2)=   "txtAux1(0)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "FrameToolAux(4)"
+      Tab(1).Control(3)=   "DataGrid1"
       Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Habilidades"
       TabPicture(2)   =   "frmAdmTrabajadores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "DataGrid2"
+      Tab(2).Control(0)=   "FrameToolAux(1)"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "txtAux2"
       Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "FrameToolAux(1)"
+      Tab(2).Control(2)=   "DataGrid2"
       Tab(2).Control(2).Enabled=   0   'False
       Tab(2).ControlCount=   3
       TabCaption(3)   =   "Experiencia Laboral"
       TabPicture(3)   =   "frmAdmTrabajadores.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "DataGrid3"
+      Tab(3).Control(0)=   "FrameToolAux(2)"
       Tab(3).Control(0).Enabled=   0   'False
-      Tab(3).Control(1)=   "TxtAux3(0)"
+      Tab(3).Control(1)=   "TxtAux3(1)"
       Tab(3).Control(1).Enabled=   0   'False
-      Tab(3).Control(2)=   "TxtAux3(1)"
+      Tab(3).Control(2)=   "TxtAux3(0)"
       Tab(3).Control(2).Enabled=   0   'False
-      Tab(3).Control(3)=   "FrameToolAux(2)"
+      Tab(3).Control(3)=   "DataGrid3"
       Tab(3).Control(3).Enabled=   0   'False
       Tab(3).ControlCount=   4
       TabCaption(4)   =   "Formación Realizada"
       TabPicture(4)   =   "frmAdmTrabajadores.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "DataGrid4"
+      Tab(4).Control(0)=   "FrameToolAux(3)"
       Tab(4).Control(0).Enabled=   0   'False
-      Tab(4).Control(1)=   "TxtAux4(0)"
+      Tab(4).Control(1)=   "TxtAux4(4)"
       Tab(4).Control(1).Enabled=   0   'False
-      Tab(4).Control(2)=   "TxtAux4(1)"
+      Tab(4).Control(2)=   "TxtAux4(3)"
       Tab(4).Control(2).Enabled=   0   'False
       Tab(4).Control(3)=   "TxtAux4(2)"
       Tab(4).Control(3).Enabled=   0   'False
-      Tab(4).Control(4)=   "TxtAux4(3)"
+      Tab(4).Control(4)=   "TxtAux4(1)"
       Tab(4).Control(4).Enabled=   0   'False
-      Tab(4).Control(5)=   "TxtAux4(4)"
+      Tab(4).Control(5)=   "TxtAux4(0)"
       Tab(4).Control(5).Enabled=   0   'False
-      Tab(4).Control(6)=   "FrameToolAux(3)"
+      Tab(4).Control(6)=   "DataGrid4"
       Tab(4).Control(6).Enabled=   0   'False
       Tab(4).ControlCount=   7
       TabCaption(5)   =   "Formación Empresa"
       TabPicture(5)   =   "frmAdmTrabajadores.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "FrameToolAux(0)"
+      Tab(5).Control(0)=   "DataGrid5"
       Tab(5).Control(0).Enabled=   0   'False
-      Tab(5).Control(1)=   "TxtAux5(2)"
+      Tab(5).Control(1)=   "TxtAux5(0)"
       Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "TxtAux5(1)"
       Tab(5).Control(2).Enabled=   0   'False
-      Tab(5).Control(3)=   "TxtAux5(0)"
+      Tab(5).Control(3)=   "TxtAux5(2)"
       Tab(5).Control(3).Enabled=   0   'False
-      Tab(5).Control(4)=   "DataGrid5"
+      Tab(5).Control(4)=   "FrameToolAux(0)"
       Tab(5).Control(4).Enabled=   0   'False
       Tab(5).ControlCount=   5
       Begin VB.Frame FrameToolAux 
@@ -2812,7 +2812,7 @@ Private VieneDeBuscar As Boolean
 '============================================================================
 
 Private Sub cmdAceptar_Click()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -2836,22 +2836,22 @@ Dim cad As String, Indicador As String
                 
          Case 5 'INSERTAR MODIFICAR LINEA
             'Actualizar el registro en la tabla de lineas 'sdirec' (Direcciones/Departamentos)
-            cad = "Select * from " & NomTablaLineas & " where codtraba= " & Data1.Recordset!CodTraba
-            cad = cad & " order by numlinea"
+            Cad = "Select * from " & NomTablaLineas & " where codtraba= " & Data1.Recordset!CodTraba
+            Cad = Cad & " order by numlinea"
             
             If ModificaLineas = 1 Then 'INSERTAR lineas
                 If InsertarLinea Then
                     Select Case Me.SSTab1.Tab
                         Case 1 'Estudios/Formacion - Datos de la tabla strab1
-                            CargaGrid DataGrid1, Data2, cad
+                            CargaGrid DataGrid1, Data2, Cad
                         Case 2 'Habilidades
-                            CargaGrid DataGrid2, Data3, cad
+                            CargaGrid DataGrid2, Data3, Cad
                         Case 3 'Experiencia Laboral
-                            CargaGrid DataGrid3, Data4, cad
+                            CargaGrid DataGrid3, Data4, Cad
                         Case 4 'Formacion Realizada
-                            CargaGrid DataGrid4, Data5, cad
+                            CargaGrid DataGrid4, Data5, Cad
                         Case 5 'Formacion Empresa
-                            CargaGrid DataGrid5, Data6, cad
+                            CargaGrid DataGrid5, Data6, Cad
                     End Select
                     BotonAnyadirLinea
                 End If
@@ -3030,7 +3030,7 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
@@ -3133,21 +3133,21 @@ End Sub
 
 Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de trabajadores (straba)
-Dim cad As String
+Dim Cad As String
 On Error GoTo EEliminar
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    cad = "Cabecera de Trabajadores." & vbCrLf
-    cad = cad & "------------------------------" & vbCrLf & vbCrLf
-    cad = cad & "Va a eliminar el Trabajador:"
-    cad = cad & vbCrLf & "Código:   " & Format(Data1.Recordset.Fields(0), "000000")
-    cad = cad & vbCrLf & "Descripción:   " & Data1.Recordset.Fields(1)
-    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    Cad = "Cabecera de Trabajadores." & vbCrLf
+    Cad = Cad & "------------------------------" & vbCrLf & vbCrLf
+    Cad = Cad & "Va a eliminar el Trabajador:"
+    Cad = Cad & vbCrLf & "Código:   " & Format(Data1.Recordset.Fields(0), "000000")
+    Cad = Cad & vbCrLf & "Descripción:   " & Data1.Recordset.Fields(1)
+    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
     
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
@@ -3243,7 +3243,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera tambien
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -3255,9 +3255,9 @@ Dim cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Data1.Recordset.Fields(0) & "|"
-        cad = cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Data1.Recordset.Fields(0) & "|"
+        Cad = Cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
 End Sub
@@ -3411,7 +3411,7 @@ End Sub
 
 
 Private Sub frmCC_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
       
     If CadenaDevuelta <> "" Then
 '        HaDevueltoDatos = True
@@ -3452,12 +3452,12 @@ End Sub
 
 
 Private Sub frmTra_DatoSeleccionado(CadenaSeleccion As String)
-Dim cadB As String
+Dim CadB As String
 
-    cadB = "codtraba = " & RecuperaValor(CadenaSeleccion, 1)
+    CadB = "codtraba = " & RecuperaValor(CadenaSeleccion, 1)
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & Ordenacion
     PonerCadenaBusqueda
     
     Screen.MousePointer = vbDefault
@@ -3748,14 +3748,14 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         PonerFoco Text1(0)
@@ -3763,15 +3763,15 @@ Dim cadB As String
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
     Set frmTra = New frmBasico2
     
-    AyudaTrabajadores frmTra, , cadB
+    AyudaTrabajadores frmTra, , CadB
     
     Set frmTra = Nothing
 
@@ -4735,10 +4735,10 @@ Private Sub txtAux1_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub BotonMtoLineas(numTab As Integer, cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
         Me.SSTab1.Tab = numTab
         NumTabMto = numTab
-        TituloLinea = cad
+        TituloLinea = Cad
         PonerModo 5
         PonerBotonCabecera True
 End Sub
@@ -4875,19 +4875,19 @@ End Function
 
 Private Sub LimpiarDataGrids()
 'Pone los Grids sin datos, apuntando a ningún registro
-Dim cad As String
+Dim Cad As String
 On Error Resume Next
 
-    cad = "Select * from strab1 where codtraba is null"
-    CargaGrid DataGrid1, Data2, cad
-    cad = "Select * from strab2 where codtraba is null"
-    CargaGrid DataGrid2, Data3, cad
-    cad = "Select * from strab3 where codtraba is null"
-    CargaGrid DataGrid3, Data4, cad
-    cad = "Select * from strab4 where codtraba is null"
-    CargaGrid DataGrid4, Data5, cad
-    cad = "Select * from strab5 where codtraba is null"
-    CargaGrid DataGrid5, Data6, cad
+    Cad = "Select * from strab1 where codtraba is null"
+    CargaGrid DataGrid1, Data2, Cad
+    Cad = "Select * from strab2 where codtraba is null"
+    CargaGrid DataGrid2, Data3, Cad
+    Cad = "Select * from strab3 where codtraba is null"
+    CargaGrid DataGrid3, Data4, Cad
+    Cad = "Select * from strab4 where codtraba is null"
+    CargaGrid DataGrid4, Data5, Cad
+    Cad = "Select * from strab5 where codtraba is null"
+    CargaGrid DataGrid5, Data6, Cad
     
     PrimeraVez = False
     If Err.Number <> 0 Then Err.Clear
@@ -4895,10 +4895,10 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
-    cad = "(codtraba=" & Text1(0).Text & ")"
-    If SituarData(Data1, cad, Indicador) Then
+    Cad = "(codtraba=" & Text1(0).Text & ")"
+    If SituarData(Data1, Cad, Indicador) Then
        PonerModo 2
        lblIndicador.Caption = Indicador
     Else

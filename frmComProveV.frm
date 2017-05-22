@@ -593,8 +593,8 @@ Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
 Attribute frmCP.VB_VarHelpID = -1
-Private WithEvents frmProV As frmBasico2 '
-Attribute frmProV.VB_VarHelpID = -1
+Private WithEvents frmProv As frmBasico2 '
+Attribute frmProv.VB_VarHelpID = -1
 
 '-----------------------------
 'Se distinguen varios modos
@@ -625,7 +625,7 @@ Private VieneDeBuscar As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Indicador As String
 
     Screen.MousePointer = vbHourglass
@@ -641,8 +641,8 @@ Dim Indicador As String
             If DatosOk Then
                 If ModificaDesdeFormulario(Me, 1) Then
                     TerminaBloquear
-                    cad = "(nifprove=" & Text1(0).Text & ")"
-                    If SituarData(Data1, cad, Indicador) Then
+                    Cad = "(nifprove=" & Text1(0).Text & ")"
+                    If SituarData(Data1, Cad, Indicador) Then
                         PonerModo 2
                         lblIndicador.Caption = Indicador
                     Else
@@ -687,12 +687,12 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -730,18 +730,18 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
     
-    cad = "¿Seguro que desea eliminar el Cliente de Varios?" & vbCrLf
-    cad = cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Descripción: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar el Cliente de Varios?" & vbCrLf
+    Cad = Cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Descripción: " & Data1.Recordset.Fields(1)
 
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
@@ -764,16 +764,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    cad = Data1.Recordset.Fields(0) & "|"
-    cad = cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Data1.Recordset.Fields(0) & "|"
+    Cad = Cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -852,7 +852,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
 
     If CadenaDevuelta <> "" Then
@@ -860,13 +860,13 @@ Dim Aux As String
         Screen.MousePointer = vbHourglass
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
         '   Como la clave principal es unica, con poner el sql apuntando
         '   al valor devuelto sobre la clave ppal es suficiente
         'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
@@ -884,13 +884,13 @@ Dim devuelve As String
 End Sub
 
 
-Private Sub frmProV_DatoSeleccionado(CadenaSeleccion As String)
+Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 
-Dim cadB As String
-    cadB = "nifprove = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+Dim CadB As String
+    CadB = "nifprove = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
     PonerCadenaBusqueda
     Screen.MousePointer = vbDefault
 
@@ -986,26 +986,26 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
     
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then 'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-Dim cad As String
-    Set frmProV = New frmBasico2
+Private Sub MandaBusquedaPrevia(CadB As String)
+Dim Cad As String
+    Set frmProv = New frmBasico2
     
-    AyudaProveedoresV frmProV, , cadB
+    AyudaProveedoresV frmProv, , CadB
     
-    Set frmProV = Nothing
+    Set frmProv = Nothing
 
 End Sub
 

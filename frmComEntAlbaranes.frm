@@ -544,7 +544,7 @@ Begin VB.Form frmComEntAlbaranes
       EndProperty
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
-         BackColor       =   &H00C0C0FF&
+         BackColor       =   &H00FFFFC0&
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1029,7 +1029,7 @@ Begin VB.Form frmComEntAlbaranes
          Width           =   10575
          Begin VB.TextBox Text3 
             Alignment       =   1  'Right Justify
-            BackColor       =   &H00C0C0FF&
+            BackColor       =   &H00FFFFC0&
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   9.75
@@ -3109,12 +3109,12 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -3482,7 +3482,7 @@ Dim i As Integer
             PonerModo 0
         Else
             PonerModo 1
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue 'vbYellow
         End If
         'Poner los grid sin apuntar a nada
         LimpiarDataGrids
@@ -4021,7 +4021,7 @@ On Error GoTo EEPonerBusq
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
             PonerFoco Text1(0)
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue 'vbYellow
         End If
         Exit Sub
     Else
@@ -4162,8 +4162,8 @@ Dim b As Boolean
     Text3(46).BackColor = &HFFFFC0
     Text3(47).BackColor = &HFFFFC0
     Text3(48).BackColor = &HFFFFC0
-    Text3(49).BackColor = &HC0C0FF    'Tatal factura
-    Text3(50).BackColor = &HC0C0FF    'Tatal factura
+    Text3(49).BackColor = &HFFFFC0 '&HC0C0FF    'Tatal factura
+    Text3(50).BackColor = &HFFFFC0 '&HC0C0FF    'Tatal factura
     '---------------------------------------------------
           
     'Si no es modo lineas Boquear los TxtAux
@@ -4687,13 +4687,13 @@ On Error GoTo ECargaGrid
             vDataGrid.Columns(i).visible = False
             i = i + 1
             vDataGrid.Columns(i).Caption = "Cantidad"
-            vDataGrid.Columns(i).Width = 850
+            vDataGrid.Columns(i).Width = 1050
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoImporte
             
             i = i + 1
             vDataGrid.Columns(i).Caption = "Precio"
-            vDataGrid.Columns(i).Width = 1140
+            vDataGrid.Columns(i).Width = 1240
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoPrecio2
                 
@@ -4711,7 +4711,7 @@ On Error GoTo ECargaGrid
                 
             i = i + 1
             vDataGrid.Columns(i).Caption = "Importe"
-            vDataGrid.Columns(i).Width = 1080
+            vDataGrid.Columns(i).Width = 1280
             vDataGrid.Columns(i).Alignment = dbgRight
             vDataGrid.Columns(i).NumberFormat = FormatoImporte
             

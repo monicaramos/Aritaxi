@@ -61,7 +61,7 @@ Begin VB.Form frmFacHcoFacturas2
          Left            =   1410
          Style           =   2  'Dropdown List
          TabIndex        =   2
-         Top             =   360
+         Top             =   390
          Width           =   1305
       End
       Begin VB.TextBox Text1 
@@ -103,11 +103,20 @@ Begin VB.Form frmFacHcoFacturas2
          Tag             =   "Cod. Cliente|N|N|0|999999|scafac|codclien|000000|N|"
          Text            =   "Text1"
          Top             =   330
-         Width           =   780
+         Width           =   870
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
          Left            =   1440
          TabIndex        =   1
@@ -173,7 +182,7 @@ Begin VB.Form frmFacHcoFacturas2
          Left            =   4440
          TabIndex        =   4
          Tag             =   "Contabilizado|N|N|0|1|scafac|intconta||N|"
-         Top             =   315
+         Top             =   285
          Width           =   1665
       End
       Begin VB.Label Label1 
@@ -385,102 +394,54 @@ Begin VB.Form frmFacHcoFacturas2
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmFacHcoFacturas.frx":0A2A
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "imgBuscar(7)"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label1(9)"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Label1(23)"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Label1(24)"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "Label1(21)"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "Label1(2)"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "Label1(6)"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "Label1(18)"
-      Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "Label1(22)"
-      Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "Label1(40)"
-      Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "imgBuscar(8)"
-      Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "imgBuscar(9)"
-      Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "imgBuscar(6)"
-      Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "FrameObserva"
-      Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "DataGrid2"
-      Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "DataGrid1"
-      Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "txtAux(8)"
-      Tab(1).Control(16).Enabled=   0   'False
-      Tab(1).Control(17)=   "txtAux(7)"
-      Tab(1).Control(17).Enabled=   0   'False
-      Tab(1).Control(18)=   "txtAux(6)"
-      Tab(1).Control(18).Enabled=   0   'False
-      Tab(1).Control(19)=   "txtAux(4)"
-      Tab(1).Control(19).Enabled=   0   'False
-      Tab(1).Control(20)=   "Text3(2)"
-      Tab(1).Control(20).Enabled=   0   'False
-      Tab(1).Control(21)=   "Text2(2)"
-      Tab(1).Control(21).Enabled=   0   'False
-      Tab(1).Control(22)=   "Text3(1)"
-      Tab(1).Control(22).Enabled=   0   'False
-      Tab(1).Control(23)=   "Text2(1)"
-      Tab(1).Control(23).Enabled=   0   'False
-      Tab(1).Control(24)=   "Text3(0)"
-      Tab(1).Control(24).Enabled=   0   'False
-      Tab(1).Control(25)=   "Text2(0)"
-      Tab(1).Control(25).Enabled=   0   'False
-      Tab(1).Control(26)=   "Text3(8)"
-      Tab(1).Control(26).Enabled=   0   'False
-      Tab(1).Control(27)=   "Text3(6)"
-      Tab(1).Control(27).Enabled=   0   'False
-      Tab(1).Control(28)=   "Text3(7)"
-      Tab(1).Control(28).Enabled=   0   'False
-      Tab(1).Control(29)=   "Text3(5)"
-      Tab(1).Control(29).Enabled=   0   'False
-      Tab(1).Control(30)=   "Text3(4)"
-      Tab(1).Control(30).Enabled=   0   'False
-      Tab(1).Control(31)=   "Text3(3)"
-      Tab(1).Control(31).Enabled=   0   'False
-      Tab(1).Control(32)=   "Text2(3)"
-      Tab(1).Control(32).Enabled=   0   'False
-      Tab(1).Control(33)=   "cmdObserva"
-      Tab(1).Control(33).Enabled=   0   'False
-      Tab(1).Control(34)=   "txtAux(0)"
-      Tab(1).Control(34).Enabled=   0   'False
-      Tab(1).Control(35)=   "txtAux(1)"
-      Tab(1).Control(35).Enabled=   0   'False
-      Tab(1).Control(36)=   "txtAux(2)"
-      Tab(1).Control(36).Enabled=   0   'False
-      Tab(1).Control(37)=   "txtAux(3)"
-      Tab(1).Control(37).Enabled=   0   'False
-      Tab(1).Control(38)=   "txtAux(5)"
-      Tab(1).Control(38).Enabled=   0   'False
-      Tab(1).Control(39)=   "txtAux3(0)"
-      Tab(1).Control(39).Enabled=   0   'False
-      Tab(1).Control(40)=   "txtAux3(1)"
-      Tab(1).Control(40).Enabled=   0   'False
-      Tab(1).Control(41)=   "txtAux3(2)"
-      Tab(1).Control(41).Enabled=   0   'False
-      Tab(1).Control(42)=   "Text3(14)"
-      Tab(1).Control(42).Enabled=   0   'False
-      Tab(1).Control(43)=   "Text3(15)"
-      Tab(1).Control(43).Enabled=   0   'False
-      Tab(1).Control(44)=   "txtAux(9)"
-      Tab(1).Control(44).Enabled=   0   'False
-      Tab(1).Control(45)=   "txtAux(10)"
-      Tab(1).Control(45).Enabled=   0   'False
-      Tab(1).Control(46)=   "cmdaux"
-      Tab(1).Control(46).Enabled=   0   'False
-      Tab(1).Control(47)=   "txtAux(11)"
-      Tab(1).Control(47).Enabled=   0   'False
+      Tab(1).Control(0)=   "txtAux(11)"
+      Tab(1).Control(1)=   "cmdaux"
+      Tab(1).Control(2)=   "txtAux(10)"
+      Tab(1).Control(3)=   "txtAux(9)"
+      Tab(1).Control(4)=   "Text3(15)"
+      Tab(1).Control(5)=   "Text3(14)"
+      Tab(1).Control(6)=   "txtAux3(2)"
+      Tab(1).Control(7)=   "txtAux3(1)"
+      Tab(1).Control(8)=   "txtAux3(0)"
+      Tab(1).Control(9)=   "txtAux(5)"
+      Tab(1).Control(10)=   "txtAux(3)"
+      Tab(1).Control(11)=   "txtAux(2)"
+      Tab(1).Control(12)=   "txtAux(1)"
+      Tab(1).Control(13)=   "txtAux(0)"
+      Tab(1).Control(14)=   "cmdObserva"
+      Tab(1).Control(15)=   "Text2(3)"
+      Tab(1).Control(16)=   "Text3(3)"
+      Tab(1).Control(17)=   "Text3(4)"
+      Tab(1).Control(18)=   "Text3(5)"
+      Tab(1).Control(19)=   "Text3(7)"
+      Tab(1).Control(20)=   "Text3(6)"
+      Tab(1).Control(21)=   "Text3(8)"
+      Tab(1).Control(22)=   "Text2(0)"
+      Tab(1).Control(23)=   "Text3(0)"
+      Tab(1).Control(24)=   "Text2(1)"
+      Tab(1).Control(25)=   "Text3(1)"
+      Tab(1).Control(26)=   "Text2(2)"
+      Tab(1).Control(27)=   "Text3(2)"
+      Tab(1).Control(28)=   "txtAux(4)"
+      Tab(1).Control(29)=   "txtAux(6)"
+      Tab(1).Control(30)=   "txtAux(7)"
+      Tab(1).Control(31)=   "txtAux(8)"
+      Tab(1).Control(32)=   "DataGrid1"
+      Tab(1).Control(33)=   "DataGrid2"
+      Tab(1).Control(34)=   "FrameObserva"
+      Tab(1).Control(35)=   "imgBuscar(6)"
+      Tab(1).Control(36)=   "imgBuscar(9)"
+      Tab(1).Control(37)=   "imgBuscar(8)"
+      Tab(1).Control(38)=   "Label1(40)"
+      Tab(1).Control(39)=   "Label1(22)"
+      Tab(1).Control(40)=   "Label1(18)"
+      Tab(1).Control(41)=   "Label1(6)"
+      Tab(1).Control(42)=   "Label1(2)"
+      Tab(1).Control(43)=   "Label1(21)"
+      Tab(1).Control(44)=   "Label1(24)"
+      Tab(1).Control(45)=   "Label1(23)"
+      Tab(1).Control(46)=   "Label1(9)"
+      Tab(1).Control(47)=   "imgBuscar(7)"
       Tab(1).ControlCount=   48
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
@@ -1296,13 +1257,13 @@ Begin VB.Form frmFacHcoFacturas2
             EndProperty
             Height          =   360
             Index           =   28
-            Left            =   2400
+            Left            =   2220
             MaxLength       =   4
             TabIndex        =   79
             Tag             =   "Cod. IVA 3|N|S|0|9999|scafac|codigiv3|0000|N|"
             Text            =   "Text1 7"
             Top             =   1725
-            Width           =   525
+            Width           =   705
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1381,13 +1342,13 @@ Begin VB.Form frmFacHcoFacturas2
             EndProperty
             Height          =   360
             Index           =   27
-            Left            =   2400
+            Left            =   2220
             MaxLength       =   4
             TabIndex        =   75
             Tag             =   "Cod. IVA 2|N|S|0|9999|scafac|codigiv2|0000|N|"
             Text            =   "Text1 7"
             Top             =   1335
-            Width           =   525
+            Width           =   705
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1466,13 +1427,13 @@ Begin VB.Form frmFacHcoFacturas2
             EndProperty
             Height          =   360
             Index           =   26
-            Left            =   2400
+            Left            =   2220
             MaxLength       =   4
             TabIndex        =   71
             Tag             =   "Cod. IVA 1|N|S|0|9999|scafac|codigiv1|0000|N|"
             Text            =   "Text1 7"
             Top             =   960
-            Width           =   525
+            Width           =   705
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1634,10 +1595,10 @@ Begin VB.Form frmFacHcoFacturas2
             Width           =   1215
          End
          Begin VB.Line Line1 
-            X1              =   2280
-            X2              =   2280
-            Y1              =   960
-            Y2              =   1980
+            X1              =   2040
+            X2              =   2040
+            Y1              =   1020
+            Y2              =   2040
          End
          Begin VB.Label Label1 
             Caption         =   "Desglose IVA"
@@ -2242,7 +2203,7 @@ Begin VB.Form frmFacHcoFacturas2
             Tag             =   "CPostal|T|N|||scafac|codpobla||N|"
             Text            =   "Text15"
             Top             =   1020
-            Width           =   630
+            Width           =   810
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -2256,13 +2217,13 @@ Begin VB.Form frmFacHcoFacturas2
             EndProperty
             Height          =   360
             Index           =   10
-            Left            =   1965
+            Left            =   2175
             MaxLength       =   30
             TabIndex        =   11
             Tag             =   "Población|T|N|||scafac|pobclien||N|"
             Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwaq"
             Top             =   1020
-            Width           =   3645
+            Width           =   3465
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -3764,12 +3725,12 @@ Dim anc As Single
         
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -4272,7 +4233,7 @@ Private Sub Form_Load()
     
      'Icono de busqueda
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgListComun.ListImages(19).Picture
+        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next kCampo
 
     ' ICONITOS DE LA BARRA
@@ -5225,7 +5186,7 @@ Dim b As Boolean
         Text1(36).BackColor = &HFFFFC0
         Text1(37).BackColor = &HFFFFC0
 '    Text1(38).BackColor = &HC0C0FF    'Total factura
-        Text1(38).BackColor = &HC0FFC0
+        Text1(38).BackColor = &HFFFFC0 '&HC0FFC0
     End If
     
     'bloquear los Text3 que son las lineas de scafac1

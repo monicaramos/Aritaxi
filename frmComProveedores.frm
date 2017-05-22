@@ -396,24 +396,24 @@ Begin VB.Form frmComProveedores
       TabCaption(1)   =   "Datos Contacto"
       TabPicture(1)   =   "frmComProveedores.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label2(10)"
-      Tab(1).Control(1)=   "Label2(11)"
-      Tab(1).Control(2)=   "imgWeb"
-      Tab(1).Control(3)=   "imgCuentas(5)"
-      Tab(1).Control(4)=   "Text1(27)"
-      Tab(1).Control(5)=   "Text1(28)"
-      Tab(1).Control(6)=   "Frame1"
-      Tab(1).Control(7)=   "Frame2(13)"
+      Tab(1).Control(0)=   "Frame2(13)"
+      Tab(1).Control(1)=   "Frame1"
+      Tab(1).Control(2)=   "Text1(28)"
+      Tab(1).Control(3)=   "Text1(27)"
+      Tab(1).Control(4)=   "imgCuentas(5)"
+      Tab(1).Control(5)=   "imgWeb"
+      Tab(1).Control(6)=   "Label2(11)"
+      Tab(1).Control(7)=   "Label2(10)"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmComProveedores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Text1(30)"
-      Tab(2).Control(1)=   "Toolbar2"
-      Tab(2).Control(2)=   "lw1"
-      Tab(2).Control(3)=   "Label2(0)"
-      Tab(2).Control(4)=   "imgFecha(2)"
-      Tab(2).Control(5)=   "Label3"
+      Tab(2).Control(0)=   "Label3"
+      Tab(2).Control(1)=   "imgFecha(2)"
+      Tab(2).Control(2)=   "Label2(0)"
+      Tab(2).Control(3)=   "lw1"
+      Tab(2).Control(4)=   "Toolbar2"
+      Tab(2).Control(5)=   "Text1(30)"
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -2155,7 +2155,7 @@ Private Sub chkProveV_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim I As Integer
+Dim i As Integer
 
 
     Screen.MousePointer = vbHourglass
@@ -2169,9 +2169,9 @@ Dim I As Integer
     Case 2, 4 'MODIFICAR
         If DatosOk Then
             If Data1.Recordset.EOF Then
-                I = InsertarDesdeForm(Me)
+                i = InsertarDesdeForm(Me)
             Else
-                I = ModificaDesdeFormulario(Me, 1)
+                i = ModificaDesdeFormulario(Me, 1)
                 TerminaBloquear
                 PosicionarData
             End If
@@ -2224,16 +2224,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = Data1.Recordset.Fields(0) & "|"
-    cad = cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Data1.Recordset.Fields(0) & "|"
+    Cad = Cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -2243,7 +2243,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del formularios
     Me.Icon = frmPpal.Icon
@@ -2260,8 +2260,8 @@ Dim I As Integer
     Next kCampo
    
 
-    For I = 0 To Me.imgFecha.Count - 1
-        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
 
    
@@ -2342,7 +2342,7 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
 Dim indice As Byte
       
@@ -2364,12 +2364,12 @@ Dim indice As Byte
             Screen.MousePointer = vbHourglass
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
-            cadB = ""
+            CadB = ""
             Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            cadB = Aux
+            CadB = Aux
     
             'Se muestran en el mismo form
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
             Screen.MousePointer = vbDefault
         End If
@@ -2413,11 +2413,11 @@ End Sub
 
 
 Private Sub frmPro_DatoSeleccionado(CadenaSeleccion As String)
-Dim cadB As String
-    cadB = "codprove = " & RecuperaValor(CadenaSeleccion, 1)
+Dim CadB As String
+    CadB = "codprove = " & RecuperaValor(CadenaSeleccion, 1)
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
     PonerCadenaBusqueda
     Screen.MousePointer = vbDefault
 End Sub
@@ -2428,7 +2428,7 @@ Private Sub frmS_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
-Dim cadB As String
+Dim CadB As String
     If CadenaSeleccion <> "" Then
         Text1(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
         Text2(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
@@ -2792,16 +2792,16 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 '
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte
+Dim i As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
     
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2)
@@ -3011,18 +3011,18 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
     '### a mano
-    cad = "¿Seguro que desea eliminar el Proveedor?"
-    cad = cad & vbCrLf & "Cod. : " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar el Proveedor?"
+    Cad = Cad & vbCrLf & "Cod. : " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
 
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
@@ -3056,13 +3056,13 @@ Private Sub BotonBuscar()
         LimpiarCampos
         PonerModo 1
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             PonerFoco Text1(kCampo)
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
         End If
     End If
 End Sub
@@ -3143,23 +3143,23 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
     
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
+        MandaBusquedaPrevia CadB
     Else
         'Se muestran en el mismo form
-        If cadB <> "" Then
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        If CadB <> "" Then
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
         End If
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 'Dim cad As String
 'Dim Tabla As String
@@ -3215,7 +3215,7 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 
     Set frmPro = New frmBasico2
     
-    AyudaProveedores frmPro, , cadB
+    AyudaProveedores frmPro, , CadB
     
     Set frmPro = Nothing
 
@@ -3263,10 +3263,10 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
-    cad = "(codprove=" & Text1(0).Text & ")"
-    If SituarData(Data1, cad, Indicador) Then
+    Cad = "(codprove=" & Text1(0).Text & ")"
+    If SituarData(Data1, Cad, Indicador) Then
        PonerModo 2
        lblIndicador.Caption = Indicador
     Else
@@ -3408,7 +3408,7 @@ End Sub
 
 
 Private Sub CargaDatosLW2()
-Dim cad As String
+Dim Cad As String
 Dim RS As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -3434,7 +3434,7 @@ Dim BuscaChekc
     Select Case CByte(RecuperaValor(lw1.Tag, 1))
     Case 2
         'ALBARANES
-        cad = "select c.numalbar,c.fechaalb,c.codprove as codprove,sum(importel) from scaalp c,slialp l where c.codprove=l.codprove and c.numalbar=l.numalbar"
+        Cad = "select c.numalbar,c.fechaalb,c.codprove as codprove,sum(importel) from scaalp c,slialp l where c.codprove=l.codprove and c.numalbar=l.numalbar"
         GroupBy = "1,2,3"
         BuscaChekc = "c.fechaalb"
         
@@ -3446,12 +3446,12 @@ Dim BuscaChekc
         'BuscaChekc = "fecofert"
     Case 1
         'PEDIDOS
-        cad = "select c.numpedpr,c.fecpedpr,sum(importel) from scappr c,slippr l where "
-         cad = cad & " c.numpedpr=l.numpedpr  "
+        Cad = "select c.numpedpr,c.fecpedpr,sum(importel) from scappr c,slippr l where "
+         Cad = Cad & " c.numpedpr=l.numpedpr  "
         BuscaChekc = "fecpedpr"
         GroupBy = "1"
     Case 3
-        cad = "select numfactu,fecfactu,fecrecep,totalfac from scafpc c WHERE 1=1"
+        Cad = "select numfactu,fecfactu,fecrecep,totalfac from scafpc c WHERE 1=1"
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
     End Select
@@ -3460,22 +3460,22 @@ Dim BuscaChekc
     'La fecha
     
     'EL where del codclien
-    cad = cad & " and c.codprove=" & Data1.Recordset!codProve
+    Cad = Cad & " and c.codprove=" & Data1.Recordset!codProve
     
     'La fecha
-    cad = cad & " and " & BuscaChekc & " >='" & Format(imgFecha(2).Tag, FormatoFecha) & "'"
+    Cad = Cad & " and " & BuscaChekc & " >='" & Format(imgFecha(2).Tag, FormatoFecha) & "'"
     
     
     'El group by
-    cad = cad & " GROUP BY " & GroupBy
+    Cad = Cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    cad = cad & " ORDER BY " & BuscaChekc & " DESC"
+    Cad = Cad & " ORDER BY " & BuscaChekc & " DESC"
     BuscaChekc = ""
     
     lw1.ListItems.Clear
     Set RS = New ADODB.Recordset
-    RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not RS.EOF
         Set It = lw1.ListItems.Add()
         If lw1.ColumnHeaders(1).Tag <> "" Then

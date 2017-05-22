@@ -1319,8 +1319,8 @@ Public Event DatoSeleccionado(CadenaSeleccion As String)
 Private WithEvents frmF As frmCal 'Form Calendario Fecha
 Attribute frmF.VB_VarHelpID = -1
 
-Private WithEvents frmProV As frmComProveedores
-Attribute frmProV.VB_VarHelpID = -1
+Private WithEvents frmProv As frmComProveedores
+Attribute frmProv.VB_VarHelpID = -1
 Private WithEvents frmT As frmAdmTrabajadores  'Form Mto Trabajadores
 Attribute frmT.VB_VarHelpID = -1
 Private WithEvents frmBanPr As frmFacBancosPropios 'Mto de Bancos propios
@@ -1541,7 +1541,7 @@ Dim indice As Byte
     Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
-Private Sub frmProV_DatoSeleccionado(CadenaSeleccion As String)
+Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento de Proveedores
 Dim indice As Byte
     
@@ -1569,10 +1569,10 @@ Dim indice As Byte
 
     Select Case Index
         Case 0 'Cod. Proveedor
-            Set frmProV = New frmComProveedores
-            frmProV.DatosADevolverBusqueda = "0"
-            frmProV.Show vbModal
-            Set frmProV = Nothing
+            Set frmProv = New frmComProveedores
+            frmProv.DatosADevolverBusqueda = "0"
+            frmProv.Show vbModal
+            Set frmProv = Nothing
             indice = 3
             
         Case 1 'Operador. Trabajador
@@ -1618,7 +1618,7 @@ End Sub
 Private Sub ListView1_ItemCheck(ByVal item As MSComctlLib.ListItem)
 'Cuando se selecciona un albaran de la lista
 Dim i As Integer
-Dim cad As String
+Dim Cad As String
 Dim TipoFP As Integer 'Forma de pago
 Dim TipoDtoPP As Currency 'descuento pronto pago
 Dim tipoDtoGn As Currency 'descuento general
@@ -1629,10 +1629,10 @@ Dim tipoDtoGn As Currency 'descuento general
     
     If item.Checked Then
         If vEmpresa.TieneAnalitica Then
-            cad = "codccost is null AND fechaalb = " & DBSet(item.SubItems(1), "F")
-            cad = cad & " AND numalbar = " & DBSet(item.Text, "T") & " AND codprove"
+            Cad = "codccost is null AND fechaalb = " & DBSet(item.SubItems(1), "F")
+            Cad = Cad & " AND numalbar = " & DBSet(item.Text, "T") & " AND codprove"
         
-            i = Val(DevuelveDesdeBD(conAri, "count(*)", "slialp", cad, Text1(3).Text))
+            i = Val(DevuelveDesdeBD(conAri, "count(*)", "slialp", Cad, Text1(3).Text))
             If i > 0 Then
                 MsgBox "Lineas de albaran(" & i & ") sin centro de coste asignado", vbExclamation
                 item.Checked = False
@@ -1891,7 +1891,7 @@ On Error GoTo EPonerModo
     Text1(19).BackColor = &HFFFFC0 'Total Iva 1
     Text1(20).BackColor = &HFFFFC0 'Iva 2
     Text1(21).BackColor = &HFFFFC0 'IVa 3
-    Text1(22).BackColor = &HC0C0FF    'Total factura
+    Text1(22).BackColor = &HFFFFC0 '&HC0C0FF    'Total factura
         
     
     
@@ -1946,7 +1946,7 @@ End Sub
 Private Function DatosOk() As Boolean
 'Comprobar que los datos del frame de introduccion son correctos antes de cargar datos
 Dim vtag As CTag
-Dim cad As String
+Dim Cad As String
 Dim i As Byte
 
     On Error GoTo EDatosOK
@@ -1958,16 +1958,16 @@ Dim i As Byte
             If Text1(i).Tag <> "" Then
                 Set vtag = New CTag
                 If vtag.Cargar(Text1(i)) Then
-                    cad = vtag.Nombre
+                    Cad = vtag.Nombre
                 Else
-                    cad = "Campo"
+                    Cad = "Campo"
                 End If
                 Set vtag = Nothing
             Else
-                cad = "Campo"
-                If i = 5 Then cad = "Cta. Prev. Pago"
+                Cad = "Campo"
+                If i = 5 Then Cad = "Cta. Prev. Pago"
             End If
-            MsgBox cad & " no puede estar vacio. Reintroduzca", vbExclamation
+            MsgBox Cad & " no puede estar vacio. Reintroduzca", vbExclamation
             PonerFoco Text1(i)
             Exit Function
         End If
@@ -2002,34 +2002,34 @@ Dim i As Byte
     
     
     'todos los albaranes seleccionados deben tener la misma: forma pago, dto ppago, dto gnral
-    cad = "select count(distinct codforpa,dtoppago,dtognral) from scaalp "
-    cad = cad & " WHERE " & Replace(cadWHERE, "slialp", "scaalp")
-    If RegistrosAListar(cad) > 1 Then
+    Cad = "select count(distinct codforpa,dtoppago,dtognral) from scaalp "
+    Cad = Cad & " WHERE " & Replace(cadWHERE, "slialp", "scaalp")
+    If RegistrosAListar(Cad) > 1 Then
         MsgBox "No se puede facturar albaranes con distintas: forma de pago, dto gral, dto ppago.", vbExclamation
         Exit Function
     End If
     
     
     'Si la forpa es TRANSFERENCIA entonces compruebo la si tiene cta bancaria
-    cad = "select distinct (codforpa) from scaalp "
-    cad = cad & " WHERE " & Replace(cadWHERE, "slialp", "scaalp")
+    Cad = "select distinct (codforpa) from scaalp "
+    Cad = Cad & " WHERE " & Replace(cadWHERE, "slialp", "scaalp")
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    cad = miRsAux.Fields(0)
+    miRsAux.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Cad = miRsAux.Fields(0)
     miRsAux.Close
     
     
     
     'Ahora buscamos el tipforpa del codforpa
-    cad = "Select tipforpa from sforpa where codforpa=" & cad
-    miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Cad = "Select tipforpa from sforpa where codforpa=" & Cad
+    miRsAux.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     i = 0
     If miRsAux.EOF Then
         MsgBox "Error en el TIPO de forma de pago", vbExclamation
     Else
         i = 1
-        cad = miRsAux.Fields(0)
-        If Val(cad) = vbFPTransferencia Then
+        Cad = miRsAux.Fields(0)
+        If Val(Cad) = vbFPTransferencia Then
             'Compruebo que la forpa es transferencia
             i = 2
         End If
@@ -2042,8 +2042,8 @@ Dim i As Byte
         'La forma de pago es transferencia. Debo comprobar que existe la cuenta bancaria
         'del proveedor
         If vProve.CuentaBan = "" Or vProve.DigControl = "" Or vProve.Sucursal = "" Or vProve.Banco = "" Then
-            cad = "Cuenta bancaria incorrecta. Forma de pago: transferencia.    ¿Continuar?"
-            If MsgBox(cad, vbQuestion + vbYesNoCancel) <> vbYes Then i = 0
+            Cad = "Cuenta bancaria incorrecta. Forma de pago: transferencia.    ¿Continuar?"
+            If MsgBox(Cad, vbQuestion + vbYesNoCancel) <> vbYes Then i = 0
         End If
     End If
     
@@ -2326,20 +2326,20 @@ End Function
 
 
 Private Sub BotonFacturar()
-Dim cad As String
+Dim Cad As String
 
     Screen.MousePointer = vbHourglass
     
     
     
-    cad = ""
+    Cad = ""
     If Text1(3).Text = "" Then
-        cad = "Falta proveedor"
+        Cad = "Falta proveedor"
     Else
-        If Not IsNumeric(Text1(3).Text) Then cad = "Campo proveedor debe ser numérico"
+        If Not IsNumeric(Text1(3).Text) Then Cad = "Campo proveedor debe ser numérico"
     End If
-    If cad <> "" Then
-        MsgBox cad, vbExclamation
+    If Cad <> "" Then
+        MsgBox Cad, vbExclamation
         Exit Sub
     End If
         
@@ -2440,16 +2440,16 @@ End Function
 
 Private Function ExisteFacturaEnHco() As Boolean
 'Comprobamos si la factura ya existe en la tabla de Facturas a Proveedor: scafpc
-Dim cad As String
+Dim Cad As String
 
     ExisteFacturaEnHco = False
     'Tiene que tener valor los 3 campos de clave primaria antes de comprobar
     If Not (Text1(0).Text <> "" And Text1(1).Text <> "" And Text1(3).Text <> "") Then Exit Function
     
     ' No debe existir el número de factura para el proveedor en hco
-    cad = "SELECT count(*) FROM scafpc "
-    cad = cad & " WHERE codprove=" & Text1(3).Text & " AND numfactu=" & DBSet(Text1(0).Text, "T") & " AND year(fecfactu)=" & Year(Text1(1).Text)
-    If RegistrosAListar(cad) > 0 Then
+    Cad = "SELECT count(*) FROM scafpc "
+    Cad = Cad & " WHERE codprove=" & Text1(3).Text & " AND numfactu=" & DBSet(Text1(0).Text, "T") & " AND year(fecfactu)=" & Year(Text1(1).Text)
+    If RegistrosAListar(Cad) > 0 Then
         MsgBox "Factura de proveedor ya existente. Reintroduzca.", vbExclamation
         ExisteFacturaEnHco = True
         Exit Function

@@ -6,7 +6,7 @@ Begin VB.Form frmGesHcoUves
    Appearance      =   0  'Flat
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Histórico de Uves"
-   ClientHeight    =   5445
+   ClientHeight    =   5790
    ClientLeft      =   45
    ClientTop       =   630
    ClientWidth     =   9315
@@ -15,7 +15,7 @@ Begin VB.Form frmGesHcoUves
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5445
+   ScaleHeight     =   5790
    ScaleWidth      =   9315
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -23,7 +23,16 @@ Begin VB.Form frmGesHcoUves
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   0
       Left            =   360
       MaxLength       =   6
@@ -38,7 +47,16 @@ Begin VB.Form frmGesHcoUves
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   3
       Left            =   6990
       MaxLength       =   10
@@ -54,11 +72,20 @@ Begin VB.Form frmGesHcoUves
       Index           =   0
       Left            =   240
       TabIndex        =   15
-      Top             =   4800
+      Top             =   5220
       Width           =   2535
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   240
          Left            =   240
          TabIndex        =   16
@@ -106,7 +133,16 @@ Begin VB.Form frmGesHcoUves
       Appearance      =   0  'Flat
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Left            =   1350
       Locked          =   -1  'True
       TabIndex        =   11
@@ -119,7 +155,16 @@ Begin VB.Form frmGesHcoUves
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   2
       Left            =   6150
       MaxLength       =   10
@@ -132,27 +177,54 @@ Begin VB.Form frmGesHcoUves
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   6960
       TabIndex        =   4
-      Top             =   4860
+      Top             =   5280
       Width           =   1035
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   8115
       TabIndex        =   5
-      Top             =   4860
+      Top             =   5280
       Width           =   1035
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   8130
       TabIndex        =   6
-      Top             =   4860
+      Top             =   5280
       Visible         =   0   'False
       Width           =   1035
    End
@@ -160,7 +232,16 @@ Begin VB.Form frmGesHcoUves
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   315
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   1
       Left            =   5310
       MaxLength       =   6
@@ -283,33 +364,33 @@ Begin VB.Form frmGesHcoUves
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmGesHcoUves.frx":000C
-      Height          =   4110
+      Height          =   4545
       Left            =   240
       TabIndex        =   7
       Top             =   585
       Width           =   8955
       _ExtentX        =   15796
-      _ExtentY        =   7250
+      _ExtentY        =   8017
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True
       BorderStyle     =   0
       ColumnHeaders   =   -1  'True
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       FormatLocked    =   -1  'True
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -618,9 +699,11 @@ Dim tots As String
 On Error GoTo ECarga2
 
     'SQL = "SELECT codsocio, nomsocio, numeruve, fechaalta, fechabaja
-    tots = "S|txtAux(0)|T|Socio|850|;S|cmdAux(0)|B||0|;S|txtAux2|T|Nombre|3550|;S|txtAux(1)|T|Uve|1000|;S|txtAux(2)|T|Fecha Alta|1350|;S|cmdAux(1)|B||0|;"
+    tots = "S|txtAux(0)|T|Socio|850|;S|cmdAux(0)|B||0|;S|txtAux2|T|Nombre|3800|;S|txtAux(1)|T|Uve|1000|;S|txtAux(2)|T|Fecha Alta|1350|;S|cmdAux(1)|B||0|;"
     tots = tots & "S|txtAux(3)|T|Fecha Baja|1350|;S|cmdAux(2)|B||0|;"
-    arregla tots, DataGrid1, Me
+    
+    arregla tots, DataGrid1, Me, 350
+    
 
 
 ECarga2:
@@ -654,7 +737,7 @@ End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
@@ -664,12 +747,12 @@ Dim Aux As String
             'Recupera todo el registro de Tarifas de Precios
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
-            cadB = ""
+            CadB = ""
             Aux = ValorDevueltoFormGrid(txtAux(0), CadenaDevuelta, 1)
-            cadB = Aux
+            CadB = Aux
             Aux = ValorDevueltoFormGrid(txtAux(1), CadenaDevuelta, 2)
-            cadB = cadB & " and " & Aux
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            CadB = CadB & " and " & Aux
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
@@ -790,7 +873,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(5).Enabled = (b Or (Modo = 0))
-    Me.mnNuevo.Enabled = (b Or (Modo = 0))
+    Me.mnnuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(6).Enabled = b
     Me.mnModificar.Enabled = b
@@ -809,7 +892,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 
@@ -1121,27 +1204,27 @@ End Function
 
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
-    cad = ""
+    Cad = ""
     'Estamos en Modo de Cabeceras
     'Registro de la tabla de cabeceras: slista
-    cad = cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
-    cad = cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
+    Cad = Cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
+    Cad = Cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
     Tabla = NombreTabla
     Titulo = "Precios Especiales"
 
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|"
@@ -1170,15 +1253,15 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
     cadB1 = ObtenerBusqueda(Me, True)
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then 'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & Ordenacion
-        CadenaBusqueda = " WHERE " & cadB
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & Ordenacion
+        CadenaBusqueda = " WHERE " & CadB
         PonerCadenaBusqueda
     End If
 End Sub

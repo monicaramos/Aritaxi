@@ -875,7 +875,7 @@ Private HaDevueltoDatos As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -894,8 +894,8 @@ Dim cad As String, Indicador As String
                 If ModificaDesdeFormulario(Me, 1) Then
                     ModificarENTesoeria
                     TerminaBloquear
-                    cad = "(codforpa=" & Text1(0).Text & ")"
-                    If SituarData(Data1, cad, Indicador) Then
+                    Cad = "(codforpa=" & Text1(0).Text & ")"
+                    If SituarData(Data1, Cad, Indicador) Then
                         PonerModo 2
                         lblIndicador.Caption = Indicador
                         PonerFoco Text1(0)
@@ -944,12 +944,12 @@ Private Sub BotonBuscar()
         '### A mano
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -991,7 +991,7 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
@@ -999,22 +999,22 @@ Dim cad As String
     If Not PuedeModificarFPenContab Then Exit Sub
     
     '### a mano
-    cad = "¿Seguro que desea eliminar la Forma de Pago?" & vbCrLf
-    cad = cad & vbCrLf & "Cod. Forma Pago: " & Format(Data1.Recordset.Fields(0), "000")
-    cad = cad & vbCrLf & "Desc. Forma Pago: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar la Forma de Pago?" & vbCrLf
+    Cad = Cad & vbCrLf & "Cod. Forma Pago: " & Format(Data1.Recordset.Fields(0), "000")
+    Cad = Cad & vbCrLf & "Desc. Forma Pago: " & Data1.Recordset.Fields(1)
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         NumRegElim = Data1.Recordset.AbsolutePosition
         Screen.MousePointer = vbHourglass
 
-        cad = "En aritaxi"
+        Cad = "En aritaxi"
         Data1.Recordset.Delete
         
         
         'Para eliminar en tesoreria
-        cad = "DELETE FROM sforpa WHERE codforpa = " & Text1(0).Text
+        Cad = "DELETE FROM sforpa WHERE codforpa = " & Text1(0).Text
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
         Else 'Solo habia un registro
@@ -1025,7 +1025,7 @@ Dim cad As String
         
         'Borro en tesoreria
         
-        ConnConta.Execute cad
+        ConnConta.Execute Cad
         
     End If
     Screen.MousePointer = vbDefault
@@ -1033,22 +1033,22 @@ Error2:
     Screen.MousePointer = vbDefault
     If Err.Number <> 0 Then
         Data1.Recordset.CancelUpdate
-        MuestraError Err.Number, "Eliminar Forma de Pago" & vbCrLf & cad, Err.Description
+        MuestraError Err.Number, "Eliminar Forma de Pago" & vbCrLf & Cad, Err.Description
     End If
 End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = Data1.Recordset.Fields(0) & "|"
-    cad = cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Data1.Recordset.Fields(0) & "|"
+    Cad = Cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -1191,7 +1191,7 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
 Dim indice As Integer
 
@@ -1213,16 +1213,16 @@ Dim indice As Integer
             Screen.MousePointer = vbHourglass
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
-            cadB = ""
+            CadB = ""
             Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            cadB = Aux
+            CadB = Aux
             '   Como la clave principal es unica, con poner el sql apuntando
             '   al valor devuelto sobre la clave ppal es suficiente
             'Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 2)
             'If CadB <> "" Then CadB = CadB & " AND "
             'CadB = CadB & Aux
             'Se muestran en el mismo form
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
             Screen.MousePointer = vbDefault
         End If
@@ -1231,11 +1231,11 @@ End Sub
     
     
 Private Sub frmFPa_DatoSeleccionado(CadenaSeleccion As String)
-Dim cadB As String
-    cadB = "codforpa = " & RecuperaValor(CadenaSeleccion, 1)
+Dim CadB As String
+    CadB = "codforpa = " & RecuperaValor(CadenaSeleccion, 1)
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
     PonerCadenaBusqueda
     Screen.MousePointer = vbDefault
 
@@ -1358,24 +1358,24 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then 'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+Dim Cad As String
 
     Set frmFPa = New frmBasico2
     
-    AyudaFormasPago frmFPa, , cadB
+    AyudaFormasPago frmFPa, , CadB
     
     Set frmFPa = Nothing
 
@@ -1538,7 +1538,7 @@ End Sub
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim cad As String
+Dim Cad As String
     
     DatosOk = False
     b = CompForm(Me, 1)
@@ -1549,11 +1549,11 @@ Dim cad As String
         
         If b Then
             If vParamAplic.ContabilidadNueva Then
-                cad = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", Text1(0), "N")
+                Cad = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", Text1(0), "N")
             Else
-                cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
+                Cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
             End If
-            If cad <> "" Then
+            If Cad <> "" Then
                 MsgBox "Esta Forma de Pago ya existe en Tesorería. Revise.", vbExclamation
                 b = False
             End If

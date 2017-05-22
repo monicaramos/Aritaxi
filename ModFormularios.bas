@@ -615,7 +615,7 @@ Dim Comprobar As Boolean
         'Quitamos blancos por los lados
         .Text = Trim(.Text)
         
-        If .BackColor = vbYellow Then .BackColor = vbWhite
+        If .BackColor = vbLightBlue Then .BackColor = vbWhite
         
         'Si no estamos en modo: 1=Insertar o 2=Modificar , no hacer ninguna comprobacion
         If (ModoLineas <> 1 And ModoLineas <> 2) Then
@@ -686,7 +686,11 @@ On Error GoTo ECargaGrid
     Set vDataGrid.DataSource = vData
     vDataGrid.AllowRowSizing = False
     vDataGrid.AllowUpdate = False
-    vDataGrid.RowHeight = 290
+    
+    vDataGrid.RowHeight = 350 ' 290
+
+
+
 
     If PrimeraVez Then
         vDataGrid.ClearFields

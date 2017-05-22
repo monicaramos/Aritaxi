@@ -931,7 +931,7 @@ End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
@@ -941,12 +941,12 @@ Dim Aux As String
             'Recupera todo el registro de Tarifas de Precios
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
-            cadB = ""
+            CadB = ""
             Aux = ValorDevueltoFormGrid(txtAux(0), CadenaDevuelta, 1)
-            cadB = Aux
+            CadB = Aux
             Aux = ValorDevueltoFormGrid(txtAux(1), CadenaDevuelta, 2)
-            cadB = cadB & " and " & Aux
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            CadB = CadB & " and " & Aux
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
@@ -1051,7 +1051,7 @@ Dim i As Integer
     Select Case Kmodo
         Case 1 'Modo Buscar
             PonerFoco txtAux(0)
-            txtAux(0).BackColor = vbYellow
+            txtAux(0).BackColor = vbLightBlue 'vbYellow
         Case 2    'Preparamos para que pueda Modificar
             Me.cmdRegresar.visible = False
     End Select
@@ -1186,7 +1186,7 @@ Dim anc As Single
         HacerBusqueda
         If Data1.Recordset.EOF Then
             txtAux(kCampo).Text = ""
-            txtAux(kCampo).BackColor = vbYellow
+            txtAux(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco txtAux(kCampo)
         End If
     End If
@@ -1348,12 +1348,12 @@ End Function
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
-    If cadB <> "" Then 'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & Ordenacion
-        CadenaBusqueda = " WHERE " & cadB
+    CadB = ObtenerBusqueda(Me, False)
+    If CadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & Ordenacion
+        CadenaBusqueda = " WHERE " & CadB
         PonerCadenaBusqueda
     End If
 End Sub

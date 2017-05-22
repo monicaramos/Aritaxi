@@ -796,12 +796,12 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -835,44 +835,44 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
     
     'Copmpruebo si esta vinculado a algun cliente
-    cad = DevuelveDesdeBD(conAri, "count(*)", "sclien", "codagent", CStr(Data1.Recordset!codagent))
-    If cad = "" Then cad = "0"
-    If Val(cad) > 0 Then
+    Cad = DevuelveDesdeBD(conAri, "count(*)", "sclien", "codagent", CStr(Data1.Recordset!codagent))
+    If Cad = "" Then Cad = "0"
+    If Val(Cad) > 0 Then
         MsgBox "Existen clientes asociados a este agente.", vbExclamation
         Exit Sub
     End If
     
     If vParamAplic.ContabilidadNueva Then
-        cad = DevuelveDesdeBD(conConta, "count(*)", "cobros", "agente", CStr(Data1.Recordset!codagent))
+        Cad = DevuelveDesdeBD(conConta, "count(*)", "cobros", "agente", CStr(Data1.Recordset!codagent))
     Else
-        cad = DevuelveDesdeBD(conConta, "count(*)", "scobro", "agente", CStr(Data1.Recordset!codagent))
+        Cad = DevuelveDesdeBD(conConta, "count(*)", "scobro", "agente", CStr(Data1.Recordset!codagent))
     End If
-    If cad <> "" Then
-        If Val(cad) = 0 Then cad = ""
+    If Cad <> "" Then
+        If Val(Cad) = 0 Then Cad = ""
     End If
     
-    If cad = "" Then
+    If Cad = "" Then
     
-            cad = "¿Seguro que desea eliminar el Agente Comercial? " & vbCrLf
-            cad = cad & vbCrLf & "Código: " & Format(Data1.Recordset.Fields(0), "0000")
-            cad = cad & vbCrLf & "Descripción: " & Data1.Recordset.Fields(1)
-            If MsgBox(cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
+            Cad = "¿Seguro que desea eliminar el Agente Comercial? " & vbCrLf
+            Cad = Cad & vbCrLf & "Código: " & Format(Data1.Recordset.Fields(0), "0000")
+            Cad = Cad & vbCrLf & "Descripción: " & Data1.Recordset.Fields(1)
+            If MsgBox(Cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
     Else
         'EXSITEN Vtos
-        cad = "Existen " & cad & " vencimiento(s) en Arimoney para este agente."
+        Cad = "Existen " & Cad & " vencimiento(s) en Arimoney para este agente."
         If vUsu.Nivel > 1 Then
-            MsgBox cad, vbExclamation
+            MsgBox Cad, vbExclamation
             Exit Sub
         Else
-            cad = cad & vbCrLf & "¿Continuar?"
-            If MsgBox(cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
+            Cad = Cad & vbCrLf & "¿Continuar?"
+            If MsgBox(Cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
         End If
     End If
     'Borramos
@@ -881,12 +881,12 @@ Dim cad As String
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        cad = "Delete from sagent where codagent=" & Data1.Recordset!codagent
-        conn.Execute cad
+        Cad = "Delete from sagent where codagent=" & Data1.Recordset!codagent
+        conn.Execute Cad
         
         'En tesoreria
-        cad = "DELETE FROM agentes WHERE codigo = " & Data1.Recordset!codagent
-        ConnConta.Execute cad
+        Cad = "DELETE FROM agentes WHERE codigo = " & Data1.Recordset!codagent
+        ConnConta.Execute Cad
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
         Else
@@ -903,16 +903,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    cad = Data1.Recordset.Fields(0) & "|"
-    cad = cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Data1.Recordset.Fields(0) & "|"
+    Cad = Cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -967,7 +967,7 @@ Private Sub Form_Load()
         PonerModo 0
     Else
         PonerModo 1
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     End If
     
     imgBuscar.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
@@ -989,7 +989,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
 
     If CadenaDevuelta <> "" Then
@@ -997,10 +997,10 @@ Dim Aux As String
         Screen.MousePointer = vbHourglass
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
@@ -1127,33 +1127,33 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then     'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then     'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+Dim Cad As String
         'Llamamos a al form
         '##A mano
-        cad = ""
-        cad = cad & ParaGrid(Text1(0), 30, "Código")
-        cad = cad & ParaGrid(Text1(1), 70, "Denominacion")
+        Cad = ""
+        Cad = Cad & ParaGrid(Text1(0), 30, "Código")
+        Cad = Cad & ParaGrid(Text1(1), 70, "Denominacion")
 '        Cad = Cad & ParaGrid(Combo1, 20, "Tipo Pago")
-        If cad <> "" Then
+        If Cad <> "" Then
             Screen.MousePointer = vbHourglass
             Set frmB = New frmBuscaGrid
-            frmB.vCampos = cad
+            frmB.vCampos = Cad
             frmB.vTabla = NombreTabla
-            frmB.vSQL = cadB
+            frmB.vSQL = CadB
             HaDevueltoDatos = False
             '###A mano
 
@@ -1364,11 +1364,11 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim cad As String
+Dim Cad As String
 Dim Indicador As String
 
-    cad = "(codagent=" & Text1(0).Text & ")"
-    If SituarData(Data1, cad, Indicador) Then
+    Cad = "(codagent=" & Text1(0).Text & ")"
+    If SituarData(Data1, Cad, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else

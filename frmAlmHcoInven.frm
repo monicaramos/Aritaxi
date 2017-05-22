@@ -672,16 +672,16 @@ End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
-Dim cadB As String
+Dim CadB As String
 Dim codArtic As String
 
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         
-            cadB = ""
-            cadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+            CadB = ""
+            CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
             PonerCadenaBusqueda
             
     End If
@@ -720,7 +720,7 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 
-    If Text1(Index).BackColor = vbYellow Then Text1(Index).BackColor = vbWhite
+    If Text1(Index).BackColor = vbLightBlue Then Text1(Index).BackColor = vbWhite
 
     If Trim(Text1(Index).Text) = "" Then
         Text2(Index).Text = ""
@@ -949,12 +949,12 @@ Dim anc As Single
         anc = ObtenerAlto(Me.DataGrid1)
         LLamaLineas anc
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -1020,20 +1020,20 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 '    cadSeleccion = ObtenerBusqueda(Me, True) 'Para la consulta de report
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
+        MandaBusquedaPrevia CadB
     Else
         'Se muestran en el mismo form
-        If cadB <> "" Then
+        If CadB <> "" Then
             'Cadena para el Data1
-            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
             'Cadena para el Datagrid y el Data2
-            CadenaBusqueda = " WHERE " & cadB 'Para cargar la consulta del CargaGrid
+            CadenaBusqueda = " WHERE " & CadB 'Para cargar la consulta del CargaGrid
         Else
             'obtener todos los articulos
             CadenaConsulta = "select codartic from " & NombreTabla & " GROUP BY codartic " & Ordenacion
@@ -1093,27 +1093,27 @@ EPonerCampos:
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
-    cad = ""
+    Cad = ""
             
-    cad = cad & "Articulo|shinve|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
+    Cad = Cad & "Articulo|shinve|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
     Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
 '        tabla = tabla & " GROUP BY shinve.codartic "
     'tabla = "sartic"
     Titulo = "Histórico Inventario"
            
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|"

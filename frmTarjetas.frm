@@ -23,7 +23,7 @@ Begin VB.Form frmTarjetas
       Height          =   3645
       Left            =   90
       TabIndex        =   15
-      Top             =   1260
+      Top             =   1410
       Width           =   12615
       _ExtentX        =   22251
       _ExtentY        =   6429
@@ -31,6 +31,15 @@ Begin VB.Form frmTarjetas
       Tabs            =   1
       TabsPerRow      =   6
       TabHeight       =   520
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       TabCaption(0)   =   "Tarjetas"
       TabPicture(0)   =   "frmTarjetas.frx":000C
       Tab(0).ControlEnabled=   -1  'True
@@ -81,7 +90,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   6
          Left            =   8940
          MaxLength       =   40
@@ -95,7 +113,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   7
          Left            =   8940
          Locked          =   -1  'True
@@ -134,7 +161,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   2610
          Locked          =   -1  'True
@@ -150,7 +186,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   9
          Left            =   5010
          MaxLength       =   200
@@ -164,7 +209,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   8
          Left            =   8970
          MaxLength       =   40
@@ -178,7 +232,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
          Left            =   5010
          MaxLength       =   40
@@ -186,13 +249,22 @@ Begin VB.Form frmTarjetas
          Tag             =   "Texto 3|T|S|||slitar|textoa3|||"
          Text            =   "textoa3"
          Top             =   2340
-         Width           =   3795
+         Width           =   3825
       End
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
          Left            =   5010
          MaxLength       =   40
@@ -206,7 +278,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
          Left            =   5010
          MaxLength       =   30
@@ -220,7 +301,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   1170
          MaxLength       =   10
@@ -235,7 +325,16 @@ Begin VB.Form frmTarjetas
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   480
          MaxLength       =   16
@@ -318,22 +417,40 @@ Begin VB.Form frmTarjetas
       Begin VB.Image imgFich 
          Height          =   240
          Index           =   0
-         Left            =   6900
+         Left            =   7590
          Picture         =   "frmTarjetas.frx":003D
          Top             =   2790
          Width           =   240
       End
       Begin VB.Label Label1 
          Caption         =   "Fichero de configuración"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   13
          Left            =   5010
          TabIndex        =   35
          Top             =   2820
-         Width           =   1905
+         Width           =   2505
       End
       Begin VB.Label Label1 
          Caption         =   "Pista 3"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   12
          Left            =   8970
@@ -343,6 +460,15 @@ Begin VB.Form frmTarjetas
       End
       Begin VB.Label Label1 
          Caption         =   "Pista 2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   11
          Left            =   8970
@@ -352,6 +478,15 @@ Begin VB.Form frmTarjetas
       End
       Begin VB.Label Label1 
          Caption         =   "Pista 1"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   10
          Left            =   8970
@@ -361,6 +496,15 @@ Begin VB.Form frmTarjetas
       End
       Begin VB.Label Label1 
          Caption         =   "Texto a imprimir (3)"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   9
          Left            =   5010
@@ -370,6 +514,15 @@ Begin VB.Form frmTarjetas
       End
       Begin VB.Label Label1 
          Caption         =   "Texto a imprimir (2)"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   8
          Left            =   5010
@@ -379,6 +532,15 @@ Begin VB.Form frmTarjetas
       End
       Begin VB.Label Label1 
          Caption         =   "Texto a imprimir (1)"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   7
          Left            =   5010
@@ -392,33 +554,60 @@ Begin VB.Form frmTarjetas
       Index           =   0
       Left            =   120
       TabIndex        =   6
-      Top             =   4905
-      Width           =   2175
+      Top             =   5085
+      Width           =   2325
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   240
          Left            =   240
          TabIndex        =   7
          Top             =   180
-         Width           =   1755
+         Width           =   1845
       End
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   11490
       TabIndex        =   10
-      Top             =   5010
+      Top             =   5220
       Width           =   1035
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   10290
       TabIndex        =   9
-      Top             =   5010
+      Top             =   5220
       Width           =   1035
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -623,22 +812,40 @@ Begin VB.Form frmTarjetas
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   11490
       TabIndex        =   5
-      Top             =   5010
+      Top             =   5220
       Visible         =   0   'False
       Width           =   1035
    End
    Begin VB.Frame Frame2 
-      Height          =   855
+      Height          =   975
       Left            =   120
       TabIndex        =   11
-      Top             =   360
+      Top             =   390
       Width           =   12585
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   210
          MaxLength       =   30
@@ -651,7 +858,16 @@ Begin VB.Form frmTarjetas
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   1035
          MaxLength       =   40
@@ -661,7 +877,16 @@ Begin VB.Form frmTarjetas
          Width           =   4080
       End
       Begin VB.TextBox Text1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
          Left            =   6330
          MaxLength       =   40
@@ -673,7 +898,16 @@ Begin VB.Form frmTarjetas
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFFF&
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
          Left            =   5250
          MaxLength       =   7
@@ -686,22 +920,40 @@ Begin VB.Form frmTarjetas
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   780
+         Left            =   1050
          ToolTipText     =   "Buscar socio"
          Top             =   180
          Width           =   240
       End
       Begin VB.Label Label1 
          Caption         =   "Cliente"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   0
          Left            =   210
          TabIndex        =   14
          Top             =   180
-         Width           =   615
+         Width           =   765
       End
       Begin VB.Label Label1 
          Caption         =   "Usuario"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   14
          Left            =   5310
@@ -711,6 +963,15 @@ Begin VB.Form frmTarjetas
       End
       Begin VB.Label Label1 
          Caption         =   "Nombre"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   50
          Left            =   6330
@@ -1049,7 +1310,7 @@ End Sub
 Private Sub BotonAnyadir()
 'Añadir registro en tabla de cabecera de Pedidos: scaped (Cabecera)
 Dim NomTraba As String
-Dim cad As String
+Dim Cad As String
 Dim RS As ADODB.Recordset
 
     LimpiarCampos 'Vacía los TextBox
@@ -1098,14 +1359,14 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
 '        Text1(30).visible = False
 '        Combo1.visible = True
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -1124,14 +1385,14 @@ Private Sub BotonBuscarTarjeta()
         
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco txtAux(0)
-        txtAux(0).BackColor = vbYellow
+        txtAux(0).BackColor = vbLightBlue 'vbYellow
 '        Text1(30).visible = False
 '        Combo1.visible = True
     Else
         HacerBusquedaTarjeta
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -1142,7 +1403,7 @@ End Sub
 
 
 Private Sub BotonVerTodos()
-Dim cad As String
+Dim Cad As String
 '    LimpiarCampos
     If chkVistaPrevia.Value = 1 Then
         MandaBusquedaPrevia ""
@@ -1217,7 +1478,7 @@ End Sub
 Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de Mantenimientos (scaman)
 ' y los registros correspondientes de las tablas de lineas (sliman y slima1)
-Dim cad As String
+Dim Cad As String
 Dim NumAlbElim As Long
 
     On Error GoTo EEliminar
@@ -1225,15 +1486,15 @@ Dim NumAlbElim As Long
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
 
-    cad = "Usuarios de Tarjetas." & vbCrLf
-    cad = cad & "------------------------------------       " & vbCrLf & vbCrLf
-    cad = cad & "Va a eliminar el Usuario:            "
-    cad = cad & vbCrLf & "Cliente:  " & Format(Text1(0).Text, "000000") & " " & Text2(0).Text
-    cad = cad & vbCrLf & "Usuario:  " & Format(Text1(1).Text, "000000") & " " & Text1(2).Text
-    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    Cad = "Usuarios de Tarjetas." & vbCrLf
+    Cad = Cad & "------------------------------------       " & vbCrLf & vbCrLf
+    Cad = Cad & "Va a eliminar el Usuario:            "
+    Cad = Cad & vbCrLf & "Cliente:  " & Format(Text1(0).Text, "000000") & " " & Text2(0).Text
+    Cad = Cad & vbCrLf & "Usuario:  " & Format(Text1(1).Text, "000000") & " " & Text1(2).Text
+    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
       
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         Screen.MousePointer = vbHourglass
         
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -1297,7 +1558,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 Dim Port As Integer      'Port: para saber si ha metido/Modificado el articulo de portes
 
     'Quitar lineas y volver a la cabecera
@@ -1322,9 +1583,9 @@ Dim Port As Integer      'Port: para saber si ha metido/Modificado el articulo d
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Data1.Recordset.Fields(0) & "|"
-        cad = cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Data1.Recordset.Fields(0) & "|"
+        Cad = Cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
 End Sub
@@ -1346,7 +1607,7 @@ End Sub
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim I As Integer
+Dim i As Integer
 
     On Error GoTo Error1
 
@@ -1354,9 +1615,9 @@ Dim I As Integer
         CargaForaGrid
         Exit Sub
     Else
-        For I = 0 To txtAux.Count - 1
-            txtAux(I).Text = ""
-        Next I
+        For i = 0 To txtAux.Count - 1
+            txtAux(i).Text = ""
+        Next i
     End If
     Exit Sub
     
@@ -1457,7 +1718,7 @@ Private Sub Form_Load()
         PonerModo 0
     Else
         PonerModo 1
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     End If
     'Poner los grid sin apuntar a nada
     LimpiarDataGrids
@@ -1525,7 +1786,7 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
@@ -1533,16 +1794,16 @@ Dim Aux As String
         Screen.MousePointer = vbHourglass
         
 '        If EsCabecera Then 'Llama desde VerTodos del Form
-            cadB = ""
+            CadB = ""
             Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            cadB = Aux
+            CadB = Aux
             Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 3)
-            cadB = cadB & " and " & Aux
+            CadB = CadB & " and " & Aux
             
 '            Aux = ValorDevueltoFormGrid(Text1(2), CadenaDevuelta, 3)
 '            cadB = cadB & " and " & Aux
 '
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
             Text1(0).Text = Format(RecuperaValor(CadenaDevuelta, 1), "000000")
             
@@ -1924,49 +2185,49 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
     'Poner el valor del combo Tipos de Movimiento Asociado
 '    If Me.cboTipomov.ListIndex <> -1 Then
 '        Text1(30).Text = ObtenerCodTipom
 '    End If
 
-    cadB = ObtenerBusquedaNew(Me)  ' (Me, False)
+    CadB = ObtenerBusquedaNew(Me)  ' (Me, False)
     
     If chkVistaPrevia = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
 '        If Me.EsHistorico = False Then
 '            cadB = cadB & " and codtipom='" & CodTipoMov & "'" 'Solo seleccionamos los del Movimiento, aqui los ALV
 '        End If
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
 Private Sub HacerBusquedaTarjeta()
-Dim cadB As String
+Dim CadB As String
 Dim CADENA As String
-Dim I As Integer
+Dim i As Integer
     'Poner el valor del combo Tipos de Movimiento Asociado
 '    If Me.cboTipomov.ListIndex <> -1 Then
 '        Text1(30).Text = ObtenerCodTipom
 '    End If
 
-    cadB = ObtenerBusquedaNew(Me) ',  False)
+    CadB = ObtenerBusquedaNew(Me) ',  False)
     
     If chkVistaPrevia = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
 '        If Me.EsHistorico = False Then
 '            cadB = cadB & " and codtipom='" & CodTipoMov & "'" 'Solo seleccionamos los del Movimiento, aqui los ALV
 '        End If
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE (codclien,codusuar) in (select codclien, codusuar from slitar where " & cadB & ")"
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE (codclien,codusuar) in (select codclien, codusuar from slitar where " & CadB & ")"
         PonerCadenaBusqueda
     End If
 End Sub
@@ -1974,31 +2235,31 @@ End Sub
 
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
     'Llamamos a al form
     '##A mano
-    cad = ""
+    Cad = ""
     
-    cad = cad & ParaGrid(Text1(0), 10, "Codigo")
-    cad = cad & "Socio|scliente|nomclien|N||40·"
-    cad = cad & ParaGrid(Text1(1), 10, "Usuario")
-    cad = cad & ParaGrid(Text1(2), 40, "Nombre")
+    Cad = Cad & ParaGrid(Text1(0), 10, "Codigo")
+    Cad = Cad & "Socio|scliente|nomclien|N||40·"
+    Cad = Cad & ParaGrid(Text1(1), 10, "Usuario")
+    Cad = Cad & ParaGrid(Text1(2), 40, "Nombre")
     Tabla = NombreTabla & " INNER JOIN scliente ON scatar.codclien = scliente.codclien "
     Titulo = "Tarjetas"
     
     devuelve = "0|1|2|"
            
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = devuelve
@@ -2023,7 +2284,7 @@ End Sub
 
 
 Private Sub PonerCadenaBusqueda()
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo EEPonerBusq
@@ -2036,11 +2297,11 @@ Dim I As Integer
         Screen.MousePointer = vbDefault
         If Modo = 1 And Not BusquedaTarjetas Then
             PonerFoco Text1(kCampo)
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue 'vbYellow
         End If
         If BusquedaTarjetas Then
             PonerFoco txtAux(0)
-            txtAux(0).BackColor = vbYellow
+            txtAux(0).BackColor = vbLightBlue 'vbYellow
         End If
         Exit Sub
     Else
@@ -2064,15 +2325,15 @@ End Sub
 
 Private Sub PonerCamposLineas()
 'Carga las Pestañas con las tablas de lineas del Trabajador seleccionado para mostrar
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo EPonerLineas
 
     'Limpiar campos
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
 
 
     'Datos de la tabla slipre
@@ -2112,7 +2373,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2121,9 +2382,9 @@ Dim b As Boolean
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
     
     
     
@@ -2158,13 +2419,13 @@ Dim b As Boolean
     b = (Modo = 3) Or (Modo = 4) Or (Modo = 1)
     
     'Si no es modo lineas Boquear los TxtAux
-    For I = 0 To txtAux.Count - 1
-        BloquearTxt txtAux(I), (Modo <> 5) And Not BusquedaTarjetas
-    Next I
+    For i = 0 To txtAux.Count - 1
+        BloquearTxt txtAux(i), (Modo <> 5) And Not BusquedaTarjetas
+    Next i
     
-    For I = 0 To 2
-        txtAux(I).visible = (Modo = 5 And (ModificaLineas = 1 Or ModificaLineas = 2)) Or (Modo = 1 And BusquedaTarjetas) 'Not ((Modo <> 5) And Not BusquedaTarjetas)
-    Next I
+    For i = 0 To 2
+        txtAux(i).visible = (Modo = 5 And (ModificaLineas = 1 Or ModificaLineas = 2)) Or (Modo = 1 And BusquedaTarjetas) 'Not ((Modo <> 5) And Not BusquedaTarjetas)
+    Next i
     
     Text1(0).Enabled = (Modo = 3) Or (Modo = 1 And Not BusquedaTarjetas)
     Text1(1).Enabled = (Modo = 3) Or (Modo = 1 And Not BusquedaTarjetas)
@@ -2179,9 +2440,9 @@ Dim b As Boolean
     cmdAceptar.visible = b Or (Modo = 5 And BusquedaTarjetas)
     
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Enabled = b
+    Next i
 '    Me.imgBuscar(0).visible = False
 '    Me.imgBuscar(0).Enabled = (Modo = 1)
               
@@ -2241,7 +2502,7 @@ End Function
 
 Private Function DatosOkLinea() As Boolean
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 Dim Aux As String
 
     On Error GoTo EDatosOkLinea
@@ -2455,7 +2716,7 @@ ECargaGrid:
 End Sub
 
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim I As Byte
+Dim i As Byte
 Dim tots As String
 
     On Error GoTo ECargaGrid
@@ -2483,38 +2744,38 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim I As Byte
+Dim i As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For I = 0 To 2 'TextBox
-            txtAux(I).Top = 290
-            txtAux(I).visible = visible
-        Next I
+        For i = 0 To 2 'TextBox
+            txtAux(i).Top = 290
+            txtAux(i).visible = visible
+        Next i
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
         imgFich(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For I = 0 To txtAux.Count - 1
-                txtAux(I).Text = ""
-                BloquearTxt txtAux(I), False
-            Next I
+            For i = 0 To txtAux.Count - 1
+                txtAux(i).Text = ""
+                BloquearTxt txtAux(i), False
+            Next i
             
         Else 'Vamos a modificar
-            For I = 0 To 2
-                If I < 3 Then
-                    txtAux(I).Text = DataGrid1.Columns(I + 3).Text
-                ElseIf I = 3 Then
-                    txtAux(I).Text = DataGrid1.Columns(I + 4).Text
-                ElseIf I >= 4 And I < 9 Then
-                    txtAux(I).Text = DataGrid1.Columns(I + 5).Text
-                ElseIf I = 9 Then
-                    txtAux(I).Text = DataGrid1.Columns(14).Text
-                ElseIf I = 10 Then
+            For i = 0 To 2
+                If i < 3 Then
+                    txtAux(i).Text = DataGrid1.Columns(i + 3).Text
+                ElseIf i = 3 Then
+                    txtAux(i).Text = DataGrid1.Columns(i + 4).Text
+                ElseIf i >= 4 And i < 9 Then
+                    txtAux(i).Text = DataGrid1.Columns(i + 5).Text
+                ElseIf i = 9 Then
+                    txtAux(i).Text = DataGrid1.Columns(14).Text
+                ElseIf i = 10 Then
                     'txtAux(i).Text = DataGrid1.Columns(8).Text
-                ElseIf I > 10 Then
+                ElseIf i > 10 Then
                     ' ---- [19/10/2009] [LAURA] : centro de coste si hay conta analitica
 '                    If vEmpresa.TieneAnalitica Then
 '                        'txtAux(i).Text = DataGrid1.Columns(i + 4).Text
@@ -2525,8 +2786,8 @@ Dim I As Byte
 '                    End If
                     
                 End If
-                txtAux(I).Locked = False
-            Next I
+                txtAux(i).Locked = False
+            Next i
         End If
         
         cmdAux(0).Enabled = True
@@ -2538,10 +2799,10 @@ Dim I As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 10)
         
-        For I = 0 To 2
-            txtAux(I).Top = alto
-            txtAux(I).Height = DataGrid1.RowHeight
-        Next I
+        For i = 0 To 2
+            txtAux(i).Top = alto
+            txtAux(i).Height = DataGrid1.RowHeight
+        Next i
         cmdAux(0).Top = alto
         cmdAux(1).Top = alto
 '        cmdAux(9).Top = alto
@@ -2566,9 +2827,9 @@ Dim I As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For I = 0 To 2
-             txtAux(I).visible = visible
-        Next I
+        For i = 0 To 2
+             txtAux(i).visible = visible
+        Next i
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
     End If
@@ -2581,7 +2842,7 @@ Dim cadkey As Integer
 
     cadkey = ObtenerCadKey(kCampo, Index)
     kCampo = Index
-    If BusquedaTarjetas Then txtAux(Index).BackColor = vbYellow
+    If BusquedaTarjetas Then txtAux(Index).BackColor = vbLightBlue 'vbYellow
     ConseguirFocoLin txtAux(Index), cadkey
 '    LabelAyudatxtAux Index, lblF
 End Sub
@@ -2653,10 +2914,10 @@ Dim DtoPermitido As Boolean
 End Sub
 
 
-Private Sub BotonMtoLineas(numTab As Integer, cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
 
     Me.SSTab1.Tab = numTab
-    TituloLinea = cad
+    TituloLinea = Cad
     ModificaLineas = 0
     
 '        If vParamAplic.ArtReciclado <> "" Then
@@ -2905,11 +3166,11 @@ End Function
 
 
 Private Sub LimpiarDatosTarjeta()
-Dim I As Byte
+Dim i As Byte
 
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
 End Sub
     
 
@@ -3162,7 +3423,7 @@ Private Sub InsertarLineasFactu(cadWHERE)
 'cadSerie = cadSerie & " SELECT '" & Text1(30).Text & "' as codtipom," & Text1(0).Text & " as numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre FROM slifac WHERE " & CadenaSeleccion
  Dim RS As ADODB.Recordset
  Dim Sql As String
- Dim I As Integer
+ Dim i As Integer
  Dim cadI As String
  Dim numlin As String
  

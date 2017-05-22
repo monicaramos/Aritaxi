@@ -945,7 +945,7 @@ Private HaDevueltoDatos As Boolean
 Private Sub cboAux_GotFocus(Index As Integer)
     With cboAux(Index)
         If Modo = 1 Then 'Modo 1: Busqueda
-            .BackColor = vbYellow
+            .BackColor = vbLightBlue 'vbYellow
         Else
             .BackColor = vbWhite
         End If
@@ -974,17 +974,17 @@ End Sub
 
 
 Private Sub Imprimir()
-Dim cad As String
+Dim Cad As String
 Dim numParam As Byte
 
     'Resto parametros
-    cad = ""
-    cad = cad & "|pNomEmpre=""" & vParam.NombreEmpresa & """|"
+    Cad = ""
+    Cad = Cad & "|pNomEmpre=""" & vParam.NombreEmpresa & """|"
     numParam = 1
             
     With frmImprimir
         .NombreRPT = "rAlmMovim.rpt"
-        .OtrosParametros = cad
+        .OtrosParametros = Cad
         .NumeroParametros = numParam
         .FormulaSeleccion = cadSeleccion
         .EnvioEMail = False
@@ -1432,19 +1432,19 @@ End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
-Dim cadB As String
+Dim CadB As String
 
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
 
-        cadB = ""
-        cadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+        CadB = ""
+        CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
         PonerCadenaBusqueda
         
-        cadB = RecuperaValor(CadenaDevuelta, 1)
-        cadSeleccion = "{smoval.codartic}=""" & cadB & """"
+        CadB = RecuperaValor(CadenaDevuelta, 1)
+        cadSeleccion = "{smoval.codartic}=""" & CadB & """"
     End If
     Screen.MousePointer = vbDefault
 End Sub
@@ -1709,12 +1709,12 @@ Private Sub BotonBuscar()
         CargaGrid False
         CargaTxtAux True, True
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -1767,10 +1767,10 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 Dim cadB2 As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 '    If Me.Text1(0).Text <> "" Then
 '        If cadB <> "" Then cadB = cadB & " AND "
 '        cadB = cadB & "(codartic LIKE " & DBSet(Text1(0).Text, "T") & ")"
@@ -1781,9 +1781,9 @@ Dim cadB2 As String
 '        MandaBusquedaPrevia cadB
 '    Else
         'Se muestran en el mismo form
-        If cadB <> "" Then
+        If CadB <> "" Then
             'Cadena para el Data1
-            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
             'Cadena para el Datagrid y el Data2
             'el codartic no se incluye en la cadB de las lineas pq siempre
             'se muestran las de un codartic concreto
@@ -1902,9 +1902,9 @@ ECargar:
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
@@ -1945,7 +1945,7 @@ Dim Titulo As String
 
     Set frmMov = New frmBasico2
     
-    AyudaMovimientosArticulos frmMov, , cadB
+    AyudaMovimientosArticulos frmMov, , CadB
     
     Set frmMov = Nothing
 
@@ -2018,16 +2018,16 @@ Private Sub DesplazamientoVisible(bol As Boolean)
 End Sub
 
 Private Sub frmMov_DatoSeleccionado(CadenaSeleccion As String)
-Dim cadB As String
+Dim CadB As String
 
-    cadB = "codartic = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+    CadB = "codartic = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+    CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
     PonerCadenaBusqueda
     
-    cadB = RecuperaValor(CadenaSeleccion, 1)
-    cadSeleccion = "{smoval.codartic}=""" & cadB & """"
+    CadB = RecuperaValor(CadenaSeleccion, 1)
+    cadSeleccion = "{smoval.codartic}=""" & CadB & """"
     
     Screen.MousePointer = vbDefault
 End Sub

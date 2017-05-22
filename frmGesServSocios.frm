@@ -992,7 +992,7 @@ Dim i As Integer
     Select Case Kmodo
         Case 1 'Modo Buscar
             PonerFoco txtAux(0)
-            txtAux(0).BackColor = vbYellow
+            txtAux(0).BackColor = vbLightBlue 'vbYellow
         Case 2    'Preparamos para que pueda Modificar
             Me.cmdRegresar.visible = False
     End Select
@@ -1125,7 +1125,7 @@ Dim anc As Single
         HacerBusqueda
         If Data1.Recordset.EOF Then
             txtAux(kCampo).Text = ""
-            txtAux(kCampo).BackColor = vbYellow
+            txtAux(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco txtAux(kCampo)
         End If
     End If

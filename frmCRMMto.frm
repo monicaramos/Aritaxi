@@ -898,12 +898,12 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -938,27 +938,27 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
 
     
-    cad = "¿Seguro que desea eliminar la accion comercial? " & vbCrLf
-    cad = cad & vbCrLf & "Usuario: " & Format(Data1.Recordset.Fields(0), "0000")
-    cad = cad & vbCrLf & "Cliente: " & Text1(2).Text & "     " & Text2(2).Text
-    cad = cad & vbCrLf & "Fecha/Hora: " & Text1(1).Text
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
+    Cad = "¿Seguro que desea eliminar la accion comercial? " & vbCrLf
+    Cad = Cad & vbCrLf & "Usuario: " & Format(Data1.Recordset.Fields(0), "0000")
+    Cad = Cad & vbCrLf & "Cliente: " & Text1(2).Text & "     " & Text2(2).Text
+    Cad = Cad & vbCrLf & "Fecha/Hora: " & Text1(1).Text
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
 
 
         'Hay que eliminar
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        cad = DevuelveWHERE
-        cad = "Delete from scrmacciones where " & cad
-        conn.Execute cad
+        Cad = DevuelveWHERE
+        Cad = "Delete from scrmacciones where " & Cad
+        conn.Execute Cad
         
 
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
@@ -977,16 +977,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    cad = Data1.Recordset.Fields(0) & "|"
-    cad = cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Data1.Recordset.Fields(0) & "|"
+    Cad = Cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -1100,7 +1100,7 @@ Dim i As Integer
             PonerModo 0
         Else
             PonerModo 1
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue 'vbYellow
         End If
     End If
 
@@ -1143,7 +1143,7 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
 
     If CadenaDevuelta <> "" Then
@@ -1151,12 +1151,12 @@ Dim Aux As String
         Screen.MousePointer = vbHourglass
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
         Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 2)
         Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(3), CadenaDevuelta, 3)
-        cadB = Aux
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
@@ -1326,38 +1326,38 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
     If Me.Combo1(1).Text <> "" Then Text1(7).Text = Combo1(1).Text
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then     'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then     'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+Dim Cad As String
         'Llamamos a al form
         '##A mano
-        cad = ""
-        cad = cad & ParaGrid(Text1(0), 10, "Usuario")
-        cad = cad & ParaGrid(Text1(1), 25, "Fecha")
-        cad = cad & ParaGrid(Text1(3), 10, "Codigo")
-        cad = cad & "Nombre|scliente|nomclien|T||50·"
+        Cad = ""
+        Cad = Cad & ParaGrid(Text1(0), 10, "Usuario")
+        Cad = Cad & ParaGrid(Text1(1), 25, "Fecha")
+        Cad = Cad & ParaGrid(Text1(3), 10, "Codigo")
+        Cad = Cad & "Nombre|scliente|nomclien|T||50·"
 
             Screen.MousePointer = vbHourglass
             Set frmB = New frmBuscaGrid
-            frmB.vCampos = cad
+            frmB.vCampos = Cad
             frmB.vTabla = NombreTabla & ",scliente"
             
-            cad = "scliente.codclien=" & NombreTabla & ".codclien"
-            If cadB <> "" Then cad = cad & " AND " & cadB
-            frmB.vSQL = cad
+            Cad = "scliente.codclien=" & NombreTabla & ".codclien"
+            If CadB <> "" Then Cad = Cad & " AND " & CadB
+            frmB.vSQL = Cad
             HaDevueltoDatos = False
             '###A mano
 

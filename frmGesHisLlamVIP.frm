@@ -2861,12 +2861,12 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(1)
-        Text1(1).BackColor = vbYellow
+        Text1(1).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Adodc1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -2891,7 +2891,7 @@ On Error GoTo EEPonerBusq
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
             PonerFoco Text1(0)
-            Text1(0).BackColor = vbYellow
+            Text1(0).BackColor = vbLightBlue 'vbYellow
         End If
         Exit Sub
     Else

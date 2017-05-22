@@ -499,7 +499,7 @@ Private HaDevueltoDatos As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo Error1
     
@@ -517,19 +517,19 @@ Dim cad As String
                     CargaTxtAux True, True
                     cmdImportar.visible = True
                 Else 'No existen registros en la tabla sinven para ese criterio de búsqueda
-                    cad = "No se esta realizando inventario para esos criterios de búsqueda."
-                    MsgBox cad, vbInformation
+                    Cad = "No se esta realizando inventario para esos criterios de búsqueda."
+                    MsgBox Cad, vbInformation
                     PonerFoco Text1(0)
                 End If
             Else
-                cad = "Criterio de Búsqueda incompleto." & vbCrLf
-                cad = cad & "Debe introducir ambos criterios de búsqueda: cod. almacen, "
+                Cad = "Criterio de Búsqueda incompleto." & vbCrLf
+                Cad = Cad & "Debe introducir ambos criterios de búsqueda: cod. almacen, "
                 If vParamAplic.InventarioxProv Then
-                    cad = cad & "Cod. Proveedor"
+                    Cad = Cad & "Cod. Proveedor"
                 Else
-                    cad = cad & "Cod. Familia"
+                    Cad = Cad & "Cod. Familia"
                 End If
-                MsgBox cad, vbExclamation
+                MsgBox Cad, vbExclamation
                 PonerFoco Text1(0)
             End If
             
@@ -1052,7 +1052,7 @@ Private Sub BotonBuscar()
 '        HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If

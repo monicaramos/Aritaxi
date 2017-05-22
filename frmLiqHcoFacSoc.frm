@@ -53,7 +53,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1380
+         Left            =   1410
          Style           =   2  'Dropdown List
          TabIndex        =   79
          Top             =   360
@@ -124,7 +124,16 @@ Begin VB.Form frmLiqHcoFacSoc
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
          Left            =   1410
          TabIndex        =   1
@@ -151,7 +160,7 @@ Begin VB.Form frmLiqHcoFacSoc
          TabIndex        =   2
          Tag             =   "Fecha Factura|F|N|||sfactusoc|fecfactu|dd/mm/yyyy|S|"
          Top             =   375
-         Width           =   1065
+         Width           =   1245
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -349,12 +358,9 @@ Begin VB.Form frmLiqHcoFacSoc
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmLiqHcoFacSoc.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
-      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(0)=   "Frame3"
       Tab(0).Control(1)=   "FrameFactura"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Frame3"
-      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(2)=   "FrameCliente"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Llamadas"
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
@@ -2804,7 +2810,7 @@ Dim anc As Single
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
         
         
         anc = DataGrid1.Top
@@ -2819,7 +2825,7 @@ Dim anc As Single
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If

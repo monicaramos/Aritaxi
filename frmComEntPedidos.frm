@@ -537,7 +537,7 @@ Begin VB.Form frmComEntPedidos
       End
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
-         BackColor       =   &H00C0C0FF&
+         BackColor       =   &H00FFFFC0&
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -622,6 +622,7 @@ Begin VB.Form frmComEntPedidos
       _ExtentY        =   8123
       _Version        =   393216
       Style           =   1
+      Tab             =   2
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -635,61 +636,38 @@ Begin VB.Form frmComEntPedidos
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComEntPedidos.frx":000C
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "DataGrid1"
-      Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "txtAux(0)"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "txtAux(1)"
-      Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "txtAux(3)"
-      Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "txtAux(4)"
-      Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "txtAux(5)"
-      Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "txtAux(6)"
-      Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "txtAux(7)"
-      Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).Control(8)=   "txtAux(2)"
-      Tab(0).Control(8).Enabled=   0   'False
-      Tab(0).Control(9)=   "cmdAux(0)"
-      Tab(0).Control(9).Enabled=   0   'False
-      Tab(0).Control(10)=   "cmdAux(1)"
-      Tab(0).Control(10).Enabled=   0   'False
-      Tab(0).Control(11)=   "FrameCliente"
-      Tab(0).Control(11).Enabled=   0   'False
-      Tab(0).Control(12)=   "txtAux(8)"
-      Tab(0).Control(12).Enabled=   0   'False
-      Tab(0).Control(13)=   "cmdAux(2)"
-      Tab(0).Control(13).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "cmdAux(2)"
+      Tab(0).Control(1)=   "txtAux(8)"
+      Tab(0).Control(2)=   "FrameCliente"
+      Tab(0).Control(3)=   "cmdAux(1)"
+      Tab(0).Control(4)=   "cmdAux(0)"
+      Tab(0).Control(5)=   "txtAux(2)"
+      Tab(0).Control(6)=   "txtAux(7)"
+      Tab(0).Control(7)=   "txtAux(6)"
+      Tab(0).Control(8)=   "txtAux(5)"
+      Tab(0).Control(9)=   "txtAux(4)"
+      Tab(0).Control(10)=   "txtAux(3)"
+      Tab(0).Control(11)=   "txtAux(1)"
+      Tab(0).Control(12)=   "txtAux(0)"
+      Tab(0).Control(13)=   "DataGrid1"
       Tab(0).ControlCount=   14
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntPedidos.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(45)"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Text1(17)"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Text1(18)"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Text1(19)"
-      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(0)=   "FrameHco"
+      Tab(1).Control(1)=   "FrameDirFactura"
+      Tab(1).Control(2)=   "FrameDirMercancia"
+      Tab(1).Control(3)=   "Text1(21)"
       Tab(1).Control(4)=   "Text1(20)"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "Text1(21)"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "FrameDirMercancia"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "FrameDirFactura"
-      Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "FrameHco"
-      Tab(1).Control(8).Enabled=   0   'False
+      Tab(1).Control(5)=   "Text1(19)"
+      Tab(1).Control(6)=   "Text1(18)"
+      Tab(1).Control(7)=   "Text1(17)"
+      Tab(1).Control(8)=   "Label1(45)"
       Tab(1).ControlCount=   9
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntPedidos.frx":0044
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "FrameFactura"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
@@ -707,7 +685,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   11040
+         Left            =   -63960
          TabIndex        =   132
          ToolTipText     =   "Buscar centro coste"
          Top             =   3960
@@ -729,7 +707,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   10440
+         Left            =   -64560
          MaxLength       =   4
          TabIndex        =   45
          Tag             =   "centro coste"
@@ -929,7 +907,7 @@ Begin VB.Form frmComEntPedidos
       End
       Begin VB.Frame FrameFactura 
          Height          =   3300
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   92
          Top             =   720
          Width           =   10575
@@ -1259,7 +1237,7 @@ Begin VB.Form frmComEntPedidos
          End
          Begin VB.TextBox Text3 
             Alignment       =   1  'Right Justify
-            BackColor       =   &H00C0C0FF&
+            BackColor       =   &H00FFFFC0&
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   9.75
@@ -1990,7 +1968,7 @@ Begin VB.Form frmComEntPedidos
       End
       Begin VB.Frame FrameCliente 
          Height          =   1950
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   51
          Top             =   375
          Width           =   12415
@@ -2557,7 +2535,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   2640
+         Left            =   -72360
          TabIndex        =   50
          ToolTipText     =   "Buscar artículo"
          Top             =   3960
@@ -2578,7 +2556,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   49
          ToolTipText     =   "Buscar almacen"
          Top             =   3960
@@ -2600,7 +2578,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   2880
+         Left            =   -72120
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   40
@@ -2626,7 +2604,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   9360
+         Left            =   -65640
          MaxLength       =   12
          TabIndex        =   47
          Tag             =   "Importe"
@@ -2651,7 +2629,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   8880
+         Left            =   -66120
          MaxLength       =   30
          TabIndex        =   44
          Tag             =   "Descuento 2"
@@ -2676,7 +2654,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   8280
+         Left            =   -66720
          MaxLength       =   5
          TabIndex        =   43
          Tag             =   "Descuento 1"
@@ -2701,7 +2679,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   7320
+         Left            =   -67680
          MaxLength       =   12
          TabIndex        =   42
          Tag             =   "Precio"
@@ -2726,7 +2704,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   6000
+         Left            =   -69000
          MaxLength       =   16
          TabIndex        =   41
          Tag             =   "Cantidad"
@@ -2750,7 +2728,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   1200
+         Left            =   -73800
          MaxLength       =   18
          TabIndex        =   39
          Tag             =   "Código Artículo"
@@ -2774,7 +2752,7 @@ Begin VB.Form frmComEntPedidos
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   15
          TabIndex        =   38
          Tag             =   "Código Almacen"
@@ -2881,31 +2859,31 @@ Begin VB.Form frmComEntPedidos
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmComEntPedidos.frx":0060
          Height          =   2025
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   48
          Top             =   2460
-         Width           =   11415
-         _ExtentX        =   20135
+         Width           =   12415
+         _ExtentX        =   21908
          _ExtentY        =   3572
          _Version        =   393216
          AllowUpdate     =   -1  'True
          AllowArrows     =   -1  'True
          ColumnHeaders   =   -1  'True
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          FormatLocked    =   -1  'True
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -3116,8 +3094,8 @@ Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
 Attribute frmCP.VB_VarHelpID = -1
 
-Private WithEvents frmProV As frmComProveedores  'Form Mto Proveedores
-Attribute frmProV.VB_VarHelpID = -1
+Private WithEvents frmProv As frmComProveedores  'Form Mto Proveedores
+Attribute frmProv.VB_VarHelpID = -1
 Private WithEvents frmProveV As frmComProveV  'Form Mto Proveedores Varios
 Attribute frmProveV.VB_VarHelpID = -1
 Private WithEvents frmDir As frmComDirecciones
@@ -3423,12 +3401,12 @@ Private Sub BotonBuscar()
         PonerModo 1
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -3515,7 +3493,7 @@ End Sub
 Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de Pedidos (scaped)
 ' y los registros correspondientes de las tablas de lineas (sliped)
-Dim cad As String
+Dim Cad As String
 Dim vTipoMov As CTiposMov
 Dim NumPedElim As Long 'Numero del Pedido que se ha Eliminado
 
@@ -3524,15 +3502,15 @@ Dim NumPedElim As Long 'Numero del Pedido que se ha Eliminado
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    cad = "Cabecera de Pedidos Compras." & vbCrLf
-    cad = cad & "--------------------------------------" & vbCrLf & vbCrLf
-    cad = cad & "Va a eliminar el Pedido:            "
-    cad = cad & vbCrLf & "Nº:  " & Format(Text1(0).Text, "0000000")
-    cad = cad & vbCrLf & "Proveedor:  " & Format(Text1(4).Text, "000000") & " - " & Text1(5).Text
-    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    Cad = "Cabecera de Pedidos Compras." & vbCrLf
+    Cad = Cad & "--------------------------------------" & vbCrLf & vbCrLf
+    Cad = Cad & "Va a eliminar el Pedido:            "
+    Cad = Cad & vbCrLf & "Nº:  " & Format(Text1(0).Text, "0000000")
+    Cad = Cad & vbCrLf & "Proveedor:  " & Format(Text1(4).Text, "000000") & " - " & Text1(5).Text
+    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
        
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         Screen.MousePointer = vbHourglass
         
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -3545,11 +3523,11 @@ Dim NumPedElim As Long 'Numero del Pedido que se ha Eliminado
         Set frmList = Nothing
     
         If CadenaSQL = "" Then Exit Sub
-        cad = ""
-        cad = DBSet(RecuperaValor(CadenaSQL, 1), "F") & " as fechelim,"
-        cad = cad & RecuperaValor(CadenaSQL, 2) & " as trabelim,"
-        cad = cad & DBSet(RecuperaValor(CadenaSQL, 3), "T") & " as codincid"
-        CadenaSQL = cad
+        Cad = ""
+        Cad = DBSet(RecuperaValor(CadenaSQL, 1), "F") & " as fechelim,"
+        Cad = Cad & RecuperaValor(CadenaSQL, 2) & " as trabelim,"
+        Cad = Cad & DBSet(RecuperaValor(CadenaSQL, 3), "T") & " as codincid"
+        CadenaSQL = Cad
         
         
         If Not Eliminar() Then Exit Sub
@@ -3662,7 +3640,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -3869,7 +3847,7 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
@@ -3882,15 +3860,15 @@ Dim Aux As String
             Me.txtAux(8).Text = RecuperaValor(CadenaDevuelta, 1)
             Me.txtAux2(8).Text = PonerNombreCCoste(Me.txtAux(8))
         Else
-            cadB = ""
+            CadB = ""
             Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            cadB = Aux
+            CadB = Aux
             If EsHistorico Then
                 Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 1)
-                cadB = cadB & " and " & Aux
+                CadB = CadB & " and " & Aux
             End If
             
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
             Text1(0).Text = Format(RecuperaValor(CadenaDevuelta, 1), "0000000")
         End If
@@ -4013,7 +3991,7 @@ EInsertar:
 End Sub
 
 
-Private Sub frmProV_DatoSeleccionado(CadenaSeleccion As String)
+Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Proveedores
 Dim indice As Byte
 
@@ -4053,10 +4031,10 @@ Dim indice As Byte
     Select Case Index
         Case 0 'Cod. Proveedor
             indice = 4
-            Set frmProV = New frmComProveedores
-            frmProV.DatosADevolverBusqueda = "0"
-            frmProV.Show vbModal
-            Set frmProV = Nothing
+            Set frmProv = New frmComProveedores
+            frmProv.DatosADevolverBusqueda = "0"
+            frmProv.Show vbModal
+            Set frmProv = Nothing
             
         Case 1 'Cod. Postal
             Set frmCP = New frmCPostal
@@ -4395,33 +4373,33 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 Dim devuelve As String
     'Llamamos a al form
     '##A mano
-    cad = ""
+    Cad = ""
 '    If EsCabecera Then
-        cad = cad & ParaGrid(Text1(0), 15, "Nº Pedido")
-        cad = cad & ParaGrid(Text1(1), 20, "Fecha Ped.")
-        cad = cad & ParaGrid(Text1(4), 15, "Proveedor")
-        cad = cad & ParaGrid(Text1(5), 50, "Nombre Prov.")
+        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Pedido")
+        Cad = Cad & ParaGrid(Text1(1), 20, "Fecha Ped.")
+        Cad = Cad & ParaGrid(Text1(4), 15, "Proveedor")
+        Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Prov.")
         Tabla = NombreTabla
         Titulo = "Pedidos Compras"
         If EsHistorico Then
@@ -4433,12 +4411,12 @@ Dim devuelve As String
         End If
 '    End If
     
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
 '        frmB.vDevuelve = "0|1|"
@@ -4608,8 +4586,8 @@ On Error GoTo EPonerModo
     Text3(46).BackColor = &HFFFFC0
     Text3(47).BackColor = &HFFFFC0
     Text3(48).BackColor = &HFFFFC0
-    Text3(49).BackColor = &HC0C0FF    'Tatal factura
-    Text3(50).BackColor = &HC0C0FF    'Tatal factura
+    Text3(49).BackColor = &HFFFFC0 '&HC0C0FF    'Tatal factura
+    Text3(50).BackColor = &HFFFFC0 '&HC0C0FF    'Tatal factura
     '---------------------------------------------------
        
        
@@ -5433,7 +5411,7 @@ End Sub
 
 Private Sub ObtenerPrecioCompra()
 Dim vPrecio As CPreciosCom
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EPrecios
     
@@ -5452,9 +5430,9 @@ Dim cad As String
         End If
     Else
         'Obtener el ult. precio de compra de ese articulo (sartic)
-        cad = DevuelveDesdeBDNew(conAri, "sartic", "preciouc", "codartic", txtAux(1).Text, "T")
-        If cad <> "" Then
-            txtAux(4).Text = cad
+        Cad = DevuelveDesdeBDNew(conAri, "sartic", "preciouc", "codartic", txtAux(1).Text, "T")
+        If Cad <> "" Then
+            txtAux(4).Text = Cad
             txtAux(5).Text = "0"
             txtAux(6).Text = "0"
         End If
@@ -5472,9 +5450,9 @@ End Sub
 
 
 
-Private Sub BotonMtoLineas(numTab As Integer, cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
         Me.SSTab1.Tab = numTab
-        TituloLinea = cad
+        TituloLinea = Cad
         ModificaLineas = 0
         PonerModo 5
         PonerBotonCabecera True
