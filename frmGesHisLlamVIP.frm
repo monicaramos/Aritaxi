@@ -218,7 +218,7 @@ Begin VB.Form frmGesHisLlamVIP
          Height          =   315
          Index           =   9
          Left            =   7500
-         MaxLength       =   6
+         MaxLength       =   7
          TabIndex        =   13
          Tag             =   "Identificacion|T|S|||shilla|idservic|||"
          Text            =   "Text"

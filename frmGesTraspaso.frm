@@ -4,14 +4,33 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmGesTraspaso 
    Caption         =   "Traspaso TaxiTronic"
-   ClientHeight    =   5130
+   ClientHeight    =   5490
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   7815
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5130
+   ScaleHeight     =   5490
    ScaleWidth      =   7815
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox Check1 
+      Caption         =   "Desde Fichero Excel"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Index           =   0
+      Left            =   270
+      TabIndex        =   17
+      Tag             =   "Facturado|N|N|0|1|sclien|essocio|||"
+      Top             =   1590
+      Width           =   2895
+   End
    Begin VB.Frame Frame2 
       Caption         =   "Tipo"
       BeginProperty Font 
@@ -24,7 +43,7 @@ Begin VB.Form frmGesTraspaso
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00800000&
-      Height          =   735
+      Height          =   795
       Left            =   210
       TabIndex        =   13
       Top             =   750
@@ -147,8 +166,8 @@ Begin VB.Form frmGesTraspaso
       Height          =   375
       Left            =   6690
       TabIndex        =   4
-      Top             =   4560
-      Width           =   975
+      Top             =   4950
+      Width           =   1100
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -162,16 +181,16 @@ Begin VB.Form frmGesTraspaso
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5610
+      Left            =   5520
       TabIndex        =   3
-      Top             =   4560
-      Width           =   975
+      Top             =   4950
+      Width           =   1100
    End
    Begin MSComctlLib.ProgressBar ProgressBar1 
       Height          =   315
       Left            =   180
       TabIndex        =   8
-      Top             =   3450
+      Top             =   3870
       Width           =   7455
       _ExtentX        =   13150
       _ExtentY        =   556
@@ -180,9 +199,9 @@ Begin VB.Form frmGesTraspaso
    End
    Begin VB.Frame Frame1 
       Height          =   1755
-      Left            =   210
+      Left            =   240
       TabIndex        =   6
-      Top             =   1590
+      Top             =   2040
       Width           =   7455
       Begin VB.TextBox txtcodigo 
          Alignment       =   1  'Right Justify
@@ -330,7 +349,7 @@ Begin VB.Form frmGesTraspaso
       Index           =   2
       Left            =   210
       TabIndex        =   10
-      Top             =   4170
+      Top             =   4590
       Width           =   7425
    End
    Begin VB.Label Label1 
@@ -348,7 +367,7 @@ Begin VB.Form frmGesTraspaso
       Index           =   0
       Left            =   210
       TabIndex        =   9
-      Top             =   3840
+      Top             =   4260
       Width           =   7425
    End
    Begin VB.Label lblTitulo 
@@ -430,6 +449,11 @@ Dim Sql As String
 Dim cadTabla As String
 
 
+    ' solo puede haber una persona ejecutando el proceso de traspaso
+
+
+
+
     If Not DatosOk Then Exit Sub
     
     If Text1.Text = "" Then
@@ -502,7 +526,26 @@ Dim cadTabla As String
             'Llegados aqui, procesamos el fichero
             Screen.MousePointer = vbHourglass
         '    b = ProcesarFichero
-            b = ProcesarFichero_new
+        
+        
+            '[Monica] Para el caso de radiotaxi se trabaja con un fichero excel
+            If Check1(0).visible And Check1(0).Value = 1 Then
+                If Dir(App.Path & "\trasaritaxi.z") <> "" Then Kill App.Path & "\trasaritaxi.z"
+        
+                Shell App.Path & "\trasaritaxi.exe /I|" & vUsu.CadenaConexion & "|" & vUsu.Codigo & "|" & Text1.Text & "|", vbNormalFocus
+        
+                While Dir(App.Path & "\trasaritaxi.z") = ""
+                    Me.Label1(0).Caption = "Procesando Insercion "
+                    DoEvents
+                    
+                    Espera 1
+                Wend
+                b = True
+            Else
+                b = ProcesarFichero_new
+            End If
+        
+
             If b Then
                 'verificamos que los numeruve esten asociados a algun socio
                 ProgressBar1.Value = 0
@@ -2448,6 +2491,16 @@ Private Sub imgFecha_Click(Index As Integer)
    Set frmF = Nothing
    PonerFoco txtcodigo(indCodigo)
 
+End Sub
+
+Private Sub Option1_Click(Index As Integer)
+    If Index = 0 Then
+        Check1(0).Enabled = True
+        Check1(0).visible = True
+    Else
+        Check1(0).Enabled = False
+        Check1(0).visible = False
+    End If
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
