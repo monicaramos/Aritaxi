@@ -9,12 +9,12 @@ Begin VB.Form frmLiqHcoFacSoc
    ClientHeight    =   6330
    ClientLeft      =   45
    ClientTop       =   4335
-   ClientWidth     =   12285
+   ClientWidth     =   13290
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   6330
-   ScaleWidth      =   12285
+   ScaleWidth      =   13290
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame2 
@@ -337,8 +337,8 @@ Begin VB.Form frmLiqHcoFacSoc
       TabIndex        =   32
       Tag             =   "Fecha Oferta|F|N|||scapre|fecentre|dd/mm/yyyy|N|"
       Top             =   1305
-      Width           =   12015
-      _ExtentX        =   21193
+      Width           =   13015
+      _ExtentX        =   22966
       _ExtentY        =   7567
       _Version        =   393216
       Style           =   1
@@ -358,9 +358,12 @@ Begin VB.Form frmLiqHcoFacSoc
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmLiqHcoFacSoc.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Frame3"
+      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "FrameFactura"
-      Tab(0).Control(2)=   "FrameCliente"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "Frame3"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Llamadas"
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
@@ -847,7 +850,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Tag             =   "% Reten|N|S|0|99.90|sfactusoc|porcreten|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1080
-            Width           =   615
+            Width           =   675
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -890,7 +893,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Tag             =   "Base Retencion|N|N|||sfactusoc|basereten|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   1080
-            Width           =   1215
+            Width           =   1335
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -955,7 +958,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Tag             =   "% IVA 1|N|S|0|99.90|sfactusoc|porciva1|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   450
-            Width           =   615
+            Width           =   675
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -976,7 +979,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Tag             =   "Base Imponible 1|N|N|||sfactusoc|baseiva1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   450
-            Width           =   1215
+            Width           =   1335
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -991,13 +994,13 @@ Begin VB.Form frmLiqHcoFacSoc
             EndProperty
             Height          =   360
             Index           =   15
-            Left            =   3840
+            Left            =   3780
             MaxLength       =   4
             TabIndex        =   17
             Tag             =   "Cod. IVA 1|N|S|0|9999|sfactusoc|codiiva1|0000|N|"
             Text            =   "Text1 7"
             Top             =   450
-            Width           =   525
+            Width           =   585
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1018,7 +1021,7 @@ Begin VB.Form frmLiqHcoFacSoc
             TabIndex        =   56
             Text            =   "Text1 7"
             Top             =   450
-            Width           =   1485
+            Width           =   1545
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1039,7 +1042,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Tag             =   "Imp.Bruto|N|N|||sfactusoc|importel|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   450
-            Width           =   1485
+            Width           =   1635
          End
          Begin VB.Label Label1 
             Caption         =   "Base Retención"
@@ -1572,13 +1575,13 @@ Begin VB.Form frmLiqHcoFacSoc
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmLiqHcoFacSoc.frx":003E
-         Height          =   2820
+         Height          =   3030
          Left            =   330
          TabIndex        =   59
          Top             =   600
-         Width           =   11250
-         _ExtentX        =   19844
-         _ExtentY        =   4974
+         Width           =   12255
+         _ExtentX        =   21616
+         _ExtentY        =   5345
          _Version        =   393216
          AllowUpdate     =   -1  'True
          AllowArrows     =   -1  'True
@@ -1601,7 +1604,7 @@ Begin VB.Form frmLiqHcoFacSoc
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
-            Italic          =   -1  'True
+            Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
          Caption         =   "Servicios de la Factura"
@@ -1746,7 +1749,7 @@ Begin VB.Form frmLiqHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11070
+      Left            =   12150
       TabIndex        =   26
       Top             =   5820
       Width           =   1035
@@ -1763,7 +1766,7 @@ Begin VB.Form frmLiqHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9780
+      Left            =   10860
       TabIndex        =   25
       Top             =   5820
       Width           =   1035
@@ -1774,8 +1777,8 @@ Begin VB.Form frmLiqHcoFacSoc
       Left            =   0
       TabIndex        =   30
       Top             =   0
-      Width           =   12285
-      _ExtentX        =   21669
+      Width           =   13290
+      _ExtentX        =   23442
       _ExtentY        =   741
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1863,7 +1866,7 @@ Begin VB.Form frmLiqHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11070
+      Left            =   12120
       TabIndex        =   27
       Top             =   5820
       Visible         =   0   'False
@@ -4443,13 +4446,13 @@ Dim tots As String
 '             SQL = "SELECT codtipom,numfactu,fecfactu,codtipoa,numalbar, fechaalb,"
              'numpedcl,fecpedcl,sementre,numofert,fecofert, referenc, codenvio,codtraba, codtrab1, codtrab2,observa1,observa2,observa3,observa4,observa5,numtermi,numventa  "
             tots = "N||||0|;N||||0|;N||||0|;N||||0|;N||||0|;"
-            tots = tots & "S|txtAux3(3)|T|Fecha|1000|;S|txtAux3(4)|T|Hora|700|;N||||0|;S|txtAux3(5)|T|Código|750|;"
+            tots = tots & "S|txtAux3(3)|T|Fecha|1200|;S|txtAux3(4)|T|Hora|1000|;N||||0|;S|txtAux3(5)|T|Código|950|;"
             tots = tots & "S|txtAux3(6)|T|Nombre|2500|;S|txtAux3(7)|T|Direccion|1880|;S|txtAux3(8)|T|Nro|600|;"
-            tots = tots & "S|txtAux3(9)|T|Puerta|1000|;N|txtAux3(10)|T|Ciudad|1000|;S|txtAux3(11)|T|Tfno.|1000|;"
-            tots = tots & "S|txtAux3(12)|T|Importe|1200|;N||||0|;"
+            tots = tots & "S|txtAux3(9)|T|Puerta|1000|;N|txtAux3(10)|T|Ciudad|1000|;S|txtAux3(11)|T|Tfno.|1200|;"
+            tots = tots & "S|txtAux3(12)|T|Importe|1300|;N||||0|;"
             
             
-            arregla tots, DataGrid1, Me
+            arregla tots, DataGrid1, Me, 350
                      
 '            DataGrid1_RowColChange 1, 1
     End Select

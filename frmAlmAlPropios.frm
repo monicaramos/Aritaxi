@@ -204,10 +204,10 @@ Begin VB.Form frmAlmAlPropios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4410
+      Left            =   4290
       TabIndex        =   3
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -221,10 +221,10 @@ Begin VB.Form frmAlmAlPropios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3210
+      Left            =   3090
       TabIndex        =   2
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -238,11 +238,11 @@ Begin VB.Form frmAlmAlPropios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4410
+      Left            =   4290
       TabIndex        =   6
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -497,7 +497,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim cad As String
+Dim Cad As String
 Dim anc As Single
 Dim i As Integer
     
@@ -514,9 +514,9 @@ Dim i As Integer
     
     anc = ObtenerAlto(DataGrid1, 10)
     
-    cad = ""
+    Cad = ""
     For i = 0 To 1
-        cad = cad & DataGrid1.Columns(i).Text & "|"
+        Cad = Cad & DataGrid1.Columns(i).Text & "|"
     Next i
     'Llamamos al form
     txtAux(0).Text = DataGrid1.Columns(0).Text
@@ -570,7 +570,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim i As Integer
-Dim cadB As String
+Dim CadB As String
 
     On Error Resume Next
 
@@ -599,10 +599,10 @@ Dim cadB As String
             End If
             
         Case 1  'HacerBusqueda
-            cadB = ObtenerBusqueda(Me, False)
-            If cadB <> "" Then
+            CadB = ObtenerBusqueda(Me, False)
+            If CadB <> "" Then
                 PonerModo 2
-                CargaGrid cadB
+                CargaGrid CadB
                 PonerFocoGrid Me.DataGrid1
             End If
     End Select
@@ -632,7 +632,7 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
     
     On Error GoTo ERegresar
 
@@ -641,9 +641,9 @@ Dim cad As String
         Exit Sub
     End If
 
-    cad = Adodc1.Recordset.Fields(0) & "|"
-    cad = cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
     Exit Sub
     

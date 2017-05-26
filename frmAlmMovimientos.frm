@@ -447,10 +447,10 @@ Begin VB.Form frmAlmMovimientos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10470
+      Left            =   10350
       TabIndex        =   5
       Top             =   6330
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -468,7 +468,7 @@ Begin VB.Form frmAlmMovimientos
       Left            =   11610
       TabIndex        =   6
       Top             =   6315
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -486,7 +486,7 @@ Begin VB.Form frmAlmMovimientos
       TabIndex        =   17
       Top             =   6330
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540

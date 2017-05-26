@@ -216,12 +216,12 @@ On Error GoTo ECargaGrid
         vDataGrid.Columns(0).Caption = "Vehiculo"
         vDataGrid.Columns(0).Width = 1000
         vDataGrid.Columns(1).Caption = "Fecha"
-        vDataGrid.Columns(1).Width = 1000
+        vDataGrid.Columns(1).Width = 1200
         vDataGrid.Columns(2).Caption = "Hora"
         vDataGrid.Columns(2).Width = 1000
         vDataGrid.Columns(2).NumberFormat = "hh:mm:ss"
         vDataGrid.Columns(3).Caption = "Error"
-        vDataGrid.Columns(3).Width = 4300
+        vDataGrid.Columns(3).Width = 4100
     End If
     
     vDataGrid.RowHeight = 350

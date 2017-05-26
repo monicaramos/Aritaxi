@@ -879,7 +879,7 @@ Public Sub PonerIndicador(ByRef lblIndicador As Label, Modo As Byte, Optional Mo
         Case 1 'Modo Buscar
             lblIndicador.Caption = "BUSQUEDA"
         Case 2    'Preparamos para que pueda Modificar
-            lblIndicador.Caption = ""
+'            lblIndicador.Caption = ""
         
         Case 3 'Modo Insertar
             lblIndicador.Caption = "INSERTAR"

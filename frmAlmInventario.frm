@@ -67,7 +67,7 @@ Begin VB.Form frmAlmInventario
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6780
+      Left            =   6720
       TabIndex        =   15
       Top             =   6420
       Visible         =   0   'False
@@ -275,10 +275,10 @@ Begin VB.Form frmAlmInventario
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9840
+      Left            =   9630
       TabIndex        =   2
       Top             =   6420
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -293,10 +293,10 @@ Begin VB.Form frmAlmInventario
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10965
+      Left            =   10875
       TabIndex        =   3
       Top             =   6420
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -310,11 +310,11 @@ Begin VB.Form frmAlmInventario
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10965
+      Left            =   10875
       TabIndex        =   4
       Top             =   6420
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmAlmInventario.frx":000C
@@ -443,7 +443,7 @@ Begin VB.Form frmAlmInventario
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   3600
+      Left            =   3510
       TabIndex        =   16
       Top             =   6420
       Width           =   3075

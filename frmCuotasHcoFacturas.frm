@@ -392,6 +392,7 @@ Begin VB.Form frmCuotasHcoFacturas
       _Version        =   393216
       Style           =   1
       Tabs            =   2
+      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -405,7 +406,7 @@ Begin VB.Form frmCuotasHcoFacturas
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmCuotasHcoFacturas.frx":0A0E
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Label1(25)"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(26)"
@@ -425,29 +426,45 @@ Begin VB.Form frmCuotasHcoFacturas
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0A2A
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "cmdObserva"
-      Tab(1).Control(1)=   "txtAux(11)"
-      Tab(1).Control(2)=   "cmdaux"
-      Tab(1).Control(3)=   "txtAux(10)"
-      Tab(1).Control(4)=   "txtAux(9)"
-      Tab(1).Control(5)=   "txtAux(5)"
-      Tab(1).Control(6)=   "txtAux(3)"
-      Tab(1).Control(7)=   "txtAux(2)"
-      Tab(1).Control(8)=   "txtAux(1)"
-      Tab(1).Control(9)=   "txtAux(0)"
-      Tab(1).Control(10)=   "txtAux(4)"
-      Tab(1).Control(11)=   "txtAux(6)"
-      Tab(1).Control(12)=   "txtAux(7)"
-      Tab(1).Control(13)=   "txtAux(8)"
-      Tab(1).Control(14)=   "DataGrid1"
-      Tab(1).Control(15)=   "FrameObserva"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "FrameObserva"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "DataGrid1"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "txtAux(8)"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "txtAux(7)"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "txtAux(6)"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "txtAux(4)"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "txtAux(0)"
+      Tab(1).Control(6).Enabled=   0   'False
+      Tab(1).Control(7)=   "txtAux(1)"
+      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).Control(8)=   "txtAux(2)"
+      Tab(1).Control(8).Enabled=   0   'False
+      Tab(1).Control(9)=   "txtAux(3)"
+      Tab(1).Control(9).Enabled=   0   'False
+      Tab(1).Control(10)=   "txtAux(5)"
+      Tab(1).Control(10).Enabled=   0   'False
+      Tab(1).Control(11)=   "txtAux(9)"
+      Tab(1).Control(11).Enabled=   0   'False
+      Tab(1).Control(12)=   "txtAux(10)"
+      Tab(1).Control(12).Enabled=   0   'False
+      Tab(1).Control(13)=   "cmdaux"
+      Tab(1).Control(13).Enabled=   0   'False
+      Tab(1).Control(14)=   "txtAux(11)"
+      Tab(1).Control(14).Enabled=   0   'False
+      Tab(1).Control(15)=   "cmdObserva"
+      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).ControlCount=   16
       Begin VB.Frame FrameCliente 
          Caption         =   "Datos Socio"
          ForeColor       =   &H00972E0B&
          Height          =   2295
-         Left            =   210
+         Left            =   -74790
          TabIndex        =   33
          Top             =   360
          Width           =   13815
@@ -631,7 +648,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   13
-            Left            =   8460
+            Left            =   8610
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   16
@@ -659,7 +676,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "Direccion/Dpto.|N|S|0|999|scafac|coddirec|000|N|"
             Text            =   "Text1"
             Top             =   300
-            Width           =   540
+            Width           =   720
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -699,7 +716,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "CPostal|T|N|||scafac|codpobla||N|"
             Text            =   "Text15"
             Top             =   990
-            Width           =   630
+            Width           =   810
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -713,13 +730,13 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   10
-            Left            =   1995
+            Left            =   2175
             MaxLength       =   30
             TabIndex        =   12
             Tag             =   "Población|T|N|||scafac|pobclien||N|"
             Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwaq"
             Top             =   990
-            Width           =   3915
+            Width           =   3735
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -759,7 +776,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "NIF Cliente|T|N|||scafac|nifclien||N|"
             Text            =   "123456789"
             Top             =   285
-            Width           =   1110
+            Width           =   1200
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -780,7 +797,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "Cod. Agente|N|N|0|9999|scafac|codagent|0000|N|"
             Text            =   "Text1"
             Top             =   675
-            Width           =   540
+            Width           =   720
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -795,7 +812,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   14
-            Left            =   8460
+            Left            =   8610
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   37
@@ -822,7 +839,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "Forma de Pago|N|N|0|999|scafac|codforpa|000|N|"
             Text            =   "Text1"
             Top             =   1050
-            Width           =   540
+            Width           =   720
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -837,7 +854,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   15
-            Left            =   8460
+            Left            =   8610
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   35
@@ -1084,7 +1101,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   255
             Index           =   19
-            Left            =   2535
+            Left            =   2565
             TabIndex        =   40
             Top             =   285
             Width           =   885
@@ -1183,7 +1200,7 @@ Begin VB.Form frmCuotasHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   17
-         Left            =   12645
+         Left            =   -62355
          MaxLength       =   5
          TabIndex        =   116
          Tag             =   "Descuento General|N|N|0|99.90|scafac|dtognral|#0.00|N|"
@@ -1195,7 +1212,7 @@ Begin VB.Form frmCuotasHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   16
-         Left            =   12645
+         Left            =   -62355
          MaxLength       =   5
          TabIndex        =   115
          Tag             =   "Descuento P.Pago|N|N|0|99.90|scafac|dtoppago|#0.00|N|"
@@ -1205,7 +1222,7 @@ Begin VB.Form frmCuotasHcoFacturas
       End
       Begin VB.CommandButton cmdObserva 
          Height          =   375
-         Left            =   -74760
+         Left            =   240
          Style           =   1  'Graphical
          TabIndex        =   114
          Top             =   2640
@@ -1227,7 +1244,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   11
-         Left            =   -70920
+         Left            =   4080
          MaxLength       =   9
          TabIndex        =   112
          Tag             =   "Nº Bultos|N|N|0||slifac|numbultos|#,###,##0|N|"
@@ -1239,7 +1256,7 @@ Begin VB.Form frmCuotasHcoFacturas
       Begin VB.CommandButton cmdaux 
          Caption         =   "+"
          Height          =   320
-         Left            =   -65520
+         Left            =   9480
          TabIndex        =   90
          Top             =   4320
          Visible         =   0   'False
@@ -1260,7 +1277,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   -65280
+         Left            =   9720
          MaxLength       =   15
          TabIndex        =   107
          Tag             =   "Nº Lote|T|S|||slifac|numlote||N|"
@@ -1285,7 +1302,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   -66120
+         Left            =   8880
          MaxLength       =   30
          TabIndex        =   89
          Tag             =   "Cod. Proveedor|N|N|||slifac|codprovex|0||"
@@ -1310,7 +1327,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   -69360
+         Left            =   5640
          MaxLength       =   5
          TabIndex        =   84
          Text            =   "origp"
@@ -1334,7 +1351,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   -71760
+         Left            =   3240
          MaxLength       =   12
          TabIndex        =   82
          Tag             =   "Cantidad|N|N|0||slifac|cantidad|#,###,###,##0.00|N|"
@@ -1358,7 +1375,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72840
+         Left            =   2160
          MaxLength       =   12
          TabIndex        =   81
          Tag             =   "Nombre Art.|T|N|||slifac|nomartic||N|"
@@ -1383,7 +1400,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73680
+         Left            =   1320
          MaxLength       =   12
          TabIndex        =   80
          Tag             =   "Art.|T|N|||slifac|codartic||N|"
@@ -1408,7 +1425,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   12
          TabIndex        =   79
          Tag             =   "Almacen|N|N|0|999|slifac|codalmac|000|N|"
@@ -1419,7 +1436,7 @@ Begin VB.Form frmCuotasHcoFacturas
       End
       Begin VB.Frame FrameFactura 
          Height          =   2160
-         Left            =   210
+         Left            =   -74790
          TabIndex        =   50
          Top             =   2670
          Width           =   13815
@@ -1436,13 +1453,13 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   44
-            Left            =   6720
+            Left            =   6750
             MaxLength       =   5
             TabIndex        =   103
             Tag             =   "% IVA 1|N|S|0|99.90|scafac|porciva3re|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1725
-            Width           =   525
+            Width           =   615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1458,7 +1475,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   43
-            Left            =   7320
+            Left            =   7410
             MaxLength       =   15
             TabIndex        =   102
             Tag             =   "Importe IVA 1|N|S|||scafac|imporiv3re|#,###,###,##0.00|N|"
@@ -1479,13 +1496,13 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   42
-            Left            =   6720
+            Left            =   6750
             MaxLength       =   5
             TabIndex        =   101
             Tag             =   "% IVA 1|N|S|0|99.90|scafac|porciva2re|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1335
-            Width           =   525
+            Width           =   615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1501,7 +1518,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   41
-            Left            =   7320
+            Left            =   7410
             MaxLength       =   15
             TabIndex        =   100
             Tag             =   "Importe IVA 1|N|S|||scafac|imporiv2re|#,###,###,##0.00|N|"
@@ -1522,13 +1539,13 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   40
-            Left            =   6720
+            Left            =   6750
             MaxLength       =   5
             TabIndex        =   99
             Tag             =   "% IVA 1|N|S|0|99.90|scafac|porciva1re|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   960
-            Width           =   525
+            Width           =   615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1544,7 +1561,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   39
-            Left            =   7320
+            Left            =   7410
             MaxLength       =   15
             TabIndex        =   98
             Tag             =   "Importe IVA 1|N|S|||scafac|imporiv1re|#,###,###,##0.00|N|"
@@ -1588,7 +1605,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   37
-            Left            =   5160
+            Left            =   5250
             MaxLength       =   15
             TabIndex        =   66
             Tag             =   "Importe IVA 3|N|S|||scafac|imporiv3|#,###,###,##0.00|N|"
@@ -1615,7 +1632,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "% IVA 3|N|S|0|99.90|scafac|porciva3|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1725
-            Width           =   525
+            Width           =   645
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1636,7 +1653,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "Cod. IVA 3|N|S|0|9999|scafac|codigiv3|0000|N|"
             Text            =   "Text1 7"
             Top             =   1725
-            Width           =   525
+            Width           =   615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1651,7 +1668,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   34
-            Left            =   3000
+            Left            =   3060
             MaxLength       =   15
             TabIndex        =   63
             Tag             =   "Base Imponible 3|N|S|||scafac|baseimp3|#,###,###,##0.00|N|"
@@ -1673,7 +1690,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   36
-            Left            =   5160
+            Left            =   5250
             MaxLength       =   15
             TabIndex        =   62
             Tag             =   "Importe IVA 2|N|S|||scafac|imporiv2|#,###,###,##0.00|N|"
@@ -1700,7 +1717,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "% IVA 2|N|S|0|99.90|scafac|porciva2|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1335
-            Width           =   525
+            Width           =   645
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1721,7 +1738,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "Cod. IVA 2|N|S|0|9999|scafac|codigiv2|0000|N|"
             Text            =   "Text1 7"
             Top             =   1335
-            Width           =   525
+            Width           =   615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1736,7 +1753,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   33
-            Left            =   3000
+            Left            =   3060
             MaxLength       =   15
             TabIndex        =   59
             Tag             =   "Base Imponible 2 |N|S|||scafac|baseimp2|#,###,###,##0.00|N|"
@@ -1758,7 +1775,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   35
-            Left            =   5160
+            Left            =   5250
             MaxLength       =   15
             TabIndex        =   58
             Tag             =   "Importe IVA 1|N|N|||scafac|imporiv1|#,###,###,##0.00|N|"
@@ -1785,7 +1802,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "% IVA 1|N|S|0|99.90|scafac|porciva1|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   960
-            Width           =   525
+            Width           =   645
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1806,7 +1823,7 @@ Begin VB.Form frmCuotasHcoFacturas
             Tag             =   "Cod. IVA 1|N|S|0|9999|scafac|codigiv1|0000|N|"
             Text            =   "Text1 7"
             Top             =   960
-            Width           =   525
+            Width           =   615
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1821,7 +1838,7 @@ Begin VB.Form frmCuotasHcoFacturas
             EndProperty
             Height          =   360
             Index           =   32
-            Left            =   3000
+            Left            =   3060
             MaxLength       =   15
             TabIndex        =   55
             Tag             =   "Base Imponible 1|N|N|||scafac|baseimp1|#,###,###,##0.00|N|"
@@ -2111,7 +2128,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   -70200
+         Left            =   4800
          MaxLength       =   12
          TabIndex        =   83
          Tag             =   "Precio|N|N|0|999999.0000|slifac|precioar|###,##0.0000|N|"
@@ -2136,7 +2153,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   -68640
+         Left            =   6360
          MaxLength       =   5
          TabIndex        =   85
          Tag             =   "Dto 1|N|N|0|99.90|slifac|dtoline1|#0.00|N|"
@@ -2161,7 +2178,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   -67920
+         Left            =   7080
          MaxLength       =   30
          TabIndex        =   86
          Tag             =   "Dto 2|N|N|0|99.90|slifac|dtolinea|#0.00|N|"
@@ -2186,7 +2203,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   -67320
+         Left            =   7680
          MaxLength       =   12
          TabIndex        =   88
          Tag             =   "Importe|N|N|0||slifac|importel|#,###,###,##0.00|N|"
@@ -2198,7 +2215,7 @@ Begin VB.Form frmCuotasHcoFacturas
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmCuotasHcoFacturas.frx":0A46
          Height          =   2025
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   45
          Top             =   600
          Width           =   13695
@@ -2277,7 +2294,7 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2145
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   73
          Tag             =   "Observación 4|T|S|||scafac1|observa4||N|"
          Top             =   2640
@@ -2387,7 +2404,7 @@ Begin VB.Form frmCuotasHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   24
-         Left            =   3990
+         Left            =   -71010
          MaxLength       =   15
          TabIndex        =   119
          Tag             =   "Imp. Dto Gn|N|N|||scafac|impdtogr|#,###,###,##0.00|N|"
@@ -2399,7 +2416,7 @@ Begin VB.Form frmCuotasHcoFacturas
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   23
-         Left            =   2190
+         Left            =   -72810
          MaxLength       =   15
          TabIndex        =   120
          Tag             =   "Imp. Dto PP|N|N|||scafac|impdtopp|#,###,###,##0.00|N|"
@@ -2411,7 +2428,7 @@ Begin VB.Form frmCuotasHcoFacturas
          Caption         =   "Dto. Gral"
          Height          =   255
          Index           =   26
-         Left            =   11955
+         Left            =   -63045
          TabIndex        =   118
          Top             =   1380
          Width           =   735
@@ -2420,7 +2437,7 @@ Begin VB.Form frmCuotasHcoFacturas
          Caption         =   "Dto. P.P"
          Height          =   255
          Index           =   25
-         Left            =   11940
+         Left            =   -63060
          TabIndex        =   117
          Top             =   1020
          Width           =   615
@@ -4721,8 +4738,8 @@ Dim tots As String
             'SQL = "SELECT codtipom, numfactu, fecfactu, numalbar, numlinea,
             'codalmac, codartic, nomartic, ampliaci, cantidad,numbultos, precioar, origpre, dtoline1, dtoline2, importel "
             tots = "N||||0|;N||||0|;N||||0|;N||||0|;N||||0|;"
-            tots = tots & "S|txtAux(0)|T|Alm.|500|;S|txtAux(1)|T|Artículo|1600|;S|txtAux(2)|T|Nombre Art.|5350|;"
-            tots = tots & "N||||0|;S|txtAux(3)|T|Cantidad|900|;N|txtAux(11)|T|Bultos|700|;S|txtAux(4)|T|Precio|1200|;S|txtAux(5)|T|OP|400|;S|txtAux(6)|T|Dto 1|600|;S|txtAux(7)|T|Dto 2|600|;S|txtAux(8)|T|Importe|1940|;"
+            tots = tots & "S|txtAux(0)|T|Alm.|500|;S|txtAux(1)|T|Artículo|1600|;S|txtAux(2)|T|Nombre Art.|5250|;"
+            tots = tots & "N||||0|;S|txtAux(3)|T|Cantidad|1000|;N|txtAux(11)|T|Bultos|700|;S|txtAux(4)|T|Precio|1200|;S|txtAux(5)|T|OP|400|;S|txtAux(6)|T|Dto 1|600|;S|txtAux(7)|T|Dto 2|600|;S|txtAux(8)|T|Importe|1940|;"
             'TRAZA
 '            tots = tots & "S|txtAux(9)|T|Prov.|750|;S|cmdaux|B|||;S|txtAux(10)|T|Nom. prov.|2000|;"
             If vEmpresa.TieneAnalitica Then

@@ -1543,9 +1543,9 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   8
          Left            =   2700
-         MaxLength       =   4
+         MaxLength       =   6
          TabIndex        =   2
-         Tag             =   "Num vehiculo|N|N|||shilla|numeruve|0000|S|"
+         Tag             =   "Num vehiculo|N|N|||shilla|numeruve|#####0|S|"
          Text            =   "Text"
          Top             =   510
          Width           =   1185

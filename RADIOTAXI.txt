@@ -1,0 +1,148 @@
+# insercion de proveedor 1
+insert into aritaxi2.sprove 
+(`codprove`,`nomprove`,`nomcomer`,`domprove`,`codpobla`,`pobprove`,`proprove`,`tipprove`,`nifprove`,`telprov1`,`faxprov1`,`perprov1`,`maiprov1`,`telprov2`,`faxprov2`,`perprov2`,`maiprov2`,`wwwprove`,`fecprove`,`provario`,`codmacta`,`codforpa`,`tipodtos`,`dtoppago`,`dtognral`,`fechamov`,`codbanpr`,`iban`,`codbanco`,`codsucur`,`digcontr`,`cuentaba`,`observac`,`codsitua`,`albaranxfactura`) values ( '1','proveedor 1','proveedor',NULL,'','','','0','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0000-00-00','0','','1','0',NULL,NULL,'0000-00-00','1',NULL,NULL,NULL,NULL,NULL,NULL,'0','0')
+;
+
+# TRASPASO DE SOCIOS
+
+insert into aritaxi2.sclien
+(codclien,numeruve,nomclien,domclien,codpobla,pobclien,proclien,nifclien,fechabaj,fechaalt,iban,codbanco,codsucur,cuentaba,digcontr,telclie1,movclien,
+/*matricul, licencia,*/maiclie1,codsitua,codtarif/*,numpoliza*/, codcoche)
+
+select  CCODCLIC6 + 10000, CCODCLIC6 + 10000/*mid(CNOMCOMC100,3)*/,CNOMCLIC100, CDIRCLIC100,CPTLCLIC10,CPOBCLIC100, provincia, 
+CDNICIFC15,null,date(now()),'ES00',right(concat('0000',CENTIDADC4),4) banco, right(concat('0000',CAGENCIAC4),4) sucur ,
+right(concat('0000000000',CCUENTAC10),10) cta ,'',CTFO1CLIC17,CTFO2CLIC17, EMAILC255,0,0, 1
+ from radiotaxi_sp.clientes ccc , aritaxi3.scpostal ppp
+where ccodclic6 < 3000 
+and ccc.CCODPROVC4 = mid(ppp.cpostal,1,2) and length(ppp.cpostal) = 2
+;
+
+# traspaso de clientes
+
+insert into aritaxi2.scliente (codclien,nomclien,nomcomer,domclien,codpobla,pobclien,proclien,nifclien,fechamov,fechaalt,codactiv,codagent,codforpa,
+iban,codbanco,codsucur,digcontr,cuentaba,codmacta,telclie1,faxclie1,maiclie1,telclie2,tipoiva,observac,codtarif)
+
+select CCODCLIC6, CNOMCLIC100,CNOMCLIC100, CDIRCLIC100,CPTLCLIC10,CPOBCLIC100, provincia, 
+CDNICIFC15,null,date(now()),1,1,1,
+'ES00',right(concat('0000',CENTIDADC4),4) banco, right(concat('0000',CAGENCIAC4),4) sucur ,'',
+right(concat('0000000000',CCUENTAC10),10) cta ,CSUBCTAC12,CTFO1CLIC17,CFAXCLIC17, EMAILC255,CTFO2CLIC17,0,CCONTACTOC100, 1
+ from radiotaxi_sp.clientes ccc , aritaxi3.scpostal ppp
+where ccodclic6 > 10000 
+and ccc.CCODPROVC4 = mid(ppp.cpostal,1,2) and length(ppp.cpostal) = 2
+;
+
+
+# Necesito 1 trabajador
+INSERT INTO STRABA SELECT * FROM ARITAXI3.STRABA WHERE CODTRABA = 1
+;
+
+# traspaso de facturas de cuotas de socio
+
+
+insert into scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,nifclien,
+codagent,codforpa,iban,codbanco,codsucur,digcontr,cuentaba,
+brutofac,baseimp1,codigiv1,porciva1,imporiv1,totalfac, coddirec)
+
+select 'FCN',NNUMFACN90,DFECFACD,CCODCLIC6+ 10000,CNOMCLIC100,CDIRCLIC100,CPTLCLIC10,CPOBCLIC100,provincia,CDNICIFC15,1,1,
+mid(CIBANC34,1,4) iban, mid(CIBANC34,5,4) banco, mid(CIBANC34,9,4) sucur, mid(CIBANC34,13,2) CC, mid(CIBANC34,15,10) cta, 
+REPLACE(NTOTBRUTON176,',','.'),REPLACE(NBASECOMN176,',','.'),1,NIVAPORTESN41,REPLACE(NTOTALIVAN176,',','.'),REPLACE(NTOTFACDN176,',','.'), null
+from radiotaxi_sp.facclit ccc , aritaxi3.scpostal ppp
+where CSERIEC1 = 'A' 
+and ccc.CCODPROVC4 = mid(ppp.cpostal,1,2) and length(ppp.cpostal) = 2
+
+;
+
+insert into scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,codenvio,codtraba,codtrab2)
+select 'FCN',NNUMFACN90,DFECFACD,'ALV',0,DFECFACD,1,1,1
+from radiotaxi_sp.facclit ccc 
+where CSERIEC1 = 'A' 
+;
+
+
+
+# cuota de servicios
+
+insert into slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,
+numlinea,codalmac,codartic,nomartic,cantidad,numbultos,precioar,importel, precioiv,preciomp,preciost,preciouc )
+select 'FCN',ccc.NNUMFACN90,ccc.DFECFACD,'ALV',0,1,1,301,cdetallec100,1,1,replace(npreunitn176,',','.'),replace(npreunitn176,',','.'),replace(npreunitn176,',','.'),
+replace(npreunitn176,',','.'),replace(npreunitn176,',','.'),replace(npreunitn176,',','.')
+from radiotaxi_sp.facclil lll, radiotaxi_sp.facclit ccc
+where lll.cseriec1 = 'A' 
+and lll.CSERIEC1 = ccc.cseriec1 and lll.NNUMFACN90 = ccc.NNUMFACN90 
+and crefc18 = 1
+;
+# por nro de servicios
+
+insert into slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,
+numlinea,codalmac,codartic,nomartic,cantidad,numbultos,precioar,importel, precioiv,preciomp,preciost,preciouc )
+select 'FCN',ccc.NNUMFACN90,ccc.DFECFACD,'ALV',0,2,1,306,cdetallec100,replace(ncanentn176,',','.'),1,replace(npreunitn176,',','.'),
+replace(ntotlinean176,',','.'),replace(ntotlinean176,',','.'),replace(ntotlinean176,',','.'),replace(ntotlinean176,',','.'),replace(ntotlinean176,',','.')
+from radiotaxi_sp.facclil lll, radiotaxi_sp.facclit ccc
+where lll.cseriec1 = 'A' 
+and lll.CSERIEC1 = ccc.cseriec1 and lll.NNUMFACN90 = ccc.NNUMFACN90 
+and crefc18 = 9
+
+;
+
+
+
+# facturas de venta a socios
+# NO PUEDO SEPARARLAS
+
+# NO EJECUTAR
+
+insert into scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,nifclien,codforpa,
+brutofac,baseimp1,codigiv1,imporiv1,totalfac)
+
+select 'FAV',NNUMFACN90,DFECFACD,CCODCLIC6,CNOMCLIC100,CDIRCLIC100,CPTLCLIC10,CPOBCLIC100,provincia,CDNICIFC15,1
+NTOTBRUTON176,NBASECOMN176,2,NTOTALIVAN176,NTOTFACN176
+from radiotaxi_sp.facclit ccc , aritaxi3.scpostal ppp
+where ccc.CCODPROVC4 = ppp.cpostal and mid(ppp.cpostal,1,2) and length(ppp.cpostal) = 2
+and cseriec1 = 'A'
+
+
+# traspaso de facturas de cliente
+# cabecera
+
+insert into aritaxi2.scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,nifclien,codforpa,
+brutofac,baseimp1,codigiv1,porciva1,imporiv1,totalfac,codagent)
+select 'FAC',NNUMFACN90,DFECFACD,CCODCLIC6,CNOMCLIC100,CDIRCLIC100,CPTLCLIC10,CPOBCLIC100,provincia,CDNICIFC15,1,
+NTOTBRUTON176,NBASECOMN176,2,21,NTOTALIVAN176,NTOTFACN176, 1
+from radiotaxi_sp.facclit ccc , aritaxi3.scpostal ppp
+where ccc.CCODPROVC4 = ppp.cpostal and mid(ppp.cpostal,1,2) and length(ppp.cpostal) = 2
+and cseriec1 = 'B' 
+;
+
+set foreign_key_checks = 0 
+
+# lineas de albaranes
+insert into aritaxi2.scafaccli1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,codtraba,codtrab1,codtrab2)
+select 'FAC',NNUMFACN90,DFECFACD,'ALV',1,DFECFACD,1,1,1
+from radiotaxi_sp.facclit ccc 
+where  cseriec1 = 'B' 
+;
+
+#lineas de servicios
+insert into aritaxi2.slifaccli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,
+cantidad,numbultos,precioar,importel,precioiv,preciomp,preciost,preciouc)
+select 'FAC',ccc.NNUMFACN90,ccc.DFECFACD,'ALV',1,1,1,'SERVICIOS','SERVICIOS DE TAXI',lll.CDETALLEC100,
+if (mid(lll.CDETALLEC100,1,instr(lll.CDETALLEC100,' ') - 1) > 0,mid(lll.CDETALLEC100,1,instr(lll.CDETALLEC100,' ') - 1),1),
+if (mid(lll.CDETALLEC100,1,instr(lll.CDETALLEC100,' ') - 1) > 0,mid(lll.CDETALLEC100,1,instr(lll.CDETALLEC100,' ') - 1),1),
+NPREUNITN176,NTOTLINEAN176,NTOTLINEAN176,NTOTLINEAN176,NTOTLINEAN176,NTOTLINEAN176
+from radiotaxi_sp.facclit  ccc, radiotaxi_sp.facclil lll
+where  ccc.cseriec1 = 'B' and crefc18 in (1,2) and lll.cseriec1 = 'B' and ccc.NNUMFACN90 = lll.NNUMFACN90 
+and crefc18 in (1,2)
+;
+
+#lineas de gastos DE ADMINISTRACION 
+
+insert into aritaxi2.slifaccli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,
+cantidad,numbultos,precioar,importel,precioiv,preciomp,preciost,preciouc)
+select 'FAC',ccc.NNUMFACN90,ccc.DFECFACD,'ALV',1,2,1,'GASTOS ADM','GASTOS DE ADMINISTRACION',
+1,1,NPREUNITN176,NTOTLINEAN176,NTOTLINEAN176,NTOTLINEAN176,NTOTLINEAN176,NTOTLINEAN176
+from radiotaxi_sp.facclit  ccc, radiotaxi_sp.facclil lll
+where  ccc.cseriec1 = 'B' and crefc18 in (7) and lll.cseriec1 = 'B' and ccc.NNUMFACN90 = lll.NNUMFACN90 
+;
+
+# FALTA LAS LINEAS 4 (AUTOPISTA) 43 (TARJETA DE ABONADOS)
+

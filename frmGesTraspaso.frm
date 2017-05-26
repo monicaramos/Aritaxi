@@ -527,7 +527,6 @@ Dim cadTabla As String
             Screen.MousePointer = vbHourglass
         '    b = ProcesarFichero
         
-        
             '[Monica] Para el caso de radiotaxi se trabaja con un fichero excel
             If Check1(0).visible And Check1(0).Value = 1 Then
                 If Dir(App.Path & "\trasaritaxi.z") <> "" Then Kill App.Path & "\trasaritaxi.z"
@@ -540,6 +539,7 @@ Dim cadTabla As String
                     
                     Espera 1
                 Wend
+                
                 b = True
             Else
                 b = ProcesarFichero_new

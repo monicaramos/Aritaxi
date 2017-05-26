@@ -381,7 +381,6 @@ Begin VB.Form frmFCliRectif
       _ExtentY        =   7938
       _Version        =   393216
       Style           =   1
-      Tab             =   2
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -395,61 +394,107 @@ Begin VB.Form frmFCliRectif
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFCliRectif.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "DataGrid1"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "txtAux(0)"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "txtAux(1)"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "txtAux(3)"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "txtAux(4)"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "txtAux(6)"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "txtAux(7)"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "txtAux(8)"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "txtAux(2)"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "cmdAux(0)"
+      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "cmdAux(1)"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).Control(11)=   "FrameCliente"
+      Tab(0).Control(11).Enabled=   0   'False
       Tab(0).Control(12)=   "txtAux(5)"
+      Tab(0).Control(12).Enabled=   0   'False
       Tab(0).Control(13)=   "txtAux(9)"
+      Tab(0).Control(13).Enabled=   0   'False
       Tab(0).Control(14)=   "cmdAux(9)"
+      Tab(0).Control(14).Enabled=   0   'False
       Tab(0).Control(15)=   "txtAux(10)"
+      Tab(0).Control(15).Enabled=   0   'False
       Tab(0).Control(16)=   "txtAux(11)"
+      Tab(0).Control(16).Enabled=   0   'False
       Tab(0).ControlCount=   17
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFCliRectif.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(3)"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(5)"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Label1(10)"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Label1(11)"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Label1(12)"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "imgBuscar(7)"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "Label1(9)"
+      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "imgBuscar(8)"
+      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "Label1(23)"
+      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "Label1(45)"
+      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "Frame3"
+      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "Text1(28)"
+      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).Control(12)=   "Text1(22)"
+      Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "Text1(21)"
+      Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "Text1(20)"
+      Tab(1).Control(14).Enabled=   0   'False
       Tab(1).Control(15)=   "Text1(19)"
+      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).Control(16)=   "Text1(18)"
+      Tab(1).Control(16).Enabled=   0   'False
       Tab(1).Control(17)=   "Text1(38)"
+      Tab(1).Control(17).Enabled=   0   'False
       Tab(1).Control(18)=   "Text1(23)"
+      Tab(1).Control(18).Enabled=   0   'False
       Tab(1).Control(19)=   "Text1(24)"
+      Tab(1).Control(19).Enabled=   0   'False
       Tab(1).Control(20)=   "Text1(26)"
+      Tab(1).Control(20).Enabled=   0   'False
       Tab(1).Control(21)=   "Text1(25)"
+      Tab(1).Control(21).Enabled=   0   'False
       Tab(1).Control(22)=   "Text1(2)"
+      Tab(1).Control(22).Enabled=   0   'False
       Tab(1).Control(23)=   "Text2(27)"
+      Tab(1).Control(23).Enabled=   0   'False
       Tab(1).Control(24)=   "Text1(27)"
+      Tab(1).Control(24).Enabled=   0   'False
       Tab(1).Control(25)=   "Text2(28)"
+      Tab(1).Control(25).Enabled=   0   'False
       Tab(1).Control(26)=   "FrameHco"
+      Tab(1).Control(26).Enabled=   0   'False
       Tab(1).Control(27)=   "Text1(39)"
+      Tab(1).Control(27).Enabled=   0   'False
       Tab(1).Control(28)=   "FrameFacRec"
+      Tab(1).Control(28).Enabled=   0   'False
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmFCliRectif.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameFactura"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
@@ -590,7 +635,7 @@ Begin VB.Form frmFCliRectif
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   11
-         Left            =   -62400
+         Left            =   12600
          MaxLength       =   15
          TabIndex        =   158
          Text            =   "numlote"
@@ -614,7 +659,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   -67560
+         Left            =   7440
          MaxLength       =   5
          TabIndex        =   43
          Tag             =   "Bultos"
@@ -628,7 +673,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "+"
          Height          =   315
          Index           =   9
-         Left            =   -62640
+         Left            =   12360
          TabIndex        =   154
          ToolTipText     =   "Buscar proveedor"
          Top             =   3960
@@ -651,7 +696,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   -63360
+         Left            =   11640
          MaxLength       =   6
          TabIndex        =   49
          Tag             =   "proveedor"
@@ -861,7 +906,7 @@ Begin VB.Form frmFCliRectif
       End
       Begin VB.Frame FrameFactura 
          Height          =   3300
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   93
          Top             =   600
          Width           =   10575
@@ -1728,7 +1773,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   -66120
+         Left            =   8880
          Locked          =   -1  'True
          MaxLength       =   1
          TabIndex        =   45
@@ -1740,7 +1785,7 @@ Begin VB.Form frmFCliRectif
       End
       Begin VB.Frame FrameCliente 
          Height          =   1950
-         Left            =   -74800
+         Left            =   200
          TabIndex        =   56
          Top             =   315
          Width           =   11820
@@ -2474,7 +2519,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "+"
          Height          =   315
          Index           =   1
-         Left            =   -72360
+         Left            =   2640
          TabIndex        =   55
          ToolTipText     =   "Buscar artículo"
          Top             =   3960
@@ -2486,7 +2531,7 @@ Begin VB.Form frmFCliRectif
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   -74040
+         Left            =   960
          TabIndex        =   54
          ToolTipText     =   "Buscar almacen"
          Top             =   3960
@@ -2508,7 +2553,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72120
+         Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   41
@@ -2534,7 +2579,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   -64440
+         Left            =   10560
          MaxLength       =   12
          TabIndex        =   48
          Tag             =   "Importe"
@@ -2559,7 +2604,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   -65040
+         Left            =   9960
          MaxLength       =   30
          TabIndex        =   47
          Tag             =   "Descuento 2"
@@ -2584,7 +2629,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   -65640
+         Left            =   9360
          MaxLength       =   5
          TabIndex        =   46
          Tag             =   "Descuento 1"
@@ -2609,7 +2654,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   -66960
+         Left            =   8040
          MaxLength       =   12
          TabIndex        =   44
          Tag             =   "Precio"
@@ -2634,7 +2679,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   -68880
+         Left            =   6120
          MaxLength       =   16
          TabIndex        =   42
          Tag             =   "Cantidad"
@@ -2658,7 +2703,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73800
+         Left            =   1200
          MaxLength       =   18
          TabIndex        =   40
          Tag             =   "Código Artículo"
@@ -2682,7 +2727,7 @@ Begin VB.Form frmFCliRectif
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   15
          TabIndex        =   39
          Tag             =   "Código Almacen"
@@ -2694,7 +2739,7 @@ Begin VB.Form frmFCliRectif
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFCliRectif.frx":0060
          Height          =   2040
-         Left            =   -74805
+         Left            =   195
          TabIndex        =   53
          Top             =   2325
          Width           =   11820

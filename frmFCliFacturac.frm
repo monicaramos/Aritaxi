@@ -11,22 +11,49 @@ Begin VB.Form frmFCliFacturac
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox ChkAplicarFiltro 
       Caption         =   "Aplicar Filtro Banco Propio"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   4080
+      Left            =   3210
       TabIndex        =   26
       Top             =   4560
-      Width           =   2175
+      Width           =   2955
    End
    Begin VB.CheckBox chk_FactHco 
       Caption         =   "Facturación sobre Hco de llamadas"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   150
       TabIndex        =   24
       Top             =   4980
-      Width           =   3435
+      Width           =   4005
    End
    Begin VB.CheckBox chk_agrupados 
       Caption         =   "Clientes Agrupados"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   150
       TabIndex        =   23
@@ -35,89 +62,170 @@ Begin VB.Form frmFCliFacturac
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   86
       Left            =   4125
       MaxLength       =   10
       TabIndex        =   3
       Top             =   2460
-      Width           =   1215
+      Width           =   1275
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   85
-      Left            =   1800
+      Left            =   1590
       MaxLength       =   10
       TabIndex        =   2
       Top             =   2445
-      Width           =   1065
+      Width           =   1275
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
-      Left            =   1800
+      Left            =   1590
       MaxLength       =   6
       TabIndex        =   1
       Tag             =   "Cliente|N|N|||shilla|codclien|000000|S|"
-      Top             =   1755
-      Width           =   855
+      Top             =   1725
+      Width           =   1065
    End
    Begin VB.TextBox txtnombre 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   2700
       Locked          =   -1  'True
       TabIndex        =   17
-      Top             =   1755
-      Width           =   3735
+      Top             =   1725
+      Width           =   3765
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
-      Left            =   1800
+      Left            =   1590
       MaxLength       =   6
       TabIndex        =   0
       Tag             =   "Cliente|N|N|||shilla|codclien|000000|S|"
-      Top             =   1410
-      Width           =   855
+      Top             =   1320
+      Width           =   1065
    End
    Begin VB.TextBox txtnombre 
       BackColor       =   &H80000018&
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   2700
       Locked          =   -1  'True
       TabIndex        =   16
-      Top             =   1410
-      Width           =   3735
+      Top             =   1320
+      Width           =   3765
    End
    Begin VB.TextBox txtnombre 
       BackColor       =   &H80000018&
       Enabled         =   0   'False
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   5
-      Left            =   2580
+      Left            =   2370
       TabIndex        =   15
-      Top             =   4050
-      Width           =   3615
+      Top             =   4170
+      Width           =   4125
    End
    Begin VB.TextBox txtcodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   5
-      Left            =   1800
+      Left            =   1590
       MaxLength       =   4
       TabIndex        =   6
       Tag             =   "Código de Banco Propio|N|N|0|9999|sbanpr|codbanpr|0000|S|"
-      Top             =   4050
+      Top             =   4170
       Width           =   735
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   5310
       TabIndex        =   8
@@ -126,6 +234,15 @@ Begin VB.Form frmFCliFacturac
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   4020
       TabIndex        =   7
@@ -133,23 +250,41 @@ Begin VB.Form frmFCliFacturac
       Width           =   1035
    End
    Begin VB.TextBox txtcodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   4
-      Left            =   1800
+      Left            =   1590
       MaxLength       =   60
       TabIndex        =   5
       Top             =   3510
-      Width           =   4425
+      Width           =   4605
    End
    Begin VB.TextBox txtcodigo 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   2
-      Left            =   1800
+      Left            =   1590
       MaxLength       =   10
       TabIndex        =   4
       Text            =   "99/99/9999"
-      Top             =   3030
-      Width           =   1035
+      Top             =   3090
+      Width           =   1275
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -188,90 +323,90 @@ Begin VB.Form frmFCliFacturac
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   8
-      Left            =   3360
+      Left            =   3240
       TabIndex        =   22
       Top             =   2505
-      Width           =   420
+      Width           =   570
    End
    Begin VB.Label Label14 
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   7
-      Left            =   1020
+      Left            =   690
       TabIndex        =   21
       Top             =   2475
-      Width           =   450
+      Width           =   600
    End
    Begin VB.Label Label17 
       AutoSize        =   -1  'True
       Caption         =   "Fecha Servicios"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   195
+      ForeColor       =   &H00800000&
+      Height          =   240
       Index           =   7
       Left            =   180
       TabIndex        =   20
-      Top             =   2250
-      Width           =   1305
+      Top             =   2190
+      Width           =   2100
    End
    Begin VB.Image imgFecha 
       Height          =   240
       Index           =   23
-      Left            =   1530
-      Top             =   2445
+      Left            =   1290
+      Top             =   2475
       Width           =   240
    End
    Begin VB.Label Label9 
       AutoSize        =   -1  'True
       Caption         =   "Hasta"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   4
-      Left            =   1020
+      Left            =   690
       TabIndex        =   19
       Top             =   1755
-      Width           =   420
+      Width           =   570
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   5
-      Left            =   1500
+      Left            =   1320
       Top             =   1755
       Width           =   240
    End
@@ -279,59 +414,59 @@ Begin VB.Form frmFCliFacturac
       AutoSize        =   -1  'True
       Caption         =   "Desde"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   195
+      Height          =   240
       Index           =   3
-      Left            =   1020
+      Left            =   690
       TabIndex        =   18
-      Top             =   1410
-      Width           =   450
+      Top             =   1350
+      Width           =   600
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   4
-      Left            =   1500
-      Top             =   1410
+      Left            =   1320
+      Top             =   1350
       Width           =   240
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   3
-      Left            =   1530
+      Left            =   1320
       Tag             =   "-1"
       ToolTipText     =   "Buscar cuenta"
-      Top             =   4080
+      Top             =   4200
       Width           =   240
    End
    Begin VB.Label Label7 
       Caption         =   "Cuenta Cobro"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   375
-      Left            =   150
+      Left            =   120
       TabIndex        =   14
-      Top             =   4050
-      Width           =   1335
+      Top             =   3900
+      Width           =   1785
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   0
-      Left            =   1530
+      Left            =   1320
       Tag             =   "-1"
       ToolTipText     =   "Ver observaciones"
       Top             =   3540
@@ -340,64 +475,64 @@ Begin VB.Form frmFCliFacturac
    Begin VB.Image imgFecha 
       Height          =   240
       Index           =   2
-      Left            =   1530
+      Left            =   1260
       ToolTipText     =   "Buscar fecha"
-      Top             =   3060
+      Top             =   3120
       Width           =   240
    End
    Begin VB.Label Label6 
       Caption         =   "Concepto"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   255
       Left            =   180
       TabIndex        =   12
       Top             =   3540
-      Width           =   1095
+      Width           =   1275
    End
    Begin VB.Label Label3 
       Caption         =   "Fecha Factura"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   255
       Left            =   180
       TabIndex        =   11
-      Top             =   3030
-      Width           =   1185
+      Top             =   2850
+      Width           =   1635
    End
    Begin VB.Label Label2 
       Caption         =   "Cliente"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000080&
+      ForeColor       =   &H00800000&
       Height          =   255
       Left            =   210
       TabIndex        =   10
-      Top             =   1080
-      Width           =   615
+      Top             =   1020
+      Width           =   1065
    End
    Begin VB.Label Label1 
       Caption         =   "Facturación Servicios de Clientes"
@@ -445,7 +580,7 @@ Dim PrimeraVez As Boolean
 Dim NumFactu As Long
 Dim FecFactu As Date
 Dim Modo As Byte
-Dim cad As String
+Dim Cad As String
 Dim Codigo As String
 Dim CadServicios As String
 Dim Salir As Boolean
@@ -1296,7 +1431,7 @@ Dim i As Integer
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    cad = CadenaDevuelta
+    Cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
@@ -1458,7 +1593,7 @@ End Sub
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1470,8 +1605,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then

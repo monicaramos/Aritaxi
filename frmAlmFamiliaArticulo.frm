@@ -651,11 +651,11 @@ Begin VB.Form frmAlmFamiliaArticulo
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8610
+      Left            =   8520
       TabIndex        =   11
-      Top             =   5460
+      Top             =   5340
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       BeginProperty Font 
@@ -736,10 +736,10 @@ Begin VB.Form frmAlmFamiliaArticulo
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8610
+      Left            =   8520
       TabIndex        =   12
-      Top             =   5460
-      Width           =   1035
+      Top             =   5340
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -753,10 +753,10 @@ Begin VB.Form frmAlmFamiliaArticulo
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7320
+      Left            =   7230
       TabIndex        =   10
-      Top             =   5460
-      Width           =   1035
+      Top             =   5340
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   375
