@@ -117,7 +117,7 @@ Begin VB.Form frmLiqListReten
          Left            =   5610
          TabIndex        =   33
          Top             =   4860
-         Width           =   1035
+         Width           =   1135
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "Aceptar"
@@ -134,7 +134,7 @@ Begin VB.Form frmLiqListReten
          Left            =   4380
          TabIndex        =   32
          Top             =   4860
-         Width           =   1035
+         Width           =   1135
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
@@ -1348,7 +1348,7 @@ Dim Mens As String
     SQL2 = "insert into sreten (codsocio, numeruve, fecfactu, numfactu, impreten, tiporeten, desdefec, hastafec) values "
     b = True
     While Not RS.EOF And b
-        Sql2Values = "(" & DBSet(RS!Codigo1, "N") & "," & DBSet(RS!importe1, "N") & "," & DBSet(txtcodigo(4).Text, "F") & ","
+        Sql2Values = "(" & DBSet(RS!Codigo1, "N") & "," & DBSet(RS!Importe1, "N") & "," & DBSet(txtcodigo(4).Text, "F") & ","
         Sql2Values = Sql2Values & "0," & DBSet(RS!importe2 * (-1), "N") & ",1," & DBSet(txtcodigo(102).Text, "F") & ","
         Sql2Values = Sql2Values & DBSet(txtcodigo(103).Text, "F") & ")"
         
@@ -1359,7 +1359,7 @@ Dim Mens As String
     
         fac.TotalFac = DBLet(RS!importe2, "N")
         fac.FecFactu = txtcodigo(4).Text
-        fac.NumFactu = "R-" & Format(RS!Codigo1, "00000") & Format(RS!importe1, "00000")
+        fac.NumFactu = "R-" & Format(RS!Codigo1, "00000") & Format(RS!Importe1, "00000")
         
         fac.Proveedor = DBLet(RS!Codigo1, "N")
         fac.NombreProv = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", RS!Codigo1, "T")
@@ -1681,7 +1681,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1693,8 +1693,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -1716,17 +1716,17 @@ End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub imgBuscarOfer_Click(Index As Integer)
@@ -1789,17 +1789,17 @@ Private Sub imgFecha_Click(Index As Integer)
    PonerFoco txtcodigo(indCodigo)
 End Sub
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtcodigo(indD).Text
-        If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
+        Cad = Cad & "desde " & txtcodigo(indD).Text
+        If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtcodigo(indH).Text
-        If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
+        If txtNombre(indH).Text <> "" Then Cad = Cad & " - " & txtNombre(indH).Text
     End If
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 
@@ -1850,11 +1850,11 @@ Dim encontrado As String
             
         Case 0, 1 'V Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
             
         Case 82, 83 'Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
             
             
         Case 2 ' importe base
@@ -1873,7 +1873,7 @@ Dim encontrado As String
                     MsgBox "El banco introducido no existe", vbExclamation
                     PonerFoco txtcodigo(Index)
                 Else
-                    txtnombre(Index).Text = encontrado
+                    txtNombre(Index).Text = encontrado
                 End If
             End If
         
@@ -1890,7 +1890,7 @@ Dim encontrado As String
                     MsgBox "La forma de pago introducida no existe.", vbExclamation
                     PonerFoco txtcodigo(Index)
                 Else
-                    txtnombre(Index).Text = encontrado
+                    txtNombre(Index).Text = encontrado
                 End If
             End If
         
@@ -1902,7 +1902,7 @@ End Sub
 Private Function GenerarFacturaRetenciones() As Boolean
 Dim vC As CTiposMov
 Dim fac As CFactura
-Dim cad As String
+Dim Cad As String
 Dim Sql As String
 Dim totfactu As Currency
 Dim BaseImp As Currency
@@ -1986,7 +1986,7 @@ Dim vSQL As String
     b = True
     
     'inicializamos cadenas
-    cad = ""
+    Cad = ""
     While Not RS.EOF
         Cantidad = Cantidad + 1
         PB1.Value = Cantidad * 100 / total
@@ -2009,7 +2009,7 @@ Dim vSQL As String
         
         ' insertamos en la tabla de retenciones
         SQL2 = "insert into sreten (codsocio, numeruve, fecfactu, numfactu, impreten, tiporeten, desdefec, hastafec) values "
-        Sql2Values = "(" & DBSet(RS!Codigo1, "N") & "," & DBSet(RS!importe1, "N") & "," & DBSet(txtcodigo(4).Text, "F") & ","
+        Sql2Values = "(" & DBSet(RS!Codigo1, "N") & "," & DBSet(RS!Importe1, "N") & "," & DBSet(txtcodigo(4).Text, "F") & ","
         Sql2Values = Sql2Values & DBSet(vC.Contador, "N") & "," & DBSet(RS!importe2 * (-1), "N") & ",1," & DBSet(txtcodigo(102).Text, "F") & ","
         Sql2Values = Sql2Values & DBSet(txtcodigo(103).Text, "F") & ")"
         
@@ -2058,16 +2058,16 @@ Dim vSQL As String
         fac.CuentaBan = RS!cuentaba
     
         'scafac
-        cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
-        cad = cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
-        cad = cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
-        cad = cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
-        cad = cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
-        cad = cad & DBSet(RS!codbanco, "N", "S") & "," & DBSet(RS!codsucur, "N", "S") & "," & DBSet(RS!digcontr, "T", "S") & "," & DBSet(RS!cuentaba, "T", "S") & "," & DBSet(RS!Iban, "T") & ")"
+        Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
+        Cad = Cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
+        Cad = Cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
+        Cad = Cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
+        Cad = Cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
+        Cad = Cad & DBSet(RS!codbanco, "N", "S") & "," & DBSet(RS!codsucur, "N", "S") & "," & DBSet(RS!digcontr, "T", "S") & "," & DBSet(RS!cuentaba, "T", "S") & "," & DBSet(RS!Iban, "T") & ")"
         Sql = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
         Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
         Sql = Sql & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
-        Sql = Sql & cad
+        Sql = Sql & Cad
         If Not ejecutar(Sql, False) Then
             vC.DevolverContador vC.TipoMovimiento, vC.Contador
             Exit Function
@@ -2078,25 +2078,25 @@ Dim vSQL As String
             Else
                 cadFormula = cadFormula & " or {scafac.numfactu}=" & NumFactu
             End If
-            cad = ""
-            cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
-            cad = cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
-            cad = cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
+            Cad = ""
+            Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
+            Cad = Cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+            Cad = Cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
     
             Sql = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
             Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
-            Sql = Sql & cad & ")"
+            Sql = Sql & Cad & ")"
             conn.Execute Sql
             'slifac
-            cad = ""
+            Cad = ""
 
-            cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
-            cad = cad & DBSet(vParamAplic.ArtRetenciones, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
-            cad = cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
-            cad = cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & ValorNulo & ",1)"
+            Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
+            Cad = Cad & DBSet(vParamAplic.ArtRetenciones, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
+            Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
+            Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & ValorNulo & ",1)"
             Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
             Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
-            Sql = Sql & cad
+            Sql = Sql & Cad
             conn.Execute Sql
         
         End If

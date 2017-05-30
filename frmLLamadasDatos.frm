@@ -314,10 +314,10 @@ Begin VB.Form frmLLamadasDatos2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7440
+      Left            =   7320
       TabIndex        =   12
       Top             =   6120
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -331,10 +331,10 @@ Begin VB.Form frmLLamadasDatos2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6240
+      Left            =   6120
       TabIndex        =   11
       Top             =   6120
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc adodc1 
       Height          =   495

@@ -6,7 +6,7 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmAdmTrabajadores 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Trabajadores"
-   ClientHeight    =   7350
+   ClientHeight    =   7140
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   13035
@@ -14,7 +14,7 @@ Begin VB.Form frmAdmTrabajadores
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7350
+   ScaleHeight     =   7140
    ScaleWidth      =   13035
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -132,7 +132,7 @@ Begin VB.Form frmAdmTrabajadores
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   8430
+      Left            =   9960
       TabIndex        =   85
       Top             =   240
       Width           =   1605
@@ -160,7 +160,7 @@ Begin VB.Form frmAdmTrabajadores
       Left            =   210
       TabIndex        =   78
       Top             =   855
-      Width           =   11175
+      Width           =   12615
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -194,13 +194,12 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   2985
+         Left            =   3075
          MaxLength       =   30
          TabIndex        =   1
          Tag             =   "Nombre Trabajador|T|N|||straba|nomtraba||N|"
-         Text            =   "Text1"
          Top             =   225
-         Width           =   4485
+         Width           =   5805
       End
       Begin VB.Label Label1 
          Caption         =   "Código"
@@ -405,6 +404,7 @@ Begin VB.Form frmAdmTrabajadores
       _Version        =   393216
       Style           =   1
       Tabs            =   6
+      Tab             =   5
       TabsPerRow      =   6
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -418,67 +418,37 @@ Begin VB.Form frmAdmTrabajadores
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmAdmTrabajadores.frx":000C
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "Label1(13)"
-      Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "Label1(14)"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Label1(34)"
-      Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "Label1(15)"
-      Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "Label1(36)"
-      Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "Label1(37)"
-      Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "imgBuscar(0)"
-      Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "Label1(12)"
-      Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).Control(8)=   "Label1(24)"
-      Tab(0).Control(8).Enabled=   0   'False
-      Tab(0).Control(9)=   "Label1(25)"
-      Tab(0).Control(9).Enabled=   0   'False
-      Tab(0).Control(10)=   "Label1(26)"
-      Tab(0).Control(10).Enabled=   0   'False
-      Tab(0).Control(11)=   "imgBuscar(1)"
-      Tab(0).Control(11).Enabled=   0   'False
-      Tab(0).Control(12)=   "ImgMail(0)"
-      Tab(0).Control(12).Enabled=   0   'False
-      Tab(0).Control(13)=   "imgBuscar(2)"
-      Tab(0).Control(13).Enabled=   0   'False
-      Tab(0).Control(14)=   "Label1(2)"
-      Tab(0).Control(14).Enabled=   0   'False
-      Tab(0).Control(15)=   "Text1(3)"
-      Tab(0).Control(15).Enabled=   0   'False
-      Tab(0).Control(16)=   "Text1(4)"
-      Tab(0).Control(16).Enabled=   0   'False
-      Tab(0).Control(17)=   "Text1(5)"
-      Tab(0).Control(17).Enabled=   0   'False
-      Tab(0).Control(18)=   "Text1(6)"
-      Tab(0).Control(18).Enabled=   0   'False
-      Tab(0).Control(19)=   "Text1(9)"
-      Tab(0).Control(19).Enabled=   0   'False
-      Tab(0).Control(20)=   "frameBancos"
-      Tab(0).Control(20).Enabled=   0   'False
-      Tab(0).Control(21)=   "frameDptoPersonal"
-      Tab(0).Control(21).Enabled=   0   'False
-      Tab(0).Control(22)=   "Text1(8)"
-      Tab(0).Control(22).Enabled=   0   'False
-      Tab(0).Control(23)=   "Text1(23)"
-      Tab(0).Control(23).Enabled=   0   'False
-      Tab(0).Control(24)=   "Text1(7)"
-      Tab(0).Control(24).Enabled=   0   'False
-      Tab(0).Control(25)=   "Text1(2)"
-      Tab(0).Control(25).Enabled=   0   'False
-      Tab(0).Control(26)=   "Text1(24)"
-      Tab(0).Control(26).Enabled=   0   'False
-      Tab(0).Control(27)=   "Text2(24)"
-      Tab(0).Control(27).Enabled=   0   'False
-      Tab(0).Control(28)=   "Text2(10)"
-      Tab(0).Control(28).Enabled=   0   'False
-      Tab(0).Control(29)=   "Text1(10)"
-      Tab(0).Control(29).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "Text1(10)"
+      Tab(0).Control(1)=   "Text2(10)"
+      Tab(0).Control(2)=   "Text2(24)"
+      Tab(0).Control(3)=   "Text1(24)"
+      Tab(0).Control(4)=   "Text1(2)"
+      Tab(0).Control(5)=   "Text1(7)"
+      Tab(0).Control(6)=   "Text1(23)"
+      Tab(0).Control(7)=   "Text1(8)"
+      Tab(0).Control(8)=   "frameDptoPersonal"
+      Tab(0).Control(9)=   "frameBancos"
+      Tab(0).Control(10)=   "Text1(9)"
+      Tab(0).Control(11)=   "Text1(6)"
+      Tab(0).Control(12)=   "Text1(5)"
+      Tab(0).Control(13)=   "Text1(4)"
+      Tab(0).Control(14)=   "Text1(3)"
+      Tab(0).Control(15)=   "Label1(2)"
+      Tab(0).Control(16)=   "imgBuscar(2)"
+      Tab(0).Control(17)=   "ImgMail(0)"
+      Tab(0).Control(18)=   "imgBuscar(1)"
+      Tab(0).Control(19)=   "Label1(26)"
+      Tab(0).Control(20)=   "Label1(25)"
+      Tab(0).Control(21)=   "Label1(24)"
+      Tab(0).Control(22)=   "Label1(12)"
+      Tab(0).Control(23)=   "imgBuscar(0)"
+      Tab(0).Control(24)=   "Label1(37)"
+      Tab(0).Control(25)=   "Label1(36)"
+      Tab(0).Control(26)=   "Label1(15)"
+      Tab(0).Control(27)=   "Label1(34)"
+      Tab(0).Control(28)=   "Label1(14)"
+      Tab(0).Control(29)=   "Label1(13)"
       Tab(0).ControlCount=   30
       TabCaption(1)   =   "Estudios/Formación"
       TabPicture(1)   =   "frmAdmTrabajadores.frx":0028
@@ -534,16 +504,16 @@ Begin VB.Form frmAdmTrabajadores
       Tab(4).ControlCount=   7
       TabCaption(5)   =   "Formación Empresa"
       TabPicture(5)   =   "frmAdmTrabajadores.frx":0098
-      Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "FrameToolAux(0)"
+      Tab(5).ControlEnabled=   -1  'True
+      Tab(5).Control(0)=   "DataGrid5"
       Tab(5).Control(0).Enabled=   0   'False
-      Tab(5).Control(1)=   "TxtAux5(2)"
+      Tab(5).Control(1)=   "TxtAux5(0)"
       Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "TxtAux5(1)"
       Tab(5).Control(2).Enabled=   0   'False
-      Tab(5).Control(3)=   "TxtAux5(0)"
+      Tab(5).Control(3)=   "TxtAux5(2)"
       Tab(5).Control(3).Enabled=   0   'False
-      Tab(5).Control(4)=   "DataGrid5"
+      Tab(5).Control(4)=   "FrameToolAux(0)"
       Tab(5).Control(4).Enabled=   0   'False
       Tab(5).ControlCount=   5
       Begin VB.Frame FrameToolAux 
@@ -619,7 +589,7 @@ Begin VB.Form frmAdmTrabajadores
          Index           =   2
          Left            =   -74520
          TabIndex        =   94
-         Top             =   300
+         Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
@@ -651,9 +621,9 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Frame FrameToolAux 
          Height          =   555
          Index           =   1
-         Left            =   -74550
+         Left            =   -74520
          TabIndex        =   92
-         Top             =   300
+         Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
@@ -685,9 +655,9 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Frame FrameToolAux 
          Height          =   555
          Index           =   0
-         Left            =   -74550
+         Left            =   480
          TabIndex        =   90
-         Top             =   270
+         Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
@@ -728,7 +698,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   4
          TabIndex        =   12
          Tag             =   "Centro de coste|T|S|||straba|codccost||N|"
@@ -748,7 +718,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   1965
+         Left            =   -73035
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   81
@@ -769,7 +739,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   24
-         Left            =   1965
+         Left            =   -73035
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   77
@@ -789,7 +759,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   24
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   3
          TabIndex        =   11
          Tag             =   "Almacen por Defecto|N|N|0|999|straba|codalmac|000|N|"
@@ -809,7 +779,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   30
          TabIndex        =   4
          Tag             =   "Domicilio|T|N|||straba|domtraba||N|"
@@ -829,7 +799,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   1320
+         Left            =   -73680
          MaxLength       =   15
          TabIndex        =   8
          Tag             =   "Teléfono|T|N|||straba|teltraba||N|"
@@ -849,7 +819,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   23
-         Left            =   4485
+         Left            =   -70515
          MaxLength       =   20
          TabIndex        =   3
          Tag             =   "Login Trabajador|T|S|||straba|login||N|"
@@ -871,7 +841,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -68160
+         Left            =   6840
          MaxLength       =   15
          TabIndex        =   74
          Tag             =   "Resultado|T|N|||strab5|resforma||N|"
@@ -894,7 +864,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -72840
+         Left            =   2160
          MaxLength       =   50
          TabIndex        =   73
          Tag             =   "Formación|T|N|||strab5|formaci2||N|"
@@ -917,7 +887,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74400
+         Left            =   600
          MaxLength       =   12
          TabIndex        =   72
          Tag             =   "Fecha Formación|F|N|||strab5|fecforma||N|"
@@ -1121,7 +1091,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   30
          TabIndex        =   9
          Tag             =   "Cargo en la empresa|T|S|||straba|cartraba||N|"
@@ -1188,7 +1158,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1635
-         Left            =   6360
+         Left            =   -68640
          TabIndex        =   39
          Top             =   540
          Width           =   6105
@@ -1383,7 +1353,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1635
-         Left            =   6390
+         Left            =   -68610
          TabIndex        =   41
          Top             =   2400
          Width           =   6075
@@ -1818,7 +1788,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   40
          TabIndex        =   10
          Tag             =   "e-mail|T|S|||straba|maitraba||N|"
@@ -1838,7 +1808,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   9
          TabIndex        =   2
          Tag             =   "N.I.F.|T|N|||straba|niftraba||N|"
@@ -1858,7 +1828,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   1305
+         Left            =   -73695
          MaxLength       =   30
          TabIndex        =   7
          Tag             =   "Provincia|T|N|||straba|protraba||N|"
@@ -1878,7 +1848,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   3180
+         Left            =   -71820
          MaxLength       =   30
          TabIndex        =   6
          Tag             =   "Población|T|N|||straba|pobtraba||N|"
@@ -1898,7 +1868,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   1290
+         Left            =   -73710
          MaxLength       =   6
          TabIndex        =   5
          Tag             =   "C.Postal|T|N|||straba|codpobla||N|"
@@ -1981,7 +1951,7 @@ Begin VB.Form frmAdmTrabajadores
          Height          =   3510
          Left            =   -74520
          TabIndex        =   60
-         Top             =   885
+         Top             =   915
          Width           =   7815
          _ExtentX        =   13785
          _ExtentY        =   6191
@@ -2051,7 +2021,7 @@ Begin VB.Form frmAdmTrabajadores
          Height          =   3510
          Left            =   -74520
          TabIndex        =   61
-         Top             =   885
+         Top             =   915
          Width           =   9135
          _ExtentX        =   16113
          _ExtentY        =   6191
@@ -2189,9 +2159,9 @@ Begin VB.Form frmAdmTrabajadores
       Begin MSDataGridLib.DataGrid DataGrid5 
          Bindings        =   "frmAdmTrabajadores.frx":0108
          Height          =   3510
-         Left            =   -74520
+         Left            =   480
          TabIndex        =   63
-         Top             =   855
+         Top             =   915
          Width           =   8855
          _ExtentX        =   15610
          _ExtentY        =   6191
@@ -2269,7 +2239,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   82
          Top             =   3750
          Width           =   795
@@ -2277,7 +2247,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   1005
+         Left            =   -73995
          Tag             =   "-1"
          ToolTipText     =   "Buscar centro coste"
          Top             =   3750
@@ -2286,7 +2256,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Image ImgMail 
          Height          =   240
          Index           =   0
-         Left            =   1005
+         Left            =   -73995
          Tag             =   "-1"
          ToolTipText     =   "Enviar e-mail"
          Top             =   2925
@@ -2295,7 +2265,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   1005
+         Left            =   -73995
          Tag             =   "-1"
          ToolTipText     =   "Buscar almacen"
          Top             =   3351
@@ -2314,7 +2284,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   26
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   76
          Top             =   3345
          Width           =   855
@@ -2332,7 +2302,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   25
-         Left            =   3720
+         Left            =   -71280
          TabIndex        =   75
          Top             =   600
          Width           =   615
@@ -2350,7 +2320,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   24
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   59
          Top             =   2535
          Width           =   615
@@ -2368,7 +2338,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   12
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   43
          Top             =   2145
          Width           =   1275
@@ -2376,7 +2346,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   1035
+         Left            =   -73965
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   1380
@@ -2395,7 +2365,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   37
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   38
          Top             =   2925
          Width           =   765
@@ -2413,7 +2383,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   36
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   37
          Top             =   600
          Width           =   675
@@ -2431,7 +2401,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   15
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   36
          Top             =   1770
          Width           =   1275
@@ -2449,7 +2419,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   34
-         Left            =   2160
+         Left            =   -72840
          TabIndex        =   35
          Top             =   1380
          Width           =   1005
@@ -2467,7 +2437,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   34
          Top             =   1380
          Width           =   1005
@@ -2485,7 +2455,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   255
          Index           =   13
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   33
          Top             =   990
          Width           =   975

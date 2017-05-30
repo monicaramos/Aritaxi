@@ -1630,10 +1630,10 @@ Begin VB.Form frmGesHisLlamVIP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8550
+      Left            =   8460
       TabIndex        =   38
       Top             =   9000
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -1648,10 +1648,10 @@ Begin VB.Form frmGesHisLlamVIP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9840
+      Left            =   9750
       TabIndex        =   39
       Top             =   9000
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -1665,11 +1665,11 @@ Begin VB.Form frmGesHisLlamVIP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9840
+      Left            =   9750
       TabIndex        =   40
       Top             =   9000
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top

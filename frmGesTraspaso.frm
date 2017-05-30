@@ -164,10 +164,10 @@ Begin VB.Form frmGesTraspaso
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6690
+      Left            =   6510
       TabIndex        =   4
-      Top             =   4950
-      Width           =   1100
+      Top             =   4920
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -181,10 +181,10 @@ Begin VB.Form frmGesTraspaso
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5520
+      Left            =   5220
       TabIndex        =   3
-      Top             =   4950
-      Width           =   1100
+      Top             =   4920
+      Width           =   1135
    End
    Begin MSComctlLib.ProgressBar ProgressBar1 
       Height          =   315

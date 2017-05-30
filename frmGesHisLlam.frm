@@ -1161,7 +1161,7 @@ Begin VB.Form frmGesHisLlam
       Left            =   8430
       TabIndex        =   45
       Top             =   9930
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -1176,10 +1176,10 @@ Begin VB.Form frmGesHisLlam
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9750
+      Left            =   9660
       TabIndex        =   46
       Top             =   9930
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -1193,11 +1193,11 @@ Begin VB.Form frmGesHisLlam
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9750
+      Left            =   9660
       TabIndex        =   47
       Top             =   9930
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Caption         =   "LOCALIZACION DEL SERVICIO"

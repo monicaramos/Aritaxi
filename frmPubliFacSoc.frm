@@ -22,10 +22,10 @@ Begin VB.Form frmPubliFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5310
+      Left            =   5190
       TabIndex        =   11
       Top             =   5250
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
@@ -204,11 +204,11 @@ Begin VB.Form frmPubliFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5310
+      Left            =   5190
       TabIndex        =   23
       Top             =   5250
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -222,10 +222,10 @@ Begin VB.Form frmPubliFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4140
+      Left            =   3900
       TabIndex        =   10
       Top             =   5250
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       BeginProperty Font 
@@ -642,7 +642,7 @@ Dim NumFactu As Long
 Dim FecFactu As Date
 Dim numParam As Integer
 Dim Modo As Byte
-Dim cad As String
+Dim Cad As String
 Dim indCodigo As Integer
 
 Dim kCampo As Integer
@@ -783,7 +783,7 @@ End Sub
 Private Function GenerarFacturas() As Boolean
 Dim vC As CTiposMov
 Dim fac As CFacturaCom
-Dim cad As String
+Dim Cad As String
 Dim Sql As String
 Dim iva As Integer
 Dim porIva As Currency
@@ -801,7 +801,7 @@ Dim vSocio As CSocio
     On Error GoTo EGenFactu
     
     GenerarFacturas = False
-    cad = "FPS"
+    Cad = "FPS"
 
     conn.BeginTrans
     ConnConta.BeginTrans
@@ -823,15 +823,15 @@ Dim vSocio As CSocio
     
         Set fac = New CFacturaCom
     
-        If vC.TipoMovimiento <> cad Then
-            If Not vC.Leer(cad) Then
+        If vC.TipoMovimiento <> Cad Then
+            If Not vC.Leer(Cad) Then
                 miRsAux.Close
                 If NumRegElim > 0 Then MsgBox "Se han generado " & NumRegElim & " factura(s) antes del error", vbExclamation
                 Exit Function
             End If
         End If
         'busco contador de cada socio y lo incremento
-        NumFactu = ContadorSocio(miRsAux!codSocio, cad, True)
+        NumFactu = ContadorSocio(miRsAux!codSocio, Cad, True)
         If NumFactu = 0 Then
             DesBloqueoManual ("PUBLIFAC")
             TerminaBloquear
@@ -870,7 +870,7 @@ Dim vSocio As CSocio
             MsgBox "La cuenta contable del socio: " & Text1(0).Text & " no existe.", vbExclamation
             DesBloqueoManual ("PUBLIFAC")
             TerminaBloquear
-            ContadorSocio miRsAux!codSocio, cad, False
+            ContadorSocio miRsAux!codSocio, Cad, False
             conn.RollbackTrans
             ConnConta.RollbackTrans
             Exit Function
@@ -892,7 +892,7 @@ Dim vSocio As CSocio
         
         'sfactusoc
         Sql = "INSERT INTO sfactusoc (codtipom,codsocio,numfactu,fecfactu,concepto,importel,baseiva1,impoiva1,"
-        Sql = Sql & "codiiva1,porciva1,totalfac,impreten,intconta,codforpa) VALUES (" & DBSet(cad, "T") & "," & miRsAux!codSocio & ","
+        Sql = Sql & "codiiva1,porciva1,totalfac,impreten,intconta,codforpa) VALUES (" & DBSet(Cad, "T") & "," & miRsAux!codSocio & ","
         Sql = Sql & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & DBSet(Text1(4).Text, "T") & ","
         Sql = Sql & TransformaComasPuntos(CStr(miRsAux!Importes)) & "," & TransformaComasPuntos(CStr(miRsAux!Importes)) & ","
         Sql = Sql & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(iva)) & "," & TransformaComasPuntos(CStr(porIva)) & ","
@@ -901,7 +901,7 @@ Dim vSocio As CSocio
         If Not ejecutar(Sql, False) Then
             DesBloqueoManual ("PUBLIFAC")
             TerminaBloquear
-            ContadorSocio miRsAux!codSocio, cad, False
+            ContadorSocio miRsAux!codSocio, Cad, False
             Exit Function
         End If
       
@@ -924,7 +924,7 @@ If Err.Number <> 0 Or Not b Then
     MsgBox "ERROR AL GENERAR FACTURAS:" & Err.Description
     DesBloqueoManual ("PUBLIFAC")
     TerminaBloquear
-    ContadorSocio miRsAux!codSocio, cad, False
+    ContadorSocio miRsAux!codSocio, Cad, False
     conn.RollbackTrans
     ConnConta.RollbackTrans
 End If
@@ -1018,7 +1018,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    cad = CadenaDevuelta
+    Cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)

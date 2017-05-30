@@ -623,10 +623,10 @@ Begin VB.Form frmDocAltaBaja
          EndProperty
          Height          =   375
          Index           =   2
-         Left            =   5670
+         Left            =   5490
          TabIndex        =   11
          Top             =   7320
-         Width           =   975
+         Width           =   1135
       End
       Begin VB.CommandButton CmdAceptar 
          Caption         =   "&Aceptar"
@@ -641,10 +641,10 @@ Begin VB.Form frmDocAltaBaja
          EndProperty
          Height          =   375
          Index           =   2
-         Left            =   4560
+         Left            =   4230
          TabIndex        =   10
          Top             =   7320
-         Width           =   975
+         Width           =   1135
       End
       Begin VB.CommandButton Command8 
          Height          =   440

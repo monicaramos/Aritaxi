@@ -1041,10 +1041,10 @@ Begin VB.Form frmPubliHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11070
+      Left            =   10980
       TabIndex        =   13
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -1058,10 +1058,10 @@ Begin VB.Form frmPubliHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9780
+      Left            =   9690
       TabIndex        =   12
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -1156,11 +1156,11 @@ Begin VB.Form frmPubliHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11070
+      Left            =   10980
       TabIndex        =   14
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
@@ -2595,7 +2595,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 Private Sub PonerLongCampos()

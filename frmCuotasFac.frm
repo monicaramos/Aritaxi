@@ -154,10 +154,10 @@ Begin VB.Form frmCuotasFac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4410
+      Left            =   4290
       TabIndex        =   11
       Top             =   5640
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -172,10 +172,10 @@ Begin VB.Form frmCuotasFac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5730
+      Left            =   5610
       TabIndex        =   12
       Top             =   5640
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.ComboBox Combo1 
       BeginProperty Font 

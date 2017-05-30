@@ -230,7 +230,7 @@ Begin VB.Form frmFCliFacturac
       Left            =   5310
       TabIndex        =   8
       Top             =   5520
-      Width           =   1065
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -247,7 +247,7 @@ Begin VB.Form frmFCliFacturac
       Left            =   4020
       TabIndex        =   7
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
       BeginProperty Font 
@@ -1440,7 +1440,7 @@ End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1513,7 +1513,7 @@ End Sub
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
     txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1574,18 +1574,18 @@ Dim EsNomCod As Boolean
             
         Case 0, 1 'cliente
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
             
         Case 3 ' forma de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
             
         Case 2 ' fecha de factura
             PonerFormatoFecha txtcodigo(Index)
              
         Case 5 'banco propio
             If PonerFormatoEntero(txtcodigo(5)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
+                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
             End If
            
     End Select

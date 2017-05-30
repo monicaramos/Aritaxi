@@ -588,10 +588,10 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11490
+      Left            =   11580
       TabIndex        =   10
       Top             =   5220
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -605,10 +605,10 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10290
+      Left            =   10380
       TabIndex        =   9
       Top             =   5220
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -822,11 +822,11 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11490
+      Left            =   11580
       TabIndex        =   5
       Top             =   5220
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame2 
       Height          =   975
@@ -3083,7 +3083,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 
         'Busqueda de tarjetas
         Toolbar1.Buttons(11).Enabled = Not b

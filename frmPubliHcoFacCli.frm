@@ -393,101 +393,101 @@ Begin VB.Form frmPubliHcoFacCli
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmPubliHcoFacCli.frx":0A2A
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "txtAux(11)"
+      Tab(1).Control(0)=   "imgBuscar(7)"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "cmdaux"
+      Tab(1).Control(1)=   "Label1(9)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "txtAux(10)"
+      Tab(1).Control(2)=   "Label1(23)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "txtAux(9)"
+      Tab(1).Control(3)=   "Label1(24)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "txtAux3(2)"
+      Tab(1).Control(4)=   "Label1(21)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux3(1)"
+      Tab(1).Control(5)=   "Label1(2)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux3(0)"
+      Tab(1).Control(6)=   "Label1(6)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "txtAux(5)"
+      Tab(1).Control(7)=   "Label1(18)"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "txtAux(3)"
+      Tab(1).Control(8)=   "Label1(22)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(2)"
+      Tab(1).Control(9)=   "Label1(40)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "txtAux(1)"
+      Tab(1).Control(10)=   "imgBuscar(8)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "txtAux(0)"
+      Tab(1).Control(11)=   "imgBuscar(9)"
       Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "cmdObserva"
+      Tab(1).Control(12)=   "imgBuscar(6)"
       Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "Text2(0)"
+      Tab(1).Control(13)=   "Text3(15)"
       Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "Text3(0)"
+      Tab(1).Control(14)=   "Text3(14)"
       Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "txtAux(4)"
+      Tab(1).Control(15)=   "Text2(3)"
       Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "txtAux(6)"
+      Tab(1).Control(16)=   "Text3(3)"
       Tab(1).Control(16).Enabled=   0   'False
-      Tab(1).Control(17)=   "txtAux(7)"
+      Tab(1).Control(17)=   "Text3(4)"
       Tab(1).Control(17).Enabled=   0   'False
-      Tab(1).Control(18)=   "txtAux(8)"
+      Tab(1).Control(18)=   "Text3(5)"
       Tab(1).Control(18).Enabled=   0   'False
-      Tab(1).Control(19)=   "DataGrid1"
+      Tab(1).Control(19)=   "Text3(7)"
       Tab(1).Control(19).Enabled=   0   'False
-      Tab(1).Control(20)=   "DataGrid2"
+      Tab(1).Control(20)=   "Text3(6)"
       Tab(1).Control(20).Enabled=   0   'False
-      Tab(1).Control(21)=   "FrameObserva"
+      Tab(1).Control(21)=   "Text3(8)"
       Tab(1).Control(21).Enabled=   0   'False
-      Tab(1).Control(22)=   "Text3(2)"
+      Tab(1).Control(22)=   "Text2(1)"
       Tab(1).Control(22).Enabled=   0   'False
-      Tab(1).Control(23)=   "Text2(2)"
+      Tab(1).Control(23)=   "Text3(1)"
       Tab(1).Control(23).Enabled=   0   'False
-      Tab(1).Control(24)=   "Text3(1)"
+      Tab(1).Control(24)=   "Text2(2)"
       Tab(1).Control(24).Enabled=   0   'False
-      Tab(1).Control(25)=   "Text2(1)"
+      Tab(1).Control(25)=   "Text3(2)"
       Tab(1).Control(25).Enabled=   0   'False
-      Tab(1).Control(26)=   "Text3(8)"
+      Tab(1).Control(26)=   "FrameObserva"
       Tab(1).Control(26).Enabled=   0   'False
-      Tab(1).Control(27)=   "Text3(6)"
+      Tab(1).Control(27)=   "DataGrid2"
       Tab(1).Control(27).Enabled=   0   'False
-      Tab(1).Control(28)=   "Text3(7)"
+      Tab(1).Control(28)=   "DataGrid1"
       Tab(1).Control(28).Enabled=   0   'False
-      Tab(1).Control(29)=   "Text3(5)"
+      Tab(1).Control(29)=   "txtAux(8)"
       Tab(1).Control(29).Enabled=   0   'False
-      Tab(1).Control(30)=   "Text3(4)"
+      Tab(1).Control(30)=   "txtAux(7)"
       Tab(1).Control(30).Enabled=   0   'False
-      Tab(1).Control(31)=   "Text3(3)"
+      Tab(1).Control(31)=   "txtAux(6)"
       Tab(1).Control(31).Enabled=   0   'False
-      Tab(1).Control(32)=   "Text2(3)"
+      Tab(1).Control(32)=   "txtAux(4)"
       Tab(1).Control(32).Enabled=   0   'False
-      Tab(1).Control(33)=   "Text3(14)"
+      Tab(1).Control(33)=   "Text3(0)"
       Tab(1).Control(33).Enabled=   0   'False
-      Tab(1).Control(34)=   "Text3(15)"
+      Tab(1).Control(34)=   "Text2(0)"
       Tab(1).Control(34).Enabled=   0   'False
-      Tab(1).Control(35)=   "imgBuscar(6)"
+      Tab(1).Control(35)=   "cmdObserva"
       Tab(1).Control(35).Enabled=   0   'False
-      Tab(1).Control(36)=   "imgBuscar(9)"
+      Tab(1).Control(36)=   "txtAux(0)"
       Tab(1).Control(36).Enabled=   0   'False
-      Tab(1).Control(37)=   "imgBuscar(8)"
+      Tab(1).Control(37)=   "txtAux(1)"
       Tab(1).Control(37).Enabled=   0   'False
-      Tab(1).Control(38)=   "Label1(40)"
+      Tab(1).Control(38)=   "txtAux(2)"
       Tab(1).Control(38).Enabled=   0   'False
-      Tab(1).Control(39)=   "Label1(22)"
+      Tab(1).Control(39)=   "txtAux(3)"
       Tab(1).Control(39).Enabled=   0   'False
-      Tab(1).Control(40)=   "Label1(18)"
+      Tab(1).Control(40)=   "txtAux(5)"
       Tab(1).Control(40).Enabled=   0   'False
-      Tab(1).Control(41)=   "Label1(6)"
+      Tab(1).Control(41)=   "txtAux3(0)"
       Tab(1).Control(41).Enabled=   0   'False
-      Tab(1).Control(42)=   "Label1(2)"
+      Tab(1).Control(42)=   "txtAux3(1)"
       Tab(1).Control(42).Enabled=   0   'False
-      Tab(1).Control(43)=   "Label1(21)"
+      Tab(1).Control(43)=   "txtAux3(2)"
       Tab(1).Control(43).Enabled=   0   'False
-      Tab(1).Control(44)=   "Label1(24)"
+      Tab(1).Control(44)=   "txtAux(9)"
       Tab(1).Control(44).Enabled=   0   'False
-      Tab(1).Control(45)=   "Label1(23)"
+      Tab(1).Control(45)=   "txtAux(10)"
       Tab(1).Control(45).Enabled=   0   'False
-      Tab(1).Control(46)=   "Label1(9)"
+      Tab(1).Control(46)=   "cmdaux"
       Tab(1).Control(46).Enabled=   0   'False
-      Tab(1).Control(47)=   "imgBuscar(7)"
+      Tab(1).Control(47)=   "txtAux(11)"
       Tab(1).Control(47).Enabled=   0   'False
       Tab(1).ControlCount=   48
       Begin VB.TextBox txtAux 
@@ -3058,10 +3058,10 @@ Begin VB.Form frmPubliHcoFacCli
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13050
+      Left            =   13170
       TabIndex        =   23
       Top             =   6630
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -3075,10 +3075,10 @@ Begin VB.Form frmPubliHcoFacCli
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11760
+      Left            =   11880
       TabIndex        =   22
       Top             =   6630
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -3185,11 +3185,11 @@ Begin VB.Form frmPubliHcoFacCli
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13050
+      Left            =   13170
       TabIndex        =   28
       Top             =   6630
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data3 
       Height          =   330
@@ -3774,10 +3774,10 @@ Dim b As Boolean
         Case "DataGrid2"
             DeseleccionaGrid Me.DataGrid2
             b = (xModo = 1)
-             For jj = 0 To txtAux3.Count - 1
-                txtAux3(jj).Height = DataGrid2.RowHeight
-                txtAux3(jj).Top = alto
-                txtAux3(jj).visible = b
+             For jj = 0 To TxtAux3.Count - 1
+                TxtAux3(jj).Height = DataGrid2.RowHeight
+                TxtAux3(jj).Top = alto
+                TxtAux3(jj).visible = b
             Next jj
     End Select
 End Sub
@@ -5111,8 +5111,8 @@ Dim b As Boolean
     BloquearTxt txtAux(11), True
     
     'Si no es modo Busqueda Bloquear los TxtAux3 (son los txtaux de los albaranes de factura)
-    For i = 0 To txtAux3.Count - 1
-        BloquearTxt txtAux3(i), (Modo <> 1)
+    For i = 0 To TxtAux3.Count - 1
+        BloquearTxt TxtAux3(i), (Modo <> 1)
     Next i
     
     'ampliacion linea
@@ -5799,7 +5799,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 
@@ -6458,7 +6458,7 @@ EContab:
 End Function
 
 Private Sub TxtAux3_GotFocus(Index As Integer)
-    ConseguirFoco txtAux3(Index), Modo
+    ConseguirFoco TxtAux3(Index), Modo
 End Sub
 
 Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -6470,7 +6470,7 @@ Private Sub TxtAux3_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub TxtAux3_LostFocus(Index As Integer)
-    If Not PerderFocoGnral(txtAux3(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(TxtAux3(Index), Modo) Then Exit Sub
 End Sub
 
 

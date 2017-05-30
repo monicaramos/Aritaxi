@@ -341,7 +341,7 @@ Begin VB.Form frmCRMMto
       Left            =   9480
       TabIndex        =   11
       Top             =   4800
-      Width           =   1155
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -355,10 +355,10 @@ Begin VB.Form frmCRMMto
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8280
+      Left            =   8160
       TabIndex        =   9
       Top             =   4800
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -493,12 +493,21 @@ Begin VB.Form frmCRMMto
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   9480
       TabIndex        =   10
       Top             =   4800
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Image imgBuscar 
       Height          =   240
@@ -1517,7 +1526,7 @@ Dim b As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(5).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -1533,7 +1542,7 @@ Dim b As Boolean
     Toolbar1.Buttons(1).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

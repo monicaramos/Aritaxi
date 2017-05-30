@@ -45,17 +45,17 @@ Begin VB.Form frmRepNumSerie2
       TabCaption(0)   =   "Datos compra/venta"
       TabPicture(0)   =   "frmRepNumSerie.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameActuales"
-      Tab(0).Control(1)=   "Text1(7)"
-      Tab(0).Control(2)=   "Text2(7)"
-      Tab(0).Control(3)=   "FrameSusti"
-      Tab(0).Control(4)=   "FrameBaja"
+      Tab(0).Control(0)=   "Label12"
+      Tab(0).Control(1)=   "Label1(2)"
+      Tab(0).Control(2)=   "imgBuscar(3)"
+      Tab(0).Control(3)=   "Text1(3)"
+      Tab(0).Control(4)=   "chkTieneMan"
       Tab(0).Control(5)=   "FrameNuevos"
-      Tab(0).Control(6)=   "chkTieneMan"
-      Tab(0).Control(7)=   "Text1(3)"
-      Tab(0).Control(8)=   "imgBuscar(3)"
-      Tab(0).Control(9)=   "Label1(2)"
-      Tab(0).Control(10)=   "Label12"
+      Tab(0).Control(6)=   "FrameBaja"
+      Tab(0).Control(7)=   "FrameSusti"
+      Tab(0).Control(8)=   "Text2(7)"
+      Tab(0).Control(9)=   "Text1(7)"
+      Tab(0).Control(10)=   "FrameActuales"
       Tab(0).ControlCount=   11
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
@@ -1791,10 +1791,10 @@ Begin VB.Form frmRepNumSerie2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10080
+      Left            =   9900
       TabIndex        =   12
       Top             =   6330
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -1809,10 +1809,10 @@ Begin VB.Form frmRepNumSerie2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11250
+      Left            =   11160
       TabIndex        =   13
       Top             =   6330
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -1826,11 +1826,11 @@ Begin VB.Form frmRepNumSerie2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11235
+      Left            =   11175
       TabIndex        =   14
       Top             =   6315
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -2884,7 +2884,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

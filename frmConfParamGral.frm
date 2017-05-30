@@ -75,10 +75,10 @@ Begin VB.Form frmConfParamGral
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5145
+      Left            =   4995
       TabIndex        =   27
       Top             =   5160
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -297,11 +297,11 @@ Begin VB.Form frmConfParamGral
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3990
+      Left            =   3750
       TabIndex        =   11
       Top             =   5160
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdSalir 
       Caption         =   "&Salir"
@@ -315,10 +315,10 @@ Begin VB.Form frmConfParamGral
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5145
+      Left            =   4995
       TabIndex        =   12
       Top             =   5160
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       BeginProperty Font 

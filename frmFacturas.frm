@@ -70,10 +70,10 @@ Begin VB.Form frmFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5400
+      Left            =   5250
       TabIndex        =   1
-      Top             =   4560
-      Width           =   1035
+      Top             =   4500
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -88,10 +88,10 @@ Begin VB.Form frmFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6660
+      Left            =   6510
       TabIndex        =   2
-      Top             =   4560
-      Width           =   1035
+      Top             =   4500
+      Width           =   1135
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Height          =   3615

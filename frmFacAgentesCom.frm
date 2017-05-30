@@ -279,10 +279,10 @@ Begin VB.Form frmFacAgentesCom
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5520
+      Left            =   5460
       TabIndex        =   11
       Top             =   5160
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -296,10 +296,10 @@ Begin VB.Form frmFacAgentesCom
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4320
+      Left            =   4260
       TabIndex        =   9
       Top             =   5160
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -1294,7 +1294,7 @@ Dim b As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(5).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -1310,7 +1310,7 @@ Dim b As Boolean
     Toolbar1.Buttons(1).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

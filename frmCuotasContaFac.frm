@@ -104,10 +104,10 @@ Begin VB.Form frmCuotasContaFac
       EndProperty
       Height          =   375
       Index           =   7
-      Left            =   4800
+      Left            =   4650
       TabIndex        =   7
       Top             =   3960
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptarRepxDia 
       Caption         =   "&Aceptar"
@@ -121,10 +121,10 @@ Begin VB.Form frmCuotasContaFac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3660
+      Left            =   3420
       TabIndex        =   6
       Top             =   3960
-      Width           =   975
+      Width           =   1135
    End
    Begin VB.TextBox txtCodigo 
       BeginProperty Font 
@@ -469,7 +469,7 @@ Private Function ComprobarFechasConta(Ind As Integer) As Boolean
 'comprobar que el periodo de fechas a contabilizar esta dentro del
 'periodo de fechas del ejercicio de la contabilidad
 Dim FechaIni As String, FechaFin As String
-Dim cad As String
+Dim Cad As String
 Dim RS As ADODB.Recordset
     
 On Error GoTo EComprobar
@@ -494,10 +494,10 @@ On Error GoTo EComprobar
             Orden2 = FechaFin
         
             If Not EntreFechas(FechaIni, txtcodigo(Ind).Text, FechaFin) Then
-                 cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
-                 cad = cad & "    Desde: " & FechaIni & vbCrLf
-                 cad = cad & "    Hasta: " & FechaFin
-                 MsgBox cad, vbExclamation
+                 Cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
+                 Cad = Cad & "    Desde: " & FechaIni & vbCrLf
+                 Cad = Cad & "    Hasta: " & FechaFin
+                 MsgBox Cad, vbExclamation
                  txtcodigo(Ind).Text = ""
             Else
                 ComprobarFechasConta = True
@@ -905,17 +905,17 @@ Private Sub InicializarVbles()
     pPdfRpt = ""
 End Sub
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     
      If txtcodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtcodigo(indD).Text
+        Cad = Cad & "desde " & txtcodigo(indD).Text
      End If
     If txtcodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtcodigo(indH).Text
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
     End If
     
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 'Ccoste
@@ -1166,7 +1166,7 @@ Dim Sql As String
 Dim SQLaux As String
 Dim SQL2 As String
 Dim RS As ADODB.Recordset
-Dim cad As String, Aux As String
+Dim Cad As String, Aux As String
 Dim i As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
@@ -1193,13 +1193,13 @@ Dim cuenta As String
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
-    cad = ""
+    Cad = ""
     i = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
     While Not RS.EOF
-        SQLaux = cad
+        SQLaux = Cad
         'calculamos la Base Imp del total del importe para cada cta cble ventas
         ImpLinea = RS!Importe - CCur(CalcularPorcentaje(RS!Importe, DtoPPago, 2))
         ImpLinea = ImpLinea - CCur(CalcularPorcentaje(RS!Importe, DtoGnral, 2))
@@ -1227,7 +1227,7 @@ Dim cuenta As String
             
         Sql = Sql & ValorNulo
         
-        cad = cad & "(" & Sql & ")" & ","
+        Cad = Cad & "(" & Sql & ")" & ","
         
         i = i + 1
         RS.MoveNext
@@ -1244,11 +1244,11 @@ Dim cuenta As String
     Set RS = Nothing
 
     'Insertar en la contabilidad
-    If cad <> "" Then
-        cad = Mid(cad, 1, Len(cad) - 1) 'quitar la ult. coma
+    If Cad <> "" Then
+        Cad = Mid(Cad, 1, Len(Cad) - 1) 'quitar la ult. coma
         Sql = "INSERT INTO linfactprov (numregis,anofacpr,numlinea,codtbase,impbaspr,codccost) "
 
-        Sql = Sql & " VALUES " & cad
+        Sql = Sql & " VALUES " & Cad
         ConnConta.Execute Sql
     End If
 
@@ -1266,7 +1266,7 @@ Private Function InsertarCabFactProv_Local(cadWHERE As String, cadErr As String,
 '(OUT) AnyoFacPr: aqui devolvemos el año de fecha recepcion para insertarlo en las lineas de factura de proveedor de la conta
 Dim Sql As String
 Dim RS As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
 Dim Nulo2 As String
 Dim Nulo3 As String
 Dim Socio As String
@@ -1284,7 +1284,7 @@ Dim cuenta As String
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    cad = ""
+    Cad = ""
     If Not RS.EOF Then
         Socio = RS!codSocio
         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
@@ -1326,13 +1326,13 @@ Dim cuenta As String
             'NULOS
             Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
             Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & DBSet(RS!FecFactu, "F") & ",0"
-            cad = cad & "(" & Sql & ")"
+            Cad = Cad & "(" & Sql & ")"
             
             'Insertar en la contabilidad
             Sql = "INSERT INTO cabfactprov (numregis,fecfacpr,anofacpr,fecrecpr,numfacpr,codmacta,confacpr,ba1facpr,ba2facpr,ba3facpr,"
             Sql = Sql & "pi1facpr,pi2facpr,pi3facpr,pr1facpr,pr2facpr,pr3facpr,ti1facpr,ti2facpr,ti3facpr,tr1facpr,tr2facpr,tr3facpr,"
             Sql = Sql & "totfacpr,tp1facpr,tp2facpr,tp3facpr,extranje,retfacpr,trefacpr,cuereten,numdiari,fechaent,numasien,fecliqpr,nodeducible) "
-            Sql = Sql & " VALUES " & cad
+            Sql = Sql & " VALUES " & Cad
             ConnConta.Execute Sql
             
             

@@ -88,7 +88,7 @@ Begin VB.Form frmBasico2
       Tag             =   "   "
       Top             =   5910
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -103,11 +103,11 @@ Begin VB.Form frmBasico2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6615
+      Left            =   6630
       TabIndex        =   4
       Top             =   5910
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1135
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
@@ -237,7 +237,7 @@ Begin VB.Form frmBasico2
       TabIndex        =   8
       Top             =   5910
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -491,7 +491,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
     
 End Sub

@@ -348,10 +348,10 @@ Begin VB.Form frmComEntPedidos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11340
+      Left            =   11430
       TabIndex        =   19
       Top             =   6120
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -368,7 +368,7 @@ Begin VB.Form frmComEntPedidos
       Left            =   10170
       TabIndex        =   18
       Top             =   6120
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -637,33 +637,33 @@ Begin VB.Form frmComEntPedidos
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComEntPedidos.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "cmdAux(2)"
-      Tab(0).Control(1)=   "txtAux(8)"
-      Tab(0).Control(2)=   "FrameCliente"
-      Tab(0).Control(3)=   "cmdAux(1)"
-      Tab(0).Control(4)=   "cmdAux(0)"
-      Tab(0).Control(5)=   "txtAux(2)"
-      Tab(0).Control(6)=   "txtAux(7)"
-      Tab(0).Control(7)=   "txtAux(6)"
-      Tab(0).Control(8)=   "txtAux(5)"
-      Tab(0).Control(9)=   "txtAux(4)"
-      Tab(0).Control(10)=   "txtAux(3)"
-      Tab(0).Control(11)=   "txtAux(1)"
-      Tab(0).Control(12)=   "txtAux(0)"
-      Tab(0).Control(13)=   "DataGrid1"
+      Tab(0).Control(0)=   "DataGrid1"
+      Tab(0).Control(1)=   "txtAux(0)"
+      Tab(0).Control(2)=   "txtAux(1)"
+      Tab(0).Control(3)=   "txtAux(3)"
+      Tab(0).Control(4)=   "txtAux(4)"
+      Tab(0).Control(5)=   "txtAux(5)"
+      Tab(0).Control(6)=   "txtAux(6)"
+      Tab(0).Control(7)=   "txtAux(7)"
+      Tab(0).Control(8)=   "txtAux(2)"
+      Tab(0).Control(9)=   "cmdAux(0)"
+      Tab(0).Control(10)=   "cmdAux(1)"
+      Tab(0).Control(11)=   "FrameCliente"
+      Tab(0).Control(12)=   "txtAux(8)"
+      Tab(0).Control(13)=   "cmdAux(2)"
       Tab(0).ControlCount=   14
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntPedidos.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
-      Tab(1).Control(1)=   "FrameDirFactura"
-      Tab(1).Control(2)=   "FrameDirMercancia"
-      Tab(1).Control(3)=   "Text1(21)"
+      Tab(1).Control(0)=   "Label1(45)"
+      Tab(1).Control(1)=   "Text1(17)"
+      Tab(1).Control(2)=   "Text1(18)"
+      Tab(1).Control(3)=   "Text1(19)"
       Tab(1).Control(4)=   "Text1(20)"
-      Tab(1).Control(5)=   "Text1(19)"
-      Tab(1).Control(6)=   "Text1(18)"
-      Tab(1).Control(7)=   "Text1(17)"
-      Tab(1).Control(8)=   "Label1(45)"
+      Tab(1).Control(5)=   "Text1(21)"
+      Tab(1).Control(6)=   "FrameDirMercancia"
+      Tab(1).Control(7)=   "FrameDirFactura"
+      Tab(1).Control(8)=   "FrameHco"
       Tab(1).ControlCount=   9
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntPedidos.frx":0044
@@ -2956,11 +2956,11 @@ Begin VB.Form frmComEntPedidos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11340
+      Left            =   11430
       TabIndex        =   30
       Top             =   6120
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Label lblF 
       Caption         =   "Label2"
@@ -5581,7 +5581,7 @@ Dim b As Boolean
         b = (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
         'Insertar
         Toolbar1.Buttons(5).Enabled = (b Or Modo = 0) And Not EsHistorico
-        Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
+        Me.mnnuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
         'Modificar
         Toolbar1.Buttons(6).Enabled = b And Not EsHistorico
         Me.mnModificar.Enabled = b And Not EsHistorico
@@ -5603,7 +5603,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 

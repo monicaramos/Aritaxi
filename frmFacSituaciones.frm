@@ -246,10 +246,10 @@ Begin VB.Form frmFacSituaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6210
+      Left            =   6120
       TabIndex        =   5
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -263,10 +263,10 @@ Begin VB.Form frmFacSituaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5040
+      Left            =   4890
       TabIndex        =   4
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -280,11 +280,11 @@ Begin VB.Form frmFacSituaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6210
+      Left            =   6120
       TabIndex        =   8
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -471,12 +471,12 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
     b = b And Not DeConsulta
     'Añadir
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -638,15 +638,15 @@ Private Sub Combo1_KeyPress(KeyAscii As Integer)
 End Sub
 Private Sub cmdAceptar_Click()
 Dim i As Integer
-Dim cadB As String
+Dim CadB As String
 On Error Resume Next
 
     Select Case Modo
         Case 1 'HacerBusqueda
-            cadB = ObtenerBusqueda(Me, False)
-            If cadB <> "" Then
+            CadB = ObtenerBusqueda(Me, False)
+            If CadB <> "" Then
                 PonerModo 2
-                CargaGrid cadB
+                CargaGrid CadB
                 DataGrid1.SetFocus
             End If
         Case 3 'Insertar
@@ -694,16 +694,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = Adodc1.Recordset.Fields(0) & "|"
-    cad = cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 

@@ -175,10 +175,10 @@ Begin VB.Form frmLiqDeshacerFac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3750
+      Left            =   3720
       TabIndex        =   3
-      Top             =   4860
-      Width           =   1035
+      Top             =   4830
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
@@ -192,10 +192,10 @@ Begin VB.Form frmLiqDeshacerFac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4980
+      Left            =   4950
       TabIndex        =   4
-      Top             =   4860
-      Width           =   1035
+      Top             =   4830
+      Width           =   1135
    End
    Begin VB.Label Label6 
       Caption         =   "Password:"
@@ -619,7 +619,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -631,8 +631,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -652,7 +652,7 @@ End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub imgBuscarOfer_Click(Index As Integer)
@@ -698,17 +698,17 @@ Private Sub imgFecha_Click(Index As Integer)
    PonerFoco txtcodigo(indCodigo)
 End Sub
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtcodigo(indD).Text
-        If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
+        Cad = Cad & "desde " & txtcodigo(indD).Text
+        If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtcodigo(indH).Text
-        If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
+        If txtNombre(indH).Text <> "" Then Cad = Cad & " - " & txtNombre(indH).Text
     End If
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 
@@ -755,7 +755,7 @@ Dim EsNomCod As Boolean
     Select Case Index
         Case 0, 1 'V Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' fecha de liquidacion
             PonerFormatoFecha txtcodigo(Index)

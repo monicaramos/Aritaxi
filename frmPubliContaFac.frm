@@ -105,10 +105,10 @@ Begin VB.Form frmPubliContaFac
       EndProperty
       Height          =   375
       Index           =   7
-      Left            =   4860
+      Left            =   4710
       TabIndex        =   10
       Top             =   4380
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptarRepxDia 
       Caption         =   "&Aceptar"
@@ -122,10 +122,10 @@ Begin VB.Form frmPubliContaFac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3660
+      Left            =   3510
       TabIndex        =   9
       Top             =   4380
-      Width           =   975
+      Width           =   1135
    End
    Begin VB.TextBox txtCodigo 
       BeginProperty Font 

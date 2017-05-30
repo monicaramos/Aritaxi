@@ -286,10 +286,10 @@ Begin VB.Form frmGesServAbonados
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10680
+      Left            =   10530
       TabIndex        =   6
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -304,10 +304,10 @@ Begin VB.Form frmGesServAbonados
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11835
+      Left            =   11775
       TabIndex        =   7
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -321,11 +321,11 @@ Begin VB.Form frmGesServAbonados
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11820
+      Left            =   11790
       TabIndex        =   8
       Top             =   5880
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text2 
       BackColor       =   &H80000018&
@@ -1017,7 +1017,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnNuevo.Enabled = (b Or (Modo = 0))
+    Me.mnnuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -1037,7 +1037,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

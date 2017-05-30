@@ -146,10 +146,10 @@ Begin VB.Form frmCRMtipos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6000
+      Left            =   6150
       TabIndex        =   7
       Top             =   4800
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -163,10 +163,10 @@ Begin VB.Form frmCRMtipos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4800
+      Left            =   4920
       TabIndex        =   5
       Top             =   4800
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -301,12 +301,21 @@ Begin VB.Form frmCRMtipos
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   6000
+      Left            =   6150
       TabIndex        =   6
       Top             =   4800
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Label Label1 
       Caption         =   "Medio"
@@ -1025,7 +1034,7 @@ Dim b As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(5).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -1041,7 +1050,7 @@ Dim b As Boolean
     Toolbar1.Buttons(1).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

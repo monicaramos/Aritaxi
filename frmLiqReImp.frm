@@ -156,8 +156,8 @@ Begin VB.Form frmLiqReImp
       Height          =   375
       Left            =   3750
       TabIndex        =   7
-      Top             =   4680
-      Width           =   1035
+      Top             =   4620
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
@@ -173,8 +173,8 @@ Begin VB.Form frmLiqReImp
       Height          =   375
       Left            =   4950
       TabIndex        =   8
-      Top             =   4680
-      Width           =   1035
+      Top             =   4620
+      Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
@@ -711,7 +711,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -723,8 +723,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then

@@ -297,10 +297,10 @@ Begin VB.Form frmGesConduc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7200
+      Left            =   7410
       TabIndex        =   13
       Top             =   6720
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -315,19 +315,28 @@ Begin VB.Form frmGesConduc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8520
+      Left            =   8730
       TabIndex        =   14
       Top             =   6720
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   8520
+      Left            =   8730
       TabIndex        =   22
       Top             =   6720
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   3375

@@ -321,10 +321,10 @@ Begin VB.Form frmLiqLiquidaSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3750
+      Left            =   3630
       TabIndex        =   8
       Top             =   5460
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
@@ -338,10 +338,10 @@ Begin VB.Form frmLiqLiquidaSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4980
+      Left            =   4860
       TabIndex        =   9
       Top             =   5460
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
       BeginProperty Font 
@@ -1129,7 +1129,7 @@ End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(2).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtnombre(2).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(2).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1146,12 +1146,12 @@ End Sub
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
     txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub imgBuscarOfer_Click(Index As Integer)
@@ -1217,11 +1217,11 @@ Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) A
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
         Cad = Cad & "desde " & txtcodigo(indD).Text
-        If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
+        If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
         Cad = Cad & "  hasta " & txtcodigo(indH).Text
-        If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
+        If txtNombre(indH).Text <> "" Then Cad = Cad & " - " & txtNombre(indH).Text
     End If
     AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
@@ -1268,18 +1268,18 @@ Dim EsNomCod As Boolean
             
         Case 0, 1 'V Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' forma de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
             
         Case 3 ' fecha de liquidacion
             PonerFormatoFecha txtcodigo(Index)
             
         Case 5 ' banco propio
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
             
         
         

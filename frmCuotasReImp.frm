@@ -275,11 +275,11 @@ Begin VB.Form frmCuotasReImp
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
+      Height          =   405
       Left            =   3840
       TabIndex        =   11
       Top             =   5580
-      Width           =   1215
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
@@ -292,11 +292,11 @@ Begin VB.Form frmCuotasReImp
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
+      Height          =   405
       Left            =   5280
       TabIndex        =   12
       Top             =   5580
-      Width           =   1215
+      Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
@@ -895,13 +895,13 @@ End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub imgAyuda_Click(Index As Integer)
@@ -935,7 +935,7 @@ Dim indice As Byte
             Set frmSoc = Nothing
             If CadenaDesdeOtroForm <> "" Then
                 txtcodigo(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                txtnombre(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                txtNombre(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
             
         Case 0, 1 ' Vsocio
@@ -1002,15 +1002,15 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 5, 3 'socio
-            txtnombre(Index).Text = ""
+            txtNombre(Index).Text = ""
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtnombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", txtcodigo(Index).Text, "N")
+                txtNombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", txtcodigo(Index).Text, "N")
             End If
             
         Case 0, 1 'v socio
-            txtnombre(Index).Text = ""
+            txtNombre(Index).Text = ""
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtnombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "numeruve", txtcodigo(Index).Text, "N")
+                txtNombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "numeruve", txtcodigo(Index).Text, "N")
             End If
             
     
@@ -1028,7 +1028,7 @@ End Sub
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1040,8 +1040,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then

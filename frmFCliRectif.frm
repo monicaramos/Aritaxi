@@ -101,10 +101,10 @@ Begin VB.Form frmFCliRectif
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11040
+      Left            =   11400
       TabIndex        =   52
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -118,10 +118,10 @@ Begin VB.Form frmFCliRectif
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9840
+      Left            =   10080
       TabIndex        =   51
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -433,63 +433,63 @@ Begin VB.Form frmFCliRectif
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFCliRectif.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(3)"
+      Tab(1).Control(0)=   "FrameFacRec"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label1(5)"
+      Tab(1).Control(1)=   "Text1(39)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Label1(10)"
+      Tab(1).Control(2)=   "FrameHco"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Label1(11)"
+      Tab(1).Control(3)=   "Text2(28)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "Label1(12)"
+      Tab(1).Control(4)=   "Text1(27)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "imgBuscar(7)"
+      Tab(1).Control(5)=   "Text2(27)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "Label1(9)"
+      Tab(1).Control(6)=   "Text1(2)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "imgBuscar(8)"
+      Tab(1).Control(7)=   "Text1(25)"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "Label1(23)"
+      Tab(1).Control(8)=   "Text1(26)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "Label1(45)"
+      Tab(1).Control(9)=   "Text1(24)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Frame3"
+      Tab(1).Control(10)=   "Text1(23)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "Text1(28)"
+      Tab(1).Control(11)=   "Text1(38)"
       Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "Text1(22)"
+      Tab(1).Control(12)=   "Text1(18)"
       Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "Text1(21)"
+      Tab(1).Control(13)=   "Text1(19)"
       Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "Text1(20)"
       Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "Text1(19)"
+      Tab(1).Control(15)=   "Text1(21)"
       Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "Text1(18)"
+      Tab(1).Control(16)=   "Text1(22)"
       Tab(1).Control(16).Enabled=   0   'False
-      Tab(1).Control(17)=   "Text1(38)"
+      Tab(1).Control(17)=   "Text1(28)"
       Tab(1).Control(17).Enabled=   0   'False
-      Tab(1).Control(18)=   "Text1(23)"
+      Tab(1).Control(18)=   "Frame3"
       Tab(1).Control(18).Enabled=   0   'False
-      Tab(1).Control(19)=   "Text1(24)"
+      Tab(1).Control(19)=   "Label1(45)"
       Tab(1).Control(19).Enabled=   0   'False
-      Tab(1).Control(20)=   "Text1(26)"
+      Tab(1).Control(20)=   "Label1(23)"
       Tab(1).Control(20).Enabled=   0   'False
-      Tab(1).Control(21)=   "Text1(25)"
+      Tab(1).Control(21)=   "imgBuscar(8)"
       Tab(1).Control(21).Enabled=   0   'False
-      Tab(1).Control(22)=   "Text1(2)"
+      Tab(1).Control(22)=   "Label1(9)"
       Tab(1).Control(22).Enabled=   0   'False
-      Tab(1).Control(23)=   "Text2(27)"
+      Tab(1).Control(23)=   "imgBuscar(7)"
       Tab(1).Control(23).Enabled=   0   'False
-      Tab(1).Control(24)=   "Text1(27)"
+      Tab(1).Control(24)=   "Label1(12)"
       Tab(1).Control(24).Enabled=   0   'False
-      Tab(1).Control(25)=   "Text2(28)"
+      Tab(1).Control(25)=   "Label1(11)"
       Tab(1).Control(25).Enabled=   0   'False
-      Tab(1).Control(26)=   "FrameHco"
+      Tab(1).Control(26)=   "Label1(10)"
       Tab(1).Control(26).Enabled=   0   'False
-      Tab(1).Control(27)=   "Text1(39)"
+      Tab(1).Control(27)=   "Label1(5)"
       Tab(1).Control(27).Enabled=   0   'False
-      Tab(1).Control(28)=   "FrameFacRec"
+      Tab(1).Control(28)=   "Label1(3)"
       Tab(1).Control(28).Enabled=   0   'False
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
@@ -3081,12 +3081,21 @@ Begin VB.Form frmFCliRectif
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   11010
+      Left            =   11400
       TabIndex        =   31
       Top             =   5880
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame2 
       Height          =   885
@@ -6830,7 +6839,7 @@ Dim b As Boolean
         b = ((Modo = 2) Or (Modo = 5 And ModificaLineas = 0))
         'Insertar
         Toolbar1.Buttons(5).Enabled = (b Or Modo = 0) And Not EsHistorico
-        Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
+        Me.mnnuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
         'Modificar
         Toolbar1.Buttons(6).Enabled = b And Not EsHistorico
         Me.mnModificar.Enabled = b And Not EsHistorico
@@ -6864,7 +6873,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 Private Sub CargarComboFacturacion()

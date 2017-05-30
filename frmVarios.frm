@@ -35,7 +35,7 @@ Begin VB.Form frmVarios
          Left            =   4200
          TabIndex        =   28
          Top             =   3120
-         Width           =   1095
+         Width           =   1135
       End
       Begin VB.TextBox txtFecha 
          BeginProperty Font 
@@ -126,7 +126,7 @@ Begin VB.Form frmVarios
          Left            =   5400
          TabIndex        =   29
          Top             =   3120
-         Width           =   1095
+         Width           =   1135
       End
       Begin VB.TextBox txtArt 
          BeginProperty Font 
@@ -343,10 +343,10 @@ Begin VB.Form frmVarios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4080
+         Left            =   4140
          TabIndex        =   2
          Top             =   2040
-         Width           =   1095
+         Width           =   1135
       End
       Begin VB.TextBox txtArtD 
          BackColor       =   &H80000018&
@@ -435,10 +435,10 @@ Begin VB.Form frmVarios
          EndProperty
          Height          =   375
          Index           =   1
-         Left            =   5400
+         Left            =   5460
          TabIndex        =   3
          Top             =   2040
-         Width           =   1095
+         Width           =   1135
       End
       Begin VB.Label lblElim 
          Height          =   255
@@ -560,7 +560,7 @@ Begin VB.Form frmVarios
          Left            =   4200
          TabIndex        =   9
          Top             =   1680
-         Width           =   1095
+         Width           =   1135
       End
       Begin VB.Label lblImpr 
          Height          =   255
@@ -632,10 +632,10 @@ Begin VB.Form frmVarios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4560
+         Left            =   4740
          TabIndex        =   41
          Top             =   3000
-         Width           =   1335
+         Width           =   1135
       End
       Begin VB.Label lblTitulo 
          Alignment       =   2  'Center
@@ -705,10 +705,10 @@ Begin VB.Form frmVarios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4080
+         Left            =   4230
          TabIndex        =   4
-         Top             =   6360
-         Width           =   1215
+         Top             =   6330
+         Width           =   1135
       End
       Begin VB.CommandButton cmdCerrar 
          Caption         =   "Cerrar"
@@ -722,10 +722,10 @@ Begin VB.Form frmVarios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   5520
+         Left            =   5460
          TabIndex        =   5
-         Top             =   6360
-         Width           =   1095
+         Top             =   6330
+         Width           =   1135
       End
       Begin VB.Label lblElim 
          Height          =   255
@@ -775,9 +775,9 @@ Begin VB.Form frmVarios
    End
    Begin VB.Frame FrameSelClien 
       Height          =   6975
-      Left            =   240
+      Left            =   0
       TabIndex        =   43
-      Top             =   120
+      Top             =   -30
       Visible         =   0   'False
       Width           =   7095
       Begin VB.CommandButton cmdClientes 
@@ -792,10 +792,10 @@ Begin VB.Form frmVarios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4080
+         Left            =   4320
          TabIndex        =   47
-         Top             =   6480
-         Width           =   1095
+         Top             =   6450
+         Width           =   1135
       End
       Begin VB.CommandButton cmdCancelar 
          Caption         =   "Cancelar"
@@ -810,10 +810,10 @@ Begin VB.Form frmVarios
          EndProperty
          Height          =   375
          Index           =   4
-         Left            =   5520
+         Left            =   5550
          TabIndex        =   46
-         Top             =   6480
-         Width           =   1095
+         Top             =   6450
+         Width           =   1135
       End
       Begin MSComctlLib.ListView ListView2 
          Height          =   5655

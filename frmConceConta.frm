@@ -125,11 +125,11 @@ Begin VB.Form frmConceConta
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3780
+      Left            =   3690
       TabIndex        =   6
       Top             =   5790
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -144,11 +144,11 @@ Begin VB.Form frmConceConta
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5040
+      Left            =   4950
       TabIndex        =   7
       Top             =   5790
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -162,11 +162,11 @@ Begin VB.Form frmConceConta
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5040
+      Left            =   4950
       TabIndex        =   2
       Top             =   5790
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -471,7 +471,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
 End Sub
 

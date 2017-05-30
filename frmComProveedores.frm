@@ -396,24 +396,24 @@ Begin VB.Form frmComProveedores
       TabCaption(1)   =   "Datos Contacto"
       TabPicture(1)   =   "frmComProveedores.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame2(13)"
-      Tab(1).Control(1)=   "Frame1"
-      Tab(1).Control(2)=   "Text1(28)"
-      Tab(1).Control(3)=   "Text1(27)"
-      Tab(1).Control(4)=   "imgCuentas(5)"
-      Tab(1).Control(5)=   "imgWeb"
-      Tab(1).Control(6)=   "Label2(11)"
-      Tab(1).Control(7)=   "Label2(10)"
+      Tab(1).Control(0)=   "Label2(10)"
+      Tab(1).Control(1)=   "Label2(11)"
+      Tab(1).Control(2)=   "imgWeb"
+      Tab(1).Control(3)=   "imgCuentas(5)"
+      Tab(1).Control(4)=   "Text1(27)"
+      Tab(1).Control(5)=   "Text1(28)"
+      Tab(1).Control(6)=   "Frame1"
+      Tab(1).Control(7)=   "Frame2(13)"
       Tab(1).ControlCount=   8
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmComProveedores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label3"
-      Tab(2).Control(1)=   "imgFecha(2)"
-      Tab(2).Control(2)=   "Label2(0)"
-      Tab(2).Control(3)=   "lw1"
-      Tab(2).Control(4)=   "Toolbar2"
-      Tab(2).Control(5)=   "Text1(30)"
+      Tab(2).Control(0)=   "Text1(30)"
+      Tab(2).Control(1)=   "Toolbar2"
+      Tab(2).Control(2)=   "lw1"
+      Tab(2).Control(3)=   "Label2(0)"
+      Tab(2).Control(4)=   "imgFecha(2)"
+      Tab(2).Control(5)=   "Label3"
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1958,11 +1958,11 @@ Begin VB.Form frmComProveedores
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10350
+      Left            =   10230
       Style           =   1  'Graphical
       TabIndex        =   23
       Top             =   6210
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -1976,10 +1976,10 @@ Begin VB.Form frmComProveedores
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9180
+      Left            =   8970
       TabIndex        =   22
       Top             =   6210
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -1993,11 +1993,11 @@ Begin VB.Form frmComProveedores
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10350
+      Left            =   10230
       TabIndex        =   24
       Top             =   6210
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -2862,7 +2862,7 @@ Dim b As Boolean
     b = (Modo = 2) Or (Modo = 0) Or (Modo = 1)
     'Insertar
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
       
     b = (Modo = 2)
     'Modificar
@@ -2878,7 +2878,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'VerTodos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

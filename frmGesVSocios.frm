@@ -179,10 +179,10 @@ Begin VB.Form frmGesVSocio
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6690
+      Left            =   6570
       TabIndex        =   5
       Top             =   5610
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -196,10 +196,10 @@ Begin VB.Form frmGesVSocio
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5490
+      Left            =   5370
       TabIndex        =   4
       Top             =   5610
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -213,11 +213,11 @@ Begin VB.Form frmGesVSocio
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6690
+      Left            =   6570
       TabIndex        =   8
       Top             =   5610
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -451,7 +451,7 @@ Dim i As Integer
     txtAux(2).visible = Not b
     txtAux(3).visible = Not b
     
-    CmdAceptar.visible = Not b
+    cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
     DataGrid1.Enabled = b
     'Si es regresar
@@ -481,12 +481,12 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
      b = b And Not DeConsulta
     'Añadir
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -509,7 +509,7 @@ Private Sub BotonAnyadir()
 Dim anc As Single
         
     'Situamos el grid al final
-    AnyadirLinea DataGrid1, adodc1
+    AnyadirLinea DataGrid1, Adodc1
     
     'Obtenemos la siguiente numero de factura
     txtAux(0).Text = SugerirCodigoSiguienteStr("scoche", "codcoche")
@@ -539,7 +539,7 @@ Private Sub BotonVerTodos()
 On Error Resume Next
 
     CargaGrid ""
-    If adodc1.Recordset.RecordCount <= 0 Then
+    If Adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla scoche", vbInformation
         Screen.MousePointer = vbDefault
         Exit Sub
@@ -555,8 +555,8 @@ Private Sub BotonModificar()
 Dim anc As Single
 Dim i As Integer
 
-    If adodc1.Recordset.EOF Then Exit Sub
-    If adodc1.Recordset.RecordCount < 1 Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
 
     Screen.MousePointer = vbHourglass
     
@@ -600,21 +600,21 @@ Dim Sql As String
     On Error GoTo Error2
     
     'Ciertas comprobaciones
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
     
     '### a mano
     Sql = "¿Seguro que desea eliminar el vehiculo?" & vbCrLf
-    Sql = Sql & vbCrLf & "Código: " & Format(adodc1.Recordset.Fields(0), FormatoCod)
-    Sql = Sql & vbCrLf & "Denominación: " & adodc1.Recordset.Fields(1)
+    Sql = Sql & vbCrLf & "Código: " & Format(Adodc1.Recordset.Fields(0), FormatoCod)
+    Sql = Sql & vbCrLf & "Denominación: " & Adodc1.Recordset.Fields(1)
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
-        NumRegElim = Me.adodc1.Recordset.AbsolutePosition
-        Sql = "Delete from scoche where codcoche=" & adodc1.Recordset!codactiv
+        NumRegElim = Me.Adodc1.Recordset.AbsolutePosition
+        Sql = "Delete from scoche where codcoche=" & Adodc1.Recordset!codactiv
         conn.Execute Sql
-        CancelaADODC Me.adodc1
+        CancelaADODC Me.Adodc1
         CargaGrid ""
-        CancelaADODC Me.adodc1
-        SituarDataPosicion Me.adodc1, NumRegElim, Sql
+        CancelaADODC Me.Adodc1
+        SituarDataPosicion Me.Adodc1, NumRegElim, Sql
     End If
     
 Error2:
@@ -651,11 +651,11 @@ Dim CadB As String
              If DatosOk And BLOQUEADesdeFormulario(Me) Then
                  If ModificaDesdeFormulario(Me, 3) Then
                       TerminaBloquear
-                      i = adodc1.Recordset.Fields(0)
+                      i = Adodc1.Recordset.Fields(0)
                       PonerModo 2
-                      CancelaADODC Me.adodc1
+                      CancelaADODC Me.Adodc1
                       CargaGrid
-                      adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
+                      Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
                   End If
                   DataGrid1.SetFocus
             End If
@@ -674,13 +674,13 @@ Private Sub cmdCancelar_Click()
         Case 3 'Insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
-            If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
+            If Not Adodc1.Recordset.EOF Then Adodc1.Recordset.MoveFirst
             
         Case 4 'Modificar
             'CargaGrid
             TerminaBloquear
 '            If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
-            Me.lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+            Me.lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     End Select
     PonerModo 2
     DataGrid1.SetFocus
@@ -692,14 +692,14 @@ End Sub
 Private Sub cmdRegresar_Click()
 Dim Cad As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = adodc1.Recordset.Fields(0) & "|"
-    Cad = Cad & adodc1.Recordset.Fields(1) & "|"
-    Cad = Cad & adodc1.Recordset.Fields(2) & "|"
+    Cad = Adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(2) & "|"
     
     RaiseEvent DatoSeleccionado(Cad)
     Unload Me
@@ -715,8 +715,8 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not adodc1.Recordset.EOF Then 'And Modo = 0 Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+    If Not Adodc1.Recordset.EOF Then 'And Modo = 0 Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     End If
 End Sub
 
@@ -832,7 +832,7 @@ Dim tots As String
     End If
     Sql = Sql & " ORDER BY numeruve"
 
-    CargaGridGnral DataGrid1, Me.adodc1, Sql, False
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
     
     '### a mano
     tots = "S|txtAux(2)|T|V Socio|900|;S|txtAux(0)|T|Socio|900|;S|txtAux(1)|T|Denominación|3450|;S|txtAux(3)|T|Matricula|1600|;"
@@ -853,8 +853,8 @@ Dim tots As String
     DataGrid1.ScrollBars = dbgAutomatic
    
    'Actualizar indicador
-   If Not adodc1.Recordset.EOF And (Modo = 2) Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+   If Not Adodc1.Recordset.EOF And (Modo = 2) Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
    Else
         Me.lblIndicador.Caption = ""
    End If
@@ -912,7 +912,7 @@ Private Sub printNou()
         Else
             .cadRegSelec = ""
         End If
-        .cadRegActua = POS2SF(adodc1, Me)
+        .cadRegActua = POS2SF(Adodc1, Me)
         .cadTodosReg = ""
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
         .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"

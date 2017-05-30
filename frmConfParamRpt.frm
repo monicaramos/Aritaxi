@@ -271,10 +271,10 @@ Begin VB.Form frmConfParamRpt
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9510
+      Left            =   9390
       TabIndex        =   12
       Top             =   5280
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -414,11 +414,11 @@ Begin VB.Form frmConfParamRpt
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8340
+      Left            =   8160
       TabIndex        =   11
       Top             =   5280
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdSalir 
       Caption         =   "&Salir"
@@ -433,11 +433,11 @@ Begin VB.Form frmConfParamRpt
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9495
+      Left            =   9405
       TabIndex        =   13
       Top             =   5280
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
@@ -678,7 +678,7 @@ Attribute frmTDoc.VB_VarHelpID = -1
 
 
 Dim HaDevueltoDatos  As Boolean
-Dim cadB As String
+Dim CadB As String
 
 Dim Modo As Byte
 '0: Inicial
@@ -699,7 +699,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim vParamRpt As CParamRpt 'Clase Parametros para Reports
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 Dim actualiza As Boolean
 
     Select Case Modo
@@ -737,8 +737,8 @@ Dim actualiza As Boolean
                 End If
                 Set vParamRpt = Nothing
                 If actualiza = 0 Then 'Inserta o Modifica
-                    cad = "codcryst=" & Text1(0).Text
-                    If SituarData(Data1, cad, Indicador) Then
+                    Cad = "codcryst=" & Text1(0).Text
+                    If SituarData(Data1, Cad, Indicador) Then
                         PonerModo 2
                         Me.lblIndicador.Caption = Indicador
                     End If
@@ -890,19 +890,19 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
-        cadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
 End Sub
 
 Private Sub frmTDoc_DatoSeleccionado(CadenaSeleccion As String)
-Dim cadB As String
-    cadB = "codcryst = " & RecuperaValor(CadenaSeleccion, 1)
+Dim CadB As String
+    CadB = "codcryst = " & RecuperaValor(CadenaSeleccion, 1)
     
     'Se muestran en el mismo form
-    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+    CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
     PonerCadenaBusqueda
     Screen.MousePointer = vbDefault
 
@@ -1060,7 +1060,7 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim I As Integer
+Dim i As Integer
 
    
     Modo = Kmodo
@@ -1068,9 +1068,9 @@ Dim I As Integer
     '----------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
    
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
    
    
    
@@ -1116,13 +1116,13 @@ Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
     b = (Modo = 3) Or (Modo = 4)
     Me.Toolbar1.Buttons(1).Enabled = Not b 'Insertar
-    Me.mnNuevo.Enabled = Not b
+    Me.mnnuevo.Enabled = Not b
     Me.Toolbar1.Buttons(2).Enabled = (Not b) 'Modificar
     Me.mnModificar.Enabled = Not b
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 ''Carga el formulario frmBuscaGrid con los valores correspondientes
 'Dim cad As String
 '
@@ -1159,7 +1159,7 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 
     Set frmTDoc = New frmBasico2
     
-    AyudaTiposDocumentos frmTDoc, , cadB
+    AyudaTiposDocumentos frmTDoc, , CadB
     
     Set frmTDoc = Nothing
 
@@ -1192,15 +1192,15 @@ Private Sub BotonBuscar()
 End Sub
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 '    cadSeleccion = ObtenerBusqueda(Me, True) 'Para la consulta de report
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then 'Se muestran en el mismo form
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then 'Se muestran en el mismo form
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         MsgBox "Introducir criterios de búsqueda", vbExclamation

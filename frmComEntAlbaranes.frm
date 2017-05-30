@@ -385,10 +385,10 @@ Begin VB.Form frmComEntAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11820
+      Left            =   11730
       TabIndex        =   43
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -402,10 +402,10 @@ Begin VB.Form frmComEntAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10650
+      Left            =   10530
       TabIndex        =   41
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -710,17 +710,17 @@ Begin VB.Form frmComEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":00B3
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
-      Tab(1).Control(1)=   "Text2(21)"
-      Tab(1).Control(2)=   "Text1(21)"
-      Tab(1).Control(3)=   "Text1(19)"
-      Tab(1).Control(4)=   "Text1(18)"
+      Tab(1).Control(0)=   "Label1(45)"
+      Tab(1).Control(1)=   "Label1(1)"
+      Tab(1).Control(2)=   "imgBuscar(4)"
+      Tab(1).Control(3)=   "Text1(15)"
+      Tab(1).Control(4)=   "Text1(16)"
       Tab(1).Control(5)=   "Text1(17)"
-      Tab(1).Control(6)=   "Text1(16)"
-      Tab(1).Control(7)=   "Text1(15)"
-      Tab(1).Control(8)=   "imgBuscar(4)"
-      Tab(1).Control(9)=   "Label1(1)"
-      Tab(1).Control(10)=   "Label1(45)"
+      Tab(1).Control(6)=   "Text1(18)"
+      Tab(1).Control(7)=   "Text1(19)"
+      Tab(1).Control(8)=   "Text1(21)"
+      Tab(1).Control(9)=   "Text2(21)"
+      Tab(1).Control(10)=   "FrameHco"
       Tab(1).ControlCount=   11
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntAlbaranes.frx":00CF
@@ -2536,11 +2536,11 @@ Begin VB.Form frmComEntAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11820
+      Left            =   11730
       TabIndex        =   22
       Top             =   5880
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Label lblF 
       Caption         =   "Label2"
@@ -5240,7 +5240,7 @@ Dim b As Boolean
         b = (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
         'Insertar
         Toolbar1.Buttons(5).Enabled = (b Or Modo = 0) And (cadSelAlbaranes = "" Or (cadSelAlbaranes <> "" And Modo = 5)) And Not EsHistorico
-        Me.mnNuevo.Enabled = (b Or Modo = 0) And (cadSelAlbaranes = "" Or (cadSelAlbaranes <> "" And Modo = 5)) And Not EsHistorico
+        Me.mnnuevo.Enabled = (b Or Modo = 0) And (cadSelAlbaranes = "" Or (cadSelAlbaranes <> "" And Modo = 5)) And Not EsHistorico
         'Modificar
         Toolbar1.Buttons(6).Enabled = b And Not EsHistorico
         Me.mnModificar.Enabled = b And Not EsHistorico
@@ -5270,7 +5270,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = (Not b)
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = (Not b)
-        Me.mnVerTodos.Enabled = (Not b)
+        Me.mnvertodos.Enabled = (Not b)
 End Sub
 
 

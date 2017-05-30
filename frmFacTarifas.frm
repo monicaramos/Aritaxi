@@ -273,7 +273,7 @@ Begin VB.Form frmFacTarifas
       Left            =   5100
       TabIndex        =   6
       Top             =   5670
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -290,7 +290,7 @@ Begin VB.Form frmFacTarifas
       Left            =   3900
       TabIndex        =   5
       Top             =   5670
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -308,7 +308,7 @@ Begin VB.Form frmFacTarifas
       TabIndex        =   9
       Top             =   5670
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -496,10 +496,10 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     'Añadir
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b

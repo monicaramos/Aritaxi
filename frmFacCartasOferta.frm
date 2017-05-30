@@ -125,10 +125,10 @@ Begin VB.Form frmFacCartasOferta
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7560
+      Left            =   7410
       TabIndex        =   7
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -143,10 +143,10 @@ Begin VB.Form frmFacCartasOferta
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8715
+      Left            =   8655
       TabIndex        =   8
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -160,11 +160,11 @@ Begin VB.Form frmFacCartasOferta
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8715
+      Left            =   8655
       TabIndex        =   9
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -1045,13 +1045,13 @@ Dim b As Boolean
     b = (Modo >= 3)
     'Insertar
     Toolbar1.Buttons(5).Enabled = Not b
-    Me.mnNuevo.Enabled = Not b
+    Me.mnnuevo.Enabled = Not b
     'Buscar
     Toolbar1.Buttons(1).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

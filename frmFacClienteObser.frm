@@ -46,10 +46,10 @@ Begin VB.Form frmFacClienteObser
       EndProperty
       Height          =   375
       Index           =   1
-      Left            =   6960
+      Left            =   6930
       TabIndex        =   2
       Top             =   4800
-      Width           =   1095
+      Width           =   1135
    End
    Begin VB.CommandButton Command1 
       Caption         =   "Aceptar"
@@ -64,10 +64,10 @@ Begin VB.Form frmFacClienteObser
       EndProperty
       Height          =   375
       Index           =   0
-      Left            =   5760
+      Left            =   5670
       TabIndex        =   1
       Top             =   4800
-      Width           =   1095
+      Width           =   1135
    End
 End
 Attribute VB_Name = "frmFacClienteObser"

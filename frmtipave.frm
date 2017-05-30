@@ -204,10 +204,10 @@ Begin VB.Form frmtipave
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4290
+      Left            =   4200
       TabIndex        =   3
       Top             =   5640
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -221,10 +221,10 @@ Begin VB.Form frmtipave
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3090
+      Left            =   3000
       TabIndex        =   2
       Top             =   5640
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -238,11 +238,11 @@ Begin VB.Form frmtipave
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4290
+      Left            =   4200
       TabIndex        =   6
       Top             =   5640
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -431,7 +431,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
    
     b = b And Not DeConsulta
     'Insertar
@@ -460,7 +460,7 @@ Private Sub BotonAnyadir()
 Dim anc As Single
     
     'Situamos el grid al final
-    AnyadirLinea DataGrid1, adodc1
+    AnyadirLinea DataGrid1, Adodc1
       
     anc = ObtenerAlto(DataGrid1, 10)
     
@@ -489,7 +489,7 @@ End Sub
 Private Sub BotonVerTodos()
 On Error Resume Next
     CargaGrid ""
-    If adodc1.Recordset.RecordCount <= 0 Then
+    If Adodc1.Recordset.RecordCount <= 0 Then
          'MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
          MsgBox "No hay ningún registro en la tabla stipave", vbInformation
          Screen.MousePointer = vbDefault
@@ -507,11 +507,11 @@ Dim anc As Single
 Dim i As Integer
 On Error GoTo EModificar
 
-    If adodc1.Recordset.EOF Then Exit Sub
-    If adodc1.Recordset.RecordCount < 1 Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
 
     'El registro de codigo 0 no se puede Modificar ni Eliminar
-    If EsCodigoCero(CStr(adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
+    If EsCodigoCero(CStr(Adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
 
     Screen.MousePointer = vbHourglass
     
@@ -554,25 +554,25 @@ Dim Sql As String
 On Error GoTo Error2
 
     'Ciertas comprobaciones
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
     If Not SepuedeBorrar Then Exit Sub
     
     'El registro de codigo 0 no se puede Modificar ni Eliminar
-    If EsCodigoCero(CStr(adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
+    If EsCodigoCero(CStr(Adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
     
     '### a mano
     Sql = "¿Seguro que desea eliminar el Tipo de avería?" & vbCrLf
-    Sql = Sql & vbCrLf & "Código: " & Format(adodc1.Recordset.Fields(0), FormatoCod)
-    Sql = Sql & vbCrLf & "Denominación: " & adodc1.Recordset.Fields(1)
+    Sql = Sql & vbCrLf & "Código: " & Format(Adodc1.Recordset.Fields(0), FormatoCod)
+    Sql = Sql & vbCrLf & "Denominación: " & Adodc1.Recordset.Fields(1)
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
-        NumRegElim = Me.adodc1.Recordset.AbsolutePosition
-        Sql = "Delete from stipave where codave=" & adodc1.Recordset!codave
+        NumRegElim = Me.Adodc1.Recordset.AbsolutePosition
+        Sql = "Delete from stipave where codave=" & Adodc1.Recordset!codave
         conn.Execute Sql
-        CancelaADODC adodc1
+        CancelaADODC Adodc1
         CargaGrid ""
-        CancelaADODC Me.adodc1
-        SituarDataPosicion Me.adodc1, NumRegElim, Sql
+        CancelaADODC Me.Adodc1
+        SituarDataPosicion Me.Adodc1, NumRegElim, Sql
     End If
     
 Error2:
@@ -599,11 +599,11 @@ On Error Resume Next
             If DatosOk And BLOQUEADesdeFormulario(Me) Then
                 If ModificaDesdeFormulario(Me, 3) Then
                     TerminaBloquear
-                    i = adodc1.Recordset.Fields(0)
+                    i = Adodc1.Recordset.Fields(0)
                     PonerModo 2
-                    CancelaADODC Me.adodc1
+                    CancelaADODC Me.Adodc1
                     CargaGrid
-                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
+                    Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
                 End If
                 DataGrid1.SetFocus
             End If
@@ -626,9 +626,9 @@ Private Sub cmdCancelar_Click()
         Case 3 'Insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
-            If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
+            If Not Adodc1.Recordset.EOF Then Adodc1.Recordset.MoveFirst
         Case 4 'Modificar
-            Me.lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+            Me.lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
         Case 1 'Buscar
             CargaGrid
     End Select
@@ -640,13 +640,13 @@ End Sub
 Private Sub cmdRegresar_Click()
 Dim Cad As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = adodc1.Recordset.Fields(0) & "|"
-    Cad = Cad & adodc1.Recordset.Fields(1) & "|"
+    Cad = Adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
     RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
@@ -661,8 +661,8 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not adodc1.Recordset.EOF Then 'And Modo = 0 Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+    If Not Adodc1.Recordset.EOF Then 'And Modo = 0 Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     End If
 End Sub
 
@@ -782,7 +782,7 @@ Dim b As Boolean
     End If
     Sql = Sql & " ORDER BY codave"
 
-    CargaGridGnral DataGrid1, Me.adodc1, Sql, False
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
 
     
     'Nombre producto
@@ -814,17 +814,17 @@ Dim b As Boolean
    
     'Habilitamos botones Modificar y Eliminar
    If Toolbar1.Buttons(2).Enabled = True Then
-        Toolbar1.Buttons(2).Enabled = Not adodc1.Recordset.EOF
-        Toolbar1.Buttons(3).Enabled = Not adodc1.Recordset.EOF
-        mnModificar.Enabled = Not adodc1.Recordset.EOF
-        mnEliminar.Enabled = Not adodc1.Recordset.EOF
+        Toolbar1.Buttons(2).Enabled = Not Adodc1.Recordset.EOF
+        Toolbar1.Buttons(3).Enabled = Not Adodc1.Recordset.EOF
+        mnModificar.Enabled = Not Adodc1.Recordset.EOF
+        mnEliminar.Enabled = Not Adodc1.Recordset.EOF
     End If
    DataGrid1.Enabled = b
    DataGrid1.ScrollBars = dbgAutomatic
    
    'Actualizar indicador
-   If Not adodc1.Recordset.EOF And (Modo = 0) Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+   If Not Adodc1.Recordset.EOF And (Modo = 0) Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
    Else
         Me.lblIndicador.Caption = ""
    End If
@@ -867,7 +867,7 @@ End Function
 
 
 Private Function SepuedeBorrar() As Boolean
-    If SePuedeEliminarRelReparacione(2, CStr(adodc1.Recordset.Fields(0))) Then
+    If SePuedeEliminarRelReparacione(2, CStr(Adodc1.Recordset.Fields(0))) Then
         SepuedeBorrar = True
     Else
         MsgBox "Existen registros relacionados", vbExclamation

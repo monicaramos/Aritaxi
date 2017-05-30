@@ -174,7 +174,7 @@ Begin VB.Form frmFCliReImp
       Left            =   3360
       TabIndex        =   7
       Top             =   4680
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "Cancelar"
@@ -188,10 +188,10 @@ Begin VB.Form frmFCliReImp
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4560
+      Left            =   4650
       TabIndex        =   8
       Top             =   4680
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
       Alignment       =   1  'Right Justify
@@ -732,7 +732,7 @@ End Function
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
@@ -823,7 +823,7 @@ Dim EsNomCod As Boolean
     Select Case Index
         Case 0, 1 'clientes
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
+                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
             End If
         
         Case 85, 86  'FECHA Desde Hasta

@@ -204,10 +204,10 @@ Begin VB.Form frmLlamadasTipo
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5280
+      Left            =   5130
       TabIndex        =   3
       Top             =   5700
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -221,10 +221,10 @@ Begin VB.Form frmLlamadasTipo
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4080
+      Left            =   3930
       TabIndex        =   2
       Top             =   5700
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -238,11 +238,11 @@ Begin VB.Form frmLlamadasTipo
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5280
+      Left            =   5130
       TabIndex        =   6
       Top             =   5700
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -429,7 +429,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
    
     b = b And Not DeConsulta
     'Insertar
@@ -500,7 +500,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim cad As String
+Dim Cad As String
 Dim anc As Single
 Dim i As Integer
 On Error GoTo EModificar
@@ -521,9 +521,9 @@ On Error GoTo EModificar
     
     anc = ObtenerAlto(DataGrid1, 10)
     
-    cad = ""
+    Cad = ""
     For i = 0 To 1
-        cad = cad & DataGrid1.Columns(i).Text & "|"
+        Cad = Cad & DataGrid1.Columns(i).Text & "|"
     Next i
     'Llamamos al form
     txtAux(0).Text = DataGrid1.Columns(0).Text
@@ -581,7 +581,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim i As Integer
-Dim cadB As String
+Dim CadB As String
 On Error Resume Next
 
     Select Case Modo
@@ -607,11 +607,11 @@ On Error Resume Next
             End If
             
         Case 1 'BUSQUEDA
-            cadB = ObtenerBusqueda(Me, False)
-            If cadB <> "" Then
+            CadB = ObtenerBusqueda(Me, False)
+            If CadB <> "" Then
                 'Encuentra registros
                 PonerModo 2
-                CargaGrid cadB
+                CargaGrid CadB
                 DataGrid1.SetFocus
             End If
     End Select
@@ -636,16 +636,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = Adodc1.Recordset.Fields(0) & "|"
-    cad = cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 

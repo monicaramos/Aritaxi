@@ -149,11 +149,11 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6060
+      Left            =   6000
       TabIndex        =   2
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -168,11 +168,11 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7335
+      Left            =   7275
       TabIndex        =   3
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -186,11 +186,11 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7335
+      Left            =   7275
       TabIndex        =   5
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmRepCargarNSerie.frx":000C

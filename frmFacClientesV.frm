@@ -153,7 +153,7 @@ Begin VB.Form frmFacClientesV
       TabIndex        =   8
       Top             =   4320
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       BeginProperty Font 
@@ -203,11 +203,20 @@ Begin VB.Form frmFacClientesV
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   5400
       TabIndex        =   9
       Top             =   4320
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -221,10 +230,10 @@ Begin VB.Form frmFacClientesV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4200
+      Left            =   4110
       TabIndex        =   7
       Top             =   4320
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   375
@@ -1112,13 +1121,13 @@ Dim b As Boolean
     b = (Modo >= 3)
      'Insertar
     Toolbar1.Buttons(5).Enabled = Not b
-    Me.mnNuevo.Enabled = Not b
+    Me.mnnuevo.Enabled = Not b
     'Buscar
     Toolbar1.Buttons(1).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

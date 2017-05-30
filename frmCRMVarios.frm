@@ -72,7 +72,7 @@ Begin VB.Form frmCRMVarios
          Left            =   4920
          TabIndex        =   11
          Top             =   6120
-         Width           =   1095
+         Width           =   1135
       End
       Begin VB.TextBox txtNumero 
          BeginProperty Font 
@@ -449,7 +449,7 @@ Begin VB.Form frmCRMVarios
          Left            =   6120
          TabIndex        =   12
          Top             =   6120
-         Width           =   1185
+         Width           =   1135
       End
       Begin VB.Image imgAccion 
          Height          =   240

@@ -402,11 +402,11 @@ Begin VB.Form frmFacFormasPago
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7110
+      Left            =   6990
       TabIndex        =   12
-      Top             =   4770
+      Top             =   4740
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
       BeginProperty Font 
@@ -466,10 +466,10 @@ Begin VB.Form frmFacFormasPago
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7110
+      Left            =   6990
       TabIndex        =   13
-      Top             =   4755
-      Width           =   1035
+      Top             =   4725
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -483,10 +483,10 @@ Begin VB.Form frmFacFormasPago
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5850
+      Left            =   5730
       TabIndex        =   11
-      Top             =   4755
-      Width           =   1035
+      Top             =   4725
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   375
@@ -1526,13 +1526,13 @@ Dim b As Boolean
     b = (Modo >= 3)
     'Insertar
     Toolbar1.Buttons(1).Enabled = Not b
-    Me.mnNuevo.Enabled = Not b
+    Me.mnnuevo.Enabled = Not b
     'Buscar
     Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'VerTodos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

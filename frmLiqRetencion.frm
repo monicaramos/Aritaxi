@@ -331,10 +331,10 @@ Begin VB.Form frmLiqRetencion
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10590
+      Left            =   10500
       TabIndex        =   6
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -352,7 +352,7 @@ Begin VB.Form frmLiqRetencion
       Left            =   11745
       TabIndex        =   7
       Top             =   5880
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -1089,7 +1089,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnNuevo.Enabled = (b Or (Modo = 0))
+    Me.mnnuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -1113,7 +1113,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
     
 End Sub
 

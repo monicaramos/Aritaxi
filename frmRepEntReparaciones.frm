@@ -37,7 +37,7 @@ Begin VB.Form frmRepEntReparaciones
       MaxLength       =   60
       TabIndex        =   119
       Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-      Top             =   7680
+      Top             =   7650
       Visible         =   0   'False
       Width           =   4125
    End
@@ -66,48 +66,48 @@ Begin VB.Form frmRepEntReparaciones
       TabCaption(0)   =   "Datos basicos "
       TabPicture(0)   =   "frmRepEntReparaciones.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "imgBuscar(9)"
-      Tab(0).Control(1)=   "FrameOtros"
-      Tab(0).Control(2)=   "FrameClientes"
-      Tab(0).Control(3)=   "Frame3"
+      Tab(0).Control(0)=   "Frame3"
+      Tab(0).Control(1)=   "FrameClientes"
+      Tab(0).Control(2)=   "FrameOtros"
+      Tab(0).Control(3)=   "imgBuscar(9)"
       Tab(0).ControlCount=   4
       TabCaption(1)   =   "Presupuesto / S.A.T."
       TabPicture(1)   =   "frmRepEntReparaciones.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label2(3)"
-      Tab(1).Control(1)=   "Label2(2)"
-      Tab(1).Control(2)=   "imgFecha(4)"
-      Tab(1).Control(3)=   "Label9(3)"
-      Tab(1).Control(4)=   "Label1(13)"
-      Tab(1).Control(5)=   "imgFecha(3)"
-      Tab(1).Control(6)=   "Label9(2)"
-      Tab(1).Control(7)=   "imgFecha(2)"
-      Tab(1).Control(8)=   "Label9(1)"
-      Tab(1).Control(9)=   "Label2(1)"
-      Tab(1).Control(10)=   "Label11(0)"
-      Tab(1).Control(11)=   "Label1(12)"
-      Tab(1).Control(12)=   "Line1"
-      Tab(1).Control(13)=   "Line2"
-      Tab(1).Control(14)=   "Label12(0)"
-      Tab(1).Control(15)=   "Label12(1)"
-      Tab(1).Control(16)=   "Label11(1)"
-      Tab(1).Control(17)=   "imgFecha(5)"
-      Tab(1).Control(18)=   "Label9(4)"
-      Tab(1).Control(19)=   "Label9(5)"
-      Tab(1).Control(20)=   "imgBuscar(8)"
-      Tab(1).Control(21)=   "Text1(22)"
-      Tab(1).Control(22)=   "Text2(21)"
-      Tab(1).Control(23)=   "Text1(21)"
-      Tab(1).Control(24)=   "Text1(20)"
-      Tab(1).Control(25)=   "Text1(19)"
-      Tab(1).Control(26)=   "Text1(18)"
-      Tab(1).Control(27)=   "Text1(17)"
-      Tab(1).Control(28)=   "Text1(16)"
-      Tab(1).Control(29)=   "Combo1"
-      Tab(1).Control(30)=   "Check1"
-      Tab(1).Control(31)=   "Text1(25)"
-      Tab(1).Control(32)=   "Text1(26)"
-      Tab(1).Control(33)=   "Text1(27)"
+      Tab(1).Control(0)=   "Text1(27)"
+      Tab(1).Control(1)=   "Text1(26)"
+      Tab(1).Control(2)=   "Text1(25)"
+      Tab(1).Control(3)=   "Check1"
+      Tab(1).Control(4)=   "Combo1"
+      Tab(1).Control(5)=   "Text1(16)"
+      Tab(1).Control(6)=   "Text1(17)"
+      Tab(1).Control(7)=   "Text1(18)"
+      Tab(1).Control(8)=   "Text1(19)"
+      Tab(1).Control(9)=   "Text1(20)"
+      Tab(1).Control(10)=   "Text1(21)"
+      Tab(1).Control(11)=   "Text2(21)"
+      Tab(1).Control(12)=   "Text1(22)"
+      Tab(1).Control(13)=   "imgBuscar(8)"
+      Tab(1).Control(14)=   "Label9(5)"
+      Tab(1).Control(15)=   "Label9(4)"
+      Tab(1).Control(16)=   "imgFecha(5)"
+      Tab(1).Control(17)=   "Label11(1)"
+      Tab(1).Control(18)=   "Label12(1)"
+      Tab(1).Control(19)=   "Label12(0)"
+      Tab(1).Control(20)=   "Line2"
+      Tab(1).Control(21)=   "Line1"
+      Tab(1).Control(22)=   "Label1(12)"
+      Tab(1).Control(23)=   "Label11(0)"
+      Tab(1).Control(24)=   "Label2(1)"
+      Tab(1).Control(25)=   "Label9(1)"
+      Tab(1).Control(26)=   "imgFecha(2)"
+      Tab(1).Control(27)=   "Label9(2)"
+      Tab(1).Control(28)=   "imgFecha(3)"
+      Tab(1).Control(29)=   "Label1(13)"
+      Tab(1).Control(30)=   "Label9(3)"
+      Tab(1).Control(31)=   "imgFecha(4)"
+      Tab(1).Control(32)=   "Label2(2)"
+      Tab(1).Control(33)=   "Label2(3)"
       Tab(1).ControlCount=   34
       TabCaption(2)   =   "Lineas"
       TabPicture(2)   =   "frmRepEntReparaciones.frx":0044
@@ -2534,7 +2534,7 @@ Begin VB.Form frmRepEntReparaciones
       MaxLength       =   60
       TabIndex        =   52
       Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-      Top             =   8100
+      Top             =   8040
       Visible         =   0   'False
       Width           =   6495
    End
@@ -2550,10 +2550,10 @@ Begin VB.Form frmRepEntReparaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10380
+      Left            =   10320
       TabIndex        =   54
       Top             =   8040
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -2568,10 +2568,10 @@ Begin VB.Form frmRepEntReparaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11580
+      Left            =   11520
       TabIndex        =   55
       Top             =   8040
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -2585,11 +2585,11 @@ Begin VB.Form frmRepEntReparaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11580
+      Left            =   11520
       TabIndex        =   38
       Top             =   8040
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -2817,7 +2817,7 @@ Begin VB.Form frmRepEntReparaciones
       Index           =   17
       Left            =   2400
       TabIndex        =   120
-      Top             =   7750
+      Top             =   7725
       Visible         =   0   'False
       Width           =   1335
    End
@@ -2836,7 +2836,7 @@ Begin VB.Form frmRepEntReparaciones
       Index           =   35
       Left            =   2400
       TabIndex        =   58
-      Top             =   8160
+      Top             =   8100
       Visible         =   0   'False
       Width           =   1335
    End
@@ -4218,7 +4218,7 @@ Dim i As Byte
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

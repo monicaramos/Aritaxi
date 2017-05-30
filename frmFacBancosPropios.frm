@@ -638,11 +638,11 @@ Begin VB.Form frmFacBancosPropios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9150
+      Left            =   9060
       TabIndex        =   21
       Top             =   5730
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -682,10 +682,10 @@ Begin VB.Form frmFacBancosPropios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9150
+      Left            =   9060
       TabIndex        =   22
       Top             =   5730
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -699,10 +699,10 @@ Begin VB.Form frmFacBancosPropios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7980
+      Left            =   7770
       TabIndex        =   20
       Top             =   5730
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   375
@@ -1891,13 +1891,13 @@ Dim b As Boolean
     b = (Modo >= 3) 'Insertar/Modificar
     'Insertar
     Toolbar1.Buttons(1).Enabled = Not b
-    Me.mnNuevo.Enabled = Not b
+    Me.mnnuevo.Enabled = Not b
     'Buscar
     Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

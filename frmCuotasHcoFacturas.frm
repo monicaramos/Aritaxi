@@ -407,21 +407,21 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmCuotasHcoFacturas.frx":0A0E
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1(25)"
+      Tab(0).Control(0)=   "FrameCliente"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "Label1(26)"
+      Tab(0).Control(1)=   "Text1(17)"
       Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Text1(23)"
+      Tab(0).Control(2)=   "Text1(16)"
       Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "Text1(24)"
+      Tab(0).Control(3)=   "FrameFactura"
       Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "FrameFactura"
+      Tab(0).Control(4)=   "Text1(24)"
       Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "Text1(16)"
+      Tab(0).Control(5)=   "Text1(23)"
       Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "Text1(17)"
+      Tab(0).Control(6)=   "Label1(26)"
       Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "FrameCliente"
+      Tab(0).Control(7)=   "Label1(25)"
       Tab(0).Control(7).Enabled=   0   'False
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
@@ -2504,10 +2504,10 @@ Begin VB.Form frmCuotasHcoFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13050
+      Left            =   13140
       TabIndex        =   25
       Top             =   6420
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -2521,10 +2521,10 @@ Begin VB.Form frmCuotasHcoFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11760
+      Left            =   11880
       TabIndex        =   24
       Top             =   6420
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -2627,11 +2627,11 @@ Begin VB.Form frmCuotasHcoFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13050
+      Left            =   13140
       TabIndex        =   26
       Top             =   6420
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data3 
       Height          =   330
@@ -5071,7 +5071,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 

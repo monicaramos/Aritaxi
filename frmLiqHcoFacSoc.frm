@@ -358,11 +358,11 @@ Begin VB.Form frmLiqHcoFacSoc
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmLiqHcoFacSoc.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(0)=   "Frame3"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "FrameFactura"
       Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Frame3"
+      Tab(0).Control(2)=   "FrameCliente"
       Tab(0).Control(2).Enabled=   0   'False
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Llamadas"
@@ -1749,10 +1749,10 @@ Begin VB.Form frmLiqHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12150
+      Left            =   12000
       TabIndex        =   26
       Top             =   5820
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -1766,10 +1766,10 @@ Begin VB.Form frmLiqHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10860
+      Left            =   10710
       TabIndex        =   25
       Top             =   5820
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -1866,11 +1866,11 @@ Begin VB.Form frmLiqHcoFacSoc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12120
+      Left            =   12000
       TabIndex        =   27
       Top             =   5820
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
@@ -2032,7 +2032,7 @@ Dim b As Boolean
 
     DatosOkLin = False
 
-    RecalcularImportes txtAux3(12), False
+    RecalcularImportes TxtAux3(12), False
     
     DatosOkLin = True
 
@@ -3129,7 +3129,7 @@ Dim EstaEnTesoreria As String
     End If
 
 
-    txtAux3(12).Text = DataGrid1.Columns(15).Text
+    TxtAux3(12).Text = DataGrid1.Columns(15).Text
     
     ModificaLineas = 2 'Modificar
     LLamaLineas ModificaLineas, anc, "DataGrid1"
@@ -3137,7 +3137,7 @@ Dim EstaEnTesoreria As String
     'Añadiremos el boton de aceptar y demas objetos para insertar
     Me.lblIndicador.Caption = "MODIFICAR"
     PonerBotonCabecera False
-    PonerFoco txtAux3(12)
+    PonerFoco TxtAux3(12)
     Me.DataGrid1.Enabled = False
 
 EModificarLinea:
@@ -3154,15 +3154,15 @@ Dim b As Boolean
             DeseleccionaGrid Me.DataGrid1
             b = (xModo = 1) Or (xModo = 2)
             For jj = 3 To 11
-                txtAux3(jj).Height = DataGrid1.RowHeight
-                txtAux3(jj).Top = alto
-                txtAux3(jj).visible = (xModo = 1)
+                TxtAux3(jj).Height = DataGrid1.RowHeight
+                TxtAux3(jj).Top = alto
+                TxtAux3(jj).visible = (xModo = 1)
             Next jj
             
             For jj = 12 To 12
-                txtAux3(jj).Height = DataGrid1.RowHeight
-                txtAux3(jj).Top = alto
-                txtAux3(jj).visible = b
+                TxtAux3(jj).Height = DataGrid1.RowHeight
+                TxtAux3(jj).Top = alto
+                TxtAux3(jj).visible = b
             Next jj
     End Select
 End Sub
@@ -3293,7 +3293,7 @@ Dim b As Boolean
     vWhere = vWhere & " AND numlinea=" & Data2.Recordset.Fields!numlinea
     
     Sql = "UPDATE sfactusoc_serv SET "
-    Sql = Sql & " impventa=" & DBSet(txtAux3(12).Text, "N")
+    Sql = Sql & " impventa=" & DBSet(TxtAux3(12).Text, "N")
     Sql = Sql & vWhere
     
     If Sql <> "" Then
@@ -3881,13 +3881,13 @@ Dim b As Boolean
     
     'Si no es modo lineas Boquear los TxtAux
     For i = 3 To 11
-        BloquearTxt txtAux3(i), (Modo <> 1)
-        txtAux3(i).visible = (Modo = 1)
+        BloquearTxt TxtAux3(i), (Modo <> 1)
+        TxtAux3(i).visible = (Modo = 1)
     Next i
     
     For i = 12 To 12
-        BloquearTxt txtAux3(i), (Modo <> 5) And (Modo <> 1)
-        txtAux3(i).visible = (Modo = 1)
+        BloquearTxt TxtAux3(i), (Modo <> 5) And (Modo <> 1)
+        TxtAux3(i).visible = (Modo = 1)
     Next i
     
     Me.chkVistaPrevia.Enabled = (Modo <= 2)
@@ -3935,7 +3935,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 Private Sub PonerLongCampos()
@@ -4551,7 +4551,7 @@ End Sub
 
 
 Private Sub TxtAux3_GotFocus(Index As Integer)
-    ConseguirFoco txtAux3(Index), 4
+    ConseguirFoco TxtAux3(Index), 4
 End Sub
 
 Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -4563,7 +4563,7 @@ Private Sub TxtAux3_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub TxtAux3_LostFocus(Index As Integer)
-    If Not PerderFocoGnral(txtAux3(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(TxtAux3(Index), Modo) Then Exit Sub
         
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -4572,7 +4572,7 @@ Private Sub TxtAux3_LostFocus(Index As Integer)
     Select Case Index
         Case 12 ' importe del servicio
 '            If Modo = 1 Then Exit Sub
-            If PonerFormatoDecimal(txtAux3(Index), 3) Then cmdAceptar.SetFocus
+            If PonerFormatoDecimal(TxtAux3(Index), 3) Then cmdAceptar.SetFocus
         
     End Select
 End Sub

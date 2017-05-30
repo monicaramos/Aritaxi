@@ -204,10 +204,10 @@ Begin VB.Form frmManSat
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4230
+      Left            =   4200
       TabIndex        =   3
-      Top             =   5610
-      Width           =   1035
+      Top             =   5580
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -221,10 +221,10 @@ Begin VB.Form frmManSat
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3030
+      Left            =   3000
       TabIndex        =   2
-      Top             =   5610
-      Width           =   1035
+      Top             =   5580
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -238,11 +238,11 @@ Begin VB.Form frmManSat
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4230
+      Left            =   4200
       TabIndex        =   6
-      Top             =   5610
+      Top             =   5580
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -429,7 +429,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
    
     b = b And Not DeConsulta
     'Insertar

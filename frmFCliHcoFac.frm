@@ -406,67 +406,67 @@ Begin VB.Form frmFCliHcoFac
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFCliHcoFac.frx":0A0E
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameFactura"
-      Tab(0).Control(1)=   "FrameCliente"
-      Tab(0).Control(2)=   "Text1(16)"
-      Tab(0).Control(3)=   "Text1(17)"
+      Tab(0).Control(0)=   "Label1(30)"
+      Tab(0).Control(1)=   "Label1(11)"
+      Tab(0).Control(2)=   "Label1(25)"
+      Tab(0).Control(3)=   "Label1(26)"
       Tab(0).Control(4)=   "Text1(23)"
-      Tab(0).Control(5)=   "Label1(26)"
-      Tab(0).Control(6)=   "Label1(25)"
-      Tab(0).Control(7)=   "Label1(11)"
-      Tab(0).Control(8)=   "Label1(30)"
+      Tab(0).Control(5)=   "Text1(17)"
+      Tab(0).Control(6)=   "Text1(16)"
+      Tab(0).Control(7)=   "FrameCliente"
+      Tab(0).Control(8)=   "FrameFactura"
       Tab(0).ControlCount=   9
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmFCliHcoFac.frx":0A2A
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameObserva"
-      Tab(1).Control(1)=   "cmdaux"
-      Tab(1).Control(2)=   "txtAux3(2)"
-      Tab(1).Control(3)=   "txtAux3(1)"
-      Tab(1).Control(4)=   "txtAux3(0)"
-      Tab(1).Control(5)=   "cmdObserva"
-      Tab(1).Control(6)=   "Text2(0)"
-      Tab(1).Control(7)=   "Text3(0)"
-      Tab(1).Control(8)=   "DataGrid2"
-      Tab(1).Control(9)=   "txtAux(11)"
-      Tab(1).Control(10)=   "txtAux(10)"
-      Tab(1).Control(11)=   "txtAux(9)"
-      Tab(1).Control(12)=   "txtAux(5)"
-      Tab(1).Control(13)=   "txtAux(3)"
-      Tab(1).Control(14)=   "txtAux(1)"
-      Tab(1).Control(15)=   "txtAux(0)"
-      Tab(1).Control(16)=   "txtAux(4)"
-      Tab(1).Control(17)=   "txtAux(6)"
-      Tab(1).Control(18)=   "txtAux(7)"
-      Tab(1).Control(19)=   "txtAux(8)"
-      Tab(1).Control(20)=   "txtAux(2)"
-      Tab(1).Control(21)=   "DataGrid1"
-      Tab(1).Control(22)=   "Text3(6)"
-      Tab(1).Control(23)=   "Text3(1)"
-      Tab(1).Control(24)=   "Text2(3)"
-      Tab(1).Control(25)=   "Text3(3)"
-      Tab(1).Control(26)=   "Text2(1)"
-      Tab(1).Control(27)=   "Text2(2)"
-      Tab(1).Control(28)=   "Text3(2)"
-      Tab(1).Control(29)=   "Text3(8)"
-      Tab(1).Control(30)=   "Text3(7)"
-      Tab(1).Control(31)=   "Text3(5)"
-      Tab(1).Control(32)=   "Text3(4)"
-      Tab(1).Control(33)=   "Text3(14)"
-      Tab(1).Control(34)=   "Text3(15)"
-      Tab(1).Control(35)=   "imgBuscar(6)"
-      Tab(1).Control(36)=   "imgBuscar(9)"
-      Tab(1).Control(37)=   "imgBuscar(8)"
-      Tab(1).Control(38)=   "Label1(40)"
-      Tab(1).Control(39)=   "Label1(22)"
-      Tab(1).Control(40)=   "Label1(18)"
-      Tab(1).Control(41)=   "Label1(6)"
-      Tab(1).Control(42)=   "Label1(2)"
-      Tab(1).Control(43)=   "Label1(21)"
-      Tab(1).Control(44)=   "Label1(24)"
-      Tab(1).Control(45)=   "Label1(23)"
-      Tab(1).Control(46)=   "Label1(9)"
-      Tab(1).Control(47)=   "imgBuscar(7)"
+      Tab(1).Control(0)=   "imgBuscar(7)"
+      Tab(1).Control(1)=   "Label1(9)"
+      Tab(1).Control(2)=   "Label1(23)"
+      Tab(1).Control(3)=   "Label1(24)"
+      Tab(1).Control(4)=   "Label1(21)"
+      Tab(1).Control(5)=   "Label1(2)"
+      Tab(1).Control(6)=   "Label1(6)"
+      Tab(1).Control(7)=   "Label1(18)"
+      Tab(1).Control(8)=   "Label1(22)"
+      Tab(1).Control(9)=   "Label1(40)"
+      Tab(1).Control(10)=   "imgBuscar(8)"
+      Tab(1).Control(11)=   "imgBuscar(9)"
+      Tab(1).Control(12)=   "imgBuscar(6)"
+      Tab(1).Control(13)=   "Text3(15)"
+      Tab(1).Control(14)=   "Text3(14)"
+      Tab(1).Control(15)=   "Text3(4)"
+      Tab(1).Control(16)=   "Text3(5)"
+      Tab(1).Control(17)=   "Text3(7)"
+      Tab(1).Control(18)=   "Text3(8)"
+      Tab(1).Control(19)=   "Text3(2)"
+      Tab(1).Control(20)=   "Text2(2)"
+      Tab(1).Control(21)=   "Text2(1)"
+      Tab(1).Control(22)=   "Text3(3)"
+      Tab(1).Control(23)=   "Text2(3)"
+      Tab(1).Control(24)=   "Text3(1)"
+      Tab(1).Control(25)=   "Text3(6)"
+      Tab(1).Control(26)=   "DataGrid1"
+      Tab(1).Control(27)=   "txtAux(2)"
+      Tab(1).Control(28)=   "txtAux(8)"
+      Tab(1).Control(29)=   "txtAux(7)"
+      Tab(1).Control(30)=   "txtAux(6)"
+      Tab(1).Control(31)=   "txtAux(4)"
+      Tab(1).Control(32)=   "txtAux(0)"
+      Tab(1).Control(33)=   "txtAux(1)"
+      Tab(1).Control(34)=   "txtAux(3)"
+      Tab(1).Control(35)=   "txtAux(5)"
+      Tab(1).Control(36)=   "txtAux(9)"
+      Tab(1).Control(37)=   "txtAux(10)"
+      Tab(1).Control(38)=   "txtAux(11)"
+      Tab(1).Control(39)=   "DataGrid2"
+      Tab(1).Control(40)=   "Text3(0)"
+      Tab(1).Control(41)=   "Text2(0)"
+      Tab(1).Control(42)=   "cmdObserva"
+      Tab(1).Control(43)=   "txtAux3(0)"
+      Tab(1).Control(44)=   "txtAux3(1)"
+      Tab(1).Control(45)=   "txtAux3(2)"
+      Tab(1).Control(46)=   "cmdaux"
+      Tab(1).Control(47)=   "FrameObserva"
       Tab(1).ControlCount=   48
       TabCaption(2)   =   "Servicios"
       TabPicture(2)   =   "frmFCliHcoFac.frx":0A46
@@ -4507,7 +4507,7 @@ Dim EstaEnTesoreria As String
         anc = anc + DataGrid3.RowTop(DataGrid3.Row) + 10
     End If
 
-    txtAux4(12).Text = DataGrid3.Columns(14).Text
+    TxtAux4(12).Text = DataGrid3.Columns(14).Text
     
     ModificaLineas = 2 'Modificar
     LLamaLineas ModificaLineas, anc, "DataGrid3"
@@ -4516,7 +4516,7 @@ Dim EstaEnTesoreria As String
     Me.lblIndicador.Caption = "MODIFICAR"
     PonerBotonCabecera False
 '    BloquearTxt Text2(16), False 'Campo Ampliacion Linea
-    PonerFoco txtAux4(12)
+    PonerFoco TxtAux4(12)
     Me.DataGrid2.Enabled = False
     Me.DataGrid1.Enabled = False
 
@@ -4649,24 +4649,24 @@ Dim b As Boolean
         Case "DataGrid2"
             DeseleccionaGrid Me.DataGrid2
             b = (xModo = 1)
-             For jj = 0 To txtAux3.Count - 1
-                txtAux3(jj).Height = DataGrid2.RowHeight
-                txtAux3(jj).Top = alto
-                txtAux3(jj).visible = b
+             For jj = 0 To TxtAux3.Count - 1
+                TxtAux3(jj).Height = DataGrid2.RowHeight
+                TxtAux3(jj).Top = alto
+                TxtAux3(jj).visible = b
             Next jj
             
         Case "DataGrid3"
             DeseleccionaGrid Me.DataGrid3
             b = (xModo = 1)
             For jj = 3 To 11
-                txtAux4(jj).Height = DataGrid3.RowHeight
-                txtAux4(jj).Top = alto
-                txtAux4(jj).visible = b
+                TxtAux4(jj).Height = DataGrid3.RowHeight
+                TxtAux4(jj).Top = alto
+                TxtAux4(jj).visible = b
             Next jj
             b = (xModo = 1) Or (ModificaLineas = 2)
-            txtAux4(12).Height = DataGrid3.RowHeight
-            txtAux4(12).Top = alto
-            txtAux4(12).visible = b
+            TxtAux4(12).Height = DataGrid3.RowHeight
+            TxtAux4(12).Top = alto
+            TxtAux4(12).visible = b
             
             
     End Select
@@ -4796,11 +4796,11 @@ Dim b As Boolean
     
         'bloquear los Text3 que son las lineas de scafaccli1
         For i = 3 To 12
-            BloquearTxt txtAux4(i), Not (Modo = 1)
-            txtAux4(i).visible = (Modo = 1)
+            BloquearTxt TxtAux4(i), Not (Modo = 1)
+            TxtAux4(i).visible = (Modo = 1)
         Next i
-        BloquearTxt txtAux4(12), Not ((Modo = 5) Or Modo = 1)  'B And Modo <> 4
-        txtAux4(12).visible = ((Modo = 5 And ModificaLineas = 2) Or Modo = 1)
+        BloquearTxt TxtAux4(12), Not ((Modo = 5) Or Modo = 1)  'B And Modo <> 4
+        TxtAux4(12).visible = ((Modo = 5 And ModificaLineas = 2) Or Modo = 1)
     
     Else
     'Teletaxi
@@ -6168,8 +6168,8 @@ Dim b As Boolean
     Next i
     
     'Si no es modo Busqueda Bloquear los TxtAux3 (son los txtaux de los albaranes de factura)
-    For i = 0 To txtAux3.Count - 1
-        BloquearTxt txtAux3(i), True '(Modo <> 1)
+    For i = 0 To TxtAux3.Count - 1
+        BloquearTxt TxtAux3(i), True '(Modo <> 1)
     Next i
     
     'ampliacion linea
@@ -6258,12 +6258,12 @@ Dim i As Byte
     DatosOkLinea = False
     b = True
 
-    For i = 0 To txtAux4.Count - 1
+    For i = 0 To TxtAux4.Count - 1
         If i = 12 Then
-            If txtAux4(i).Text = "" Then
-                MsgBox "El campo " & txtAux4(i).Tag & " no puede ser nulo", vbExclamation
+            If TxtAux4(i).Text = "" Then
+                MsgBox "El campo " & TxtAux4(i).Tag & " no puede ser nulo", vbExclamation
                 b = False
-                PonerFoco txtAux4(i)
+                PonerFoco TxtAux4(i)
                 Exit Function
             End If
         End If
@@ -6278,7 +6278,7 @@ Dim i As Byte
 '        Exit Function
 '    End If
 '
-    RecalcularImportes txtAux4(12), False
+    RecalcularImportes TxtAux4(12), False
 
 
 
@@ -6415,7 +6415,7 @@ Dim b As Boolean
     If vParamAplic.Cooperativa = 1 Then
         If DatosOkLinea() Then
             Sql = "UPDATE scafaccli_serv SET "
-            Sql = Sql & "impventa = " & DBSet(txtAux4(12).Text, "N")
+            Sql = Sql & "impventa = " & DBSet(TxtAux4(12).Text, "N")
             Sql = Sql & vWhere
         End If
     Else
@@ -6909,7 +6909,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 
@@ -7715,7 +7715,7 @@ End Function
 
 
 Private Sub TxtAux3_GotFocus(Index As Integer)
-    ConseguirFoco txtAux3(Index), Modo
+    ConseguirFoco TxtAux3(Index), Modo
 End Sub
 
 Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -7727,7 +7727,7 @@ Private Sub TxtAux3_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub TxtAux3_LostFocus(Index As Integer)
-    If Not PerderFocoGnral(txtAux3(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(TxtAux3(Index), Modo) Then Exit Sub
 End Sub
 
 
@@ -8053,7 +8053,7 @@ End Function
 
 
 Private Sub TxtAux4_GotFocus(Index As Integer)
-    ConseguirFocoLin txtAux4(Index)
+    ConseguirFocoLin TxtAux4(Index)
 End Sub
 
 Private Sub TxtAux4_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -8071,11 +8071,11 @@ Private Sub TxtAux4_LostFocus(Index As Integer)
 
     'Quitar espacios en blanco
     'If Not PerderFocoGnralLineas(txtAux4(Index), ModificaLineas) Then Exit Sub
-    If Not PerderFocoGnralLineas(txtAux4(Index), ModificaLineas) Then Exit Sub
+    If Not PerderFocoGnralLineas(TxtAux4(Index), ModificaLineas) Then Exit Sub
     
     Select Case Index
         Case 12 'Importe Linea
-            If PonerFormatoDecimal(txtAux4(Index), 3) Then   'Tipo 3: Decimal(10,2)
+            If PonerFormatoDecimal(TxtAux4(Index), 3) Then   'Tipo 3: Decimal(10,2)
                 cmdAceptar.SetFocus
             End If
     End Select

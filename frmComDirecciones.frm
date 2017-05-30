@@ -291,10 +291,10 @@ Begin VB.Form frmComDirecciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5430
+      Left            =   5370
       TabIndex        =   8
       Top             =   4890
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -309,10 +309,10 @@ Begin VB.Form frmComDirecciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6585
+      Left            =   6630
       TabIndex        =   9
       Top             =   4890
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -326,11 +326,11 @@ Begin VB.Form frmComDirecciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6585
+      Left            =   6630
       TabIndex        =   10
       Top             =   4890
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -1040,7 +1040,7 @@ Dim b As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -1057,7 +1057,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 

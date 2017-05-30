@@ -45,63 +45,63 @@ Begin VB.Form frmFacClientes
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFacClientes.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Text1(47)"
-      Tab(0).Control(1)=   "Text1(11)"
-      Tab(0).Control(2)=   "Text1(45)"
-      Tab(0).Control(3)=   "chkClienteV"
-      Tab(0).Control(4)=   "Text1(13)"
-      Tab(0).Control(5)=   "Text2(10)"
-      Tab(0).Control(6)=   "Text2(11)"
-      Tab(0).Control(7)=   "Text1(10)"
-      Tab(0).Control(8)=   "Text2(12)"
-      Tab(0).Control(9)=   "Text2(9)"
-      Tab(0).Control(10)=   "Text1(9)"
-      Tab(0).Control(11)=   "Text1(12)"
-      Tab(0).Control(12)=   "frameComercial"
-      Tab(0).Control(13)=   "frameAdmon"
-      Tab(0).Control(14)=   "Text1(22)"
-      Tab(0).Control(15)=   "Text1(8)"
-      Tab(0).Control(16)=   "Text1(7)"
-      Tab(0).Control(17)=   "Text1(6)"
-      Tab(0).Control(18)=   "Text1(5)"
-      Tab(0).Control(19)=   "Text1(4)"
-      Tab(0).Control(20)=   "Text1(3)"
-      Tab(0).Control(21)=   "Label1(58)"
-      Tab(0).Control(22)=   "imgBuscar(12)"
-      Tab(0).Control(23)=   "imgBuscar(11)"
-      Tab(0).Control(24)=   "Label1(19)"
-      Tab(0).Control(25)=   "imgFecha(0)"
-      Tab(0).Control(26)=   "Label1(16)"
-      Tab(0).Control(27)=   "imgWeb"
-      Tab(0).Control(28)=   "imgBuscar(9)"
-      Tab(0).Control(29)=   "imgBuscar(1)"
-      Tab(0).Control(30)=   "imgBuscar(2)"
-      Tab(0).Control(31)=   "Label1(6)"
-      Tab(0).Control(32)=   "Label1(17)"
-      Tab(0).Control(33)=   "imgBuscar(3)"
-      Tab(0).Control(34)=   "imgBuscar(0)"
-      Tab(0).Control(35)=   "Label1(5)"
-      Tab(0).Control(36)=   "Label1(7)"
-      Tab(0).Control(37)=   "Label1(11)"
-      Tab(0).Control(38)=   "Label1(37)"
-      Tab(0).Control(39)=   "Label1(36)"
-      Tab(0).Control(40)=   "Label1(15)"
-      Tab(0).Control(41)=   "Label1(34)"
-      Tab(0).Control(42)=   "Label1(14)"
-      Tab(0).Control(43)=   "Label1(13)"
+      Tab(0).Control(0)=   "Label1(13)"
+      Tab(0).Control(1)=   "Label1(14)"
+      Tab(0).Control(2)=   "Label1(34)"
+      Tab(0).Control(3)=   "Label1(15)"
+      Tab(0).Control(4)=   "Label1(36)"
+      Tab(0).Control(5)=   "Label1(37)"
+      Tab(0).Control(6)=   "Label1(11)"
+      Tab(0).Control(7)=   "Label1(7)"
+      Tab(0).Control(8)=   "Label1(5)"
+      Tab(0).Control(9)=   "imgBuscar(0)"
+      Tab(0).Control(10)=   "imgBuscar(3)"
+      Tab(0).Control(11)=   "Label1(17)"
+      Tab(0).Control(12)=   "Label1(6)"
+      Tab(0).Control(13)=   "imgBuscar(2)"
+      Tab(0).Control(14)=   "imgBuscar(1)"
+      Tab(0).Control(15)=   "imgBuscar(9)"
+      Tab(0).Control(16)=   "imgWeb"
+      Tab(0).Control(17)=   "Label1(16)"
+      Tab(0).Control(18)=   "imgFecha(0)"
+      Tab(0).Control(19)=   "Label1(19)"
+      Tab(0).Control(20)=   "imgBuscar(11)"
+      Tab(0).Control(21)=   "imgBuscar(12)"
+      Tab(0).Control(22)=   "Label1(58)"
+      Tab(0).Control(23)=   "Text1(3)"
+      Tab(0).Control(24)=   "Text1(4)"
+      Tab(0).Control(25)=   "Text1(5)"
+      Tab(0).Control(26)=   "Text1(6)"
+      Tab(0).Control(27)=   "Text1(7)"
+      Tab(0).Control(28)=   "Text1(8)"
+      Tab(0).Control(29)=   "Text1(22)"
+      Tab(0).Control(30)=   "frameAdmon"
+      Tab(0).Control(31)=   "frameComercial"
+      Tab(0).Control(32)=   "Text1(12)"
+      Tab(0).Control(33)=   "Text1(9)"
+      Tab(0).Control(34)=   "Text2(9)"
+      Tab(0).Control(35)=   "Text2(12)"
+      Tab(0).Control(36)=   "Text1(10)"
+      Tab(0).Control(37)=   "Text2(11)"
+      Tab(0).Control(38)=   "Text2(10)"
+      Tab(0).Control(39)=   "Text1(13)"
+      Tab(0).Control(40)=   "chkClienteV"
+      Tab(0).Control(41)=   "Text1(45)"
+      Tab(0).Control(42)=   "Text1(11)"
+      Tab(0).Control(43)=   "Text1(47)"
       Tab(0).ControlCount=   44
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacClientes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "frameDptoVentas"
+      Tab(1).Control(0)=   "frameDptoDirec"
       Tab(1).Control(1)=   "frameDptoAdmon"
-      Tab(1).Control(2)=   "frameDptoDirec"
+      Tab(1).Control(2)=   "frameDptoVentas"
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "Direcciones"
       TabPicture(2)   =   "frmFacClientes.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "ToolAux"
-      Tab(2).Control(1)=   "FrameDirecciones"
+      Tab(2).Control(0)=   "FrameDirecciones"
+      Tab(2).Control(1)=   "ToolAux"
       Tab(2).ControlCount=   2
       TabCaption(3)   =   "Documentos"
       TabPicture(3)   =   "frmFacClientes.frx":0060
@@ -122,21 +122,21 @@ Begin VB.Form frmFacClientes
       TabCaption(4)   =   "CRM"
       TabPicture(4)   =   "frmFacClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "cmdAccCRM(2)"
-      Tab(4).Control(1)=   "cmdAccCRM(1)"
-      Tab(4).Control(2)=   "cmdAccCRM(0)"
-      Tab(4).Control(3)=   "Frame3(1)"
-      Tab(4).Control(4)=   "lwCRM"
-      Tab(4).Control(5)=   "LabelCRM"
+      Tab(4).Control(0)=   "LabelCRM"
+      Tab(4).Control(1)=   "lwCRM"
+      Tab(4).Control(2)=   "Frame3(1)"
+      Tab(4).Control(3)=   "cmdAccCRM(0)"
+      Tab(4).Control(4)=   "cmdAccCRM(1)"
+      Tab(4).Control(5)=   "cmdAccCRM(2)"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Subclientes"
       TabPicture(5)   =   "frmFacClientes.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Adodc2"
-      Tab(5).Control(1)=   "DataGrid1"
+      Tab(5).Control(0)=   "txtAux1(0)"
+      Tab(5).Control(1)=   "txtAux1(1)"
       Tab(5).Control(2)=   "cmdAux(0)"
-      Tab(5).Control(3)=   "txtAux1(1)"
-      Tab(5).Control(4)=   "txtAux1(0)"
+      Tab(5).Control(3)=   "DataGrid1"
+      Tab(5).Control(4)=   "Adodc2"
       Tab(5).ControlCount=   5
       Begin VB.TextBox txtAux1 
          Appearance      =   0  'Flat
@@ -3853,11 +3853,11 @@ Begin VB.Form frmFacClientes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11460
+      Left            =   11370
       TabIndex        =   57
       Top             =   6945
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   570
@@ -3898,10 +3898,10 @@ Begin VB.Form frmFacClientes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11460
+      Left            =   11370
       TabIndex        =   58
       Top             =   6945
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -3915,10 +3915,10 @@ Begin VB.Form frmFacClientes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10230
+      Left            =   10140
       TabIndex        =   56
       Top             =   6945
-      Width           =   1035
+      Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -6118,7 +6118,7 @@ Dim b1 As Boolean
     b = (Modo = 2 Or Modo = 0 Or (Modo = 5 And ModificaLineas = 0))
     'Insertar
     Toolbar1.Buttons(6).Enabled = b And Not DeConsulta
-    Me.mnNuevo.Enabled = b And Not DeConsulta
+    Me.mnnuevo.Enabled = b And Not DeConsulta
     
     b1 = (Modo = 2 Or (Modo = 5 And ModificaLineas = 0 And SSTab1.Tab <> 5))
     b = (Modo = 2 Or (Modo = 5 And ModificaLineas = 0))
@@ -6143,7 +6143,7 @@ Dim b1 As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
     
     
     'BARRA DE DIRECCIONES

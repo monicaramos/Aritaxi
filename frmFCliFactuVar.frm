@@ -196,10 +196,10 @@ Begin VB.Form frmFCliFactuVar
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5250
+      Left            =   5160
       TabIndex        =   8
       Top             =   5520
-      Width           =   1065
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -213,10 +213,10 @@ Begin VB.Form frmFCliFactuVar
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4080
+      Left            =   3900
       TabIndex        =   7
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
       BeginProperty Font 
@@ -591,8 +591,8 @@ Dim Sql As String
         PonerFoco txtcodigo(1)
         Exit Function
     Else
-        txtnombre(1).Text = PonerNombreDeCod(txtcodigo(1), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
-        If txtnombre(1).Text = "" Then
+        txtNombre(1).Text = PonerNombreDeCod(txtcodigo(1), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
+        If txtNombre(1).Text = "" Then
             MsgBox "El artículo debe de existir. Revise.", vbExclamation
             PonerFoco txtcodigo(1)
             Exit Function
@@ -922,7 +922,7 @@ End Sub
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -935,13 +935,13 @@ End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1006,7 +1006,7 @@ End Sub
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
     txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1062,27 +1062,27 @@ Dim EsNomCod As Boolean
             
         Case 0 'cliente
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
-            If txtnombre(Index).Text <> "" Then
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
+            If txtNombre(Index).Text <> "" Then
                 txtcodigo(3).Text = DevuelveDesdeBDNew(conAri, "scliente", "codforpa", "codclien", txtcodigo(0).Text, "N")
                 If txtcodigo(3).Text <> "" Then
-                    txtnombre(3).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", txtcodigo(3).Text, "N")
+                    txtNombre(3).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", txtcodigo(3).Text, "N")
                 End If
             End If
             
         Case 1 'articulo
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
             
         Case 3 ' forma de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
+            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
             
         Case 2 ' fecha de factura
             PonerFormatoFecha txtcodigo(Index)
              
         Case 5 'banco propio
             If PonerFormatoEntero(txtcodigo(5)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
+                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
             End If
            
         Case 85  'Importe

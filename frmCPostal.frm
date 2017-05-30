@@ -93,10 +93,10 @@ Begin VB.Form frmCPostal
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5100
+      Left            =   5010
       TabIndex        =   3
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -110,10 +110,10 @@ Begin VB.Form frmCPostal
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3975
+      Left            =   3735
       TabIndex        =   2
       Top             =   5520
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox txtAux 
       Alignment       =   2  'Center
@@ -172,11 +172,11 @@ Begin VB.Form frmCPostal
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5100
+      Left            =   5010
       TabIndex        =   6
       Top             =   5520
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -851,12 +851,12 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
 '     b = b And Not DeConsulta
     'Añadir
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b

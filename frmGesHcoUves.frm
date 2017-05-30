@@ -187,10 +187,10 @@ Begin VB.Form frmGesHcoUves
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6960
+      Left            =   6780
       TabIndex        =   4
       Top             =   5280
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -205,10 +205,10 @@ Begin VB.Form frmGesHcoUves
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8115
+      Left            =   8055
       TabIndex        =   5
       Top             =   5280
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -222,11 +222,11 @@ Begin VB.Form frmGesHcoUves
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8130
+      Left            =   8040
       TabIndex        =   6
       Top             =   5280
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1135
    End
    Begin VB.TextBox txtAux 
       Alignment       =   1  'Right Justify

@@ -160,10 +160,10 @@ Begin VB.Form frmLlamadas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14010
+      Left            =   13860
       TabIndex        =   0
-      Top             =   6090
-      Width           =   1035
+      Top             =   6060
+      Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   555
@@ -330,7 +330,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
    
 
     'Insertar
