@@ -281,7 +281,7 @@ Begin VB.Form frmVarios
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
-         Caption         =   "Articulos"
+         Caption         =   "Artículos"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1086,29 +1086,29 @@ Dim It As ListItem
 End Sub
 
 Private Sub cmdFormaEnvio_Click()
-Dim i As Integer
+Dim I As Integer
 
     If ListEnvio.ListIndex < 0 Then Exit Sub
     Cad = ListEnvio.List(ListEnvio.ListIndex)
-    i = InStrRev(Cad, "(")
-    Cad = Trim(Mid(Cad, i + 1))
-    i = InStrRev(Cad, ")")
-    Cad = Mid(Cad, 1, i - 1) 'quitamos el ultmio parentesis
+    I = InStrRev(Cad, "(")
+    Cad = Trim(Mid(Cad, I + 1))
+    I = InStrRev(Cad, ")")
+    Cad = Mid(Cad, 1, I - 1) 'quitamos el ultmio parentesis
     CadenaDesdeOtroForm = Cad
     
-    i = InStrRev(ListEnvio.List(ListEnvio.ListIndex), "(")
-    Cad = Mid(ListEnvio.List(ListEnvio.ListIndex), 1, i - 1)  'quito el precio kilo
+    I = InStrRev(ListEnvio.List(ListEnvio.ListIndex), "(")
+    Cad = Mid(ListEnvio.List(ListEnvio.ListIndex), 1, I - 1)  'quito el precio kilo
     
-    i = Val(Mid(Cad, 1, 10))
+    I = Val(Mid(Cad, 1, 10))
     
     Cad = Trim(Mid(Cad, 11))
     
-    CadenaDesdeOtroForm = i & "|" & Cad & "|" & CadenaDesdeOtroForm & "|"
+    CadenaDesdeOtroForm = I & "|" & Cad & "|" & CadenaDesdeOtroForm & "|"
     
     'Desde kilo
     Cad = ListEnvio.List(ListEnvio.ListIndex)
-    i = InStrRev(ListEnvio.List(ListEnvio.ListIndex), "Desde :")
-    Cad = Mid(Cad, i + 7)
+    I = InStrRev(ListEnvio.List(ListEnvio.ListIndex), "Desde :")
+    Cad = Mid(Cad, I + 7)
     Cad = Trim(Mid(Cad, 1, Len(Cad) - 2)) 'Le kito kg
     CadenaDesdeOtroForm = CadenaDesdeOtroForm & Cad & "|"
     SePuedeCerrar = True
@@ -1184,16 +1184,16 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub CargarIconos()
-Dim i As Image
+Dim I As Image
 
 
-    For Each i In Me.imgArticulo
-         i.Picture = frmPpal.imgListComun.ListImages(19).Picture
-         i.ToolTipText = "Articulo"
+    For Each I In Me.imgArticulo
+         I.Picture = frmPpal.imgListComun.ListImages(19).Picture
+         I.ToolTipText = "Articulo"
     Next
-    For Each i In Me.imgFecha
-         i.Picture = frmPpal.imgListComun.ListImages(23).Picture
-         i.ToolTipText = "fecha"
+    For Each I In Me.imgFecha
+         I.Picture = frmPpal.imgListComun.ListImages(23).Picture
+         I.ToolTipText = "fecha"
     Next
 End Sub
 
@@ -1248,7 +1248,7 @@ End Sub
 
 
 Private Sub HacerImpresionFacturas()
-Dim i As Integer
+Dim I As Integer
 Dim Fin As Boolean
     SePuedeCerrar = False
     
@@ -1267,13 +1267,13 @@ Dim Fin As Boolean
     CadenaDesdeOtroForm = CadenaDesdeOtroForm & " ORDER BY fecfactu,numfactu"
     
     miRsAux.Open CadenaDesdeOtroForm, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    i = 0
+    I = 0
     Fin = False
     While Not Fin
-        i = i + 1
+        I = I + 1
         Me.lblImpr(1).Caption = "Fac. " & Format(miRsAux!NumFactu, "00000") & " de " & Format(miRsAux!FecFactu, "dd/mm/yyyy") & "     " & Mid(miRsAux!nomclien, 1, 20)
         lblImpr(1).Refresh
-        Me.lblImpr(0).Caption = "Registro: " & i & "   de   " & NumRegElim
+        Me.lblImpr(0).Caption = "Registro: " & I & "   de   " & NumRegElim
         lblImpr(0).Refresh
     
         'IMprimimos la factura
@@ -1287,7 +1287,7 @@ Dim Fin As Boolean
             miRsAux.MoveNext
             Fin = miRsAux.EOF
         End If
-        If i Mod 50 = 25 Then Me.Refresh
+        If I Mod 50 = 25 Then Me.Refresh
             
         
     Wend
@@ -1489,26 +1489,26 @@ End Sub
 
 'En cadenadesdeotroform llevo las lformas posibles. Se trata de ir poniendolas en el list
 Private Sub CargaFormasEnvioPosibles()
-Dim i As Integer
+Dim I As Integer
     
     
     While CadenaDesdeOtroForm <> ""
-        i = InStr(1, CadenaDesdeOtroForm, "|")
-        If i = 0 Then
+        I = InStr(1, CadenaDesdeOtroForm, "|")
+        If I = 0 Then
             CadenaDesdeOtroForm = ""
             Cad = ""
         Else
-            Cad = Mid(CadenaDesdeOtroForm, 1, i)
-            CadenaDesdeOtroForm = Mid(CadenaDesdeOtroForm, i + 1)
+            Cad = Mid(CadenaDesdeOtroForm, 1, I)
+            CadenaDesdeOtroForm = Mid(CadenaDesdeOtroForm, I + 1)
             
             Cad = Replace(Cad, "<", "|")
                         
         End If
         If Cad <> "" Then
             
-            i = RecuperaValor(Cad, 1)
+            I = RecuperaValor(Cad, 1)
             
-            Cad = Format(i, "0000") & "      " & RecuperaValor(Cad, 2) & "    (" & RecuperaValor(Cad, 3) & ")    Desde :" & RecuperaValor(Cad, 4) & " Kg"
+            Cad = Format(I, "0000") & "      " & RecuperaValor(Cad, 2) & "    (" & RecuperaValor(Cad, 3) & ")    Desde :" & RecuperaValor(Cad, 4) & " Kg"
             ListEnvio.AddItem Cad
             
         End If

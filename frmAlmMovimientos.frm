@@ -1156,7 +1156,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -1203,8 +1203,8 @@ Dim i As Integer
     End With
     
     'ICONITOS DE LAS BARRAS EN LOS TABS DE LINEA
-    For i = 0 To ToolAux.Count - 1
-        With Me.ToolAux(i)
+    For I = 0 To ToolAux.Count - 1
+        With Me.ToolAux(I)
             '.ImageList = frmPpal.imgListComun_VELL
             '  ### [Monica] 02/10/2006 acabo de comentarlo
             .HotImageList = frmPpal.imgListComun_OM16
@@ -1214,10 +1214,10 @@ Dim i As Integer
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
         End With
-    Next i
+    Next I
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
     
     
@@ -1284,7 +1284,7 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim Sql As String
 On Error GoTo ECarga
 
@@ -1298,38 +1298,38 @@ On Error GoTo ECarga
     
     DataGrid1.Columns(0).visible = False 'Cod. Movim
     DataGrid1.Columns(1).visible = False 'Numlinea
-    i = 2
+    I = 2
     
     'Cod. Artículo
-    DataGrid1.Columns(i).Caption = "Cod. Articulo"
-    DataGrid1.Columns(i).Width = 1700
+    DataGrid1.Columns(I).Caption = "Cod. Articulo"
+    DataGrid1.Columns(I).Width = 1700
     
     'Nombre Artículo
-    i = i + 1
-    DataGrid1.Columns(i).Caption = "Nombre Articulo"
-    DataGrid1.Columns(i).Width = 4100
+    I = I + 1
+    DataGrid1.Columns(I).Caption = "Nombre Articulo"
+    DataGrid1.Columns(I).Width = 4100
     
     'Cantidad
-    i = i + 1
-    DataGrid1.Columns(i).Caption = "Cantidad"
-    DataGrid1.Columns(i).Width = 1300
-    DataGrid1.Columns(i).Alignment = dbgRight
-    DataGrid1.Columns(i).NumberFormat = FormatoImporte
+    I = I + 1
+    DataGrid1.Columns(I).Caption = "Cantidad"
+    DataGrid1.Columns(I).Width = 1300
+    DataGrid1.Columns(I).Alignment = dbgRight
+    DataGrid1.Columns(I).NumberFormat = FormatoImporte
     
     'tipo Movimiento
-    i = i + 1
-    DataGrid1.Columns(i).Caption = "T.Mov."
-    DataGrid1.Columns(i).Width = 700
-    DataGrid1.Columns(i).Alignment = dbgCenter
+    I = I + 1
+    DataGrid1.Columns(I).Caption = "T.Mov."
+    DataGrid1.Columns(I).Width = 700
+    DataGrid1.Columns(I).Alignment = dbgCenter
     
     'Observaciones
-    i = i + 1
-    DataGrid1.Columns(i).Caption = "Observaciones"
-    DataGrid1.Columns(i).Width = 4050
+    I = I + 1
+    DataGrid1.Columns(I).Caption = "Observaciones"
+    DataGrid1.Columns(I).Width = 4050
        
-    For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+    Next I
     DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
     
@@ -1343,31 +1343,31 @@ End Sub
 Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
-Dim i As Byte
+Dim I As Byte
 Dim alto As Single
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Top = 290
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Top = 290
+        Next I
         Me.cmdAux.Top = 290
         Me.cboAux.Top = 290
     Else
         DeseleccionaGrid Me.DataGrid1
         CargarComboAux
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
-            For i = 0 To txtAux.Count - 1
-                txtAux(i).Text = ""
-                If i <> 1 Then txtAux(i).Locked = False
-            Next i
+            For I = 0 To txtAux.Count - 1
+                txtAux(I).Text = ""
+                If I <> 1 Then txtAux(I).Locked = False
+            Next I
             cmdAux.Enabled = True
             cboAux.Enabled = True
             cboAux.ListIndex = -1
         Else  'Poner valor a los txtAux
-            For i = 0 To txtAux.Count - 2
-                txtAux(i).Text = DataGrid1.Columns(i + 2).Text
-            Next i
+            For I = 0 To txtAux.Count - 2
+                txtAux(I).Text = DataGrid1.Columns(I + 2).Text
+            Next I
             Select Case DataGrid1.Columns(5).Value
                 Case "S"
                     Me.cboAux.ListIndex = 0
@@ -1389,10 +1389,10 @@ Dim alto As Single
         End If
         
         'Fijamos altura y posición Top
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Top = alto
-            txtAux(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Top = alto
+            txtAux(I).Height = DataGrid1.RowHeight
+        Next I
         Me.cmdAux.Top = alto
         Me.cmdAux.Height = DataGrid1.RowHeight
         cboAux.Top = alto - 5
@@ -1403,21 +1403,21 @@ Dim alto As Single
         cmdAux.Left = txtAux(0).Left + txtAux(0).Width
         txtAux(1).Left = cmdAux.Left + cmdAux.Width  'Nombre Artic
         txtAux(1).Width = DataGrid1.Columns(3).Width - 35
-        i = 2 'Cantidad
-        txtAux(i).Left = txtAux(i - 1).Left + txtAux(i - 1).Width + 25
-        txtAux(i).Width = DataGrid1.Columns(i + 2).Width - 20
+        I = 2 'Cantidad
+        txtAux(I).Left = txtAux(I - 1).Left + txtAux(I - 1).Width + 25
+        txtAux(I).Width = DataGrid1.Columns(I + 2).Width - 20
         'Tipo Movimiento
         cboAux.Left = txtAux(2).Left + txtAux(2).Width + 20
         cboAux.Width = DataGrid1.Columns(5).Width + 10
-        i = 3 'Observac
-        txtAux(i).Left = cboAux.Left + cboAux.Width + 30
-        txtAux(i).Width = DataGrid1.Columns(6).Width - 60
+        I = 3 'Observac
+        txtAux(I).Left = cboAux.Left + cboAux.Width + 30
+        txtAux(I).Width = DataGrid1.Columns(6).Width - 60
     End If
 
     'Los ponemos Visibles o No
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).visible = visible
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).visible = visible
+    Next I
     cmdAux.visible = visible
     cboAux.visible = visible
 End Sub
@@ -1749,15 +1749,15 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
     
     'Actualiza Iconos Insertar,Modificar,Eliminar
 '    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo, ModificaLineas
@@ -1790,13 +1790,13 @@ Dim b As Boolean
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b
+    Next I
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
 
     Me.chkVistaPrevia.Enabled = (Modo <= 2)
 
@@ -1825,7 +1825,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
 Dim bAux As Boolean
-Dim i As Byte
+Dim I As Byte
 
     'Si visualizamos el historico no mostrar botones de Mantenimiento, solo es consulta
 '    For i = 5 To 10
@@ -1868,12 +1868,12 @@ Dim i As Byte
         
 '
         b = (Modo = 2 Or Modo = 3 Or Modo = 4)
-        For i = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
-            ToolAux(i).Buttons(1).Enabled = b
+        For I = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
+            ToolAux(I).Buttons(1).Enabled = b
             If b Then bAux = (b And Me.Data2.Recordset.RecordCount > 0)
-            ToolAux(i).Buttons(2).Enabled = bAux
-            ToolAux(i).Buttons(3).Enabled = bAux
-        Next i
+            ToolAux(I).Buttons(2).Enabled = bAux
+            ToolAux(I).Buttons(3).Enabled = bAux
+        Next I
         
     End If
 End Sub
@@ -2018,7 +2018,7 @@ Dim vWhere As String
     cmdAceptar.Tag = SugerirCodigoSiguienteStr("slimov", "numlinea", vWhere)
     
 '    PonerBotonCabecera False
-    lblIndicador.Caption = "INSERTAR"
+'    lblIndicador.Caption = "INSERTAR"
     
     'Situamos el grid al final
     AnyadirLinea DataGrid1, Data2
@@ -2040,7 +2040,7 @@ End Sub
 
 
 Private Sub BotonModificarLinea(indice As Integer)
-Dim i As Integer
+Dim I As Integer
 
     If Data2.Recordset.EOF Then Exit Sub
     If Data2.Recordset.RecordCount < 1 Then Exit Sub
@@ -2059,8 +2059,8 @@ Dim i As Integer
 '    Me.lblIndicador.Caption = "MODIFICAR"
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     

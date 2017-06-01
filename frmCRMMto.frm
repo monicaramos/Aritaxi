@@ -4,25 +4,148 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmCRMMto 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   " Mantenimiento acciones comerciales"
-   ClientHeight    =   5385
+   ClientHeight    =   5730
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   30
    ClientWidth     =   13080
    Icon            =   "frmCRMMto.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5385
+   ScaleHeight     =   5730
    ScaleWidth      =   13080
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Tag             =   "Digitos 1er nivel|N|N|||empresa|numdigi1|||"
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   3270
+      TabIndex        =   33
+      Top             =   90
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   34
+         Top             =   210
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   8340
+      TabIndex        =   32
+      Top             =   300
+      Width           =   1605
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   120
+      TabIndex        =   30
+      Top             =   90
+      Width           =   3075
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   31
+         Top             =   180
+         Width           =   2745
+         _ExtentX        =   4842
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame Frame2 
       Caption         =   "no visible"
       Enabled         =   0   'False
       Height          =   1095
       Left            =   11280
-      TabIndex        =   30
+      TabIndex        =   28
       Top             =   1680
       Width           =   1815
       Begin VB.TextBox Text1 
@@ -30,7 +153,7 @@ Begin VB.Form frmCRMMto
          Index           =   7
          Left            =   240
          MaxLength       =   4
-         TabIndex        =   31
+         TabIndex        =   29
          Tag             =   "medio|T|N|||scrmacciones|medio|||"
          Text            =   "Text"
          Top             =   360
@@ -54,7 +177,7 @@ Begin VB.Form frmCRMMto
       List            =   "frmCRMMto.frx":000E
       TabIndex        =   3
       Text            =   "Combo1"
-      Top             =   840
+      Top             =   1140
       Width           =   3015
    End
    Begin VB.ComboBox Combo1 
@@ -75,7 +198,7 @@ Begin VB.Form frmCRMMto
       Style           =   2  'Dropdown List
       TabIndex        =   2
       Tag             =   "Estado|N|N|||scrmacciones|estado|||"
-      Top             =   840
+      Top             =   1140
       Width           =   1455
    End
    Begin VB.TextBox Text2 
@@ -93,9 +216,9 @@ Begin VB.Form frmCRMMto
       Height          =   360
       Index           =   2
       Left            =   6600
-      TabIndex        =   29
+      TabIndex        =   27
       Text            =   "Text2"
-      Top             =   2280
+      Top             =   2580
       Width           =   4005
    End
    Begin VB.TextBox Text2 
@@ -113,9 +236,9 @@ Begin VB.Form frmCRMMto
       Height          =   360
       Index           =   5
       Left            =   1350
-      TabIndex        =   28
+      TabIndex        =   26
       Text            =   "Text2"
-      Top             =   2280
+      Top             =   2580
       Width           =   3915
    End
    Begin VB.TextBox Text2 
@@ -133,9 +256,9 @@ Begin VB.Form frmCRMMto
       Height          =   360
       Index           =   4
       Left            =   6600
-      TabIndex        =   25
+      TabIndex        =   23
       Text            =   "Text2"
-      Top             =   1485
+      Top             =   1785
       Width           =   4005
    End
    Begin VB.TextBox Text2 
@@ -153,9 +276,9 @@ Begin VB.Form frmCRMMto
       Height          =   360
       Index           =   3
       Left            =   1350
-      TabIndex        =   24
+      TabIndex        =   22
       Text            =   "Text2"
-      Top             =   1485
+      Top             =   1785
       Width           =   3915
    End
    Begin VB.TextBox Text1 
@@ -176,7 +299,7 @@ Begin VB.Form frmCRMMto
       TabIndex        =   8
       Tag             =   "O|T|S|||scrmacciones|observaciones||N|"
       Text            =   "frmCRMMto.frx":0014
-      Top             =   3060
+      Top             =   3360
       Width           =   9225
    End
    Begin VB.TextBox Text1 
@@ -196,7 +319,7 @@ Begin VB.Form frmCRMMto
       TabIndex        =   6
       Tag             =   "Trabajador|N|N|||scrmacciones|codtraba|||"
       Text            =   "Text1"
-      Top             =   2280
+      Top             =   2580
       Width           =   1125
    End
    Begin VB.TextBox Text1 
@@ -217,7 +340,7 @@ Begin VB.Form frmCRMMto
       TabIndex        =   0
       Tag             =   "usuario|T|N|||scrmacciones|usuario||S|"
       Text            =   "Text"
-      Top             =   840
+      Top             =   1140
       Width           =   1125
    End
    Begin VB.TextBox Text1 
@@ -237,7 +360,7 @@ Begin VB.Form frmCRMMto
       TabIndex        =   5
       Tag             =   "Agente|N|N|||scrmacciones|agente|||"
       Text            =   "Text1"
-      Top             =   1485
+      Top             =   1785
       Width           =   1125
    End
    Begin VB.TextBox Text1 
@@ -257,7 +380,7 @@ Begin VB.Form frmCRMMto
       TabIndex        =   4
       Tag             =   "Cliente|N|N|||scrmacciones|codclien||S|"
       Text            =   "Text1"
-      Top             =   1485
+      Top             =   1785
       Width           =   1125
    End
    Begin VB.TextBox Text1 
@@ -277,7 +400,7 @@ Begin VB.Form frmCRMMto
       TabIndex        =   7
       Tag             =   "Tipo|N|N|||scrmacciones|tipo|||"
       Text            =   "Text1"
-      Top             =   2280
+      Top             =   2580
       Width           =   1125
    End
    Begin VB.TextBox Text1 
@@ -297,14 +420,14 @@ Begin VB.Form frmCRMMto
       TabIndex        =   1
       Tag             =   "Fecha/Horal|H|N|||scrmacciones|fechora|dd/mm/yyyy hh:mm:ss|S|"
       Text            =   "Text1"
-      Top             =   840
+      Top             =   1140
       Width           =   2085
    End
    Begin VB.Frame Frame1 
       Height          =   540
       Left            =   120
       TabIndex        =   12
-      Top             =   4680
+      Top             =   5040
       Width           =   2535
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -340,7 +463,7 @@ Begin VB.Form frmCRMMto
       Height          =   375
       Left            =   9480
       TabIndex        =   11
-      Top             =   4800
+      Top             =   5160
       Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
@@ -357,7 +480,7 @@ Begin VB.Form frmCRMMto
       Height          =   375
       Left            =   8160
       TabIndex        =   9
-      Top             =   4800
+      Top             =   5160
       Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -407,90 +530,6 @@ Begin VB.Form frmCRMMto
       EndProperty
       _Version        =   393216
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   16
-      Top             =   0
-      Width           =   13080
-      _ExtentX        =   23072
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   16
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-            ImageIndex      =   1
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-            ImageIndex      =   15
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   5160
-         TabIndex        =   17
-         Top             =   120
-         Width           =   1215
-      End
-   End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
       BeginProperty Font 
@@ -505,7 +544,7 @@ Begin VB.Form frmCRMMto
       Height          =   375
       Left            =   9480
       TabIndex        =   10
-      Top             =   4800
+      Top             =   5160
       Visible         =   0   'False
       Width           =   1135
    End
@@ -515,7 +554,7 @@ Begin VB.Form frmCRMMto
       Left            =   6660
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
-      Top             =   2040
+      Top             =   2340
       Width           =   240
    End
    Begin VB.Image imgBuscar 
@@ -524,7 +563,7 @@ Begin VB.Form frmCRMMto
       Left            =   1230
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
-      Top             =   2040
+      Top             =   2340
       Width           =   240
    End
    Begin VB.Image imgBuscar 
@@ -533,7 +572,7 @@ Begin VB.Form frmCRMMto
       Left            =   6300
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
-      Top             =   1230
+      Top             =   1530
       Width           =   240
    End
    Begin VB.Label Label1 
@@ -550,8 +589,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   12
       Left            =   5400
-      TabIndex        =   27
-      Top             =   1245
+      TabIndex        =   25
+      Top             =   1545
       Width           =   795
    End
    Begin VB.Label Label1 
@@ -568,8 +607,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   11
       Left            =   6720
-      TabIndex        =   26
-      Top             =   1245
+      TabIndex        =   24
+      Top             =   1545
       Width           =   855
    End
    Begin VB.Image imgBuscar 
@@ -578,7 +617,7 @@ Begin VB.Form frmCRMMto
       Left            =   1080
       Tag             =   "-1"
       ToolTipText     =   "Buscar población"
-      Top             =   1260
+      Top             =   1560
       Width           =   240
    End
    Begin VB.Label Label1 
@@ -595,8 +634,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   10
       Left            =   120
-      TabIndex        =   23
-      Top             =   2760
+      TabIndex        =   21
+      Top             =   3060
       Width           =   1665
    End
    Begin VB.Label Label1 
@@ -613,8 +652,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   9
       Left            =   5400
-      TabIndex        =   22
-      Top             =   570
+      TabIndex        =   20
+      Top             =   870
       Width           =   1455
    End
    Begin VB.Label Label1 
@@ -631,8 +670,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   8
       Left            =   3720
-      TabIndex        =   21
-      Top             =   570
+      TabIndex        =   19
+      Top             =   870
       Width           =   1455
    End
    Begin VB.Label Label1 
@@ -649,8 +688,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   5
       Left            =   120
-      TabIndex        =   20
-      Top             =   2010
+      TabIndex        =   18
+      Top             =   2310
       Width           =   1095
    End
    Begin VB.Label Label1 
@@ -667,8 +706,8 @@ Begin VB.Form frmCRMMto
       Height          =   195
       Index           =   3
       Left            =   120
-      TabIndex        =   19
-      Top             =   1245
+      TabIndex        =   17
+      Top             =   1545
       Width           =   900
    End
    Begin VB.Label Label1 
@@ -685,8 +724,8 @@ Begin VB.Form frmCRMMto
       Height          =   255
       Index           =   2
       Left            =   5400
-      TabIndex        =   18
-      Top             =   2010
+      TabIndex        =   16
+      Top             =   2310
       Width           =   1215
    End
    Begin VB.Label Label1 
@@ -704,7 +743,7 @@ Begin VB.Form frmCRMMto
       Index           =   1
       Left            =   1380
       TabIndex        =   15
-      Top             =   570
+      Top             =   870
       Width           =   1695
    End
    Begin VB.Label Label1 
@@ -722,11 +761,13 @@ Begin VB.Form frmCRMMto
       Index           =   0
       Left            =   120
       TabIndex        =   14
-      Top             =   570
+      Top             =   870
       Width           =   975
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -933,7 +974,7 @@ End Sub
 
 Private Sub Desplazamiento(Index As Integer)
 'Para desplazarse por los registros de control Data
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
     lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
 End Sub
@@ -1042,21 +1083,57 @@ Dim i As Integer
     Me.Icon = frmPpal.Icon
     Me.Width = 10800
     ' ICONITOS DE LA BARRA
-    btnPrimero = 13
+'    btnPrimero = 13
+'    With Me.Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1   'Botón Buscar
+'        .Buttons(2).Image = 2   'Botón Todos
+'        .Buttons(5).Image = 3   'Insertar Nuevo
+'        .Buttons(6).Image = 4   'Modificar
+'        .Buttons(7).Image = 5   'Borrar
+'        .Buttons(10).Image = 15  'Salir
+'        .Buttons(13).Image = 6  'Primero
+'        .Buttons(14).Image = 7  'Anterior
+'        .Buttons(15).Image = 8  'Siguiente
+'        .Buttons(16).Image = 9  'Último
+'    End With
+    
+    
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Todos
-        .Buttons(5).Image = 3   'Insertar Nuevo
-        .Buttons(6).Image = 4   'Modificar
-        .Buttons(7).Image = 5   'Borrar
-        .Buttons(10).Image = 15  'Salir
-        .Buttons(13).Image = 6  'Primero
-        .Buttons(14).Image = 7  'Anterior
-        .Buttons(15).Image = 8  'Siguiente
-        .Buttons(16).Image = 9  'Último
+        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        'el 1 es separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Todos
+        'el 4 i el 5 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 9 i el 10 son separadors
+        .Buttons(8).Image = 16  'imprimir
     End With
     
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+    
+'    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+
+
+
 
     For i = 2 To 5
         imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
@@ -1469,7 +1546,8 @@ Dim i As Integer
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
     
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
     If DatosADevolverBusqueda <> "" Then
@@ -1511,6 +1589,10 @@ Dim i As Integer
                         'de permisos del usuario
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -1525,24 +1607,25 @@ Dim b As Boolean
     
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = b
-    Me.mnnuevo.Enabled = b
+    Toolbar1.Buttons(1).Enabled = b
+    Me.mnNuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     mnEliminar.Enabled = b
     
     '----------------------------------------
     b = (Modo >= 3) 'Insertar/Modificar
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not b
+    Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
-    Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Toolbar1.Buttons(6).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
+    
 End Sub
 
 
@@ -1564,28 +1647,22 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1  'Buscar
+        Case 5  'Buscar
             mnBuscar_Click
-        Case 2  'Todos
+        Case 6  'Todos
             mnVerTodos_Click
-        Case 5  'Nuevo
+        Case 1  'Nuevo
             mnNuevo_Click
-        Case 6  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 7  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
-        Case 10  'Salir
-            mnSalir_Click
-        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
-
 
 Private Sub PonerOpcionesMenu()
     PonerOpcionesMenuGeneral Me
 End Sub
-
 
 Private Sub KEYpress(KeyAscii As Integer)
 Dim cerrar As Boolean
@@ -1593,7 +1670,6 @@ Dim cerrar As Boolean
     KEYpressGnral KeyAscii, Modo, cerrar
     If cerrar Then Unload Me
 End Sub
-
 
 Private Sub PosicionarData()
 Dim Indicador As String
@@ -1639,3 +1715,6 @@ Private Function DevuelveWHERE() As String
 End Function
 
 
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+   Desplazamiento (Button.Index)
+End Sub

@@ -404,7 +404,7 @@ Begin VB.Form frmAdmTrabajadores
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   5
+      Tab             =   1
       TabsPerRow      =   6
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -419,40 +419,40 @@ Begin VB.Form frmAdmTrabajadores
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmAdmTrabajadores.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Text1(10)"
-      Tab(0).Control(1)=   "Text2(10)"
-      Tab(0).Control(2)=   "Text2(24)"
-      Tab(0).Control(3)=   "Text1(24)"
-      Tab(0).Control(4)=   "Text1(2)"
-      Tab(0).Control(5)=   "Text1(7)"
-      Tab(0).Control(6)=   "Text1(23)"
-      Tab(0).Control(7)=   "Text1(8)"
-      Tab(0).Control(8)=   "frameDptoPersonal"
-      Tab(0).Control(9)=   "frameBancos"
-      Tab(0).Control(10)=   "Text1(9)"
-      Tab(0).Control(11)=   "Text1(6)"
-      Tab(0).Control(12)=   "Text1(5)"
-      Tab(0).Control(13)=   "Text1(4)"
-      Tab(0).Control(14)=   "Text1(3)"
-      Tab(0).Control(15)=   "Label1(2)"
-      Tab(0).Control(16)=   "imgBuscar(2)"
-      Tab(0).Control(17)=   "ImgMail(0)"
-      Tab(0).Control(18)=   "imgBuscar(1)"
-      Tab(0).Control(19)=   "Label1(26)"
-      Tab(0).Control(20)=   "Label1(25)"
-      Tab(0).Control(21)=   "Label1(24)"
-      Tab(0).Control(22)=   "Label1(12)"
-      Tab(0).Control(23)=   "imgBuscar(0)"
-      Tab(0).Control(24)=   "Label1(37)"
-      Tab(0).Control(25)=   "Label1(36)"
-      Tab(0).Control(26)=   "Label1(15)"
-      Tab(0).Control(27)=   "Label1(34)"
-      Tab(0).Control(28)=   "Label1(14)"
-      Tab(0).Control(29)=   "Label1(13)"
+      Tab(0).Control(0)=   "Label1(13)"
+      Tab(0).Control(1)=   "Label1(14)"
+      Tab(0).Control(2)=   "Label1(34)"
+      Tab(0).Control(3)=   "Label1(15)"
+      Tab(0).Control(4)=   "Label1(36)"
+      Tab(0).Control(5)=   "Label1(37)"
+      Tab(0).Control(6)=   "imgBuscar(0)"
+      Tab(0).Control(7)=   "Label1(12)"
+      Tab(0).Control(8)=   "Label1(24)"
+      Tab(0).Control(9)=   "Label1(25)"
+      Tab(0).Control(10)=   "Label1(26)"
+      Tab(0).Control(11)=   "imgBuscar(1)"
+      Tab(0).Control(12)=   "ImgMail(0)"
+      Tab(0).Control(13)=   "imgBuscar(2)"
+      Tab(0).Control(14)=   "Label1(2)"
+      Tab(0).Control(15)=   "Text1(3)"
+      Tab(0).Control(16)=   "Text1(4)"
+      Tab(0).Control(17)=   "Text1(5)"
+      Tab(0).Control(18)=   "Text1(6)"
+      Tab(0).Control(19)=   "Text1(9)"
+      Tab(0).Control(20)=   "frameBancos"
+      Tab(0).Control(21)=   "frameDptoPersonal"
+      Tab(0).Control(22)=   "Text1(8)"
+      Tab(0).Control(23)=   "Text1(23)"
+      Tab(0).Control(24)=   "Text1(7)"
+      Tab(0).Control(25)=   "Text1(2)"
+      Tab(0).Control(26)=   "Text1(24)"
+      Tab(0).Control(27)=   "Text2(24)"
+      Tab(0).Control(28)=   "Text2(10)"
+      Tab(0).Control(29)=   "Text1(10)"
       Tab(0).ControlCount=   30
       TabCaption(1)   =   "Estudios/Formación"
       TabPicture(1)   =   "frmAdmTrabajadores.frx":0028
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "DataGrid1"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "txtAux1(0)"
@@ -465,46 +465,46 @@ Begin VB.Form frmAdmTrabajadores
       TabCaption(2)   =   "Habilidades"
       TabPicture(2)   =   "frmAdmTrabajadores.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "DataGrid2"
+      Tab(2).Control(0)=   "FrameToolAux(1)"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "txtAux2"
       Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "FrameToolAux(1)"
+      Tab(2).Control(2)=   "DataGrid2"
       Tab(2).Control(2).Enabled=   0   'False
       Tab(2).ControlCount=   3
       TabCaption(3)   =   "Experiencia Laboral"
       TabPicture(3)   =   "frmAdmTrabajadores.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "DataGrid3"
+      Tab(3).Control(0)=   "FrameToolAux(2)"
       Tab(3).Control(0).Enabled=   0   'False
-      Tab(3).Control(1)=   "TxtAux3(0)"
+      Tab(3).Control(1)=   "TxtAux3(1)"
       Tab(3).Control(1).Enabled=   0   'False
-      Tab(3).Control(2)=   "TxtAux3(1)"
+      Tab(3).Control(2)=   "TxtAux3(0)"
       Tab(3).Control(2).Enabled=   0   'False
-      Tab(3).Control(3)=   "FrameToolAux(2)"
+      Tab(3).Control(3)=   "DataGrid3"
       Tab(3).Control(3).Enabled=   0   'False
       Tab(3).ControlCount=   4
       TabCaption(4)   =   "Formación Realizada"
       TabPicture(4)   =   "frmAdmTrabajadores.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "DataGrid4"
+      Tab(4).Control(0)=   "FrameToolAux(3)"
       Tab(4).Control(0).Enabled=   0   'False
-      Tab(4).Control(1)=   "TxtAux4(0)"
+      Tab(4).Control(1)=   "TxtAux4(4)"
       Tab(4).Control(1).Enabled=   0   'False
-      Tab(4).Control(2)=   "TxtAux4(1)"
+      Tab(4).Control(2)=   "TxtAux4(3)"
       Tab(4).Control(2).Enabled=   0   'False
       Tab(4).Control(3)=   "TxtAux4(2)"
       Tab(4).Control(3).Enabled=   0   'False
-      Tab(4).Control(4)=   "TxtAux4(3)"
+      Tab(4).Control(4)=   "TxtAux4(1)"
       Tab(4).Control(4).Enabled=   0   'False
-      Tab(4).Control(5)=   "TxtAux4(4)"
+      Tab(4).Control(5)=   "TxtAux4(0)"
       Tab(4).Control(5).Enabled=   0   'False
-      Tab(4).Control(6)=   "FrameToolAux(3)"
+      Tab(4).Control(6)=   "DataGrid4"
       Tab(4).Control(6).Enabled=   0   'False
       Tab(4).ControlCount=   7
       TabCaption(5)   =   "Formación Empresa"
       TabPicture(5)   =   "frmAdmTrabajadores.frx":0098
-      Tab(5).ControlEnabled=   -1  'True
+      Tab(5).ControlEnabled=   0   'False
       Tab(5).Control(0)=   "DataGrid5"
       Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "TxtAux5(0)"
@@ -519,7 +519,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Frame FrameToolAux 
          Height          =   555
          Index           =   4
-         Left            =   -74520
+         Left            =   480
          TabIndex        =   98
          Top             =   330
          Width           =   1605
@@ -655,7 +655,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin VB.Frame FrameToolAux 
          Height          =   555
          Index           =   0
-         Left            =   480
+         Left            =   -74520
          TabIndex        =   90
          Top             =   330
          Width           =   1605
@@ -841,7 +841,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   6840
+         Left            =   -68160
          MaxLength       =   15
          TabIndex        =   74
          Tag             =   "Resultado|T|N|||strab5|resforma||N|"
@@ -864,7 +864,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   50
          TabIndex        =   73
          Tag             =   "Formación|T|N|||strab5|formaci2||N|"
@@ -887,7 +887,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   600
+         Left            =   -74400
          MaxLength       =   12
          TabIndex        =   72
          Tag             =   "Fecha Formación|F|N|||strab5|fecforma||N|"
@@ -1113,7 +1113,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -72120
+         Left            =   2880
          MaxLength       =   70
          TabIndex        =   58
          Tag             =   "Formación|T|N|||strab1|formacio||N|"
@@ -1136,7 +1136,7 @@ Begin VB.Form frmAdmTrabajadores
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74160
+         Left            =   840
          MaxLength       =   15
          TabIndex        =   57
          Tag             =   "Periodo|T|N|||strab1|periodos||N|"
@@ -1879,7 +1879,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmAdmTrabajadores.frx":00B4
          Height          =   3510
-         Left            =   -74520
+         Left            =   480
          TabIndex        =   56
          Top             =   915
          Width           =   9135
@@ -2159,7 +2159,7 @@ Begin VB.Form frmAdmTrabajadores
       Begin MSDataGridLib.DataGrid DataGrid5 
          Bindings        =   "frmAdmTrabajadores.frx":0108
          Height          =   3510
-         Left            =   480
+         Left            =   -74520
          TabIndex        =   63
          Top             =   915
          Width           =   8855
@@ -2978,11 +2978,11 @@ Private Sub BotonAnyadirLinea()
         Case 3 'Experiencia Laboral
                 AnyadirLinea DataGrid3, Data4
                 CargaTxtAux3 True, True
-                PonerFoco txtAux3(0)
+                PonerFoco TxtAux3(0)
         Case 4 'Formacion Realizada
                 AnyadirLinea DataGrid4, Data5
                 CargaTxtAux4 True, True
-                PonerFoco txtAux4(0)
+                PonerFoco TxtAux4(0)
         Case 5 'Formacion Empresa
                 AnyadirLinea DataGrid5, Data6
                 CargaTxtAux5 True, True
@@ -3077,14 +3077,14 @@ Dim vWhere As String
                 If Not BloqueaRegistro(NomTablaLineas, vWhere) Then Exit Sub
                 CargaTxtAux3 True, False
                 DataGrid3.Enabled = False
-                PonerFoco txtAux3(0)
+                PonerFoco TxtAux3(0)
         Case 4 'Formacion Realizada
                 If Data5.Recordset.EOF Then Exit Sub
                 vWhere = vWhere & Data5.Recordset!numlinea
                 If Not BloqueaRegistro(NomTablaLineas, vWhere) Then Exit Sub
                 CargaTxtAux4 True, False
                 DataGrid4.Enabled = False
-                PonerFoco txtAux4(0)
+                PonerFoco TxtAux4(0)
         Case 5 'Formacion Empresa
                 If Data6.Recordset.EOF Then Exit Sub
                 vWhere = vWhere & Data6.Recordset!numlinea
@@ -4132,12 +4132,12 @@ On Error GoTo EDatosOkLinea
                 b = False
             End If
         Case 3 'Experiencial Laboral
-            If (Not Trim(txtAux3(0).Text) <> "") And (Not Trim(txtAux3(1).Text) <> "") Then
+            If (Not Trim(TxtAux3(0).Text) <> "") And (Not Trim(TxtAux3(1).Text) <> "") Then
                 MsgBox "Los campos Periodo y Experiencia no pueden ser nulos", vbExclamation
                 b = False
             End If
         Case 4 'Formacion Realizada
-            If (Not Trim(txtAux4(0).Text) <> "") And (Not Trim(TxtAux5(1).Text) <> "") Then
+            If (Not Trim(TxtAux4(0).Text) <> "") And (Not Trim(TxtAux5(1).Text) <> "") Then
                 MsgBox "Los campos Fecha Formación y Fecha Evaluación no pueden ser nulos", vbExclamation
                 b = False
             End If
@@ -4264,13 +4264,13 @@ On Error GoTo EInsertarLinea
                  Sql = "INSERT INTO strab3 "
                  Sql = Sql & "(codtraba, numlinea, periodo1, experien) "
                  Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ","
-                 Sql = Sql & DBSet(txtAux3(0).Text, "T") & ", " & DBSet(txtAux3(1).Text, "T") & ")"
+                 Sql = Sql & DBSet(TxtAux3(0).Text, "T") & ", " & DBSet(TxtAux3(1).Text, "T") & ")"
             Case 4 'Formacion Realizada
                  Sql = "INSERT INTO strab4 "
                  Sql = Sql & "(codtraba, numlinea, fecforma, fecevalu, formaci1, codcentr, evaluaci) "
                  Sql = Sql & "VALUES (" & Val(Text1(0).Text) & ", " & numF & ",'"
-                 Sql = Sql & Format(txtAux4(0).Text, FormatoFecha) & "', '" & Format(txtAux4(1).Text, FormatoFecha) & "', "
-                 Sql = Sql & DBSet(txtAux4(2).Text, "T") & ", " & DBSet(txtAux4(3).Text, "T") & ", " & DBSet(txtAux4(4).Text, "T") & ")"
+                 Sql = Sql & Format(TxtAux4(0).Text, FormatoFecha) & "', '" & Format(TxtAux4(1).Text, FormatoFecha) & "', "
+                 Sql = Sql & DBSet(TxtAux4(2).Text, "T") & ", " & DBSet(TxtAux4(3).Text, "T") & ", " & DBSet(TxtAux4(4).Text, "T") & ")"
             Case 5 'Formacion Empresa
                  Sql = "INSERT INTO strab5 "
                  Sql = Sql & "(codtraba, numlinea, fecforma, formaci2, resforma) "
@@ -4307,13 +4307,13 @@ On Error GoTo EModificarLinea
                 Sql = "UPDATE strab2 Set habilida = " & DBSet(txtAux2.Text, "T")
                 Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data3.Recordset!numlinea
             Case 3 'Experiencia Laboral
-                Sql = "UPDATE strab3 Set periodo1 = " & DBSet(txtAux3(0).Text, "T") & ", "
-                Sql = Sql & "experien=" & DBSet(txtAux3(1).Text, "T")
+                Sql = "UPDATE strab3 Set periodo1 = " & DBSet(TxtAux3(0).Text, "T") & ", "
+                Sql = Sql & "experien=" & DBSet(TxtAux3(1).Text, "T")
                 Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data4.Recordset!numlinea
             Case 4 'Formacion Realizada
-                Sql = "UPDATE strab4 Set fecforma = " & DBSet(txtAux4(0).Text, "F") & ", fecevalu="
-                Sql = Sql & DBSet(txtAux4(1).Text, "F") & ", formaci1=" & DBSet(txtAux4(2).Text, "T") & ", codcentr="
-                Sql = Sql & DBSet(txtAux4(3).Text, "T") & ", evaluaci=" & DBSet(txtAux4(4).Text, "T")
+                Sql = "UPDATE strab4 Set fecforma = " & DBSet(TxtAux4(0).Text, "F") & ", fecevalu="
+                Sql = Sql & DBSet(TxtAux4(1).Text, "F") & ", formaci1=" & DBSet(TxtAux4(2).Text, "T") & ", codcentr="
+                Sql = Sql & DBSet(TxtAux4(3).Text, "T") & ", evaluaci=" & DBSet(TxtAux4(4).Text, "T")
                 Sql = Sql & " WHERE " & vWhere & " AND numlinea=" & Data5.Recordset!numlinea
             Case 5 'Formacion Empresa
                 Sql = "UPDATE strab5 Set fecforma = " & DBSet(TxtAux5(0).Text, "F") & ", formaci2="
@@ -4525,21 +4525,21 @@ Dim i As Byte
     
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux3.Count - 1 'TextBox
-            txtAux3(i).Top = 290
-            txtAux3(i).visible = visible
+        For i = 0 To TxtAux3.Count - 1 'TextBox
+            TxtAux3(i).Top = 290
+            TxtAux3(i).visible = visible
         Next i
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid3
-            For i = 0 To txtAux3.Count - 1
-                txtAux3(i).Text = ""
-                BloquearTxt txtAux3(i), False
+            For i = 0 To TxtAux3.Count - 1
+                TxtAux3(i).Text = ""
+                BloquearTxt TxtAux3(i), False
             Next i
         Else
-            For i = 0 To txtAux3.Count - 1
-                txtAux3(i).Text = DataGrid3.Columns(i + 2).Text
-                BloquearTxt txtAux3(i), False
+            For i = 0 To TxtAux3.Count - 1
+                TxtAux3(i).Text = DataGrid3.Columns(i + 2).Text
+                BloquearTxt TxtAux3(i), False
             Next i
         End If
 
@@ -4548,24 +4548,24 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid3, 8)
         
-        For i = 0 To txtAux3.Count - 1
-            txtAux3(i).Top = alto
-            txtAux3(i).Height = DataGrid3.RowHeight
+        For i = 0 To TxtAux3.Count - 1
+            TxtAux3(i).Top = alto
+            TxtAux3(i).Height = DataGrid3.RowHeight
         Next i
         
         'Fijamos anchura y posicion Left
         '--------------------------------
         'Periodo
-        txtAux3(0).Left = DataGrid3.Left + 320
-        txtAux3(0).Width = DataGrid3.Columns(2).Width - 20
+        TxtAux3(0).Left = DataGrid3.Left + 320
+        TxtAux3(0).Width = DataGrid3.Columns(2).Width - 20
         'Experiencia
-        txtAux3(1).Left = txtAux3(0).Left + txtAux3(0).Width + 20
-        txtAux3(1).Width = DataGrid3.Columns(3).Width - 20
+        TxtAux3(1).Left = TxtAux3(0).Left + TxtAux3(0).Width + 20
+        TxtAux3(1).Width = DataGrid3.Columns(3).Width - 20
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux3.Count - 1
-            txtAux3(i).visible = visible
+        For i = 0 To TxtAux3.Count - 1
+            TxtAux3(i).visible = visible
         Next i
     End If
 End Sub
@@ -4579,21 +4579,21 @@ Dim i As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux4.Count - 1 'TextBox
-            txtAux4(i).Top = 290
-            txtAux4(i).visible = visible
+        For i = 0 To TxtAux4.Count - 1 'TextBox
+            TxtAux4(i).Top = 290
+            TxtAux4(i).visible = visible
         Next i
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid4
-            For i = 0 To txtAux4.Count - 1
-                txtAux4(i).Text = ""
-                BloquearTxt txtAux4(i), False
+            For i = 0 To TxtAux4.Count - 1
+                TxtAux4(i).Text = ""
+                BloquearTxt TxtAux4(i), False
             Next i
         Else
-            For i = 0 To txtAux4.Count - 1
-                txtAux4(i).Text = DataGrid4.Columns(i + 2).Text
-                BloquearTxt txtAux4(i), False
+            For i = 0 To TxtAux4.Count - 1
+                TxtAux4(i).Text = DataGrid4.Columns(i + 2).Text
+                BloquearTxt TxtAux4(i), False
             Next i
         End If
 
@@ -4602,26 +4602,26 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid4, 8)
         
-        For i = 0 To txtAux4.Count - 1
-            txtAux4(i).Top = alto
-            txtAux4(i).Height = DataGrid4.RowHeight
+        For i = 0 To TxtAux4.Count - 1
+            TxtAux4(i).Top = alto
+            TxtAux4(i).Height = DataGrid4.RowHeight
         Next i
         
         'Fijamos anchura y posicion Left
         '--------------------------------
         'Fecha Formacion
-        txtAux4(0).Left = DataGrid4.Left + 320
-        txtAux4(0).Width = DataGrid4.Columns(2).Width - 20
+        TxtAux4(0).Left = DataGrid4.Left + 320
+        TxtAux4(0).Width = DataGrid4.Columns(2).Width - 20
         'Fecha Evaluacion
         For i = 1 To 4
-            txtAux4(i).Left = txtAux4(i - 1).Left + txtAux4(i - 1).Width + 20
-            txtAux4(i).Width = DataGrid4.Columns(i + 2).Width - 20
+            TxtAux4(i).Left = TxtAux4(i - 1).Left + TxtAux4(i - 1).Width + 20
+            TxtAux4(i).Width = DataGrid4.Columns(i + 2).Width - 20
         Next i
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux4.Count - 1
-            txtAux4(i).visible = visible
+        For i = 0 To TxtAux4.Count - 1
+            TxtAux4(i).visible = visible
         Next i
     End If
 End Sub
@@ -4733,7 +4733,7 @@ Private Sub txtAux2_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub TxtAux3_GotFocus(Index As Integer)
-    ConseguirFoco txtAux3(Index), Modo
+    ConseguirFoco TxtAux3(Index), Modo
 End Sub
 
 Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -4753,7 +4753,7 @@ End Sub
 
 
 Private Sub TxtAux4_GotFocus(Index As Integer)
-    ConseguirFoco txtAux4(Index), Modo
+    ConseguirFoco TxtAux4(Index), Modo
 End Sub
 
 
@@ -4773,11 +4773,11 @@ Private Sub TxtAux4_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub TxtAux4_LostFocus(Index As Integer)
-    If Trim(txtAux4(Index).Text) = "" Then Exit Sub
+    If Trim(TxtAux4(Index).Text) = "" Then Exit Sub
     
     Select Case Index
         Case 0, 1
-             PonerFormatoFecha txtAux4(Index)
+             PonerFormatoFecha TxtAux4(Index)
     End Select
 End Sub
 

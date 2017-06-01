@@ -7,7 +7,7 @@ Begin VB.Form frmAlmTipoUnidad
    Caption         =   "Tipos de Unidad"
    ClientHeight    =   7470
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   30
    ClientWidth     =   5475
    Icon            =   "frmAlmTipoUnidad.frx":0000
    LinkTopic       =   "Form1"
@@ -17,6 +17,104 @@ Begin VB.Form frmAlmTipoUnidad
    ScaleWidth      =   5475
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameToolAux 
+      Enabled         =   0   'False
+      Height          =   555
+      Index           =   0
+      Left            =   120
+      TabIndex        =   18
+      Top             =   3420
+      Visible         =   0   'False
+      Width           =   1605
+      Begin MSComctlLib.Toolbar ToolAux 
+         Height          =   330
+         Index           =   0
+         Left            =   240
+         TabIndex        =   19
+         Top             =   150
+         Width           =   1095
+         _ExtentX        =   1931
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   3
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Insertar"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   90
+      TabIndex        =   16
+      Top             =   150
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   17
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.CommandButton cmdAux2 
       Caption         =   "+"
       Height          =   255
@@ -43,7 +141,7 @@ Begin VB.Form frmAlmTipoUnidad
       Height          =   270
       Index           =   1
       Left            =   1200
-      TabIndex        =   17
+      TabIndex        =   15
       Tag             =   "Nombre Tipo de unidad|T|N|||sunida|nomunida||N|"
       Text            =   "Descripcion"
       Top             =   5640
@@ -278,7 +376,7 @@ Begin VB.Form frmAlmTipoUnidad
       EndProperty
       Height          =   375
       Left            =   4110
-      TabIndex        =   13
+      TabIndex        =   11
       Top             =   6960
       Visible         =   0   'False
       Width           =   1135
@@ -286,7 +384,7 @@ Begin VB.Form frmAlmTipoUnidad
    Begin VB.Frame Frame1 
       Height          =   555
       Left            =   120
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   6860
       Width           =   2475
       Begin VB.Label lblIndicador 
@@ -303,75 +401,9 @@ Begin VB.Form frmAlmTipoUnidad
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   210
          Width           =   2280
-      End
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   9
-      Top             =   0
-      Width           =   5475
-      _ExtentX        =   9657
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   11
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Lineas"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-            ImageIndex      =   16
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-            ImageIndex      =   15
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   3240
-         TabIndex        =   12
-         Top             =   120
-         Visible         =   0   'False
-         Width           =   1215
       End
    End
    Begin MSAdodcLib.Adodc adodc1 
@@ -425,9 +457,9 @@ Begin VB.Form frmAlmTipoUnidad
       Bindings        =   "frmAlmTipoUnidad.frx":000C
       Height          =   1725
       Left            =   120
-      TabIndex        =   14
+      TabIndex        =   12
       TabStop         =   0   'False
-      Top             =   540
+      Top             =   990
       Width           =   5175
       _ExtentX        =   9128
       _ExtentY        =   3043
@@ -493,7 +525,7 @@ Begin VB.Form frmAlmTipoUnidad
       Bindings        =   "frmAlmTipoUnidad.frx":0021
       Height          =   2205
       Left            =   120
-      TabIndex        =   16
+      TabIndex        =   14
       TabStop         =   0   'False
       Top             =   4560
       Width           =   5175
@@ -571,12 +603,14 @@ Begin VB.Form frmAlmTipoUnidad
       ForeColor       =   &H00800000&
       Height          =   375
       Left            =   120
-      TabIndex        =   15
+      TabIndex        =   13
       Top             =   4080
       Width           =   2655
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -663,7 +697,7 @@ Dim i As Integer
         txtAux(i).BackColor = vbWhite
     Next i
     
-    ActualizarToolbarGnral Me.Toolbar1, Modo, vModo, 5
+'    ActualizarToolbarGnral Me.Toolbar1, Modo, vModo, 5
     
     Modo = vModo
     b = (Modo = 2)
@@ -681,9 +715,12 @@ Dim i As Integer
     txtAux(3).visible = b
     
     
+    b = b Or Modo = 5
+    
     cmdAceptar.visible = b
     cmdCancelar.visible = b
-    b = b Or Modo = 5
+    
+    
     DataGrid1.Enabled = Not b
    
     b = (Modo = 2)
@@ -707,30 +744,43 @@ End Sub
 
 Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
+Dim bAux As Boolean
+
     
     b = (Modo = 2)
-    Toolbar1.Buttons(1).Enabled = b 'Buscar
+    Toolbar1.Buttons(5).Enabled = b 'Buscar
     Me.mnBuscar.Enabled = b
-    Toolbar1.Buttons(2).Enabled = b 'Todos
-    Me.mnvertodos.Enabled = b
-    Toolbar1.Buttons(9).Enabled = b
-    Me.mnMtoLineas.Enabled = b
+    Toolbar1.Buttons(6).Enabled = b 'Todos
+    Me.mnVerTodos.Enabled = b
+'    Toolbar1.Buttons(9).Enabled = b
+'    Me.mnMtoLineas.Enabled = b
     If b Then
         b = b And Not DeConsulta
     Else
         b = Modo = 5 And ModificaLineas = 0
     End If
     'Añadir
-    Toolbar1.Buttons(5).Enabled = b
-    Me.mnnuevo.Enabled = b
+    Toolbar1.Buttons(1).Enabled = b
+    Me.mnNuevo.Enabled = b
     'Modificar
-    Toolbar1.Buttons(6).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'Eliminar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     'Imprimir
-    Toolbar1.Buttons(10).Enabled = b
+    Toolbar1.Buttons(8).Enabled = b
+    
+    b = (Modo = 2 Or Modo = 3 Or Modo = 4)
+    ToolAux(0).Buttons(1).Enabled = b
+    If Not Adodc2.Recordset Is Nothing Then
+        If b Then bAux = (b And Me.Adodc2.Recordset.RecordCount > 0)
+    End If
+    ToolAux(0).Buttons(2).Enabled = bAux
+    ToolAux(0).Buttons(3).Enabled = bAux
+    
+    
+    
 End Sub
 
 
@@ -748,9 +798,12 @@ Dim anc As Single
     If Modo = 5 Then
 
         If ModificaLineas = 2 Then Exit Sub
+        
+        PonerModo 5
+        
         AnyadirLinea DataGrid2, Adodc2
         ModificaLineas = 1
-        PonerBotonCabecera False
+'--        PonerBotonCabecera False
         'Los txts
         txtAux2(0).Text = "": txtAux2(1).Text = "": txtAux2(2).Text = ""
         Campos_2_Visibles True
@@ -1035,9 +1088,9 @@ On Error Resume Next
         ModificaLineas = 0
         DataGrid2.Enabled = True
         CargaGrid2 True
-        PonerBotonCabecera True
-        cmdRegresar.visible = True
-        Exit Sub
+'        PonerBotonCabecera True
+'        cmdRegresar.visible = True
+'        Exit Sub
     End Select
     PonerModo 2
     DataGrid1.SetFocus
@@ -1123,22 +1176,54 @@ Private Sub Form_Load()
     Me.Icon = frmPpal.Icon
     
     If vParamAplic.Descriptores Then Me.Caption = "Formatos"
+'    With Me.Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1   'Botón Buscar
+'        .Buttons(2).Image = 2   'Botón Recuperar Todos
+'        .Buttons(5).Image = 3   'Botón Añadir Nuevo Registro
+'        .Buttons(6).Image = 4   'Botón Modificar Registro
+'        .Buttons(7).Image = 5   'Botón Borrar Registro
+'        .Buttons(9).Image = 10  '
+'        .Buttons(10).Image = 16  'Botón Imprimir
+'        .Buttons(11).Image = 15  'Botón Salir
+'    End With
+
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Recuperar Todos
-        .Buttons(5).Image = 3   'Botón Añadir Nuevo Registro
-        .Buttons(6).Image = 4   'Botón Modificar Registro
-        .Buttons(7).Image = 5   'Botón Borrar Registro
-        .Buttons(9).Image = 10  '
-        .Buttons(10).Image = 16  'Botón Imprimir
-        .Buttons(11).Image = 15  'Botón Salir
+        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        'el 1 es separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Todos
+        'el 4 i el 5 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 9 i el 10 son separadors
+        .Buttons(8).Image = 16  'imprimir
     End With
+
+    With Me.ToolAux(0)
+        '.ImageList = frmPpal.imgListComun_VELL
+        '  ### [Monica] 02/10/2006 acabo de comentarlo
+        .HotImageList = frmPpal.imgListComun_OM16
+        .DisabledImageList = frmPpal.imgListComun_BN16
+        .ImageList = frmPpal.imgListComun16
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+    End With
+    
+    
+    
     
     '------------------------------------------------
     DataGrid2.visible = vParamAplic.Produccion
     Label1.visible = vParamAplic.Produccion
-    Me.Toolbar1.Buttons(9).visible = vParamAplic.Produccion
+    Me.FrameToolAux(0).visible = vParamAplic.Produccion
+    Me.FrameToolAux(0).Enabled = vParamAplic.Produccion
+    
+'    Me.Toolbar1.Buttons(9).visible = vParamAplic.Produccion
     If vParamAplic.Produccion Then
         DataGrid1.Height = 3525
     Else
@@ -1201,19 +1286,31 @@ Private Sub mnVerTodos_Click()
 End Sub
 
 
+Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
+    ModificaLineas = 0
+    Modo = 5
+    Select Case Button.Index
+        Case 1
+            BotonAnyadir
+        Case 2
+            BotonModificar
+        Case 3
+            BotonEliminar
+    End Select
+End Sub
+
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1: BotonBuscar
-        Case 2: BotonVerTodos
-        Case 5: BotonAnyadir
-        Case 6: BotonModificar
-        Case 7: BotonEliminar
-        Case 9: MtoLineas
-        Case 10 'Imprimir listado Tipos de Unidades
+        Case 5: BotonBuscar
+        Case 6: BotonVerTodos
+        Case 1: BotonAnyadir
+        Case 2: BotonModificar
+        Case 3: BotonEliminar
+        'Case 9: MtoLineas
+        Case 8 'Imprimir listado Tipos de Unidades
                 Me.Hide
                 AbrirListado (3) 'OpcionListado=3
                 Me.Show vbModal
-        Case 11: mnSalir_Click
     End Select
 End Sub
 
@@ -1222,6 +1319,7 @@ Private Sub MtoLineas()
     PonerModo 5
     PonerBotonCabecera True
 End Sub
+
 Private Sub CargaGrid(Optional Sql As String)
 Dim i As Byte
 Dim b As Boolean
@@ -1274,9 +1372,9 @@ Dim b As Boolean
    DataGrid1.RowHeight = 350
    
     'Habilitamos botones Modificar y Eliminar
-   If Toolbar1.Buttons(6).Enabled Then
-        Toolbar1.Buttons(6).Enabled = Not Adodc1.Recordset.EOF
-        Toolbar1.Buttons(7).Enabled = Not Adodc1.Recordset.EOF
+   If Toolbar1.Buttons(2).Enabled Then
+        Toolbar1.Buttons(2).Enabled = Not Adodc1.Recordset.EOF
+        Toolbar1.Buttons(3).Enabled = Not Adodc1.Recordset.EOF
         mnModificar.Enabled = Not Adodc1.Recordset.EOF
         mnEliminar.Enabled = Not Adodc1.Recordset.EOF
    End If

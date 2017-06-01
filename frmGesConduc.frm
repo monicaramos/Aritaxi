@@ -4,14 +4,133 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmGesConduc 
    Caption         =   "Choferes"
-   ClientHeight    =   7485
+   ClientHeight    =   7635
    ClientLeft      =   225
-   ClientTop       =   870
-   ClientWidth     =   10065
+   ClientTop       =   570
+   ClientWidth     =   10515
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7485
-   ScaleWidth      =   10065
-   StartUpPosition =   3  'Windows Default
+   ScaleHeight     =   7635
+   ScaleWidth      =   10515
+   StartUpPosition =   1  'CenterOwner
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   7590
+      TabIndex        =   42
+      Top             =   210
+      Width           =   1605
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   3900
+      TabIndex        =   40
+      Top             =   30
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   41
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   240
+      TabIndex        =   38
+      Top             =   30
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   39
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin MSAdodcLib.Adodc Adodc2 
       Height          =   330
       Left            =   5400
@@ -61,17 +180,60 @@ Begin VB.Form frmGesConduc
    End
    Begin VB.Frame Frame3 
       Caption         =   "Vehículos"
-      Height          =   2295
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00972E0B&
+      Height          =   2715
       Left            =   240
-      TabIndex        =   34
+      TabIndex        =   32
       Top             =   4200
-      Width           =   9615
+      Width           =   10115
+      Begin VB.Frame FrameToolAux 
+         Height          =   555
+         Left            =   240
+         TabIndex        =   43
+         Top             =   240
+         Width           =   1605
+         Begin MSComctlLib.Toolbar ToolAux 
+            Height          =   330
+            Index           =   0
+            Left            =   210
+            TabIndex        =   44
+            Top             =   120
+            Width           =   1095
+            _ExtentX        =   1931
+            _ExtentY        =   582
+            ButtonWidth     =   609
+            ButtonHeight    =   582
+            Style           =   1
+            _Version        =   393216
+            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+               NumButtons      =   3
+               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Insertar"
+               EndProperty
+               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Modificar"
+               EndProperty
+               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Eliminar"
+               EndProperty
+            EndProperty
+         End
+      End
       Begin VB.CommandButton cmdAux 
          Caption         =   "+"
          Height          =   315
          Index           =   0
          Left            =   1110
-         TabIndex        =   30
+         TabIndex        =   28
          ToolTipText     =   "Buscar chofer"
          Top             =   1680
          Visible         =   0   'False
@@ -94,7 +256,7 @@ Begin VB.Form frmGesConduc
          Index           =   3
          Left            =   3720
          MaxLength       =   40
-         TabIndex        =   39
+         TabIndex        =   37
          Tag             =   "Observaciones|T|S|||scoche_historia|observac|||"
          Text            =   "Observaciones"
          Top             =   1650
@@ -118,7 +280,7 @@ Begin VB.Form frmGesConduc
          Index           =   2
          Left            =   2460
          MaxLength       =   10
-         TabIndex        =   38
+         TabIndex        =   36
          Tag             =   "Fecha Fin|F|S|||scoche_historia|fechafin|dd/mm/yyyy||"
          Text            =   "Fecha fin"
          Top             =   1680
@@ -142,7 +304,7 @@ Begin VB.Form frmGesConduc
          Index           =   1
          Left            =   1290
          MaxLength       =   10
-         TabIndex        =   37
+         TabIndex        =   35
          Tag             =   "Fecha Inicio|F|S|||scoche_historia|fechaini|dd/mm/yyyy||"
          Text            =   "Fecha INI"
          Top             =   1680
@@ -166,7 +328,7 @@ Begin VB.Form frmGesConduc
          Index           =   0
          Left            =   240
          MaxLength       =   5
-         TabIndex        =   36
+         TabIndex        =   34
          Tag             =   "Vehiculo|N|N|||scoche_historia|numeruve|0000||"
          Text            =   "Vehiculo"
          Top             =   1680
@@ -176,10 +338,10 @@ Begin VB.Form frmGesConduc
       Begin MSDataGridLib.DataGrid DataGrid1 
          Height          =   1725
          Left            =   240
-         TabIndex        =   35
-         Top             =   360
-         Width           =   9135
-         _ExtentX        =   16113
+         TabIndex        =   33
+         Top             =   870
+         Width           =   9535
+         _ExtentX        =   16828
          _ExtentY        =   3043
          _Version        =   393216
          HeadLines       =   1
@@ -297,9 +459,9 @@ Begin VB.Form frmGesConduc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7410
-      TabIndex        =   13
-      Top             =   6720
+      Left            =   7890
+      TabIndex        =   12
+      Top             =   7080
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -315,9 +477,9 @@ Begin VB.Form frmGesConduc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8730
-      TabIndex        =   14
-      Top             =   6720
+      Left            =   9210
+      TabIndex        =   13
+      Top             =   7080
       Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
@@ -332,18 +494,18 @@ Begin VB.Form frmGesConduc
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8730
-      TabIndex        =   22
-      Top             =   6720
+      Left            =   9210
+      TabIndex        =   20
+      Top             =   7080
       Visible         =   0   'False
       Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   3375
       Left            =   240
-      TabIndex        =   16
-      Top             =   720
-      Width           =   9615
+      TabIndex        =   14
+      Top             =   780
+      Width           =   10095
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -354,14 +516,14 @@ Begin VB.Form frmGesConduc
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   1035
+         Height          =   1095
          Index           =   11
          Left            =   6330
-         TabIndex        =   12
+         TabIndex        =   11
          Tag             =   "Observaciones|T|S|||schofe|observac|||"
          Text            =   "Text"
-         Top             =   2280
-         Width           =   3015
+         Top             =   2130
+         Width           =   3645
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -376,11 +538,11 @@ Begin VB.Form frmGesConduc
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   2250
-         TabIndex        =   33
+         Left            =   2190
+         TabIndex        =   31
          Text            =   "Text2"
          Top             =   2760
-         Width           =   2655
+         Width           =   3105
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -397,7 +559,7 @@ Begin VB.Form frmGesConduc
          Index           =   10
          Left            =   1290
          MaxLength       =   3
-         TabIndex        =   11
+         TabIndex        =   10
          Tag             =   "Codigo situacion|N|N|||schofe|codsitua|||"
          Text            =   "Text"
          Top             =   2760
@@ -417,11 +579,11 @@ Begin VB.Form frmGesConduc
          Index           =   9
          Left            =   6330
          MaxLength       =   40
-         TabIndex        =   8
+         TabIndex        =   7
          Tag             =   "Mail|T|S|||schofe|maichofe|||"
          Text            =   "Text"
          Top             =   1320
-         Width           =   3015
+         Width           =   3645
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -435,13 +597,13 @@ Begin VB.Form frmGesConduc
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   8250
+         Left            =   8190
          MaxLength       =   10
-         TabIndex        =   5
+         TabIndex        =   4
          Tag             =   "Movil|T|S|||schofe|movchofe|||"
          Text            =   "Text"
          Top             =   840
-         Width           =   1095
+         Width           =   1785
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -457,7 +619,7 @@ Begin VB.Form frmGesConduc
          Index           =   7
          Left            =   6330
          MaxLength       =   10
-         TabIndex        =   4
+         TabIndex        =   3
          Tag             =   "Telefono|T|S|||schofe|telchofe|||"
          Text            =   "Text"
          Top             =   840
@@ -477,7 +639,7 @@ Begin VB.Form frmGesConduc
          Index           =   6
          Left            =   1290
          MaxLength       =   9
-         TabIndex        =   10
+         TabIndex        =   9
          Tag             =   "CIF|T|S|||schofe|cifchofe|||"
          Text            =   "Text"
          Top             =   2280
@@ -497,7 +659,7 @@ Begin VB.Form frmGesConduc
          Index           =   5
          Left            =   1290
          MaxLength       =   35
-         TabIndex        =   9
+         TabIndex        =   8
          Tag             =   "Provincia|T|S|||schofe|prochofe|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1800
@@ -517,7 +679,7 @@ Begin VB.Form frmGesConduc
          Index           =   4
          Left            =   3360
          MaxLength       =   35
-         TabIndex        =   7
+         TabIndex        =   6
          Tag             =   "Población|T|S|||schofe|pobchofe|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1320
@@ -538,7 +700,7 @@ Begin VB.Form frmGesConduc
          Index           =   3
          Left            =   1290
          MaxLength       =   5
-         TabIndex        =   6
+         TabIndex        =   5
          Tag             =   "CP|T|S|||schofe|codpobla|||"
          Text            =   "Text"
          Top             =   1320
@@ -558,7 +720,7 @@ Begin VB.Form frmGesConduc
          Index           =   2
          Left            =   1290
          MaxLength       =   35
-         TabIndex        =   3
+         TabIndex        =   2
          Tag             =   "Domicilio|T|S|||schofe|domchofe|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   840
@@ -574,15 +736,15 @@ Begin VB.Form frmGesConduc
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
+         Height          =   360
          Index           =   1
          Left            =   4080
          MaxLength       =   35
-         TabIndex        =   2
+         TabIndex        =   1
          Tag             =   "Nombre chofer|T|N|||schofe|nomchofe|||"
          Text            =   "Text"
          Top             =   360
-         Width           =   5175
+         Width           =   5895
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -599,7 +761,7 @@ Begin VB.Form frmGesConduc
          Index           =   0
          Left            =   1290
          MaxLength       =   5
-         TabIndex        =   1
+         TabIndex        =   0
          Tag             =   "Codigo chofer|N|N|||schofe|codchofe||S|"
          Text            =   "Text"
          Top             =   360
@@ -608,7 +770,7 @@ Begin VB.Form frmGesConduc
       Begin VB.Image ImgMail 
          Height          =   240
          Index           =   1
-         Left            =   5880
+         Left            =   6060
          Tag             =   "-1"
          ToolTipText     =   "Enviar e-mail"
          Top             =   1320
@@ -646,7 +808,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   12
          Left            =   120
-         TabIndex        =   32
+         TabIndex        =   30
          Top             =   2760
          Width           =   915
       End
@@ -664,12 +826,12 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   11
          Left            =   5400
-         TabIndex        =   31
+         TabIndex        =   29
          Top             =   1320
-         Width           =   495
+         Width           =   645
       End
       Begin VB.Label Label1 
-         Caption         =   "Movil:"
+         Caption         =   "Movil"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -682,7 +844,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   10
          Left            =   7680
-         TabIndex        =   29
+         TabIndex        =   27
          Top             =   840
          Width           =   735
       End
@@ -700,7 +862,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   9
          Left            =   5400
-         TabIndex        =   28
+         TabIndex        =   26
          Top             =   840
          Width           =   885
       End
@@ -718,7 +880,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   8
          Left            =   120
-         TabIndex        =   27
+         TabIndex        =   25
          Top             =   2280
          Width           =   735
       End
@@ -736,9 +898,9 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   7
          Left            =   120
-         TabIndex        =   26
+         TabIndex        =   24
          Top             =   1800
-         Width           =   855
+         Width           =   1005
       End
       Begin VB.Label Label1 
          Caption         =   "Población:"
@@ -754,7 +916,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   6
          Left            =   2370
-         TabIndex        =   25
+         TabIndex        =   23
          Top             =   1320
          Width           =   945
       End
@@ -781,7 +943,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   5
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   22
          Top             =   1320
          Width           =   735
       End
@@ -799,9 +961,9 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   0
          Left            =   120
-         TabIndex        =   23
+         TabIndex        =   21
          Top             =   840
-         Width           =   855
+         Width           =   975
       End
       Begin VB.Label Label1 
          Caption         =   "Código:"
@@ -817,7 +979,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   1
          Left            =   120
-         TabIndex        =   20
+         TabIndex        =   18
          Top             =   360
          Width           =   735
       End
@@ -835,7 +997,7 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   3
          Left            =   5370
-         TabIndex        =   19
+         TabIndex        =   17
          Top             =   1830
          Width           =   1485
       End
@@ -853,100 +1015,17 @@ Begin VB.Form frmGesConduc
          Height          =   255
          Index           =   2
          Left            =   3240
-         TabIndex        =   18
-         Top             =   360
+         TabIndex        =   16
+         Top             =   390
          Width           =   735
       End
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   0
-      Top             =   0
-      Width           =   10065
-      _ExtentX        =   17754
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   16
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-            ImageIndex      =   1
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Lineas"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   8400
-         TabIndex        =   15
-         Top             =   120
-         Width           =   1215
-      End
-   End
    Begin VB.Frame Frame2 
-      Height          =   735
+      Height          =   585
       Left            =   240
-      TabIndex        =   17
-      Top             =   6600
-      Width           =   3975
+      TabIndex        =   15
+      Top             =   6960
+      Width           =   3165
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label"
@@ -961,14 +1040,16 @@ Begin VB.Form frmGesConduc
          EndProperty
          Height          =   255
          Index           =   0
-         Left            =   120
-         TabIndex        =   21
-         Top             =   240
-         Width           =   3615
+         Left            =   210
+         TabIndex        =   19
+         Top             =   210
+         Width           =   2745
       End
    End
    Begin VB.Menu mnopciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -1043,7 +1124,7 @@ Private VieneDeBuscar As Boolean
 Dim cadB1 As String
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim CadB As String
 Dim Cad As String
 
@@ -1079,7 +1160,7 @@ Dim Cad As String
                     CargaTxtAux False, False
                     CargaGrid DataGrid1, Adodc2
                     ModificaLineas = 0
-                    PonerBotonCabecera True
+'                    PonerBotonCabecera True
                 End If
                 Me.DataGrid1.Enabled = True
             End If
@@ -1333,6 +1414,8 @@ Dim Cad As String
 End Sub
 
 Private Sub Form_Load()
+Dim I As Integer
+
     'Icono del form
     Me.Icon = frmPpal.Icon
     
@@ -1340,21 +1423,66 @@ Private Sub Form_Load()
     'ICONITOS DE LA BARRA
     btnAnyadir = 5
     btnPrimero = 13
-    With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Todos
-        .Buttons(5).Image = 3   'Insertar Nuevo
-        .Buttons(6).Image = 4   'Modificar
-        .Buttons(7).Image = 5   'Borrar
-        .Buttons(9).Image = 10 'Lineas
-        .Buttons(10).Image = 16 'Imprmir
-        .Buttons(11).Image = 15 'Salir
-        .Buttons(btnPrimero).Image = 6  'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Último
+'    With Me.Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1   'Botón Buscar
+'        .Buttons(2).Image = 2   'Botón Todos
+'        .Buttons(5).Image = 3   'Insertar Nuevo
+'        .Buttons(6).Image = 4   'Modificar
+'        .Buttons(7).Image = 5   'Borrar
+'        .Buttons(9).Image = 10 'Lineas
+'        .Buttons(10).Image = 16 'Imprmir
+'        .Buttons(11).Image = 15 'Salir
+'        .Buttons(btnPrimero).Image = 6  'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Último
+'    End With
+
+
+    With Toolbar1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        'ASignamos botones
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2 'Ver Todos
+        .Buttons(1).Image = 3 'Añadir
+        .Buttons(2).Image = 4 'Modificar
+        .Buttons(3).Image = 5 'Eliminar
+'        .Buttons(10).Image = 39 'Actualizar
+        .Buttons(8).Image = 16 'Imprimir
+'        .Buttons(13).Image = 15 'Salir
+'        .Buttons(btnPrimero).Image = 6 'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
     End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+    'ICONITOS DE LAS BARRAS EN LOS TABS DE LINEA
+    For I = 0 To ToolAux.Count - 1
+        With Me.ToolAux(I)
+            '.ImageList = frmPpal.imgListComun_VELL
+            '  ### [Monica] 02/10/2006 acabo de comentarlo
+            .HotImageList = frmPpal.imgListComun_OM16
+            .DisabledImageList = frmPpal.imgListComun_BN16
+            .ImageList = frmPpal.imgListComun16
+            .Buttons(1).Image = 3   'Insertar
+            .Buttons(2).Image = 4   'Modificar
+            .Buttons(3).Image = 5   'Borrar
+        End With
+    Next I
     
     For kCampo = 0 To Me.imgBuscar.Count - 1
         Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
@@ -1389,21 +1517,21 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
-    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
+'    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     Modo = Kmodo
-    PonerIndicador lblIndicador(0), Modo
+    PonerIndicador lblIndicador(0), Modo, ModificaLineas
     
     
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1422,23 +1550,27 @@ On Error GoTo EPonerModo
     If Not Adodc1.Recordset.EOF Then
         If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1
+
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
     BloquearText1 Me, Modo
     
     '---------------------------------------------
-    b = Modo <> 0 And Modo <> 2 And Modo <> 5
+    b = Modo <> 0 And Modo <> 2
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
+    
+    Me.cmdAux(0).Enabled = (Modo = 5 And ModificaLineas = 1)
     
     '-----------------------------
     ' ***************************
@@ -1451,6 +1583,11 @@ On Error GoTo EPonerModo
                         'de permisos del usuario
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
+End Sub
+
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
 End Sub
 
 Private Sub PonerLongCampos()
@@ -1466,34 +1603,46 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
+Dim bAux As Boolean
 
-    b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
+    b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = b
+    Toolbar1.Buttons(1).Enabled = b
     
-    b = (Modo = 2 Or Modo = 5)
+    b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     
-'   boton de lineas
-    Toolbar1.Buttons(9).Enabled = (Modo = 2)
-    
+''   boton de lineas
+'    Toolbar1.Buttons(9).Enabled = (Modo = 2)
     '------------------------------------------
     b = (Modo >= 3)
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not b
+    Toolbar1.Buttons(5).Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not b
+    Toolbar1.Buttons(6).Enabled = Not b
+
+    b = (Modo = 2)
+    For I = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
+        ToolAux(I).Buttons(1).Enabled = b
+        If b Then bAux = (b And Me.Adodc2.Recordset.RecordCount > 0)
+        ToolAux(I).Buttons(2).Enabled = bAux
+        ToolAux(I).Buttons(3).Enabled = bAux
+    Next I
 End Sub
+
 Private Sub LimpiarCampos()
 On Error Resume Next
     limpiar Me   'Metodo general: Limpia los controles TextBox
     lblIndicador(0).Caption = ""
     'Aqui va el especifico de cada form es
     '### a mano
+    
+    LimpiarDataGrids
+    
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -1664,9 +1813,10 @@ Private Sub cmdCancelar_Click()
             Else
                 ModificaLineas = 0
             End If
-            PonerBotonCabecera True
+'            PonerBotonCabecera True
             Me.DataGrid1.Enabled = True
-            
+            PonerModo 2
+            PonerCampos
     End Select
 End Sub
 Private Sub Text1_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1684,38 +1834,51 @@ Dim cerrar As Boolean
     KEYpressGnral KeyAscii, Modo, cerrar
     If cerrar Then Unload Me
 End Sub
+
+Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
+'-- pon el bloqueo aqui
+    'If BLOQUEADesdeFormulario2(Me, Data1, 1) Then
+    
+    ModificaLineas = 0
+    
+    Select Case Button.Index
+        Case 1
+            BotonAnyadirLinea
+        Case 2
+            BotonModificarLinea
+        Case 3
+            BotonEliminarFila
+        Case Else
+    End Select
+    'End If
+End Sub
+
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1  'Buscar
-           mnBuscar_Click
-        Case 2  'Todos
-            BotonVerTodos
-            
-        Case 5  'Nuevo
+        Case 1  'Nuevo
             mnNuevo_Click
-        Case 6  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 7  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
-        Case 9
-            mnLineas_Click
-        Case 10  'imprimir
+        Case 5  'Buscar
+           mnBuscar_Click
+        Case 6  'Todos
+            BotonVerTodos
+        Case 8  'imprimir
             printNou
-        Case 11  'Salir
-            mnSalir_Click
-        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 Private Sub mnLineas_Click()
     BotonMtoLineas "Histórico"
 End Sub
+
 Private Sub BotonMtoLineas(Cad As String)
-        ModificaLineas = 0
-        PonerModo 5
-        PonerBotonCabecera True
-        
+    ModificaLineas = 0
+    PonerModo 5
+    PonerBotonCabecera True
 End Sub
+
 Private Sub mnNuevo_Click()
     If Modo = 5 Then 'Añadir lineas
          BotonAnyadirLinea
@@ -1723,6 +1886,7 @@ Private Sub mnNuevo_Click()
          BotonAnyadir
     End If
 End Sub
+
 Private Sub BotonAnyadirLinea()
     'Si no estaba modificando lineas salimos
     ' Es decir, si estaba insertando linea no podemos hacer otra cosa
@@ -1730,65 +1894,70 @@ Private Sub BotonAnyadirLinea()
        
     ModificaLineas = 1 'Ponemos Modo Añadir Linea
     'Añadiremos el boton de aceptar y demas objetos para insertar
-    PonerBotonCabecera False
-    lblIndicador(0).Caption = "INSERTAR"
+    
+    PonerModo 5
+'    PonerBotonCabecera False
+'    lblIndicador(0).Caption = "INSERTAR"
     
     AnyadirLinea DataGrid1, Adodc2
     CargaTxtAux True, True
    
     PonerFoco txtAux1(0)
     Me.DataGrid1.Enabled = False
+
 End Sub
+
+
 Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim i As Byte
+Dim I As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux1.Count - 1 'TextBox
-            txtAux1(i).Top = 290
-            txtAux1(i).visible = visible
-        Next i
+        For I = 0 To txtAux1.Count - 1 'TextBox
+            txtAux1(I).Top = 290
+            txtAux1(I).visible = visible
+        Next I
         cmdAux(0).Top = 290
         cmdAux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For i = 0 To txtAux1.Count - 1
-                txtAux1(i).Text = ""
-                BloquearTxt txtAux1(i), False
-            Next i
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = ""
+                BloquearTxt txtAux1(I), False
+            Next I
         Else 'Vamos a modificar
-            For i = 0 To txtAux1.Count - 1
-                txtAux1(i).Text = DataGrid1.Columns(i + 2).Text
-                If i = 0 Then
-                    txtAux1(i).Locked = True
-                    txtAux1(i).BackColor = &H80000005
-                    cmdAux(i).Enabled = False
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = DataGrid1.Columns(I + 2).Text
+                If I = 0 Then
+                    txtAux1(I).Locked = True
+                    txtAux1(I).BackColor = &H80000005
+                    cmdAux(I).Enabled = False
                 Else
-                    txtAux1(i).Locked = False
+                    txtAux1(I).Locked = False
                 End If
-            Next i
+            Next I
         End If
         
 
         'Fijamos altura(Height) y posición Top
         '-------------------------------
-        alto = ObtenerAlto(DataGrid1, 20)
+        alto = ObtenerAlto(DataGrid1, 10)
         
-        For i = 0 To txtAux1.Count - 1
-            txtAux1(i).Top = alto
-            txtAux1(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To txtAux1.Count - 1
+            txtAux1(I).Top = alto
+            txtAux1(I).Height = 330 ' DataGrid1.RowHeight
+        Next I
         
         
 '        'Fijamos anchura y posicion Left
 '        '--------------------------------
 '        'vehiculo
 '        txtAux1(0).Left = DataGrid1.Left + 330
-'        txtAux1(0).Width = DataGrid1.Columns(2).Width - 100
+'        txtAux1(0).Width  = DataGrid1.Columns(2).Width - 100
 '        'fecha ini
 '        txtAux1(1).Width = DataGrid1.Columns(3).Width - 100
 '        txtAux1(1).Left = txtAux1(0).Left + (txtAux1(0).Width + 100)
@@ -1818,9 +1987,9 @@ Dim i As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux1.Count - 1
-            txtAux1(i).visible = visible
-        Next i
+        For I = 0 To txtAux1.Count - 1
+            txtAux1(I).visible = visible
+        Next I
         Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
         Me.cmdAux(0).Top = alto
         Me.cmdAux(0).visible = visible
@@ -1859,9 +2028,13 @@ On Error GoTo EModificarLinea
     
     CargaTxtAux True, False
     ModificaLineas = 2 'Modificar
+    
+    PonerModo 5
+    
+    
     'Añadiremos el boton de aceptar y demas objetos para insertar
-    Me.lblIndicador(0).Caption = "MODIFICAR"
-    PonerBotonCabecera False
+'    Me.lblIndicador(0).Caption = "MODIFICAR"
+'    PonerBotonCabecera False
         
     PonerFoco txtAux1(1)
     Me.DataGrid1.Enabled = False
@@ -1980,6 +2153,8 @@ If MsgBox(msg, vbQuestion + vbYesNo) = vbYes Then
 
     conn.CommitTrans
     
+    PonerModo 2
+    
     CargaGrid DataGrid1, Adodc2
 End If
 
@@ -2027,7 +2202,7 @@ Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
     If Adodc1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Adodc1, Index
+    DesplazamientoData Adodc1, Index, True
     PonerCampos
 End Sub
 Private Sub PonerCadenaBusqueda()
@@ -2086,7 +2261,7 @@ On Error Resume Next
 End Sub
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Integer
+Dim I As Integer
 
 On Error GoTo ECargaGrid
 
@@ -2099,22 +2274,23 @@ On Error GoTo ECargaGrid
     vDataGrid.Columns(2).Width = 1000
     vDataGrid.Columns(2).NumberFormat = "0000"
     vDataGrid.Columns(3).Caption = "Fecha Inicio"
-    vDataGrid.Columns(3).Width = 1200
+    vDataGrid.Columns(3).Width = 1400
     vDataGrid.Columns(4).Caption = "Fecha Fin"
-    vDataGrid.Columns(4).Width = 1200
+    vDataGrid.Columns(4).Width = 1400
     vDataGrid.Columns(5).Caption = "Observaciones"
     vDataGrid.Columns(5).Width = 5150
     
     
     
     vDataGrid.Enabled = (Modo = 0) Or (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
-    For i = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(i).Locked = True
-        vDataGrid.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(I).Locked = True
+        vDataGrid.Columns(I).AllowSizing = False
+    Next I
     
     vDataGrid.ScrollBars = dbgAutomatic
     
+    PonerModoOpcionesMenu Modo
     
     Exit Sub
 ECargaGrid:
@@ -2185,6 +2361,10 @@ Dim Cad As String, Indicador As String
        LimpiarCampos
        PonerModo 0
     End If
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
 End Sub
 
 Private Sub txtAux1_GotFocus(Index As Integer)

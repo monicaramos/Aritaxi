@@ -1021,7 +1021,7 @@ Public Function ObtenerAlto(ByRef vDataGrid As DataGrid, Optional alto As Intege
 Dim anc As Single
     anc = vDataGrid.Top + alto
     If vDataGrid.Row < 0 Then
-        anc = anc + 240 '230
+        anc = anc + 250 '230
     Else
         anc = anc + vDataGrid.RowTop(vDataGrid.Row)
     End If

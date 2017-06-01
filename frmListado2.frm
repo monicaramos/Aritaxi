@@ -4511,7 +4511,7 @@ Dim IndiceCancel As Integer
     End Select
     Me.Height = H + 150
     Me.Width = W
-    Me.cmdCancel(IndiceCancel).Cancel = True
+    Me.cmdCancel(1).Cancel = True
 End Sub
 
 
