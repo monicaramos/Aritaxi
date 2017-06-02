@@ -495,15 +495,15 @@ On Error Resume Next
     If (Modo <> 0 And Modo <> 2) Then
         If Modo = 1 Then
             Text.BackColor = vbLightBlue 'vbYellow  'Modo 1: Busqueda
-        Else
-            If Text.Locked Then 'si el control esta bloqueado pasamos el foco al sig. campo
-                Text.BackColor = &H80000018 'amarillo claro
-                 If cadkey = 0 Then cadkey = 40
-                 KEYdown cadkey
-                 Exit Sub
-            Else
-                Text.BackColor = vbWhite
-            End If
+'        Else
+'            If Text.Locked Then 'si el control esta bloqueado pasamos el foco al sig. campo
+'                Text.BackColor = &H80000018 'amarillo claro
+'                 If cadkey = 0 Then cadkey = 40
+'                 KEYdown cadkey
+'                 Exit Sub
+'            Else
+'                Text.BackColor = vbWhite
+'            End If
         End If
         Text.SelStart = 0
         Text.SelLength = Len(Text.Text)

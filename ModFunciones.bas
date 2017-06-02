@@ -2970,3 +2970,33 @@ Public Sub AyudaDiarios(frmBas As frmBasico2, Optional CodActual As String, Opti
     frmBas.Show vbModal
 End Sub
 
+
+Public Sub AyudaClientes(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 1405 + 3000 + 2595  hay que quitarle al width 0
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1005|;S|txtAux(1)|T|Nombre|3400|;S|txtAux(2)|T|Nombre Comercial|2595|;"
+    frmBas.CadenaConsulta = "SELECT scliente.codclien, scliente.nomclien, scliente.nomcomer "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM scliente "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código|N|N|||scliente|codclien|000000|S|"
+    frmBas.Tag2 = "Nombre|T|N|||scliente|nomclien|||"
+    frmBas.Tag3 = "Nombre Comercial|T|N|||scliente|nomcomer||N|"
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 30
+    frmBas.Maxlen3 = 100
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "scliente"
+    frmBas.CampoCP = "codclien"
+    frmBas.Caption = "Clientes"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    frmBas.Show vbModal
+End Sub
+
+
+
