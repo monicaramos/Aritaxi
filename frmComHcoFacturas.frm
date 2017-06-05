@@ -37,7 +37,7 @@ Begin VB.Form frmComHcoFacturas
    End
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   3780
+      Left            =   3180
       TabIndex        =   116
       Top             =   90
       Width           =   2415
@@ -80,14 +80,14 @@ Begin VB.Form frmComHcoFacturas
       Left            =   120
       TabIndex        =   114
       Top             =   90
-      Width           =   3585
+      Width           =   3015
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
          TabIndex        =   115
          Top             =   180
-         Width           =   3135
-         _ExtentX        =   5530
+         Width           =   2595
+         _ExtentX        =   4577
          _ExtentY        =   582
          ButtonWidth     =   609
          ButtonHeight    =   582
@@ -97,6 +97,8 @@ Begin VB.Form frmComHcoFacturas
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
             NumButtons      =   10
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
                Object.ToolTipText     =   "Nuevo"
                Object.Tag             =   "2"
             EndProperty
@@ -510,8 +512,8 @@ Begin VB.Form frmComHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameFactura"
-      Tab(0).Control(1)=   "FrameCliente"
+      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(1)=   "FrameFactura"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmComHcoFacturas.frx":0028
@@ -2969,6 +2971,7 @@ Private Sub cmdCancelar_Click()
             LLamaLineas Modo, 0, "DataGrid1"
 '            PonerBotonCabecera True
             PonerModo 2
+            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
             Me.DataGrid1.Enabled = True
     End Select
 End Sub
@@ -3107,7 +3110,7 @@ On Error GoTo EModificarLinea
     
     'Añadiremos el boton de aceptar y demas objetos para insertar
     Me.lblIndicador.Caption = "MODIFICAR LINEAS"
-    PonerBotonCabecera False
+'    PonerBotonCabecera False
     BloquearTxt Text2(16), False 'Campo Ampliacion Linea
     BloquearTxt Text2(17), False 'Campo Ampliacion Linea
 '    PonerFoco txtAux(4)

@@ -546,39 +546,39 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameObserva"
+      Tab(1).Control(0)=   "FrameToolAux"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "DataGrid1"
+      Tab(1).Control(1)=   "cmdObserva"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "txtAux(8)"
+      Tab(1).Control(2)=   "txtAux(11)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "txtAux(7)"
+      Tab(1).Control(3)=   "cmdaux"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "txtAux(6)"
+      Tab(1).Control(4)=   "txtAux(10)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux(4)"
+      Tab(1).Control(5)=   "txtAux(9)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux(0)"
+      Tab(1).Control(6)=   "txtAux(5)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "txtAux(1)"
+      Tab(1).Control(7)=   "txtAux(3)"
       Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "txtAux(2)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(3)"
+      Tab(1).Control(9)=   "txtAux(1)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "txtAux(5)"
+      Tab(1).Control(10)=   "txtAux(0)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "txtAux(9)"
+      Tab(1).Control(11)=   "txtAux(4)"
       Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "txtAux(10)"
+      Tab(1).Control(12)=   "txtAux(6)"
       Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "cmdaux"
+      Tab(1).Control(13)=   "txtAux(7)"
       Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "txtAux(11)"
+      Tab(1).Control(14)=   "txtAux(8)"
       Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "cmdObserva"
+      Tab(1).Control(15)=   "DataGrid1"
       Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "FrameToolAux"
+      Tab(1).Control(16)=   "FrameObserva"
       Tab(1).Control(16).Enabled=   0   'False
       Tab(1).ControlCount=   17
       Begin VB.Frame FrameToolAux 
@@ -3068,6 +3068,7 @@ Private Sub cmdCancelar_Click()
             LLamaLineas Modo, 0, "DataGrid1"
 '            PonerBotonCabecera True
             PonerModo 2
+            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
             Me.DataGrid1.Enabled = True
     End Select
 End Sub

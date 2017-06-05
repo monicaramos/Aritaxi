@@ -8,14 +8,14 @@ Begin VB.Form frmRepCargarNSerie
    ClientHeight    =   6015
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   8520
+   ClientWidth     =   10020
    ClipControls    =   0   'False
    Icon            =   "frmRepCargarNSerie.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   6015
-   ScaleWidth      =   8520
+   ScaleWidth      =   10020
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Visible         =   0   'False
@@ -84,9 +84,9 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   6240
+      Left            =   6750
       TabIndex        =   4
-      Top             =   480
+      Top             =   420
       Width           =   1815
    End
    Begin VB.TextBox txtAux 
@@ -149,7 +149,7 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6000
+      Left            =   7500
       TabIndex        =   2
       Top             =   5520
       Visible         =   0   'False
@@ -168,7 +168,7 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7275
+      Left            =   8775
       TabIndex        =   3
       Top             =   5520
       Visible         =   0   'False
@@ -186,7 +186,7 @@ Begin VB.Form frmRepCargarNSerie
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7275
+      Left            =   8760
       TabIndex        =   5
       Top             =   5520
       Visible         =   0   'False
@@ -198,8 +198,8 @@ Begin VB.Form frmRepCargarNSerie
       Left            =   120
       TabIndex        =   6
       Top             =   840
-      Width           =   8295
-      _ExtentX        =   14631
+      Width           =   9795
+      _ExtentX        =   17277
       _ExtentY        =   7911
       _Version        =   393216
       AllowUpdate     =   -1  'True
@@ -513,25 +513,25 @@ On Error GoTo ECarga
     DataGrid1.Columns(0).visible = False
     
     DataGrid1.Columns(1).Caption = "Articulo"
-    DataGrid1.Columns(1).Width = 1500
+    DataGrid1.Columns(1).Width = 1600
 
     DataGrid1.Columns(2).Caption = "Desc. Articulo"
-    DataGrid1.Columns(2).Width = 3200
+    DataGrid1.Columns(2).Width = 3000
        
     'Nº Serie
     DataGrid1.Columns(3).Caption = "Nº Serie"
     DataGrid1.Columns(3).Width = 1500
         
-        'Nº Serie
+    'Nº Serie
     DataGrid1.Columns(4).Caption = "Mantenimiento"
-    DataGrid1.Columns(4).Width = 1290
+    DataGrid1.Columns(4).Width = 1590
     DataGrid1.Columns(4).visible = DeVentas
     
     DataGrid1.Columns(5).visible = False
     
     'EsRecompra
     DataGrid1.Columns(6).Caption = "Es Recompra"
-    DataGrid1.Columns(6).Width = 1500
+    DataGrid1.Columns(6).Width = 2800
     
     
     For i = 0 To DataGrid1.Columns.Count - 1
