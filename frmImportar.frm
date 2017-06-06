@@ -6,34 +6,61 @@ Begin VB.Form frmImportar
    ClientHeight    =   1470
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   5520
+   ClientWidth     =   8085
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    ScaleHeight     =   1470
-   ScaleWidth      =   5520
+   ScaleWidth      =   8085
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   2160
+      Left            =   5520
       TabIndex        =   3
-      Top             =   840
-      Width           =   1575
+      Top             =   930
+      Width           =   1135
    End
    Begin VB.CommandButton cmdSalir 
       Caption         =   "Salir"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   3840
+      Left            =   6810
       TabIndex        =   2
-      Top             =   840
-      Width           =   1455
+      Top             =   930
+      Width           =   1135
    End
    Begin VB.TextBox Text1 
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Left            =   120
       TabIndex        =   1
       Top             =   360
-      Width           =   5175
+      Width           =   7815
    End
    Begin MSComDlg.CommonDialog CommonDialog1 
       Left            =   120
@@ -45,13 +72,22 @@ Begin VB.Form frmImportar
    Begin VB.Image imgFich 
       Height          =   240
       Index           =   0
-      Left            =   1560
+      Left            =   2190
       Picture         =   "frmImportar.frx":0000
       Top             =   120
       Width           =   240
    End
    Begin VB.Label Label1 
       Caption         =   "Fichero a importar:"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   120
       TabIndex        =   0
@@ -73,7 +109,7 @@ Private Sub cmdAceptar_Click()
     Dim Campos(20) As String
     Dim Mc As String
     Dim campo As String
-    Dim i As Integer
+    Dim I As Integer
     Dim i2 As Integer
     '-- CAMPOS
     Dim CodClien As Long
@@ -100,8 +136,8 @@ Private Sub cmdAceptar_Click()
     Do While Not EOF(NF)
         i2 = 0
         Line Input #NF, linea
-        For i = 1 To Len(linea)
-            Mc = Mid(linea, i, 1)
+        For I = 1 To Len(linea)
+            Mc = Mid(linea, I, 1)
             If Mc = ";" Then
                 i2 = i2 + 1
                 Campos(i2) = campo
@@ -109,22 +145,22 @@ Private Sub cmdAceptar_Click()
             Else
                 campo = campo & Mc
             End If
-        Next i
+        Next I
         i2 = i2 + 1
         Campos(i2) = campo
         campo = ""
         '-- Asignar los campos?
-        i = InStr(1, Campos(1), ".")
-        CodClien = Val(Mid(Campos(1), 1, i - 1))
-        codusuar = Val(Mid(Campos(1), i + 1, Len(Campos(1)) - i))
+        I = InStr(1, Campos(1), ".")
+        CodClien = Val(Mid(Campos(1), 1, I - 1))
+        codusuar = Val(Mid(Campos(1), I + 1, Len(Campos(1)) - I))
         FECHAEMI = Date
         FECHACAD = CDate("01/" & Mid(Campos(2), 1, 3) & Mid(Campos(2), 4, 2))
         NOMUSUAR = Campos(4)
         TEXTOA1 = Campos(3)
         TEXTOA2 = Campos(4)
         PISTAGR2 = Campos(6)
-        i = InStr(1, Campos(6), "=")
-        NUMTARJE = Val(Mid(Campos(6), 1, i - 1))
+        I = InStr(1, Campos(6), "=")
+        NUMTARJE = Val(Mid(Campos(6), 1, I - 1))
         NOMFICHE = App.Path & "\Informes\" & vConfig.Formato
         
         Sql = "select * from scliente where codclien = " & CodClien

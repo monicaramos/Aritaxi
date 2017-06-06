@@ -7,26 +7,177 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmTarjetas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Tarjetas Clientes"
-   ClientHeight    =   5700
+   ClientHeight    =   6375
    ClientLeft      =   45
-   ClientTop       =   4335
-   ClientWidth     =   12810
+   ClientTop       =   4035
+   ClientWidth     =   13410
    Icon            =   "frmTarjetas.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5700
-   ScaleWidth      =   12810
+   ScaleHeight     =   6375
+   ScaleWidth      =   13410
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   11130
+      TabIndex        =   40
+      Top             =   300
+      Width           =   1605
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   5070
+      TabIndex        =   38
+      Top             =   60
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   39
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3750
+      TabIndex        =   36
+      Top             =   60
+      Width           =   1215
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   150
+         TabIndex        =   37
+         Top             =   180
+         Width           =   945
+         _ExtentX        =   1667
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   2
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar Tarjeta"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Importar Fichero"
+               Object.Tag             =   "2"
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   120
+      TabIndex        =   34
+      Top             =   60
+      Width           =   3525
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   35
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin TabDlg.SSTab SSTab1 
-      Height          =   3645
+      Height          =   3975
       Left            =   90
-      TabIndex        =   15
-      Top             =   1410
-      Width           =   12615
-      _ExtentX        =   22251
-      _ExtentY        =   6429
+      TabIndex        =   13
+      Top             =   1860
+      Width           =   13245
+      _ExtentX        =   23363
+      _ExtentY        =   7011
       _Version        =   393216
       Tabs            =   1
       TabsPerRow      =   6
@@ -85,7 +236,46 @@ Begin VB.Form frmTarjetas
       Tab(0).Control(19).Enabled=   0   'False
       Tab(0).Control(20)=   "txtAux(6)"
       Tab(0).Control(20).Enabled=   0   'False
-      Tab(0).ControlCount=   21
+      Tab(0).Control(21)=   "FrameToolAux"
+      Tab(0).Control(21).Enabled=   0   'False
+      Tab(0).ControlCount=   22
+      Begin VB.Frame FrameToolAux 
+         Height          =   555
+         Left            =   150
+         TabIndex        =   41
+         Top             =   360
+         Width           =   1500
+         Begin MSComctlLib.Toolbar ToolAux 
+            Height          =   330
+            Index           =   0
+            Left            =   120
+            TabIndex        =   42
+            Top             =   150
+            Width           =   1290
+            _ExtentX        =   2275
+            _ExtentY        =   582
+            ButtonWidth     =   609
+            ButtonHeight    =   582
+            AllowCustomize  =   0   'False
+            Style           =   1
+            _Version        =   393216
+            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+               NumButtons      =   3
+               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Nuevo"
+                  Object.Tag             =   "2"
+               EndProperty
+               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Modificar"
+                  Object.Tag             =   "2"
+               EndProperty
+               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Eliminar"
+                  Object.Tag             =   "2"
+               EndProperty
+            EndProperty
+         End
+      End
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
@@ -101,9 +291,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   8940
+         Left            =   9390
          MaxLength       =   40
-         TabIndex        =   22
+         TabIndex        =   20
          Tag             =   "Pista 1|T|S|||slitar|pistagr1|||"
          Text            =   "pistagr1"
          Top             =   900
@@ -124,10 +314,10 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   8940
+         Left            =   9390
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   23
+         TabIndex        =   21
          Tag             =   "Pista 2|T|S|||slitar|pistagr2|||"
          Text            =   "pistagr2"
          Top             =   1620
@@ -139,7 +329,7 @@ Begin VB.Form frmTarjetas
          Height          =   315
          Index           =   1
          Left            =   4020
-         TabIndex        =   27
+         TabIndex        =   25
          ToolTipText     =   "Buscar artículo"
          Top             =   2790
          Visible         =   0   'False
@@ -151,7 +341,7 @@ Begin VB.Form frmTarjetas
          Height          =   315
          Index           =   0
          Left            =   2370
-         TabIndex        =   26
+         TabIndex        =   24
          ToolTipText     =   "Buscar almacen"
          Top             =   2790
          Visible         =   0   'False
@@ -175,7 +365,7 @@ Begin VB.Form frmTarjetas
          Left            =   2610
          Locked          =   -1  'True
          MaxLength       =   10
-         TabIndex        =   18
+         TabIndex        =   16
          Tag             =   "Fecha Caducidad|F|S|||slitar|fechacad|dd/mm/yyyy||"
          Text            =   "Fecha Caducidad"
          Top             =   2790
@@ -197,9 +387,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   5010
+         Left            =   5460
          MaxLength       =   200
-         TabIndex        =   25
+         TabIndex        =   23
          Tag             =   "Fichero|T|S|||slitar|nomfiche|||"
          Text            =   "nomfiche"
          Top             =   3060
@@ -220,13 +410,13 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   8970
+         Left            =   9420
          MaxLength       =   40
-         TabIndex        =   24
+         TabIndex        =   22
          Tag             =   "Pista 3|T|S|||slitar|pistagr3|||"
          Text            =   "pistagr3"
          Top             =   2340
-         Width           =   3555
+         Width           =   3525
       End
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
@@ -243,9 +433,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   5010
+         Left            =   5460
          MaxLength       =   40
-         TabIndex        =   21
+         TabIndex        =   19
          Tag             =   "Texto 3|T|S|||slitar|textoa3|||"
          Text            =   "textoa3"
          Top             =   2340
@@ -266,9 +456,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   5010
+         Left            =   5460
          MaxLength       =   40
-         TabIndex        =   20
+         TabIndex        =   18
          Tag             =   "Texto 2|T|S|||slitar|textoa2|||"
          Text            =   "textoa2"
          Top             =   1620
@@ -289,9 +479,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   5010
+         Left            =   5460
          MaxLength       =   30
-         TabIndex        =   19
+         TabIndex        =   17
          Tag             =   "Texto 1|T|S|||slitar|textoa1|||"
          Text            =   "textoa1"
          Top             =   900
@@ -314,7 +504,7 @@ Begin VB.Form frmTarjetas
          Index           =   1
          Left            =   1170
          MaxLength       =   10
-         TabIndex        =   17
+         TabIndex        =   15
          Tag             =   "Fecha Emision|F|S|||slitar|fechaemi|dd/mm/yyyy||"
          Text            =   "Fecha Emision"
          Top             =   2790
@@ -338,7 +528,7 @@ Begin VB.Form frmTarjetas
          Index           =   0
          Left            =   480
          MaxLength       =   16
-         TabIndex        =   16
+         TabIndex        =   14
          Tag             =   "Tarjeta|T|S|||slitar|numtarje|||"
          Text            =   "Tarjeta"
          Top             =   2790
@@ -347,32 +537,32 @@ Begin VB.Form frmTarjetas
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmTarjetas.frx":0028
-         Height          =   2040
+         Height          =   2700
          Left            =   150
-         TabIndex        =   28
-         Top             =   660
-         Width           =   4710
-         _ExtentX        =   8308
-         _ExtentY        =   3598
+         TabIndex        =   26
+         Top             =   1020
+         Width           =   5110
+         _ExtentX        =   9022
+         _ExtentY        =   4763
          _Version        =   393216
          AllowUpdate     =   -1  'True
          AllowArrows     =   -1  'True
          ColumnHeaders   =   -1  'True
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          FormatLocked    =   -1  'True
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -417,8 +607,7 @@ Begin VB.Form frmTarjetas
       Begin VB.Image imgFich 
          Height          =   240
          Index           =   0
-         Left            =   7590
-         Picture         =   "frmTarjetas.frx":003D
+         Left            =   8040
          Top             =   2790
          Width           =   240
       End
@@ -435,8 +624,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   13
-         Left            =   5010
-         TabIndex        =   35
+         Left            =   5460
+         TabIndex        =   33
          Top             =   2820
          Width           =   2505
       End
@@ -453,8 +642,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   12
-         Left            =   8970
-         TabIndex        =   34
+         Left            =   9420
+         TabIndex        =   32
          Top             =   2100
          Width           =   3495
       End
@@ -471,8 +660,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   11
-         Left            =   8970
-         TabIndex        =   33
+         Left            =   9420
+         TabIndex        =   31
          Top             =   1380
          Width           =   3495
       End
@@ -489,8 +678,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   10
-         Left            =   8970
-         TabIndex        =   32
+         Left            =   9420
+         TabIndex        =   30
          Top             =   660
          Width           =   3495
       End
@@ -507,8 +696,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   9
-         Left            =   5010
-         TabIndex        =   31
+         Left            =   5460
+         TabIndex        =   29
          Top             =   2100
          Width           =   3495
       End
@@ -525,8 +714,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   8
-         Left            =   5010
-         TabIndex        =   30
+         Left            =   5460
+         TabIndex        =   28
          Top             =   1380
          Width           =   3495
       End
@@ -543,8 +732,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   7
-         Left            =   5010
-         TabIndex        =   29
+         Left            =   5460
+         TabIndex        =   27
          Top             =   660
          Width           =   3495
       End
@@ -553,8 +742,8 @@ Begin VB.Form frmTarjetas
       Height          =   475
       Index           =   0
       Left            =   120
-      TabIndex        =   6
-      Top             =   5085
+      TabIndex        =   5
+      Top             =   5805
       Width           =   2325
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -570,7 +759,7 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   7
+         TabIndex        =   6
          Top             =   180
          Width           =   1845
       End
@@ -588,9 +777,9 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11580
-      TabIndex        =   10
-      Top             =   5220
+      Left            =   12180
+      TabIndex        =   8
+      Top             =   5940
       Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
@@ -605,9 +794,9 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10380
-      TabIndex        =   9
-      Top             =   5220
+      Left            =   10980
+      TabIndex        =   7
+      Top             =   5940
       Width           =   1135
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -656,112 +845,6 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       _Version        =   393216
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   8
-      Top             =   0
-      Width           =   12810
-      _ExtentX        =   22595
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   22
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-            Object.Width           =   1e-4
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Tarjetas Cliente"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar Tarjeta"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Importar Fichero"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Marcar facturar"
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir Tarjeta"
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button22 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   6960
-         TabIndex        =   0
-         Top             =   120
-         Width           =   1215
-      End
    End
    Begin MSAdodcLib.Adodc Data2 
       Height          =   330
@@ -822,18 +905,18 @@ Begin VB.Form frmTarjetas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11580
-      TabIndex        =   5
-      Top             =   5220
+      Left            =   12180
+      TabIndex        =   4
+      Top             =   5940
       Visible         =   0   'False
       Width           =   1135
    End
    Begin VB.Frame Frame2 
       Height          =   975
       Left            =   120
-      TabIndex        =   11
-      Top             =   390
-      Width           =   12585
+      TabIndex        =   9
+      Top             =   840
+      Width           =   13185
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -849,11 +932,11 @@ Begin VB.Form frmTarjetas
          Index           =   0
          Left            =   210
          MaxLength       =   30
-         TabIndex        =   1
+         TabIndex        =   0
          Tag             =   "Cod. Cliente|N|N|0|999999|scatar|codclien|000000|S|"
          Text            =   "Text1"
          Top             =   420
-         Width           =   760
+         Width           =   915
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -869,9 +952,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   1035
+         Left            =   1155
          MaxLength       =   40
-         TabIndex        =   4
+         TabIndex        =   3
          Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww aq"
          Top             =   435
          Width           =   4080
@@ -890,7 +973,7 @@ Begin VB.Form frmTarjetas
          Index           =   2
          Left            =   6330
          MaxLength       =   40
-         TabIndex        =   3
+         TabIndex        =   2
          Tag             =   "Nombre Usuario|T|N|||scatar|nomusuar||N|"
          Top             =   450
          Width           =   5625
@@ -909,9 +992,9 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   5250
+         Left            =   5370
          MaxLength       =   7
-         TabIndex        =   2
+         TabIndex        =   1
          Tag             =   "Usuario|N|N|||scatar|codusuar|000000|S|"
          Text            =   "Text1 7"
          Top             =   450
@@ -939,7 +1022,7 @@ Begin VB.Form frmTarjetas
          Height          =   255
          Index           =   0
          Left            =   210
-         TabIndex        =   14
+         TabIndex        =   12
          Top             =   180
          Width           =   765
       End
@@ -956,8 +1039,8 @@ Begin VB.Form frmTarjetas
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   5310
-         TabIndex        =   13
+         Left            =   5430
+         TabIndex        =   11
          Top             =   210
          Width           =   735
       End
@@ -975,7 +1058,7 @@ Begin VB.Form frmTarjetas
          Height          =   255
          Index           =   50
          Left            =   6330
-         TabIndex        =   12
+         TabIndex        =   10
          Top             =   210
          Width           =   855
       End
@@ -989,6 +1072,8 @@ Begin VB.Form frmTarjetas
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -1228,7 +1313,11 @@ Dim numlinea As String
                     CargaGrid2 DataGrid1, Data2
                     PosicionarData2
                     ModificaLineas = 0
-                    PonerBotonCabecera True
+'                    PonerBotonCabecera True
+
+                    PonerModo 2
+                    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+
                 End If
                 Me.DataGrid1.Enabled = True
             End If
@@ -1291,7 +1380,7 @@ Private Sub cmdCancelar_Click()
                 If Not Data2.Recordset.EOF Then Data2.Recordset.MoveFirst
             End If
             ModificaLineas = 0
-            PonerBotonCabecera True
+'            PonerBotonCabecera True
             Me.DataGrid1.Enabled = True
     
             If Not Data2.Recordset.EOF Then
@@ -1299,6 +1388,9 @@ Private Sub cmdCancelar_Click()
             Else
                 LimpiarCampos
             End If
+    
+            PonerModo 2
+            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
     
     
     End Select
@@ -1421,7 +1513,7 @@ Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
     If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
 
@@ -1548,6 +1640,9 @@ Dim Sql As String
         End If
 '        CancelaADODC
     End If
+    
+    PonerModo 2
+    
     PonerFocoBtn Me.cmdRegresar
 
 EEliminarLinea:
@@ -1607,7 +1702,7 @@ End Sub
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 Dim RS As ADODB.Recordset
 Dim Sql As String
-Dim i As Integer
+Dim I As Integer
 
     On Error GoTo Error1
 
@@ -1615,9 +1710,9 @@ Dim i As Integer
         CargaForaGrid
         Exit Sub
     Else
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Text = ""
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Text = ""
+        Next I
     End If
     Exit Sub
     
@@ -1652,39 +1747,83 @@ Private Sub Form_Load()
     For kCampo = 0 To Me.imgBuscar.Count - 1
         Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next kCampo
-
+    Me.imgFich(0).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     ' ICONITOS DE LA BARRA
-    btnAnyadir = 5
-    btnPrimero = 19
-    With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Todos
-        .Buttons(5).Image = 3   'Insertar Nuevo
-        .Buttons(6).Image = 4   'Modificar
-        .Buttons(7).Image = 5   'Borrar
-        .Buttons(10).Image = 10 'Mto Lineas Ofertas
-        .Buttons(11).Image = 33 'Nº Serie si lineas con articulos de control Nº serie
-        .Buttons(12).Image = 18 'Importar Fichero
-        .Buttons(13).Image = 30 'Marcar a facturar
-        
-        .Buttons(14).Image = 27 'Imprimir portes
-        .Buttons(15).Image = 16 'Imprimir Pedido
+'    btnAnyadir = 5
+'    btnPrimero = 19
+'    With Me.Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1   'Botón Buscar
+'        .Buttons(2).Image = 2   'Botón Todos
+'        .Buttons(5).Image = 3   'Insertar Nuevo
+'        .Buttons(6).Image = 4   'Modificar
+'        .Buttons(7).Image = 5   'Borrar
+'        .Buttons(10).Image = 10 'Mto Lineas Ofertas
+'        .Buttons(11).Image = 33 'Nº Serie si lineas con articulos de control Nº serie
+'        .Buttons(12).Image = 18 'Importar Fichero
+'        .Buttons(13).Image = 30 'Marcar a facturar
 '
-        .Buttons(16).Image = 15  'Salir
-        .Buttons(btnPrimero).Image = 6  'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Último
-        
-        If vParamAplic.ArtPortes = "" Then
-            .Buttons(14).Style = tbrSeparator
-            .Buttons(14).ToolTipText = ""
-        Else
-            .Buttons(14).Style = tbrDefault
-            .Buttons(14).ToolTipText = "Imprimir portes"
-        End If
+'        .Buttons(14).Image = 27 'Imprimir portes
+'        .Buttons(15).Image = 16 'Imprimir Pedido
+''
+'        .Buttons(16).Image = 15  'Salir
+'        .Buttons(btnPrimero).Image = 6  'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Último
+'
+'        If vParamAplic.ArtPortes = "" Then
+'            .Buttons(14).Style = tbrSeparator
+'            .Buttons(14).ToolTipText = ""
+'        Else
+'            .Buttons(14).Style = tbrDefault
+'            .Buttons(14).ToolTipText = "Imprimir portes"
+'        End If
+'    End With
+
+    With Toolbar1
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        'ASignamos botones
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2 'Ver Todos
+        .Buttons(1).Image = 3 'Añadir
+        .Buttons(2).Image = 4 'Modificar
+        .Buttons(3).Image = 5 'Eliminar
+        .Buttons(8).Image = 16 'Imprimir
     End With
+    
+    With Me.Toolbar5
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 33 'Imprimir albaran
+        .Buttons(2).Image = 18 'Importar Fichero
+    End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+
+    With Me.ToolAux(0)
+        .HotImageList = frmPpal.imgListComun_OM16
+        .DisabledImageList = frmPpal.imgListComun_BN16
+        .ImageList = frmPpal.imgListComun16
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+    End With
+
+
+
     Me.SSTab1.Tab = 0
       
     LimpiarCampos   'Limpia los campos TextBox
@@ -2211,7 +2350,7 @@ End Sub
 Private Sub HacerBusquedaTarjeta()
 Dim CadB As String
 Dim CADENA As String
-Dim i As Integer
+Dim I As Integer
     'Poner el valor del combo Tipos de Movimiento Asociado
 '    If Me.cboTipomov.ListIndex <> -1 Then
 '        Text1(30).Text = ObtenerCodTipom
@@ -2284,7 +2423,7 @@ End Sub
 
 
 Private Sub PonerCadenaBusqueda()
-Dim i As Integer
+Dim I As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo EEPonerBusq
@@ -2325,15 +2464,15 @@ End Sub
 
 Private Sub PonerCamposLineas()
 'Carga las Pestañas con las tablas de lineas del Trabajador seleccionado para mostrar
-Dim i As Integer
+Dim I As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo EPonerLineas
 
     'Limpiar campos
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).Text = ""
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Text = ""
+    Next I
 
 
     'Datos de la tabla slipre
@@ -2373,18 +2512,18 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
 
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
-    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
+'    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     
@@ -2406,8 +2545,9 @@ Dim b As Boolean
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-        
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
+
         
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -2419,19 +2559,19 @@ Dim b As Boolean
     b = (Modo = 3) Or (Modo = 4) Or (Modo = 1)
     
     'Si no es modo lineas Boquear los TxtAux
-    For i = 0 To txtAux.Count - 1
-        BloquearTxt txtAux(i), (Modo <> 5) And Not BusquedaTarjetas
-    Next i
+    For I = 0 To txtAux.Count - 1
+        BloquearTxt txtAux(I), (Modo <> 5) And Not BusquedaTarjetas
+    Next I
     
-    For i = 0 To 2
-        txtAux(i).visible = (Modo = 5 And (ModificaLineas = 1 Or ModificaLineas = 2)) Or (Modo = 1 And BusquedaTarjetas) 'Not ((Modo <> 5) And Not BusquedaTarjetas)
-    Next i
+    For I = 0 To 2
+        txtAux(I).visible = (Modo = 5 And (ModificaLineas = 1 Or ModificaLineas = 2)) Or (Modo = 1 And BusquedaTarjetas) 'Not ((Modo <> 5) And Not BusquedaTarjetas)
+    Next I
     
     Text1(0).Enabled = (Modo = 3) Or (Modo = 1 And Not BusquedaTarjetas)
     Text1(1).Enabled = (Modo = 3) Or (Modo = 1 And Not BusquedaTarjetas)
     Text1(2).Enabled = (Modo = 3) Or (Modo = 4) Or (Modo = 1 And Not BusquedaTarjetas)
     
-    SSTab1.Enabled = (Modo = 5) Or BusquedaTarjetas
+'--    SSTab1.Enabled = (Modo = 5) Or BusquedaTarjetas
     
     
     '---------------------------------------------
@@ -2440,9 +2580,9 @@ Dim b As Boolean
     cmdAceptar.visible = b Or (Modo = 5 And BusquedaTarjetas)
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
 '    Me.imgBuscar(0).visible = False
 '    Me.imgBuscar(0).Enabled = (Modo = 1)
               
@@ -2460,6 +2600,12 @@ Dim b As Boolean
 
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
+End Sub
+
+
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
 End Sub
 
 
@@ -2502,7 +2648,7 @@ End Function
 
 Private Function DatosOkLinea() As Boolean
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim Aux As String
 
     On Error GoTo EDatosOkLinea
@@ -2519,27 +2665,54 @@ End Function
 
 
 
+Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
+    If Me.DataGrid1.visible Then
+        If Me.Data2.Recordset.RecordCount < 1 Then
+            MsgBox "La factura no tiene lineas.", vbInformation
+            Exit Sub
+        End If
+    End If
+    If vUsu.Nivel >= 1 Then
+        MsgBox "No tiene permiso", vbExclamation
+        Exit Sub
+    End If
+    
+    ModificaLineas = 0
+    PonerModo 5
+
+
+    Select Case Button.Index
+        Case 1
+            BotonAnyadirLinea
+        Case 2
+            BotonModificarLinea
+        Case 3
+            BotonEliminarLinea
+    End Select
+
+End Sub
+
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
-        Case 1: mnBuscar_Click  'Buscar
-        Case 2: BotonVerTodos  'Todos
+        Case 5: mnBuscar_Click  'Buscar
+        Case 6: BotonVerTodos  'Todos
             
-        Case 5: mnNuevo_Click 'Nuevo
-        Case 6: mnModificar_Click  'Modificar
-        Case 7: mnEliminar_Click  'Borrar
+        Case 1: mnNuevo_Click 'Nuevo
+        Case 2: mnModificar_Click  'Modificar
+        Case 3: mnEliminar_Click  'Borrar
             
-        Case 10: mnLineas_Click  'Lineas
+'        Case 10: mnLineas_Click  'Lineas
         
         Case 11: mnBuscarTarjeta_Click ' Buscar tarjeta
         Case 12: mnImportarFichero_Click ' Importar Fichero
         
-        Case 15: mnImprimir_Click ' impresion de tarjetas
+        Case 8: mnImprimir_Click ' impresion de tarjetas
             
-        Case 16: mnSalir_Click   'Salir
-            
-        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
+'        Case 16: mnSalir_Click   'Salir
+'
+'        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
+'            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -2716,21 +2889,23 @@ ECargaGrid:
 End Sub
 
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Byte
+Dim I As Byte
 Dim tots As String
 
     On Error GoTo ECargaGrid
 
     vData.Refresh
     
-    tots = "N||||0|;N||||0|;N||||0|;S|txtAux(0)|T|Tarjeta|1470|;S|txtAux(1)|T|F.Emisión|1300|;S|cmdAux(0)|B||0|;S|txtAux(2)|T|F.Caducidad|1300|;S|cmdAux(1)|B||0|;"
+    tots = "N||||0|;N||||0|;N||||0|;S|txtAux(0)|T|Tarjeta|1670|;S|txtAux(1)|T|F.Emisión|1400|;S|cmdAux(0)|B||0|;S|txtAux(2)|T|F.Caducidad|1400|;S|cmdAux(1)|B||0|;"
     tots = tots & "N||||0|;N||||0|;N||||0|;"
     tots = tots & "N||||0|;N||||0|;N||||0|;N||||0|;"
-    arregla tots, DataGrid1, Me
+    
+    arregla tots, DataGrid1, Me, 350
     
     
     vDataGrid.HoldFields
     
+    PonerModoOpcionesMenu Modo
     
     Exit Sub
     
@@ -2744,38 +2919,38 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim i As Byte
+Dim I As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To 2 'TextBox
-            txtAux(i).Top = 290
-            txtAux(i).visible = visible
-        Next i
+        For I = 0 To 2 'TextBox
+            txtAux(I).Top = 290
+            txtAux(I).visible = visible
+        Next I
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
         imgFich(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For i = 0 To txtAux.Count - 1
-                txtAux(i).Text = ""
-                BloquearTxt txtAux(i), False
-            Next i
+            For I = 0 To txtAux.Count - 1
+                txtAux(I).Text = ""
+                BloquearTxt txtAux(I), False
+            Next I
             
         Else 'Vamos a modificar
-            For i = 0 To 2
-                If i < 3 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 3).Text
-                ElseIf i = 3 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 4).Text
-                ElseIf i >= 4 And i < 9 Then
-                    txtAux(i).Text = DataGrid1.Columns(i + 5).Text
-                ElseIf i = 9 Then
-                    txtAux(i).Text = DataGrid1.Columns(14).Text
-                ElseIf i = 10 Then
+            For I = 0 To 2
+                If I < 3 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 3).Text
+                ElseIf I = 3 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 4).Text
+                ElseIf I >= 4 And I < 9 Then
+                    txtAux(I).Text = DataGrid1.Columns(I + 5).Text
+                ElseIf I = 9 Then
+                    txtAux(I).Text = DataGrid1.Columns(14).Text
+                ElseIf I = 10 Then
                     'txtAux(i).Text = DataGrid1.Columns(8).Text
-                ElseIf i > 10 Then
+                ElseIf I > 10 Then
                     ' ---- [19/10/2009] [LAURA] : centro de coste si hay conta analitica
 '                    If vEmpresa.TieneAnalitica Then
 '                        'txtAux(i).Text = DataGrid1.Columns(i + 4).Text
@@ -2786,8 +2961,8 @@ Dim i As Byte
 '                    End If
                     
                 End If
-                txtAux(i).Locked = False
-            Next i
+                txtAux(I).Locked = False
+            Next I
         End If
         
         cmdAux(0).Enabled = True
@@ -2799,10 +2974,10 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 10)
         
-        For i = 0 To 2
-            txtAux(i).Top = alto
-            txtAux(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To 2
+            txtAux(I).Top = alto
+            txtAux(I).Height = DataGrid1.RowHeight
+        Next I
         cmdAux(0).Top = alto
         cmdAux(1).Top = alto
 '        cmdAux(9).Top = alto
@@ -2827,15 +3002,26 @@ Dim i As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To 2
-             txtAux(i).visible = visible
-        Next i
+        For I = 0 To 2
+             txtAux(I).visible = visible
+        Next I
         cmdAux(0).visible = visible
         cmdAux(1).visible = visible
     End If
 End Sub
 
 
+
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1: mnBuscarTarjeta_Click ' Buscar tarjeta
+        Case 2: mnImportarFichero_Click ' Importar Fichero
+    End Select
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
 Dim cadkey As Integer
@@ -3045,23 +3231,26 @@ End Function
 Private Sub PonerModoOpcionesMenu(Modo As Byte)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
+Dim I As Integer
+Dim bAux As Boolean
 
-        b = ((Modo = 2) Or (Modo = 5 And ModificaLineas = 0))
-        'Insertar
-        Toolbar1.Buttons(5).Enabled = (b Or Modo = 0) And Not EsHistorico
-        Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
-        'Modificar
-        Toolbar1.Buttons(6).Enabled = b And Not EsHistorico
-        Me.mnModificar.Enabled = b And Not EsHistorico
-        'eliminar
-        Toolbar1.Buttons(7).Enabled = b And Not EsHistorico
-        Me.mnEliminar.Enabled = b And Not EsHistorico
-            
-        b = (Modo = 2) And Not EsHistorico
-        'Mantenimiento lineas
-        Toolbar1.Buttons(10).Enabled = b
-        Me.mnLineas.Enabled = b
+
+    b = (Modo = 2)
+    'Insertar
+    Toolbar1.Buttons(1).Enabled = (b Or Modo = 0) And Not EsHistorico
+    Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
+    'Modificar
+    Toolbar1.Buttons(2).Enabled = b And Not EsHistorico
+    Me.mnModificar.Enabled = b And Not EsHistorico
+    'eliminar
+    Toolbar1.Buttons(3).Enabled = b And Not EsHistorico
+    Me.mnEliminar.Enabled = b And Not EsHistorico
         
+    b = (Modo = 2) And Not EsHistorico
+'        'Mantenimiento lineas
+'        Toolbar1.Buttons(10).Enabled = b
+'        Me.mnLineas.Enabled = b
+    
 '        'Nº Series
 '        Toolbar1.Buttons(11).Enabled = b And Not EsHistorico
 '
@@ -3071,29 +3260,38 @@ Dim b As Boolean
 '        'Toolbar1.Buttons(12).Enabled = b And (CodTipoMov = "ALM" Or CodTipoMov = "ART")
 '        'Ahora.  Cualquier tipo se puede generar la factura
 '        Toolbar1.Buttons(12).Enabled = b
-        
-        'Imprimir
-        Toolbar1.Buttons(15).Enabled = ((Modo = 2) And CodTipoMov <> "ALM")
-        Me.mnImprimir.Enabled = ((Modo = 2) And CodTipoMov <> "ALM")
+    
+    'Imprimir
+    Toolbar1.Buttons(8).Enabled = ((Modo = 2) And CodTipoMov <> "ALM")
+    Me.mnImprimir.Enabled = ((Modo = 2) And CodTipoMov <> "ALM")
 '        Toolbar1.Buttons(14).Enabled = Toolbar1.Buttons(15).Enabled And vParamAplic.ArtPortes <> ""
-        
-        b = (Modo >= 3) Or Modo = 1
-        'Buscar
-        Toolbar1.Buttons(1).Enabled = Not b
-        Me.mnBuscar.Enabled = Not b
-        'Ver Todos
-        Toolbar1.Buttons(2).Enabled = Not b
-        Me.mnvertodos.Enabled = Not b
+    
+    b = (Modo >= 3) Or Modo = 1
+    'Buscar
+    Toolbar1.Buttons(5).Enabled = Not b
+    Me.mnBuscar.Enabled = Not b
+    'Ver Todos
+    Toolbar1.Buttons(6).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 
-        'Busqueda de tarjetas
-        Toolbar1.Buttons(11).Enabled = Not b
-        Me.mnBuscarTarjeta.Enabled = Not b
+    'Busqueda de tarjetas
+    Toolbar5.Buttons(1).Enabled = Not b
+    Me.mnBuscarTarjeta.Enabled = Not b
 
-        'Importacion de tarjetas
-        Toolbar1.Buttons(12).Enabled = Not b
-        Me.mnImportarFichero.Enabled = Not b
+    'Importacion de tarjetas
+    Toolbar5.Buttons(2).Enabled = Not b
+    Me.mnImportarFichero.Enabled = Not b
 
 
+    b = (Modo = 2)
+    For I = 0 To ToolAux.Count - 1
+        ToolAux(I).Buttons(1).Enabled = b
+        If Not Data2.Recordset Is Nothing Then
+            If b Then bAux = (b And Me.Data2.Recordset.RecordCount > 0)
+        End If
+        ToolAux(I).Buttons(2).Enabled = bAux
+        ToolAux(I).Buttons(3).Enabled = bAux
+    Next I
 
 End Sub
 
@@ -3166,11 +3364,11 @@ End Function
 
 
 Private Sub LimpiarDatosTarjeta()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).Text = ""
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).Text = ""
+    Next I
 End Sub
     
 
@@ -3423,7 +3621,7 @@ Private Sub InsertarLineasFactu(cadWHERE)
 'cadSerie = cadSerie & " SELECT '" & Text1(30).Text & "' as codtipom," & Text1(0).Text & " as numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre FROM slifac WHERE " & CadenaSeleccion
  Dim RS As ADODB.Recordset
  Dim Sql As String
- Dim i As Integer
+ Dim I As Integer
  Dim cadI As String
  Dim numlin As String
  

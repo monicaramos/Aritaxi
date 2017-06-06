@@ -539,7 +539,7 @@ Begin VB.Form frmFCliHcoFac
       _ExtentY        =   10001
       _Version        =   393216
       Style           =   1
-      Tab             =   2
+      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -566,7 +566,7 @@ Begin VB.Form frmFCliHcoFac
       Tab(0).ControlCount=   9
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmFCliHcoFac.frx":0028
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "imgBuscar(7)"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(9)"
@@ -668,7 +668,7 @@ Begin VB.Form frmFCliHcoFac
       Tab(1).ControlCount=   49
       TabCaption(2)   =   "Servicios"
       TabPicture(2)   =   "frmFCliHcoFac.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Label1(48)"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "Label1(50)"
@@ -714,7 +714,7 @@ Begin VB.Form frmFCliHcoFac
       Tab(2).ControlCount=   21
       Begin VB.Frame FrameToolAux1 
          Height          =   555
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   187
          Top             =   510
          Width           =   1500
@@ -751,7 +751,7 @@ Begin VB.Form frmFCliHcoFac
       End
       Begin VB.Frame FrameToolAux 
          Height          =   555
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   178
          Top             =   2790
          Width           =   1500
@@ -799,7 +799,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   6330
+         Left            =   -68670
          Locked          =   -1  'True
          MaxLength       =   200
          MultiLine       =   -1  'True
@@ -822,7 +822,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   270
+         Left            =   -74730
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   167
@@ -844,7 +844,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2085
-         Left            =   -71070
+         Left            =   3930
          TabIndex        =   103
          Tag             =   "Observación 4|T|S|||scafac1|observa4||N|"
          Top             =   720
@@ -953,7 +953,7 @@ Begin VB.Form frmFCliHcoFac
       Begin VB.CommandButton cmdaux 
          Caption         =   "+"
          Height          =   320
-         Left            =   -65520
+         Left            =   9480
          TabIndex        =   121
          Top             =   4320
          Visible         =   0   'False
@@ -974,7 +974,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   13
-         Left            =   11700
+         Left            =   -63300
          MaxLength       =   15
          TabIndex        =   158
          Tag             =   "Nombre socio |T|N|||scafaccli_serv|codsocio|||"
@@ -998,7 +998,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   5
-         Left            =   4590
+         Left            =   -70410
          MaxLength       =   15
          TabIndex        =   157
          Tag             =   "Socio |N|N|||scafaccli_serv|codsocio|000000||"
@@ -1022,7 +1022,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   6
-         Left            =   5550
+         Left            =   -69450
          MaxLength       =   15
          TabIndex        =   156
          Tag             =   "Uve|N|N|||scafaccli_serv|numeruve|000000|S|"
@@ -1046,7 +1046,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   7
-         Left            =   6480
+         Left            =   -68520
          MaxLength       =   30
          TabIndex        =   155
          Tag             =   "Direccion|T|S|||scafaccli_serv|dirllama|||"
@@ -1070,7 +1070,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   8
-         Left            =   7440
+         Left            =   -67560
          MaxLength       =   10
          TabIndex        =   154
          Tag             =   "Numllama|T|S|||scafaccli_serv|numllama|||"
@@ -1094,7 +1094,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   9
-         Left            =   8340
+         Left            =   -66660
          MaxLength       =   10
          TabIndex        =   153
          Tag             =   "Puerllama|T|S|||scafaccli_serv|puerllama|||"
@@ -1118,7 +1118,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   10
-         Left            =   9270
+         Left            =   -65730
          MaxLength       =   15
          TabIndex        =   152
          Tag             =   "Identificacion|T|S|||scafaccli_serv|idservic|||"
@@ -1142,7 +1142,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   11
-         Left            =   9990
+         Left            =   -65010
          MaxLength       =   15
          TabIndex        =   151
          Tag             =   "Linea |T|S|||scafaccli_serv|telefono|||"
@@ -1167,7 +1167,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   2
-         Left            =   1710
+         Left            =   -73290
          MaxLength       =   30
          TabIndex        =   150
          Tag             =   "Fecha Factura|F|N|||scafaccli_serv|fecfactu|dd/mm/yyyy|S|"
@@ -1192,7 +1192,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   1
-         Left            =   780
+         Left            =   -74220
          MaxLength       =   15
          TabIndex        =   149
          Tag             =   "NºFactura |N|N|||scafaccli_serv|numfactu|0000000|S|"
@@ -1217,7 +1217,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   0
-         Left            =   60
+         Left            =   -74940
          MaxLength       =   7
          TabIndex        =   148
          Tag             =   "Tipo Movimiento|T|N|||scafaccli_serv|codtipom||S|"
@@ -1241,7 +1241,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   3
-         Left            =   2400
+         Left            =   -72600
          MaxLength       =   15
          TabIndex        =   147
          Tag             =   "Fecha|F|N|||scafaccli_serv|fecha|dd/mm/yyyy|N|"
@@ -1265,7 +1265,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   4
-         Left            =   3630
+         Left            =   -71370
          MaxLength       =   15
          TabIndex        =   146
          Tag             =   "Linea |H|N|||scafaccli_serv|hora|hh:mm:ss||"
@@ -1290,7 +1290,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   330
          Index           =   12
-         Left            =   10740
+         Left            =   -64260
          MaxLength       =   15
          TabIndex        =   145
          Tag             =   "Importe |N|N|||scafaccli_serv|impventa|###,##0.00|N|"
@@ -1315,7 +1315,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72960
+         Left            =   2040
          MaxLength       =   30
          TabIndex        =   126
          Tag             =   "Fecha Albaran|F|N|||scafaccli1|fechaalb|dd/mm/yyyy|N|"
@@ -1340,7 +1340,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73920
+         Left            =   1080
          MaxLength       =   15
          TabIndex        =   125
          Tag             =   "Nº Albaran|N|N|||scafaccli1|numalbar|0000000|N|"
@@ -1365,7 +1365,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   7
          TabIndex        =   124
          Tag             =   "Tipo Albaran|T|N|||scafaccli1|codtipoa||N|"
@@ -1376,7 +1376,7 @@ Begin VB.Form frmFCliHcoFac
       End
       Begin VB.CommandButton cmdObserva 
          Height          =   375
-         Left            =   -71040
+         Left            =   3960
          Style           =   1  'Graphical
          TabIndex        =   109
          Top             =   870
@@ -1395,7 +1395,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   -68070
+         Left            =   6930
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   91
@@ -1416,7 +1416,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   -68790
+         Left            =   6210
          MaxLength       =   30
          TabIndex        =   50
          Tag             =   "Trabajador Albaran|N|N|0|9999|scafaccli1|codtraba|0000|N|"
@@ -3054,7 +3054,7 @@ Begin VB.Form frmFCliHcoFac
       Begin MSDataGridLib.DataGrid DataGrid2 
          Bindings        =   "frmFCliHcoFac.frx":0060
          Height          =   1950
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   88
          Top             =   840
          Width           =   3600
@@ -3124,7 +3124,7 @@ Begin VB.Form frmFCliHcoFac
       Begin MSDataGridLib.DataGrid DataGrid3 
          Bindings        =   "frmFCliHcoFac.frx":0075
          Height          =   3690
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   144
          Top             =   1155
          Width           =   13410
@@ -3193,7 +3193,7 @@ Begin VB.Form frmFCliHcoFac
       End
       Begin MSAdodcLib.Adodc Data4 
          Height          =   330
-         Left            =   60
+         Left            =   -74940
          Top             =   240
          Visible         =   0   'False
          Width           =   1335
@@ -3254,7 +3254,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   11
-         Left            =   -70920
+         Left            =   4080
          MaxLength       =   9
          TabIndex        =   142
          Tag             =   "Nº Bultos|N|N|0||slifaccli|numbultos|#,###,##0|N|"
@@ -3278,7 +3278,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   -65280
+         Left            =   9720
          MaxLength       =   15
          TabIndex        =   137
          Tag             =   "Nº Lote|T|S|||slifaccli|numlote||N|"
@@ -3303,7 +3303,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   -66120
+         Left            =   8880
          MaxLength       =   30
          TabIndex        =   120
          Tag             =   "Cod. Proveedor|N|N|||slifaccli|codprovex|0||"
@@ -3328,7 +3328,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   -69360
+         Left            =   5640
          MaxLength       =   5
          TabIndex        =   115
          Text            =   "origp"
@@ -3352,7 +3352,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   -71760
+         Left            =   3240
          MaxLength       =   12
          TabIndex        =   113
          Tag             =   "Cantidad|N|N|0||slifaccli|cantidad|#,###,###,##0.00|N|"
@@ -3377,7 +3377,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73680
+         Left            =   1320
          MaxLength       =   12
          TabIndex        =   111
          Tag             =   "Art.|T|N|||slifaccli|codartic||N|"
@@ -3402,7 +3402,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   12
          TabIndex        =   110
          Tag             =   "Almacen|N|N|0|999|slifaccli|codalmac|000|N|"
@@ -3427,7 +3427,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   -70200
+         Left            =   4800
          MaxLength       =   12
          TabIndex        =   114
          Tag             =   "Precio|N|N|0|999999.0000|slifaccli|precioar|###,##0.0000|N|"
@@ -3452,7 +3452,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   -68640
+         Left            =   6360
          MaxLength       =   5
          TabIndex        =   116
          Tag             =   "Dto 1|N|N|0|99.90|slifaccli|dtoline1|#0.00|N|"
@@ -3477,7 +3477,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   -67920
+         Left            =   7080
          MaxLength       =   30
          TabIndex        =   117
          Tag             =   "Dto 2|N|N|0|99.90|slifaccli|dtolinea|#0.00|N|"
@@ -3502,7 +3502,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   -67320
+         Left            =   7680
          MaxLength       =   12
          TabIndex        =   119
          Tag             =   "Importe|N|N|0||slifaccli|importel|#,###,###,##0.00|N|"
@@ -3526,7 +3526,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72840
+         Left            =   2160
          MaxLength       =   12
          TabIndex        =   112
          Tag             =   "Nombre Art.|T|N|||slifaccli|nomartic||N|"
@@ -3538,7 +3538,7 @@ Begin VB.Form frmFCliHcoFac
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFCliHcoFac.frx":008A
          Height          =   2025
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   75
          Top             =   3390
          Width           =   13695
@@ -3608,7 +3608,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   6
-         Left            =   -70350
+         Left            =   4650
          MaxLength       =   7
          TabIndex        =   93
          Tag             =   "Nº Pedido|N|S|||scafac1|numpedcl|0000000|N|"
@@ -3620,7 +3620,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   1
-         Left            =   -70440
+         Left            =   4560
          MaxLength       =   30
          TabIndex        =   51
          Tag             =   "Trabajador pedido|N|S|0|9999|scafac1|codtrab1|0000|N|"
@@ -3632,7 +3632,7 @@ Begin VB.Form frmFCliHcoFac
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   3
-         Left            =   -68550
+         Left            =   6450
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   102
@@ -3644,7 +3644,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   3
-         Left            =   -69270
+         Left            =   5730
          MaxLength       =   30
          TabIndex        =   53
          Tag             =   "Cod. Envío|N|N|0|999|scafac1|codenvio|000|N|"
@@ -3656,7 +3656,7 @@ Begin VB.Form frmFCliHcoFac
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   1
-         Left            =   -68550
+         Left            =   6450
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   90
@@ -3668,7 +3668,7 @@ Begin VB.Form frmFCliHcoFac
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   2
-         Left            =   -68550
+         Left            =   6450
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   89
@@ -3680,7 +3680,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   2
-         Left            =   -69270
+         Left            =   5730
          MaxLength       =   30
          TabIndex        =   52
          Tag             =   "Preparador materia|N|N|0|9999|scafac1|codtrab2|0000|N|"
@@ -3692,7 +3692,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   8
-         Left            =   -62970
+         Left            =   12030
          MaxLength       =   10
          TabIndex        =   92
          Tag             =   "Semana Entrega|N|S|||scafac1|sementre||N|"
@@ -3703,7 +3703,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   7
-         Left            =   -64290
+         Left            =   10710
          MaxLength       =   10
          TabIndex        =   94
          Tag             =   "Fecha Pedido|F|S|||scafac1|fecpedcl|dd/mm/yyyy|N|"
@@ -3714,7 +3714,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   5
-         Left            =   -63540
+         Left            =   11460
          MaxLength       =   10
          TabIndex        =   95
          Tag             =   "Fecha Oferta|F|S|||scafac1|fecofert|dd/mm/yyyy|N|"
@@ -3725,7 +3725,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   4
-         Left            =   -64740
+         Left            =   10260
          MaxLength       =   7
          TabIndex        =   96
          Tag             =   "Nº Oferta|N|S|||scafac1|numofert|0000000|N|"
@@ -3737,7 +3737,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   14
-         Left            =   -63690
+         Left            =   11310
          MaxLength       =   7
          TabIndex        =   132
          Tag             =   "Nº Venta|N|S|||scafac1|numventa|0000000|N|"
@@ -3749,7 +3749,7 @@ Begin VB.Form frmFCliHcoFac
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   15
-         Left            =   -64890
+         Left            =   10110
          MaxLength       =   7
          TabIndex        =   133
          Tag             =   "Nº Terminal|N|S|||scafac1|numtermi||N|"
@@ -3806,7 +3806,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   255
          Index           =   50
-         Left            =   6360
+         Left            =   -68640
          TabIndex        =   173
          Top             =   4890
          Visible         =   0   'False
@@ -3825,7 +3825,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   255
          Index           =   48
-         Left            =   300
+         Left            =   -74700
          TabIndex        =   168
          Top             =   4890
          Visible         =   0   'False
@@ -3834,7 +3834,7 @@ Begin VB.Form frmFCliHcoFac
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   6
-         Left            =   -69120
+         Left            =   5880
          ToolTipText     =   "Buscar trabajador"
          Top             =   390
          Width           =   240
@@ -3842,7 +3842,7 @@ Begin VB.Form frmFCliHcoFac
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   9
-         Left            =   -69240
+         Left            =   5760
          ToolTipText     =   "Buscar forma de envio"
          Top             =   3840
          Width           =   240
@@ -3850,7 +3850,7 @@ Begin VB.Form frmFCliHcoFac
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   8
-         Left            =   -69240
+         Left            =   5760
          ToolTipText     =   "Buscar trabajador"
          Top             =   3510
          Width           =   240
@@ -3859,7 +3859,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Nº Oferta"
          Height          =   255
          Index           =   40
-         Left            =   -64080
+         Left            =   10920
          TabIndex        =   101
          Top             =   3720
          Width           =   975
@@ -3868,7 +3868,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Fecha Oferta"
          Height          =   255
          Index           =   22
-         Left            =   -62640
+         Left            =   12360
          TabIndex        =   100
          Top             =   3720
          Width           =   1095
@@ -3877,7 +3877,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Fecha Pedido"
          Height          =   255
          Index           =   18
-         Left            =   -63480
+         Left            =   11520
          TabIndex        =   99
          Top             =   4425
          Width           =   1095
@@ -3886,7 +3886,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Nº Pedido"
          Height          =   255
          Index           =   6
-         Left            =   -64320
+         Left            =   10680
          TabIndex        =   98
          Top             =   4425
          Width           =   735
@@ -3895,7 +3895,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Sem. Entrega"
          Height          =   255
          Index           =   2
-         Left            =   -62280
+         Left            =   12720
          TabIndex        =   97
          Top             =   4410
          Width           =   975
@@ -3913,7 +3913,7 @@ Begin VB.Form frmFCliHcoFac
          EndProperty
          Height          =   255
          Index           =   21
-         Left            =   -70590
+         Left            =   4410
          TabIndex        =   74
          Top             =   405
          Width           =   1455
@@ -3922,7 +3922,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Codigo  Envío"
          Height          =   195
          Index           =   24
-         Left            =   -70680
+         Left            =   4320
          TabIndex        =   73
          Top             =   3840
          Width           =   1140
@@ -3931,7 +3931,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Prepar. Material"
          Height          =   255
          Index           =   23
-         Left            =   -70680
+         Left            =   4320
          TabIndex        =   72
          Top             =   3450
          Width           =   1185
@@ -3940,7 +3940,7 @@ Begin VB.Form frmFCliHcoFac
          Caption         =   "Trabajador Pedido"
          Height          =   255
          Index           =   9
-         Left            =   -70680
+         Left            =   4320
          TabIndex        =   71
          Top             =   4320
          Width           =   1425
@@ -3948,7 +3948,7 @@ Begin VB.Form frmFCliHcoFac
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   7
-         Left            =   -69240
+         Left            =   5760
          ToolTipText     =   "Buscar trabajador"
          Top             =   4560
          Width           =   240

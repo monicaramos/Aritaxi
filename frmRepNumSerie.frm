@@ -6,31 +6,179 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmRepNumSerie2 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Numeros de Serie"
-   ClientHeight    =   6930
+   ClientHeight    =   7320
    ClientLeft      =   45
-   ClientTop       =   630
-   ClientWidth     =   12435
+   ClientTop       =   330
+   ClientWidth     =   12300
    ClipControls    =   0   'False
    Icon            =   "frmRepNumSerie.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6930
-   ScaleWidth      =   12435
+   ScaleHeight     =   7320
+   ScaleWidth      =   12300
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   90
+      TabIndex        =   100
+      Top             =   90
+      Width           =   3855
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   101
+         Top             =   180
+         Width           =   3465
+         _ExtentX        =   6112
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   8
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   6300
+      TabIndex        =   98
+      Top             =   90
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   99
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   9630
+      TabIndex        =   97
+      Top             =   180
+      Width           =   1605
+   End
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3990
+      TabIndex        =   95
+      Top             =   90
+      Width           =   2235
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   150
+         TabIndex        =   96
+         Top             =   180
+         Width           =   1905
+         _ExtentX        =   3360
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar Series"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Sustituir"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Recupera NºSerie"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Componentes"
+               Object.Tag             =   "2"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin TabDlg.SSTab SSTab1 
       Height          =   4185
-      Left            =   240
-      TabIndex        =   28
-      Top             =   1920
+      Left            =   90
+      TabIndex        =   26
+      Top             =   2340
       Width           =   12060
       _ExtentX        =   21273
       _ExtentY        =   7382
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -44,22 +192,33 @@ Begin VB.Form frmRepNumSerie2
       EndProperty
       TabCaption(0)   =   "Datos compra/venta"
       TabPicture(0)   =   "frmRepNumSerie.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label12"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(2)"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "imgBuscar(3)"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "Text1(3)"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "chkTieneMan"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "FrameNuevos"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "FrameBaja"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "FrameSusti"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "Text2(7)"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "Text1(7)"
+      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "FrameActuales"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).ControlCount=   11
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(15)"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(7)"
@@ -98,8 +257,8 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   1695
-         Left            =   9210
-         TabIndex        =   88
+         Left            =   -65790
+         TabIndex        =   86
          Top             =   2400
          Width           =   2645
          Begin VB.TextBox txtAux2 
@@ -117,7 +276,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   11
             Left            =   1230
             MaxLength       =   10
-            TabIndex        =   92
+            TabIndex        =   90
             Top             =   930
             Width           =   1245
          End
@@ -136,7 +295,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   10
             Left            =   1230
             MaxLength       =   10
-            TabIndex        =   91
+            TabIndex        =   89
             Top             =   570
             Width           =   1245
          End
@@ -155,7 +314,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   9
             Left            =   1230
             MaxLength       =   10
-            TabIndex        =   90
+            TabIndex        =   88
             Top             =   1290
             Width           =   1245
          End
@@ -172,7 +331,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   360
             Index           =   8
             Left            =   1215
-            TabIndex        =   89
+            TabIndex        =   87
             Top             =   210
             Width           =   1245
          End
@@ -190,7 +349,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   22
             Left            =   90
-            TabIndex        =   96
+            TabIndex        =   94
             Top             =   930
             Width           =   1365
          End
@@ -208,7 +367,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   21
             Left            =   90
-            TabIndex        =   95
+            TabIndex        =   93
             Top             =   570
             Width           =   1095
          End
@@ -226,7 +385,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   20
             Left            =   90
-            TabIndex        =   94
+            TabIndex        =   92
             Top             =   1320
             Width           =   1155
          End
@@ -244,7 +403,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   19
             Left            =   90
-            TabIndex        =   93
+            TabIndex        =   91
             Top             =   240
             Width           =   1065
          End
@@ -262,8 +421,8 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   2055
-         Left            =   9210
-         TabIndex        =   77
+         Left            =   -65790
+         TabIndex        =   75
          Top             =   330
          Width           =   2645
          Begin VB.TextBox txtAux2 
@@ -279,7 +438,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   360
             Index           =   3
             Left            =   1215
-            TabIndex        =   82
+            TabIndex        =   80
             Top             =   210
             Width           =   1245
          End
@@ -298,7 +457,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   4
             Left            =   1215
             MaxLength       =   10
-            TabIndex        =   81
+            TabIndex        =   79
             Top             =   570
             Width           =   1245
          End
@@ -317,7 +476,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   5
             Left            =   1215
             MaxLength       =   10
-            TabIndex        =   80
+            TabIndex        =   78
             Top             =   930
             Width           =   1245
          End
@@ -336,7 +495,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   6
             Left            =   1215
             MaxLength       =   10
-            TabIndex        =   79
+            TabIndex        =   77
             Top             =   1290
             Width           =   1245
          End
@@ -355,7 +514,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   7
             Left            =   1215
             MaxLength       =   5
-            TabIndex        =   78
+            TabIndex        =   76
             Top             =   1650
             Width           =   1245
          End
@@ -373,7 +532,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   10
             Left            =   90
-            TabIndex        =   87
+            TabIndex        =   85
             Top             =   270
             Width           =   1215
          End
@@ -391,7 +550,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   11
             Left            =   90
-            TabIndex        =   86
+            TabIndex        =   84
             Top             =   630
             Width           =   1095
          End
@@ -409,7 +568,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   12
             Left            =   90
-            TabIndex        =   85
+            TabIndex        =   83
             Top             =   990
             Width           =   1095
          End
@@ -427,7 +586,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   13
             Left            =   90
-            TabIndex        =   84
+            TabIndex        =   82
             Top             =   1350
             Width           =   975
          End
@@ -445,7 +604,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   14
             Left            =   90
-            TabIndex        =   83
+            TabIndex        =   81
             Top             =   1710
             Width           =   855
          End
@@ -463,8 +622,8 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2355
-         Left            =   -74760
-         TabIndex        =   29
+         Left            =   240
+         TabIndex        =   27
          Top             =   440
          Width           =   6030
          Begin VB.TextBox Text2 
@@ -483,10 +642,10 @@ Begin VB.Form frmRepNumSerie2
             Left            =   4860
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   71
+            TabIndex        =   69
             Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww aq"
             Top             =   600
-            Width           =   780
+            Width           =   870
          End
          Begin VB.ComboBox cboTipomov 
             BeginProperty Font 
@@ -552,13 +711,13 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   360
             Index           =   6
-            Left            =   150
+            Left            =   120
             MaxLength       =   6
             TabIndex        =   5
             Tag             =   "Cod. Cliente|N|S|0|999999|sserie|codclien|000000|N|"
             Text            =   "Text1"
             Top             =   600
-            Width           =   870
+            Width           =   930
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -576,7 +735,7 @@ Begin VB.Form frmRepNumSerie2
             Left            =   1065
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   30
+            TabIndex        =   28
             Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww aq"
             Top             =   600
             Width           =   3750
@@ -657,8 +816,8 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   255
             Index           =   16
-            Left            =   4860
-            TabIndex        =   72
+            Left            =   4890
+            TabIndex        =   70
             Top             =   360
             Width           =   855
          End
@@ -675,7 +834,7 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   255
             Left            =   120
-            TabIndex        =   36
+            TabIndex        =   34
             Top             =   1905
             Width           =   1095
          End
@@ -693,7 +852,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   0
             Left            =   120
-            TabIndex        =   35
+            TabIndex        =   33
             Top             =   1485
             Width           =   1095
          End
@@ -710,7 +869,7 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   255
             Left            =   2880
-            TabIndex        =   34
+            TabIndex        =   32
             Top             =   1485
             Width           =   1035
          End
@@ -728,7 +887,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   1
             Left            =   120
-            TabIndex        =   33
+            TabIndex        =   31
             Top             =   360
             Width           =   615
          End
@@ -754,7 +913,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   8
             Left            =   120
-            TabIndex        =   32
+            TabIndex        =   30
             Top             =   1035
             Width           =   1185
          End
@@ -772,7 +931,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   3
             Left            =   2880
-            TabIndex        =   31
+            TabIndex        =   29
             Top             =   1905
             Width           =   1215
          End
@@ -781,9 +940,9 @@ Begin VB.Form frmRepNumSerie2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   7
-         Left            =   -74490
+         Left            =   510
          MaxLength       =   3
-         TabIndex        =   63
+         TabIndex        =   61
          Tag             =   "Direccion/Dpto.|N|S|0|999|sserie|coddirec|000|N|"
          Text            =   "Text1"
          Top             =   960
@@ -793,10 +952,10 @@ Begin VB.Form frmRepNumSerie2
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   7
-         Left            =   -73875
+         Left            =   1125
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   62
+         TabIndex        =   60
          Text            =   "Text2"
          Top             =   960
          Width           =   3405
@@ -816,9 +975,9 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   320
          Index           =   2
-         Left            =   240
+         Left            =   -74760
          MaxLength       =   10
-         TabIndex        =   60
+         TabIndex        =   58
          Text            =   "fecha"
          Top             =   3000
          Visible         =   0   'False
@@ -839,9 +998,9 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   4200
+         Left            =   -70800
          Locked          =   -1  'True
-         TabIndex        =   59
+         TabIndex        =   57
          Text            =   "nomdpto"
          Top             =   3000
          Visible         =   0   'False
@@ -862,9 +1021,9 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   1920
+         Left            =   -73080
          Locked          =   -1  'True
-         TabIndex        =   58
+         TabIndex        =   56
          Text            =   "nomclien"
          Top             =   3000
          Visible         =   0   'False
@@ -885,9 +1044,9 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   320
          Index           =   1
-         Left            =   3360
+         Left            =   -71640
          MaxLength       =   6
-         TabIndex        =   57
+         TabIndex        =   55
          Text            =   "coddpt"
          Top             =   3000
          Visible         =   0   'False
@@ -908,9 +1067,9 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   320
          Index           =   0
-         Left            =   1080
+         Left            =   -73920
          MaxLength       =   6
-         TabIndex        =   56
+         TabIndex        =   54
          Text            =   "codcli"
          Top             =   3000
          Visible         =   0   'False
@@ -929,8 +1088,8 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1035
-         Left            =   -74760
-         TabIndex        =   52
+         Left            =   240
+         TabIndex        =   50
          Top             =   2880
          Visible         =   0   'False
          Width           =   6045
@@ -948,7 +1107,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   17
             Left            =   1050
             MaxLength       =   15
-            TabIndex        =   53
+            TabIndex        =   51
             Tag             =   "Nº Serie|T|S|||sserie|numsersu||N|"
             Text            =   "Text1"
             Top             =   420
@@ -968,7 +1127,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   1
             Left            =   150
-            TabIndex        =   54
+            TabIndex        =   52
             Top             =   420
             Width           =   885
          End
@@ -986,8 +1145,8 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1035
-         Left            =   -68670
-         TabIndex        =   47
+         Left            =   6330
+         TabIndex        =   45
          Top             =   2880
          Width           =   5625
          Begin VB.TextBox Text1 
@@ -1004,7 +1163,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   18
             Left            =   150
             MaxLength       =   10
-            TabIndex        =   49
+            TabIndex        =   47
             Tag             =   "Fecha Baja|F|S|||sserie|fechabaja|dd/mm/yyyy|N|"
             Text            =   "Text1"
             Top             =   495
@@ -1025,7 +1184,7 @@ Begin VB.Form frmRepNumSerie2
             Left            =   1710
             List            =   "frmRepNumSerie.frx":004A
             Style           =   2  'Dropdown List
-            TabIndex        =   48
+            TabIndex        =   46
             Tag             =   "Motivo de Baja|N|S|||sserie|codmotba|0|N|"
             Top             =   495
             Width           =   3015
@@ -1044,7 +1203,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   360
             Index           =   2
             Left            =   150
-            TabIndex        =   51
+            TabIndex        =   49
             Top             =   270
             Width           =   705
          End
@@ -1062,7 +1221,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   3
             Left            =   1710
-            TabIndex        =   50
+            TabIndex        =   48
             Top             =   270
             Width           =   1215
          End
@@ -1088,8 +1247,8 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2355
-         Left            =   -68670
-         TabIndex        =   37
+         Left            =   6330
+         TabIndex        =   35
          Top             =   440
          Width           =   5625
          Begin VB.TextBox Text2 
@@ -1108,7 +1267,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   3
             Left            =   4200
             MaxLength       =   10
-            TabIndex        =   74
+            TabIndex        =   72
             Text            =   "Text1 Text"
             Top             =   1080
             Width           =   1320
@@ -1129,7 +1288,7 @@ Begin VB.Form frmRepNumSerie2
             Index           =   4
             Left            =   4200
             MaxLength       =   10
-            TabIndex        =   73
+            TabIndex        =   71
             Text            =   "Text1"
             Top             =   1500
             Width           =   1320
@@ -1147,13 +1306,13 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   360
             Index           =   12
-            Left            =   1020
+            Left            =   1110
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   42
+            TabIndex        =   40
             Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww aq"
             Top             =   615
-            Width           =   4035
+            Width           =   4425
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1170,11 +1329,11 @@ Begin VB.Form frmRepNumSerie2
             Index           =   12
             Left            =   165
             MaxLength       =   6
-            TabIndex        =   41
+            TabIndex        =   39
             Tag             =   "Cod. Proveedor|N|S|0|999999|sserie|codprove|000000|N|"
             Text            =   "Text11"
             Top             =   615
-            Width           =   780
+            Width           =   900
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1191,11 +1350,11 @@ Begin VB.Form frmRepNumSerie2
             Index           =   14
             Left            =   1725
             MaxLength       =   10
-            TabIndex        =   40
+            TabIndex        =   38
             Tag             =   "Fecha Compra|F|S|||sserie|fechacom|dd/mm/yyyy|N|"
             Text            =   "Text1"
             Top             =   1500
-            Width           =   1200
+            Width           =   1320
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1212,11 +1371,11 @@ Begin VB.Form frmRepNumSerie2
             Index           =   15
             Left            =   1725
             MaxLength       =   5
-            TabIndex        =   39
+            TabIndex        =   37
             Tag             =   "Nº linea|N|S|0|99999|sserie|numline2||N|"
             Text            =   "Text1"
             Top             =   1920
-            Width           =   735
+            Width           =   855
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1233,11 +1392,11 @@ Begin VB.Form frmRepNumSerie2
             Index           =   13
             Left            =   1725
             MaxLength       =   10
-            TabIndex        =   38
+            TabIndex        =   36
             Tag             =   "Nº Albaran Compra|T|S|||sserie|numalbpr||N|"
             Text            =   "Text1 Text"
             Top             =   1080
-            Width           =   1200
+            Width           =   1320
          End
          Begin VB.Label Label1 
             Caption         =   "Nº Factura"
@@ -1253,7 +1412,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   17
             Left            =   3060
-            TabIndex        =   76
+            TabIndex        =   74
             Top             =   1080
             Width           =   1155
          End
@@ -1270,7 +1429,7 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   255
             Left            =   3060
-            TabIndex        =   75
+            TabIndex        =   73
             Top             =   1530
             Width           =   1245
          End
@@ -1288,7 +1447,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   4
             Left            =   165
-            TabIndex        =   46
+            TabIndex        =   44
             Top             =   375
             Width           =   1035
          End
@@ -1313,7 +1472,7 @@ Begin VB.Form frmRepNumSerie2
             EndProperty
             Height          =   255
             Left            =   165
-            TabIndex        =   45
+            TabIndex        =   43
             Top             =   1500
             Width           =   1425
          End
@@ -1331,7 +1490,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   5
             Left            =   165
-            TabIndex        =   44
+            TabIndex        =   42
             Top             =   1080
             Width           =   1125
          End
@@ -1349,7 +1508,7 @@ Begin VB.Form frmRepNumSerie2
             Height          =   255
             Index           =   6
             Left            =   165
-            TabIndex        =   43
+            TabIndex        =   41
             Top             =   1920
             Width           =   1605
          End
@@ -1357,8 +1516,8 @@ Begin VB.Form frmRepNumSerie2
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmRepNumSerie.frx":004C
          Height          =   2625
-         Left            =   160
-         TabIndex        =   55
+         Left            =   -74840
+         TabIndex        =   53
          Top             =   600
          Width           =   8915
          _ExtentX        =   15716
@@ -1428,8 +1587,8 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Tiene Mantenimiento"
          Enabled         =   0   'False
          Height          =   195
-         Left            =   -74280
-         TabIndex        =   65
+         Left            =   720
+         TabIndex        =   63
          Tag             =   "¿Tiene Mantenimiento?|N|S|||sserie|tieneman||N|"
          Top             =   1470
          Width           =   1815
@@ -1438,9 +1597,9 @@ Begin VB.Form frmRepNumSerie2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   3
-         Left            =   -73290
+         Left            =   1710
          MaxLength       =   10
-         TabIndex        =   66
+         TabIndex        =   64
          Tag             =   "Nº Mantenimiento|T|S|||sserie|nummante||N|"
          Text            =   "Text1 Text"
          Top             =   1620
@@ -1449,8 +1608,8 @@ Begin VB.Form frmRepNumSerie2
       Begin VB.CheckBox chkAux 
          Enabled         =   0   'False
          Height          =   195
-         Left            =   5100
-         TabIndex        =   61
+         Left            =   -69900
+         TabIndex        =   59
          Top             =   750
          Width           =   255
       End
@@ -1458,9 +1617,9 @@ Begin VB.Form frmRepNumSerie2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   2
-         Left            =   5775
+         Left            =   -69225
          MaxLength       =   10
-         TabIndex        =   68
+         TabIndex        =   66
          Top             =   1140
          Width           =   1065
       End
@@ -1468,7 +1627,7 @@ Begin VB.Form frmRepNumSerie2
          Enabled         =   0   'False
          Height          =   240
          Index           =   3
-         Left            =   -73875
+         Left            =   1125
          ToolTipText     =   "Buscar direc./dpto"
          Top             =   720
          Width           =   240
@@ -1477,16 +1636,16 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Direc."
          Height          =   255
          Index           =   2
-         Left            =   -74490
-         TabIndex        =   64
+         Left            =   510
+         TabIndex        =   62
          Top             =   720
          Width           =   495
       End
       Begin VB.Label Label12 
          Caption         =   "Nº Mantenim."
          Height          =   255
-         Left            =   -74310
-         TabIndex        =   67
+         Left            =   690
+         TabIndex        =   65
          Top             =   1620
          Width           =   975
       End
@@ -1494,8 +1653,8 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Nº Manteni."
          Height          =   255
          Index           =   7
-         Left            =   4860
-         TabIndex        =   70
+         Left            =   -70140
+         TabIndex        =   68
          Top             =   1140
          Width           =   975
       End
@@ -1503,17 +1662,17 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Tiene Mantenimiento"
          Height          =   255
          Index           =   15
-         Left            =   5250
-         TabIndex        =   69
+         Left            =   -69750
+         TabIndex        =   67
          Top             =   780
          Width           =   1575
       End
    End
    Begin VB.Frame Frame2 
       Height          =   1420
-      Left            =   240
-      TabIndex        =   20
-      Top             =   440
+      Left            =   90
+      TabIndex        =   18
+      Top             =   855
       Width           =   12055
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1612,7 +1771,7 @@ Begin VB.Form frmRepNumSerie2
          Index           =   1
          Left            =   3390
          Locked          =   -1  'True
-         TabIndex        =   22
+         TabIndex        =   20
          Text            =   "Text2"
          Top             =   600
          Width           =   3885
@@ -1654,7 +1813,7 @@ Begin VB.Form frmRepNumSerie2
          Left            =   2220
          Locked          =   -1  'True
          MaxLength       =   30
-         TabIndex        =   21
+         TabIndex        =   19
          Text            =   "Text2"
          Top             =   990
          Width           =   3285
@@ -1680,7 +1839,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   255
          Left            =   8160
-         TabIndex        =   27
+         TabIndex        =   25
          Top             =   600
          Width           =   1125
       End
@@ -1697,7 +1856,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   255
          Left            =   8160
-         TabIndex        =   26
+         TabIndex        =   24
          Top             =   990
          Width           =   1215
       End
@@ -1723,7 +1882,7 @@ Begin VB.Form frmRepNumSerie2
          Height          =   255
          Index           =   0
          Left            =   240
-         TabIndex        =   25
+         TabIndex        =   23
          Top             =   240
          Width           =   915
       End
@@ -1740,7 +1899,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   255
          Left            =   240
-         TabIndex        =   24
+         TabIndex        =   22
          Top             =   600
          Width           =   735
       End
@@ -1774,7 +1933,7 @@ Begin VB.Form frmRepNumSerie2
          Height          =   255
          Index           =   9
          Left            =   240
-         TabIndex        =   23
+         TabIndex        =   21
          Top             =   990
          Width           =   1065
       End
@@ -1791,9 +1950,9 @@ Begin VB.Form frmRepNumSerie2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9900
+      Left            =   9750
       TabIndex        =   12
-      Top             =   6330
+      Top             =   6720
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -1809,9 +1968,9 @@ Begin VB.Form frmRepNumSerie2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11160
+      Left            =   11010
       TabIndex        =   13
-      Top             =   6330
+      Top             =   6720
       Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
@@ -1826,18 +1985,18 @@ Begin VB.Form frmRepNumSerie2
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11175
+      Left            =   11025
       TabIndex        =   14
-      Top             =   6315
+      Top             =   6705
       Visible         =   0   'False
       Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   540
       Index           =   0
-      Left            =   240
-      TabIndex        =   18
-      Top             =   6165
+      Left            =   90
+      TabIndex        =   16
+      Top             =   6555
       Width           =   2535
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1853,104 +2012,9 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   19
+         TabIndex        =   17
          Top             =   180
          Width           =   2115
-      End
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   15
-      Top             =   0
-      Width           =   12435
-      _ExtentX        =   21934
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   22
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver Todos"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Series de Uves"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Sustituir"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Recuperar Nº Serie"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Componentes"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-         EndProperty
-         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-         EndProperty
-         BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-         EndProperty
-         BeginProperty Button22 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   315
-         Left            =   9000
-         TabIndex        =   17
-         Top             =   0
-         Width           =   1215
       End
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -2060,13 +2124,15 @@ Begin VB.Form frmRepNumSerie2
       EndProperty
       Height          =   255
       Left            =   240
-      TabIndex        =   16
+      TabIndex        =   15
       Top             =   8220
       Visible         =   0   'False
       Width           =   3495
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -2356,30 +2422,64 @@ Private Sub Form_Load()
     Next kCampo
 
     'ICONOS de La toolbar
-    btnPrimero = 19 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
+'    btnPrimero = 19 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
+'    With Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        'ASignamos botones
+'        .Buttons(1).Image = 1   'Buscar
+'        .Buttons(2).Image = 2 'Ver Todos
+'        .Buttons(5).Image = 3 'Añadir
+'        .Buttons(6).Image = 4 'Modificar
+'        .Buttons(7).Image = 5 'Eliminar
+'
+'        .Buttons(9).Image = 1 'busqueda de series de uves activas
+'
+'        .Buttons(10).Image = 42 'Sustitucion de num serie
+'        .Buttons(11).Image = 21 'Recuperar num serie
+'        .Buttons(12).Image = 34 'Componentes
+'        .Buttons(13).Image = 16 'Imprimir
+'        .Buttons(16).Image = 15 'Salir
+'
+'        .Buttons(btnPrimero).Image = 6 'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+'    End With
+    
     With Toolbar1
-        .ImageList = frmPpal.imgListComun
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
         'ASignamos botones
-        .Buttons(1).Image = 1   'Buscar
-        .Buttons(2).Image = 2 'Ver Todos
-        .Buttons(5).Image = 3 'Añadir
-        .Buttons(6).Image = 4 'Modificar
-        .Buttons(7).Image = 5 'Eliminar
-        
-        .Buttons(9).Image = 1 'busqueda de series de uves activas
-        
-        .Buttons(10).Image = 42 'Sustitucion de num serie
-        .Buttons(11).Image = 21 'Recuperar num serie
-        .Buttons(12).Image = 34 'Componentes
-        .Buttons(13).Image = 16 'Imprimir
-        .Buttons(16).Image = 15 'Salir
-        
-        .Buttons(btnPrimero).Image = 6 'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2 'Ver Todos
+        .Buttons(1).Image = 3 'Añadir
+        .Buttons(2).Image = 4 'Modificar
+        .Buttons(3).Image = 5 'Eliminar
+        .Buttons(8).Image = 16 'Imprimir
     End With
     
+    With Me.Toolbar5
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 1 'busqueda de series de uves activas
+        .Buttons(2).Image = 42 'Sustitucion de num serie
+        .Buttons(3).Image = 21 'Recuperar num serie
+        .Buttons(4).Image = 34 'Componentes
+    End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+
     
     LimpiarCampos   'Limpia los campos TextBox
     'Vemos como esta guardado el valor del check
@@ -2729,24 +2829,23 @@ End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
-        Case 1: mnBuscar_Click 'Busqueda
-        Case 2: mnVerTodos_Click 'Ver Todos
+        Case 5: mnBuscar_Click 'Busqueda
+        Case 6: mnVerTodos_Click 'Ver Todos
             
-        Case 5: mnNuevo_Click 'Nuevo
-        Case 6: mnModificar_Click  'Modificar
-        Case 7: mnEliminar_Click 'Eliminar
+        Case 1: mnNuevo_Click 'Nuevo
+        Case 2: mnModificar_Click  'Modificar
+        Case 3: mnEliminar_Click 'Eliminar
             
-        Case 9: mnBuscarV_Click ' busqueda de series para V que esten activas
-                
-        Case 10: mnSustituir_Click 'Sustitucion num serie
-        Case 11: BotonRecuperar 'Recuperar nº serie
-        Case 12: mnComponentes_Click 'Componentes
-            
-        Case 13: mnImprimir_Click 'Imprimir
-        Case 16: mnSalir_Click  'Salir
-             
-        Case btnPrimero To btnPrimero + 3 'Flechas de Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
+'        Case 9: mnBuscarV_Click ' busqueda de series para V que esten activas
+'
+'        Case 10: mnSustituir_Click 'Sustitucion num serie
+'        Case 11: BotonRecuperar 'Recuperar nº serie
+'        Case 12: mnComponentes_Click 'Componentes
+        Case 8: mnImprimir_Click 'Imprimir
+'        Case 16: mnSalir_Click  'Salir
+'
+'        Case btnPrimero To btnPrimero + 3 'Flechas de Desplazamiento
+'            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -2777,8 +2876,8 @@ Dim NumReg As Byte
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, (Modo = 2), NumReg
-        
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, (Modo = 2), NumReg
+
     b = (Modo = 2)
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
     If DatosADevolverBusqueda <> "" Then
@@ -2786,6 +2885,9 @@ Dim NumReg As Byte
     Else
         cmdRegresar.visible = False
     End If
+        
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
+        
         
     '-------------------------------------------
     'Bloquear Registros
@@ -2840,6 +2942,10 @@ Dim NumReg As Byte
                         'de permisos del usuario
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -2854,37 +2960,37 @@ Dim b As Boolean
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(5).Enabled = b
+    Toolbar1.Buttons(1).Enabled = b
     Me.mnNuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
 
-    'Sustituir
-    Toolbar1.Buttons(10).Enabled = b
-    Me.mnSustituir.Enabled = b
-    
-    'recuperar nº serie
-    Toolbar1.Buttons(11).Enabled = b And Text1(6).Text <> ""
 
+    'Sustituir
+    Toolbar5.Buttons(2).Enabled = b
+    Me.mnSustituir.Enabled = b
+    'recuperar nº serie
+    Toolbar5.Buttons(3).Enabled = b And Text1(6).Text <> ""
     'Componentes
-    Toolbar1.Buttons(12).Enabled = b
+    Toolbar5.Buttons(4).Enabled = b
     Me.mnComponentes.Enabled = b
     
 
     '-------------------------------------
     b = (Modo >= 3)
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not b
+    Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Toolbar1.Buttons(6).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
+
 End Sub
 
 
@@ -2902,9 +3008,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
-    
 End Sub
 
 
@@ -3194,7 +3299,7 @@ Dim Sql As String
 Dim RS As ADODB.Recordset
  
     On Error GoTo EPonerCampos
-    Toolbar1.Buttons(11).Enabled = False
+    Toolbar5.Buttons(3).Enabled = False
     If Data1.Recordset.EOF Then Exit Sub
 
 
@@ -3245,7 +3350,7 @@ Dim RS As ADODB.Recordset
     '-- cargar las lineas de venta nº serie
     CargaGrid True
     
-    Toolbar1.Buttons(11).Enabled = (Modo = 2) And Trim(Text1(6).Text) <> ""
+    Toolbar5.Buttons(3).Enabled = (Modo = 2) And Trim(Text1(6).Text) <> ""
     '-- Esto permanece para saber donde estamos
     lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
     Exit Sub
@@ -3398,7 +3503,6 @@ Dim Tabla As String
 End Function
 
 
-
 Private Sub CargaGrid(enlaza As Boolean)
 Dim Sql As String
 Dim tots As String
@@ -3428,7 +3532,7 @@ Dim tots As String
     tots = tots & "N||||0|;N||||0|;N||||0|;"
     '
     
-    arregla tots, DataGrid1, Me
+    arregla tots, DataGrid1, Me, 350
     
     Me.DataGrid1.Columns(4).NumberFormat = "000000"
     Me.DataGrid1.Columns(6).NumberFormat = "000"
@@ -3442,3 +3546,17 @@ ErrCarga:
     MuestraError Err.Number, "Cargando datos grid: " & DataGrid1.Tag, Err.Description
 End Sub
 
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    
+    Select Case Button.Index
+        Case 1: mnBuscarV_Click ' busqueda de series para V que esten activas
+        Case 2: mnSustituir_Click 'Sustitucion num serie
+        Case 3: BotonRecuperar 'Recuperar nº serie
+        Case 4: mnComponentes_Click 'Componentes
+    End Select
+
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub

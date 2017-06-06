@@ -766,17 +766,17 @@ Begin VB.Form frmComEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":00B3
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
-      Tab(1).Control(1)=   "Text2(21)"
-      Tab(1).Control(2)=   "Text1(21)"
-      Tab(1).Control(3)=   "Text1(19)"
-      Tab(1).Control(4)=   "Text1(18)"
+      Tab(1).Control(0)=   "Label1(45)"
+      Tab(1).Control(1)=   "Label1(1)"
+      Tab(1).Control(2)=   "imgBuscar(4)"
+      Tab(1).Control(3)=   "Text1(15)"
+      Tab(1).Control(4)=   "Text1(16)"
       Tab(1).Control(5)=   "Text1(17)"
-      Tab(1).Control(6)=   "Text1(16)"
-      Tab(1).Control(7)=   "Text1(15)"
-      Tab(1).Control(8)=   "imgBuscar(4)"
-      Tab(1).Control(9)=   "Label1(1)"
-      Tab(1).Control(10)=   "Label1(45)"
+      Tab(1).Control(6)=   "Text1(18)"
+      Tab(1).Control(7)=   "Text1(19)"
+      Tab(1).Control(8)=   "Text1(21)"
+      Tab(1).Control(9)=   "Text2(21)"
+      Tab(1).Control(10)=   "FrameHco"
       Tab(1).ControlCount=   11
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntAlbaranes.frx":00CF
@@ -3136,6 +3136,8 @@ Private Sub cmdCancelar_Click()
 '            PonerBotonCabecera True
             Me.DataGrid1.Enabled = True
             PonerModo 2
+            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+            
     End Select
 End Sub
 

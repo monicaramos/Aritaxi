@@ -6,19 +6,156 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmRepEntReparaciones 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Reparaciones"
-   ClientHeight    =   8535
+   ClientHeight    =   9060
    ClientLeft      =   45
-   ClientTop       =   540
+   ClientTop       =   240
    ClientWidth     =   12765
    ClipControls    =   0   'False
    Icon            =   "frmRepEntReparaciones.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8535
+   ScaleHeight     =   9060
    ScaleWidth      =   12765
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   4020
+      TabIndex        =   128
+      Top             =   60
+      Width           =   915
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   150
+         TabIndex        =   129
+         Top             =   180
+         Width           =   555
+         _ExtentX        =   979
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   1
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Confirmar Reparaciones"
+               Object.Tag             =   "2"
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   9750
+      TabIndex        =   127
+      Top             =   240
+      Width           =   1605
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   4980
+      TabIndex        =   125
+      Top             =   60
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   126
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   120
+      TabIndex        =   123
+      Top             =   60
+      Width           =   3855
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   124
+         Top             =   180
+         Width           =   3465
+         _ExtentX        =   6112
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   8
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.TextBox Text2 
       BackColor       =   &H80000018&
       BeginProperty Font 
@@ -35,24 +172,23 @@ Begin VB.Form frmRepEntReparaciones
       Left            =   3750
       Locked          =   -1  'True
       MaxLength       =   60
-      TabIndex        =   119
+      TabIndex        =   117
       Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-      Top             =   7650
+      Top             =   8070
       Visible         =   0   'False
       Width           =   4125
    End
    Begin TabDlg.SSTab SSTab1 
       Height          =   6495
       Left            =   120
-      TabIndex        =   63
+      TabIndex        =   61
       Tag             =   "A|N|S|||scarep|contestado||S|"
       ToolTipText     =   "Descliente"
-      Top             =   1140
+      Top             =   1560
       Width           =   12540
       _ExtentX        =   22119
       _ExtentY        =   11456
       _Version        =   393216
-      Tab             =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Verdana"
@@ -65,11 +201,15 @@ Begin VB.Form frmRepEntReparaciones
       EndProperty
       TabCaption(0)   =   "Datos basicos "
       TabPicture(0)   =   "frmRepEntReparaciones.frx":000C
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Frame3"
-      Tab(0).Control(1)=   "FrameClientes"
-      Tab(0).Control(2)=   "FrameOtros"
-      Tab(0).Control(3)=   "imgBuscar(9)"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "imgBuscar(9)"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "FrameOtros"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "FrameClientes"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "Frame3"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).ControlCount=   4
       TabCaption(1)   =   "Presupuesto / S.A.T."
       TabPicture(1)   =   "frmRepEntReparaciones.frx":0028
@@ -111,43 +251,67 @@ Begin VB.Form frmRepEntReparaciones
       Tab(1).ControlCount=   34
       TabCaption(2)   =   "Lineas"
       TabPicture(2)   =   "frmRepEntReparaciones.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
-      Tab(2).Control(0)=   "Label1(16)"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "DataGrid1"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "txtAux(0)"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "txtAux(1)"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "txtAux(3)"
-      Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "txtAux(4)"
-      Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).Control(6)=   "txtAux(5)"
-      Tab(2).Control(6).Enabled=   0   'False
+      Tab(2).ControlEnabled=   0   'False
+      Tab(2).Control(0)=   "FrameToolAux"
+      Tab(2).Control(1)=   "cmdAux(2)"
+      Tab(2).Control(2)=   "txtAux(8)"
+      Tab(2).Control(3)=   "cmdAux(1)"
+      Tab(2).Control(4)=   "cmdAux(0)"
+      Tab(2).Control(5)=   "txtAux(2)"
+      Tab(2).Control(6)=   "txtAux(7)"
       Tab(2).Control(7)=   "txtAux(6)"
-      Tab(2).Control(7).Enabled=   0   'False
-      Tab(2).Control(8)=   "txtAux(7)"
-      Tab(2).Control(8).Enabled=   0   'False
-      Tab(2).Control(9)=   "txtAux(2)"
-      Tab(2).Control(9).Enabled=   0   'False
-      Tab(2).Control(10)=   "cmdAux(0)"
-      Tab(2).Control(10).Enabled=   0   'False
-      Tab(2).Control(11)=   "cmdAux(1)"
-      Tab(2).Control(11).Enabled=   0   'False
-      Tab(2).Control(12)=   "txtAux(8)"
-      Tab(2).Control(12).Enabled=   0   'False
-      Tab(2).Control(13)=   "cmdAux(2)"
-      Tab(2).Control(13).Enabled=   0   'False
-      Tab(2).ControlCount=   14
+      Tab(2).Control(8)=   "txtAux(5)"
+      Tab(2).Control(9)=   "txtAux(4)"
+      Tab(2).Control(10)=   "txtAux(3)"
+      Tab(2).Control(11)=   "txtAux(1)"
+      Tab(2).Control(12)=   "txtAux(0)"
+      Tab(2).Control(13)=   "DataGrid1"
+      Tab(2).Control(14)=   "Label1(16)"
+      Tab(2).ControlCount=   15
+      Begin VB.Frame FrameToolAux 
+         Height          =   555
+         Left            =   -74880
+         TabIndex        =   130
+         Top             =   360
+         Width           =   1500
+         Begin MSComctlLib.Toolbar ToolAux 
+            Height          =   330
+            Index           =   0
+            Left            =   120
+            TabIndex        =   131
+            Top             =   150
+            Width           =   1290
+            _ExtentX        =   2275
+            _ExtentY        =   582
+            ButtonWidth     =   609
+            ButtonHeight    =   582
+            AllowCustomize  =   0   'False
+            Style           =   1
+            _Version        =   393216
+            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+               NumButtons      =   3
+               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Nuevo"
+                  Object.Tag             =   "2"
+               EndProperty
+               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Modificar"
+                  Object.Tag             =   "2"
+               EndProperty
+               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Eliminar"
+                  Object.Tag             =   "2"
+               EndProperty
+            EndProperty
+         End
+      End
       Begin VB.CommandButton cmdAux 
          Appearance      =   0  'Flat
          Caption         =   "+"
          Height          =   315
          Index           =   2
-         Left            =   10800
-         TabIndex        =   121
+         Left            =   -64200
+         TabIndex        =   119
          Top             =   5880
          Visible         =   0   'False
          Width           =   195
@@ -167,9 +331,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   8
-         Left            =   10320
+         Left            =   -64680
          MaxLength       =   12
-         TabIndex        =   53
+         TabIndex        =   51
          Tag             =   "CC"
          Text            =   "CC"
          Top             =   6000
@@ -181,8 +345,8 @@ Begin VB.Form frmRepEntReparaciones
          Caption         =   "+"
          Height          =   315
          Index           =   1
-         Left            =   2400
-         TabIndex        =   57
+         Left            =   -72600
+         TabIndex        =   55
          Top             =   5820
          Visible         =   0   'False
          Width           =   195
@@ -192,8 +356,8 @@ Begin VB.Form frmRepEntReparaciones
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   720
-         TabIndex        =   56
+         Left            =   -74280
+         TabIndex        =   54
          Top             =   5820
          Visible         =   0   'False
          Width           =   195
@@ -213,10 +377,10 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   2
-         Left            =   2640
+         Left            =   -72360
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   46
+         TabIndex        =   44
          Tag             =   "Nombre Artículo"
          Text            =   "nomArtic"
          Top             =   5820
@@ -239,9 +403,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   7
-         Left            =   9840
+         Left            =   -65160
          MaxLength       =   12
-         TabIndex        =   51
+         TabIndex        =   49
          Tag             =   "Importe"
          Text            =   "Importe"
          Top             =   5940
@@ -264,9 +428,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   6
-         Left            =   9240
+         Left            =   -65760
          MaxLength       =   30
-         TabIndex        =   50
+         TabIndex        =   48
          Tag             =   "Descuento 2"
          Text            =   "Dto2"
          Top             =   5940
@@ -289,9 +453,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   5
-         Left            =   8640
+         Left            =   -66360
          MaxLength       =   5
-         TabIndex        =   49
+         TabIndex        =   47
          Tag             =   "Descuento 1"
          Text            =   "Dto1"
          Top             =   5940
@@ -314,9 +478,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   4
-         Left            =   7200
+         Left            =   -67800
          MaxLength       =   12
-         TabIndex        =   48
+         TabIndex        =   46
          Tag             =   "Precio"
          Text            =   "123,456.7879"
          Top             =   5940
@@ -339,9 +503,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   3
-         Left            =   6000
+         Left            =   -69000
          MaxLength       =   16
-         TabIndex        =   47
+         TabIndex        =   45
          Tag             =   "Cantidad"
          Text            =   "1,234,567,891.25"
          Top             =   5940
@@ -363,9 +527,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   1
-         Left            =   960
+         Left            =   -74040
          MaxLength       =   18
-         TabIndex        =   45
+         TabIndex        =   43
          Tag             =   "Código Artículo"
          Text            =   "Artic Artic Artic5"
          Top             =   5760
@@ -387,9 +551,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   330
          Index           =   0
-         Left            =   120
+         Left            =   -74880
          MaxLength       =   15
-         TabIndex        =   44
+         TabIndex        =   42
          Tag             =   "Código Almacen"
          Text            =   "codalmac"
          Top             =   5760
@@ -436,7 +600,7 @@ Begin VB.Form frmRepEntReparaciones
          Tag             =   "Fecha Entrega SAT|F|S|||scarep|fecentresat|dd/mm/yyyy|N|"
          Text            =   "Text1"
          Top             =   4680
-         Width           =   1080
+         Width           =   1320
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -559,7 +723,7 @@ Begin VB.Form frmRepEntReparaciones
          Tag             =   "Fecha presupuesto|F|S|||scarep|fecha|dd/mm/yyyy|N|"
          Text            =   "Text1"
          Top             =   1080
-         Width           =   1080
+         Width           =   1320
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -580,7 +744,7 @@ Begin VB.Form frmRepEntReparaciones
          Tag             =   "Fecha aprobacion|F|S|||scarep|fechaaprob|dd/mm/yyyy|N|"
          Text            =   "Text1"
          Top             =   1560
-         Width           =   1080
+         Width           =   1320
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -601,7 +765,7 @@ Begin VB.Form frmRepEntReparaciones
          Tag             =   "Fecha envio|F|S|||scarep|fecenviosat|dd/mm/yyyy|N|"
          Text            =   "Text1"
          Top             =   3120
-         Width           =   1080
+         Width           =   1320
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -640,7 +804,7 @@ Begin VB.Form frmRepEntReparaciones
          Left            =   -70920
          Locked          =   -1  'True
          MaxLength       =   20
-         TabIndex        =   102
+         TabIndex        =   100
          Text            =   "Text2"
          Top             =   2640
          Width           =   3885
@@ -668,8 +832,8 @@ Begin VB.Form frmRepEntReparaciones
       Begin VB.Frame Frame3 
          BorderStyle     =   0  'None
          Height          =   3585
-         Left            =   -74880
-         TabIndex        =   80
+         Left            =   120
+         TabIndex        =   78
          Top             =   2760
          Width           =   12175
          Begin VB.TextBox Text1 
@@ -687,7 +851,7 @@ Begin VB.Form frmRepEntReparaciones
             Index           =   36
             Left            =   10560
             MaxLength       =   80
-            TabIndex        =   123
+            TabIndex        =   121
             Tag             =   "F.Aviso|F|S|||scarep|fecaviso|dd/mm/yyyy|N|"
             Text            =   "Text1"
             Top             =   720
@@ -709,7 +873,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   3195
             Locked          =   -1  'True
             MaxLength       =   20
-            TabIndex        =   99
+            TabIndex        =   97
             Text            =   "Text2"
             Top             =   2160
             Width           =   3285
@@ -751,7 +915,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   3195
             Locked          =   -1  'True
             MaxLength       =   20
-            TabIndex        =   97
+            TabIndex        =   95
             Text            =   "Text2"
             Top             =   720
             Width           =   3285
@@ -794,7 +958,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   10215
             Locked          =   -1  'True
             MaxLength       =   30
-            TabIndex        =   85
+            TabIndex        =   83
             Tag             =   "Tipo Albaran|T|S|||schrep|codtipom||N|"
             Text            =   "Text2"
             Top             =   3240
@@ -817,7 +981,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   10920
             Locked          =   -1  'True
             MaxLength       =   10
-            TabIndex        =   84
+            TabIndex        =   82
             Tag             =   "Fecha Alb|F|S|||schrep|fechaalb|dd/mm/yyyy|N|"
             Text            =   "Text2"
             Top             =   3240
@@ -840,7 +1004,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   9240
             Locked          =   -1  'True
             MaxLength       =   7
-            TabIndex        =   83
+            TabIndex        =   81
             Tag             =   "Nº Albaran|T|S|||schrep|numalbar|0000000|N|"
             Text            =   "Text2"
             Top             =   3240
@@ -1003,7 +1167,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   3195
             Locked          =   -1  'True
             MaxLength       =   20
-            TabIndex        =   82
+            TabIndex        =   80
             Text            =   "Text2"
             Top             =   1560
             Width           =   3285
@@ -1023,7 +1187,7 @@ Begin VB.Form frmRepEntReparaciones
             Index           =   15
             Left            =   7620
             MaxLength       =   80
-            TabIndex        =   81
+            TabIndex        =   79
             Tag             =   "Nº aviso|N|S|||scarep|numaviso||N|"
             Text            =   "Text1"
             Top             =   720
@@ -1043,7 +1207,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   195
             Index           =   18
             Left            =   9300
-            TabIndex        =   124
+            TabIndex        =   122
             Top             =   720
             Width           =   1215
          End
@@ -1069,7 +1233,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   315
             Index           =   15
             Left            =   120
-            TabIndex        =   101
+            TabIndex        =   99
             Top             =   2160
             Width           =   1965
          End
@@ -1095,7 +1259,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   14
             Left            =   120
-            TabIndex        =   98
+            TabIndex        =   96
             Top             =   750
             Width           =   1425
          End
@@ -1120,7 +1284,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   11
             Left            =   6720
-            TabIndex        =   96
+            TabIndex        =   94
             Top             =   720
             Width           =   825
          End
@@ -1138,7 +1302,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   8
             Left            =   10215
-            TabIndex        =   94
+            TabIndex        =   92
             Top             =   3000
             Width           =   630
          End
@@ -1156,7 +1320,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   22
             Left            =   10920
-            TabIndex        =   93
+            TabIndex        =   91
             Top             =   3000
             Width           =   855
          End
@@ -1174,7 +1338,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   10
             Left            =   9240
-            TabIndex        =   92
+            TabIndex        =   90
             Top             =   3000
             Width           =   855
          End
@@ -1191,7 +1355,7 @@ Begin VB.Form frmRepEntReparaciones
             EndProperty
             Height          =   255
             Left            =   120
-            TabIndex        =   90
+            TabIndex        =   88
             Top             =   360
             Width           =   2205
          End
@@ -1208,7 +1372,7 @@ Begin VB.Form frmRepEntReparaciones
             EndProperty
             Height          =   255
             Left            =   120
-            TabIndex        =   89
+            TabIndex        =   87
             Top             =   1200
             Width           =   2415
          End
@@ -1226,7 +1390,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   5
             Left            =   120
-            TabIndex        =   88
+            TabIndex        =   86
             Top             =   1590
             Width           =   1695
          End
@@ -1244,7 +1408,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   6
             Left            =   120
-            TabIndex        =   87
+            TabIndex        =   85
             Top             =   2520
             Width           =   1875
          End
@@ -1269,7 +1433,7 @@ Begin VB.Form frmRepEntReparaciones
             EndProperty
             Height          =   255
             Left            =   120
-            TabIndex        =   86
+            TabIndex        =   84
             Top             =   0
             Width           =   2505
          End
@@ -1287,8 +1451,8 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2295
-         Left            =   -74880
-         TabIndex        =   73
+         Left            =   120
+         TabIndex        =   71
          Top             =   330
          Width           =   6285
          Begin VB.TextBox Text1 
@@ -1303,13 +1467,13 @@ Begin VB.Form frmRepEntReparaciones
             EndProperty
             Height          =   360
             Index           =   34
-            Left            =   1980
+            Left            =   2130
             MaxLength       =   40
             TabIndex        =   4
             Tag             =   "NomCliente|T|N|||scarep|nomclien|||"
             Text            =   "Text1"
             Top             =   360
-            Width           =   4185
+            Width           =   4035
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1343,13 +1507,13 @@ Begin VB.Form frmRepEntReparaciones
             EndProperty
             Height          =   360
             Index           =   32
-            Left            =   1800
+            Left            =   2010
             MaxLength       =   30
             TabIndex        =   9
             Tag             =   "Tfno|T|S|||scarep|pobclien|||"
             Text            =   "Text1"
             Top             =   1440
-            Width           =   2385
+            Width           =   2175
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1370,7 +1534,7 @@ Begin VB.Form frmRepEntReparaciones
             Tag             =   "CP|T|S|||scarep|codpobla|||"
             Text            =   "Text1"
             Top             =   1440
-            Width           =   615
+            Width           =   795
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1451,7 +1615,7 @@ Begin VB.Form frmRepEntReparaciones
             Tag             =   "Cod. Cliente|N|N|0|999999|scarep|codclien|000000|N|"
             Text            =   "Text1"
             Top             =   360
-            Width           =   740
+            Width           =   885
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -1469,7 +1633,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   1785
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   74
+            TabIndex        =   72
             Text            =   "Text2"
             Top             =   1845
             Width           =   4365
@@ -1493,7 +1657,7 @@ Begin VB.Form frmRepEntReparaciones
             Tag             =   "Direccion/Dpto.|N|S|0|999|scarep|coddirec|000|N|"
             Text            =   "Text1"
             Top             =   1845
-            Width           =   540
+            Width           =   600
          End
          Begin VB.Label Label1 
             Caption         =   "Socio"
@@ -1509,7 +1673,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   1
             Left            =   150
-            TabIndex        =   79
+            TabIndex        =   77
             Top             =   360
             Width           =   615
          End
@@ -1535,7 +1699,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   2
             Left            =   150
-            TabIndex        =   78
+            TabIndex        =   76
             Top             =   1845
             Width           =   585
          End
@@ -1562,9 +1726,9 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   19
             Left            =   3165
-            TabIndex        =   77
+            TabIndex        =   75
             Top             =   720
-            Width           =   735
+            Width           =   915
          End
          Begin VB.Label Label1 
             Caption         =   "NIF"
@@ -1580,7 +1744,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   20
             Left            =   150
-            TabIndex        =   76
+            TabIndex        =   74
             Top             =   720
             Width           =   375
          End
@@ -1598,7 +1762,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   7
             Left            =   150
-            TabIndex        =   75
+            TabIndex        =   73
             Top             =   1080
             Width           =   915
          End
@@ -1615,8 +1779,8 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2265
-         Left            =   -68520
-         TabIndex        =   64
+         Left            =   6480
+         TabIndex        =   62
          Top             =   360
          Width           =   5955
          Begin VB.TextBox Text1 
@@ -1656,7 +1820,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   4350
             Locked          =   -1  'True
             MaxLength       =   10
-            TabIndex        =   91
+            TabIndex        =   89
             Text            =   "123456789"
             Top             =   780
             Width           =   1290
@@ -1678,7 +1842,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   4350
             Locked          =   -1  'True
             MaxLength       =   10
-            TabIndex        =   95
+            TabIndex        =   93
             Text            =   "1234567891"
             Top             =   1500
             Width           =   1290
@@ -1700,7 +1864,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   4350
             Locked          =   -1  'True
             MaxLength       =   10
-            TabIndex        =   100
+            TabIndex        =   98
             Text            =   "1234567891"
             Top             =   1140
             Width           =   1290
@@ -1724,7 +1888,7 @@ Begin VB.Form frmRepEntReparaciones
             Tag             =   "Nº Reparación|N|S|0|9999999|scarep|numrepar|0000000|S|"
             Text            =   "Text1"
             Top             =   780
-            Width           =   1080
+            Width           =   1320
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1745,7 +1909,7 @@ Begin VB.Form frmRepEntReparaciones
             Tag             =   "Fecha Repar|F|N|||scarep|fecentre|dd/mm/yyyy|N|"
             Text            =   "Text1"
             Top             =   1500
-            Width           =   1080
+            Width           =   1320
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1766,7 +1930,7 @@ Begin VB.Form frmRepEntReparaciones
             Tag             =   "Fecha Entrada|F|N|||scarep|fecrepar|dd/mm/yyyy|N|"
             Text            =   "Text1"
             Top             =   1140
-            Width           =   1080
+            Width           =   1320
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -1784,7 +1948,7 @@ Begin VB.Form frmRepEntReparaciones
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   30
-            TabIndex        =   65
+            TabIndex        =   63
             Text            =   "Text2"
             Top             =   360
             Width           =   3495
@@ -1824,7 +1988,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   6
             Left            =   120
-            TabIndex        =   122
+            TabIndex        =   120
             Top             =   1920
             Width           =   1575
          End
@@ -1842,7 +2006,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   0
             Left            =   2880
-            TabIndex        =   72
+            TabIndex        =   70
             Top             =   1200
             Width           =   1365
          End
@@ -1860,7 +2024,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   3
             Left            =   2880
-            TabIndex        =   71
+            TabIndex        =   69
             Top             =   840
             Width           =   1095
          End
@@ -1878,7 +2042,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   4
             Left            =   2880
-            TabIndex        =   70
+            TabIndex        =   68
             Top             =   1560
             Width           =   1245
          End
@@ -1896,7 +2060,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   0
             Left            =   120
-            TabIndex        =   69
+            TabIndex        =   67
             Top             =   780
             Width           =   1215
          End
@@ -1922,7 +2086,7 @@ Begin VB.Form frmRepEntReparaciones
             EndProperty
             Height          =   255
             Left            =   120
-            TabIndex        =   68
+            TabIndex        =   66
             Top             =   1140
             Width           =   1035
          End
@@ -1940,7 +2104,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   0
             Left            =   120
-            TabIndex        =   67
+            TabIndex        =   65
             Top             =   1500
             Width           =   975
          End
@@ -1967,7 +2131,7 @@ Begin VB.Form frmRepEntReparaciones
             Height          =   255
             Index           =   9
             Left            =   120
-            TabIndex        =   66
+            TabIndex        =   64
             Top             =   360
             Width           =   945
          End
@@ -1982,11 +2146,11 @@ Begin VB.Form frmRepEntReparaciones
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
          Height          =   5355
-         Left            =   120
-         TabIndex        =   112
-         Top             =   600
+         Left            =   -74880
+         TabIndex        =   110
+         Top             =   1020
          Visible         =   0   'False
-         Width           =   12295
+         Width           =   12300
          _ExtentX        =   21696
          _ExtentY        =   9446
          _Version        =   393216
@@ -2051,7 +2215,7 @@ Begin VB.Form frmRepEntReparaciones
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   9
-         Left            =   -74460
+         Left            =   540
          ToolTipText     =   "Buscar cliente"
          Top             =   570
          Width           =   240
@@ -2077,9 +2241,9 @@ Begin VB.Form frmRepEntReparaciones
          ForeColor       =   &H00000080&
          Height          =   255
          Index           =   16
-         Left            =   360
-         TabIndex        =   118
-         Top             =   600
+         Left            =   -66660
+         TabIndex        =   116
+         Top             =   660
          Width           =   3735
       End
       Begin VB.Label Label9 
@@ -2096,7 +2260,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   195
          Index           =   5
          Left            =   -73680
-         TabIndex        =   117
+         TabIndex        =   115
          Top             =   5160
          Width           =   1455
       End
@@ -2114,7 +2278,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   4
          Left            =   -73680
-         TabIndex        =   116
+         TabIndex        =   114
          Top             =   4680
          Width           =   1185
       End
@@ -2141,7 +2305,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   1
          Left            =   -73680
-         TabIndex        =   115
+         TabIndex        =   113
          Top             =   4110
          Width           =   1785
       End
@@ -2149,7 +2313,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   1
          Left            =   -67080
-         TabIndex        =   114
+         TabIndex        =   112
          Top             =   1590
          Width           =   255
       End
@@ -2167,7 +2331,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   0
          Left            =   -67080
-         TabIndex        =   113
+         TabIndex        =   111
          Top             =   1080
          Width           =   1095
       End
@@ -2202,7 +2366,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   12
          Left            =   -74760
-         TabIndex        =   111
+         TabIndex        =   109
          Top             =   600
          Width           =   1335
       End
@@ -2220,7 +2384,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   0
          Left            =   -73680
-         TabIndex        =   110
+         TabIndex        =   108
          Top             =   1080
          Width           =   1275
       End
@@ -2238,7 +2402,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   1
          Left            =   -73680
-         TabIndex        =   109
+         TabIndex        =   107
          Top             =   1560
          Width           =   1305
       End
@@ -2256,7 +2420,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   1
          Left            =   -70440
-         TabIndex        =   108
+         TabIndex        =   106
          Top             =   1080
          Width           =   1515
       End
@@ -2283,7 +2447,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   345
          Index           =   2
          Left            =   -70440
-         TabIndex        =   107
+         TabIndex        =   105
          Top             =   1590
          Width           =   1290
       End
@@ -2311,7 +2475,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   240
          Index           =   13
          Left            =   -74760
-         TabIndex        =   106
+         TabIndex        =   104
          Top             =   2160
          Width           =   3135
       End
@@ -2329,7 +2493,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   3
          Left            =   -73680
-         TabIndex        =   105
+         TabIndex        =   103
          Top             =   3120
          Width           =   975
       End
@@ -2356,7 +2520,7 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   255
          Index           =   2
          Left            =   -73680
-         TabIndex        =   104
+         TabIndex        =   102
          Top             =   2640
          Width           =   1275
       End
@@ -2374,16 +2538,16 @@ Begin VB.Form frmRepEntReparaciones
          Height          =   195
          Index           =   3
          Left            =   -73680
-         TabIndex        =   103
+         TabIndex        =   101
          Top             =   3600
          Width           =   1365
       End
    End
    Begin VB.Frame Frame2 
-      Height          =   615
+      Height          =   705
       Left            =   120
-      TabIndex        =   59
-      Top             =   495
+      TabIndex        =   57
+      Top             =   825
       Width           =   12495
       Begin VB.CheckBox chkPresupuesto 
          Caption         =   "Presupuesto"
@@ -2401,7 +2565,7 @@ Begin VB.Form frmRepEntReparaciones
          Left            =   9900
          TabIndex        =   2
          Tag             =   "Presupuesto|N|N|||scarep|presupue||N|"
-         Top             =   255
+         Top             =   285
          Width           =   1695
       End
       Begin VB.TextBox Text1 
@@ -2421,7 +2585,7 @@ Begin VB.Form frmRepEntReparaciones
          TabIndex        =   1
          Tag             =   "Cod. Artículo|T|N|||scarep|codartic||N|"
          Text            =   "Text1"
-         Top             =   200
+         Top             =   225
          Width           =   1605
       End
       Begin VB.TextBox Text2 
@@ -2439,9 +2603,9 @@ Begin VB.Form frmRepEntReparaciones
          Index           =   1
          Left            =   5700
          Locked          =   -1  'True
-         TabIndex        =   61
+         TabIndex        =   59
          Text            =   "Text2"
-         Top             =   200
+         Top             =   225
          Width           =   3915
       End
       Begin VB.TextBox Text1 
@@ -2462,7 +2626,7 @@ Begin VB.Form frmRepEntReparaciones
          TabIndex        =   0
          Tag             =   "Nº Serie|T|S|||scarep|numserie||N|"
          Text            =   "Text1"
-         Top             =   200
+         Top             =   225
          Width           =   1620
       End
       Begin VB.Label Label5 
@@ -2478,8 +2642,8 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   255
          Left            =   3000
-         TabIndex        =   62
-         Top             =   195
+         TabIndex        =   60
+         Top             =   255
          Width           =   765
       End
       Begin VB.Image imgBuscar 
@@ -2487,7 +2651,7 @@ Begin VB.Form frmRepEntReparaciones
          Index           =   1
          Left            =   3825
          ToolTipText     =   "Buscar artículo"
-         Top             =   195
+         Top             =   255
          Width           =   240
       End
       Begin VB.Label Label3 
@@ -2503,8 +2667,8 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   60
-         Top             =   195
+         TabIndex        =   58
+         Top             =   255
          Width           =   855
       End
       Begin VB.Image imgBuscar 
@@ -2512,7 +2676,7 @@ Begin VB.Form frmRepEntReparaciones
          Index           =   0
          Left            =   975
          ToolTipText     =   "Buscar Nº Serie"
-         Top             =   195
+         Top             =   255
          Width           =   240
       End
    End
@@ -2532,9 +2696,9 @@ Begin VB.Form frmRepEntReparaciones
       Left            =   3750
       Locked          =   -1  'True
       MaxLength       =   60
-      TabIndex        =   52
+      TabIndex        =   50
       Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-      Top             =   8040
+      Top             =   8460
       Visible         =   0   'False
       Width           =   6495
    End
@@ -2551,8 +2715,8 @@ Begin VB.Form frmRepEntReparaciones
       EndProperty
       Height          =   375
       Left            =   10320
-      TabIndex        =   54
-      Top             =   8040
+      TabIndex        =   52
+      Top             =   8460
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -2569,8 +2733,8 @@ Begin VB.Form frmRepEntReparaciones
       EndProperty
       Height          =   375
       Left            =   11520
-      TabIndex        =   55
-      Top             =   8040
+      TabIndex        =   53
+      Top             =   8460
       Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
@@ -2587,7 +2751,7 @@ Begin VB.Form frmRepEntReparaciones
       Height          =   375
       Left            =   11520
       TabIndex        =   38
-      Top             =   8040
+      Top             =   8460
       Visible         =   0   'False
       Width           =   1135
    End
@@ -2595,8 +2759,8 @@ Begin VB.Form frmRepEntReparaciones
       Height          =   540
       Index           =   0
       Left            =   120
-      TabIndex        =   42
-      Top             =   7920
+      TabIndex        =   40
+      Top             =   8340
       Width           =   2175
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -2612,100 +2776,9 @@ Begin VB.Form frmRepEntReparaciones
          EndProperty
          Height          =   240
          Left            =   120
-         TabIndex        =   43
+         TabIndex        =   41
          Top             =   180
          Width           =   1875
-      End
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   39
-      Top             =   0
-      Width           =   12765
-      _ExtentX        =   22516
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   20
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver Todos"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Lineas"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Confirmar Reparación"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-         EndProperty
-         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   315
-         Left            =   6120
-         TabIndex        =   41
-         Top             =   0
-         Width           =   1215
       End
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -2816,8 +2889,8 @@ Begin VB.Form frmRepEntReparaciones
       Height          =   255
       Index           =   17
       Left            =   2400
-      TabIndex        =   120
-      Top             =   7725
+      TabIndex        =   118
+      Top             =   8145
       Visible         =   0   'False
       Width           =   1335
    End
@@ -2835,8 +2908,8 @@ Begin VB.Form frmRepEntReparaciones
       Height          =   255
       Index           =   35
       Left            =   2400
-      TabIndex        =   58
-      Top             =   8100
+      TabIndex        =   56
+      Top             =   8520
       Visible         =   0   'False
       Width           =   1335
    End
@@ -2853,13 +2926,15 @@ Begin VB.Form frmRepEntReparaciones
       EndProperty
       Height          =   255
       Left            =   240
-      TabIndex        =   40
-      Top             =   7680
+      TabIndex        =   39
+      Top             =   8100
       Visible         =   0   'False
       Width           =   2175
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -3062,7 +3137,7 @@ Dim PrimeraLin As Boolean 'Si se inserta la primera linea no esta creado el data
                     CargaTxtAux False, False
                     CargaGrid2 DataGrid1, Data2
                     ModificaLineas = 0
-                    PonerBotonCabecera True
+'                    PonerBotonCabecera True
                     BloquearTxt Text2(16), True
                 End If
                 Me.DataGrid1.Enabled = True
@@ -3148,9 +3223,14 @@ Private Sub cmdCancelar_Click()
             End If
             BloquearTxt Text2(16), True
             ModificaLineas = 0
-            PonerBotonCabecera True
+'            PonerBotonCabecera True
             Me.DataGrid1.Enabled = True
+            
+            PonerModo 2
+            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+    
     End Select
+    
     PonerFoco Text1(0)
     
 ECancelar:
@@ -3238,25 +3318,71 @@ Private Sub Form_Load()
     Next kCampo
 
     'ICONOS de La toolbar
-    btnAnyadir = 5
-    btnPrimero = 17 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
+'    btnAnyadir = 5
+'    btnPrimero = 17 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
+'    With Toolbar1
+'        .ImageList = frmPpal.imgListComun
+'        'ASignamos botones
+'        .Buttons(1).Image = 1   'Buscar
+'        .Buttons(2).Image = 2 'Ver Todos
+'        .Buttons(5).Image = 3 'Añadir
+'        .Buttons(6).Image = 4 'Modificar
+'        .Buttons(7).Image = 5 'Eliminar
+'        .Buttons(10).Image = 10 'Mto Lineas
+'        .Buttons(11).Image = 26 'Confirmar Reparación
+'        .Buttons(12).Image = 16 'Imprimir
+'        .Buttons(14).Image = 15 'Salir
+'        .Buttons(btnPrimero).Image = 6 'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+'    End With
+    
     With Toolbar1
-        .ImageList = frmPpal.imgListComun
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
         'ASignamos botones
-        .Buttons(1).Image = 1   'Buscar
-        .Buttons(2).Image = 2 'Ver Todos
-        .Buttons(5).Image = 3 'Añadir
-        .Buttons(6).Image = 4 'Modificar
-        .Buttons(7).Image = 5 'Eliminar
-        .Buttons(10).Image = 10 'Mto Lineas
-        .Buttons(11).Image = 26 'Confirmar Reparación
-        .Buttons(12).Image = 16 'Imprimir
-        .Buttons(14).Image = 15 'Salir
-        .Buttons(btnPrimero).Image = 6 'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Ultimo
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2 'Ver Todos
+        .Buttons(1).Image = 3 'Añadir
+        .Buttons(2).Image = 4 'Modificar
+        .Buttons(3).Image = 5 'Eliminar
+        .Buttons(8).Image = 16 'Imprimir
     End With
+    
+    With Me.Toolbar5
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 26 'Confirmar Reparación
+    End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun1
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+
+    With Me.ToolAux(0)
+        .HotImageList = frmPpal.imgListComun_OM16
+        .DisabledImageList = frmPpal.imgListComun_BN16
+        .ImageList = frmPpal.imgListComun16
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+    End With
+    
+    If ControlRep Then
+        Me.FrameDesplazamiento.Left = 4980
+    Else
+        Me.FrameDesplazamiento.Left = 4020
+    End If
     
     LimpiarCampos   'Limpia los campos TextBox
     DataGrid1.visible = False
@@ -3996,26 +4122,33 @@ Private Sub Text2_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 16 And KeyAscii = 13 Then PonerFocoBtn Me.cmdAceptar
 End Sub
 
+Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
+    BotonMtoLineas
+    Select Case Button.Index
+        Case 1: mnNuevo_Click 'Nuevo
+        Case 2: mnModificar_Click 'Modificar
+        Case 3: mnEliminar_Click 'Eliminar
+    End Select
+End Sub
+
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
-        Case 1: mnBuscar_Click 'Busqueda
-        Case 2: mnVerTodos_Click 'Ver Todos
+        Case 5: mnBuscar_Click 'Busqueda
+        Case 6: mnVerTodos_Click 'Ver Todos
             
-        Case 5: mnNuevo_Click 'Nuevo
-        Case 6: mnModificar_Click 'Modificar
-        Case 7: mnEliminar_Click 'Eliminar
-            
-        Case 10: BotonMtoLineas 'Mto Lineas
-        Case 11: BotonConfirmarRep 'Confirmar Reparación
-             
-        Case 12 'Imprimir
+        Case 1: mnNuevo_Click 'Nuevo
+        Case 2: mnModificar_Click 'Modificar
+        Case 3: mnEliminar_Click 'Eliminar
+'        Case 10: BotonMtoLineas 'Mto Lineas
+'        Case 11: BotonConfirmarRep 'Confirmar Reparación
+        Case 8 'Imprimir
             'If (Not ControlRep) And (Not EsHistorico) Then BotonImprimir (62)
             If (Not ControlRep) And (Not EsHistorico) Then BotonImprimir2 True, 0
-        Case 14: mnSalir_Click  'Salir
-             
-        Case btnPrimero To btnPrimero + 3 'Flechas de Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
+'        Case 14: mnSalir_Click  'Salir
+'
+'        Case btnPrimero To btnPrimero + 3 'Flechas de Desplazamiento
+'            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -4039,12 +4172,13 @@ Dim NumReg As Byte
 
     On Error GoTo EPonerModo
 
+
     For i = 0 To txtAux.Count - 1
         Text1(i).BackColor = vbWhite
     Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
-    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
+'    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
@@ -4054,8 +4188,9 @@ Dim NumReg As Byte
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, (Modo = 2), NumReg
-    
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, (Modo = 2), NumReg
+    b = True
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
     
         
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
@@ -4100,7 +4235,6 @@ Dim NumReg As Byte
     'Sat,tipo...
     b2 = ((Modo = 3 Or Modo = 4) And True) Or Modo = 1
 
-    
     
     For i = 0 To Me.imgBuscar.Count - 1
         If i < 5 Then
@@ -4161,6 +4295,10 @@ EPonerModo:
     End If
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -4172,53 +4310,77 @@ End Sub
 Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
 Dim i As Byte
+Dim bAux As Boolean
 
+
+'cambiado todo por enable
     'Modo 2. Hay datos y estamos visualizandolos
     b = ((Not ControlRep) Or (ControlRep And Modo = 5)) And (Not EsHistorico)
-    Toolbar1.Buttons(5).visible = b
-    Me.mnNuevo.visible = b
-    Toolbar1.Buttons(7).visible = b
-    Me.mnEliminar.visible = b
-    Toolbar1.Buttons(6).visible = Not EsHistorico
-    Me.mnModificar.visible = Not EsHistorico
-    Toolbar1.Buttons(8).visible = Not EsHistorico
-    Toolbar1.Buttons(9).visible = Not EsHistorico
+    Toolbar1.Buttons(1).Enabled = b
+    Me.mnNuevo.Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
+    Me.mnEliminar.Enabled = b
+    Toolbar1.Buttons(3).Enabled = Not EsHistorico
+    Me.mnModificar.Enabled = Not EsHistorico
+'    Toolbar1.Buttons(8).visible = Not EsHistorico
+'    Toolbar1.Buttons(9).visible = Not EsHistorico
+    Me.mnBarra2.Enabled = Not EsHistorico
     Me.mnBarra2.visible = Not EsHistorico
     
-    For i = 10 To 11
-        Toolbar1.Buttons(i).visible = ControlRep
+    
+    '[Monica]06/06/2017: control de reparaciones
+    FrameBotonGnral2.Enabled = ControlRep
+    FrameBotonGnral2.visible = ControlRep
+    For i = 1 To 1
+        Toolbar5.Buttons(i).visible = ControlRep
     Next i
     
     b = (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
     'Modificar
-    Toolbar1.Buttons(6).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'Insertar
-    Toolbar1.Buttons(5).Enabled = (b Or Modo = 0)
+    Toolbar1.Buttons(1).Enabled = (b Or Modo = 0)
     Me.mnNuevo.Enabled = (b Or Modo = 0)
         
     'eliminar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     
     
     If ControlRep Then
         b = (Modo = 2)
-        'Mto Lineas
-        Toolbar1.Buttons(10).Enabled = b
+'        'Mto Lineas
+'        Toolbar5.Buttons(10).Enabled = b
         'Confirmación Reparación
-        Toolbar1.Buttons(11).Enabled = b
+        Toolbar5.Buttons(1).Enabled = b
     End If
-    
     
     '-------------------------------------
     b = (Modo >= 3) Or Modo = 1
     'Buscar
-    Toolbar1.Buttons(1).Enabled = Not b
+    Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(2).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Toolbar1.Buttons(6).Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
+    
+    
+    '[Monica]06/06/2017
+    FrameToolAux.Enabled = ControlRep
+    FrameToolAux.visible = ControlRep
+    
+    b = (Modo = 2 Or Modo = 3) And ControlRep
+    For i = 0 To ToolAux.Count - 1
+        ToolAux(i).Buttons(1).Enabled = b
+        If Not Data2.Recordset Is Nothing Then
+            If b Then bAux = (b And Me.Data2.Recordset.RecordCount > 0)
+        End If
+        ToolAux(i).Buttons(2).Enabled = bAux
+        ToolAux(i).Buttons(3).Enabled = bAux
+    Next i
+    
+    
 End Sub
 
 
@@ -4235,7 +4397,7 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
 
@@ -4439,6 +4601,8 @@ Dim Sql As String
         SituarDataTrasEliminar Data2, NumRegElim
 '        CancelaADODC
     End If
+    PonerModo 2
+    PonerCampos
     PonerFocoBtn Me.cmdRegresar
     
 EEliminarLinea:
@@ -4464,7 +4628,7 @@ Private Sub BotonMtoLineas()
     'Esto antes estaba descomentado.  21 Abril de 2008
     'CargaGrid DataGrid1, Data2, True
     
-    PonerBotonCabecera True
+'    PonerBotonCabecera True
     
     If vEmpresa.TieneAnalitica Then
         If Not Data2.Recordset.EOF Then
@@ -5439,7 +5603,7 @@ Dim i As Byte
         'Cod. Almacen
         vDataGrid.Columns(2).Caption = "Alm."
 
-        vDataGrid.Columns(2).Width = 500
+        vDataGrid.Columns(2).Width = 700
 
         vDataGrid.Columns(2).NumberFormat = "000"
         
@@ -5449,31 +5613,31 @@ Dim i As Byte
 
         
         vDataGrid.Columns(4).Caption = "Desc. Artículo"
-        vDataGrid.Columns(4).Width = 3200
+        vDataGrid.Columns(4).Width = 3500
 
         vDataGrid.Columns(5).visible = False
         
         vDataGrid.Columns(6).Caption = "Cantidad"
-        vDataGrid.Columns(6).Width = 850
+        vDataGrid.Columns(6).Width = 1250
         vDataGrid.Columns(6).Alignment = dbgRight
         vDataGrid.Columns(6).NumberFormat = FormatoImporte
         
         i = 7
         vDataGrid.Columns(i).Caption = "Precio"
-        vDataGrid.Columns(i).Width = 950
+        vDataGrid.Columns(i).Width = 1250
         vDataGrid.Columns(i).Alignment = dbgRight
         vDataGrid.Columns(i).NumberFormat = FormatoPrecio
         
             
         i = i + 1
         vDataGrid.Columns(i).Caption = "Dto.1"
-        vDataGrid.Columns(i).Width = 600
+        vDataGrid.Columns(i).Width = 700
         vDataGrid.Columns(i).Alignment = dbgRight
         vDataGrid.Columns(i).NumberFormat = FormatoDescuento
                 
         i = i + 1
         vDataGrid.Columns(i).Caption = "Dto.2"
-        vDataGrid.Columns(i).Width = 600
+        vDataGrid.Columns(i).Width = 700
 
         vDataGrid.Columns(i).Alignment = dbgRight
         vDataGrid.Columns(i).NumberFormat = FormatoDescuento
@@ -5483,7 +5647,7 @@ Dim i As Byte
 '        If conServidas Then
 '            vDataGrid.Columns(i).Width = 1250
 '        Else
-            vDataGrid.Columns(i).Width = 1300
+            vDataGrid.Columns(i).Width = 1600
 '        End If
         vDataGrid.Columns(i).Alignment = dbgRight
         vDataGrid.Columns(i).NumberFormat = FormatoImporte
@@ -5541,6 +5705,16 @@ Dim Sql As String
     MontaSQLCarga = Sql
 End Function
 
+
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1: BotonConfirmarRep 'Confirmar Reparación
+    End Select
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
 Dim cadkey As Integer
