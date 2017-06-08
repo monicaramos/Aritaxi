@@ -745,8 +745,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
-Private WithEvents frmB As frmBuscaGrid
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmAge As frmBasico2
+Attribute frmAge.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
 Attribute frmCP.VB_VarHelpID = -1
 
@@ -1058,24 +1058,25 @@ Private Sub Form_Unload(Cancel As Integer)
     CheckValueGuardar Me.Name, Me.chkVistaPrevia.Value
 End Sub
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
+Private Sub frmAge_DatoSeleccionado(CadenaSeleccion As String)
 Dim CadB As String
 Dim Aux As String
 
-    If CadenaDevuelta <> "" Then
+    If CadenaSeleccion <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
         CadB = Aux
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
+
 End Sub
-    
+
 Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento C. Postales
 Dim indice As Byte
@@ -1212,39 +1213,46 @@ End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 Dim Cad As String
-        'Llamamos a al form
-        '##A mano
-        Cad = ""
-        Cad = Cad & ParaGrid(Text1(0), 30, "Código")
-        Cad = Cad & ParaGrid(Text1(1), 70, "Denominacion")
-'        Cad = Cad & ParaGrid(Combo1, 20, "Tipo Pago")
-        If Cad <> "" Then
-            Screen.MousePointer = vbHourglass
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = Cad
-            frmB.vTabla = NombreTabla
-            frmB.vSQL = CadB
-            HaDevueltoDatos = False
-            '###A mano
+'        'Llamamos a al form
+'        '##A mano
+'        Cad = ""
+'        Cad = Cad & ParaGrid(Text1(0), 30, "Código")
+'        Cad = Cad & ParaGrid(Text1(1), 70, "Denominacion")
+''        Cad = Cad & ParaGrid(Combo1, 20, "Tipo Pago")
+'        If Cad <> "" Then
+'            Screen.MousePointer = vbHourglass
+'            Set frmB = New frmBuscaGrid
+'            frmB.vCampos = Cad
+'            frmB.vTabla = NombreTabla
+'            frmB.vSQL = CadB
+'            HaDevueltoDatos = False
+'            '###A mano
+'
+'            frmB.vDevuelve = "0|1|" 'Campos de la tabla que devuelve
+'            frmB.vTitulo = "Agentes Comerciales"
+'            frmB.vselElem = 1
+'            frmB.vConexionGrid = conAri 'Conexión a BD: Aritaxi
+''            frmB.vBuscaPrevia = chkVistaPrevia
+'            frmB.Show vbModal
+'            Set frmB = Nothing
+'            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'            'tendremos que cerrar el form lanzando el evento
+'            If HaDevueltoDatos Then
+'                PonerFocoBtn Me.cmdRegresar
+''                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''                    cmdRegresar_Click
+'            Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'                PonerModo Modo
+'                PonerFoco Text1(kCampo)
+'            End If
+'        End If
 
-            frmB.vDevuelve = "0|1|" 'Campos de la tabla que devuelve
-            frmB.vTitulo = "Agentes Comerciales"
-            frmB.vselElem = 1
-            frmB.vConexionGrid = conAri 'Conexión a BD: Aritaxi
-'            frmB.vBuscaPrevia = chkVistaPrevia
-            frmB.Show vbModal
-            Set frmB = Nothing
-            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-            'tendremos que cerrar el form lanzando el evento
-            If HaDevueltoDatos Then
-                PonerFocoBtn Me.cmdRegresar
-'                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                    cmdRegresar_Click
-            Else   'de ha devuelto datos, es decir NO ha devuelto datos
-                PonerModo Modo
-                PonerFoco Text1(kCampo)
-            End If
-        End If
+    Set frmAge = New frmBasico2
+    
+    AyudaAgentesComerciales frmAge, Text1(0).Text, CadB
+
+    Set frmAge = Nothing
+
 End Sub
 
 

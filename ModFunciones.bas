@@ -66,7 +66,7 @@ End Sub
 Public Function ValorParaSQL(Valor, ByRef vtag As CTag) As String
 Dim Dev As String
 Dim d As Single
-Dim i As Integer
+Dim I As Integer
 Dim V
     Dev = ""
     If Valor <> "" Then
@@ -298,7 +298,7 @@ Dim mTag As CTag
 Dim Cad As String
 Dim Valor As Variant
 Dim campo As String  'Campo en la base de datos
-Dim i As Integer
+Dim I As Integer
 
 
     On Error GoTo EPonerCamposForma
@@ -380,14 +380,14 @@ Dim i As Integer
                 If mTag.Cargado Then
                     campo = mTag.columna
                     Valor = DBLet(vData.Recordset.Fields(campo))
-                    i = 0
-                    For i = 0 To Control.ListCount - 1
-                        If Control.ItemData(i) = Val(Valor) Then
-                            Control.ListIndex = i
+                    I = 0
+                    For I = 0 To Control.ListCount - 1
+                        If Control.ItemData(I) = Val(Valor) Then
+                            Control.ListIndex = I
                             Exit For
                         End If
-                    Next i
-                    If i = Control.ListCount Then Control.ListIndex = -1
+                    Next I
+                    If I = Control.ListCount Then Control.ListIndex = -1
                 End If 'de cargado
             End If 'de <>""
         End If
@@ -410,7 +410,7 @@ Dim mTag As CTag
 Dim Cad As String
 Dim Valor As Variant
 Dim campo As String  'Campo en la base de datos
-Dim i As Integer
+Dim I As Integer
 
     Set mTag = New CTag
     PonerCamposFormaFrame = False
@@ -470,14 +470,14 @@ Dim i As Integer
                 If mTag.Cargado Then
                     campo = mTag.columna
                     Valor = vData.Recordset.Fields(campo)
-                    i = 0
-                    For i = 0 To Control.ListCount - 1
-                        If Control.ItemData(i) = Val(Valor) Then
-                            Control.ListIndex = i
+                    I = 0
+                    For I = 0 To Control.ListCount - 1
+                        If Control.ItemData(I) = Val(Valor) Then
+                            Control.ListIndex = I
                             Exit For
                         End If
-                    Next i
-                    If i = Control.ListCount Then Control.ListIndex = -1
+                    Next I
+                    If I = Control.ListCount Then Control.ListIndex = -1
                 End If 'de cargado
             End If 'de <>""
         End If
@@ -988,26 +988,26 @@ End Function
 'recupera valor desde una cadena con pipes(acabada en pipes)
 'Para ello le decimos el orden  y ya ta
 Public Function RecuperaValor(ByRef CADENA As String, Orden As Integer) As String
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 Dim cont As Integer
 Dim Cad As String
 
-    i = 0
+    I = 0
     cont = 1
     Cad = ""
     Do
-        J = i + 1
-        i = InStr(J, CADENA, "|")
-        If i > 0 Then
+        J = I + 1
+        I = InStr(J, CADENA, "|")
+        If I > 0 Then
             If cont = Orden Then
-                Cad = Mid(CADENA, J, i - J)
-                i = Len(CADENA) 'Para salir del bucle
+                Cad = Mid(CADENA, J, I - J)
+                I = Len(CADENA) 'Para salir del bucle
                 Else
                     cont = cont + 1
             End If
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     RecuperaValor = Cad
 End Function
 
@@ -1022,7 +1022,7 @@ End Function
 'Para ello en el tag del button tendremos k poner un numero k nos diara hasta k nivel esta permitido
 
 Public Sub PonerOpcionesMenuGeneral(ByRef formulario As Form)
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 
 On Error GoTo EPonerOpcionesMenuGeneral
@@ -1031,14 +1031,14 @@ On Error GoTo EPonerOpcionesMenuGeneral
 With formulario
 
     'LA TOOLBAR  .--> Requisito, k se llame toolbar1
-    For i = 1 To .Toolbar1.Buttons.Count
-        If .Toolbar1.Buttons(i).Tag <> "" Then
-            J = Val(.Toolbar1.Buttons(i).Tag)
+    For I = 1 To .Toolbar1.Buttons.Count
+        If .Toolbar1.Buttons(I).Tag <> "" Then
+            J = Val(.Toolbar1.Buttons(I).Tag)
             If J < vUsu.Nivel Then
-                .Toolbar1.Buttons(i).Enabled = False
+                .Toolbar1.Buttons(I).Enabled = False
             End If
         End If
-    Next i
+    Next I
 
     'Esto es un poco salvaje. Por si acaso , no existe en este trozo pondremos los errores on resume next
 
@@ -1209,17 +1209,17 @@ End Function
 
 Private Function ComprobarComillas(Cad As String) As String
 Dim J As Integer
-Dim i As Integer
+Dim I As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, Cad, """")
-        If i > 0 Then
-            Aux = Mid(Cad, 1, i - 1) & "\"
-            Cad = Aux & Mid(Cad, i)
-            J = i + 2
+        I = InStr(J, Cad, """")
+        If I > 0 Then
+            Aux = Mid(Cad, 1, I - 1) & "\"
+            Cad = Aux & Mid(Cad, I)
+            J = I + 2
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     ComprobarComillas = Cad
 End Function
 
@@ -1609,36 +1609,36 @@ Public Function ObtenerNSerieSiguiente(cadNSerie As String) As String
 'OUT -> RETURN: cadena con el sig. NºSerie : "0000-12-0012"
 Dim NumAux As String, numAnt As String
 Dim NumAux2 As String
-Dim i As Integer
+Dim I As Integer
 
     On Error Resume Next
     
     NumAux = cadNSerie
     numAnt = ""
     'Quitar los cararacter '-' y quedarse con la parte dcha
-    i = InStr(1, NumAux, "-")
-    While Not i = 0
-        numAnt = numAnt & Mid(NumAux, 1, i)
-        NumAux = Mid(NumAux, i + 1, Len(NumAux) - i)
-        i = InStr(1, NumAux, "-")
+    I = InStr(1, NumAux, "-")
+    While Not I = 0
+        numAnt = numAnt & Mid(NumAux, 1, I)
+        NumAux = Mid(NumAux, I + 1, Len(NumAux) - I)
+        I = InStr(1, NumAux, "-")
     Wend
     
     If NumAux <> "" Then 'Hay q coger la parte derecha del - : 0011
-        i = Len(NumAux)
+        I = Len(NumAux)
         If IsNumeric(NumAux) Then
             NumAux = CStr(NumAux + 1)
-            While Len(NumAux) < i
+            While Len(NumAux) < I
                 NumAux = "0" & NumAux
             Wend
         Else
         'Coger el nº mas a la derecha, incrementarlo y concatenarlo con el principio
-            NumAux2 = Mid(NumAux, i, Len(NumAux))
+            NumAux2 = Mid(NumAux, I, Len(NumAux))
             While IsNumeric(NumAux2)
-                i = i - 1
-                NumAux2 = Mid(NumAux, i, Len(NumAux))
+                I = I - 1
+                NumAux2 = Mid(NumAux, I, Len(NumAux))
             Wend
             NumAux2 = Right(NumAux2, Len(NumAux2) - 1)
-            numAnt = numAnt & Mid(NumAux, 1, i)
+            numAnt = numAnt & Mid(NumAux, 1, I)
             NumAux = CStr(NumAux2 + 1)
             While Len(NumAux) < Len(NumAux2)
                 NumAux = "0" & NumAux
@@ -1956,21 +1956,21 @@ Public Function CApos(Texto As String) As String
 '-- (RAFA/ALZIRA) 07092006
 '-- Esta función procesa caracteres extraños y de control para sentencias SQL
 
-    Dim i As Integer
+    Dim I As Integer
     Dim i2 As Integer
     i2 = 1
-    i = InStr(i2, Texto, "'")
-    While i <> 0
-        Texto = Mid(Texto, 1, i) & "'" & Mid(Texto, i + 1, Len(Texto) - i)
-        i2 = i + 2
-        i = InStr(i2, Texto, "'")
+    I = InStr(i2, Texto, "'")
+    While I <> 0
+        Texto = Mid(Texto, 1, I) & "'" & Mid(Texto, I + 1, Len(Texto) - I)
+        i2 = I + 2
+        I = InStr(i2, Texto, "'")
     Wend
     i2 = 1
-    i = InStr(i2, Texto, "\")
-    While i <> 0
-        Texto = Mid(Texto, 1, i) & "\" & Mid(Texto, i + 1, Len(Texto) - i)
-        i2 = i + 2
-        i = InStr(i2, Texto, "\")
+    I = InStr(i2, Texto, "\")
+    While I <> 0
+        Texto = Mid(Texto, 1, I) & "\" & Mid(Texto, I + 1, Len(Texto) - I)
+        i2 = I + 2
+        I = InStr(i2, Texto, "\")
     Wend
 
 End Function
@@ -2671,6 +2671,100 @@ Public Sub AyudaFormasPago(frmBas As frmBasico2, Optional CodActual As String, O
     frmBas.Show vbModal
 End Sub
 
+
+Public Sub AyudaAgentesComerciales(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|905|;S|txtAux(1)|T|Descripción|4595|;"
+    frmBas.CadenaConsulta = "SELECT sagent.codagent, sagent.nomagent "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM sagent "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código Agente Comercial|N|N|0|9999|sagent|codagent|0000|S|"
+    frmBas.Tag2 = "Nombre del Agente Comercial|T|N|||sagent|nomagent||N|"
+    frmBas.Tag3 = ""
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 130
+    frmBas.Maxlen3 = 0
+    
+    
+    frmBas.pConn = conAri
+    
+    
+    frmBas.Tabla = "sagent"
+    frmBas.CampoCP = "codagent"
+    frmBas.Caption = "Agentes Comerciales"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    
+    Redimensiona frmBas, -1500
+    
+    frmBas.Show vbModal
+End Sub
+
+
+
+
+Public Sub AyudaArticulos(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 1405 + 3000 + 2595  hay que quitarle al width 0
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1405|;S|txtAux(1)|T|Descripción|3500|;S|txtAux(2)|T|Cod.Asociación|2095|;"
+    frmBas.CadenaConsulta = "SELECT sartic.codartic, sartic.nomartic, sartic.codtelem "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM sartic "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código Artículo|T|N|||sartic|codartic||S|"
+    frmBas.Tag2 = "Denominación Artículo|T|N|||sartic|nomartic||N|"
+    frmBas.Tag3 = "Código Asociación|T|S|||sartic|codtelem||N|"
+    
+    frmBas.Maxlen1 = 16
+    frmBas.Maxlen2 = 40
+    frmBas.Maxlen3 = 18
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "sartic"
+    frmBas.CampoCP = "codartic"
+    frmBas.Caption = "Artículos"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    frmBas.Show vbModal
+End Sub
+
+
+Public Sub AyudaArticulosInventario(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 1405 + 3000 + 2595  hay que quitarle al width 0
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1405|;S|txtAux(1)|T|Descripción|4595|;"
+    frmBas.CadenaConsulta = "SELECT distinct shinve.codartic, sartic.nomartic "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM shinve, sartic "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE shinve.codartic = sartic.codartic "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código Artículo|T|N|||shinve|codartic||S|"
+    frmBas.Tag2 = "Denominación Artículo|T|N|||sartic|nomartic||N|"
+    
+    frmBas.Maxlen1 = 16
+    frmBas.Maxlen2 = 40
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "shinve"
+    frmBas.CampoCP = "codartic"
+    frmBas.Caption = "Historico Inventario"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    Redimensiona frmBas, -1000
+    
+    frmBas.Show vbModal
+End Sub
+
+
 Public Sub AyudaBancosPropios(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
 ' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
     frmBas.CadenaTots = "S|txtAux(0)|T|Código|905|;S|txtAux(1)|T|Descripción|4595|;"
@@ -2703,6 +2797,107 @@ Public Sub AyudaBancosPropios(frmBas As frmBasico2, Optional CodActual As String
     
     frmBas.Show vbModal
 End Sub
+
+
+Public Sub AyudaCartasOferta(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Codigo|1405|;S|txtAux(1)|T|Nombre|4095|;"
+    frmBas.CadenaConsulta = "SELECT scartas.codcarta, scartas.descarta "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM scartas "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Cod. Carta|N|N|0|999|scartas|codcarta|000|S|"
+    frmBas.Tag2 = "Descripción|T|S|||scartas|descarta||N|"
+    frmBas.Tag3 = ""
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 130
+    frmBas.Maxlen3 = 0
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "scartas"
+    frmBas.CampoCP = "codcarta"
+    frmBas.Caption = "Cartas"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    Redimensiona frmBas, -1500
+    
+    frmBas.Show vbModal
+End Sub
+
+
+
+Public Sub AyudaChoferes(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Codigo|1405|;S|txtAux(1)|T|Nombre|4095|;"
+    frmBas.CadenaConsulta = "SELECT schofe.codchofe, schofe.nomchofe "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM schofe "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Codigo chofer|N|N|||schofe|codchofe|0000|S|"
+    frmBas.Tag2 = "Nombre chofer|T|N|||schofe|nomchofe|||"
+    frmBas.Tag3 = ""
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 130
+    frmBas.Maxlen3 = 0
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "schofe"
+    frmBas.CampoCP = "codchofe"
+    frmBas.Caption = "Choferes"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    Redimensiona frmBas, -1500
+    
+    frmBas.Show vbModal
+End Sub
+
+
+Public Sub AyudaCRMTipos(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Codigo|1405|;S|txtAux(1)|T|Nombre|4095|;"
+    frmBas.CadenaConsulta = "SELECT scrmtipo.codigo, scrmtipo.denominacion "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM scrmtipo "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código|N|N|0||scrmtipo|codigo|0000|S|"
+    frmBas.Tag2 = "Denominacion|T|N|||scrmtipo|denominacion||N|"
+    frmBas.Tag3 = ""
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 130
+    frmBas.Maxlen3 = 0
+    
+    frmBas.pConn = conAri
+    
+    frmBas.Tabla = "scrmtipo"
+    frmBas.CampoCP = "codigo"
+    frmBas.Caption = "Tipos de CRM"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    Redimensiona frmBas, -1500
+    
+    frmBas.Show vbModal
+End Sub
+
+
+
+
+
+
+
 
 Public Sub AyudaCuentasContables(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
 ' en total son 7000 = 1500 + 4000 hay que quitarle al width 1500

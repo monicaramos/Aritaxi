@@ -974,17 +974,17 @@ End Sub
 
 
 Private Sub Imprimir()
-Dim Cad As String
+Dim cad As String
 Dim numParam As Byte
 
     'Resto parametros
-    Cad = ""
-    Cad = Cad & "|pNomEmpre=""" & vParam.NombreEmpresa & """|"
+    cad = ""
+    cad = cad & "|pNomEmpre=""" & vParam.NombreEmpresa & """|"
     numParam = 1
             
     With frmImprimir
         .NombreRPT = "rAlmMovim.rpt"
-        .OtrosParametros = Cad
+        .OtrosParametros = cad
         .NumeroParametros = numParam
         .FormulaSeleccion = cadSeleccion
         .EnvioEMail = False
@@ -1022,7 +1022,7 @@ End Sub
 Private Sub DataGrid1_DblClick()
 'Abrir el formulario del Mantenimiento del que viene el Movimiento
 'Se busca en histórico o en Form
-Dim Sql As String
+Dim SQL As String
 
     Select Case Data2.Recordset!detamovi
         Case "REG" 'Movimientos de Almacen
@@ -1044,8 +1044,8 @@ Dim Sql As String
             'si esta ya facturado abrir el histórico de facturas: frmFacHcoFacturas
             
             'consultamos si existe el albaran en la tabla de albaranes: scaalb
-            Sql = DevuelveDesdeBDNew(conAri, "scaalb", "numalbar", "codtipom", Data2.Recordset!detamovi, "T", , "numalbar", Data2.Recordset!Document, "N")
-            If Sql <> "" Then 'existe el Albaran
+            SQL = DevuelveDesdeBDNew(conAri, "scaalb", "numalbar", "codtipom", Data2.Recordset!detamovi, "T", , "numalbar", Data2.Recordset!Document, "N")
+            If SQL <> "" Then 'existe el Albaran
                  With frmFacEntAlbaranes
                     If EsNumerico(Data2.Recordset!Document) Then
                         .hcoCodMovim = Format(Data2.Recordset!Document, "0000000")
@@ -1089,8 +1089,8 @@ Dim Sql As String
             'si esta ya facturado abrir el histórico de facturas: frmComHcoFacturas
             
             'consultamos si existe el albaran en la tabla de albaranes: scaalp
-            Sql = DevuelveDesdeBDNew(conAri, "scaalp", "numalbar", "codprove", Data2.Recordset!codigope, "N", , "numalbar", Data2.Recordset!Document, "T", "fechaalb", Data2.Recordset!Fechamov, "F")
-            If Sql <> "" Then 'existe el Albaran
+            SQL = DevuelveDesdeBDNew(conAri, "scaalp", "numalbar", "codprove", Data2.Recordset!codigope, "N", , "numalbar", Data2.Recordset!Document, "T", "fechaalb", Data2.Recordset!Fechamov, "F")
+            If SQL <> "" Then 'existe el Albaran
                 With frmComEntAlbaranes
                     .hcoCodMovim = Data2.Recordset!Document
                     .hcoFechaMovim = Data2.Recordset!Fechamov
@@ -1224,16 +1224,16 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim b As Boolean
-Dim i As Byte
-Dim Sql As String
+Dim B As Boolean
+Dim I As Byte
+Dim SQL As String
 
     On Error GoTo ECarga
 
-    b = DataGrid1.Enabled
+    B = DataGrid1.Enabled
      
-    Sql = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data2, Sql, PrimeraVez
+    SQL = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data2, SQL, PrimeraVez
     
     DataGrid1.Columns(0).visible = False 'Cod. Artic
     DataGrid1.Columns(2).visible = False 'Nombre Almacen
@@ -1298,11 +1298,11 @@ Dim Sql As String
     
     DataGrid1.ScrollBars = dbgAutomatic
     DataGrid1.RowHeight = 350
-    For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+    Next I
     DataGrid1.ScrollBars = dbgAutomatic
-    DataGrid1.Enabled = b
+    DataGrid1.Enabled = B
     If Modo = 2 Then DataGrid1.Enabled = True
     PrimeraVez = False
     
@@ -1318,14 +1318,14 @@ End Sub
 Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
-Dim i As Byte
+Dim I As Byte
 Dim alto As Single
 
      'Los ponemos Visibles o No
     '--------------------------
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).visible = visible
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).visible = visible
+    Next I
     cmdAux.visible = visible
     cboAux(0).visible = visible
     cboAux(1).visible = visible
@@ -1336,9 +1336,9 @@ Dim alto As Single
     If Not visible Then
         alto = 290
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Top = alto
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Top = alto
+        Next I
         Me.cmdAux.Top = alto
         Me.cboAux(0).Top = alto
         Me.cboAux(1).Top = alto
@@ -1346,11 +1346,11 @@ Dim alto As Single
         DeseleccionaGrid Me.DataGrid1
         CargarComboAux
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
-            For i = 0 To txtAux.Count - 1
-                txtAux(i).Text = ""
-                txtAux(i).BackColor = vbWhite
-                If (i = 0 Or i = 1 Or i = 3 Or i = 4 Or i = 5 Or i = 7) Then BloquearTxt txtAux(i), False 'TxtAux(i).Locked = False
-            Next i
+            For I = 0 To txtAux.Count - 1
+                txtAux(I).Text = ""
+                txtAux(I).BackColor = vbWhite
+                If (I = 0 Or I = 1 Or I = 3 Or I = 4 Or I = 5 Or I = 7) Then BloquearTxt txtAux(I), False 'TxtAux(i).Locked = False
+            Next I
             cmdAux.Enabled = True
             cboAux(0).Enabled = True
             cboAux(0).ListIndex = -1
@@ -1368,10 +1368,10 @@ Dim alto As Single
 
         'Fijamos altura y posición Top
         '-------------------------------
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Top = alto
-            txtAux(i).Height = DataGrid1.RowHeight
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Top = alto
+            txtAux(I).Height = DataGrid1.RowHeight
+        Next I
         Me.cmdAux.Top = alto
         Me.cmdAux.Height = DataGrid1.RowHeight
         cboAux(0).Top = alto
@@ -1384,9 +1384,9 @@ Dim alto As Single
         cmdAux.Left = txtAux(0).Left + txtAux(0).Width
         txtAux(1).Left = cmdAux.Left + cmdAux.Width  'fechamov
         txtAux(1).Width = DataGrid1.Columns(3).Width - 35
-        i = 2 'hora mov
-        txtAux(i).Left = txtAux(i - 1).Left + txtAux(i - 1).Width + 25
-        txtAux(i).Width = DataGrid1.Columns(4).Width - 20
+        I = 2 'hora mov
+        txtAux(I).Left = txtAux(I - 1).Left + txtAux(I - 1).Width + 25
+        txtAux(I).Width = DataGrid1.Columns(4).Width - 20
         'Tipo Movimiento
         cboAux(0).Left = txtAux(2).Left + txtAux(2).Width + 5
         cboAux(0).Width = DataGrid1.Columns(5).Width
@@ -1394,14 +1394,14 @@ Dim alto As Single
         cboAux(1).Left = cboAux(0).Left + cboAux(0).Width
         cboAux(1).Width = DataGrid1.Columns(6).Width
         
-        i = 3 'Cantidad
-        txtAux(i).Left = cboAux(1).Left + cboAux(1).Width
-        txtAux(i).Width = DataGrid1.Columns(7).Width - 25
+        I = 3 'Cantidad
+        txtAux(I).Left = cboAux(1).Left + cboAux(1).Width
+        txtAux(I).Width = DataGrid1.Columns(7).Width - 25
         
-        For i = 4 To txtAux.Count - 1
-            txtAux(i).Left = txtAux(i - 1).Left + txtAux(i - 1).Width + 25
-            txtAux(i).Width = DataGrid1.Columns(i + 4).Width - 25
-        Next i
+        For I = 4 To txtAux.Count - 1
+            txtAux(I).Left = txtAux(I - 1).Left + txtAux(I - 1).Width + 25
+            txtAux(I).Width = DataGrid1.Columns(I + 4).Width - 25
+        Next I
     End If
 
     
@@ -1503,17 +1503,17 @@ End Sub
 
 
 
-Private Sub txtAux_GotFocus(Index As Integer)
+Private Sub txtaux_GotFocus(Index As Integer)
     If (Modo = 1 And (Index = 0 Or Index = 1 Or Index = 2 Or Index = 3 Or Index = 4 Or Index = 5 Or Index = 7)) Or (Modo <> 1) Then
         ConseguirFoco txtAux(Index), Modo
     End If
 End Sub
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     KEYdown KeyCode
 End Sub
 
-Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub txtaux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
@@ -1568,28 +1568,28 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
-Dim b As Boolean
+Dim I As Byte
+Dim B As Boolean
 Dim NumReg As Byte
 
 
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
 
 
     Modo = Kmodo
     'Modo 2. Hay datos y estamos visualizandolos
-    b = (Kmodo = 2)
+    B = (Kmodo = 2)
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible B And Me.Data1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
 
 
    'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
@@ -1610,18 +1610,18 @@ Dim NumReg As Byte
         PonerBotonCabecera True
     End Select
            
-    b = Modo <> 0 And Modo <> 2
+    B = Modo <> 0 And Modo <> 2
   
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = B
+    Next I
 
     
     PonerLongCampos
 
-    b = (Kmodo >= 3) Or Modo = 1
-    Toolbar1.Buttons(1).Enabled = Not b
-    Toolbar1.Buttons(2).Enabled = Not b
+    B = (Kmodo >= 3) Or Modo = 1
+    Toolbar1.Buttons(1).Enabled = Not B
+    Toolbar1.Buttons(2).Enabled = Not B
 End Sub
 
 
@@ -1659,17 +1659,17 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim Sql As String
+Dim SQL As String
 Dim selSQL As String
 Dim cadBuscar2 As String
-Dim i As Integer
+Dim I As Integer
 
     cadSelGrid = ""
 
     selSQL = "SELECT smoval.codartic, smoval.codalmac, nomalmac, fechamov, horamovi, if(smoval.tipomovi=0,""S"",""E"") as tipomovi, detamovi, "
     selSQL = selSQL & "cantidad, impormov, codigope, letraser, document, numlinea "
     
-    Sql = " FROM (smoval LEFT OUTER JOIN salmpr on smoval.codalmac=salmpr.codalmac)"
+    SQL = " FROM (smoval LEFT OUTER JOIN salmpr on smoval.codalmac=salmpr.codalmac)"
     If enlaza Then
         If EsBusqueda And CadenaBusqueda <> "" Then
             'LAura: 29/09/06
@@ -1681,22 +1681,22 @@ Dim i As Integer
 '
 '                End If
                 
-                Sql = Sql & CadenaBusqueda & " AND codartic=" & DBSet(Text1(0).Text, "T")
+                SQL = SQL & CadenaBusqueda & " AND codartic=" & DBSet(Text1(0).Text, "T")
 '            Else
 '                SQL = SQL & CadenaBusqueda
 '            End If
         Else
-            Sql = Sql & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
+            SQL = SQL & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
         End If
     Else
-        Sql = Sql & " WHERE false " 'codartic = '-1'
+        SQL = SQL & " WHERE false " 'codartic = '-1'
     End If
-    Sql = Sql & " " & Ordenacion & " DESC "
+    SQL = SQL & " " & Ordenacion & " DESC "
     '---- Laura: 27/09/2006
-    cadSelGrid = Sql
-    Sql = selSQL & Sql
+    cadSelGrid = SQL
+    SQL = selSQL & SQL
     '----
-    MontaSQLCarga = Sql
+    MontaSQLCarga = SQL
 End Function
 
 
@@ -1739,12 +1739,12 @@ Private Sub BotonVerTodos()
 End Sub
 
 
-Private Sub PonerBotonCabecera(b As Boolean)
+Private Sub PonerBotonCabecera(B As Boolean)
 Dim bol As Boolean
 
-    Me.cmdAceptar.visible = Not b
-    Me.cmdCancelar.visible = Not b
-    If b Then Me.lblIndicador.Caption = ""
+    Me.cmdAceptar.visible = Not B
+    Me.cmdCancelar.visible = Not B
+    If B Then Me.lblIndicador.Caption = ""
     
     bol = (Modo = 1 Or Modo = 2)
     Me.Label3.visible = bol
@@ -1807,7 +1807,7 @@ End Sub
 
 
 Private Sub PonerCadenaBusqueda()
-Dim i As Byte
+Dim I As Byte
     Screen.MousePointer = vbHourglass
     On Error GoTo EEPonerBusq
 
@@ -1819,9 +1819,9 @@ Dim i As Byte
         Screen.MousePointer = vbDefault
         PonerFoco Text1(0)
         'Limpiar los Campos Auxiliares
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Text = ""
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Text = ""
+        Next I
         Text2(1).Text = ""
         Me.cboAux(0).ListIndex = -1
         Me.cboAux(1).ListIndex = -1
@@ -1866,9 +1866,9 @@ Private Sub CargarComboAux()
 ' Si queremos que este ordenado, o lo ordenamos por la sentencia sql
 ' o marcamos la opcion sorted del combo
 '0-Entrada, 1-Salida
-Dim Index As Byte, i As Integer
+Dim Index As Byte, I As Integer
 Dim RS As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 On Error GoTo ECargar
 
         Index = 0 'Combo Tipo Movimiento
@@ -1880,15 +1880,15 @@ On Error GoTo ECargar
         cboAux(Index).ItemData(cboAux(Index).NewIndex) = 1
         
         Index = 1 'Combo Detalle Movimiento
-        Sql = "select codtipom,nomtipom from stipom"
+        SQL = "select codtipom,nomtipom from stipom"
         Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-        i = 0
+        RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        I = 0
         cboAux(Index).Clear
         While Not RS.EOF
             cboAux(Index).AddItem RS.Fields(0).Value
-            cboAux(Index).ItemData(cboAux(Index).NewIndex) = i
-            i = i + 1
+            cboAux(Index).ItemData(cboAux(Index).NewIndex) = I
+            I = I + 1
             RS.MoveNext
         Wend
         RS.Close
@@ -1904,50 +1904,50 @@ End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-'    'Llamamos a al form
-'    cad = ""
-'
-'    cad = cad & "Código|smoval|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
-'    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
-'    Tabla = Tabla & " GROUP BY smoval.codartic "
-'    Titulo = "Movimientos de Articulos"
-'
-'
-'    If cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = cad
-'        frmB.vTabla = Tabla
-'        frmB.vSQL = cadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vTitulo = Titulo
-'        frmB.vselElem = 0
-'        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-'            Toolbar1.Buttons(5).Enabled = True 'Imprimir
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
+    'Llamamos a al form
+    cad = ""
 
-    Set frmMov = New frmBasico2
-    
-    AyudaMovimientosArticulos frmMov, , CadB
-    
-    Set frmMov = Nothing
+    cad = cad & "Código|smoval|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
+    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
+    Tabla = Tabla & " GROUP BY smoval.codartic "
+    Titulo = "Movimientos de Articulos"
+
+
+    If cad <> "" Then
+        Screen.MousePointer = vbHourglass
+        Set frmB = New frmBuscaGrid
+        frmB.vCampos = cad
+        frmB.vTabla = Tabla
+        frmB.vSQL = CadB
+        HaDevueltoDatos = False
+        '###A mano
+        frmB.vDevuelve = "0|1|"
+        frmB.vTitulo = Titulo
+        frmB.vselElem = 0
+        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
+        frmB.Show vbModal
+        Set frmB = Nothing
+        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+        'tendremos que cerrar el form lanzando el evento
+        If HaDevueltoDatos Then
+''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''                cmdRegresar_Click
+'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+            PonerFoco Text1(kCampo)
+            Toolbar1.Buttons(5).Enabled = True 'Imprimir
+        End If
+    End If
+    Screen.MousePointer = vbDefault
+
+'    Set frmMov = New frmBasico2
+'
+'    AyudaMovimientosArticulos frmMov, , CadB
+'
+'    Set frmMov = Nothing
 
 
 
@@ -1980,17 +1980,17 @@ End Function
 Private Sub CalcularTotales()
 'calcula la cantidad total y el importe total para los
 'registros mostrados de cada artículo
-Dim Sql As String
+Dim SQL As String
 Dim RS As ADODB.Recordset
     
     On Error GoTo ErrTotales
     If cadSelGrid = "" Then Exit Sub
     
-    Sql = "SELECT sum(cantidad) as totCantidad,sum(impormov) as totImporte "
-    Sql = Sql & cadSelGrid
+    SQL = "SELECT sum(cantidad) as totCantidad,sum(impormov) as totImporte "
+    SQL = SQL & cadSelGrid
 
     Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    RS.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not RS.EOF Then
         Text2(3).Text = DBLet(RS!totcantidad, "N")

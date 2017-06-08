@@ -1188,6 +1188,8 @@ Attribute frmList.VB_VarHelpID = -1
 
 Private WithEvents frmProv As frmComProveedores
 Attribute frmProv.VB_VarHelpID = -1
+Private WithEvents frmTarPre As frmTarjetasPrev
+Attribute frmTarPre.VB_VarHelpID = -1
 
 Private Modo As Byte
 '-----------------------------
@@ -2382,43 +2384,51 @@ Dim Titulo As String
 Dim Desc As String, devuelve As String
     'Llamamos a al form
     '##A mano
-    Cad = ""
-    
-    Cad = Cad & ParaGrid(Text1(0), 10, "Codigo")
-    Cad = Cad & "Socio|scliente|nomclien|N||40·"
-    Cad = Cad & ParaGrid(Text1(1), 10, "Usuario")
-    Cad = Cad & ParaGrid(Text1(2), 40, "Nombre")
-    Tabla = NombreTabla & " INNER JOIN scliente ON scatar.codclien = scliente.codclien "
-    Titulo = "Tarjetas"
-    
-    devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = devuelve
+'    Cad = ""
+'
+'    Cad = Cad & ParaGrid(Text1(0), 10, "Codigo")
+'    Cad = Cad & "Socio|scliente|nomclien|N||40·"
+'    Cad = Cad & ParaGrid(Text1(1), 10, "Usuario")
+'    Cad = Cad & ParaGrid(Text1(2), 40, "Nombre")
+'    Tabla = NombreTabla & " INNER JOIN scliente ON scatar.codclien = scliente.codclien "
+'    Titulo = "Tarjetas"
+'
+'    devuelve = "0|1|2|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
 '        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 1
-        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-        'End If
-    End If
-    Screen.MousePointer = vbDefault
+''        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 1
+'        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+''        If HaDevueltoDatos Then
+''''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            PonerFoco Text1(kCampo)
+'        'End If
+'    End If
+'    Screen.MousePointer = vbDefault
+
+
+    Set frmTarPre = New frmTarjetasPrev
+
+    frmTarPre.Show vbModal
+
+    Set frmTarPre = Nothing
+
 End Sub
 
 

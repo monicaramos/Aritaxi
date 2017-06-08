@@ -631,7 +631,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
+Private WithEvents frmB As frmBasico2 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
@@ -818,12 +818,12 @@ Dim I As Integer
 End Sub
 
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
+Private Sub frmB_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario para Busqueda
 Dim CadB As String
 Dim Aux As String
       
-    If CadenaDevuelta <> "" Then
+    If CadenaSeleccion <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         
@@ -832,14 +832,14 @@ Dim Aux As String
         'Sabemos que campos son los que nos devuelve
         'Creamos una cadena consulta y ponemos los datos
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
         CadB = Aux
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
-End Sub
 
+End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
 
@@ -1267,46 +1267,55 @@ Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    Cad = ""
-    'Estamos en Modo de Cabeceras
-    'Registro de la tabla de cabeceras: scapla
-    Cad = Cad & ParaGrid(Text1(0), 20, "Cod. Carta")
-    Cad = Cad & ParaGrid(Text1(1), 80, "Descripción")
+'    'Llamamos a al form
+'    Cad = ""
+'    'Estamos en Modo de Cabeceras
+'    'Registro de la tabla de cabeceras: scapla
+'    Cad = Cad & ParaGrid(Text1(0), 20, "Cod. Carta")
+'    Cad = Cad & ParaGrid(Text1(1), 80, "Descripción")
+'
+'    Tabla = NombreTabla
+'    Titulo = "Cartas de Oferta"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 1
+'        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            If Modo = 5 Then
+''                PonerFoco txtAux(0)
+''            Else
+'                PonerFoco Text1(kCampo)
+''            End If
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
+
+    Set frmB = New frmBasico2
     
-    Tabla = NombreTabla
-    Titulo = "Cartas de Oferta"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 1
-        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            If Modo = 5 Then
-'                PonerFoco txtAux(0)
-'            Else
-                PonerFoco Text1(kCampo)
-'            End If
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    AyudaCartasOferta frmB, Text1(0).Text, CadB
+    
+    Set frmB = Nothing
+    
+
+
 End Sub
 
 

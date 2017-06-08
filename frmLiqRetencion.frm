@@ -43,7 +43,7 @@ Begin VB.Form frmLiqRetencion
                Object.ToolTipText     =   "Recibos de Retenciones"
             EndProperty
             BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.Tag             =   "Reimpresión de Recibos"
+               Object.ToolTipText     =   "Reimpresión de Recibos"
             EndProperty
          EndProperty
       End
@@ -1089,7 +1089,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnnuevo.Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -1097,15 +1097,18 @@ Dim b As Boolean
     Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     
+    'Recibos de retenciones
+    Toolbar1.Buttons(8).Enabled = True
     
-    
-    Toolbar2.Buttons(1).Enabled = b 'And (Data1.Recordset!tiporeten = 1)
-    Me.mnReimprimir.Enabled = b 'And (Data1.Recordset!tiporeten = 1)
-    If b Then
-        Toolbar2.Buttons(1).Enabled = Data1.Recordset!tiporeten
-        Me.mnReimprimir.Enabled = Data1.Recordset!tiporeten
+    Toolbar2.Buttons(1).Enabled = True 'And (Data1.Recordset!tiporeten = 1)
+    Toolbar2.Buttons(2).Enabled = False
+    If Modo = 2 Then
+        If Not Data1.Recordset Is Nothing Then
+            Toolbar2.Buttons(2).Enabled = Data1.Recordset!tiporeten
+            Me.mnReimprimir.Enabled = Data1.Recordset!tiporeten
+        End If
     End If
-
+    
 
     b = (Modo >= 3) Or Modo = 1
     'Buscar
@@ -1113,7 +1116,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
     
 End Sub
 
@@ -1178,7 +1181,7 @@ Dim anc As Single
         'Ponemos el grid lineasfacturas enlazando a ningun sitio
         CargaGrid False
 '        CargaTxtAux True, True
-        anc = ObtenerAlto(Me.DataGrid1)
+        anc = ObtenerAlto(Me.DataGrid1) - 20
         LLamaLineas anc
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco txtAux(0)
@@ -1464,7 +1467,7 @@ Dim devuelve As String
         devuelve = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", "FAV", "T")
      
      
-         With frmImprimir
+        With frmImprimir
                 'Nuevo. Febrero 2010
                 .outClaveNombreArchiv = devuelve & Format(Me.Data1.Recordset!NumFactu, "000")
                 .outCodigoCliProv = Me.Data1.Recordset!codSocio
@@ -1481,7 +1484,6 @@ Dim devuelve As String
                 .Titulo = ""
                 .Show vbModal
         End With
-    
     
     
     End If

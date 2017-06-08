@@ -609,7 +609,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
+Private WithEvents frmB As frmBasico2 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
 'Private WithEvents frmF As frmCal 'Calendario de Fechas
 Private WithEvents frmA As frmAlmAlPropios 'Almacen Origen/Destino
@@ -636,7 +636,7 @@ Private HaDevueltoDatos As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 On Error GoTo Error1
     
     Screen.MousePointer = vbHourglass
@@ -648,12 +648,12 @@ On Error GoTo Error1
 '                If ModificaDesdeFormulario(Me, 3) Then
                 If ModificarLinea Then
                       TerminaBloquear
-                      i = Data1.Recordset.Fields(0)
+                      I = Data1.Recordset.Fields(0)
 '                      LLamaLineas Modo, 0
                       PonerModo 2
                       CancelaADODC Me.Data2
                       
-                      Data1.Recordset.Find (Data1.Recordset.Fields(0).Name & " =" & i)
+                      Data1.Recordset.Find (Data1.Recordset.Fields(0).Name & " =" & I)
                       CargaGrid True
                   End If
                   DataGrid1.SetFocus
@@ -739,7 +739,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -795,8 +795,8 @@ Dim i As Integer
     
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
     
     LimpiarCampos   'Limpia los campos TextBox
@@ -861,7 +861,7 @@ Private Sub frmArtic_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
+Private Sub frmB_DatoSeleccionado(CadenaDevuelta As String)
 'Formulario para Busqueda
 Dim CadB As String
 Dim codArtic As String
@@ -879,7 +879,6 @@ Dim codArtic As String
     Screen.MousePointer = vbDefault
 End Sub
 
-
 Private Sub imgBuscar_Click(Index As Integer)
 
     If Modo = 2 Then Exit Sub
@@ -895,9 +894,6 @@ Private Sub imgBuscar_Click(Index As Integer)
     PonerFoco Text1(0)
     Screen.MousePointer = vbDefault
 End Sub
-
-
-
 
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
@@ -1012,7 +1008,7 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
@@ -1020,9 +1016,9 @@ Dim NumReg As Byte
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2)
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
     
     PonerIndicador Me.lblIndicador, Modo
     
@@ -1041,9 +1037,9 @@ Dim NumReg As Byte
               
     b = Modo <> 0 And Modo <> 2
   
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     PonerLongCampos
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
@@ -1169,7 +1165,7 @@ End Sub
 
 Private Sub BotonModificar()
 Dim anc As Single
-Dim i As Integer
+Dim I As Integer
     
     If Data2.Recordset.EOF Then Exit Sub
     If Data2.Recordset.RecordCount < 1 Then Exit Sub
@@ -1177,8 +1173,8 @@ Dim i As Integer
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     
@@ -1251,7 +1247,7 @@ End Sub
 
 
 Private Sub PonerCadenaBusqueda()
-Dim i As Byte
+Dim I As Byte
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
@@ -1263,9 +1259,9 @@ On Error GoTo EEPonerBusq
         Screen.MousePointer = vbDefault
         PonerFoco Text1(0)
         'Limpiar los Campos Auxiliares
-        For i = 0 To txtAux.Count - 1
-            txtAux(i).Text = ""
-        Next i
+        For I = 0 To txtAux.Count - 1
+            txtAux(I).Text = ""
+        Next I
         Exit Sub
     Else
         PonerModo 2
@@ -1305,42 +1301,49 @@ Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    Cad = ""
-            
-    Cad = Cad & "Articulo|shinve|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
-    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
-'        tabla = tabla & " GROUP BY shinve.codartic "
-    'tabla = "sartic"
-    Titulo = "Histórico Inventario"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-'            Toolbar1.Buttons(5).Enabled = True 'Imprimir
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+'    'Llamamos a al form
+'    Cad = ""
+'
+'    Cad = Cad & "Articulo|shinve|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
+'    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
+''        tabla = tabla & " GROUP BY shinve.codartic "
+'    'tabla = "sartic"
+'    Titulo = "Histórico Inventario"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
+''            Toolbar1.Buttons(5).Enabled = True 'Imprimir
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
+
+    Set frmB = New frmBasico2
+    
+    AyudaArticulosInventario frmB, Text1(0).Text, CadB
+    
+    Set frmB = Nothing
+    
 End Sub
 
 

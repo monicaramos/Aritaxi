@@ -643,7 +643,7 @@ Begin VB.Form frmGesConduc
          Tag             =   "CIF|T|S|||schofe|cifchofe|||"
          Text            =   "Text"
          Top             =   2280
-         Width           =   1095
+         Width           =   1485
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1092,7 +1092,7 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
-Public WithEvents frmB As frmBuscaGrid
+Public WithEvents frmB As frmBasico2
 Attribute frmB.VB_VarHelpID = -1
 Public WithEvents frmCP As frmCPostal
 Attribute frmCP.VB_VarHelpID = -1
@@ -1646,19 +1646,20 @@ On Error Resume Next
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
+
+Private Sub frmB_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario para Busqueda
 Dim CadB As String
 Dim Aux As String
       
-    If CadenaDevuelta <> "" Then
+    If CadenaSeleccion <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
         CadB = Aux
-        Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 2)
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 2)
         CadB = CadB & " AND " & Aux
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
@@ -2304,37 +2305,44 @@ Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(0), 14, "Código")
-    Cad = Cad & ParaGrid(Text1(1), 65, "Nombre")
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & ParaGrid(Text1(0), 14, "Código")
+'    Cad = Cad & ParaGrid(Text1(1), 65, "Nombre")
+'
+'    Tabla = "schofe"
+'    Titulo = "Conductores"
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 1
+'        frmB.vConexionGrid = conAri
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-    Tabla = "schofe"
-    Titulo = "Conductores"
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 1
-        frmB.vConexionGrid = conAri
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmB = New frmBasico2
+    
+    AyudaChoferes frmB, Text1(0).Text, CadB
+    
+    Set frmB = Nothing
+
 End Sub
 Private Sub ImgMail_Click(Index As Integer)
 'Abrir Outlook para enviar e-mail

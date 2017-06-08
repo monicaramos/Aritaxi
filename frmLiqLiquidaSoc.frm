@@ -1129,7 +1129,7 @@ End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(2).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtNombre(2).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(2).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1146,12 +1146,12 @@ End Sub
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
     txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub imgBuscarOfer_Click(Index As Integer)
@@ -1217,11 +1217,11 @@ Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) A
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
         Cad = Cad & "desde " & txtcodigo(indD).Text
-        If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
+        If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
         Cad = Cad & "  hasta " & txtcodigo(indH).Text
-        If txtNombre(indH).Text <> "" Then Cad = Cad & " - " & txtNombre(indH).Text
+        If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
     End If
     AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
@@ -1268,18 +1268,18 @@ Dim EsNomCod As Boolean
             
         Case 0, 1 'V Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' forma de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
             
         Case 3 ' fecha de liquidacion
             PonerFormatoFecha txtcodigo(Index)
             
         Case 5 ' banco propio
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
             
         
         
@@ -1395,7 +1395,7 @@ Dim BancoContado As String
             If NumFactu = -1 Then b = False
             Do
                 NumFactu = vSocio.ConseguirContador(tipoMov)
-                Sql = "select numfactu from rfactusoc where codtipom = " & DBSet(tipoMov, "T") & " and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFac, "F") & " and codsocio = " & DBSet(vSocio.Codigo, "N")
+                Sql = "select numfactu from sfactusoc where codtipom = " & DBSet(tipoMov, "T") & " and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFac, "F") & " and codsocio = " & DBSet(vSocio.Codigo, "N")
                 devuelve = DevuelveValor(Sql) 'DevuelveDesdeBDNew(cAgro, "rfacttra", "numfactu", "codtipom", tipoMov, "T", , "numfactu", CStr(numfactu), "N", "fecfactu", FecFac, "F")
                 If devuelve <> 0 Then
                     'Ya existe el contador incrementarlo
@@ -2271,7 +2271,7 @@ Dim BancoContado As String
             If NumFactu = -1 Then b = False
             Do
                 NumFactu = vSocio.ConseguirContador(tipoMov)
-                Sql = "select numfactu from rfactusoc where codtipom = " & DBSet(tipoMov, "T") & " and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFac, "F") & " and codsocio = " & DBSet(vSocio.Codigo, "N")
+                Sql = "select numfactu from sfactusoc where codtipom = " & DBSet(tipoMov, "T") & " and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFac, "F") & " and codsocio = " & DBSet(vSocio.Codigo, "N")
                 devuelve = DevuelveValor(Sql) 'DevuelveDesdeBDNew(cAgro, "rfacttra", "numfactu", "codtipom", tipoMov, "T", , "numfactu", CStr(numfactu), "N", "fecfactu", FecFac, "F")
                 If devuelve <> 0 Then
                     'Ya existe el contador incrementarlo

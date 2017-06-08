@@ -979,7 +979,8 @@ Private WithEvents frmT As frmAdmTrabajadores 'Mto de Trabajadores
 Attribute frmT.VB_VarHelpID = -1
 Private WithEvents frmArt As frmAlmArticulos   'Form Articulos
 Attribute frmArt.VB_VarHelpID = -1
-
+Private WithEvents frmAlmMov As frmAlmMovimientosPrev   'Form previsualizar
+Attribute frmAlmMov.VB_VarHelpID = -1
 
 Dim NombreTabla As String
 Dim NomTablaLineas As String
@@ -1429,6 +1430,28 @@ Dim indice As Byte
     indice = CByte(Me.imgBuscar(0).Tag)
     Text1(indice + 2).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2)
+End Sub
+
+Private Sub frmAlmMov_DatoSeleccionado(CadenaSeleccion As String)
+'Formulario para Busqueda
+Dim CadB As String
+Dim Aux As String
+    
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        
+        'Recupera todo el registro de Traspaso Almacenes
+        'Sabemos que campos son los que nos devuelve
+        'Creamos una cadena consulta y ponemos los datos
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+        CadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+    End If
+    Screen.MousePointer = vbDefault
+
 End Sub
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
@@ -2354,47 +2377,57 @@ Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    Cad = ""
-    'Registro de la tabla de cabeceras: scamov
-    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Mov.")
-    Cad = Cad & ParaGrid(Text1(1), 20, "Fecha")
-    Cad = Cad & ParaGrid(Text1(2), 10, "Alm.")
-    Cad = Cad & "Desc. Alm. Orig|salmpr|nomalmac|T||40·"
-    Tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".codalmac=salmpr.codalmac" & ") "
-    Titulo = Me.Caption
+'    'Llamamos a al form
+'    cad = ""
+'    'Registro de la tabla de cabeceras: scamov
+'    cad = cad & ParaGrid(Text1(0), 15, "Nº Mov.")
+'    cad = cad & ParaGrid(Text1(1), 20, "Fecha")
+'    cad = cad & ParaGrid(Text1(2), 10, "Alm.")
+'    cad = cad & "Desc. Alm. Orig|salmpr|nomalmac|T||40·"
+'    Tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".codalmac=salmpr.codalmac" & ") "
+'    Titulo = Me.Caption
+'
+'
+'    If cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            If Modo = 5 Then
+''                PonerFoco txtAux(0)
+''            Else
+'                PonerFoco Text1(kCampo)
+''            End If
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            If Modo = 5 Then
-'                PonerFoco txtAux(0)
-'            Else
-                PonerFoco Text1(kCampo)
-'            End If
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    
+    Set frmAlmMov = New frmAlmMovimientosPrev
+
+    frmAlmMov.EsHistorico = EsHistorico
+    frmAlmMov.DatosADevolverBusqueda = "0|"
+    frmAlmMov.Show vbModal
+    
+    Set frmAlmMov = Nothing
+
 End Sub
 
 
