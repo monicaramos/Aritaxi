@@ -647,7 +647,7 @@ Dim I As Integer
 Dim J As Integer
 Dim Aux As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
@@ -659,7 +659,7 @@ Dim Aux As String
         If I > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, I - J)
             J = Val(Aux)
-            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & Adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until I = 0
     RaiseEvent DatoSeleccionado(Cad)
@@ -677,8 +677,8 @@ End Sub
 Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
 Dim Cad As String
 
-    If adodc1.Recordset Is Nothing Then Exit Sub
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset Is Nothing Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
         
     Me.Refresh
     Screen.MousePointer = vbHourglass
@@ -717,7 +717,7 @@ Private Sub Form_Activate()
         Else
             PonerModo 2
              If Me.CodigoActual <> "" Then
-                SituarData Me.adodc1, "=", "", True
+                SituarData Me.Adodc1, "=", "", True
             End If
         End If
     End If
@@ -765,11 +765,6 @@ If Modo = 4 Then TerminaBloquear
     Set vTag3 = Nothing
 End Sub
 
-Private Sub frmCta_DatoSeleccionado(CadenaSeleccion As String)
-    txtAux(5).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtAux2(5).Text = RecuperaValor(CadenaSeleccion, 2)
-End Sub
-
 Private Sub frmF_Selec(vFecha As Date)
     txtAux(1).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
@@ -810,7 +805,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     End If
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.Adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Movimiento|1405|;S|txtAux(1)|T|Fecha|1495|;"
@@ -870,7 +865,7 @@ Private Sub PonerContRegIndicador()
 Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
-        cadReg = PonerContRegistros(Me.adodc1)
+        cadReg = PonerContRegistros(Me.Adodc1)
         If CadB = "" Then
             lblIndicador.Caption = cadReg
         Else

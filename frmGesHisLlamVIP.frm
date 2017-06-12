@@ -1903,8 +1903,8 @@ Public FechaServ As String
 Public HoraServ As String
 Public NumerUve As String
 
-Public WithEvents frmB As frmBuscaGrid
-Attribute frmB.VB_VarHelpID = -1
+Public WithEvents frmLlamPre As frmGesHisLlamPrev
+Attribute frmLlamPre.VB_VarHelpID = -1
 Public WithEvents frmCP As frmCPostal
 Attribute frmCP.VB_VarHelpID = -1
 Public WithEvents frmV As frmGesVehic
@@ -1958,7 +1958,7 @@ Private Sub Check1_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim i As Long
+Dim I As Long
 Dim CadB As String
 Dim Cad As String
 Dim Indicador As String
@@ -1982,9 +1982,9 @@ Dim Indicador As String
                     TerminaBloquear
                     
                     '[Monica] 02/06/2011: tras modificar volvemos al registro correspondiente
-                    NumRegElim = Adodc1.Recordset.AbsolutePosition
-                    Me.Adodc1.Refresh
-                    If SituarDataPosicion(Adodc1, NumRegElim, "") Then
+                    NumRegElim = adodc1.Recordset.AbsolutePosition
+                    Me.adodc1.Refresh
+                    If SituarDataPosicion(adodc1, NumRegElim, "") Then
                         PonerCampos
                     End If
                     PonerModo 2
@@ -2081,12 +2081,12 @@ Private Sub cmdRegresar_Click()
 Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+        Cad = adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & adodc1.Recordset.Fields(1) & "|"
         RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     
@@ -2121,7 +2121,7 @@ Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
         If FechaServ <> "" Then
-            If Me.Adodc1.Recordset.EOF Then
+            If Me.adodc1.Recordset.EOF Then
                 PonerCadenaBusqueda
             Else
                 PonerCampos
@@ -2131,7 +2131,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del form
     Me.Icon = frmPpal.Icon
@@ -2187,8 +2187,8 @@ Dim i As Integer
         .Buttons(4).Image = 9
     End With
 
-    For i = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
     
     imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
@@ -2230,9 +2230,9 @@ Dim i As Integer
     chkVistaPrevia.Value = CheckValueLeer(Name)
     
     'ASignamos un SQL al DATA1
-    Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = CadenaConsulta ' "Select * from " & NombreTabla & " where numeruve=-1"
-    Adodc1.Refresh
+    adodc1.ConnectionString = conn
+    adodc1.RecordSource = CadenaConsulta ' "Select * from " & NombreTabla & " where numeruve=-1"
+    adodc1.Refresh
     
     If FechaServ = "" Then
         If DatosADevolverBusqueda = "" Then
@@ -2241,7 +2241,7 @@ Dim i As Integer
             PonerModo 1
         End If
     Else
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             PonerModo 0
         Else
             PonerModo 2
@@ -2259,7 +2259,7 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
@@ -2269,9 +2269,9 @@ On Error GoTo EPonerModo
     
     BuscaChekc = ""
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     Modo = Kmodo
@@ -2291,11 +2291,11 @@ On Error GoTo EPonerModo
     b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
-    If Not Adodc1.Recordset.EOF Then
-        If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not adodc1.Recordset.EOF Then
+        If adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Adodc1.Recordset.RecordCount > 1
+    DesplazamientoVisible b And adodc1.Recordset.RecordCount > 1
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -2311,14 +2311,14 @@ On Error GoTo EPonerModo
 '    For i = 0 To 2
 '        Check1(i).Enabled = b
 '    Next i
-    For i = 3 To 4
-        Check1(i).Enabled = (Modo = 1)
-    Next i
+    For I = 3 To 4
+        Check1(I).Enabled = (Modo = 1)
+    Next I
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     ' No hay icono para las observaciones de 60 de longitud maxima
     Me.imgBuscar(2).Enabled = False
@@ -2335,9 +2335,9 @@ On Error GoTo EPonerModo
     
     
     
-    For i = 4 To 5
-        Me.imgFecha(i).Enabled = b
-    Next i
+    For I = 4 To 5
+        Me.imgFecha(I).Enabled = b
+    Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -2369,7 +2369,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
@@ -2403,31 +2403,6 @@ On Error Resume Next
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
-'Formulario para Busqueda
-Dim CadB As String
-Dim Aux As String
-      
-    If CadenaDevuelta <> "" Then
-        HaDevueltoDatos = True
-        Screen.MousePointer = vbHourglass
-        
-        CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 1)
-        CadB = Aux
-        Aux = Format(Mid(ValorDevueltoFormGrid(Text1(7), CadenaDevuelta, 2), 18, 8), FormatoHora)
-        CadB = CadB & " AND " & Aux
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 3)
-        CadB = CadB & " AND " & Aux
-        Aux = ValorDevueltoFormGrid(Text1(8), CadenaDevuelta, 4)
-        CadB = CadB & " AND " & Aux
-        
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
-        PonerCadenaBusqueda
-    End If
-    Screen.MousePointer = vbDefault
-End Sub
-
 Private Sub frmCal_Selec(vFecha As Date)
     Fecha = vFecha
 End Sub
@@ -2451,6 +2426,31 @@ Dim devuelve As String
 
 End Sub
 
+Private Sub frmLlamPre_DatoSeleccionado(CadenaSeleccion As String)
+'Formulario para Busqueda
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = Format(ValorDevueltoFormGrid(Text1(7), CadenaSeleccion, 2), FormatoHora)
+        CadB = CadB & " AND " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 3)
+        CadB = CadB & " AND " & Aux
+'        Aux = ValorDevueltoFormGrid(Text1(8), CadenaSeleccion, 4)
+'        CadB = CadB & " AND " & Aux
+        
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
 Private Sub frmS_DatoSeleccionado(CadenaSeleccion As String)
     Text1(0).Text = RecuperaValor(CadenaSeleccion, 1)
     Text2(1).Text = RecuperaValor(CadenaSeleccion, 2)
@@ -2466,7 +2466,7 @@ Select Case Index
             CadenaDesdeOtroForm = Text1(22).Text
         Else
             CadenaDesdeOtroForm = ""
-            If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observa1, "T")
+            If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observa1, "T")
         End If
         frmFacClienteObser.Modificar = Modo >= 3
         frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -2484,7 +2484,7 @@ Select Case Index
             CadenaDesdeOtroForm = Text1(19).Text
         Else
             CadenaDesdeOtroForm = ""
-            If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observa2, "T")
+            If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observa2, "T")
         End If
         frmFacClienteObser.Modificar = Modo >= 3
         frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -2920,13 +2920,13 @@ On Error GoTo EEliminar
 
 msg = "Esta seguro que desea eliminar la llamada del día:" & Text1(1).Text & "?"
 If MsgBox(msg, vbYesNo) = vbYes Then
-    NumRegElim = Adodc1.Recordset.AbsolutePosition
+    NumRegElim = adodc1.Recordset.AbsolutePosition
     Sql = "Delete from shilla where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
     Sql = Sql & "' and numeruve=" & Text1(0).Text
     conn.Execute Sql
 End If
 
-If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
+If SituarDataTrasEliminar(adodc1, NumRegElim) Then
     PonerCampos
 End If
 
@@ -2962,7 +2962,7 @@ Private Sub BotonBuscar()
         Text1(1).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
@@ -2973,8 +2973,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If Adodc1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Adodc1, Index, True
+    If adodc1.Recordset.EOF Then Exit Sub
+    DesplazamientoData adodc1, Index, True
     PonerCampos
 End Sub
 
@@ -2982,9 +2982,9 @@ Private Sub PonerCadenaBusqueda()
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
-    Adodc1.RecordSource = CadenaConsulta
-    Adodc1.Refresh
-    If Adodc1.Recordset.RecordCount <= 0 Then
+    adodc1.RecordSource = CadenaConsulta
+    adodc1.Refresh
+    If adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -2993,7 +2993,7 @@ On Error GoTo EEPonerBusq
         End If
         Exit Sub
     Else
-        Adodc1.Recordset.MoveFirst
+        adodc1.Recordset.MoveFirst
         PonerCampos
         PonerModo 2
     End If
@@ -3012,8 +3012,8 @@ Dim encontrado As String
 On Error Resume Next
 
     
-    If Adodc1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, Adodc1
+    If adodc1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, adodc1
     
     If Combo1.Text = "1" Then
         If Text1(13).Text <> "" Then
@@ -3049,49 +3049,59 @@ On Error Resume Next
     VisualizarDuracion2
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+    lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim Tabla As String
-Dim Titulo As String
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & ParaGrid(Text1(1), 14, "Fecha")
+'    Cad = Cad & ParaGrid(Text1(7), 14, "Hora")
+'    Cad = Cad & ParaGrid(Text1(0), 14, "Codigo")
+'    Cad = Cad & "Socio|sclien|nomclien|N||45·"
+'    Cad = Cad & ParaGrid(Text1(13), 14, "Cliente")
+'
+'    Tabla = "shilla INNER JOIN sclien ON shilla.numeruve = sclien.numeruve"
+'    Titulo = "Histórico Servicios"
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|2|3|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 1
+'        frmB.vConexionGrid = conAri
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(1), 14, "Fecha")
-    Cad = Cad & ParaGrid(Text1(7), 14, "Hora")
-    Cad = Cad & ParaGrid(Text1(0), 14, "Codigo")
-    Cad = Cad & "Socio|sclien|nomclien|N||45·"
-    Cad = Cad & ParaGrid(Text1(13), 14, "Cliente")
+    Set frmLlamPre = New frmGesHisLlamPrev
 
-    Tabla = "shilla INNER JOIN sclien ON shilla.numeruve = sclien.numeruve"
-    Titulo = "Histórico Servicios"
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|2|3|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 1
-        frmB.vConexionGrid = conAri
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    frmLlamPre.DatosADevolverBusqueda = "0|1|2|4|"
+    frmLlamPre.cWhere = CadB
+    frmLlamPre.Show vbModal
+
+    Set frmLlamPre = Nothing
+
+
 End Sub
 
 Private Sub PosicionarData()
@@ -3109,10 +3119,10 @@ Dim Cad As String, Indicador As String
 
 Dim vWhere As String
 
-    If Not Adodc1.Recordset.EOF Then
+    If Not adodc1.Recordset.EOF Then
         'Hay datos en el Data1 bien porque se ha hecho VerTodos o una Busqueda
          vWhere = "(" & ObtenerWhereCP(False) & ")"
-         If SituarDataMULTI(Me.Adodc1, vWhere, Indicador) Then
+         If SituarDataMULTI(Me.adodc1, vWhere, Indicador) Then
              PonerModo 2
              lblIndicador.Caption = Indicador
         Else
@@ -3155,7 +3165,7 @@ Private Sub printNou()
         Else
             .cadRegSelec = ""
         End If
-        .cadRegActua = POS2SF(Adodc1, Me)
+        .cadRegActua = POS2SF(adodc1, Me)
         .cadTodosReg = ""
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
         .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"

@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Begin VB.Form frmTarjetasPrev 
+Begin VB.Form frmGesHisLlamPrev 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Tarjetas"
+   Caption         =   "Llamadas"
    ClientHeight    =   7125
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   9405
-   Icon            =   "frmTarjetasPrev.frx":0000
+   Icon            =   "frmGesHisLlamPrev.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -17,6 +17,27 @@ Begin VB.Form frmTarjetasPrev
    ScaleWidth      =   9405
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtAux 
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   350
+      Index           =   3
+      Left            =   5670
+      MaxLength       =   6
+      TabIndex        =   12
+      Tag             =   "Num vehiculo|N|N|||shilla|numeruve|#####0|S|"
+      Top             =   4920
+      Width           =   885
+   End
    Begin VB.TextBox txtAux2 
       Appearance      =   0  'Flat
       BackColor       =   &H80000018&
@@ -31,13 +52,13 @@ Begin VB.Form frmTarjetasPrev
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Index           =   0
-      Left            =   1290
+      Index           =   2
+      Left            =   3480
       Locked          =   -1  'True
       TabIndex        =   11
       Text            =   "Text2"
       Top             =   4920
-      Width           =   3975
+      Width           =   2025
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
@@ -53,12 +74,12 @@ Begin VB.Form frmTarjetasPrev
       EndProperty
       Height          =   350
       Index           =   2
-      Left            =   6420
-      MaxLength       =   40
+      Left            =   2490
+      MaxLength       =   6
       TabIndex        =   2
-      Tag             =   "Nombre Usuario|T|N|||scatar|nomusuar||N|"
+      Tag             =   "Codigo socio|N|N|||shilla|codsocio|00000||"
       Top             =   4920
-      Width           =   2415
+      Width           =   885
    End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
@@ -143,10 +164,10 @@ Begin VB.Form frmTarjetasPrev
       EndProperty
       Height          =   350
       Index           =   1
-      Left            =   5370
-      MaxLength       =   6
+      Left            =   1440
+      MaxLength       =   8
       TabIndex        =   0
-      Tag             =   "Usuario|N|N|||scatar|codusuar|000000|S|"
+      Tag             =   "Hora|H|N|||shilla|hora|hh:mm:ss|S|"
       Top             =   4920
       Width           =   915
    End
@@ -165,21 +186,21 @@ Begin VB.Form frmTarjetasPrev
       Height          =   350
       Index           =   0
       Left            =   420
-      MaxLength       =   6
+      MaxLength       =   10
       TabIndex        =   1
-      Tag             =   "Cod. Cliente|N|N|0|999999|scatar|codclien|000000|S|"
+      Tag             =   "Fecha|F|N|||shilla|fecha|dd/mm/yyyy|S|"
       Top             =   4920
       Width           =   800
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmTarjetasPrev.frx":000C
-      Height          =   5295
+      Bindings        =   "frmGesHisLlamPrev.frx":000C
+      Height          =   5265
       Left            =   120
       TabIndex        =   7
       Top             =   870
       Width           =   9105
       _ExtentX        =   16060
-      _ExtentY        =   9340
+      _ExtentY        =   9287
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
@@ -378,7 +399,7 @@ Begin VB.Form frmTarjetasPrev
       End
    End
 End
-Attribute VB_Name = "frmTarjetasPrev"
+Attribute VB_Name = "frmGesHisLlamPrev"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -478,7 +499,7 @@ Dim b As Boolean
         txtAux(I).visible = Not b
     Next I
     
-    txtAux2(0).visible = Not b
+    txtAux2(2).visible = Not b
     
     cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
@@ -546,13 +567,13 @@ End Sub
 
 Private Sub BotonBuscar()
     ' ***************** canviar per la clau primaria ********
-    CargaGrid "scatar.codclien is null "
+    CargaGrid "shilla.codclien is null "
     '*******************************************************************************
     'Buscar
     For I = 0 To txtAux.Count - 1
         txtAux(I).Text = ""
     Next I
-    txtAux2(0).Text = ""
+    txtAux2(2).Text = ""
     LLamaLineas DataGrid1.Top + 230, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(1)
 End Sub
@@ -592,10 +613,10 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To 2
+    For I = 0 To 3
         txtAux(I).Top = alto
     Next I
-    txtAux2(0).Top = alto
+    txtAux2(2).Top = alto
     
     ' ### [Monica] 12/09/2006
 End Sub
@@ -644,7 +665,7 @@ Dim I As Integer
 Dim J As Integer
 Dim Aux As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
@@ -656,7 +677,7 @@ Dim Aux As String
         If I > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, I - J)
             J = Val(Aux)
-            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & Adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until I = 0
     RaiseEvent DatoSeleccionado(Cad)
@@ -674,8 +695,8 @@ End Sub
 Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
 Dim Cad As String
 
-    If adodc1.Recordset Is Nothing Then Exit Sub
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset Is Nothing Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
         
     Me.Refresh
     Screen.MousePointer = vbHourglass
@@ -714,7 +735,7 @@ Private Sub Form_Activate()
         Else
             PonerModo 2
              If Me.CodigoActual <> "" Then
-                SituarData Me.adodc1, "=", "", True
+                SituarData Me.Adodc1, "=", "", True
             End If
         End If
     End If
@@ -733,8 +754,8 @@ Private Sub Form_Load()
         .Buttons(2).Image = 2   'Todos
     End With
     
-    CadenaConsulta = "select scatar.codclien, sclien.nomclien, scatar.codusuar, scatar.nomusuar "
-    CadenaConsulta = CadenaConsulta & " from scatar inner join sclien on scatar.codclien = sclien.codclien "
+    CadenaConsulta = "select shilla.fecha, shilla.hora, shilla.codsocio, sclien.nomclien, shilla.numeruve "
+    CadenaConsulta = CadenaConsulta & " from shilla inner join sclien on shilla.codsocio = sclien.codclien "
     CadenaConsulta = CadenaConsulta & " where  (1=1)  "
     If cWhere <> "" Then CadenaConsulta = CadenaConsulta & " and " & cWhere
     
@@ -748,11 +769,6 @@ If Modo = 4 Then TerminaBloquear
     Screen.MousePointer = vbDefault
     Set vTag1 = Nothing
     Set vTag3 = Nothing
-End Sub
-
-Private Sub frmCta_DatoSeleccionado(CadenaSeleccion As String)
-    txtAux(5).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtAux2(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
@@ -788,18 +804,23 @@ Private Sub CargaGrid(Optional vSQL As String)
     End If
     
     '********************* canviar el ORDER BY *********************++
-    If CampoOrden = "" Then
-        Sql = Sql & " ORDER BY codclien desc "
-    Else
-        Sql = Sql & " order by " & CampoOrden & " " & TipoOrden
-    End If
+'    If CampoOrden = "" Then
+'        Sql = Sql & " ORDER BY fecha desc "
+'    Else
+'        Sql = Sql & " order by " & CampoOrden & " " & TipoOrden
+'    End If
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.Adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Cliente|1005|;S|txtAux2(0)|T|Nombre|2795|;"
-    tots = tots & "S|txtAux(1)|T|Usuario|1095|;S|txtAux(2)|T|Nombre|3605|;"
+    tots = "S|txtAux(0)|T|Fecha|1405|;S|txtAux(1)|T|Hora|1005|;"
+    tots = tots & "S|txtAux(2)|T|Socio|1105|;"
+    If vParamAplic.Cooperativa = 0 Then
+        tots = tots & "S|txtAux2(2)|T|Nombre|3895|;S|txtAux(3)|T|Vehículo|1100|;"
+    Else
+        tots = tots & "S|txtAux2(2)|T|Nombre|4995|;N|txtAux(3)|T|Vehículo|1100|;"
+    End If
     
     arregla tots, DataGrid1, Me, 350
     
@@ -820,9 +841,14 @@ Dim Rc As String
     If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
     
     Select Case Index
-        Case 0, 1  ' numero tarjeta y de usuario
+        Case 2, 3 ' numero socio y de v
             PonerFormatoEntero txtAux(Index)
             
+        Case 0 ' fecmovim
+            PonerFormatoFecha txtAux(Index)
+            
+        Case 1 ' hora
+            PonerFormatoHora txtAux(Index)
     End Select
     
 End Sub
@@ -850,7 +876,7 @@ Private Sub PonerContRegIndicador()
 Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
-        cadReg = PonerContRegistros(Me.adodc1)
+        cadReg = PonerContRegistros(Me.Adodc1)
         If CadB = "" Then
             lblIndicador.Caption = cadReg
         Else

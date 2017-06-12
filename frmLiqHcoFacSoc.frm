@@ -489,41 +489,23 @@ Begin VB.Form frmLiqHcoFacSoc
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(48)"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Data2"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "DataGrid1"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "txtAux3(2)"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "txtAux3(1)"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "txtAux3(0)"
-      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "txtAux3(3)"
-      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "txtAux3(4)"
-      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "txtAux3(5)"
-      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "txtAux3(6)"
-      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "txtAux3(7)"
-      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "txtAux3(8)"
-      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).Control(12)=   "txtAux3(9)"
-      Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "txtAux3(10)"
-      Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "txtAux3(11)"
-      Tab(1).Control(14).Enabled=   0   'False
       Tab(1).Control(15)=   "txtAux3(12)"
-      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).Control(16)=   "txtAux2(0)"
-      Tab(1).Control(16).Enabled=   0   'False
       Tab(1).Control(17)=   "FrameToolAux"
-      Tab(1).Control(17).Enabled=   0   'False
       Tab(1).ControlCount=   18
       Begin VB.Frame FrameToolAux 
          Height          =   555
@@ -2040,8 +2022,8 @@ Private numParam As Byte
 
 Private WithEvents frmC As frmGesSocios
 Attribute frmC.VB_VarHelpID = -1
-Private WithEvents frmB As frmBuscaGrid
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmHcoFacSocPre As frmLiqHcoFacSocPrev
+Attribute frmHcoFacSocPre.VB_VarHelpID = -1
 Private WithEvents frmFP As frmFacFormasPago
 Attribute frmFP.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal
@@ -3017,6 +2999,32 @@ Dim indice As Byte
     indice = 12
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Forma Pago
     Text2(indice + 3).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Forma Pago
+End Sub
+
+Private Sub frmHcoFacSocPre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 2)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(2), CadenaSeleccion, 3)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(4), CadenaSeleccion, 4)
+        CadB = CadB & " and " & Aux
+        
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        
+        PonerCadenaBusqueda
+        
+        
+    End If
+    Screen.MousePointer = vbDefault
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -4163,48 +4171,61 @@ Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index <> 23 Then KEYpress KeyAscii
 End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim Tabla As String
-Dim Titulo As String
-Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
-    Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
-    Cad = Cad & ParaGrid(Text1(4), 10, "Socio")
-    Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Socio")
-    Tabla = NombreTabla
-        
-    Titulo = "Facturas"
-    devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
-        frmB.Show vbModal
-        Set frmB = Nothing
-        PonerCadenaBusqueda
-        Text1(0).Text = Format(Text1(0).Text, "0000000")
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-    End If
-    Screen.MousePointer = vbDefault
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'Dim Desc As String, devuelve As String
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
+'    Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
+'    Cad = Cad & ParaGrid(Text1(4), 10, "Socio")
+'    Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Socio")
+'    Tabla = NombreTabla
+'
+'    Titulo = "Facturas"
+'    devuelve = "0|1|2|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        PonerCadenaBusqueda
+'        Text1(0).Text = Format(Text1(0).Text, "0000000")
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'    End If
+'    Screen.MousePointer = vbDefault
+
+
+    Set frmHcoFacSocPre = New frmLiqHcoFacSocPrev
+
+    frmHcoFacSocPre.DatosADevolverBusqueda = "0|1|2|3|"
+    frmHcoFacSocPre.cWhere = CadB
+    frmHcoFacSocPre.Show vbModal
+
+    Set frmHcoFacSocPre = Nothing
+
+
 End Sub
+
 Private Sub frmC_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Socios
     Text1(4).Text = RecuperaValor(CadenaSeleccion, 1)  'Cod Socio
 End Sub
+
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 Dim CadB As String
 Dim Aux As String

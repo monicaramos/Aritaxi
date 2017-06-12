@@ -2072,6 +2072,32 @@ Dim indice As Byte
 End Sub
 
 
+Private Sub frmTarPre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        
+'        If EsCabecera Then 'Llama desde VerTodos del Form
+            CadB = ""
+            Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+            CadB = Aux
+            Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 2)
+            CadB = CadB & " and " & Aux
+            
+
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+            PonerCadenaBusqueda
+            Text1(0).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+            
+'        End If
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 Private Sub imgBuscar_Click(Index As Integer)
 Dim indice As Byte
 
@@ -2425,6 +2451,7 @@ Dim Desc As String, devuelve As String
 
     Set frmTarPre = New frmTarjetasPrev
 
+    frmTarPre.DatosADevolverBusqueda = "0|2|"
     frmTarPre.Show vbModal
 
     Set frmTarPre = Nothing

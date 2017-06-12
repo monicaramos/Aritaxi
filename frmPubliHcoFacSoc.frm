@@ -1116,7 +1116,7 @@ Begin VB.Form frmPubliHcoFacSoc
          Begin VB.Image imgBuscar 
             Height          =   240
             Index           =   5
-            Left            =   7020
+            Left            =   6990
             ToolTipText     =   "Buscar forma de pago"
             Top             =   645
             Width           =   240
@@ -1319,6 +1319,11 @@ Private WithEvents frmC As frmGesSocios
 Attribute frmC.VB_VarHelpID = -1
 Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
+
+Private WithEvents frmHcoFacSocPre As frmPubliHcoFacSocPrev
+Attribute frmHcoFacSocPre.VB_VarHelpID = -1
+
+
 Private WithEvents frmFP As frmFacFormasPago
 Attribute frmFP.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal
@@ -2079,6 +2084,32 @@ Dim indice As Byte
     Text2(indice + 3).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Forma Pago
 End Sub
 
+Private Sub frmHcoFacSocPre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 2)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(2), CadenaSeleccion, 3)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(4), CadenaSeleccion, 4)
+        CadB = CadB & " and " & Aux
+        
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        
+        PonerCadenaBusqueda
+        
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 Private Sub imgBuscar_Click(Index As Integer)
 Dim indice As Byte
 
@@ -2740,43 +2771,55 @@ Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim Tabla As String
-Dim Titulo As String
-Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
-    Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
-    Cad = Cad & ParaGrid(Text1(4), 10, "Socio")
-    Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Socio")
-    Tabla = NombreTabla
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'Dim Desc As String, devuelve As String
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
+'    Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
+'    Cad = Cad & ParaGrid(Text1(4), 10, "Socio")
+'    Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Socio")
+'    Tabla = NombreTabla
+'
+'    Titulo = "Facturas"
+'    devuelve = "0|1|2|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        PonerCadenaBusqueda
+'        Text1(0).Text = Format(Text1(0).Text, "0000000")
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'    End If
+'    Screen.MousePointer = vbDefault
+
+        Set frmHcoFacSocPre = New frmPubliHcoFacSocPrev
+    
+        frmHcoFacSocPre.DatosADevolverBusqueda = "0|1|2|3|"
         
-    Titulo = "Facturas"
-    devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
-        frmB.Show vbModal
-        Set frmB = Nothing
-        PonerCadenaBusqueda
-        Text1(0).Text = Format(Text1(0).Text, "0000000")
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-    End If
-    Screen.MousePointer = vbDefault
+        frmHcoFacSocPre.cWhere = CadB
+        frmHcoFacSocPre.Show vbModal
+    
+        Set frmHcoFacSocPre = Nothing
+
+
+
 End Sub
 Private Sub frmC_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Socios

@@ -248,7 +248,7 @@ Begin VB.Form frmFacHcoFacturas2
          Left            =   7125
          MaxLength       =   6
          TabIndex        =   5
-         Tag             =   "Cod. Cliente|N|N|0|999999|scafac|codclien|000000|N|"
+         Tag             =   "Cod. Socio|N|N|0|999999|scafac|codclien|000000|N|"
          Text            =   "Text1"
          Top             =   330
          Width           =   870
@@ -520,7 +520,6 @@ Begin VB.Form frmFacHcoFacturas2
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -534,115 +533,68 @@ Begin VB.Form frmFacHcoFacturas2
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFacHcoFacturas.frx":000C
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameFactura"
-      Tab(0).Control(1)=   "FrameCliente"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "FrameFactura"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmFacHcoFacturas.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "imgBuscar(7)"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(9)"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Label1(23)"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Label1(24)"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Label1(21)"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Label1(2)"
-      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "Label1(6)"
-      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "Label1(18)"
-      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "Label1(22)"
-      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "Label1(40)"
-      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "imgBuscar(8)"
-      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "imgBuscar(9)"
-      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).Control(12)=   "imgBuscar(6)"
-      Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "FrameObserva"
-      Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "DataGrid2"
-      Tab(1).Control(14).Enabled=   0   'False
       Tab(1).Control(15)=   "DataGrid1"
-      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).Control(16)=   "txtAux(8)"
-      Tab(1).Control(16).Enabled=   0   'False
       Tab(1).Control(17)=   "txtAux(7)"
-      Tab(1).Control(17).Enabled=   0   'False
       Tab(1).Control(18)=   "txtAux(6)"
-      Tab(1).Control(18).Enabled=   0   'False
       Tab(1).Control(19)=   "txtAux(4)"
-      Tab(1).Control(19).Enabled=   0   'False
       Tab(1).Control(20)=   "Text3(2)"
-      Tab(1).Control(20).Enabled=   0   'False
       Tab(1).Control(21)=   "Text2(2)"
-      Tab(1).Control(21).Enabled=   0   'False
       Tab(1).Control(22)=   "Text3(1)"
-      Tab(1).Control(22).Enabled=   0   'False
       Tab(1).Control(23)=   "Text2(1)"
-      Tab(1).Control(23).Enabled=   0   'False
       Tab(1).Control(24)=   "Text3(0)"
-      Tab(1).Control(24).Enabled=   0   'False
       Tab(1).Control(25)=   "Text2(0)"
-      Tab(1).Control(25).Enabled=   0   'False
       Tab(1).Control(26)=   "Text3(8)"
-      Tab(1).Control(26).Enabled=   0   'False
       Tab(1).Control(27)=   "Text3(6)"
-      Tab(1).Control(27).Enabled=   0   'False
       Tab(1).Control(28)=   "Text3(7)"
-      Tab(1).Control(28).Enabled=   0   'False
       Tab(1).Control(29)=   "Text3(5)"
-      Tab(1).Control(29).Enabled=   0   'False
       Tab(1).Control(30)=   "Text3(4)"
-      Tab(1).Control(30).Enabled=   0   'False
       Tab(1).Control(31)=   "Text3(3)"
-      Tab(1).Control(31).Enabled=   0   'False
       Tab(1).Control(32)=   "Text2(3)"
-      Tab(1).Control(32).Enabled=   0   'False
       Tab(1).Control(33)=   "cmdObserva"
-      Tab(1).Control(33).Enabled=   0   'False
       Tab(1).Control(34)=   "txtAux(0)"
-      Tab(1).Control(34).Enabled=   0   'False
       Tab(1).Control(35)=   "txtAux(1)"
-      Tab(1).Control(35).Enabled=   0   'False
       Tab(1).Control(36)=   "txtAux(2)"
-      Tab(1).Control(36).Enabled=   0   'False
       Tab(1).Control(37)=   "txtAux(3)"
-      Tab(1).Control(37).Enabled=   0   'False
       Tab(1).Control(38)=   "txtAux(5)"
-      Tab(1).Control(38).Enabled=   0   'False
       Tab(1).Control(39)=   "txtAux3(0)"
-      Tab(1).Control(39).Enabled=   0   'False
       Tab(1).Control(40)=   "txtAux3(1)"
-      Tab(1).Control(40).Enabled=   0   'False
       Tab(1).Control(41)=   "txtAux3(2)"
-      Tab(1).Control(41).Enabled=   0   'False
       Tab(1).Control(42)=   "Text3(14)"
-      Tab(1).Control(42).Enabled=   0   'False
       Tab(1).Control(43)=   "Text3(15)"
-      Tab(1).Control(43).Enabled=   0   'False
       Tab(1).Control(44)=   "txtAux(9)"
-      Tab(1).Control(44).Enabled=   0   'False
       Tab(1).Control(45)=   "txtAux(10)"
-      Tab(1).Control(45).Enabled=   0   'False
       Tab(1).Control(46)=   "cmdaux"
-      Tab(1).Control(46).Enabled=   0   'False
       Tab(1).Control(47)=   "txtAux(11)"
-      Tab(1).Control(47).Enabled=   0   'False
       Tab(1).Control(48)=   "FrameToolAux"
-      Tab(1).Control(48).Enabled=   0   'False
       Tab(1).ControlCount=   49
       Begin VB.Frame FrameToolAux 
          Height          =   555
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   151
          Top             =   2640
          Width           =   1500
@@ -693,7 +645,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   11
-         Left            =   4080
+         Left            =   -70920
          MaxLength       =   9
          TabIndex        =   148
          Tag             =   "Nº Bultos|N|S|0||slifac|numbultos|#,###,##0|N|"
@@ -705,7 +657,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin VB.CommandButton cmdaux 
          Caption         =   "+"
          Height          =   320
-         Left            =   9480
+         Left            =   -65520
          TabIndex        =   121
          Top             =   4320
          Visible         =   0   'False
@@ -726,7 +678,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   9720
+         Left            =   -65280
          MaxLength       =   15
          TabIndex        =   143
          Tag             =   "Nº Lote|T|S|||slifac|numlote||N|"
@@ -751,7 +703,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   8880
+         Left            =   -66120
          MaxLength       =   30
          TabIndex        =   120
          Tag             =   "Cod. Proveedor|N|N|||slifac|codprovex|0||"
@@ -773,7 +725,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   15
-         Left            =   11160
+         Left            =   -63840
          MaxLength       =   7
          TabIndex        =   133
          Tag             =   "Nº Terminal|N|S|||scafac1|numtermi||N|"
@@ -795,7 +747,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   14
-         Left            =   12360
+         Left            =   -62640
          MaxLength       =   7
          TabIndex        =   132
          Tag             =   "Nº Venta|N|S|||scafac1|numventa|0000000|N|"
@@ -820,7 +772,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   2040
+         Left            =   -72960
          MaxLength       =   30
          TabIndex        =   126
          Tag             =   "Fecha Albaran|F|N|||scafac1|fechaalb|dd/mm/yyyy|N|"
@@ -845,7 +797,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   1080
+         Left            =   -73920
          MaxLength       =   15
          TabIndex        =   125
          Tag             =   "Nº Albaran|N|N|||scafac1|numalbar|0000000|N|"
@@ -870,7 +822,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   7
          TabIndex        =   124
          Tag             =   "Tipo Albaran|T|N|||scafac1|codtipoa||N|"
@@ -895,7 +847,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   5640
+         Left            =   -69360
          MaxLength       =   5
          TabIndex        =   115
          Text            =   "origp"
@@ -919,7 +871,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   3240
+         Left            =   -71760
          MaxLength       =   12
          TabIndex        =   113
          Tag             =   "Cantidad|N|N|0||slifac|cantidad|#,###,###,##0.00|N|"
@@ -943,7 +895,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   12
          TabIndex        =   112
          Tag             =   "Nombre Art.|T|N|||slifac|nomartic||N|"
@@ -968,7 +920,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   1320
+         Left            =   -73680
          MaxLength       =   12
          TabIndex        =   111
          Tag             =   "Art.|T|N|||slifac|codartic||N|"
@@ -993,7 +945,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   12
          TabIndex        =   110
          Tag             =   "Almacen|N|N|0|999|slifac|codalmac|000|N|"
@@ -1004,7 +956,7 @@ Begin VB.Form frmFacHcoFacturas2
       End
       Begin VB.CommandButton cmdObserva 
          Height          =   375
-         Left            =   3960
+         Left            =   -71040
          Style           =   1  'Graphical
          TabIndex        =   109
          Top             =   520
@@ -1023,7 +975,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   6840
+         Left            =   -68160
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   102
@@ -1044,7 +996,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   6120
+         Left            =   -68880
          MaxLength       =   30
          TabIndex        =   30
          Tag             =   "Cod. Envío|N|N|0|999|scafac1|codenvio|000|N|"
@@ -1065,7 +1017,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   11160
+         Left            =   -63840
          MaxLength       =   7
          TabIndex        =   96
          Tag             =   "Nº Oferta|N|S|||scafac1|numofert|0000000|N|"
@@ -1087,7 +1039,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   12360
+         Left            =   -62640
          MaxLength       =   10
          TabIndex        =   95
          Tag             =   "Fecha Oferta|F|S|||scafac1|fecofert|dd/mm/yyyy|N|"
@@ -1108,7 +1060,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   11760
+         Left            =   -63240
          MaxLength       =   10
          TabIndex        =   94
          Tag             =   "Fecha Pedido|F|S|||scafac1|fecpedcl|dd/mm/yyyy|N|"
@@ -1129,7 +1081,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   10800
+         Left            =   -64200
          MaxLength       =   7
          TabIndex        =   93
          Tag             =   "Nº Pedido|N|S|||scafac1|numpedcl|0000000|N|"
@@ -1142,7 +1094,7 @@ Begin VB.Form frmFacHcoFacturas2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   8
-         Left            =   13080
+         Left            =   -61920
          MaxLength       =   10
          TabIndex        =   92
          Tag             =   "Semana Entrega|N|S|||scafac1|sementre||N|"
@@ -1163,7 +1115,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   6840
+         Left            =   -68160
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   91
@@ -1184,7 +1136,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   6120
+         Left            =   -68880
          MaxLength       =   30
          TabIndex        =   27
          Tag             =   "Trabajador Albaran|N|N|0|9999|scafac1|codtraba|0000|N|"
@@ -1205,7 +1157,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   6840
+         Left            =   -68160
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   90
@@ -1227,7 +1179,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   6120
+         Left            =   -68880
          MaxLength       =   30
          TabIndex        =   28
          Tag             =   "Trabajador pedido|N|S|0|9999|scafac1|codtrab1|0000|N|"
@@ -1249,7 +1201,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   6840
+         Left            =   -68160
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   89
@@ -1270,7 +1222,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   6120
+         Left            =   -68880
          MaxLength       =   30
          TabIndex        =   29
          Tag             =   "Preparador materia|N|N|0|9999|scafac1|codtrab2|0000|N|"
@@ -1280,7 +1232,7 @@ Begin VB.Form frmFacHcoFacturas2
       End
       Begin VB.Frame FrameFactura 
          Height          =   2130
-         Left            =   -74700
+         Left            =   300
          TabIndex        =   59
          Top             =   2580
          Width           =   12495
@@ -2086,7 +2038,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   4800
+         Left            =   -70200
          MaxLength       =   12
          TabIndex        =   114
          Tag             =   "Precio|N|N|0|999999.0000|slifac|precioar|###,##0.0000|N|"
@@ -2111,7 +2063,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   6360
+         Left            =   -68640
          MaxLength       =   5
          TabIndex        =   116
          Tag             =   "Dto 1|N|N|0|99.90|slifac|dtoline1|#0.00|N|"
@@ -2136,7 +2088,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   7080
+         Left            =   -67920
          MaxLength       =   30
          TabIndex        =   117
          Tag             =   "Dto 2|N|N|0|99.90|slifac|dtolinea|#0.00|N|"
@@ -2161,7 +2113,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   7680
+         Left            =   -67320
          MaxLength       =   12
          TabIndex        =   119
          Tag             =   "Importe|N|N|0||slifac|importel|#,###,###,##0.00|N|"
@@ -2183,7 +2135,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2235
-         Left            =   -74700
+         Left            =   300
          TabIndex        =   36
          Top             =   360
          Width           =   12705
@@ -3000,7 +2952,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFacHcoFacturas.frx":0044
          Height          =   2025
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   54
          Top             =   3270
          Width           =   12375
@@ -3069,7 +3021,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin MSDataGridLib.DataGrid DataGrid2 
          Bindings        =   "frmFacHcoFacturas.frx":0059
          Height          =   1945
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   88
          Top             =   520
          Width           =   3600
@@ -3149,7 +3101,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2655
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   103
          Tag             =   "Observación 4|T|S|||scafac1|observa4||N|"
          Top             =   2670
@@ -3258,7 +3210,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   6
-         Left            =   5880
+         Left            =   -69120
          ToolTipText     =   "Buscar trabajador"
          Top             =   480
          Width           =   240
@@ -3266,7 +3218,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   9
-         Left            =   5880
+         Left            =   -69120
          ToolTipText     =   "Buscar forma de envio"
          Top             =   2160
          Width           =   240
@@ -3274,7 +3226,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   8
-         Left            =   5880
+         Left            =   -69120
          ToolTipText     =   "Buscar trabajador"
          Top             =   1680
          Width           =   240
@@ -3292,7 +3244,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   40
-         Left            =   11160
+         Left            =   -63840
          TabIndex        =   101
          Top             =   1560
          Visible         =   0   'False
@@ -3311,7 +3263,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   22
-         Left            =   12600
+         Left            =   -62400
          TabIndex        =   100
          Top             =   1560
          Visible         =   0   'False
@@ -3330,7 +3282,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   18
-         Left            =   11760
+         Left            =   -63240
          TabIndex        =   99
          Top             =   615
          Visible         =   0   'False
@@ -3349,7 +3301,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   6
-         Left            =   10770
+         Left            =   -64230
          TabIndex        =   98
          Top             =   615
          Visible         =   0   'False
@@ -3368,7 +3320,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   12960
+         Left            =   -62040
          TabIndex        =   97
          Top             =   600
          Visible         =   0   'False
@@ -3387,7 +3339,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   21
-         Left            =   4440
+         Left            =   -70560
          TabIndex        =   53
          Top             =   525
          Width           =   1455
@@ -3405,7 +3357,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   24
-         Left            =   4440
+         Left            =   -70560
          TabIndex        =   52
          Top             =   2160
          Width           =   1380
@@ -3423,7 +3375,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   23
-         Left            =   4440
+         Left            =   -70560
          TabIndex        =   51
          Top             =   1680
          Width           =   1605
@@ -3441,7 +3393,7 @@ Begin VB.Form frmFacHcoFacturas2
          EndProperty
          Height          =   255
          Index           =   9
-         Left            =   4440
+         Left            =   -70560
          TabIndex        =   50
          Top             =   1080
          Visible         =   0   'False
@@ -3450,7 +3402,7 @@ Begin VB.Form frmFacHcoFacturas2
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   7
-         Left            =   5880
+         Left            =   -69120
          ToolTipText     =   "Buscar trabajador"
          Top             =   1080
          Visible         =   0   'False
@@ -3712,7 +3664,9 @@ Public publicidad As Boolean
 Public DesdeFichaCliente As Boolean
 
 '========== VBLES PRIVADAS ====================
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas
+Private WithEvents frmHcoFac2Pre As frmFacHcoFacturas2Prev 'Form para busquedas
+Attribute frmHcoFac2Pre.VB_VarHelpID = -1
+Private WithEvents frmB As frmBuscaGrid  'Form para busquedas
 Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
 Attribute frmCP.VB_VarHelpID = -1
@@ -4698,6 +4652,32 @@ Dim indice As Byte
 End Sub
 
 
+Private Sub frmHcoFac2Pre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 2)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(2), CadenaSeleccion, 3)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(4), CadenaSeleccion, 4)
+        CadB = CadB & " and " & Aux
+        
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        
+        PonerCadenaBusqueda
+        
+        
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
 Private Sub frmP_DatoSeleccionado(CadenaSeleccion As String)
     txtAux(9).Text = RecuperaValor(CadenaSeleccion, 1)
     txtAux2(9).Text = RecuperaValor(CadenaSeleccion, 2)
@@ -5165,6 +5145,7 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
+
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
 Dim Tabla As String
@@ -5174,21 +5155,36 @@ Dim Desc As String, devuelve As String
     '##A mano
     Cad = ""
     If EsCabecera Then
-        Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
-        Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
-        Cad = Cad & ParaGrid(Text1(4), 10, "Cliente")
-        Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Cliente")
-      If publicidad Then
-        Tabla = NombreTabla & " INNER JOIN scafac1 ON scafac.codtipom='FPC' and scafac.codtipom=scafac1.codtipom AND scafac.numfactu=scafac1.numfactu AND scafac.fecfactu=scafac1.fecfactu "
-      Else
-        Tabla = NombreTabla & " INNER JOIN scafac1 ON scafac.codtipom=scafac1.codtipom AND scafac.numfactu=scafac1.numfactu AND scafac.fecfactu=scafac1.fecfactu "
-      End If
-        'CadenaConsulta = "select scafac.* from " & NombreTabla & " INNER JOIN scafac1 ON scafac.codtipom=scafac1.codtipom AND scafac.numfactu=scafac1.numfactu AND scafac.fecfactu=scafac1.fecfactu "
-        'CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY scafac.codtipom,scafac.numfactu,scafac.fecfactu " & Ordenacion
+'        Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
+'        Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
+'        Cad = Cad & ParaGrid(Text1(4), 10, "Cliente")
+'        Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Cliente")
+'      If publicidad Then
+'        Tabla = NombreTabla & " INNER JOIN scafac1 ON scafac.codtipom='FPC' and scafac.codtipom=scafac1.codtipom AND scafac.numfactu=scafac1.numfactu AND scafac.fecfactu=scafac1.fecfactu "
+'      Else
+'        Tabla = NombreTabla & " INNER JOIN scafac1 ON scafac.codtipom=scafac1.codtipom AND scafac.numfactu=scafac1.numfactu AND scafac.fecfactu=scafac1.fecfactu "
+'      End If
+'        'CadenaConsulta = "select scafac.* from " & NombreTabla & " INNER JOIN scafac1 ON scafac.codtipom=scafac1.codtipom AND scafac.numfactu=scafac1.numfactu AND scafac.fecfactu=scafac1.fecfactu "
+'        'CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY scafac.codtipom,scafac.numfactu,scafac.fecfactu " & Ordenacion
+'
+'        Titulo = "Facturas"
+'        devuelve = "0|1|2|"
+
+
+        Set frmHcoFac2Pre = New frmFacHcoFacturas2Prev
+    
+        frmHcoFac2Pre.DatosADevolverBusqueda = "0|1|2|3|"
         
-        Titulo = "Facturas"
-        devuelve = "0|1|2|"
+        If CadB <> "" Then CadB = CadB & " and "
+        CadB = CadB & " scafac.codtipom not in ('FLI','FPS','FCE','FCN','FAC','FPC')  "
+        
+        frmHcoFac2Pre.cWhere = CadB
+        frmHcoFac2Pre.Show vbModal
+    
+        Set frmHcoFac2Pre = Nothing
+
+        Exit Sub
     Else
         If vParamAplic.Departamento Then
             Titulo = "Dptos Cliente: "
@@ -5203,7 +5199,7 @@ Dim Desc As String, devuelve As String
         Tabla = "sdirec"
         devuelve = "0|1|"
     End If
-           
+
     If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
@@ -5236,6 +5232,8 @@ Dim Desc As String, devuelve As String
         'End If
     End If
     Screen.MousePointer = vbDefault
+
+
 End Sub
 
 
