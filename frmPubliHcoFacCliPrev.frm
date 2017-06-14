@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Begin VB.Form frmPubliHcoFacSocPrev 
+Begin VB.Form frmPubliHcoFacCliPrev 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Histórico de Facturas Publicidad Socios"
+   Caption         =   "Histórico de Facturas Publicidad Clientes"
    ClientHeight    =   7125
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   9405
-   Icon            =   "frmPubliHcoFacSocPrev.frx":0000
+   Icon            =   "frmPubliHcoFacCliPrev.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -56,7 +56,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       Left            =   4410
       MaxLength       =   10
       TabIndex        =   3
-      Tag             =   "Cod. Socio|N|N|0|999999|sfactusoc|codsocio|000000|S|"
+      Tag             =   "Cod. Cliente|N|N|0|999999|scafaccli|codclien|000000|N|"
       Top             =   4920
       Width           =   1695
    End
@@ -75,9 +75,9 @@ Begin VB.Form frmPubliHcoFacSocPrev
       Height          =   350
       Index           =   2
       Left            =   2640
-      MaxLength       =   6
+      MaxLength       =   10
       TabIndex        =   2
-      Tag             =   "Fecha Factura|F|N|||sfactusoc|fecfactu|dd/mm/yyyy|S|"
+      Tag             =   "Fecha Factura|F|N|||scafaccli|fecfactu|dd/mm/yyyy|S|"
       Top             =   4920
       Width           =   1695
    End
@@ -167,7 +167,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       Left            =   1350
       MaxLength       =   40
       TabIndex        =   5
-      Tag             =   "Nº Factura|N|S|||sfactusoc|numfactu|0000000|S|"
+      Tag             =   "Nº Factura|N|N|||scafaccli|numfactu|0000000|S|"
       Top             =   4920
       Width           =   1155
    End
@@ -188,12 +188,12 @@ Begin VB.Form frmPubliHcoFacSocPrev
       Left            =   420
       MaxLength       =   6
       TabIndex        =   0
-      Tag             =   "Tipo Factura|T|N|||sfactusoc|codtipom||S|"
+      Tag             =   "Tipo Factura|T|N|||scafaccli|codtipom||S|"
       Top             =   4920
       Width           =   800
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmPubliHcoFacSocPrev.frx":000C
+      Bindings        =   "frmPubliHcoFacCliPrev.frx":000C
       Height          =   5295
       Left            =   120
       TabIndex        =   1
@@ -399,7 +399,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       End
    End
 End
-Attribute VB_Name = "frmPubliHcoFacSocPrev"
+Attribute VB_Name = "frmPubliHcoFacCliPrev"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -566,7 +566,7 @@ End Sub
 
 Private Sub BotonBuscar()
     ' ***************** canviar per la clau primaria ********
-    CargaGrid "sfactusoc.codsocio is null "
+    CargaGrid "scafaccli.codclien is null "
     '*******************************************************************************
     'Buscar
     For I = 0 To txtAux.Count - 1
@@ -752,8 +752,8 @@ Private Sub Form_Load()
         .Buttons(2).Image = 2   'Todos
     End With
     
-    CadenaConsulta = "select sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.fecfactu, sfactusoc.codsocio, sclien.nomclien "
-    CadenaConsulta = CadenaConsulta & " from sfactusoc inner join sclien on sfactusoc.codsocio = sclien.codclien "
+    CadenaConsulta = "select scafaccli.codtipom, scafaccli.numfactu, scafaccli.fecfactu, scafaccli.codclien, scliente.nomclien "
+    CadenaConsulta = CadenaConsulta & " from scafaccli inner join scliente on scafaccli.codclien = scliente.codclien "
     CadenaConsulta = CadenaConsulta & " where  (1=1)  "
     If cWhere <> "" Then CadenaConsulta = CadenaConsulta & " and " & cWhere
     
@@ -814,7 +814,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Tipo Fra|1005|;S|txtAux(1)|T|Factura|1000|;"
-    tots = tots & "S|txtAux(2)|T|Fecha|1395|;S|txtAux(3)|T|Socio|1105|;S|txtAux2(3)|T|Nombre|3995|;"
+    tots = tots & "S|txtAux(2)|T|Fecha|1395|;S|txtAux(3)|T|Cliente|1105|;S|txtAux2(3)|T|Nombre|3995|;"
     
     arregla tots, DataGrid1, Me, 350
     

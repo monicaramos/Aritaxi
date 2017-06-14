@@ -202,7 +202,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   360
          Index           =   31
-         Left            =   2730
+         Left            =   2880
          MaxLength       =   10
          TabIndex        =   2
          Tag             =   "Fecha Recepción|F|N|||scafpc|fecrecep|dd/mm/yyyy|N|"
@@ -221,7 +221,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   8100
+         Left            =   8250
          MaxLength       =   40
          TabIndex        =   5
          Tag             =   "Nombre Proveedor|T|N|||scafpc|nomprove||N|"
@@ -242,7 +242,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   7215
+         Left            =   7365
          MaxLength       =   6
          TabIndex        =   4
          Tag             =   "Cod. Proveedor|N|N|0|999999|scafpc|codprove|000000|S|"
@@ -263,7 +263,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   1470
+         Left            =   1620
          MaxLength       =   10
          TabIndex        =   1
          Tag             =   "Fecha Factura|F|N|||scafpc|fecfactu|dd/mm/yyyy|S|"
@@ -290,7 +290,7 @@ Begin VB.Form frmComHcoFacturas
          Tag             =   "Nº Factura|T|N|||scafpc|numfactu||S|"
          Text            =   "Text1 7"
          Top             =   375
-         Width           =   1125
+         Width           =   1305
       End
       Begin VB.CheckBox Check1 
          Caption         =   "Contabilizado"
@@ -304,7 +304,7 @@ Begin VB.Form frmComHcoFacturas
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   4110
+         Left            =   4260
          TabIndex        =   3
          Tag             =   "Contabilizado|N|N|0|1|scafpc|intconta||N|"
          Top             =   330
@@ -323,7 +323,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   2730
+         Left            =   2880
          TabIndex        =   102
          Top             =   120
          Width           =   1305
@@ -341,7 +341,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   255
          Index           =   0
-         Left            =   5850
+         Left            =   6000
          TabIndex        =   98
          Top             =   330
          Width           =   1095
@@ -349,7 +349,7 @@ Begin VB.Form frmComHcoFacturas
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   6945
+         Left            =   7095
          ToolTipText     =   "Buscar proveedor"
          Top             =   330
          Width           =   240
@@ -367,7 +367,7 @@ Begin VB.Form frmComHcoFacturas
          EndProperty
          Height          =   255
          Index           =   29
-         Left            =   1470
+         Left            =   1620
          TabIndex        =   97
          Top             =   120
          Width           =   1245
@@ -512,8 +512,8 @@ Begin VB.Form frmComHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
-      Tab(0).Control(1)=   "FrameFactura"
+      Tab(0).Control(0)=   "FrameFactura"
+      Tab(0).Control(1)=   "FrameCliente"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmComHcoFacturas.frx":0028
@@ -2807,8 +2807,9 @@ Public hcoFechaMovim As Date 'Fecha del Movim
 Public hcoCodProve As Long 'Codigo de Proveedor    'DAVID.  Estaba integer
 
 '========== VBLES PRIVADAS ====================
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmHcoFrasPre As frmComHcoFacturasPrev 'Form para busquedas
+Attribute frmHcoFrasPre.VB_VarHelpID = -1
+
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
 Attribute frmCP.VB_VarHelpID = -1
 
@@ -3533,6 +3534,27 @@ Dim indice As Byte
 End Sub
 
 
+Private Sub frmHcoFrasPre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 2)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(2), CadenaSeleccion, 3)
+        CadB = CadB & " and " & Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB
+        CadenaConsulta = CadenaConsulta & " " & Ordenacion
+        PonerCadenaBusqueda
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
 Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Proveedores
     Text1(2).Text = RecuperaValor(CadenaSeleccion, 1)  'Cod Prove
@@ -3873,52 +3895,63 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim Tabla As String
-Dim Titulo As String
-Dim devuelve As String
-    
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-'        cad = cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-        Cad = Cad & ParaGrid(Text1(0), 18, "Nº Factura")
-        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Fac.")
-        Cad = Cad & ParaGrid(Text1(2), 12, "Prov.")
-        Cad = Cad & ParaGrid(Text1(3), 55, "Nombre Prov")
-        Tabla = NombreTabla
-        Titulo = "Facturas"
-        devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-'        frmB.vDevuelve = "0|1|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-        'End If
-    End If
-    Screen.MousePointer = vbDefault
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'Dim devuelve As String
+'
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+''        cad = cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'        Cad = Cad & ParaGrid(Text1(0), 18, "Nº Factura")
+'        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Fac.")
+'        Cad = Cad & ParaGrid(Text1(2), 12, "Prov.")
+'        Cad = Cad & ParaGrid(Text1(3), 55, "Nombre Prov")
+'        Tabla = NombreTabla
+'        Titulo = "Facturas"
+'        devuelve = "0|1|2|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+''        frmB.vDevuelve = "0|1|"
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri  'Conexión a BD: Aritaxi
+''        If Not EsCabecera Then frmB.Label1.FontSize = 11
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+''        If HaDevueltoDatos Then
+''''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            PonerFoco Text1(kCampo)
+'        'End If
+'    End If
+'    Screen.MousePointer = vbDefault
+
+    Set frmHcoFrasPre = New frmComHcoFacturasPrev
+
+    frmHcoFrasPre.DatosADevolverBusqueda = "0|1|3|"
+    frmHcoFrasPre.cWhere = CadB
+    frmHcoFrasPre.Show vbModal
+
+    Set frmHcoFrasPre = Nothing
+
+
+
 End Sub
 
 

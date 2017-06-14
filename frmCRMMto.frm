@@ -819,6 +819,10 @@ Public DesdeElCliente As Long  '0  -Ningun cliente
 
 Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
+
+Private WithEvents frmMtoPre As frmCRMMtoPrev
+Attribute frmMtoPre.VB_VarHelpID = -1
+
 Private WithEvents frmAcc As frmCRMtipos
 Attribute frmAcc.VB_VarHelpID = -1
 Private WithEvents frmCli As frmFacClientes2
@@ -829,7 +833,6 @@ Private WithEvents frmT As frmAdmTrabajadores
 Attribute frmT.VB_VarHelpID = -1
 Private WithEvents frmC As frmCal
 Attribute frmC.VB_VarHelpID = -1
-
 
 
 '  Variables comunes a todos los formularios
@@ -1076,7 +1079,7 @@ End Sub
 
 Private Sub Form_Load()
 Dim Vac As Boolean
-Dim i As Integer
+Dim I As Integer
 
     'Icono del formulario
     PrimeraVez = True
@@ -1135,8 +1138,8 @@ Dim i As Integer
 
 
 
-    For i = 2 To 5
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 2 To 5
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
     
     
@@ -1256,6 +1259,26 @@ Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     HaDevueltoDatos = True
     Text1(3).Text = RecuperaValor(CadenaSeleccion, 1)
     Text2(3).Text = RecuperaValor(CadenaSeleccion, 2)
+End Sub
+
+Private Sub frmMtoPre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        'Sabemos que campos son los que nos devuelve
+        'Creamos una cadena consulta y ponemos los datos
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+        Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 2)
+        Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(3), CadenaSeleccion, 3)
+        CadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
 End Sub
 
 Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
@@ -1427,46 +1450,58 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-Dim Cad As String
-        'Llamamos a al form
-        '##A mano
-        Cad = ""
-        Cad = Cad & ParaGrid(Text1(0), 10, "Usuario")
-        Cad = Cad & ParaGrid(Text1(1), 25, "Fecha")
-        Cad = Cad & ParaGrid(Text1(3), 10, "Codigo")
-        Cad = Cad & "Nombre|scliente|nomclien|T||50·"
+'Dim Cad As String
+'        'Llamamos a al form
+'        '##A mano
+'        Cad = ""
+'        Cad = Cad & ParaGrid(Text1(0), 10, "Usuario")
+'        Cad = Cad & ParaGrid(Text1(1), 25, "Fecha")
+'        Cad = Cad & ParaGrid(Text1(3), 10, "Codigo")
+'        Cad = Cad & "Nombre|scliente|nomclien|T||50·"
+'
+'            Screen.MousePointer = vbHourglass
+'            Set frmB = New frmBuscaGrid
+'            frmB.vCampos = Cad
+'            frmB.vTabla = NombreTabla & ",scliente"
+'
+'            Cad = "scliente.codclien=" & NombreTabla & ".codclien"
+'            If CadB <> "" Then Cad = Cad & " AND " & CadB
+'            frmB.vSQL = Cad
+'            HaDevueltoDatos = False
+'            '###A mano
+'
+'            frmB.vDevuelve = "0|1|2|" 'Campos de la tabla que devuelve
+'            frmB.vTitulo = "Acciones realizadas"
+'            frmB.vselElem = 1
+'            frmB.vConexionGrid = conAri 'Conexión a BD: Aritaxi
+''            frmB.vBuscaPrevia = chkVistaPrevia
+'            frmB.Show vbModal
+'            Set frmB = Nothing
+'            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'            'tendremos que cerrar el form lanzando el evento
+'            If HaDevueltoDatos Then
+'                Modo = 3
+'                PonerCampos2
+'                Modo = 2
+'                PonerFocoBtn Me.cmdRegresar
+''                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''                    cmdRegresar_Click
+'            Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'                PonerModo Modo
+'                PonerFoco Text1(kCampo)
+'            End If
+        
+    Set frmMtoPre = New frmCRMMtoPrev
 
-            Screen.MousePointer = vbHourglass
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = Cad
-            frmB.vTabla = NombreTabla & ",scliente"
-            
-            Cad = "scliente.codclien=" & NombreTabla & ".codclien"
-            If CadB <> "" Then Cad = Cad & " AND " & CadB
-            frmB.vSQL = Cad
-            HaDevueltoDatos = False
-            '###A mano
+    frmMtoPre.DatosADevolverBusqueda = "0|1|2|"
+    frmMtoPre.cWhere = CadB
+    frmMtoPre.Show vbModal
 
-            frmB.vDevuelve = "0|1|2|" 'Campos de la tabla que devuelve
-            frmB.vTitulo = "Acciones realizadas"
-            frmB.vselElem = 1
-            frmB.vConexionGrid = conAri 'Conexión a BD: Aritaxi
-'            frmB.vBuscaPrevia = chkVistaPrevia
-            frmB.Show vbModal
-            Set frmB = Nothing
-            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-            'tendremos que cerrar el form lanzando el evento
-            If HaDevueltoDatos Then
-                Modo = 3
-                PonerCampos2
-                Modo = 2
-                PonerFocoBtn Me.cmdRegresar
-'                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                    cmdRegresar_Click
-            Else   'de ha devuelto datos, es decir NO ha devuelto datos
-                PonerModo Modo
-                PonerFoco Text1(kCampo)
-            End If
+    Set frmMtoPre = Nothing
+
+        
+        
+        
         
 End Sub
 
@@ -1528,13 +1563,13 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim i As Integer
+Dim I As Integer
 
     Modo = Kmodo
 
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos

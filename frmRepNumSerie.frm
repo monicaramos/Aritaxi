@@ -5,7 +5,7 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmRepNumSerie2 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Numeros de Serie"
+   Caption         =   "Números de Serie"
    ClientHeight    =   7320
    ClientLeft      =   45
    ClientTop       =   330
@@ -219,29 +219,29 @@ Begin VB.Form frmRepNumSerie2
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(15)"
+      Tab(1).Control(0)=   "Frame4"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label1(7)"
+      Tab(1).Control(1)=   "Frame3"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "txtAux2(2)"
+      Tab(1).Control(2)=   "txtAux(2)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "chkAux"
+      Tab(1).Control(3)=   "txtAux2(1)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "DataGrid1"
+      Tab(1).Control(4)=   "txtAux2(0)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux(0)"
+      Tab(1).Control(5)=   "txtAux(1)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux(1)"
+      Tab(1).Control(6)=   "txtAux(0)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "txtAux2(0)"
+      Tab(1).Control(7)=   "DataGrid1"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "txtAux2(1)"
+      Tab(1).Control(8)=   "chkAux"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(2)"
+      Tab(1).Control(9)=   "txtAux2(2)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Frame3"
+      Tab(1).Control(10)=   "Label1(7)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "Frame4"
+      Tab(1).Control(11)=   "Label1(15)"
       Tab(1).Control(11).Enabled=   0   'False
       Tab(1).ControlCount=   12
       Begin VB.Frame Frame4 
@@ -2203,6 +2203,10 @@ Public codArtic As String
 
 Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
+
+Private WithEvents frmRepSerPre As frmRepNumSerie2Prev
+Attribute frmRepSerPre.VB_VarHelpID = -1
+
 Private WithEvents frmF As frmCal 'Calendario de Fechas
 Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmTA As frmAlmTipoArticulo  'Form Mantenimiento Tipo Articulo
@@ -2351,26 +2355,26 @@ Dim Sql As String
 Dim RS As ADODB.Recordset
 
 
-    If Me.Adodc1.Recordset.EOF Then Exit Sub
+    If Me.adodc1.Recordset.EOF Then Exit Sub
     
 '    If Modo = 2 Then
-        Me.chkAux.Value = DBLet(Me.Adodc1.Recordset!TieneMan, "N")
-        txtAux2(2).Text = DBLet(Me.Adodc1.Recordset!nummante, "T")
-        txtAux2(3).Text = DBLet(Me.Adodc1.Recordset!codtipom, "T")
+        Me.chkAux.Value = DBLet(Me.adodc1.Recordset!TieneMan, "N")
+        txtAux2(2).Text = DBLet(Me.adodc1.Recordset!nummante, "T")
+        txtAux2(3).Text = DBLet(Me.adodc1.Recordset!codtipom, "T")
         
-        txtAux2(4).Text = DBLet(Me.Adodc1.Recordset!NumAlbar, "T")
-        txtAux2(5).Text = DBLet(Me.Adodc1.Recordset!NumFactu, "T")
-        txtAux2(6).Text = DBLet(Me.Adodc1.Recordset!FechaVta, "F")
-        txtAux2(7).Text = DBLet(Me.Adodc1.Recordset!numline1, "T")
+        txtAux2(4).Text = DBLet(Me.adodc1.Recordset!NumAlbar, "T")
+        txtAux2(5).Text = DBLet(Me.adodc1.Recordset!NumFactu, "T")
+        txtAux2(6).Text = DBLet(Me.adodc1.Recordset!FechaVta, "F")
+        txtAux2(7).Text = DBLet(Me.adodc1.Recordset!numline1, "T")
         
         '[Monica]14/02/2014:
-        txtAux2(8).Text = DBLet(Me.Adodc1.Recordset!numalbpr, "T")
-        txtAux2(10).Text = DBLet(Me.Adodc1.Recordset!fechaCom, "F")
-        txtAux2(11).Text = DBLet(Me.Adodc1.Recordset!numline2, "T")
+        txtAux2(8).Text = DBLet(Me.adodc1.Recordset!numalbpr, "T")
+        txtAux2(10).Text = DBLet(Me.adodc1.Recordset!fechaCom, "F")
+        txtAux2(11).Text = DBLet(Me.adodc1.Recordset!numline2, "T")
         
         txtAux2(9).Text = ""
         If txtAux2(8).Text <> "" Then
-            Sql = "select numfactu from scafpa where numalbar = " & DBSet(txtAux2(8).Text, "T") & " and codprove = " & DBSet(Me.Adodc1.Recordset!codProve, "N")
+            Sql = "select numfactu from scafpa where numalbar = " & DBSet(txtAux2(8).Text, "T") & " and codprove = " & DBSet(Me.adodc1.Recordset!codProve, "N")
             
             Set RS = New ADODB.Recordset
             RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -2590,6 +2594,30 @@ Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento Proveedores
     Text1(12).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
     Text2(12).Text = RecuperaValor(CadenaSeleccion, 2)
+End Sub
+
+Private Sub frmRepSerPre_DatoSeleccionado(CadenaSeleccion As String)
+'Formulario para Busqueda
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        'Estamos en Cabecera
+        'Recupera todo el registro de Nº Serie
+        'Sabemos que campos son los que nos devuelve
+        'Creamos una cadena consulta y ponemos los datos
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 2)
+        CadB = CadB & " and " & Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+    End If
+    Screen.MousePointer = vbDefault
+
 End Sub
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
@@ -2860,16 +2888,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
@@ -2916,14 +2944,14 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
+    For I = 0 To Me.imgBuscar.Count - 1
 '        Me.imgBuscar(i).Enabled = b
-        BloquearImg Me.imgBuscar(i), Not b
-    Next i
+        BloquearImg Me.imgBuscar(I), Not b
+    Next I
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b 'Si es insertar o modificar
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b 'Si es insertar o modificar
+    Next I
     
     'Si Modificar y se ha insertado un nº Albaran no modificar datos
     'del proveedor
@@ -3173,24 +3201,17 @@ Dim selElem As Byte
     'Llamamos a al form
     Cad = ""
     If EsCabecera Then
-    'Estamos en Modo de Cabeceras
-    'Registro de la tabla de cabeceras: sserie
-        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Serie")
-        Cad = Cad & ParaGrid(Text1(1), 20, "Artic.")
-        Cad = Cad & "Desc. Artic.|sartic|nomartic|T||38·"
-        Cad = Cad & ParaGrid(Text1(2), 6, "TArt.")
-        Cad = Cad & "Desc. Tipo|stipar|nomtipar|T||20·"
+   
+        Set frmRepSerPre = New frmRepNumSerie2Prev
     
-        Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ")"
-        Tabla = Tabla & " LEFT JOIN stipar ON " & NombreTabla & ".codtipar=stipar.codtipar"
+        frmRepSerPre.DatosADevolverBusqueda = "0|1|2|"
+        frmRepSerPre.cWhere = CadB
+        frmRepSerPre.Show vbModal
     
-        If Series Then
-            Tabla = "(" & Tabla & ") INNER JOIN sclien ON sserie.codclien = sclien.codclien and sclien.numeruve is not null "
-        End If
-    
-        Titulo = "Nº Serie"
-        selElem = 2
-   Else
+        Set frmRepSerPre = Nothing
+
+   
+    Else
         If vParamAplic.Departamento Then
             Titulo = "Dptos Cliente: "
             Desc = "Dpto."
@@ -3512,7 +3533,7 @@ Dim tots As String
 '    b = DataGrid1.Enabled
     
     Sql = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Adodc1, Sql, PrimeraVez
+    CargaGridGnral DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     tots = "N||||0|;N||||0|;N||||0|;"
     If vParamAplic.Departamento Then

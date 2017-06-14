@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Begin VB.Form frmPubliHcoFacSocPrev 
+Begin VB.Form frmRepNumSerie2Prev
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Histórico de Facturas Publicidad Socios"
+   Caption         =   "Reparaciones"
    ClientHeight    =   7125
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   9405
-   Icon            =   "frmPubliHcoFacSocPrev.frx":0000
+   Icon            =   "frmRepNumSerie2Prev.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -31,10 +31,10 @@ Begin VB.Form frmPubliHcoFacSocPrev
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Index           =   3
-      Left            =   6180
+      Index           =   1
+      Left            =   2670
       Locked          =   -1  'True
-      TabIndex        =   4
+      TabIndex        =   6
       Text            =   "Text2"
       Top             =   4920
       Width           =   2865
@@ -52,45 +52,24 @@ Begin VB.Form frmPubliHcoFacSocPrev
          Strikethrough   =   0   'False
       EndProperty
       Height          =   350
-      Index           =   3
-      Left            =   4410
-      MaxLength       =   10
-      TabIndex        =   3
-      Tag             =   "Cod. Socio|N|N|0|999999|sfactusoc|codsocio|000000|S|"
-      Top             =   4920
-      Width           =   1695
-   End
-   Begin VB.TextBox txtAux 
-      Appearance      =   0  'Flat
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   350
       Index           =   2
-      Left            =   2640
-      MaxLength       =   6
+      Left            =   5610
+      MaxLength       =   7
       TabIndex        =   2
-      Tag             =   "Fecha Factura|F|N|||sfactusoc|fecfactu|dd/mm/yyyy|S|"
+      Tag             =   "Nº Reparación|N|S|0|9999999|scarep|numrepar|0000000|S|"
       Top             =   4920
       Width           =   1695
    End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   90
       Width           =   1545
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   240
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   180
          Width           =   1065
          _ExtentX        =   1879
@@ -125,7 +104,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       EndProperty
       Height          =   375
       Left            =   6990
-      TabIndex        =   6
+      TabIndex        =   3
       Tag             =   "   "
       Top             =   6360
       Visible         =   0   'False
@@ -145,7 +124,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       EndProperty
       Height          =   375
       Left            =   8160
-      TabIndex        =   7
+      TabIndex        =   4
       Top             =   6360
       Visible         =   0   'False
       Width           =   1095
@@ -164,10 +143,10 @@ Begin VB.Form frmPubliHcoFacSocPrev
       EndProperty
       Height          =   350
       Index           =   1
-      Left            =   1350
-      MaxLength       =   40
-      TabIndex        =   5
-      Tag             =   "Nº Factura|N|S|||sfactusoc|numfactu|0000000|S|"
+      Left            =   1380
+      MaxLength       =   16
+      TabIndex        =   1
+      Tag             =   "Cod. Artículo|T|N|||scarep|codartic||N|"
       Top             =   4920
       Width           =   1155
    End
@@ -186,17 +165,17 @@ Begin VB.Form frmPubliHcoFacSocPrev
       Height          =   350
       Index           =   0
       Left            =   420
-      MaxLength       =   6
+      MaxLength       =   15
       TabIndex        =   0
-      Tag             =   "Tipo Factura|T|N|||sfactusoc|codtipom||S|"
+      Tag             =   "Nº Serie|T|S|||scarep|numserie||N|"
       Top             =   4920
       Width           =   800
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmPubliHcoFacSocPrev.frx":000C
+      Bindings        =   "frmRepNumSerie2Prev .frx":000C
       Height          =   5295
       Left            =   120
-      TabIndex        =   1
+      TabIndex        =   5
       Top             =   870
       Width           =   9105
       _ExtentX        =   16060
@@ -275,7 +254,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       EndProperty
       Height          =   375
       Left            =   8130
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   6360
       Visible         =   0   'False
       Width           =   1095
@@ -284,7 +263,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       Height          =   555
       Index           =   1
       Left            =   120
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   6360
       Width           =   2985
       Begin VB.Label lblIndicador 
@@ -301,7 +280,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
          EndProperty
          Height          =   255
          Left            =   45
-         TabIndex        =   9
+         TabIndex        =   8
          Top             =   180
          Width           =   2895
       End
@@ -399,7 +378,7 @@ Begin VB.Form frmPubliHcoFacSocPrev
       End
    End
 End
-Attribute VB_Name = "frmPubliHcoFacSocPrev"
+Attribute VB_Name = "frmRepNumSerie2Prev"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -498,7 +477,7 @@ Dim b As Boolean
     For I = 0 To txtAux.Count - 1
         txtAux(I).visible = Not b
     Next I
-    txtAux2(3).visible = Not b
+    txtAux2(1).visible = Not b
     
     cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
@@ -566,13 +545,13 @@ End Sub
 
 Private Sub BotonBuscar()
     ' ***************** canviar per la clau primaria ********
-    CargaGrid "sfactusoc.codsocio is null "
+    CargaGrid "scarep.numserie is null "
     '*******************************************************************************
     'Buscar
     For I = 0 To txtAux.Count - 1
         txtAux(I).Text = ""
     Next I
-    txtAux2(3).Text = ""
+    txtAux2(1).Text = ""
     LLamaLineas DataGrid1.Top + 230, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(1)
 End Sub
@@ -612,10 +591,10 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To 3
+    For I = 0 To 2
         txtAux(I).Top = alto
     Next I
-    txtAux2(3).Top = alto
+    txtAux2(1).Top = alto
     ' ### [Monica] 12/09/2006
 End Sub
 
@@ -752,8 +731,8 @@ Private Sub Form_Load()
         .Buttons(2).Image = 2   'Todos
     End With
     
-    CadenaConsulta = "select sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.fecfactu, sfactusoc.codsocio, sclien.nomclien "
-    CadenaConsulta = CadenaConsulta & " from sfactusoc inner join sclien on sfactusoc.codsocio = sclien.codclien "
+    CadenaConsulta = "select scarep.numserie, scarep.codartic, sartic.nomartic, scarep.numrepar "
+    CadenaConsulta = CadenaConsulta & " from scarep inner join sartic on scarep.codartic = sartic.codartic "
     CadenaConsulta = CadenaConsulta & " where  (1=1)  "
     If cWhere <> "" Then CadenaConsulta = CadenaConsulta & " and " & cWhere
     
@@ -813,14 +792,14 @@ Private Sub CargaGrid(Optional vSQL As String)
     CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Tipo Fra|1005|;S|txtAux(1)|T|Factura|1000|;"
-    tots = tots & "S|txtAux(2)|T|Fecha|1395|;S|txtAux(3)|T|Socio|1105|;S|txtAux2(3)|T|Nombre|3995|;"
+    tots = "S|txtAux(0)|T|Serie|2005|;S|txtAux(1)|T|Codigo|2000|;S|txtAux(1)|T|Artículo|3195|;"
+    tots = tots & "S|txtAux(2)|T|Reparación|1300|;"
     
     arregla tots, DataGrid1, Me, 350
     
     DataGrid1.ScrollBars = dbgAutomatic
     
-    DataGrid1.Columns(4).Alignment = dbgLeft
+    DataGrid1.Columns(3).Alignment = dbgLeft
 
 End Sub
 
@@ -835,11 +814,8 @@ Dim Rc As String
     If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
     
     Select Case Index
-        Case 1, 3  ' Nro de factura, codigo de socio
+        Case 2 ' Nro de reparacion
             PonerFormatoEntero txtAux(Index)
-            
-        Case 2 ' fecha de factura
-            PonerFormatoFecha txtAux(Index)
             
     End Select
     

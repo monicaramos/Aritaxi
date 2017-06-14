@@ -1092,6 +1092,9 @@ Option Explicit
 
 Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmPrecProPre As frmComPreciosProvPrev
+Attribute frmPrecProPre.VB_VarHelpID = -1
+
 Private WithEvents frmF As frmCal 'Calendario de Fechas
 Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmA As frmAlmArticulos  'Form Mantenimiento Articulos
@@ -1190,7 +1193,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -1238,11 +1241,11 @@ Dim i As Integer
     End With
 
 
-    For i = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
     Next
 
     
@@ -1271,7 +1274,7 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim Sql As String
 
     On Error GoTo ECarga
@@ -1284,22 +1287,22 @@ Dim Sql As String
     DataGrid1.Columns(0).visible = False 'Cod. Articulo
     DataGrid1.Columns(1).visible = False 'Cod. Proveedor
     DataGrid1.Columns(2).visible = False 'Numero linea
-    i = 2
+    I = 2
        
     'Fecha Cambio
-    DataGrid1.Columns(i + 1).Caption = "Fecha Cambio"
-    DataGrid1.Columns(i + 1).Width = 1600
+    DataGrid1.Columns(I + 1).Caption = "Fecha Cambio"
+    DataGrid1.Columns(I + 1).Width = 1600
     
     'Precio Unidad
-    DataGrid1.Columns(i + 2).Caption = "Precio"
-    DataGrid1.Columns(i + 2).Width = 1800
-    DataGrid1.Columns(i + 2).Alignment = dbgRight
-    DataGrid1.Columns(i + 2).NumberFormat = FormatoPrecio
+    DataGrid1.Columns(I + 2).Caption = "Precio"
+    DataGrid1.Columns(I + 2).Width = 1800
+    DataGrid1.Columns(I + 2).Alignment = dbgRight
+    DataGrid1.Columns(I + 2).NumberFormat = FormatoPrecio
        
     
-    For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+    Next I
     DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
     
@@ -1359,6 +1362,31 @@ Private Sub frmP_DatoSeleccionado(CadenaSeleccion As String)
     Text2(0).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
+
+Private Sub frmPrecProPre_DatoSeleccionado(CadenaSeleccion As String)
+'Formulario para Busqueda
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        
+        'Estamos en Cabecera
+        'Recupera todo el registro de Tarifas de Precios
+        'Sabemos que campos son los que nos devuelve
+        'Creamos una cadena consulta y ponemos los datos
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 3)
+        CadB = CadB & " and " & Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
     If Modo = 2 Or Modo = 0 Then Exit Sub
@@ -1513,16 +1541,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador Me.lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '===========================================
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1554,13 +1582,13 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b And Modo <> 4 'Si modificar no activado pq son claves ajenas
+    Next I
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b
+    Next I
     
     'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
     'debe ser mayor para adminir intervalos de busqueda.
@@ -1805,55 +1833,67 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim Tabla As String
-Dim Titulo As String
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'
+'    'Llamamos a al form
+'    Cad = ""
+'    'Estamos en Modo de Cabeceras
+'    'Registro de la tabla de cabeceras: slista
+'    Cad = Cad & ParaGrid(Text1(0), 9, "Prov.")
+'    Cad = Cad & "Nombre Prov.|sprove|nomprove|T||33·"
+'    Cad = Cad & ParaGrid(Text1(1), 20, "Articulo")
+'    Cad = Cad & "Desc. Artic|sartic|nomartic|T||38·"
+'
+'    Tabla = "(" & NombreTabla & " LEFT JOIN sprove ON " & NombreTabla & ".codprove=sprove.codprove" & ")"
+'    Tabla = Tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
+'
+'    Titulo = "Precios Proveedor"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vTabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|2|"
+'        frmB.vTitulo = Titulo
+'        frmB.vselElem = 0
+'        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            If Modo = 5 Then
+''                PonerFoco txtAux(0)
+''            Else
+'                PonerFoco Text1(kCampo)
+''            End If
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-    'Llamamos a al form
-    Cad = ""
-    'Estamos en Modo de Cabeceras
-    'Registro de la tabla de cabeceras: slista
-    Cad = Cad & ParaGrid(Text1(0), 9, "Prov.")
-    Cad = Cad & "Nombre Prov.|sprove|nomprove|T||33·"
-    Cad = Cad & ParaGrid(Text1(1), 20, "Articulo")
-    Cad = Cad & "Desc. Artic|sartic|nomartic|T||38·"
+
+        Set frmPrecProPre = New frmComPreciosProvPrev
     
-    Tabla = "(" & NombreTabla & " LEFT JOIN sprove ON " & NombreTabla & ".codprove=sprove.codprove" & ")"
-    Tabla = Tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
+        frmPrecProPre.DatosADevolverBusqueda = "0|1|2|"
+        frmPrecProPre.cWhere = CadB
+        frmPrecProPre.Show vbModal
     
-    Titulo = "Precios Proveedor"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vTabla = Tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|2|"
-        frmB.vTitulo = Titulo
-        frmB.vselElem = 0
-        frmB.vConexionGrid = conAri 'Conexion a BD Aritaxi
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            If Modo = 5 Then
-'                PonerFoco txtAux(0)
-'            Else
-                PonerFoco Text1(kCampo)
-'            End If
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+        Set frmPrecProPre = Nothing
+
+
+
 End Sub
 
 

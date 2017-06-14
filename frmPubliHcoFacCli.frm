@@ -3438,6 +3438,9 @@ Attribute frmFE.VB_VarHelpID = -1
 Private WithEvents frmP As frmComProveedores
 Attribute frmP.VB_VarHelpID = -1
 
+Private WithEvents frmHcoFacCliPre As frmPubliHcoFacCliPrev
+Attribute frmHcoFacCliPre.VB_VarHelpID = -1
+
 
 Private Modo As Byte
 '-----------------------------
@@ -4413,6 +4416,32 @@ Dim indice As Byte
 End Sub
 
 
+Private Sub frmHcoFacCliPre_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 1)
+        CadB = Aux
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 2)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(2), CadenaSeleccion, 3)
+        CadB = CadB & " and " & Aux
+        Aux = ValorDevueltoFormGrid(Text1(4), CadenaSeleccion, 4)
+        CadB = CadB & " and " & Aux
+        
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        
+        PonerCadenaBusqueda
+        
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 Private Sub frmP_DatoSeleccionado(CadenaSeleccion As String)
     txtAux(9).Text = RecuperaValor(CadenaSeleccion, 1)
     txtAux2(9).Text = RecuperaValor(CadenaSeleccion, 2)
@@ -4929,21 +4958,32 @@ Dim Desc As String, devuelve As String
     '##A mano
     Cad = ""
     If EsCabecera Then
-        Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
-        Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
-        Cad = Cad & ParaGrid(Text1(4), 10, "Cliente")
-        Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Cliente")
-'      If publicidad Then
-'        Tabla = NombreTabla & " INNER JOIN scafaccli1 ON scafaccli.codtipom='FPC' and scafaccli.codtipom=scafaccli1.codtipom AND scafaccli.numfactu=scafaccli1.numfactu AND scafaccli.fecfactu=scafaccli1.fecfactu "
-'      Else
-        Tabla = NombreTabla & " INNER JOIN scafaccli1 ON scafaccli.codtipom=scafaccli1.codtipom AND scafaccli.numfactu=scafaccli1.numfactu AND scafaccli.fecfactu=scafaccli1.fecfactu "
-'      End If
-        'CadenaConsulta = "select scafaccli.* from " & NombreTabla & " INNER JOIN scafaccli1 ON scafaccli.codtipom=scafaccli1.codtipom AND scafaccli.numfactu=scafacli1.numfactu AND scafaccli.fecfactu=scafaccli1.fecfactu "
-        'CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY scafaccli.codtipom,scafaccli.numfactu,scafaccli.fecfactu " & Ordenacion
+'        Cad = Cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Factura")
+'        Cad = Cad & ParaGrid(Text1(2), 15, "Fecha Fac.")
+'        Cad = Cad & ParaGrid(Text1(4), 10, "Cliente")
+'        Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Cliente")
+''      If publicidad Then
+''        Tabla = NombreTabla & " INNER JOIN scafaccli1 ON scafaccli.codtipom='FPC' and scafaccli.codtipom=scafaccli1.codtipom AND scafaccli.numfactu=scafaccli1.numfactu AND scafaccli.fecfactu=scafaccli1.fecfactu "
+''      Else
+'        Tabla = NombreTabla & " INNER JOIN scafaccli1 ON scafaccli.codtipom=scafaccli1.codtipom AND scafaccli.numfactu=scafaccli1.numfactu AND scafaccli.fecfactu=scafaccli1.fecfactu "
+''      End If
+'        'CadenaConsulta = "select scafaccli.* from " & NombreTabla & " INNER JOIN scafaccli1 ON scafaccli.codtipom=scafaccli1.codtipom AND scafaccli.numfactu=scafacli1.numfactu AND scafaccli.fecfactu=scafaccli1.fecfactu "
+'        'CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY scafaccli.codtipom,scafaccli.numfactu,scafaccli.fecfactu " & Ordenacion
+'
+'        Titulo = "Facturas"
+'        devuelve = "0|1|2|"
+
         
-        Titulo = "Facturas"
-        devuelve = "0|1|2|"
+        Set frmHcoFacCliPre = New frmPubliHcoFacCliPrev
+    
+        frmHcoFacCliPre.DatosADevolverBusqueda = "0|1|2|3|"
+        frmHcoFacCliPre.cWhere = CadB
+        frmHcoFacCliPre.Show vbModal
+    
+        Set frmHcoFacCliPre = Nothing
+
+
     Else
         If vParamAplic.Departamento Then
             Titulo = "Dptos Cliente: "
