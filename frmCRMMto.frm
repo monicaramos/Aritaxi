@@ -323,7 +323,6 @@ Begin VB.Form frmCRMMto
       Width           =   1125
    End
    Begin VB.TextBox Text1 
-      Alignment       =   1  'Right Justify
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   9.75
@@ -421,7 +420,7 @@ Begin VB.Form frmCRMMto
       Tag             =   "Fecha/Horal|H|N|||scrmacciones|fechora|dd/mm/yyyy hh:mm:ss|S|"
       Text            =   "Text1"
       Top             =   1140
-      Width           =   2085
+      Width           =   2295
    End
    Begin VB.Frame Frame1 
       Height          =   540
@@ -1273,7 +1272,7 @@ Dim Aux As String
         CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
         Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(1), CadenaSeleccion, 2)
-        Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(3), CadenaSeleccion, 3)
+        Aux = Aux & " AND " & ValorDevueltoFormGrid(Text1(2), CadenaSeleccion, 3)
         CadB = Aux
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda

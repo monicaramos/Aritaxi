@@ -672,11 +672,11 @@ Private Sub Form_Load()
 'Dim cArt As CArticulo
 
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
 '    'ICONOS de La toolbar
     With Toolbar1
-        .ImageList = frmPpal.imgListComun
+        .ImageList = frmppal.ImgListComun1
 '        'ASignamos botones
 '        .Buttons(1).Image = 1   'Buscar
 '        .Buttons(2).Image = 2 'Ver Todos
@@ -775,7 +775,7 @@ Dim b As Boolean
 
     For jj = 4 To 4
         txtAux(jj).Height = DataGrid1.RowHeight
-        txtAux(jj).Top = alto
+        txtAux(jj).top = alto
         txtAux(jj).visible = b
     Next jj
 '    txtaux2(1).Height = Me.DataGrid1.RowHeight

@@ -641,13 +641,13 @@ End Sub
 Private Sub Form_Load()
 Dim i As Integer
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     PrimeraVez = True
     
     'ICONOS de laLa toolbar
     With Toolbar1
-        .ImageList = frmPpal.imgListComun
+        .ImageList = frmppal.ImgListComun1
         'ASignamos botones
         .Buttons(1).Image = 1   'Buscar
         .Buttons(2).Image = 2 'Ver Todos
@@ -1264,12 +1264,12 @@ Dim b As Boolean
 
         For jj = 2 To txtAux.Count - 1
             txtAux(jj).Height = DataGrid1.RowHeight
-            txtAux(jj).Top = alto
+            txtAux(jj).top = alto
             txtAux(jj).visible = b
         Next jj
         
         cmdAux(1).Height = DataGrid1.RowHeight
-        cmdAux(1).Top = alto
+        cmdAux(1).top = alto
         cmdAux(1).visible = b
         
 End Sub

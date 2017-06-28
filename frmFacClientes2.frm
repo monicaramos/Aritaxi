@@ -458,7 +458,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(2).Enabled = b
-    Me.mnvertodos.Enabled = b
+    Me.mnVerTodos.Enabled = b
     
 '     b = b And Not DeConsulta
 '    'Añadir
@@ -558,9 +558,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     DeseleccionaGrid Me.DataGrid1
     PonerModo xModo
     'Fijamos el ancho
-    txtAux(0).Top = alto
-    txtAux(1).Top = alto
-    txtAux(2).Top = alto
+    txtAux(0).top = alto
+    txtAux(1).top = alto
+    txtAux(2).top = alto
 '    txtAux(0).Left = DataGrid1.Left + 340
 '    txtAux(1).Left = txtAux(0).Left + txtAux(0).Width + 45
 '    txtAux(1).Left = txtAux(0).Left + txtAux(0).Width + 45
@@ -709,11 +709,11 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun
+        .ImageList = frmppal.ImgListComun1
         .Buttons(1).Image = 1    'Botón Busqueda
         .Buttons(2).Image = 2    'Botón Recuperar Todos
         .Buttons(5).Image = 3    'Botón Añadir Nuevo Registro

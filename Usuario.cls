@@ -26,9 +26,17 @@ Private mvarNivel As Long 'copia local
 Private mvarCadenaConexion As String
 Private mvarPC As String
 
-Private RS As ADODB.Recordset
+Private Rs As ADODB.Recordset
 Private SQL As String
 Private Mens As String
+
+Private mvarId As Long 'copia local
+
+Private mvarSkin As String
+
+
+Private mvarTabPorDefecto As Integer   'Guadara el TAB que tiene seleccionado por defecto
+
 
 Public Property Let Nivel(ByVal vData As Long)
     mvarNivel = vData
@@ -143,34 +151,75 @@ End Property
 
 
 
+Public Property Let TabPorDefecto(ByVal vData As Integer)
+'se usa cuando se asigna un valor a una propiedad, en el lado izquierdo de la asignación.
+'Syntax: X.Nivel = 5
+    mvarTabPorDefecto = vData
+End Property
+
+
+Public Property Get TabPorDefecto() As Integer
+'se usa cuando se asigna un valor a una propiedad, en el lado derecho de la asignación.
+'Syntax: Debug.Print X.Nivel
+    TabPorDefecto = mvarTabPorDefecto
+End Property
+
+Public Property Let Skin(ByVal vData As String)
+'se usa cuando se asigna un valor a una propiedad, en el lado izquierdo de la asignación.
+'Syntax: X.Nombre= 5
+    mvarSkin = vData
+End Property
+
+
+Public Property Get Skin() As String
+'se usa cuando se asigna un valor a una propiedad, en el lado derecho de la asignación.
+'Syntax: Debug.Print X.Nombre
+    Skin = mvarSkin
+End Property
+
+Public Property Let id(ByVal vData As Long)
+'se usa cuando se asigna un valor a una propiedad, en el lado izquierdo de la asignación.
+'Syntax: X.Codigo= 5
+    mvarId = vData
+End Property
+
+
+Public Property Get id() As Long
+'se usa cuando se asigna un valor a una propiedad, en el lado derecho de la asignación.
+'Syntax: Debug.Print X.Codigo
+    id = mvarId
+End Property
+
 Public Function Leer(ByVal vlogin As String) As Byte
 Attribute Leer.VB_Description = "Lee un grupo de formas de cobro en función del código que se le ha pasado. Si devuelve 0 se ha conseguido leer el dato."
 Dim i As Long
     On Error GoTo Err1
     SQL = "SELECT * FROM usuarios.usuarios WHERE login = '" & vlogin & "'"
     SQL = SQL & " AND NivelAritaxi >=0"
-    Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
-    If RS.EOF Then
+    If Rs.EOF Then
         Leer = 1
     Else
         i = DevuelveAumentoPC
-        mvarCodigo = Val(DBLet(RS!CodUsu)) + i
-        mvarNombre = DBLet(RS!nomusu)
-        mvarNivel = Val(DBLet(RS!nivelaritaxi))
-        mvarPasswdPROPIO = RS!passwordpropio
+        mvarCodigo = Val(DBLet(Rs!CodUsu)) + i
+        mvarNombre = DBLet(Rs!nomusu)
+        mvarNivel = Val(DBLet(Rs!nivelaritaxi))
+        mvarPasswdPROPIO = Rs!passwordpropio
         mvarlogin = vlogin
         mvarCadenaConexion = ""  'Se le asigna en tiempo de diseño
+        mvarSkin = DBLet(Rs!Skin)
+        mvarId = Val(DBLet(Rs!CodUsu))
         Leer = 0
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Function
 Err1:
     Mens = "Error: " & Err.Number & " : " & Err.Description
     MsgBox Mens, vbExclamation
-    RS.Close
+    Rs.Close
     Leer = 1
 End Function
 
@@ -184,3 +233,53 @@ SQL = DevuelveDesdeBD(conAri, "codpc", "usuarios.pcs", "nompc", mvarPC, "T")
 If SQL <> "" Then DevuelveAumentoPC = Val(SQL) * 1000
 
 End Function
+
+
+Public Sub LeerTabPorDefecto()
+    'Las tabs estan en mysql,menus, desde el 1 hasta el 14
+    If mvarTabPorDefecto = 0 Then mvarTabPorDefecto = 2
+    
+    SQL = " codigo<=14 and aplicacion = 'aritaxi' and filtro =1 and codusu "
+    SQL = DevuelveDesdeBD(conAri, "codigo", "menus_usuarios", SQL, CStr(mvarId))
+    If SQL <> "" Then
+        If Val(SQL) > 0 Then mvarTabPorDefecto = CInt(SQL)
+    End If
+    
+End Sub
+
+Public Sub GuardarTabPorDefecto()
+    
+    'En todas las contabilidades
+    SQL = "SELECT codempre conta FROM usuarios.empresasariconta "
+    SQL = SQL & " where mid(conta,1,8) = 'aritaxi'"
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Rs.EOF Then
+        'SOLO en esta. Deberia dar error
+        SQL = "UPDATE menus_usuarios SET filtro=if(codigo=" & vUsu.TabPorDefecto & ",1,0) WHERE codusu = " & vUsu.Codigo
+        SQL = SQL & " AND aplicacion = 'aritaxi' AND codigo <=14"
+        conn.Execute SQL
+    Else
+        While Not Rs.EOF
+            SQL = "UPDATE aritaxi" & Rs!conta & ".menus_usuarios "
+            SQL = SQL & " SET filtro=if(codigo=" & vUsu.TabPorDefecto & ",1,0) WHERE codusu = " & vUsu.Codigo
+            SQL = SQL & " AND aplicacion = 'aritaxi' AND codigo <=14"
+            conn.Execute SQL
+            Rs.MoveNext
+        Wend
+    End If
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+Public Sub ActualizarSkin()
+    SQL = "UPDATE usuarios.usuarios SET skin=" & mvarSkin & " WHERE codusu = " & vUsu.Codigo
+    
+    EjecutarSQL SQL
+End Sub
+
+
+

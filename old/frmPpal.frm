@@ -1,6 +1,9 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.CommandBars.v17.2.0.ocx"
+Object = "{945E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.DockingPane.v17.2.0.ocx"
+Object = "{BD0C1912-66C3-49CC-8B12-7B347BF6C846}#17.2#0"; "Codejock.SkinFramework.v17.2.0.ocx"
 Begin VB.MDIForm frmPpal 
    BackColor       =   &H00858585&
    Caption         =   "Aritaxi"
@@ -425,7 +428,7 @@ Begin VB.MDIForm frmPpal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "10:20"
+            TextSave        =   "17:36"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -687,7 +690,7 @@ Begin VB.MDIForm frmPpal
       EndProperty
    End
    Begin MSComctlLib.ImageList ImageListMAIL 
-      Left            =   420
+      Left            =   360
       Top             =   3360
       _ExtentX        =   1005
       _ExtentY        =   1005
@@ -1094,8 +1097,45 @@ Begin VB.MDIForm frmPpal
          EndProperty
       EndProperty
    End
+   Begin XtremeSkinFramework.SkinFramework SkinFramework1 
+      Left            =   4800
+      Top             =   2310
+      _Version        =   1114114
+      _ExtentX        =   635
+      _ExtentY        =   635
+      _StockProps     =   0
+   End
+   Begin XtremeCommandBars.ImageManager ImageManager 
+      Left            =   4020
+      Top             =   2580
+      _Version        =   1114114
+      _ExtentX        =   635
+      _ExtentY        =   635
+      _StockProps     =   0
+      Icons           =   "frmPpal.frx":FE8DF
+   End
+   Begin XtremeDockingPane.DockingPane DockingPaneManager 
+      Left            =   4800
+      Top             =   1530
+      _Version        =   1114114
+      _ExtentX        =   635
+      _ExtentY        =   635
+      _StockProps     =   0
+      VisualTheme     =   2
+   End
+   Begin XtremeCommandBars.CommandBars CommandBars 
+      Left            =   3630
+      Top             =   1530
+      _Version        =   1114114
+      _ExtentX        =   635
+      _ExtentY        =   635
+      _StockProps     =   0
+      VisualTheme     =   2
+   End
    Begin VB.Menu mnConfiguracion 
       Caption         =   "C&onfiguración"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnConfParamGenerales 
          Caption         =   "Datos &Empresa"
          HelpContextID   =   2
@@ -1794,13 +1834,59 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+
+Private Declare Function InitCommonControls Lib "Comctl32.dll" () As Long
+
+Dim ContextEvent As CalendarEvent
+
+
+Dim MRUShortcutBarWidth
+
+
+Const IMAGEBASE = 10000
+Const MinimizedShortcutBarWidth = 32 + 8
+
+Dim WithEvents statusBar  As XtremeCommandBars.statusBar
+Attribute statusBar.VB_VarHelpID = -1
+Dim FontSizes(4) As Integer
+Dim RibbonSeHaCreado As Boolean
+Dim Pane As Pane
+Dim Cad As String
+
+'Variables comunes para todos los procedimientos de carga menus en el ribbon
+'Codejock
+Dim TabNuevo As RibbonTab
+Dim GroupNew As RibbonGroup, GroupGoTo As RibbonGroup, GroupArrange As RibbonGroup
+Dim GroupManageCalendars As RibbonGroup, GroupShare As RibbonGroup, GroupFind As RibbonGroup
+
+Dim Control As CommandBarControl
+Dim ControlNew_NewItems As CommandBarPopup
+Dim Rn2 As ADODB.Recordset
+Dim Habilitado As Boolean
+
+
+
 Dim PrimeraVez As Boolean
 
 Dim TieneEditorDeMenus As Boolean
 
 
+Sub LoadResources(DllName As String, IniFileName As String)
+Dim elpath As String
+    
+    elpath = App.Path & "\Styles\"
+    CommandBarsGlobalSettings.ResourceImages.LoadFromFile elpath & DllName, IniFileName
+    ShortcutBarGlobalSettings.ResourceImages.LoadFromFile elpath & DllName, IniFileName
+    SuiteControlsGlobalSettings.ResourceImages.LoadFromFile elpath & DllName, IniFileName
+    CalendarGlobalSettings.ResourceImages.LoadFromFile elpath & DllName, IniFileName
+    ReportControlGlobalSettings.ResourceImages.LoadFromFile elpath & DllName, IniFileName
+    DockingPaneGlobalSettings.ResourceImages.LoadFromFile elpath & DllName, IniFileName
+End Sub
+
+
+
 Private Sub MDIForm_Activate()
-Dim b As Boolean
+Dim B As Boolean
 
 'Dim AvisosPendientes As Boolean
 'Formulario Principal
@@ -1876,8 +1962,8 @@ End Sub
 
 
 
-Private Sub PuntoDeMenuVisible(ByRef MnPuntoDMenu As Menu, b As Boolean)
-    If MnPuntoDMenu.visible Then MnPuntoDMenu.visible = b
+Private Sub PuntoDeMenuVisible(ByRef MnPuntoDMenu As Menu, B As Boolean)
+    If MnPuntoDMenu.visible Then MnPuntoDMenu.visible = B
     
 End Sub
 
@@ -1887,9 +1973,67 @@ Private Sub MDIForm_Load()
 
     CargaImagen
 
+    frmIdentifica.pLabel "Carga DLL"
     CargaIconosDlls
 
+    CommandBarsGlobalSettings.App = App
+            
+    frmIdentifica.pLabel "Leyendo menus usuario"
+    CargaDatosMenusDemas
+    
+    ShowEventInPane = False
+       
+    FontSizes(0) = 0
+    FontSizes(1) = 11
+    FontSizes(2) = 13
+    FontSizes(3) = 16
+               
+    DockingPaneManager.SetCommandBars Me.CommandBars
+              
+    Set frmShortBar = New frmShortcutBar2
+    Set frmInbox = New frmInbox
+        
+    Dim A As Pane, B As Pane, C As Pane, d As Pane
+    
+    frmIdentifica.pLabel "Creando paneles"
+    Set A = DockingPaneManager.CreatePane(PANE_SHORTCUTBAR, 170, 120, DockLeftOf, Nothing)
+    A.Tag = PANE_SHORTCUTBAR
+    A.MinTrackSize.Width = MinimizedShortcutBarWidth
+    
+    Set B = DockingPaneManager.CreatePane(PANE_REPORT_CONTROL, 700, 400, DockRightOf, A)
+    B.Tag = PANE_REPORT_CONTROL
+   
+    DockingPaneManager.Options.HideClient = True
+    PonerTabPorDefecto -1
+    
+    Set CommandBars.Icons = CommandBarsGlobalSettings.Icons
+    LoadIcons
+    
+    DockingPaneManager.RecalcLayout
+    MRUShortcutBarWidth = frmShortBar.ScaleWidth
+   
+   
+    'En funcion
+    ' ID_OPTIONS_STYLEBLUE2010  ID_OPTIONS_STYLESILVER2010    ID_OPTIONS_STYLEBLACK2010
+    frmIdentifica.pLabel "Carga skin"
+    Screen.MousePointer = vbHourglass
+    If vUsu.Skin = 3 Then
+        Cad = ID_OPTIONS_STYLEBLACK2010
+    Else
+        If vUsu.Skin = 2 Then
+            Cad = ID_OPTIONS_STYLESILVER2010
+        Else
+            Cad = ID_OPTIONS_STYLEBLUE2010
+        End If
+    End If
+    CommandBars.FindControl(, Cad, , True).Execute
+
+
     PrimeraVez = True
+    
+    
+    
+    
     'Botones
     With Me.Toolbar1
         .ImageList = Me.ImgListPpal
@@ -3098,7 +3242,7 @@ End Sub
 
 Private Sub mnUtiUsuActivos_Click()
 'Muestra si hay otros usuarios conectados a la Gestion
-Dim Sql As String
+Dim SQL As String
 Dim i As Integer
 
     CadenaDesdeOtroForm = OtrosPCsContraContabiliad
@@ -3106,10 +3250,10 @@ Dim i As Integer
         i = 1
         Me.Tag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
         Do
-            Sql = RecuperaValor(CadenaDesdeOtroForm, i)
-            If Sql <> "" Then Me.Tag = Me.Tag & "    - " & Sql & vbCrLf
+            SQL = RecuperaValor(CadenaDesdeOtroForm, i)
+            If SQL <> "" Then Me.Tag = Me.Tag & "    - " & SQL & vbCrLf
             i = i + 1
-        Loop Until Sql = ""
+        Loop Until SQL = ""
         MsgBox Me.Tag, vbExclamation
     Else
         MsgBox "Ningun usuario, además de usted, conectado a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf, vbInformation
@@ -3255,21 +3399,21 @@ Dim T
 End Sub
 
 Private Sub PonerMenusNivelUsuario()
-Dim b As Boolean
+Dim B As Boolean
 
-    b = (vUsu.Nivel = 0) Or (vUsu.Nivel = 1)  'Administradores y root
+    B = (vUsu.Nivel = 0) Or (vUsu.Nivel = 1)  'Administradores y root
 
-    Me.mnConfParamAplic = b
-    mnConfManteUsuarios = b
+    Me.mnConfParamAplic = B
+    mnConfManteUsuarios = B
     
-    mnUsuarios.Enabled = b
-    mnNuevaEmpresa.Enabled = b
-    mnPedirPwd.Enabled = b
+    mnUsuarios.Enabled = B
+    mnNuevaEmpresa.Enabled = B
+    mnPedirPwd.Enabled = B
     Me.mnUtiConnActivas.Enabled = (vUsu.Nivel = 0) 'solo para root
     
 
-    b = vUsu.Nivel = 3  'Es usuario de consultas
-    If b Then
+    B = vUsu.Nivel = 3  'Es usuario de consultas
+    If B Then
         'Inventario
         Me.mnAlmTomaInven.Enabled = False
         Me.mnAlmEntradaInve.Enabled = False
@@ -3334,14 +3478,14 @@ End Sub
 
 
 Private Sub LeerEditorMenus()
-Dim Sql As String
+Dim SQL As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     TieneEditorDeMenus = False
-    Sql = "Select count(*) from usuarios.appmenus where aplicacion='Aritaxi'"
+    SQL = "Select count(*) from usuarios.appmenus where aplicacion='Aritaxi'"
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         If Not IsNull(miRsAux.Fields(0)) Then
             If miRsAux.Fields(0) > 0 Then TieneEditorDeMenus = True
@@ -3360,36 +3504,36 @@ End Sub
 
 Private Sub PoneMenusDelEditor()
 Dim T As Control
-Dim Sql As String
+Dim SQL As String
 Dim C As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     
-    Sql = "Select * from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu = " & Val(Right(CStr(vUsu.Codigo), 3))
+    SQL = "Select * from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu = " & Val(Right(CStr(vUsu.Codigo), 3))
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    Sql = ""
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    SQL = ""
 
     While Not miRsAux.EOF
         If Not IsNull(miRsAux.Fields(3)) Then
-            Sql = Sql & miRsAux.Fields(3)
-            If Right(miRsAux.Fields(3), 1) <> "|" Then Sql = Sql & "|"
-            Sql = Sql & "·"
+            SQL = SQL & miRsAux.Fields(3)
+            If Right(miRsAux.Fields(3), 1) <> "|" Then SQL = SQL & "|"
+            SQL = SQL & "·"
         End If
         miRsAux.MoveNext
     Wend
     miRsAux.Close
         
    
-    If Sql <> "" Then
-        Sql = "·" & Sql
+    If SQL <> "" Then
+        SQL = "·" & SQL
         For Each T In Me.Controls
             If TypeOf T Is Menu Then
                 C = DevuelveCadenaMenu(T)
                 C = "·" & C & "·"
                 Debug.Print C
-                If InStr(1, Sql, C) > 0 Then
+                If InStr(1, SQL, C) > 0 Then
                     
                     'Stop
                     T.visible = False
@@ -3519,56 +3663,56 @@ Private Function ComprobarBotonMenuVisible(objMenu As Menu, Activado As Boolean)
 'esta activada/desactiva o visible/invisible
 '(se comprueba hasta q se encuentra el false o se llega al padre)
 Dim nomMenu As String
-Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim SQL As String
+Dim Rs As ADODB.Recordset
 Dim Cad As String
-Dim b As Boolean
+Dim B As Boolean
 
 
     On Error GoTo EComprobar
     
-    b = objMenu.visible
+    B = objMenu.visible
     Activado = objMenu.Enabled
     
-    If b = False Then
-        ComprobarBotonMenuVisible = b
+    If B = False Then
+        ComprobarBotonMenuVisible = B
     Else
     
         nomMenu = objMenu.Name
         
-        Set RS = New ADODB.Recordset
+        Set Rs = New ADODB.Recordset
         
         'Obtener el padre del menu
-        Sql = "select padre from usuarios.appmenus where aplicacion='Aritaxi' and name=" & DBSet(nomMenu, "T")
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If Not RS.EOF Then
-            Cad = RS.Fields(0).Value
+        SQL = "select padre from usuarios.appmenus where aplicacion='Aritaxi' and name=" & DBSet(nomMenu, "T")
+        Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not Rs.EOF Then
+            Cad = Rs.Fields(0).Value
         End If
-        RS.Close
+        Rs.Close
         
-        b = True
-        While b And Cad <> ""
-                Sql = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & Cad
-                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                If Not RS.EOF Then
-                    Cad = RS!Padre
-                    nomMenu = RS!Name
+        B = True
+        While B And Cad <> ""
+                SQL = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & Cad
+                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                If Not Rs.EOF Then
+                    Cad = Rs!Padre
+                    nomMenu = Rs!Name
                 End If
-                RS.Close
+                Rs.Close
                 
                 'comprobar si el padre esta bloqueado
-                Sql = "Select count(*) from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu=" & Val(Right(CStr(vUsu.Codigo), 3))
-                Sql = Sql & " and tag='" & nomMenu & "|'"
-                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                If RS.Fields(0).Value > 0 Then
+                SQL = "Select count(*) from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu=" & Val(Right(CStr(vUsu.Codigo), 3))
+                SQL = SQL & " and tag='" & nomMenu & "|'"
+                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                If Rs.Fields(0).Value > 0 Then
                     'Esta bloqueado el menu para el usuario
-                    b = False
+                    B = False
                 End If
-                RS.Close
+                Rs.Close
                 If Cad = "0" Then Cad = "" 'terminar si llegamos a la raiz
         Wend
-        ComprobarBotonMenuVisible = b
-        Set RS = Nothing
+        ComprobarBotonMenuVisible = B
+        Set Rs = Nothing
     End If
     
 EComprobar:
@@ -3586,9 +3730,2337 @@ End Sub
 
 
 
+Public Function RibbonBar() As RibbonBar
+    Set RibbonBar = CommandBars.ActiveMenuBar
+    
+End Function
+
+Public Sub ExpandButtonClicked()
+   
+    
+    
+    Dim A As Pane
+    Set A = DockingPaneManager.FindPane(PANE_SHORTCUTBAR)
+    
+    Dim ShortcutBarMinimized As Boolean
+    ShortcutBarMinimized = frmShortBar.ScaleWidth <= MinimizedShortcutBarWidth
+    
+    Dim NewWidth As Long
+    If (ShortcutBarMinimized) Then
+        NewWidth = MRUShortcutBarWidth
+    Else
+        NewWidth = MinimizedShortcutBarWidth
+        frmShortBar.wndShortcutBar.PopupWidth = MRUShortcutBarWidth
+    End If
+        
+    
+    ' Set Size of Pane
+    A.MinTrackSize.Width = NewWidth
+    A.MaxTrackSize.Width = NewWidth
+        
+    DockingPaneManager.RecalcLayout
+    DockingPaneManager.NormalizeSplitters
+    DockingPaneManager.RedrawPanes
+    
+    ' Restore Constraints
+    A.MinTrackSize.Width = MinimizedShortcutBarWidth
+    A.MaxTrackSize.Width = 32000
+        
+End Sub
+
+
+Public Sub CambiarEmpresa(QueEmpresa As Integer)
+Dim cur As Integer
+    cur = Screen.MousePointer
+    Screen.MousePointer = vbHourglass
+    Me.Hide
+    CambiarEmpresa2 QueEmpresa
+    Me.Show
+'--quitado
+'    If vParam.SIITiene Then
+'        DoEvents
+'        Screen.MousePointer = vbHourglass
+'        Espera 2.25
+'        AbrirFormSII_2 False
+'    End If
+    Screen.MousePointer = cur
+    
+End Sub
 
 
 
+Public Sub CambiarEmpresa2(QueEmpresa As Integer)
+Dim RB As RibbonBar
+    CadenaDesdeOtroForm = vUsu.Login & "|" & vEmpresa.codempre & "|"
+        
+        
+    Set vUsu = New Usuario
+    vUsu.Leer RecuperaValor(CadenaDesdeOtroForm, 1)
+    
+    vUsu.CadenaConexion = "aritaxi" & QueEmpresa
+    
+'    vUsu.LeerFiltros "ariconta", 301 ' asientos
+'    vUsu.LeerFiltros "ariconta", 401 ' facturas de cliente
+    
+    AbrirConexion
+    
+    Set vEmpresa = New Cempresa
+    Set vParam = New Cparametros
+    'NO DEBERIAN DAR ERROR
+    vEmpresa.LeerDatos
+    vParam.Leer
+    
+    PonerCaption
+    
+    Screen.MousePointer = vbHourglass
+    
+   CargaDatosMenusDemas
+   frmPaneContacts.SeleccionarNodoEmpresa vEmpresa.codempre
+   pageBackstageHelp.Label9.Caption = vEmpresa.nomempre
+   pageBackstageHelp.tabPage(0).visible = False
+   pageBackstageHelp.tabPage(1).visible = False
+   frmInbox.OpenProvider
+   Set RB = RibbonBar
+   RB.Minimized = False
+   RB.RedrawBar
+   
+   
+    
+    
+   Screen.MousePointer = vbDefault
+End Sub
+
+Private Sub PonerCaption()
+        Caption = "AriTAXI 6    V-" & App.Major & "." & App.Minor & "." & App.Revision & "    usuario: " & vUsu.Nombre
+        'Label33.Caption = "   " & vEmpresa.nomempre
+End Sub
+
+
+Private Sub CargaDatosMenusDemas()
+Dim AntiguoTab As Integer
+    
+    
+    Screen.MousePointer = vbHourglass
+    AntiguoTab = -1
+    If RibbonSeHaCreado Then
+        If Not RibbonBar.SelectedTab Is Nothing Then AntiguoTab = RibbonBar.SelectedTab.Id
+    End If
+    CreateRibbon
+    Screen.MousePointer = vbHourglass
+    CreateBackstage
+    Screen.MousePointer = vbHourglass
+    CreateRibbonOptions
+    
+    vEmpresa.LeerDatos
+    
+    'vEmpresa.TieneContabilidad = False
+    '??????
+    '0=solo contabilidad / 1=todo / 2=solo tesoreria
+    Screen.MousePointer = vbHourglass
+    CargaMenu AntiguoTab
+    CreateStatusBar
+    Screen.MousePointer = vbHourglass
+    PonerCaption
+    CreateCalendarTabOriginal
+    RibbonSeHaCreado = True
+End Sub
+
+
+
+'*************************************************************************
+'*************************************************************************
+'*************************************************************************
+'
+'       CARGA menus en Ribbon
+'
+'
+
+
+
+
+Public Sub CargaMenu(AntiguoTab As Integer)
+Dim RN As ADODB.Recordset
+
+
+
+
+    Set RN = New ADODB.Recordset
+    Set Rn2 = New ADODB.Recordset
+    On Error GoTo eCargaMenu
+    
+
+    If RibbonSeHaCreado Then RibbonBar.RemoveAllTabs
+    
+    Cad = "Select * from menus where aplicacion = 'aritaxi' and padre =0 ORDER BY padre,orden "
+    RN.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not RN.EOF
+    
+        
+        If Not BloqueaPuntoMenu(RN!Codigo, "aritaxi") Then
+             Habilitado = True
+             
+             If Not MenuVisibleUsuario(DBLet(RN!Codigo), "aritaxi") Then
+                 Habilitado = False
+             Else
+         
+                 If (MenuVisibleUsuario(DBLet(RN!Padre), "aritaxi") And DBLet(RN!Padre) <> 0) Or DBLet(RN!Padre) = 0 Then
+                     'OK todo habilitado
+                 Else
+                     Habilitado = False
+                 End If
+             End If
+             
+            
+                
+            If Habilitado Then
+                
+                Select Case RN!Codigo
+                Case 1
+                    '1   "CONFIGURACION"
+                    CargaMenuConfiguracion RN!Codigo
+                Case 2
+                    '2   "DATOS GENERALES"
+                    CargaMenuDatosGenerales RN!Codigo
+                Case 3
+                    '3   "DIARIO"
+                    CargaMenuDiarios RN!Codigo
+                Case 4
+                    '4   "FACTURAS"
+                    CargaMenuFacturas RN!Codigo
+                Case 5
+                    '5   "INMOVILIZADO"
+                    CargaMenuInmovilizado RN!Codigo
+                Case 6
+                    '6   "CARTERA DE COBROS"
+                    CargaMenuTesoreriaCobros RN!Codigo
+                Case 7
+                    
+                Case 8
+                    '8   "CARTERA DE PAGOS"
+                    CargaMenuTesoreriaPagos RN!Codigo
+                Case 9
+                    '9   "INFORMES TESORERIA"
+                     CargaMenuTesoreriaInformes RN!Codigo
+                Case 10
+                    '10  "ANALÍTICA"
+                    'Va dentro de diario
+                    'UNa solapa para el
+                    CargaMenuAnaliticaPResupuestaria RN!Codigo
+                Case 11
+                    '11  "PRESUPUESTARIA"
+                    CargaMenuAnaliticaPResupuestaria RN!Codigo
+                Case 12
+                
+                Case 13
+                    '13  "CIERRE EJERCICIO"
+                    CargaMenuCierreEjercicio RN!Codigo
+                     
+                Case 14
+                    '14  "UTILIDADES"
+                    CargaMenuUtilidades RN!Codigo
+                Case Else
+                    MsgBox "Menu no tratado"
+                    End
+                End Select
+                
+            End If
+                                                 
+        End If  'de habilitado el padre
+    
+        RN.MoveNext
+    Wend
+    RN.Close
+                        
+    PonerTabPorDefecto AntiguoTab
+    
+eCargaMenu:
+    If Err.Number <> 0 Then MsgBox Err.Description, vbExclamation
+    
+    Set TabNuevo = Nothing
+    Set GroupNew = Nothing
+    Set Control = Nothing
+    Set RN = Nothing
+    Set Rn2 = Nothing
+End Sub
+
+
+Public Function BloqueaPuntoMenu(IdProg As Long, aplicacion As String) As Boolean
+Dim EsdeAnalitica As Boolean
+
+    BloqueaPuntoMenu = False
+
+    If aplicacion = "aritaxi" Then
+        ' programas de analitica
+'--revisar
+'        EsdeAnalitica = (IdProg = 10 Or IdProg = 1001 Or IdProg = 1002 Or IdProg = 1003 Or IdProg = 1004 Or IdProg = 1005)
+'        BloqueaPuntoMenu = (Not vParam.Autocoste And EsdeAnalitica)
+    End If
+    
+End Function
+
+
+
+Public Function MenuVisibleUsuario(Proceso As Long, aplicacion As String) As Boolean
+Dim SQL As String
+Dim Excepcion As String
+
+
+    SQL = "select ver from menus_usuarios where codigo = " & DBSet(Proceso, "N") & " and aplicacion = " & DBSet(aplicacion, "T")
+    SQL = SQL & " and codusu = " & DBSet(vUsu.Codigo, "N")
+    
+    MenuVisibleUsuario = (DevuelveValor(SQL) = 1)
+
+End Function
+
+
+
+Private Sub PonerTabPorDefecto(AntiguoTabSeleccionado As Integer)
+Dim Anterior As Integer
+
+    On Error Resume Next
+    
+    If AntiguoTabSeleccionado < 0 Then
+        Anterior = vUsu.TabPorDefecto
+    Else
+        Anterior = AntiguoTabSeleccionado
+    End If
+    
+    Cad = ""
+    For i = 0 To RibbonBar.TabCount - 1
+        J = RibbonBar.Tab(i).Id
+        'Debug.Print J & " " & RibbonBar.Tab(i).Caption
+        If J = Anterior Then
+            
+            RibbonBar.Tab(i).visible = True
+            RibbonBar.Tab(i).Selected = True
+            Set RibbonBar.SelectedTab = RibbonBar.Tab(i)
+            Cad = "OK"
+            Exit For
+        End If
+    Next
+    If Cad = "" Then
+        
+        For J = RibbonBar.TabCount To 1 Step -1
+            RibbonBar.Tab(J - 1).visible = True
+            RibbonBar.Tab(J - 1).Selected = True
+        Next J
+    End If
+
+    Err.Clear
+End Sub
+
+Private Sub CargaMenuConfiguracion(IdMenu As Integer)
+
+        'Creamos la TAB
+        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Configuracion")
+        TabNuevo.Id = CLng(IdMenu)
+        Set GroupNew = TabNuevo.Groups.AddGroup("", 1000000)
+        
+       
+        
+        'todos los hijos que cuelgan en la tab
+        Cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+        Rn2.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = ""
+        While Not Rn2.EOF
+         
+           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+                Habilitado = True
+    
+                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+                    Habilitado = False
+                Else
+                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+                End If
+           
+           
+                    
+                Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                Control.Enabled = Habilitado
+             
+            End If
+            Rn2.MoveNext
+        Wend
+        Rn2.Close
+        
+        'color Categorias  eventos
+        If Not GroupNew Is Nothing Then
+            Set Control = GroupNew.Add(xtpControlButton, 199, "Categorias calendario")
+        End If
+        Set GroupNew = Nothing
+End Sub
+
+
+
+
+
+
+Private Sub CargaMenuDatosGenerales(IdMenu As Integer)
+Dim SegundoGrupo As RibbonGroup
+        'Creamos la TAB
+        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Datos generales")
+        TabNuevo.Id = CLng(IdMenu)
+        
+        
+        'En este llevaremos dos solapas, tesoreria y contabilidad (no le ponemos nombres)
+        Cad = CStr(IdMenu * 100000)
+        
+'--quitado
+'        If vEmpresa.TieneContabilidad Then Set GroupNew = TabNuevo.Groups.AddGroup("", cad & "0")
+'        If vEmpresa.TieneTesoreria Then Set SegundoGrupo = TabNuevo.Groups.AddGroup("", cad & "1")
+        
+        Set GroupNew = TabNuevo.Groups.AddGroup("", Cad & "0")
+        
+        
+        'todos los hijos que cuelgan en la tab
+        Cad = "Select * from menus where aplicacion = 'aritaxi' and padre =" & IdMenu & " ORDER BY padre,orden"
+        Rn2.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = ""
+        While Not Rn2.EOF
+         
+           If Not BloqueaPuntoMenu(Rn2!Codigo, "aritaxi") Then
+                Habilitado = True
+    
+                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "aritaxi") Then
+                    Habilitado = False
+                Else
+                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "aritaxi") Then Habilitado = False
+                End If
+           
+           
+                    
+                If Rn2!Tipo = 1 Then
+                    Set Control = SegundoGrupo.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                Else
+                    Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                End If
+                 
+                Control.Enabled = Habilitado
+                ' Set ControlNew_NewItems = GroupNew.Add(xtpControlButtonPopup, ID_GROUP_NEW_ITEMS, "New &Items")
+                '     Set Control = ControlNew_NewItems.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_NEW_APPOINTMENT, "&Appointment")
+                '     Set Control = ControlNew_NewItems.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_NEW_ALLDAY, "All Day E&vent")
+                '     Control.BeginGroup = True
+                ' ControlNew_NewItems.KeyboardTip = "V"
+             
+            End If
+            Rn2.MoveNext
+        Wend
+        Rn2.Close
+
+         Set GroupNew = Nothing
+End Sub
+
+
+Private Sub CargaMenuDiarios(IdMenu As Integer)
+Dim GrupSald As RibbonGroup
+Dim GrOtro As RibbonGroup
+Dim GrConsoli As RibbonGroup
+
+'        If Not vEmpresa.TieneContabilidad Then Exit Sub
+'
+'        'Creamos la TAB
+'        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Diario")
+'        TabNuevo.id = CLng(IdMenu)
+'
+'        cad = CStr(IdMenu * 100000)
+'        Set GroupNew = TabNuevo.Groups.AddGroup("ASIENTOS", cad & "0")
+'        Set GrupSald = TabNuevo.Groups.AddGroup("BALANCES", cad & "1")
+'        Set GrOtro = TabNuevo.Groups.AddGroup("", cad & "2")
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'        While Not Rn2.EOF
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'
+'
+'
+'                Select Case Rn2!Codigo
+'                Case 301, 303, 304, 314, 211
+'                    Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'                Case 306, 307, 308, 309
+'                    Set Control = GrupSald.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'                'Consolidado
+'                Case 315
+'                    Set GrConsoli = TabNuevo.Groups.AddGroup("CONSOLIDADO", cad & "4")
+'                    Set Control = GrConsoli.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'                Case Else
+'                    Set Control = GrOtro.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'                End Select
+'
+'
+'                Control.Enabled = Habilitado
+'
+'
+'
+'
+'            End If
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'    Set GrupSald = Nothing
+'    Set GrOtro = Nothing
+'     Set GrConsoli = Nothing
+End Sub
+
+
+Private Sub CargaMenuFacturas(IdMenu As Integer)
+'Dim GropCli As RibbonGroup
+'Dim GrupPag As RibbonGroup
+'Dim Consoli As RibbonGroup
+'Dim OpsAseg As RibbonGroup
+'Dim Insertado As Boolean
+'Dim B As Boolean
+'
+''        If Not vEmpresa.TieneContabilidad Then Exit Sub
+'
+'        'Creamos la TAB
+'        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Facturas")
+'        TabNuevo.id = CLng(IdMenu)
+'
+'        cad = CStr(IdMenu * 100000)
+'        Set GropCli = TabNuevo.Groups.AddGroup("EMITIDAS", cad & "0")
+'        Set GrupPag = TabNuevo.Groups.AddGroup("RECIBIDAS", cad & "1")
+'        Set GroupNew = TabNuevo.Groups.AddGroup("I.V.A.", cad & "2")
+'
+'
+''
+''        401 "Facturas Emitidas" 14
+''        402 "Libro Facturas Emitidas"   16
+''        403 "Relación Clientes por cuenta"  0
+''        404 "Facturas Recibidas"    15
+''        405 "Libro Facturas Recibidas"  17
+''        406 "Relacion Proveedores por cuenta"   0
+''        408 "Modelo 303"    0
+''        409 "Modelo 340"    0
+''        410 "Modelo 347"    0
+''        411 "Modelo 349"    0
+''        412 "Liquidacion I.V.A."    18
+''        413 consolidado
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'        While Not Rn2.EOF
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'            Insertado = True
+'            Select Case Rn2!Codigo
+'            Case 401, 402, 403
+'                Set Control = GropCli.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'            Case 404, 405, 406
+'                Set Control = GrupPag.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            Case 413
+'                Set Consoli = TabNuevo.Groups.AddGroup("CONSOLIDADO", CStr(IdMenu * 100000) & "2")
+'                Set Control = Consoli.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'
+'            Case 414, 415
+'                 If vParamT.TieneOperacionesAseguradas Then
+'                        If OpsAseg Is Nothing Then Set OpsAseg = TabNuevo.Groups.AddGroup("OP. ASEGURADAS", CStr(IdMenu * 100000) & "4")
+'                        Set Control = OpsAseg.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'                 Else
+'                    Insertado = False
+'                 End If
+'
+'            Case Else
+'                B = True
+'                If Rn2!Codigo = ID_SII Then
+'
+'                    If vParam.SIITiene Then
+'                        If vUsu.Nivel > 0 Then B = False
+'                    Else
+'                        B = False
+'
+'                    End If
+'                End If
+'                If Not B Then Habilitado = False
+'
+'                Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            End Select
+'
+'
+'            cad = "NO"
+'            If Insertado Then Control.Enabled = Habilitado
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+'
+'
+'
+'
+End Sub
+
+
+
+Private Sub CargaMenuInmovilizado(IdMenu As Integer)
+'
+'        If Not vEmpresa.TieneContabilidad Then Exit Sub
+'
+'        'Creamos la TAB
+'        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Inmovilizado")
+'        TabNuevo.id = CLng(IdMenu)
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'        While Not Rn2.EOF
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'            If cad = "" Then Set GroupNew = TabNuevo.Groups.AddGroup("", CStr(IdMenu * 100000) & "0")
+'            cad = "NO"
+'            'Set Control = GroupNew.Add(xtpControlButton, ID_GROUP_NEW_APPOINTMENT, "&New Appointment")
+'            Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'            Control.Enabled = Habilitado
+'
+'           ' Set ControlNew_NewItems = GroupNew.Add(xtpControlButtonPopup, ID_GROUP_NEW_ITEMS, "New &Items")
+'           '     Set Control = ControlNew_NewItems.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_NEW_APPOINTMENT, "&Appointment")
+'           '     Set Control = ControlNew_NewItems.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_NEW_ALLDAY, "All Day E&vent")
+'           '     Control.BeginGroup = True
+'           ' ControlNew_NewItems.KeyboardTip = "V"
+'
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+
+End Sub
+
+
+
+
+Private Sub CargaMenuTesoreriaCobros(IdMenu As Integer)
+'Dim GrupCob As RibbonGroup
+'Dim GrupRem As RibbonGroup
+'
+''    601 "Cartera de Cobros"
+''    602 "Informe Cobros Pendientes"
+''    604 "Realizar Cobro"
+''    606 "Compensaciones"
+''    607 "Compensar cliente"
+''    608 "Reclamaciones"
+''    609 "Remesas"
+''    610 "Informe Impagados"
+''    611 "Recepción Talón-Pagaré"
+''    612 "Remesas Talón-Pagaré"
+''    613 "Norma 57 - Pagos ventanilla"
+''    614 "Transferencias Abonos"
+'
+'
+'        If Not vEmpresa.TieneTesoreria Then Exit Sub
+'
+'        'Creamos la TAB
+'        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Tesoreria")
+'        TabNuevo.id = CLng(IdMenu)
+'        NumRegElim = TabNuevo.Index
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'
+'
+'        'Creamos los tres grupos
+'        cad = CStr(IdMenu * 100000)
+'        Set GrupCob = TabNuevo.Groups.AddGroup("COBROS", cad & "0")
+'        Set GrupRem = TabNuevo.Groups.AddGroup("REMESAS", cad & "1")
+'        Set GroupNew = TabNuevo.Groups.AddGroup("", cad & "2")
+'
+'
+'        While Not Rn2.EOF
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'
+'
+'            Select Case Rn2!Codigo
+'            Case 601, 602, 604, 607, 608, 610, 613, 614
+'                'Solapa cobros
+'                Set Control = GrupCob.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            Case 609, 611, 612
+'                'Solapa remesas
+'                Set Control = GrupRem.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            Case Else
+'                Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'
+'
+'            End Select
+'
+'
+'            Control.Enabled = Habilitado
+'
+'           ' ControlNew_NewItems.KeyboardTip = "V"
+'
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+'
+End Sub
+
+
+
+Private Sub CargaMenuTesoreriaPagos(IdMenu As Integer)
+'
+'
+'        If Not vEmpresa.TieneTesoreria Then Exit Sub
+'
+'
+'
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'
+'
+'        'Los pagos se gargan sobre la solapa de TESORERIA
+'
+'        Set GroupNew = RibbonBar.Tab(NumRegElim).Groups.AddGroup("PAGOS", CStr(IdMenu * 100000) & "0")
+'
+'
+'        While Not Rn2.EOF
+'
+''            801 "Cartera de Pagos"  5
+''            802 "Informe Pagos pendientes"  19
+''            803 "Informe Pagos bancos"  0
+''            804 "Realizar Pago" 24
+''            805 "Transferencias"    0
+''            806 "Pagos domiciliados"    0
+''            807 "Gastos Fijos"  0
+''            809 "Compensar proveedor"   0
+''            810 "Confirming"    0
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'            Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            Control.Enabled = Habilitado
+'
+'
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+
+End Sub
+
+
+Private Sub CargaMenuTesoreriaInformes(IdMenu As Integer)
+'
+'
+'        If Not vEmpresa.TieneTesoreria Then Exit Sub
+'
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu
+'        'De momento NO cargamos el 904
+'        cad = cad & " AND codigo <>904  ORDER BY padre,orden"
+'
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'
+'
+'        'Los informes se gargan sobre la solapa de TESORERIA
+'
+'        Set GroupNew = RibbonBar.Tab(NumRegElim).Groups.AddGroup("INFORMES", CStr(IdMenu * 100000) & "0")
+'
+'
+'        While Not Rn2.EOF
+''       901 "ariconta"  9   "Informe por NIF *" 1   1   0
+''       902 "ariconta"  9   "Informe por cuenta *"  2   1   0
+''       903 "ariconta"  9   "Situación Tesoreria *" 3   1   29
+''       904 "ariconta"  9   "Memoria Plazos de pago *"  4   1   0
+''     ID_InformeporNIF ID_Informeporcuenta ID_SituaciónTesoreria
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'            Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            Control.Enabled = Habilitado
+'
+'
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+
+End Sub
+
+
+
+
+Private Sub CargaMenuAnaliticaPResupuestaria(IdMenu As Integer)
+'
+'
+'
+'        If Not vEmpresa.TieneContabilidad Then Exit Sub
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'
+'
+'        'Los pagos se gargan sobre la solapa de diario
+'        Set TabNuevo = RibbonBar.FindTab(3)
+'        If TabNuevo Is Nothing Then
+'            Set TabNuevo = RibbonBar.FindTab(15)
+'            If TabNuevo Is Nothing Then
+'
+'                Set TabNuevo = RibbonBar.InsertTab(15, "ANALITICA-PRESUPUESTO")
+'                TabNuevo.id = 15
+'
+'            End If
+'        End If
+'        cad = CStr(IdMenu * 100000) & "0"
+'        Set GroupNew = TabNuevo.Groups.AddGroup(IIf(IdMenu = 10, "ANALITICA", "PRESUPUESTOS"), cad)
+'
+'
+'        While Not Rn2.EOF
+'
+''            801 "Cartera de Pagos"  5
+''            802 "Informe Pagos pendientes"  19
+''            803 "Informe Pagos bancos"  0
+''            804 "Realizar Pago" 24
+''            805 "Transferencias"    0
+''            806 "Pagos domiciliados"    0
+''            807 "Gastos Fijos"  0
+''            809 "Compensar proveedor"   0
+''            810 "Confirming"    0
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'
+'
+'
+'            Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'
+'            Control.Enabled = Habilitado
+'
+'           ' ControlNew_NewItems.KeyboardTip = "V"
+'
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+'
+End Sub
+
+
+
+
+Private Sub CargaMenuCierreEjercicio(IdMenu As Integer)
+'Dim GropCli As RibbonGroup
+'Dim GrupPag As RibbonGroup
+'
+'        If Not vEmpresa.TieneContabilidad Then Exit Sub
+'
+'        'Creamos la TAB
+'        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Cierre ejercicio")
+'        TabNuevo.id = CLng(IdMenu)
+'
+'        Set GroupNew = TabNuevo.Groups.AddGroup("", 13000001)
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'        While Not Rn2.EOF
+'
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+''        1301    "Renumeración de asientos"  0
+''        1303    "Cierre de Ejercicio"   0
+''        1304    "Deshacer cierre"   0
+''        1306    "Diario Oficial"    0
+''        1308    "Presentación Telemática de Libros" 0
+''        1309    "Memoria Plazos de pago"    0
+'
+'
+'
+'            Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+'            Control.Enabled = Habilitado
+'            ' ControlNew_NewItems.KeyboardTip = "V"
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+'
+End Sub
+
+Private Function DevulevePosicionUtilidades(Id As Integer) As Integer
+    Select Case Id
+    Case ID_Traspasodecuentasenapuntes
+        DevulevePosicionUtilidades = 1
+    Case ID_Renumerarregistrosproveedor
+        DevulevePosicionUtilidades = 2
+    Case ID_Aumentardígitoscontables
+        DevulevePosicionUtilidades = 3
+    Case ID_TraspasocodigosdeIVA
+        DevulevePosicionUtilidades = 4
+    Case Else
+        'ID_Accionesrealizadas
+        DevulevePosicionUtilidades = 5
+    End Select
+End Function
+
+Private Sub CargaMenuUtilidades(IdMenu As Integer)
+'Dim Col As Collection
+'
+'
+'
+'
+'        'Este veremos si tiene alguna utilidad activa. Si es asi, crearemos la solapa, si no nada
+'        '.......................................................................
+'
+'
+'        'todos los hijos que cuelgan en la tab
+'        cad = "Select * from menus where aplicacion = 'ariconta' and padre =" & IdMenu & " ORDER BY padre,orden"
+'        Rn2.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'        cad = ""
+'        Set Col = New Collection
+'        While Not Rn2.EOF
+'           i = i + 1
+'           If Not BloqueaPuntoMenu(Rn2!Codigo, "ariconta") Then
+'                Habilitado = True
+'
+'                If Not MenuVisibleUsuario(DBLet(Rn2!Codigo), "ariconta") Then
+'                    Habilitado = False
+'                Else
+'                    If Not MenuVisibleUsuario(DBLet(Rn2!Padre), "ariconta") Then Habilitado = False
+'                End If
+'            End If
+'
+'            If Rn2!Codigo = 1414 Then
+'                If vParamT.FormaPagoInterTarjeta < 0 Then Habilitado = False
+'            End If
+'
+'            Col.Add Abs(Habilitado) & "|" & Rn2!Codigo & "|" & Rn2!Descripcion & "|"
+'            If Habilitado Then cad = "S"
+'
+'            Rn2.MoveNext
+'        Wend
+'        Rn2.Close
+'
+'            '1408    "Traspaso de cuentas en apuntes"
+'            '1409    "Renumerar registros proveedor"
+'            '1410    "Aumentar dígitos contables"
+'            '1411    "Traspaso códigos de I.V.A."
+'            '1412    "Acciones realizadas"
+'            '1413    Importar fras cliente
+'            '1414    importacon facturas (de momento consum)
+'
+'        'Ya puedo utilizar numregelim
+'        If cad <> "" Then
+'            'OK creamos solapa y demas
+'            'Creamos la TAB
+'            Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Utilidades")
+'            TabNuevo.id = CLng(IdMenu)
+'            Set GroupNew = TabNuevo.Groups.AddGroup("", 14000001)
+'            For NumRegElim = 1 To Col.Count
+'                Habilitado = CStr(RecuperaValor(Col.Item(NumRegElim), 1)) = "1"
+'                Set Control = GroupNew.Add(xtpControlButton, CLng(RecuperaValor(Col.Item(NumRegElim), 2)), CStr(RecuperaValor(Col.Item(NumRegElim), 3)))
+'                Control.Enabled = Habilitado
+'            Next
+'
+'
+'        End If
+'
+'
+'Set Col = Nothing
+End Sub
+
+Public Sub CheckButton(nButton As Integer)
+    CommandBars.Actions(ID_OPTIONS_STYLEBLUE2010).Checked = False
+    CommandBars.Actions(ID_OPTIONS_STYLESILVER2010).Checked = False
+    CommandBars.Actions(ID_OPTIONS_STYLEBLACK2010).Checked = False
+    
+    CommandBars.Actions(nButton).Checked = True
+End Sub
+
+
+Sub OnThemeChanged(Id As Integer)
+Dim N_Skin As Integer
+    CheckButton Id
+    
+    Dim FlatStyle As Boolean
+    FlatStyle = Id >= ID_OPTIONS_STYLESCENIC7 And Id <= ID_OPTIONS_STYLEBLACK2010
+        
+        
+    Me.BackColor = frmShortBar.wndShortcutBar.PaintManager.SplitterBackgroundColor
+   
+    
+    CommandBars.EnableOffice2007Frame False
+
+    Select Case CommandBars.VisualTheme
+        Case xtpThemeResource, xtpThemeRibbon
+            CommandBars.AllowFrameTransparency False 'True
+            CommandBars.EnableOffice2007Frame True
+            CommandBars.SetAllCaps False
+            CommandBars.statusBar.SetAllCaps False
+        Case Else
+            CommandBars.AllowFrameTransparency True
+            CommandBars.EnableOffice2007Frame False
+            CommandBars.SetAllCaps False
+            CommandBars.statusBar.SetAllCaps False
+    End Select
+    
+    Dim ToolTipContext As ToolTipContext
+    Set ToolTipContext = CommandBars.ToolTipContext
+    ToolTipContext.Style = xtpToolTipResource
+    ToolTipContext.ShowTitleAndDescription True, xtpToolTipIconNone
+    ToolTipContext.ShowImage True, IMAGEBASE
+    ToolTipContext.SetMargin 2, 2, 2, 2
+    ToolTipContext.MaxTipWidth = 180
+    
+    statusBar.ToolTipContext.Style = ToolTipContext.Style
+    frmShortBar.wndShortcutBar.ToolTipContext.Style = ToolTipContext.Style
+    
+       
+    'CreateBackstage
+    'SetBackstageTheme
+    
+    'CommandBars.PaintManager.LoadFrameIcon App.hInstance, App.Path + "\styles\Ariconta.ico", 16, 16
+            
+    'Set Captions VisualTheme
+    On Error Resume Next
+    Dim CtrlCaption As ShortcutCaption
+    Dim Form As Form, Ctrl As Object
+            
+    For Each Form In Forms
+        For Each Ctrl In Form.Controls
+                    
+            Set CtrlCaption = Ctrl
+            If Not CtrlCaption Is Nothing Then
+                CtrlCaption.VisualTheme = frmShortBar.wndShortcutBar.VisualTheme
+            End If
+                    
+        Next
+    Next
+       
+    DockingPaneManager.PaintManager.SplitterSize = 5
+    DockingPaneManager.PaintManager.SplitterColor = frmShortBar.wndShortcutBar.PaintManager.SplitterBackgroundColor
+    
+    DockingPaneManager.PaintManager.ShowCaption = False
+    DockingPaneManager.RedrawPanes
+        
+    frmShortBar.SetColor Id
+    frmInbox.SetColor Id
+        
+
+    frmPaneCalendar.SetFlatStyle FlatStyle
+    frmPaneContacts.SetFlatStyle FlatStyle
+    'frmPaneInformacion.SetFlatStyle FlatStyle
+    'frmPaneAcercaDe.SetFlatStyle FlatStyle
+    
+    
+    
+    
+    
+    
+    LoadIcons
+    N_Skin = Id - 2895
+    EstablecerSkin N_Skin
+    
+    'Updatear SKIN usuario
+    If CStr(N_Skin) <> vUsu.Skin Then
+        vUsu.Skin = N_Skin
+        vUsu.ActualizarSkin
+    End If
+    
+End Sub
+
+
+Private Sub CreateRibbon()
+    Dim RibbonBar As RibbonBar
+    
+    If RibbonSeHaCreado Then Exit Sub
+        
+    
+    
+    Set RibbonBar = CommandBars.AddRibbonBar("The Ribbon")
+    RibbonBar.EnableDocking xtpFlagStretched
+    
+    RibbonBar.AllowQuickAccessCustomization = False
+    RibbonBar.ShowQuickAccessBelowRibbon = False
+    RibbonBar.ShowGripper = False
+    
+    RibbonBar.AllowMinimize = False
+    RibbonBar.AddSystemButton
+    
+    RibbonBar.SystemButton.IconId = ID_SYSTEM_ICON
+    RibbonBar.SystemButton.Caption = "&Menu"
+    RibbonBar.SystemButton.Style = xtpButtonCaption
+End Sub
+
+Private Sub CreateRibbonOptions()
+
+    CommandBars.EnableActions
+    If RibbonSeHaCreado Then Exit Sub
+    
+    CommandBars.Actions.Add ID_OPTIONS_STYLEBLUE2010, "Office 2010 Blue", "Office 2010 Blue", "Office 2010 Blue", "Themes"
+    CommandBars.Actions.Add ID_OPTIONS_STYLESILVER2010, "Office 2010 Silver", "Office 2010 Silver", "Office 2010 Silver", "Themes"
+    CommandBars.Actions.Add ID_OPTIONS_STYLEBLACK2010, "Office 2010 Black", "Office 2010 Black", "Office 2010 Black", "Themes"
+
+    Dim Control As CommandBarControl, ControlAbout As CommandBarControl
+    Dim ControlPopup As CommandBarPopup, ControlOptions As CommandBarPopup
+         
+    Set ControlOptions = RibbonBar.Controls.Add(xtpControlPopup, 0, "Opciones")
+    ControlOptions.Flags = xtpFlagRightAlign
+    
+    Set Control = ControlOptions.CommandBar.Controls.Add(xtpControlPopup, 0, "Styles")
+    Control.CommandBar.Controls.Add xtpControlButton, ID_OPTIONS_STYLEBLUE2010, "Office 2010 Blue"
+    Control.CommandBar.Controls.Add xtpControlButton, ID_OPTIONS_STYLESILVER2010, "Office 2010 Silver"
+    Control.CommandBar.Controls.Add xtpControlButton, ID_OPTIONS_STYLEBLACK2010, "Office 2010 Black"
+    
+    Set ControlPopup = ControlOptions.CommandBar.Controls.Add(xtpControlPopup, 0, "Tamaño fuente", -1, False)
+    ControlPopup.CommandBar.Controls.Add xtpControlRadioButton, ID_OPTIONS_FONT_SYSTEM, "Sistema", -1, False
+    Set Control = ControlPopup.CommandBar.Controls.Add(xtpControlRadioButton, ID_OPTIONS_FONT_NORMAL, "Normal", -1, False)
+    Control.BeginGroup = True
+    ControlPopup.CommandBar.Controls.Add xtpControlRadioButton, ID_OPTIONS_FONT_LARGE, "Grande", -1, False
+    ControlPopup.CommandBar.Controls.Add xtpControlRadioButton, ID_OPTIONS_FONT_EXTRALARGE, "Extra grande", -1, False
+    Set Control = ControlPopup.CommandBar.Controls.Add(xtpControlButton, ID_OPTIONS_FONT_AUTORESIZEICONS, "Ajustar Icons", -1, False)
+    Control.BeginGroup = True
+    
+    'ControlOptions.CommandBar.Controls.Add xtpControlButton, ID_OPTIONS_RTL, "Right To Left"
+    ControlOptions.CommandBar.Controls.Add xtpControlButton, ID_OPTIONS_ANIMATION, "Animation   "
+    
+    Set Control = AddButton(RibbonBar.Controls, xtpControlButton, ID_RIBBON_MINIMIZE, "Minimizar la barra", False, "Muestra solo los titulos del menu principal.")
+    Control.Flags = xtpFlagRightAlign
+    
+    Set Control = AddButton(RibbonBar.Controls, xtpControlButton, ID_RIBBON_EXPAND, "Expandir la barra", False, "Muestra todos los elementos del menu.")
+    Control.Flags = xtpFlagRightAlign
+        
+    Set ControlAbout = RibbonBar.Controls.Add(xtpControlButton, ID_APP_ABOUT, "&Acerca de")
+    ControlAbout.Flags = xtpFlagRightAlign Or xtpFlagManualUpdate
+    
+
+        
+End Sub
+
+
+Private Sub CreateBackstage()
+
+    
+    Dim RibbonBar As RibbonBar
+    Set RibbonBar = CommandBars.ActiveMenuBar
+    
+    Dim BackstageView As RibbonBackstageView
+    Set BackstageView = CommandBars.CreateCommandBar("CXTPRibbonBackstageView")
+    
+    BackstageView.SetTheme xtpThemeRibbon
+
+
+    CommandBars.Icons.LoadBitmap App.Path & "\styles\BackstageIcons.png", _
+    Array(1, 1, 1002, 1, 1, ID_APP_EXIT), xtpImageNormal
+
+    Set RibbonBar.AddSystemButton.CommandBar = BackstageView
+    
+    'BackstageView.AddCommand ID_FILE_SAVE, "Cambiar empresa"
+    'BackstageView.AddCommand ID_FILE_SAVE_AS, "Personalizar"
+    'BackstageView.AddCommand ID_FILE_OPEN, "Open"
+    'BackstageView.AddCommand ID_FILE_CLOSE, "Close"
+    
+    'If (pageBackstageInfo Is Nothing) Then Set pageBackstageInfo = New pageBackstageInfo
+    'If (pageBackstageSend Is Nothing) Then Set pageBackstageSend = New pageBackstageSend
+    If (pageBackstageHelp Is Nothing) Then Set pageBackstageHelp = New pageBackstageHelp
+    
+    Dim ControlInfo As RibbonBackstageTab
+    Set ControlInfo = BackstageView.AddTab(1000, "Info", pageBackstageHelp.hwnd)
+    
+    'BackstageView.AddTab 1002, "Empresas", pageBackstageSend.hwnd
+
+    ' Los menus de informacion...
+    'BackstageView.AddTab 1001, "Acerca de", pageBackstageInfo.hwnd
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    'BackstageView.AddCommand ID_FILE_OPTIONS, "Options"
+    BackstageView.AddCommand ID_APP_EXIT, "Salir"
+    
+    ControlInfo.DefaultItem = True
+    
+
+End Sub
+
+
+
+
+
+Private Sub CreateStatusBar()
+Dim Pane As StatusBarPane
+
+    If RibbonSeHaCreado Then
+        'StatusBar.Pane(0).Value = vEmpresa.nomempre & "    " & vUsu.Login
+        statusBar.Pane(0).Text = "Nº " & vEmpresa.codempre
+        statusBar.Pane(1).Text = vEmpresa.nomempre
+    
+    Else
+    
+         
+         Set statusBar = Nothing
+         
+         Set statusBar = CommandBars.statusBar
+         statusBar.visible = True
+         
+         
+         Set Pane = statusBar.AddPane(ID_INDICATOR_PAGENUMBER)
+         Pane.Text = "Nº " & vEmpresa.codempre
+         Pane.Caption = "&C"
+         Pane.Value = vEmpresa.nomempre & "    " & vUsu.Login
+         Pane.Button = True
+         Pane.SetPadding 8, 0, 8, 0
+         
+         Set Pane = statusBar.AddPane(ID_INDICATOR_WORDCOUNT)
+         Pane.Text = vEmpresa.nomempre
+         Pane.Caption = ""
+         Pane.Value = vEmpresa.codempre
+         Pane.Button = True
+         Pane.SetPadding 8, 0, 8, 0
+         
+         
+         Set Pane = statusBar.AddPane(0)
+         Pane.Style = SBPS_STRETCH Or SBPS_NOBORDERS
+         Pane.BeginGroup = True
+                 
+        '
+         statusBar.RibbonDividerIndex = 3
+         statusBar.EnableCustomization True
+         
+         CommandBars.Options.KeyboardCuesShow = xtpKeyboardCuesShowNever
+         CommandBars.Options.ShowKeyboardTips = True
+         CommandBars.Options.ToolBarAccelTips = True
+    End If
+End Sub
+
+Private Sub DockBarRightOf(BarToDock As CommandBar, BarOnLeft As CommandBar)
+    Dim Left As Long
+    Dim top As Long
+    Dim Right As Long
+    Dim Bottom As Long
+    
+    CommandBars.RecalcLayout
+    BarOnLeft.GetWindowRect Left, top, Right, Bottom
+    
+    CommandBars.DockToolBar BarToDock, Right, (Bottom + top) / 2, BarOnLeft.Position
+
+End Sub
+
+Private Sub CommandBars_CommandBarKeyDown(CommandBar As XtremeCommandBars.ICommandBar, KeyCode As Long, Shift As Integer)
+    Debug.Print CommandBar.BarID
+End Sub
+
+Public Sub CommandBars_Execute(ByVal Control As XtremeCommandBars.ICommandBarControl)
+Dim AbiertoFormulario  As Boolean
+    AbiertoFormulario = False
+    
+
+    Select Case Control.Id
+        Case XTPCommandBarsSpecialCommands.XTP_ID_RIBBONCONTROLTAB:
+            
+        
+          
+        Case XTP_ID_RIBBONCUSTOMIZE:
+            CommandBars.ShowCustomizeDialog 3
+            
+        Case ID_APP_ABOUT:
+          
+           LanzaVisorMimeDocumento Me.hwnd, DireccionAyuda & "AriTAXI-6.html?"
+   
+        
+        Case ID_FILE_NEW:
+            'frmEmail.Show 0, Me
+        
+        
+        
+        Case ID_Licencia_Usuario_Final_txt, ID_Licencia_Usuario_Final_web, ID_Ver_Version_operativa_web
+            OpcionesMenuInformacion Control.Id
+        
+        
+        
+        Case ID_VIEW_STATUSBAR:
+            CommandBars.statusBar.visible = Not CommandBars.statusBar.visible
+            CommandBars.RecalcLayout
+            
+        Case ID_RIBBON_EXPAND:
+            RibbonBar.Minimized = Not RibbonBar.Minimized
+            
+        Case ID_RIBBON_MINIMIZE:
+            RibbonBar.Minimized = Not RibbonBar.Minimized
+            
+        Case ID_OPTIONS_FONT_SYSTEM, ID_OPTIONS_FONT_NORMAL, ID_OPTIONS_FONT_LARGE, ID_OPTIONS_FONT_EXTRALARGE
+            Dim newFontHeight As Integer
+            newFontHeight = FontSizes(Control.Id - ID_OPTIONS_FONT_SYSTEM)
+            RibbonBar.FontHeight = newFontHeight
+            
+        Case ID_OPTIONS_FONT_AUTORESIZEICONS
+            CommandBars.PaintManager.AutoResizeIcons = Not CommandBars.PaintManager.AutoResizeIcons
+            CommandBars.RecalcLayout
+            RibbonBar.RedrawBar
+            
+        Case ID_OPTIONS_STYLEBLUE2010:
+            LoadResources "Office2010.dll", "Office2010Blue.ini"
+            CommandBars.VisualTheme = xtpThemeRibbon
+            DockingPaneManager.VisualTheme = ThemeResource
+            frmShortBar.wndShortcutBar.VisualTheme = xtpShortcutThemeResource
+            frmInbox.CalendarControl.VisualTheme = xtpCalendarThemeResource
+            frmInbox.ScrollBarCalendar.Appearance = xtpAppearanceResource
+            
+            OnThemeChanged ID_OPTIONS_STYLEBLUE2010
+            
+            
+            
+       Case ID_OPTIONS_STYLESILVER2010:
+            LoadResources "Office2010.dll", "Office2010Silver.ini"
+            CommandBars.VisualTheme = xtpThemeRibbon
+            DockingPaneManager.VisualTheme = ThemeResource
+            frmShortBar.wndShortcutBar.VisualTheme = xtpShortcutThemeResource
+            frmInbox.CalendarControl.VisualTheme = xtpCalendarThemeResource
+            frmInbox.ScrollBarCalendar.Appearance = xtpAppearanceResource
+            
+            OnThemeChanged ID_OPTIONS_STYLESILVER2010
+        
+       Case ID_OPTIONS_STYLEBLACK2010:
+            LoadResources "Office2010.dll", "Office2010Black.ini"
+            CommandBars.VisualTheme = xtpThemeRibbon
+            DockingPaneManager.VisualTheme = ThemeResource
+            frmShortBar.wndShortcutBar.VisualTheme = xtpShortcutThemeResource
+            frmInbox.CalendarControl.VisualTheme = xtpCalendarThemeResource
+            frmInbox.ScrollBarCalendar.Appearance = xtpAppearanceResource
+            
+            OnThemeChanged ID_OPTIONS_STYLEBLACK2010
+        
+        Case ID_APP_EXIT:
+            Unload Me
+        
+    
+            
+        Case ID_GROUP_GOTO_TODAY:
+            Select Case frmInbox.CalendarControl.ViewType
+                Case xtpCalendarDayView:
+                    frmInbox.CalendarControl.DayView.ShowDay DateTime.Now, True
+            
+                Case xtpCalendarWorkWeekView:
+                    frmInbox.CalendarControl.DayView.SetSelection DateTime.Now, DateTime.Now, True
+                    frmInbox.CalendarControl.RedrawControl
+            
+                Case xtpCalendarWeekView:
+                    frmInbox.CalendarControl.WeekView.SetSelection DateTime.Now, DateTime.Now, True
+            
+                Case xtpCalendarMonthView:
+                    frmInbox.CalendarControl.MonthView.SetSelection DateTime.Now, DateTime.Now, True
+            End Select
+            
+        Case ID_GROUP_GOTO_NEXT7DAYS:
+            Dim lastDate As Date
+            lastDate = frmInbox.CalendarControl.DayView.Days(frmInbox.CalendarControl.DayView.DaysCount - 1).Date
+            frmInbox.CalendarControl.ViewType = xtpCalendarDayView
+            frmInbox.CalendarControl.DayView.ShowDays lastDate + 1, lastDate + 7
+            
+        Case ID_GROUP_ARRANGE_DAY:
+            frmInbox.CalendarControl.ViewType = xtpCalendarDayView
+            
+        Case ID_GROUP_ARRANGE_WORK_WEEK:
+            frmInbox.CalendarControl.ViewType = xtpCalendarWorkWeekView
+            
+        Case ID_GROUP_ARRANGE_WEEK:
+            frmInbox.CalendarControl.UseMultiColumnWeekMode = True
+            frmInbox.CalendarControl.ViewType = xtpCalendarWeekView
+
+        Case ID_GROUP_ARRANGE_MONTH, ID_GROUP_ARRANGE_MONTH_LOW, _
+             ID_GROUP_ARRANGE_MONTH_MEDIUM, ID_GROUP_ARRANGE_MONTH_HIGH:
+            frmInbox.CalendarControl.ViewType = xtpCalendarMonthView
+            
+        Case ID_CALENDAREVENT_OPEN:
+            frmInbox.mnuOpenEvent
+            
+        Case ID_CALENDAREVENT_DELETE:
+            frmInbox.mnuDeleteEvent
+            
+        Case ID_CALENDAREVENT_NEW, ID_GROUP_NEW_APPOINTMENT:
+            'falta### frmEditEvent.AllDayOverride = False
+            frmInbox.mnuNewEvent
+            frmInbox.CalendarControl.Options.DayViewCurrentTimeMarkVisible = True
+            
+        Case ID_GROUP_NEW_MEETING:
+            'falta### frmEditEvent.AllDayOverride = False
+            'falta### frmEditEvent.chkMeeting.Value = 1
+            frmInbox.mnuNewEvent
+            frmInbox.CalendarControl.Options.DayViewCurrentTimeMarkVisible = True
+            
+        Case ID_GROUP_NEW_ALLDAY:
+            'falta### frmEditEvent.AllDayOverride = True
+            frmInbox.mnuNewEvent
+            frmInbox.CalendarControl.Options.DayViewCurrentTimeMarkVisible = True
+            
+        Case ID_CALENDAREVENT_CHANGE_TIMEZONE:
+            frmInbox.mnuChangeTimeZone
+            
+        Case ID_CALENDAREVENT_60:
+            frmInbox.mnuTimeScale 60
+            
+        Case ID_CALENDAREVENT_30:
+            frmInbox.mnuTimeScale 30
+            
+        Case ID_CALENDAREVENT_15:
+            frmInbox.mnuTimeScale 15
+            
+        Case ID_CALENDAREVENT_10:
+            frmInbox.mnuTimeScale 10
+            
+        Case ID_CALENDAREVENT_5:
+            frmInbox.mnuTimeScale 5
+            
+            
+            
+     
+        Case Else
+            AbiertoFormulario = True
+            AbrirFormularios Control.Id
+            
+            
+    End Select
+    
+    
+    If AbiertoFormulario Then
+        AbiertoFormulario = False
+        'mOTIVO... no lo se
+        'Pero si lo vamos cambiando funciona
+        If Me.DockingPaneManager.Panes(1).Enabled = 3 Then
+            Me.DockingPaneManager.Panes(1).Enabled = 3
+            Me.DockingPaneManager.Panes(2).Enabled = 3
+
+            frmPaneCalendar.DatePicker.Enabled = True
+            
+            DockingPaneManager.RedrawPanes
+            
+            
+        Else
+            Me.DockingPaneManager.Panes(1).Enabled = 3
+            Me.DockingPaneManager.Panes(2).Enabled = 3
+             
+        End If
+        DockingPaneManager.NormalizeSplitters
+
+    End If
+End Sub
+
+
+
+Private Sub CommandBars_InitCommandsPopup(ByVal CommandBar As XtremeCommandBars.ICommandBar)
+        Dim Control As CommandBarControl, ControlItem As CommandBarControl
+        
+        If TypeOf CommandBar Is RibbonBackstageView Then
+            Debug.Print "RibbonBackstageView"
+        End If
+        
+        Set Control = CommandBar.FindControl(, IDS_ARRANGE_BY)
+        If Not Control Is Nothing Then
+            Dim Index As Long
+            Index = Control.Index
+            Control.visible = False
+            
+            Do While Index + 1 <= CommandBar.Controls.Count
+                Set ControlItem = CommandBar.Controls.Item(Index + 1)
+                If ControlItem.Id = IDS_ARRANGE_BY Then
+                    ControlItem.Delete
+                Else
+                    Exit Do
+                End If
+            Loop
+            
+'            Dim CurrentColumn As ReportColumn
+'            For Each CurrentColumn In frmInbox. wndReportControl.Columns
+'                Set ControlItem = CommandBar.Controls.Add(xtpControlButton, ID_REPORTCONTROL_COLUMN_ARRANGE_BY, CurrentColumn.Caption)
+'                ControlItem.Parameter = CurrentColumn.ItemIndex
+'                If Not frmInbox. wndReportControl.SortOrder.IndexOf(CurrentColumn) = -1 Then
+'                    ControlItem.Checked = True
+'                End If
+'                If Not CurrentColumn.Visible Then
+'                    ControlItem.Visible = False
+'                End If
+'            Next
+        
+        End If
+End Sub
+
+Private Sub CommandBars_SpecialColorChanged()
+    Me.BackColor = CommandBars.GetSpecialColor(XPCOLOR_SPLITTER_FACE)
+End Sub
+
+Private Sub CommandBars_ToolBarVisibleChanged(ByVal ToolBar As XtremeCommandBars.ICommandBar)
+     Debug.Print ToolBar.BarID
+End Sub
+
+Private Sub CommandBars_Update(ByVal Control As XtremeCommandBars.ICommandBarControl)
+        
+    On Error Resume Next
+    
+    
+    
+    Select Case Control.Id
+        Case ID_VIEW_STATUSBAR:
+            'Control.Checked = CommandBars.StatusBar.Visible
+        
+        
+            
+        Case ID_GROUP_ARRANGE_WORK_WEEK:
+            'Control.Checked = IIf(frmInbox.CalendarControl.ViewType = xtpCalendarWorkWeekView, True, False)
+            
+        Case ID_GROUP_ARRANGE_WEEK:
+            'Control.Checked = IIf(frmInbox.CalendarControl.ViewType = xtpCalendarWeekView, True, False)
+            
+        Case ID_GROUP_ARRANGE_MONTH:
+            'Control.Checked = IIf(frmInbox.CalendarControl.ViewType = xtpCalendarMonthView, True, False)
+        
+        Case ID_OPTIONS_ANIMATION:
+            'Control.Checked = CommandBars.ActiveMenuBar.EnableAnimation
+            
+        Case ID_OPTIONS_FONT_SYSTEM, ID_OPTIONS_FONT_NORMAL, ID_OPTIONS_FONT_LARGE, ID_OPTIONS_FONT_EXTRALARGE
+             '   Dim newFontHeight As Integer
+             '   newFontHeight = FontSizes(Control.Id - ID_OPTIONS_FONT_SYSTEM)
+             '   Control.Checked = IIf(RibbonBar.FontHeight = newFontHeight, True, False)
+                
+        Case ID_OPTIONS_FONT_AUTORESIZEICONS
+              '  Control.Checked = CommandBars.PaintManager.AutoResizeIcons
+
+        Case ID_RIBBON_EXPAND:
+            'Control.Visible = RibbonBar.Minimized
+            
+        Case ID_RIBBON_MINIMIZE:
+            'Control.Visible = Not RibbonBar.Minimized
+    End Select
+    If Err.Number <> 0 Then Err.Clear
+End Sub
+
+Private Sub DockingPaneManager_Action(ByVal Action As XtremeDockingPane.DockingPaneAction, ByVal Pane As XtremeDockingPane.IPane, ByVal Container As XtremeDockingPane.IPaneActionContainer, Cancel As Boolean)
+    If (Action = PaneActionSplitterResized) Then
+        DockingPaneManager.RecalcLayout
+        
+        ' Save MRUShortcutBarWidth
+        If (frmShortBar.ScaleWidth > MinimizedShortcutBarWidth And Container.Container.Type = PaneTypeSplitterContainer) Then
+            Debug.Print frmShortBar.ScaleWidth
+            MRUShortcutBarWidth = frmShortBar.ScaleWidth
+        End If
+    Else
+        If (Action = PaneActionSplitterResized) Then Debug.Print "Resizing "
+    End If
+End Sub
+
+
+Private Sub DockingPaneManager_AttachPane(ByVal Item As XtremeDockingPane.IPane)
+    If Item.Tag = PANE_SHORTCUTBAR Then
+        Item.Handle = frmShortBar.hwnd
+    ElseIf Item.Tag = PANE_REPORT_CONTROL Then
+        Item.Handle = frmInbox.hwnd
+    End If
+End Sub
+
+
+
+Private Sub CreateCalendarTabOriginal()
+
+    Dim TabCalendarHome As RibbonTab
+    Dim GroupNew As RibbonGroup, GroupGoTo As RibbonGroup, GroupArrange As RibbonGroup
+
+    
+    Dim Control As CommandBarControl
+    Dim ControlNew_NewItems As CommandBarPopup
+    Dim ControlArrange_Month As CommandBarPopup
+    Dim ControlManage_Open As CommandBarPopup
+    Dim ControlManage_Groups As CommandBarPopup
+    Dim ControlShare_Publish As CommandBarPopup
+           
+    Dim PopupBar As CommandBar
+    
+    Set TabCalendarHome = RibbonBar.InsertTab(14, "Agenda")
+    TabCalendarHome.Id = ID_TAB_CALENDAR_HOME
+ 
+    Set GroupNew = TabCalendarHome.Groups.AddGroup("&Nueva", ID_GROUP_NEW)
+        
+    Set Control = GroupNew.Add(xtpControlButton, ID_GROUP_NEW_APPOINTMENT, "&Evento")
+    Control.Enabled = False
+    Set Control = GroupNew.Add(xtpControlButton, ID_GROUP_NEW_MEETING, "&Cita")
+    Control.Enabled = False
+    
+    '------------------------------------
+    'Set ControlNew_NewItems = GroupNew.Add(xtpControlButtonPopup, ID_GROUP_NEW_ITEMS, "New &Items")
+    '    Set Control = ControlNew_NewItems.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_NEW_APPOINTMENT, "Evento")
+    '    Set Control = ControlNew_NewItems.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_NEW_ALLDAY, "E&vento todo el dia")
+    '    Control.BeginGroup = True
+    'ControlNew_NewItems.KeyboardTip = "V"
+    
+    Set GroupGoTo = TabCalendarHome.Groups.AddGroup("I&r a", ID_GROUP_GOTO)
+    Set Control = GroupGoTo.Add(xtpControlButton, ID_GROUP_GOTO_TODAY, "&Hoy")
+    Set Control = GroupGoTo.Add(xtpControlButton, ID_GROUP_GOTO_NEXT7DAYS, "Próximos &7 dias ")
+    GroupGoTo.ShowOptionButton = True
+    GroupGoTo.ControlGroupOption.Caption = "Ir a (Ctrl+G)"
+    GroupGoTo.ControlGroupOption.ToolTipText = "Ir a (Ctrl+G)"
+    GroupGoTo.ControlGroupOption.DescriptionText = "Ir a fecha especificada."
+    
+    Set GroupArrange = TabCalendarHome.Groups.AddGroup("Vista", ID_GROUP_ARRANGE2)
+    Set Control = GroupArrange.Add(xtpControlButton, ID_GROUP_ARRANGE_DAY, "&Dia vista")
+    Set Control = GroupArrange.Add(xtpControlButton, ID_GROUP_ARRANGE_WORK_WEEK, "Samana &trabajo")
+    Set Control = GroupArrange.Add(xtpControlButton, ID_GROUP_ARRANGE_WEEK, "Sema&na vista")
+    Set ControlArrange_Month = GroupArrange.Add(xtpControlSplitButtonPopup, ID_GROUP_ARRANGE_MONTH, "Mes")
+            Set Control = ControlArrange_Month.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_ARRANGE_MONTH_LOW, "Ver detalle")
+            Control.ToolTipText = "Muestra solo eventos todo el dia."
+            Control.DescriptionText = Control.ToolTipText
+            Set Control = ControlArrange_Month.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_ARRANGE_MONTH_MEDIUM, "Detalle &Medio")
+            Control.ToolTipText = "Eventos todo el dia y si esta libre el dia o tiene eventos."
+            Control.DescriptionText = Control.ToolTipText
+            Set Control = ControlArrange_Month.CommandBar.Controls.Add(xtpControlButton, ID_GROUP_ARRANGE_MONTH_HIGH, "Detalle &Alto")
+            Control.ToolTipText = "Muestra todo."
+            Control.DescriptionText = Control.ToolTipText
+
+'    Set Control = GroupArrange.Add(xtpControlButton, ID_GROUP_ARRANGE_SCHEDULE_VIEW, "Schedule View")
+'    GroupArrange.ShowOptionButton = True
+'    GroupArrange.ControlGroupOption.Caption = "Calendar Options"
+'    GroupArrange.ControlGroupOption.ToolTipText = "Calendar Options"
+'    GroupArrange.ControlGroupOption.DescriptionText = "Change the settings for calendars, meetings and time zones."
+'
+'
+  
+    
+End Sub
+
+
+
+Private Sub GuardarDatosUltimaTab()
+    i = RibbonBar.SelectedTab.Id
+    If i = ID_TAB_CALENDAR_HOME Then Exit Sub 'no guardo este tab
+    If i <> vUsu.TabPorDefecto Then
+        vUsu.TabPorDefecto = i
+        vUsu.GuardarTabPorDefecto
+    End If
+End Sub
+
+
+Public Function AddButton(Controls As CommandBarControls, ControlType As XTPControlType, Id As Long, Caption As String, Optional BeginGroup As Boolean = False, Optional DescriptionText As String = "", Optional ButtonStyle As XTPButtonStyle = xtpButtonAutomatic, Optional Category As String = "Controls") As CommandBarControl
+    Dim Control As CommandBarControl
+    Set Control = Controls.Add(ControlType, Id, Caption)
+    
+    Control.BeginGroup = BeginGroup
+    Control.DescriptionText = DescriptionText
+    Control.Style = ButtonStyle
+    Control.Category = Category
+    
+    Set AddButton = Control
+    
+End Function
+
+Private Sub CommandBars_Resize()
+    
+    On Error Resume Next
+    
+    Dim Left As Long
+    Dim top As Long
+    Dim Right As Long
+    Dim Bottom As Long
+    
+    CommandBars.GetClientRect Left, top, Right, Bottom
+    
+End Sub
+
+Public Sub OpcionesMenuInformacion(Id As Long)
+    
+    Select Case Id
+    Case ID_Licencia_Usuario_Final_txt
+        LanzaVisorMimeDocumento Me.hwnd, "c:\programas\Ariadna.rtf"
+    Case ID_Licencia_Usuario_Final_web
+        LanzaVisorMimeDocumento Me.hwnd, DireccionAyuda & "AriTAXI-6.html?Licenciadeuso.html"
+    Case ID_Ver_Version_operativa_web
+        LanzaVisorMimeDocumento Me.hwnd, DireccionAyuda & "Aritaxi-6.html"  ' "http://www.ariadnasw.com/clientes/"
+    End Select
+    
+End Sub
+
+
+Private Sub LoadIcons()
+    CommandBars.Icons.RemoveAll
+    SuiteControlsGlobalSettings.Icons.RemoveAll
+    ReportControlGlobalSettings.Icons.RemoveAll
+
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\help.png", ID_APP_ABOUT, xtpImageNormal
+        
+        
+        
+   
+    'Para que no carge imagen de ratios y graficas y punteo, no lo pongo aqui ya que los cargo "pequeños"
+    '
+  
+      
+    'ICONOS PEQUEÑOS
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
+            Array(ID_RatiosyGráficas, ID_EvolucióndeSaldos, ID_Totalesporconcepto, 1, 1, ID_AseguClientes), xtpImageNormal
+        
+    
+    
+    
+    'Pequeños
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
+            Array(ID_ConsoBalSums, 1, 1, 1, ID_EstadísticaInmovilizado, ID_SimulaciónAmortización, ID_DeshacerAmortización, 1, 1, ID_VentaBajainmovilizado), xtpImageNormal
+        
+    'Pequeños diario
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
+            Array(ID_TiposdeDiario, ID_TiposdePago, ID_ModelosdeCartas, ID_BicSwift, 1, ID_Agentes), xtpImageNormal
+      
+         '      ID_AsientosPredefinidos
+     
+    'Deberiamos cargar un array con unos(1) de longitud 143
+    ' y en funcion del valor del campo imagen en el punto de menu correspondiente
+    ' lo pondremos en el array.
+    ' Ejemplo    303 Extractos  Campo imagen: 87
+    ' quiere decir que en el campo 87 del array sustituieremos el 1 por el 303
+
+
+'
+    Dim T() As Variant
+    'Cad linea son 15
+    T = Array(1, ID_Conceptos, ID_TiposdeIVA, ID_Bancos, ID_FormasdePago, ID_FacturasRecibidas, 1, ID_FacturasEmitidas, ID_LibroFacturasRecibidas, 1, 1, 1, 1, 1, 1, _
+        ID_RelaciónClientesporcuenta, ID_RelacionProveedoresporcuenta, 1, 1, 1, ID_RealizarCobro, ID_RealizarPago, 1, ID_Elementos, 1, 1, 1, 1, 1, ID_Punteoextractobancario, _
+        1, ID_InformePagospendientes, 1, 1, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, ID_Extractos, ID_CarteradePagos, 1, 1, 1, ID_Punteo, 1, _
+        1, ID_PlanContable, 1, 1, 1, ID_Informes, 1, ID_Usuarios, 1, 1, 1, 1, ID_Nuevaempresa, ID_ConfigurarBalances, 1, _
+        1, ID_Compensaciones, 1, 1, 1, 1, ID_ConceptosInm, 1, 1, ID_GenerarAmortización, ID_Reclamaciones, 1, 1, 1, 1, _
+        ID_ImportarFacturasCliente, 1, 1, ID_Compensarcliente, ID_SumasySaldos, ID_CuentadeExplotación, ID_BalancedeSituación, ID_PérdidasyGanancias, 1, 1, 1, 1, 1, ID_CarteradeCobros, ID_InformeCobrosPendientes, _
+        ID_Renumeracióndeasientos, ID_CierredeEjercicio, ID_Deshacercierre, ID_DiarioOficial, ID_PresentaciónTelemáticadeLibros, ID_Traspasodecuentasenapuntes, ID_Renumerarregistrosproveedor, ID_TraspasocodigosdeIVA, 1, 1, 1, 1, 1, 1, 1, _
+        ID_Traspasodecuentasenapuntes, ID_Aumentardígitoscontables, 1, 1, 1, 1, 1, ID_LibroFacturasEmitidas, 1, 1, ID_Remesas, 1, 1, 1, 1, _
+        ID_RecepcionTalónPagare, ID_RemesasTalenPagare, ID_Accionesrealizadas, 1, ID_LiquidacionIVA, 1, 1, 1, ID_AsientosPredefinidos, 1, 1, 1, 1, ID_FrasConso, 1, _
+        ID_Renumerarregistrosproveedor, ID_TraspasocodigosdeIVA, 1, 1, 1, 1, ID_Asientos, 1)
+    
+     
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlook2013L_32x32.bmp", T, xtpImageNormal
+    
+           
+
+    'Este de abjo funciona correctamente.
+    'NO tocar. Es por si falla volver a empezar
+'    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlook2013L_32x32.bmp", _
+'            Array(ID_CarteradeCobros, ID_InformeCobrosPendientes, ID_RealizarCobro, ID_Compensarcliente, 1, ID_BalancePresupuestario, 1, _
+'            ID_CentrosdeCoste, 1, 1, ID_Presupuestos, ID_Remesas, ID_Detalledeexplotación, ID_CarteradePagos, ID_CuentadeExplotaciónAnalítica, ID_ExtractosporCentrodeCoste, _
+'            ID_Asientos, ID_Extractos, ID_Punteo, 1, ID_CuentadeExplotación, ID_Totalesporconcepto, ID_BalancedeSituación, ID_PérdidasyGanancias, _
+'            ID_SumasySaldos, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _
+'            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _
+'            ID_Empresa, ID_ParametrosContabilidad, ID_Contadores, ID_Usuarios, 1, ID_Informes, ID_Nuevaempresa, ID_ConfigurarBalances, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _
+'            ID_FacturasEmitidas, ID_LibroFacturasEmitidas, ID_FacturasRecibidas, ID_LibroFacturasRecibidas, 1, 1, 1, 1, 1, ID_Elementos, ID_GenerarAmortización, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, _
+'            1, ID_PlanContable, ID_TiposdeDiario, ID_Conceptos, ID_TiposdeIVA, ID_TiposdePago, ID_Bancos, ID_FormasdePago, _
+'            ID_BicSwift, ID_Agentes, ID_AsientosPredefinidos, ID_ModelosdeCartas, _
+'            ID_Renumeracióndeasientos, ID_CierredeEjercicio, ID_Deshacercierre, 1, 1, 1, 1, 1, 1, ID_DiarioOficial, _
+'            ID_PresentaciónTelemáticadeLibros, ID_Traspasodecuentasenapuntes, ID_Renumerarregistrosproveedor, 1, ID_TraspasocodigosdeIVA), xtpImageNormal
+'
+    
+    'Presupuiestaria y analitaica cargadas arriba en pequeño
+    '---------------------------------------------------------
+    '
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
+            Array(ID_CentrosdeCoste, ID_ExtractosporCentrodeCoste, ID_Detalledeexplotación, ID_CuentadeExplotaciónAnalítica, ID_Presupuestos, ID_BalancePresupuestario), xtpImageNormal
+    
+
+    
+
+    'Pequeños
+    ' ID_Compensaciones ID_Reclamaciones  ID_InformeImpagados ID_RemesasTalenPagare ID_Norma57Pagosventanilla  ID_TransferenciasAbonos
+    ' ID_InformePagosbancos ID_Transferencias ID_Pagosdomiciliados ID_GastosFijos ID_Compensarproveedor ID_Confirming
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
+            Array(1, ID_Reclamaciones, ID_InformeImpagados, ID_RemesasTalenPagare, ID_Norma57Pagosventanilla, ID_TransferenciasAbonos, ID_Confirming, _
+            ID_Pagosdomiciliados, ID_GastosFijos, ID_Compensarproveedor), xtpImageNormal
+    
+    
+    
+    
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
+            Array(ID_InformePagosbancos, ID_Transferencias, ID_MemoriaPlazosdepago, ID_Informeporcuenta, ID_SituaciónTesoreria, ID_InformeporNIF), xtpImageNormal
+    
+     
+ 
+        
+        
+    '------------------------------------------------------------------------------------------------------------------------
+    '------------------------------------------------------------------------------------------------------------------------
+    '------------------------------------------------------------------------------------------------------------------------
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlookcalicons.png", _
+            Array(ID_GROUP_NEW_APPOINTMENT, ID_GROUP_NEW_MEETING, ID_GROUP_NEW_ITEMS, ID_GROUP_GOTO_TODAY, _
+            ID_GROUP_GOTO_NEXT7DAYS, ID_GROUP_ARRANGE_DAY, ID_GROUP_ARRANGE_WORK_WEEK, ID_GROUP_ARRANGE_WEEK, _
+            ID_GROUP_ARRANGE_MONTH, ID_GROUP_ARRANGE_SCHEDULE_VIEW, ID_GROUP_MANAGE_CALENDARS_OPEN, ID_GROUP_MANAGE_CALENDARS_GROUPS, _
+            ID_GROUP_SHARE_EMAIL, ID_GROUP_SHARE_SHARE, ID_GROUP_SHARE_PUBLISH, ID_GROUP_SHARE_PERMISSIONS), xtpImageNormal
+            
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\RibbonMinimize.png", _
+            Array(ID_RIBBON_MINIMIZE, ID_RIBBON_EXPAND), xtpImageNormal
+            
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\Search.png", _
+            ID_SEARCH_ICON, xtpImageNormal
+            
+     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\reporticonslarge.png", _
+            Array(ID_GROUP_MAIL_NEW_NEW, ID_GROUP_MAIL_NEW_NEW_ITEMS, ID_GROUP_MAIL_DELETE_DELETE, ID_GROUP_MAIL_RESPOND_REPLY, _
+            ID_GROUP_MAIL_RESPOND_REPLY_ALL, ID_GROUP_MAIL_RESPOND_FORWARD, ID_GROUP_MAIL_MOVE_MOVE, ID_GROUP_MAIL_MOVE_ONENOTE), xtpImageNormal
+            
+     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\reporticonssmall.png", _
+            Array(ID_GROUP_MAIL_DELETE_CLEANUP, ID_GROUP_MAIL_DELETE_JUNK, ID_GROUP_MAIL_RESPOND_MEETING, ID_GROUP_MAIL_RESPOND_IM, _
+            ID_GROUP_MAIL_RESPOND_MORE, ID_GROUP_MAIL_TAGS_UNREAD, ID_GROUP_MAIL_TAGS_CATEGORIZE, ID_GROUP_MAIL_TAGS_FOLLOWUP, ID_GROUP_MAIL_FIND_ADDRESSBOOK, _
+            ID_GROUP_MAIL_FIND_FILTER, ID_GROUP_MAIL_MOVE_MOVE, ID_GROUP_MAIL_MOVE_ONENOTE), xtpImageNormal
+    
+        CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlookpane.png", _
+            Array(ID_SWITCH_NORMAL, ID_SWITCH_CALENAR_AND_TASK, ID_SWITCH_CALENDAR, ID_SWITCH_CLASSIC, ID_SWITCH_READING), xtpImageNormal
+            
+        CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
+            Array(SHORTCUT_INBOX, SHORTCUT_CALENDAR, SHORTCUT_CONTACTS, SHORTCUT_TASKS, SHORTCUT_NOTES, _
+            SHORTCUT_FOLDER_LIST, SHORTCUT_SHORTCUTS, SHORTCUT_JOURNAL, SHORTCUT_SHOW_MORE, SHORTCUT_SHOW_FEWER), xtpImageNormal
+        CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_24x24.bmp", _
+            Array(SHORTCUT_INBOX, SHORTCUT_CALENDAR, SHORTCUT_CONTACTS, SHORTCUT_TASKS, SHORTCUT_NOTES, _
+            SHORTCUT_FOLDER_LIST, SHORTCUT_SHORTCUTS, SHORTCUT_JOURNAL, SHORTCUT_SHOW_MORE, SHORTCUT_SHOW_FEWER), xtpImageNormal
+            
+        CommandBars.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
+            Array(ID_QUICKSTEP_REPLAY_DELETE, ID_QUICKSTEP_TO_MANAGER, ID_QUICKSTEP_MOVE_TO, ID_QUICKSTEP_CREATE_NEW, ID_QUICKSTEP_TEAM_EMAIL, ID_QUICKSTEP_DONE), xtpImageNormal
+            
+        ReportControlGlobalSettings.Icons.LoadBitmap App.Path & "\styles\bmreport.bmp", _
+        Array(COLUMN_MAIL_ICON, COLUMN_IMPORTANCE_ICON, COLUMN_CHECK_ICON, RECORD_UNREAD_MAIL_ICON, RECORD_READ_MAIL_ICON, _
+            RECORD_REPLIED_ICON, RECORD_IMPORTANCE_HIGH_ICON, COLUMN_ATTACHMENT_ICON, COLUMN_ATTACHMENT_NORMAL_ICON, _
+            RECORD_IMPORTANCE_LOW_ICON), xtpImageNormal
+            
+            
+        CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\suministro-inmediato-informacion.bmp", ID_SII, xtpImageNormal
+            
+            
+        Dim i As Integer
+        For i = 1 To 17
+            SuiteControlsGlobalSettings.Icons.LoadIcon App.Path & "\styles\TreeView\icon" & i & ".ico", i, xtpImageNormal
+        Next i
+End Sub
+
+
+'Establecer y fijar Skin
+Public Sub EstablecerSkin(QueSkin As Integer)
+
+    FijaSkin QueSkin
+
+  ' Cargando el archivo del Skin
+  ' ============================
+    'frmPpal.SkinFramework1.LoadSkin Skn$, ""
+    Me.SkinFramework1.ApplyWindow frmPpal.hwnd
+    Me.SkinFramework1.ApplyOptions = Me.SkinFramework1.ApplyOptions Or xtpSkinApplyMetrics
+    
+
+
+    
+End Sub
+
+Private Function FijaSkin(numero)
+    Me.SkinFramework1.ExcludeModule "crviewer9.dll"
+
+  Select Case (numero)
+ 
+           
+            Case 1:
+                Skn$ = CStr(App.Path & "\Styles\Office2010.cjstyles")
+                Me.SkinFramework1.LoadSkin Skn$, "NormalBlue.ini"
+            Case 2:
+                Skn$ = CStr(App.Path & "\Styles\Office2010.cjstyles")
+                Me.SkinFramework1.LoadSkin Skn$, "NormalSilver.ini"
+            Case 3:
+                Skn$ = CStr(App.Path & "\Styles\Office2010.cjstyles")
+                Me.SkinFramework1.LoadSkin Skn$, "NormalBlack.ini"
+                
+                  
+        
+  End Select
+    
+End Function
+
+'**************************************************************************************************************
+'**************************************************************************************************************
+'**************************************************************************************************************
+'**************************************************************************************************************
+'**************************************************************************************************************
+'**************************************************************************************************************
+'**************************************************************************************************************
+'**************************************************************************************************************
+Private Sub AbrirFormularios(Accion As Long)
+    
+   
+   ' If Accion <> ID_SII Then AbrirFormSII_2 False
+    
+    
+    Select Case Accion
+        Case 101 ' empresa
+'            frmempresa.Show vbModal
+'        Case 102 ' parametros contabilidad
+'            If Not (vEmpresa Is Nothing) Then
+'                frmparametros.Show vbModal
+'            End If
+'        Case 103 ' parametros tesoreria
+'        Case 104 ' contadores
+'            Screen.MousePointer = vbHourglass
+'            If vUsu.Nivel = 0 Then frmContadores.Show vbModal
+'            Screen.MousePointer = vbDefault
+'        Case 105 ' usuarios
+'            frmMantenusu.Show vbModal
+'        Case 106 ' informes
+'            frmCrystal.Show vbModal
+'        Case 107 ' crear nueva empresa
+'            If vUsu.Nivel > 1 Then Exit Sub
+'
+'            frmCentroControl.Opcion = 2
+'            frmCentroControl.Show vbModal
+'        Case 108 'Configurar Balances
+'            Screen.MousePointer = vbHourglass
+'            frmColBalan.Show vbModal, Me
+'
+'        Case 199
+'             frmCalendarCategorias.Show vbModal
+'
+'
+'        Case 201 ' plan contable
+'            Screen.MousePointer = vbHourglass
+'            frmColCtas.ConfigurarBalances = 0
+'            frmColCtas.DatosADevolverBusqueda = ""
+'            frmColCtas.Show vbModal, Me
+'        Case 202 ' tipos de diario
+'            Screen.MousePointer = vbHourglass
+'            frmTiposDiario.Show vbModal
+'        Case 203 ' conceptos
+'            Screen.MousePointer = vbHourglass
+'            frmConceptos.Show vbModal
+'        Case 204 ' tipos de iva
+'            Screen.MousePointer = vbHourglass
+'            frmIVA.Show vbModal
+'        Case 205 ' tipos de pago
+'            Screen.MousePointer = vbHourglass
+'            frmTipoPago.Show vbModal
+'        Case 206 ' formas de pago
+'            Screen.MousePointer = vbHourglass
+'            frmFormaPago.Show vbModal
+'        Case 207 ' bancos
+'            Screen.MousePointer = vbHourglass
+'            frmBanco.Show vbModal
+'        Case 208 ' bic
+'            Screen.MousePointer = vbHourglass
+'            frmBic.Show vbModal
+'        Case 209 ' agentes
+'            Screen.MousePointer = vbHourglass
+'            frmAgentes.Show vbModal
+'        Case 210 ' departamentos
+'        Case 211 ' asientos predefinidos
+'            Screen.MousePointer = vbHourglass
+'            frmAsiPre.Show vbModal
+'        Case 212 ' cartas de reclamacion
+'            Screen.MousePointer = vbHourglass
+'            frmCartas.Show vbModal
+'
+'        Case 301 ' asientos
+'            Screen.MousePointer = vbHourglass
+'            frmAsientosHco.Asiento = ""
+'            frmAsientosHco.DesdeNorma43 = 0
+'            frmAsientosHco.Show vbModal
+'        Case 303 ' extractos
+'            Screen.MousePointer = vbHourglass
+'            frmConExtr.EjerciciosCerrados = False
+'            frmConExtr.cuenta = ""
+'            frmConExtr.Show vbModal
+'        Case 304 ' punteo
+'            Screen.MousePointer = vbHourglass
+'            frmPuntear.EjerciciosCerrados = False
+'            frmPuntear.Show vbModal
+'        Case 305 ' reemision de diarios
+''            AbrirListado 6, False
+'        Case 306 ' sumas y saldos
+'            frmInfBalSumSal.Show vbModal
+'
+'        Case 307 ' cuenta de explotacion
+'            frmInfCtaExplo.Show vbModal
+'
+'        Case 308 ' balance de situacion
+'            frmInfBalances.Opcion = 0
+'            frmInfBalances.Show vbModal
+'
+'        Case 309 ' perdidas y ganancias
+'            frmInfBalances.Opcion = 1
+'            frmInfBalances.Show vbModal
+'
+'        Case 310 ' totales por concepto
+'            frmInfTotCtaCon.Show vbModal
+'        Case 311 ' evolucion de saldos
+'            frmInfEvolSal.Show vbModal
+'        Case 312 ' ratios y graficas
+'            frmInfRatios.Show vbModal
+'        Case 314 ' puntero extracto bancario
+'            frmPunteoBanco.Show vbModal
+'
+'        Case 315
+'            frmInfBalSumSalConso.Show vbModal
+'
+'        Case 401 ' emitidas
+'            Screen.MousePointer = vbHourglass
+'            frmFacturasCli.FACTURA = ""
+'            frmFacturasCli.Show vbModal
+'        Case 402 ' libro emitidas
+'            frmFacturasCliListado.Show vbModal
+'        Case 403 ' relacion clientes por cuenta
+'            frmFacturasCliCtaVtas.Show vbModal
+'        Case 404 ' recibidas
+'            Screen.MousePointer = vbHourglass
+'            frmFacturasPro.Show vbModal
+'        Case 405 ' libro recibidas
+'            frmFacturasProListado.Show vbModal
+'        Case 406 ' relacion proveedores por cuenta
+'            frmFacturasProCtaGastos.Show vbModal
+'        Case 407 ' liquidacion iva
+''            AbrirListado 12, False
+'        Case 408 ' certificado iva
+'            frmModelo303.OpcionListado = 0
+'            frmModelo303.Show vbModal
+'        Case 409 ' modelo 340
+'            frmModelo340.Show vbModal
+'        Case 410 ' modelo 347
+'            frmModelo347.Show vbModal
+'        Case 411 ' modelo 349
+'            frmModelo349.Show vbModal
+'        Case 412 ' liquidacion de iva
+'            frmHcoLiqIVA.Show vbModal
+'
+'        Case ID_FrasConso   '413
+'            frmConsolidadoFras.Show vbModal
+'
+'        Case ID_AseguClientes   '414
+'            frmSegurosListClientes.Show vbModal
+'
+'        Case ID_AseguComunicaSeguro '415
+'            frmSegurosListComunicacion.Show vbModal
+'
+'        Case ID_SII
+'            AbrirFormSII_2 True
+'
+'
+'
+'        Case 502 ' conceptos
+'            Screen.MousePointer = vbHourglass
+'            frmInmoConceptos.Show vbModal
+'        Case 503 ' elementos
+'            frmInmoElto.DatosADevolverBusqueda = ""
+'            frmInmoElto.Show vbModal
+'        Case 505 ' estadistica
+'            frmInmoInfEst.Show vbModal
+'        Case 507 ' historico inmovilizado
+'            Screen.MousePointer = vbHourglass
+'            frmInmoHco.Show vbModal
+'        Case 508 ' simulacion
+'            frmInmoSimu.Show vbModal
+'        Case 509 ' calculo y contabilizacion
+'            frmInmoGenerar.Opcion = 2
+'            frmInmoGenerar.Show vbModal
+'        Case 510 ' deshacer amortizacion
+'            frmInmoDeshacer.Show vbModal
+'        Case 511 ' venta-baja inmmovilizado
+'            frmInmoVenta.Opcion = 3
+'            frmInmoVenta.Show vbModal
+'        Case 601 ' cartera de cobros
+'            frmTESCobros.Show vbModal
+'        Case 602 ' informe de cobros pendientes
+'            frmTESCobrosPdtesList.Show vbModal
+'
+'        Case 603 ' impresion de recibos
+'            frmTESImpRecibo.documentoDePago = ""
+'            frmTESImpRecibo.Show vbModal
+'        Case 604 ' realizar cobro
+'            With frmTESRealizarCobros
+'
+'                '--.vSQL = SQL
+'                .Regresar = False
+'                .Cobros = True
+'                .ContabTransfer = False
+'                .SegundoParametro = ""
+'                'Los textos
+''                .vTextos = Text1(2).Text & "|" & Me.txtCta(0).Text & " - " & Me.txtDescCta(0).Text & "|" & SubTipo & "|"
+'
+'                'Marzo2013   Cobramos un solo cliente
+'                'Aparecera un boton para traer todos los cobros
+'                '.CodmactaUnica = "4300000001" 'Trim(txtCtaNormal(9).Text)
+'                .Show vbModal
+'            End With
+'
+'        Case 606 ' compensaciones
+'            frmTESCompensaciones.Show vbModal
+'        Case 607 ' compensar cliente
+'            CadenaDesdeOtroForm = ""
+'            frmTESCompensaAboCli.Show vbModal
+'        Case 608 ' reclamaciones
+'            frmTESReclamaCli.Show vbModal
+'        Case 609 ' remesas
+'            frmTESRemesas.Tipo = 1 ' efectos
+'            frmTESRemesas.Show vbModal
+'        Case 610 ' Informe Impagados
+'            frmTESCobrosDevList.Show vbModal
+'        Case 611 ' Recepción Talón-Pagaré
+'            frmTESRecepcionDoc.Show vbModal
+'        Case 612 ' Remesas Talón-Pagaré
+'            frmTESRemesasTP.Tipo = 2 ' talon pagare
+'            frmTESRemesasTP.Show vbModal
+'
+'        Case 613 ' Norma 57: Pago por ventanilla
+'            frmTESNorma57.Opcion = 42
+'            frmTESNorma57.Show vbModal
+'
+'        Case 614 ' transferencia abonos
+'            frmTESTransferencias.TipoTrans = 0 ' de abonos
+'            frmTESTransferencias.Show vbModal
+'
+'        Case 709 ' Abono remesa
+'        Case 710 ' Devoluciones
+'        Case 711 ' Eliminar riesgo
+'
+'        Case 801 ' Cartera de Pagos
+'            frmTESPagos.Show vbModal
+'        Case 802 ' Informe Pagos pendientes
+'            frmTESPagosPdtesList.Show vbModal
+'        Case 803 ' Informe Pagos bancos
+'            frmTESPagosBancoList.Show vbModal
+'        Case 804 ' Realizar Pago
+'            frmTESRealizarPagos.Show vbModal
+'        Case 805 ' Transferencias
+'            frmTESTransferencias.TipoTrans = 1 ' de pagos
+'            frmTESTransferencias.Show vbModal
+'        Case 806 ' Pagos domiciliados
+'            frmTESTransferencias.TipoTrans = 2 ' pagos domiciliados
+'            frmTESTransferencias.Show vbModal
+'
+'        Case 807 ' Gastos Fijos
+'            frmTESGastosFijos.Show vbModal
+'
+'        Case 808 ' Memoria Pagos proveedores
+'
+'        Case 809 ' Compensar proveedor
+'            CadenaDesdeOtroForm = ""
+'            frmTESCompensaAboPro.Show vbModal
+'
+'        Case 810 ' Confirming
+'            frmTESTransferencias.TipoTrans = 3 ' confirming
+'            frmTESTransferencias.Show vbModal
+'
+'        Case 901 ' Informe por NIF
+'            frmTESInfSituacionNIF.Show vbModal
+'
+'        Case 902 ' Informe por cuenta
+'            frmTESInfSituacionCta.Show vbModal
+'
+'        Case 903 ' Situación Tesoreria
+'            frmTESInfSituacion.Show vbModal
+'
+'
+'        ' Analitica
+'        Case 1001 ' Centros de Coste
+'            frmCCCentroCoste.Show vbModal
+'
+'        Case 1002 ' Consulta de Saldos
+'            frmCCConExtr.Show vbModal
+'
+'        Case 1003 ' Cuenta de Explotación
+'            frmCCCtaExplo.Show vbModal
+'        Case 1004 ' Centros de coste por cuenta
+'            AbrirListado 17, False
+'        Case 1005 ' Detalle de explotación
+'            frmCCDetalleExplota.Show vbModal
+'
+'        ' Presupuestaria
+'        Case 1101 ' Presupuestos
+'            Screen.MousePointer = vbHourglass
+'            'frmColPresu.Show vbModal
+'            frmPresu.Show vbModal
+'        Case 1102 ' Listado de Presupuestos
+''            AbrirListado 9, False
+'        Case 1103 ' Balance Presupuestario
+'            frmPresuBal.Show vbModal
+'
+'        ' Consolidado
+'        Case 1201 ' Sumas y Saldos
+'            AbrirListado 24, False
+'        Case 1202 ' Balance de Situación
+'            AbrirListado 51, False
+'        Case 1203 ' Pérdidas y Ganancias
+'            AbrirListado 50, False
+'        Case 1204 ' Cuenta de Explotación
+'            AbrirListado 31, False
+'        Case 1205 ' Listado Facturas Clientes
+'            AbrirListado 53, False
+'        Case 1206 ' Listado Facturas Proveedores
+'            AbrirListado 52, False
+'
+'        ' Cierre de Ejercicio
+'        Case 1301 ' Renumeración de asientos
+'            frmCierre.Opcion = 0
+'            frmCierre.Show vbModal
+'        Case 1302 ' Simulación de cierre
+'            frmCierre.Opcion = 4
+'            frmCierre.Show vbModal
+'        Case 1303 ' Cierre de Ejercicio
+'            frmCierre.Opcion = 1
+'            frmCierre.Show vbModal
+'        Case 1304 ' Deshacer cierre
+'            frmCierre.Opcion = 5
+'            frmCierre.Show vbModal
+'        Case 1305 ' Diario Oficial
+''            AbrirListado 14, False
+'        Case 1306 ' Diario Oficial Resumen
+''            AbrirListado 18, False
+'            frmInfDiarioOficial.Show vbModal
+'        Case 1307 ' Presentación cuentas anuales
+'            Telematica 0
+'        Case 1308 ' Presentación Telemática de Libros
+'            Telematica 1
+'        Case 1309 ' memoria de Plazos de Pago
+'            frmTESMemoriaPlazos.Show vbModal
+'
+'        ' Utilidades
+'        Case 1401 ' Comprobar cuadre
+'            Screen.MousePointer = vbHourglass
+'            frmMensajes.Opcion = 2
+'            frmMensajes.Show vbModal
+'        Case 1403 ' Revisar caracteres especiales
+''            Screen.MousePointer = vbHourglass
+''            frmMensajes.opcion = 14
+''            frmMensajes.Show vbModal
+'
+'        Case 1404 ' Agrupacion cuentas
+'        Case 1405 'Buscar ...
+'
+'        Case 1407 'Desbloquear asientos
+'            mnHerrAriadnaCC_Click (0)
+'        Case 1408 'Mover cuentas
+'            mnHerrAriadnaCC_Click (1)
+'        Case 1409 'Renumerar registros proveedor
+'            mnHerrAriadnaCC_Click (5)
+'        Case 1410 'Aumentar dígitos contables
+'            mnHerrAriadnaCC_Click (3)
+'        Case 1411 'cambio de iva
+'            mnHerrAriadnaCC_Click (4)
+'        Case 1412 'log de acciones
+'            Screen.MousePointer = vbHourglass
+'            Load frmLog
+'            DoEvents
+'            frmLog.Show vbModal
+'            Screen.MousePointer = vbDefault
+'        Case 1413
+'            frmImportarFraCli.Show vbModal
+'        Case 1414
+'            frmImportarNavarres.Show vbModal
+'
+'        Case Else
+'
+    End Select
+     
+     
+     
+   If Timer - UltimaLecturaReminders > 300 Then
+        frmReminders.OnReminders xtpCalendarRemindersFire, Nothing
+        If frmReminders.CuantosAvisos > 0 Then frmReminders.Show vbModal, Me
+        CerrarAvisos
+        UltimaLecturaReminders = Timer
+    End If
+     
+End Sub
+
+Private Sub CerrarAvisos()
+    On Error Resume Next
+    Unload frmReminders
+    Err.Clear
+End Sub
 
 
 

@@ -12,6 +12,11 @@ Begin VB.Form frmIdentifica
    ScaleWidth      =   7620
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Timer Timer1 
+      Interval        =   1000
+      Left            =   150
+      Top             =   240
+   End
    Begin VB.TextBox Text1 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
@@ -57,6 +62,26 @@ Begin VB.Form frmIdentifica
       Text            =   "Text1"
       Top             =   3960
       Width           =   3015
+   End
+   Begin VB.Label Label3 
+      Alignment       =   1  'Right Justify
+      BackStyle       =   0  'Transparent
+      Caption         =   "Label3"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   195
+      Left            =   2070
+      TabIndex        =   6
+      Top             =   5460
+      Width           =   5325
    End
    Begin VB.Label Label2 
       BackStyle       =   0  'Transparent
@@ -153,6 +178,16 @@ Option Explicit
 
 Dim PrimeraVez As Boolean
 Dim T1 As Single
+Dim vSegundos As Integer
+
+
+Public Sub pLabel(Texto As String)
+
+    Me.Label3.Caption = Texto
+    Label3.Refresh
+    Espera 0.3
+End Sub
+
 
 Private Sub Form_Activate()
     If PrimeraVez Then
@@ -178,9 +213,10 @@ Private Sub Form_Activate()
          'Luego, en funcion del nivel de usuario que tenga cerraremos la conexion
          'y la abriremos con usuario-codigo ajustado a su nivel
          If AbrirConexionUsuarios() = False Then
-             MsgBox "La apliacación no puede continuar sin acceso a los datos. ", vbCritical
+             MsgBox "La aplicación no puede continuar sin acceso a los datos. ", vbCritical
              End
         End If
+         
          
          'La llave
          '### Ya no llevamos LOCKER
@@ -231,6 +267,10 @@ Private Sub Form_Load()
     PrimeraVez = True
     CargaImagen
     Label2.Caption = "Ver. " & App.Major & "." & App.Minor & "." & App.Revision
+    
+    Label3.Caption = ""
+    vSegundos = 60
+    Label3.Caption = ""
     
 End Sub
 
@@ -334,31 +374,48 @@ End Sub
 'a la que ha entrado, y el usuario
 Private Sub NumeroEmpresaMemorizar(Leer As Boolean)
 Dim NF As Integer
-Dim cad As String
+Dim Cad As String
 On Error GoTo ENumeroEmpresaMemorizar
 
 
         
-    cad = App.Path & "\ultusu.dat"
+    Cad = App.Path & "\ultusu.dat"
     If Leer Then
-        If Dir(cad) <> "" Then
+        If Dir(Cad) <> "" Then
             NF = FreeFile
-            Open cad For Input As #NF
-            Line Input #NF, cad
+            Open Cad For Input As #NF
+            Line Input #NF, Cad
             Close #NF
-            cad = Trim(cad)
+            Cad = Trim(Cad)
             
                 'El primer pipe es el usuario
-                Text1(0).Text = cad
+                Text1(0).Text = Cad
     
         End If
     Else 'Escribir
         NF = FreeFile
-        Open cad For Output As #NF
-        cad = Text1(0).Text
-        Print #NF, cad
+        Open Cad For Output As #NF
+        Cad = Text1(0).Text
+        Print #NF, Cad
         Close #NF
     End If
+
 ENumeroEmpresaMemorizar:
     Err.Clear
 End Sub
+
+
+
+Private Sub Timer1_Timer()
+    'Label3 = "Si no entra en " & vSegundos & " segundos. La aplicación se cerrará."
+    If vSegundos < 50 Then
+        Label3 = "Si no hace login, la pantalla se cerrará automáticamente en " & " " & vSegundos & " segundos"
+        Me.Refresh
+        DoEvents
+    End If
+    
+    vSegundos = vSegundos - 1
+    If vSegundos = -1 Then Unload Me
+End Sub
+
+

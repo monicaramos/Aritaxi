@@ -54,9 +54,8 @@ Begin VB.Form frmCRMMtoPrev
       Height          =   360
       Index           =   2
       Left            =   2610
-      Locked          =   -1  'True
       TabIndex        =   5
-      Tag             =   "Tipo|N|N|||scrmacciones|tipo|||"
+      Tag             =   "Tipo|N|N|||scrmacciones|tipo|000||"
       Text            =   "Text2"
       Top             =   4920
       Width           =   1515
@@ -477,8 +476,7 @@ Dim b As Boolean
     For I = 0 To txtAux.Count - 1
         txtAux(I).visible = Not b
     Next I
-    txtAux2(0).visible = Not b
-    txtAux2(1).visible = Not b
+    txtAux2(2).visible = Not b
     
     cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
@@ -546,14 +544,13 @@ End Sub
 
 Private Sub BotonBuscar()
     ' ***************** canviar per la clau primaria ********
-    CargaGrid "slispr.codprove is null "
+    CargaGrid "scrmacciones.usuario is null "
     '*******************************************************************************
     'Buscar
     For I = 0 To txtAux.Count - 1
         txtAux(I).Text = ""
     Next I
-    txtAux2(0).Text = ""
-    txtAux2(1).Text = ""
+    txtAux2(2).Text = ""
     LLamaLineas DataGrid1.Top + 230, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(1)
 End Sub
@@ -596,8 +593,7 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     For I = 0 To 2
         txtAux(I).Top = alto
     Next I
-    txtAux2(0).Top = alto
-    txtAux2(1).Top = alto
+    txtAux2(2).Top = alto
     ' ### [Monica] 12/09/2006
 End Sub
 
@@ -734,8 +730,8 @@ Private Sub Form_Load()
         .Buttons(2).Image = 2   'Todos
     End With
     
-    CadenaConsulta = "select scrmacciones.usuario, scrmacciones.fechahora, scrmacciones.tipo, scrmtipo.denominacion "
-    CadenaConsulta = CadenaConsulta & " from scrmacciones inner join scrmtipo on scrmacciones.codartic = scrmtipo.codartic "
+    CadenaConsulta = "select scrmacciones.usuario, scrmacciones.fechora, scrmacciones.tipo, scrmtipo.denominacion "
+    CadenaConsulta = CadenaConsulta & " from scrmacciones inner join scrmtipo on scrmacciones.tipo = scrmtipo.codigo "
     CadenaConsulta = CadenaConsulta & " where  (1=1)  "
     If cWhere <> "" Then CadenaConsulta = CadenaConsulta & " and " & cWhere
     
@@ -786,7 +782,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     
     '********************* canviar el ORDER BY *********************++
     If CampoOrden = "" Then
-        Sql = Sql & " ORDER BY codprove desc "
+        Sql = Sql & " ORDER BY usuario desc "
     Else
         Sql = Sql & " order by " & CampoOrden & " " & TipoOrden
     End If
@@ -795,7 +791,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Usuario|1205|;S|txtAux(1)|T|Fecha|2195|;S|txtAux(2)|T|Tipo|2195|;S|txtAux2(2)|T|Nombre|2800|;"
+    tots = "S|txtAux(0)|T|Usuario|1205|;S|txtAux(1)|T|Fecha|2195|;S|txtAux(2)|T|Tipo|1195|;S|txtAux2(2)|T|Nombre|3800|;"
     
     arregla tots, DataGrid1, Me, 350
     
@@ -816,8 +812,12 @@ Dim Rc As String
     If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
     
     Select Case Index
-        Case 0 ' Proveedor
+        Case 1 ' fechahora
+            If txtAux(Index).Text <> "" Then txtAux(Index).Text = Format(txtAux(Index).Text, "dd/mm/yyyy hh:mm:ss")
+        
+        Case 2 ' tipo de accion
             PonerFormatoEntero txtAux(Index)
+            
     End Select
     
 End Sub

@@ -1,0 +1,126 @@
+Línea 18: la clase MSComctlLib.ImageList del control ImageListB no era una clase de control cargada.
+Línea 72: la clase MSComctlLib.ImageList del control ImgListPpal no era una clase de control cargada.
+Línea 238: la clase MSComDlg.CommonDialog del control CommonDialog1 no era una clase de control cargada.
+Línea 245: la clase MSComctlLib.Toolbar del control Toolbar1 no era una clase de control cargada.
+Línea 384: la clase MSComctlLib.StatusBar del control StatusBar1 no era una clase de control cargada.
+Línea 444: la clase MSComctlLib.ImageList del control imgListComun no era una clase de control cargada.
+Línea 638: la clase MSComctlLib.ImageList del control ImageListTPV no era una clase de control cargada.
+Línea 692: la clase MSComctlLib.ImageList del control ImageListMAIL no era una clase de control cargada.
+Línea 822: la clase MSComctlLib.ImageList del control imgListComun_BN no era una clase de control cargada.
+Línea 831: la clase MSComctlLib.ImageList del control imgListComun_OM no era una clase de control cargada.
+Línea 840: la clase MSComctlLib.ImageList del control imgListComun16 no era una clase de control cargada.
+Línea 849: la clase MSComctlLib.ImageList del control ImgListComun32 no era una clase de control cargada.
+Línea 858: la clase MSComctlLib.ImageList del control imgListComun_OM16 no era una clase de control cargada.
+Línea 867: la clase MSComctlLib.ImageList del control imgListComun_BN16 no era una clase de control cargada.
+Línea 876: la clase MSComctlLib.ImageList del control imgListComun1 no era una clase de control cargada.
+Línea 1070: la clase MSComctlLib.ImageList del control imgIcoForms no era una clase de control cargada.
+Línea 1100: la clase XtremeSkinFramework.SkinFramework del control SkinFramework1 no era una clase de control cargada.
+Línea 1108: la clase XtremeCommandBars.ImageManager del control ImageManager no era una clase de control cargada.
+Línea 1117: la clase XtremeDockingPane.DockingPane del control DockingPaneManager no era una clase de control cargada.
+Línea 1126: la clase XtremeCommandBars.CommandBars del control CommandBars no era una clase de control cargada.
+Línea 21: el nombre de la propiedad _ExtentX de ImageListB no es válido.
+Línea 22: el nombre de la propiedad _ExtentY de ImageListB no es válido.
+Línea 24: el nombre de la propiedad ImageWidth de ImageListB no es válido.
+Línea 25: el nombre de la propiedad ImageHeight de ImageListB no es válido.
+Línea 26: el nombre de la propiedad MaskColor de ImageListB no es válido.
+Línea 27: el nombre de la propiedad _Version de ImageListB no es válido.
+Línea 70: el nombre de la propiedad Images de ImageListB no es válido.
+Línea 75: el nombre de la propiedad _ExtentX de ImgListPpal no es válido.
+Línea 76: el nombre de la propiedad _ExtentY de ImgListPpal no es válido.
+Línea 78: el nombre de la propiedad ImageWidth de ImgListPpal no es válido.
+Línea 79: el nombre de la propiedad ImageHeight de ImgListPpal no es válido.
+Línea 80: el nombre de la propiedad MaskColor de ImgListPpal no es válido.
+Línea 81: el nombre de la propiedad _Version de ImgListPpal no es válido.
+Línea 236: el nombre de la propiedad Images de ImgListPpal no es válido.
+Línea 241: el nombre de la propiedad _ExtentX de CommonDialog1 no es válido.
+Línea 242: el nombre de la propiedad _ExtentY de CommonDialog1 no es válido.
+Línea 243: el nombre de la propiedad _Version de CommonDialog1 no es válido.
+Línea 252: el nombre de la propiedad _ExtentX de Toolbar1 no es válido.
+Línea 253: el nombre de la propiedad _ExtentY de Toolbar1 no es válido.
+Línea 254: el nombre de la propiedad ButtonWidth de Toolbar1 no es válido.
+Línea 255: el nombre de la propiedad ButtonHeight de Toolbar1 no es válido.
+Línea 256: el nombre de la propiedad AllowCustomize de Toolbar1 no es válido.
+Línea 258: el nombre de la propiedad _Version de Toolbar1 no es válido.
+Línea 382: el nombre de la propiedad Buttons de Toolbar1 no es válido.
+Línea 391: el nombre de la propiedad _ExtentX de StatusBar1 no es válido.
+Línea 392: el nombre de la propiedad _ExtentY de StatusBar1 no es válido.
+Línea 393: el nombre de la propiedad _Version de StatusBar1 no es válido.
+Línea 433: el nombre de la propiedad Panels de StatusBar1 no es válido.
+Línea 447: el nombre de la propiedad _ExtentX de imgListComun no es válido.
+Línea 448: el nombre de la propiedad _ExtentY de imgListComun no es válido.
+Línea 450: el nombre de la propiedad ImageWidth de imgListComun no es válido.
+Línea 451: el nombre de la propiedad ImageHeight de imgListComun no es válido.
+Línea 452: el nombre de la propiedad MaskColor de imgListComun no es válido.
+Línea 453: el nombre de la propiedad _Version de imgListComun no es válido.
+Línea 636: el nombre de la propiedad Images de imgListComun no es válido.
+Línea 641: el nombre de la propiedad _ExtentX de ImageListTPV no es válido.
+Línea 642: el nombre de la propiedad _ExtentY de ImageListTPV no es válido.
+Línea 644: el nombre de la propiedad ImageWidth de ImageListTPV no es válido.
+Línea 645: el nombre de la propiedad ImageHeight de ImageListTPV no es válido.
+Línea 646: el nombre de la propiedad MaskColor de ImageListTPV no es válido.
+Línea 647: el nombre de la propiedad _Version de ImageListTPV no es válido.
+Línea 690: el nombre de la propiedad Images de ImageListTPV no es válido.
+Línea 695: el nombre de la propiedad _ExtentX de ImageListMAIL no es válido.
+Línea 696: el nombre de la propiedad _ExtentY de ImageListMAIL no es válido.
+Línea 698: el nombre de la propiedad ImageWidth de ImageListMAIL no es válido.
+Línea 699: el nombre de la propiedad ImageHeight de ImageListMAIL no es válido.
+Línea 700: el nombre de la propiedad MaskColor de ImageListMAIL no es válido.
+Línea 701: el nombre de la propiedad _Version de ImageListMAIL no es válido.
+Línea 820: el nombre de la propiedad Images de ImageListMAIL no es válido.
+Línea 825: el nombre de la propiedad _ExtentX de imgListComun_BN no es válido.
+Línea 826: el nombre de la propiedad _ExtentY de imgListComun_BN no es válido.
+Línea 828: el nombre de la propiedad MaskColor de imgListComun_BN no es válido.
+Línea 829: el nombre de la propiedad _Version de imgListComun_BN no es válido.
+Línea 834: el nombre de la propiedad _ExtentX de imgListComun_OM no es válido.
+Línea 835: el nombre de la propiedad _ExtentY de imgListComun_OM no es válido.
+Línea 837: el nombre de la propiedad MaskColor de imgListComun_OM no es válido.
+Línea 838: el nombre de la propiedad _Version de imgListComun_OM no es válido.
+Línea 843: el nombre de la propiedad _ExtentX de imgListComun16 no es válido.
+Línea 844: el nombre de la propiedad _ExtentY de imgListComun16 no es válido.
+Línea 846: el nombre de la propiedad MaskColor de imgListComun16 no es válido.
+Línea 847: el nombre de la propiedad _Version de imgListComun16 no es válido.
+Línea 852: el nombre de la propiedad _ExtentX de ImgListComun32 no es válido.
+Línea 853: el nombre de la propiedad _ExtentY de ImgListComun32 no es válido.
+Línea 855: el nombre de la propiedad MaskColor de ImgListComun32 no es válido.
+Línea 856: el nombre de la propiedad _Version de ImgListComun32 no es válido.
+Línea 861: el nombre de la propiedad _ExtentX de imgListComun_OM16 no es válido.
+Línea 862: el nombre de la propiedad _ExtentY de imgListComun_OM16 no es válido.
+Línea 864: el nombre de la propiedad MaskColor de imgListComun_OM16 no es válido.
+Línea 865: el nombre de la propiedad _Version de imgListComun_OM16 no es válido.
+Línea 870: el nombre de la propiedad _ExtentX de imgListComun_BN16 no es válido.
+Línea 871: el nombre de la propiedad _ExtentY de imgListComun_BN16 no es válido.
+Línea 873: el nombre de la propiedad MaskColor de imgListComun_BN16 no es válido.
+Línea 874: el nombre de la propiedad _Version de imgListComun_BN16 no es válido.
+Línea 879: el nombre de la propiedad _ExtentX de imgListComun1 no es válido.
+Línea 880: el nombre de la propiedad _ExtentY de imgListComun1 no es válido.
+Línea 882: el nombre de la propiedad ImageWidth de imgListComun1 no es válido.
+Línea 883: el nombre de la propiedad ImageHeight de imgListComun1 no es válido.
+Línea 884: el nombre de la propiedad MaskColor de imgListComun1 no es válido.
+Línea 885: el nombre de la propiedad _Version de imgListComun1 no es válido.
+Línea 1068: el nombre de la propiedad Images de imgListComun1 no es válido.
+Línea 1073: el nombre de la propiedad _ExtentX de imgIcoForms no es válido.
+Línea 1074: el nombre de la propiedad _ExtentY de imgIcoForms no es válido.
+Línea 1076: el nombre de la propiedad ImageWidth de imgIcoForms no es válido.
+Línea 1077: el nombre de la propiedad ImageHeight de imgIcoForms no es válido.
+Línea 1078: el nombre de la propiedad MaskColor de imgIcoForms no es válido.
+Línea 1079: el nombre de la propiedad _Version de imgIcoForms no es válido.
+Línea 1098: el nombre de la propiedad Images de imgIcoForms no es válido.
+Línea 1103: el nombre de la propiedad _Version de SkinFramework1 no es válido.
+Línea 1104: el nombre de la propiedad _ExtentX de SkinFramework1 no es válido.
+Línea 1105: el nombre de la propiedad _ExtentY de SkinFramework1 no es válido.
+Línea 1106: el nombre de la propiedad _StockProps de SkinFramework1 no es válido.
+Línea 1111: el nombre de la propiedad _Version de ImageManager no es válido.
+Línea 1112: el nombre de la propiedad _ExtentX de ImageManager no es válido.
+Línea 1113: el nombre de la propiedad _ExtentY de ImageManager no es válido.
+Línea 1114: el nombre de la propiedad _StockProps de ImageManager no es válido.
+Línea 1115: el nombre de la propiedad Icons de ImageManager no es válido.
+Línea 1120: el nombre de la propiedad _Version de DockingPaneManager no es válido.
+Línea 1121: el nombre de la propiedad _ExtentX de DockingPaneManager no es válido.
+Línea 1122: el nombre de la propiedad _ExtentY de DockingPaneManager no es válido.
+Línea 1123: el nombre de la propiedad _StockProps de DockingPaneManager no es válido.
+Línea 1124: el nombre de la propiedad VisualTheme de DockingPaneManager no es válido.
+Línea 1129: el nombre de la propiedad _Version de CommandBars no es válido.
+Línea 1130: el nombre de la propiedad _ExtentX de CommandBars no es válido.
+Línea 1131: el nombre de la propiedad _ExtentY de CommandBars no es válido.
+Línea 1132: el nombre de la propiedad _StockProps de CommandBars no es válido.
+Línea 1133: el nombre de la propiedad VisualTheme de CommandBars no es válido.

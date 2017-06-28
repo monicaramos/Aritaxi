@@ -1,5 +1,5 @@
 Attribute VB_Name = "modEnumResIcons"
- '---------------------------------------------------------------------------------------
+'---------------------------------------------------------------------------------------
 ' Module      : modEnumResIcons.bas
 ' DateTime    : 03/04/2004 21.52
 ' Author      : Giorgio Brausi (vbcorner@vbcorner.net - http://www.vbcorner.net)
@@ -33,7 +33,7 @@ Private Const COLOR_16 = 2
 Private Const COLOR_24 = 3
 Private Const COLOR_32 = 4
 
-Public Declare Function LoadLibraryEx Lib "kernel32" Alias "LoadLibraryExA" (ByVal lpLibFileName As String, ByVal hFile As Long, ByVal dwFlags As Long) As Long
+Public Declare Function LoadLibraryEx Lib "kernel32.DLL" Alias "LoadLibraryExA" (ByVal lpLibFileName As String, ByVal hFile As Long, ByVal dwFlags As Long) As Long
 Public Const DONT_RESOLVE_DLL_REFERENCES = &H1
 Public Const LOAD_LIBRARY_AS_DATAFILE = &H2
 Public Declare Function FreeLibrary Lib "kernel32" (ByVal hLibModule As Long) As Long
@@ -92,12 +92,12 @@ Private Declare Function LoadImage Lib "user32" Alias "LoadImageA" (ByVal hInst 
 'Private Declare Function DestroyIcon Lib "user32" (ByVal hIcon As Long) As Long
 'Private Declare Function GetLastError Lib "kernel32.dll" () As Long
 'Private Declare Function DeleteObject Lib "gdi32.dll" (ByVal hObject As Long) As Long
-Public Declare Function LoadLibrary Lib "Kernel32.dll" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As Long
+Public Declare Function LoadLibrary Lib "kernel32.DLL" Alias "LoadLibraryA" (ByVal lpLibFileName As String) As Long
 
-Private Declare Function FindResource Lib "Kernel32.dll" Alias "FindResourceA" (ByVal hInstance As Long, ByVal lpName As String, ByVal lpType As String) As Long
+Private Declare Function FindResource Lib "kernel32.DLL" Alias "FindResourceA" (ByVal hInstance As Long, ByVal lpName As String, ByVal lpType As String) As Long
 Private Declare Function FindResourceByNum Lib "kernel32" Alias "FindResourceA" (ByVal hInstance As Long, ByVal lpName As String, ByVal lpType As Long) As Long
 
-Private Declare Function LoadResource Lib "Kernel32.dll" (ByVal hInstance As Long, ByVal hResInfo As Long) As Long
+Private Declare Function LoadResource Lib "kernel32.DLL" (ByVal hInstance As Long, ByVal hResInfo As Long) As Long
 Private Declare Function CreateIconFromResourceEx Lib "user32" (presbits As Byte, ByVal dwResSize As Long, ByVal fIcon As Long, ByVal dwVer As Long, ByVal cxDesired As Long, ByVal cyDesired As Long, ByVal uFlags As Long) As Long
 Private Declare Function LockResource Lib "kernel32" (ByVal hResData As Long) As Long
 Private Declare Function SizeofResource Lib "kernel32" (ByVal hInstance As Long, ByVal hResInfo As Long) As Long
@@ -347,35 +347,29 @@ Public Sub LoadIconRes(ByVal sResType As ResType, ByVal sResNumber As String, By
     H = iSize
        
     If Not hPicture Is Nothing Then
-        If tamany = 32 Then
+
+    
             If opcio = 1 Then
-                frmPpal.ImgListComun32.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
-'            ElseIf opcio = 2 Then
-'                frmPpal.imgListPpal.ListImages.Add , sResName & " " & CStr(arrSize) & " " & w & "x" & h, hPicture
-            End If
-        ElseIf tamany = 24 Then
-            If opcio = 1 Then
-                frmPpal.imgListComun.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+                frmppal.ImgListComun1.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
             ElseIf opcio = 2 Then
-                frmPpal.imgListComun_BN.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+                frmppal.ImgListComun1.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+            '++
             ElseIf opcio = 3 Then
-                frmPpal.imgListComun_OM.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+                frmppal.imgListComun_BN.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
             ElseIf opcio = 4 Then
-                frmPpal.ImgListPpal.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+                frmppal.imgListComun_OM.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
             ElseIf opcio = 5 Then
-                frmPpal.imgListComun1.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+                frmppal.imgListComun16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+            ElseIf opcio = 6 Then
+                frmppal.imgListComun_BN16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+            ElseIf opcio = 7 Then
+                frmppal.imgListComun_OM16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+            ElseIf opcio = 8 Then
+                frmppal.ImageListPPal48.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+            ElseIf opcio = 9 Then
+                frmppal.ImageListPpal16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
+            '++
             End If
-        ElseIf tamany = 16 Then
-            If opcio = 1 Then
-                frmPpal.imgListComun16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
-            ElseIf opcio = 2 Then
-                frmPpal.imgListComun_BN16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
-            ElseIf opcio = 3 Then
-                frmPpal.imgListComun_OM16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & W & "x" & H, hPicture
-'            ElseIf opcio = 4 Then
-'                frmPpal.imgListImages16.ListImages.Add , sResName & " " & CStr(arrSize) & " " & w & "x" & h, hPicture
-            End If
-        End If
     End If
     
 End Sub

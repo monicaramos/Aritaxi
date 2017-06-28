@@ -366,7 +366,7 @@ Public CodigoActual As String
 
 
 Private CadenaConsulta As String
-Private cadB As String
+Private CadB As String
 
 Dim Modo As Byte
 '----------- MODOS ----------------------------
@@ -393,7 +393,7 @@ Dim i As Integer
     Next i
     
     If b Then
-        PonerContRegIndicador lblIndicador, Adodc1, cadB
+        PonerContRegIndicador lblIndicador, Adodc1, CadB
     Else
         PonerIndicador lblIndicador, Modo
     End If
@@ -461,7 +461,7 @@ End Sub
 
 Private Sub BotonVerTodos()
     CargaGrid ""
-    cadB = ""
+    CadB = ""
     PonerModo 2
 End Sub
 
@@ -475,7 +475,7 @@ Private Sub BotonBuscar()
     txtAux(0).Text = ""
     txtAux(1).Text = ""
 
-    LLamaLineas DataGrid1.Top + 206, 1
+    LLamaLineas DataGrid1.top + 206, 1
     PonerFoco txtAux(0)
 End Sub
 
@@ -483,17 +483,17 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     DeseleccionaGrid Me.DataGrid1
     PonerModo xModo
     'Fijamos el ancho
-    txtAux(0).Top = alto
-    txtAux(1).Top = alto
+    txtAux(0).top = alto
+    txtAux(1).top = alto
 End Sub
 
 Private Sub cmdAceptar_Click()
     Select Case Modo
         Case 1  'BUSQUEDA
-            cadB = ObtenerBusquedaNew(Me)
-            If cadB <> "" Then
+            CadB = ObtenerBusquedaNew(Me)
+            If CadB <> "" Then
                 PonerModo 2
-                CargaGrid cadB
+                CargaGrid CadB
 '                lblIndicador.Caption = "RESULTADO BUSQUEDA"
                 PonerFocoGrid Me.DataGrid1
             End If
@@ -506,8 +506,8 @@ Private Sub cmdCancelar_Click()
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            If cadB <> "" Then
-                CargaGrid cadB
+            If CadB <> "" Then
+                CargaGrid CadB
 '                lblIndicador.Caption = "RESULTADO BUSQUEDA"
             Else
                 CargaGrid ""
@@ -521,7 +521,7 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim J As Integer
 Dim Aux As String
@@ -530,7 +530,7 @@ Dim Aux As String
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
+    Cad = ""
     i = 0
     Do
         J = i + 1
@@ -538,10 +538,10 @@ Dim Aux As String
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & Adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & Adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -554,7 +554,7 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-     If Modo = 2 Then PonerContRegIndicador lblIndicador, Adodc1, cadB
+     If Modo = 2 Then PonerContRegIndicador lblIndicador, Adodc1, CadB
 End Sub
 
 Private Sub Form_Activate()
@@ -580,12 +580,12 @@ End Sub
 Private Sub Form_Load()
     PrimeraVez = True
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     With Me.Toolbar1
 '        .HotImageList = frmPpal.imgListComun_OM
 '        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun
+        .ImageList = frmppal.ImgListComun1
         'el 1 es separadors
         .Buttons(2).Image = 1   'Buscar
         .Buttons(3).Image = 2   'Todos
@@ -606,7 +606,7 @@ Private Sub Form_Load()
     CadenaConsulta = "Select numdiari, desdiari from tiposdiario "
     '************************************************************************
     
-    cadB = ""
+    CadB = ""
     CargaGrid ""
 '    lblIndicador.Caption = ""
 '    PonerModo 2
