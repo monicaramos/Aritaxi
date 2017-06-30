@@ -457,8 +457,8 @@ Dim Modo As Byte
 '   4.-  Modificar
 '--------------------------------------------------
 Dim PrimeraVez As Boolean
-Dim Indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim I As Integer
+Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
+Dim i As Integer
 
 ' utilizado para buscar por checks
 Private BuscaChekc As String
@@ -467,33 +467,33 @@ Private BuscaChekc As String
 
 
 Private Sub PonerModo(vModo)
-Dim B As Boolean
-Dim I As Integer
+Dim b As Boolean
+Dim i As Integer
 
     Modo = vModo
     
-    B = (Modo = 2)
-    If B Then
+    b = (Modo = 2)
+    If b Then
         PonerContRegIndicador
     Else
         PonerIndicador lblIndicador, Modo
     End If
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).visible = False
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).visible = False
+    Next i
     txtAux2(0).visible = False
     
-    For I = 0 To chkAux.Count - 1
-        chkAux(I).visible = Not B
-    Next I
+    For i = 0 To chkAux.Count - 1
+        chkAux(i).visible = Not b
+    Next i
 
-    cmdAceptar.visible = Not B
-    cmdCancelar.visible = Not B
-    DataGrid1.Enabled = B
+    cmdAceptar.visible = Not b
+    cmdCancelar.visible = Not b
+    DataGrid1.Enabled = b
     
     'Si es regresar
-    If DatosADevolverBusqueda <> "" Then cmdRegresar.visible = B
+    If DatosADevolverBusqueda <> "" Then cmdRegresar.visible = b
     
     PonerLongCampos
     
@@ -526,7 +526,7 @@ Dim cadReg As String
 End Sub
 
 Private Sub BotonAnyadir()
-    Dim NumF As String
+    Dim numF As String
     Dim anc As Single
     
     CargaGrid CadB
@@ -544,9 +544,9 @@ Private Sub BotonAnyadir()
         anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.top
     End If
          
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     txtAux(1).Text = Format(Now, "dd/mm/yyyy")
     chkAux(0).Value = 0
     chkAux(1).Value = 0
@@ -571,9 +571,9 @@ Private Sub BotonBuscar()
     CargaGrid "menus_usuarios.codtraba = -1"
     '*******************************************************************************
     'Buscar
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     chkAux(0).Value = 0
     chkAux(1).Value = 0
     
@@ -584,13 +584,13 @@ End Sub
 
 Private Sub BotonModificar()
     Dim anc As Single
-    Dim I As Integer
+    Dim i As Integer
     
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -624,9 +624,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).top = alto
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).top = alto
+    Next i
     
     Me.chkAux(0).top = alto
     Me.chkAux(1).top = alto
@@ -657,7 +657,7 @@ Private Sub chkAux_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-    Dim I As Long
+    Dim i As Long
     Dim vWhere As String
     
 
@@ -671,7 +671,7 @@ Private Sub cmdAceptar_Click()
             End If
             
         Case 3 'INSERTAR
-            If DatosOK Then
+            If DatosOk Then
                 If InsertarDesdeForm(Me) Then
                     CargaGrid CadB
                     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
@@ -688,7 +688,7 @@ Private Sub cmdAceptar_Click()
             End If
             
         Case 4 'MODIFICAR
-            If DatosOK Then
+            If DatosOk Then
                 If ModificaDesdeFormulario(Me, 1) Then
                     ' en caso de modificar el padre, modificamos todos los hijos
                     If adodc1.Recordset.Fields(0) Mod 10000 = 0 Then
@@ -696,10 +696,10 @@ Private Sub cmdAceptar_Click()
                     End If
                     
                     TerminaBloquear
-                    I = adodc1.Recordset.Fields(1)
+                    i = adodc1.Recordset.Fields(1)
                     PonerModo 2
                     CargaGrid CadB
-                    adodc1.Recordset.Find "codigo=" & I
+                    adodc1.Recordset.Find "codigo=" & i
 
                     PonerFocoGrid Me.DataGrid1
                 End If
@@ -708,18 +708,18 @@ Private Sub cmdAceptar_Click()
 End Sub
 
 Private Sub ModificarHijos()
-Dim SQL As String
+Dim Sql As String
 
-    SQL = "update menus_usuarios set ver = " & DBSet(chkAux(0).Value, "N")
-    SQL = SQL & ", creareliminar = " & DBSet(chkAux(1).Value, "N")
-    SQL = SQL & ", modificar = " & DBSet(chkAux(2).Value, "N")
-    SQL = SQL & ", imprimir = " & DBSet(chkAux(3).Value, "N")
-    SQL = SQL & ", especial = " & DBSet(chkAux(4).Value, "N")
-    SQL = SQL & " where codusu = " & DBSet(CodigoActual, "N")
-    SQL = SQL & " and aplicacion = 'ariconta'"
-    SQL = SQL & " and codigo in (select codigo from menus where aplicacion = 'ariconta' and padre = " & DBSet(adodc1.Recordset!Codigo, "N") & ")"
+    Sql = "update menus_usuarios set ver = " & DBSet(chkAux(0).Value, "N")
+    Sql = Sql & ", creareliminar = " & DBSet(chkAux(1).Value, "N")
+    Sql = Sql & ", modificar = " & DBSet(chkAux(2).Value, "N")
+    Sql = Sql & ", imprimir = " & DBSet(chkAux(3).Value, "N")
+    Sql = Sql & ", especial = " & DBSet(chkAux(4).Value, "N")
+    Sql = Sql & " where codusu = " & DBSet(CodigoActual, "N")
+    Sql = Sql & " and aplicacion = 'aritaxi'"
+    Sql = Sql & " and codigo in (select codigo from menus where aplicacion = 'aritaxi' and padre = " & DBSet(adodc1.Recordset!Codigo, "N") & ")"
 
-    conn.Execute SQL
+    conn.Execute Sql
 End Sub
 
 
@@ -745,8 +745,8 @@ Private Sub cmdCancelar_Click()
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
-Dim I As Integer
+Dim Cad As String
+Dim i As Integer
 Dim J As Integer
 Dim Aux As String
 
@@ -754,18 +754,18 @@ Dim Aux As String
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
-    I = 0
+    Cad = ""
+    i = 0
     Do
-        J = I + 1
-        I = InStr(J, DatosADevolverBusqueda, "|")
-        If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, I - J)
+        J = i + 1
+        i = InStr(J, DatosADevolverBusqueda, "|")
+        If i > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
-    Loop Until I = 0
-    RaiseEvent DatoSeleccionado(cad)
+    Loop Until i = 0
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -809,27 +809,27 @@ Private Sub Form_Load()
     '****************** canviar la consulta *********************************
     CadenaConsulta = "SELECT cast(concat(right(concat('0000',menus.codigo),4),'0000') as signed),menus.codigo, menus_usuarios.aplicacion, if(cast(concat(right(concat('0000',menus.codigo),4),'0000') as signed) mod 10000<>0,concat('     ', menus.descripcion), menus.descripcion),menus_usuarios.ver, IF(menus_usuarios.ver=1,'*','') as pver, menus_usuarios.creareliminar,  IF(menus_usuarios.creareliminar=1,'*','') as pcreareliminar, menus_usuarios.modificar,  IF(menus_usuarios.modificar=1,'*','') as pmodificar, menus_usuarios.imprimir,  IF(menus_usuarios.imprimir=1,'*','') as pimprimir, menus_usuarios.especial, IF(menus_usuarios.especial=1,'*','') as pespecial "
     CadenaConsulta = CadenaConsulta & " from menus, menus_usuarios "
-    CadenaConsulta = CadenaConsulta & " where menus.aplicacion = 'ariconta' "
+    CadenaConsulta = CadenaConsulta & " where menus.aplicacion = 'aritaxi' "
     CadenaConsulta = CadenaConsulta & " and menus.padre = 0 "
     CadenaConsulta = CadenaConsulta & " and menus.codigo > 1 "
     CadenaConsulta = CadenaConsulta & " and menus.aplicacion = menus_usuarios.aplicacion and menus.codigo = menus_usuarios.codigo and menus_usuarios.codusu = " & DBSet(CodigoActual, "N")
     
     ' si no tiene tesoreria no los muestro
 '    If Not vEmpresa.TieneTesoreria Then
-'        CadenaConsulta = CadenaConsulta & " and not menus.codigo in (select codigo from menus where aplicacion = 'ariconta' and tipo = 1) "
+'        CadenaConsulta = CadenaConsulta & " and not menus.codigo in (select codigo from menus where aplicacion = 'aritaxi' and tipo = 1) "
 '    End If
     
     CadenaConsulta = CadenaConsulta & " UNION "
     CadenaConsulta = CadenaConsulta & " select cast(concat(right(concat('0000',hh.padre),4), right(concat('0000',hh.orden),4)) as signed), hh.codigo, hh.aplicacion, if(cast(concat(right(concat('0000',hh.padre),4), right(concat('0000',hh.orden),4)) as signed) mod 10000<>0,concat('     ', hh.descripcion), hh.descripcion), uu.ver, IF(uu.ver=1,'*','') as pver, uu.creareliminar,  IF(uu.creareliminar=1,'*','') as pcreareliminar, uu.modificar,  IF(uu.modificar=1,'*','') as pmodificar, uu.imprimir,  IF(uu.imprimir=1,'*','') as pimprimir, uu.especial, IF(uu.especial=1,'*','') as pespecial  "
     CadenaConsulta = CadenaConsulta & " from menus pp, menus hh, menus_usuarios uu "
-    CadenaConsulta = CadenaConsulta & " where pp.aplicacion = 'ariconta' and  "
+    CadenaConsulta = CadenaConsulta & " where pp.aplicacion = 'aritaxi' and  "
     CadenaConsulta = CadenaConsulta & " hh.padre > 1 and "
     CadenaConsulta = CadenaConsulta & " pp.aplicacion = hh.aplicacion And hh.Padre = pp.Codigo and "
     CadenaConsulta = CadenaConsulta & " hh.aplicacion = uu.aplicacion and hh.codigo = uu.codigo and uu.codusu = " & DBSet(CodigoActual, "N")
     
     ' si no tiene tesoreria no los muestro
 '    If Not vEmpresa.TieneTesoreria Then
-'        CadenaConsulta = CadenaConsulta & " and not hh.codigo in (select codigo from menus where aplicacion = 'ariconta' and tipo = 1) "
+'        CadenaConsulta = CadenaConsulta & " and not hh.codigo in (select codigo from menus where aplicacion = 'aritaxi' and tipo = 1) "
 '    End If
     
     '************************************************************************
@@ -847,7 +847,7 @@ End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
-    If Indice = 1 Then
+    If indice = 1 Then
         txtAux(1).Text = Format(vFecha, "dd/mm/yyyy") '<===
     Else
         txtAux(5).Text = Format(vFecha, "dd/mm/yyyy") '<===
@@ -885,20 +885,20 @@ Private Sub mnVerTodos_Click()
 End Sub
 
 Private Sub CargaGrid(Optional vSQL As String)
-    Dim SQL As String
+    Dim Sql As String
     Dim tots As String
     Dim cadFiltro As String
     
     
 '    adodc1.ConnectionString = Conn
     If vSQL <> "" Then
-        SQL = CadenaConsulta & " AND " & vSQL
+        Sql = CadenaConsulta & " AND " & vSQL
     Else
-        SQL = CadenaConsulta
+        Sql = CadenaConsulta
     End If
-    SQL = SQL & " ORDER BY 1 "
+    Sql = Sql & " ORDER BY 1 "
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, SQL, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "N||||0|;N||||0|;N||||0|;S|txtAux2(0)|T|Descripcion|5000|;"
@@ -918,7 +918,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     
 End Sub
 
-Private Sub txtaux_GotFocus(Index As Integer)
+Private Sub txtAux_GotFocus(Index As Integer)
     If Index = 6 And Modo = 3 Then
         txtAux(Index).Enabled = False
     End If
@@ -938,18 +938,18 @@ Dim cadMen As String
     
 End Sub
 
-Private Function DatosOK() As Boolean
+Private Function DatosOk() As Boolean
 'Dim Datos As String
-Dim B As Boolean
-Dim SQL As String
+Dim b As Boolean
+Dim Sql As String
 Dim Mens As String
 
 
-    B = CompForm(Me, 1)
-    If Not B Then Exit Function
+    b = CompForm(Me, 1)
+    If Not b Then Exit Function
     
     
-    DatosOK = B
+    DatosOk = b
 End Function
 
 
@@ -957,7 +957,7 @@ Private Sub PonerOpcionesMenu()
     PonerOpcionesMenuGeneral Me
 End Sub
 
-Private Sub txtaux_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     If KeyAscii = teclaBuscar Then
         If Modo = 1 Or Modo = 3 Or Modo = 4 Then
             Select Case Index
@@ -969,7 +969,7 @@ Private Sub txtaux_KeyPress(Index As Integer, KeyAscii As Integer)
     End If
 End Sub
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub
@@ -983,7 +983,7 @@ End Sub
 
 
 
-Private Sub KEYBusqueda(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYBusqueda(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
 End Sub
 

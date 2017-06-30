@@ -5,7 +5,7 @@ Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.CommandBars.
 Object = "{945E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.DockingPane.v17.2.0.ocx"
 Object = "{BD0C1912-66C3-49CC-8B12-7B347BF6C846}#17.2#0"; "Codejock.SkinFramework.v17.2.0.ocx"
 Begin VB.Form frmppal 
-   Caption         =   "Ariconta"
+   Caption         =   "Aritaxi"
    ClientHeight    =   8160
    ClientLeft      =   120
    ClientTop       =   465
@@ -1677,14 +1677,14 @@ Dim TamanyoImgComun As Integer
 
 
 '????
-    ImgListComun1.ListImages.Clear
+    imgListComun1.ListImages.Clear
     imgListComun_BN.ListImages.Clear
     imgListComun_OM.ListImages.Clear
     
     TamanyoImgComun = 24
     
-    ImgListComun1.ImageHeight = TamanyoImgComun
-    ImgListComun1.ImageWidth = TamanyoImgComun
+    imgListComun1.ImageHeight = TamanyoImgComun
+    imgListComun1.ImageWidth = TamanyoImgComun
     GetIconsFromLibrary App.Path & "\styles\iconos.dll", 2, TamanyoImgComun  'antes icolistcon
 
     
@@ -1838,18 +1838,18 @@ Private Sub LoadIcons()
       
     'ICONOS PEQUEÑOS
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
-            Array(ID_RatiosyGráficas, ID_EvolucióndeSaldos, ID_Totalesporconcepto, 1, 1, ID_AseguClientes), xtpImageNormal
+            Array(ID_Clientes, ID_ClientesInactivos, ID_TiposCartas, 1, 1, ID_FormasPago), xtpImageNormal
         
     
     
     
     'Pequeños
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
-            Array(ID_ConsoBalSums, 1, 1, 1, ID_EstadísticaInmovilizado, ID_SimulaciónAmortización, ID_DeshacerAmortización, 1, 1, ID_VentaBajainmovilizado), xtpImageNormal
+            Array(ID_CartasClientes, ID_Marcas, ID_TiposUnidad, 1, ID_SituEspe, ID_Incidencias, ID_Tarjetas, 1, 1, ID_InfClientes), xtpImageNormal
         
     'Pequeños diario
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
-            Array(ID_TiposdeDiario, ID_TiposdePago, ID_ModelosdeCartas, ID_BicSwift, 1, ID_Agentes), xtpImageNormal
+            Array(ID_AlmacenesPropios, ID_FamiliasArticulos, ID_ArticulosInactivos, ID_MovimientosAlmacen, ID_HistoricoMovimientosAlmacen, ID_MovimientosArticulos), xtpImageNormal
       
          '      ID_AsientosPredefinidos
      
@@ -1863,16 +1863,16 @@ Private Sub LoadIcons()
 '
     Dim T() As Variant
     'Cad linea son 15
-    T = Array(1, ID_Conceptos, ID_TiposdeIVA, ID_Bancos, ID_FormasdePago, ID_FacturasRecibidas, 1, ID_FacturasEmitidas, ID_LibroFacturasRecibidas, 1, 1, 1, 1, 1, 1, _
-        ID_RelaciónClientesporcuenta, ID_RelacionProveedoresporcuenta, 1, 1, 1, ID_RealizarCobro, ID_RealizarPago, 1, ID_Elementos, 1, 1, 1, 1, 1, ID_Punteoextractobancario, _
-        1, ID_InformePagospendientes, 1, 1, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, ID_Extractos, ID_CarteradePagos, 1, 1, 1, ID_Punteo, 1, _
-        1, ID_PlanContable, 1, 1, 1, ID_Informes, 1, ID_Usuarios, 1, 1, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
-        1, ID_Compensaciones, 1, 1, 1, 1, ID_ConceptosInm, 1, 1, ID_GenerarAmortización, ID_Reclamaciones, 1, 1, 1, 1, _
-        ID_ImportarFacturasCliente, 1, 1, ID_Compensarcliente, ID_SumasySaldos, ID_CuentadeExplotación, ID_BalancedeSituación, ID_PérdidasyGanancias, 1, 1, 1, 1, 1, ID_CarteradeCobros, ID_InformeCobrosPendientes, _
+    T = Array(1, 1, ID_TiposArticulos, 1, ID_Proveedores, ID_AltasClientes, 1, ID_ContaFacturas, ID_FrasRectificativas, ID_EtiquetasSocios, 1, 1, 1, 1, 1, _
+        ID_VentasporCliente, ID_DetalleFacturacion, 1, 1, 1, ID_HcoInventario, ID_Reparaciones, 1, ID_Trabajadores, 1, 1, 1, 1, 1, ID_EtiquetasClientes, _
+        1, ID_ValStocksInven, ID_Articulos, ID_Socios, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, ID_ClientesAgrup, ID_ControlRep, 1, 1, 1, ID_BancosPropio, 1, _
+        ID_ArticulosComponentes, 1, ID_ServiciosAbonados, 1, 1, ID_Informes, 1, ID_Usuarios, ID_HcoLlamadas, ID_TraspasoTaxitronic, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
+        1, ID_ActDiferencias, 1, ID_FacturacionClientes, 1, 1, 1, 1, 1, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
+        ID_ImportarFacturasCliente, 1, 1, ID_HistoricoUves, ID_AgentesCom, ID_Clientes, ID_TiposCartas, ID_TiposCartas, 1, 1, 1, 1, ID_ProvVarios, ID_Proveedores, ID_CartasSocios, _
         ID_Renumeracióndeasientos, ID_CierredeEjercicio, ID_Deshacercierre, ID_DiarioOficial, ID_PresentaciónTelemáticadeLibros, ID_Traspasodecuentasenapuntes, ID_Renumerarregistrosproveedor, ID_TraspasocodigosdeIVA, 1, 1, 1, 1, 1, 1, 1, _
-        ID_Traspasodecuentasenapuntes, ID_Aumentardígitoscontables, 1, 1, 1, 1, 1, ID_LibroFacturasEmitidas, 1, 1, ID_Remesas, 1, 1, 1, 1, _
-        ID_RecepcionTalónPagare, ID_RemesasTalenPagare, ID_Accionesrealizadas, 1, ID_LiquidacionIVA, 1, 1, 1, ID_AsientosPredefinidos, 1, 1, 1, 1, ID_FrasConso, 1, _
-        ID_Renumerarregistrosproveedor, ID_TraspasocodigosdeIVA, 1, 1, 1, 1, ID_Asientos, 1)
+        ID_TomaInventario, ID_ValoracionStocks, 1, 1, 1, 1, 1, ID_Albaranes, 1, 1, ID_StocksMaxMin, 1, 1, 1, 1, _
+        ID_AlbxArt, ID_StocksFecha, ID_Accionesrealizadas, 1, ID_EntradaExisReal, 1, 1, 1, ID_ListadoMovimientos, 1, 1, 1, 1, ID_AlbAnulados, 1, _
+        ID_ListadoDiferencias, ID_ReimprimirFras, 1, 1, ID_FactuVarClientes, 1, ID_Actividades, 1)
     
      
     
@@ -1909,15 +1909,15 @@ Private Sub LoadIcons()
     ' ID_Compensaciones ID_Reclamaciones  ID_InformeImpagados ID_RemesasTalenPagare ID_Norma57Pagosventanilla  ID_TransferenciasAbonos
     ' ID_InformePagosbancos ID_Transferencias ID_Pagosdomiciliados ID_GastosFijos ID_Compensarproveedor ID_Confirming
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
-            Array(1, ID_Reclamaciones, ID_InformeImpagados, ID_RemesasTalenPagare, ID_Norma57Pagosventanilla, ID_TransferenciasAbonos, ID_Confirming, _
-            ID_Pagosdomiciliados, ID_GastosFijos, ID_Compensarproveedor), xtpImageNormal
+            Array(1, ID_PrevFacturacion, ID_FacturacionAlb, ID_FacturasRect, ID_HcoAlbFra, ID_ReimprirFras, ID_NrosSerie, _
+            ID_MotivosBajaEquipos, ID_MotivosPdteRepara, ID_ServAsistenciaTecnica), xtpImageNormal
     
     
     
     
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
-            Array(ID_InformePagosbancos, ID_Transferencias, ID_MemoriaPlazosdepago, ID_Informeporcuenta, ID_SituaciónTesoreria, ID_InformeporNIF), xtpImageNormal
+            Array(ID_TiposAveria, ID_TrabajosRealizados, ID_InfReparacionesDia, ID_Informeporcuenta, ID_SituaciónTesoreria, ID_InformeporNIF), xtpImageNormal
     
      
  
@@ -1966,7 +1966,7 @@ Private Sub LoadIcons()
             RECORD_IMPORTANCE_LOW_ICON), xtpImageNormal
             
             
-        CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\suministro-inmediato-informacion.bmp", ID_SII, xtpImageNormal
+        CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\car_compact_grey.bmp", ID_Vehiculos, xtpImageNormal
             
             
         Dim i As Integer
@@ -2476,8 +2476,8 @@ Dim GrupOtro As RibbonGroup
         Cad = CStr(IdMenu * 100000)
         Set GrupGral = TabNuevo.Groups.AddGroup("DATOS GENERALES", Cad & "0")
         Set GrupVari = TabNuevo.Groups.AddGroup("INFORMES VARIOS", Cad & "1")
-        Set GrupEsta = TabNuevo.Groups.AddGroup("ESTADISTICA", Cad & "2")
-        Set GrupOtro = TabNuevo.Groups.AddGroup("", Cad & "2")
+        Set GrupOtro = TabNuevo.Groups.AddGroup("FACTURACION", Cad & "2")
+        Set GrupEsta = TabNuevo.Groups.AddGroup("ESTADISTICA", Cad & "3")
         
         
         'todos los hijos que cuelgan en la tab
@@ -2594,7 +2594,7 @@ Dim GrupEsta As RibbonGroup
 
 
         'Creamos la TAB
-        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Facturación Socios")
+        Set TabNuevo = RibbonBar.InsertTab(CLng(IdMenu), "Compras")
         TabNuevo.Id = CLng(IdMenu)
         
         Cad = CStr(IdMenu * 100000)

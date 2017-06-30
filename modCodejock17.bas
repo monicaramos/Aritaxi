@@ -863,92 +863,141 @@ Public Const ID_SelImpresora = 106
 Public Const ID_ConfigurarBalances = 108
 
 '
-Public Const ID_PlanContable = 201
-Public Const ID_TiposdeDiario = 202
-Public Const ID_Conceptos = 203
-Public Const ID_TiposdeIVA = 204
-Public Const ID_TiposdePago = 205
-Public Const ID_FormasdePago = 206
-Public Const ID_Bancos = 207
-Public Const ID_BicSwift = 208
-Public Const ID_Agentes = 209
-Public Const ID_AsientosPredefinidos = 211
-Public Const ID_ModelosdeCartas = 212
-
-
-Public Const ID_Asientos = 301
-Public Const ID_Extractos = 303
-Public Const ID_Punteo = 304
-Public Const ID_SumasySaldos = 306
-Public Const ID_CuentadeExplotación = 307
-Public Const ID_BalancedeSituación = 308
-Public Const ID_PérdidasyGanancias = 309
-Public Const ID_Totalesporconcepto = 310
-Public Const ID_EvolucióndeSaldos = 311
-Public Const ID_RatiosyGráficas = 312
-Public Const ID_Punteoextractobancario = 314
-Public Const ID_ConsoBalSums = 315
+Public Const ID_Marcas = 201
+Public Const ID_AlmacenesPropios = 202
+Public Const ID_TiposUnidad = 203
+Public Const ID_TiposArticulos = 204
+Public Const ID_FamiliasArticulos = 205
+Public Const ID_Articulos = 206
+Public Const ID_MovimientosAlmacen = 207
+Public Const ID_HistoricoMovimientosAlmacen = 208
+Public Const ID_MovimientosArticulos = 209
+Public Const ID_ListadoMovimientos = 211
+Public Const ID_ArticulosInactivos = 212
+Public Const ID_ArticulosComponentes = 213
+Public Const ID_ValoracionStocks = 214
+Public Const ID_StocksMaxMin = 215
+Public Const ID_StocksFecha = 216
+Public Const ID_TomaInventario = 217
+Public Const ID_EntradaExisReal = 218
+Public Const ID_ListadoDiferencias = 219
+Public Const ID_ActDiferencias = 220
+Public Const ID_ValStocksInven = 221
+Public Const ID_HcoInventario = 222
 
 
 
-
-Public Const ID_FacturasEmitidas = 401
-Public Const ID_LibroFacturasEmitidas = 402
-Public Const ID_RelaciónClientesporcuenta = 403
-Public Const ID_FacturasRecibidas = 404
-Public Const ID_LibroFacturasRecibidas = 405
-Public Const ID_RelacionProveedoresporcuenta = 406
-Public Const ID_Modelo303 = 408
-Public Const ID_Modelo340 = 409
-Public Const ID_Modelo347 = 410
-Public Const ID_Modelo349 = 411
-Public Const ID_LiquidacionIVA = 412
-Public Const ID_FrasConso = 413
-
-
-'Asegurados
-Public Const ID_AseguClientes = 414
-Public Const ID_AseguComunicaSeguro = 415
-'SII
-Public Const ID_SII = 416
-
-
-
-
-
-Public Const ID_ConceptosInm = 502
-Public Const ID_Elementos = 503
-Public Const ID_EstadísticaInmovilizado = 505
-Public Const ID_SimulaciónAmortización = 508
-Public Const ID_GenerarAmortización = 509
-Public Const ID_DeshacerAmortización = 510
-Public Const ID_VentaBajainmovilizado = 511
+Public Const ID_Actividades = 301
+Public Const ID_ClientesAgrup = 302
+Public Const ID_FormasPago = 303
+Public Const ID_BancosPropio = 304
+Public Const ID_SituEspe = 305
+Public Const ID_AgentesCom = 306
+Public Const ID_Clientes = 307
+Public Const ID_TiposCartas = 308
+Public Const ID_Incidencias = 309
+Public Const ID_Tarjetas = 310
+Public Const ID_ClientesInactivos = 311
+Public Const ID_InfClientes = 312
+Public Const ID_AltasClientes = 313
+Public Const ID_EtiquetasClientes = 314
+Public Const ID_CartasClientes = 315
+Public Const ID_TraspasoTaxitronic = 316
+Public Const ID_HcoLlamadas = 317
+Public Const ID_ServiciosAbonados = 318
+Public Const ID_FacturacionClientes = 319
+Public Const ID_FactuVarClientes = 320
+Public Const ID_HcoFacturas = 321
+Public Const ID_ReimprimirFras = 322
+Public Const ID_ContaFacturas = 323
+Public Const ID_FrasRectificativas = 324
+Public Const ID_VentasporCliente = 325
+Public Const ID_DetalleFacturacion = 326
 
 
 
+Public Const ID_Trabajadores = 401
+Public Const ID_Vehiculos = 402
+Public Const ID_Choferes = 403
+Public Const ID_Socios = 404
+Public Const ID_HistoricoUves = 405
+Public Const ID_EtiquetasSocios = 406
+Public Const ID_CartasSocios = 408
+Public Const ID_Albaranes = 409
+Public Const ID_AlbxArt = 410
+Public Const ID_AlbAnulados = 411
+Public Const ID_PrevFacturacion = 412
+Public Const ID_FacturacionAlb = 413
+Public Const ID_FacturasRect = 414
+Public Const ID_HcoAlbFra = 415
+Public Const ID_ReimprirFras = 416
+Public Const ID_ContabFras = 417
+Public Const ID_ServSocios = 418
+Public Const ID_Liquidacion = 419
+Public Const ID_HcoFras = 420
+Public Const ID_ReimprFras = 421
+Public Const ID_ContabilFras = 422
+Public Const ID_RetenSocios = 423
+Public Const ID_VtasSocios = 424
+Public Const ID_VtasMeses = 425
+Public Const ID_VtasFamArt = 426
+Public Const ID_DetalleFra = 427
 
-Public Const ID_CarteradeCobros = 601
-Public Const ID_InformeCobrosPendientes = 602
-Public Const ID_RealizarCobro = 604
-Public Const ID_Compensaciones = 606
-Public Const ID_Compensarcliente = 607
-Public Const ID_Reclamaciones = 608
-Public Const ID_Remesas = 609
-Public Const ID_InformeImpagados = 610
-Public Const ID_RecepcionTalónPagare = 611
-Public Const ID_RemesasTalenPagare = 612
-Public Const ID_Norma57Pagosventanilla = 613
-Public Const ID_TransferenciasAbonos = 614
 
-Public Const ID_CarteradePagos = 801
-Public Const ID_InformePagospendientes = 802
-Public Const ID_InformePagosbancos = 803
-Public Const ID_RealizarPago = 804
-Public Const ID_Transferencias = 805
-Public Const ID_Pagosdomiciliados = 806
-Public Const ID_GastosFijos = 807
-Public Const ID_Compensarproveedor = 809
-Public Const ID_Confirming = 810
+Public Const ID_Proveedores = 501
+Public Const ID_ProvVarios = 502
+Public Const ID_Direcciones = 503
+Public Const ID_InfProveedores = 504
+Public Const ID_EtiProveedores = 505
+Public Const ID_CartasProv = 506
+Public Const ID_PreciosProv = 507
+Public Const ID_DtosProv = 508
+Public Const ID_PedidosProv = 509
+Public Const ID_PedidosAnulados = 510
+Public Const ID_MatPdteRecibir = 511
+Public Const ID_AlbProveedor = 512
+Public Const ID_AlbAnuladosPro = 513
+Public Const ID_InfPdteFacturar = 514
+Public Const ID_RecepFacturas = 515
+Public Const ID_HcoAlbxFra = 516
+Public Const ID_ContabFacturas = 517
+Public Const ID_ComprasProveedor = 518
+Public Const ID_ComprasFamxArt = 519
+Public Const ID_InfAlbxProv = 520
+
+
+Public Const ID_FacturarClientes = 601
+Public Const ID_FrasRectifCli = 602
+Public Const ID_HcoFrasClientes = 603
+Public Const ID_FacturacionSocios = 604
+Public Const ID_FrasRectifSocios = 605
+Public Const ID_HcoFacturasSocios = 606
+Public Const ID_ReimprFrasSocios = 607
+Public Const ID_ContabFrasSocios = 608
+
+
+Public Const ID_GrarFrasCuotas = 701
+Public Const ID_ReimprFrasCuotas = 702
+Public Const ID_HcoFrasCuotas = 703
+Public Const ID_ContabFrasCuotas = 704
+Public Const ID_MtoAlbaranes = 705
+Public Const ID_PrevFacturacCuotas = 706
+Public Const ID_Facturacion = 707
+Public Const ID_FrasRectific = 708
+
+
+
+
+
+Public Const ID_Reparaciones = 801
+Public Const ID_ControlRep = 802
+Public Const ID_NrosSerie = 803
+Public Const ID_MotivosBajaEquipos = 804
+Public Const ID_MotivosPdteRepara = 805
+Public Const ID_ServAsistenciaTecnica = 806
+Public Const ID_TiposAveria = 807
+Public Const ID_TrabajosRealizados = 809
+Public Const ID_InfReparacionesDia = 810
 
 Public Const ID_InformeporNIF = 901
 Public Const ID_Informeporcuenta = 902
