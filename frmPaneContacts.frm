@@ -114,10 +114,10 @@ End Sub
 
 Private Sub BuscaEmpresas()
 Dim Prohibidas As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
 Dim Cad As String
-Dim SQL As String
+Dim Sql As String
 
 Dim N
 
@@ -125,16 +125,16 @@ Dim N
 Prohibidas = DevuelveProhibidas
 
 'Cargamos las empresas
-Set Rs = New ADODB.Recordset
+Set RS = New ADODB.Recordset
 
 '[Monica]11/04/2014: solo debe de salir las ariconta
-Rs.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+RS.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
-While Not Rs.EOF
-    Cad = "|" & Rs!codempre & "|"
+While Not RS.EOF
+    Cad = "|" & RS!codempre & "|"
     If InStr(1, Prohibidas, Cad) = 0 Then
-        Cad = Rs!nomempre
-        Set N = tree.Nodes.Add(, , CStr("N" & Rs!codempre), Rs!nomempre)
+        Cad = RS!nomempre
+        Set N = tree.Nodes.Add(, , CStr("N" & RS!codempre), RS!nomempre)
         
         
         
@@ -150,9 +150,9 @@ While Not Rs.EOF
         'Set Rs2 = Nothing
         
             
-        Cad = Rs!AriTaxi & "|" & Rs!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
+        Cad = RS!AriTaxi & "|" & RS!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
         
-        If Rs!codempre = vEmpresa.codempre Then
+        If RS!codempre = vEmpresa.codempre Then
             N.Bold = True
             Set tree.SelectedItem = N
         End If
@@ -174,32 +174,32 @@ While Not Rs.EOF
         '    ItmX.SmallIcon = 1
         'End If
     End If
-    Rs.MoveNext
+    RS.MoveNext
 Wend
-Rs.Close
+RS.Close
 End Sub
 
 
 Private Function DevuelveProhibidas() As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 Dim Cad As String
 Dim i As Integer
     On Error GoTo EDevuelveProhibidas
     DevuelveProhibidas = ""
-    Set Rs = New ADODB.Recordset
+    Set RS = New ADODB.Recordset
     i = vUsu.Codigo Mod 1000
-    Rs.Open "Select * from usuarios.usuarioempresasaritaxi WHERE codusu =" & i, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open "Select * from usuarios.usuarioempresasaritaxi WHERE codusu =" & i, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Cad = ""
-    While Not Rs.EOF
-        Cad = Cad & Rs.Fields(1) & "|"
-        Rs.MoveNext
+    While Not RS.EOF
+        Cad = Cad & RS.Fields(1) & "|"
+        RS.MoveNext
     Wend
     If Cad <> "" Then Cad = "|" & Cad
-    Rs.Close
+    RS.Close
     DevuelveProhibidas = Cad
 EDevuelveProhibidas:
     Err.Clear
-    Set Rs = Nothing
+    Set RS = Nothing
 End Function
 
 

@@ -286,7 +286,7 @@ Begin VB.MDIForm frmPpal2
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "13:32"
+            TextSave        =   "9:39"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -2044,15 +2044,14 @@ End Sub
 Private Function CargaIconosDlls()
 Dim TamanyoImgComun As Integer
     
-    
-    ImgListComun1.ListImages.Clear
+    imgListComun1.ListImages.Clear
     imgListComun_BN.ListImages.Clear
     imgListComun_OM.ListImages.Clear
     
     TamanyoImgComun = 24
     
-    ImgListComun1.ImageHeight = TamanyoImgComun
-    ImgListComun1.ImageWidth = TamanyoImgComun
+    imgListComun1.ImageHeight = TamanyoImgComun
+    imgListComun1.ImageWidth = TamanyoImgComun
     GetIconsFromLibrary App.Path & "\styles\iconos.dll", 5, TamanyoImgComun  'antes icolistcon
 
     

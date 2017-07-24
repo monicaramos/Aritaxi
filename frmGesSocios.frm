@@ -347,69 +347,69 @@ Begin VB.Form frmGesSocios
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame3(2)"
-      Tab(1).Control(1)=   "cmdAccCRM(0)"
-      Tab(1).Control(2)=   "cmdAccCRM(1)"
-      Tab(1).Control(3)=   "cmdAccCRM(2)"
-      Tab(1).Control(4)=   "lwCRM"
-      Tab(1).Control(5)=   "LabelCRM"
+      Tab(1).Control(0)=   "LabelCRM"
+      Tab(1).Control(1)=   "lwCRM"
+      Tab(1).Control(2)=   "cmdAccCRM(2)"
+      Tab(1).Control(3)=   "cmdAccCRM(1)"
+      Tab(1).Control(4)=   "cmdAccCRM(0)"
+      Tab(1).Control(5)=   "Frame3(2)"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameToolAux0"
-      Tab(2).Control(1)=   "cmdAux(0)"
-      Tab(2).Control(2)=   "txtAux1(4)"
-      Tab(2).Control(3)=   "txtAux1(3)"
-      Tab(2).Control(4)=   "txtAux1(2)"
-      Tab(2).Control(5)=   "txtAux1(1)"
-      Tab(2).Control(6)=   "txtAux1(0)"
-      Tab(2).Control(7)=   "DataGrid1"
+      Tab(2).Control(0)=   "DataGrid1"
+      Tab(2).Control(1)=   "txtAux1(0)"
+      Tab(2).Control(2)=   "txtAux1(1)"
+      Tab(2).Control(3)=   "txtAux1(2)"
+      Tab(2).Control(4)=   "txtAux1(3)"
+      Tab(2).Control(5)=   "txtAux1(4)"
+      Tab(2).Control(6)=   "cmdAux(0)"
+      Tab(2).Control(7)=   "FrameToolAux0"
       Tab(2).ControlCount=   8
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "FrameToolAux1"
-      Tab(3).Control(1)=   "cmdAux(1)"
-      Tab(3).Control(2)=   "txtAux2(4)"
-      Tab(3).Control(3)=   "cmdAux1"
+      Tab(3).Control(0)=   "DataGrid2"
+      Tab(3).Control(1)=   "txtAux2(0)"
+      Tab(3).Control(2)=   "txtAux2(1)"
+      Tab(3).Control(3)=   "txtAux2(2)"
       Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "txtAux2(2)"
-      Tab(3).Control(6)=   "txtAux2(1)"
-      Tab(3).Control(7)=   "txtAux2(0)"
-      Tab(3).Control(8)=   "DataGrid2"
+      Tab(3).Control(5)=   "cmdAux1"
+      Tab(3).Control(6)=   "txtAux2(4)"
+      Tab(3).Control(7)=   "cmdAux(1)"
+      Tab(3).Control(8)=   "FrameToolAux1"
       Tab(3).ControlCount=   9
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "FrameToolAux2"
-      Tab(4).Control(1)=   "cmdAux(2)"
-      Tab(4).Control(2)=   "txtAux3(2)"
-      Tab(4).Control(3)=   "txtAux3(1)"
-      Tab(4).Control(4)=   "txtAux3(0)"
-      Tab(4).Control(5)=   "Text3"
-      Tab(4).Control(6)=   "DataGrid4"
-      Tab(4).Control(7)=   "Label4"
+      Tab(4).Control(0)=   "Label4"
+      Tab(4).Control(1)=   "DataGrid4"
+      Tab(4).Control(2)=   "Text3"
+      Tab(4).Control(3)=   "txtAux3(0)"
+      Tab(4).Control(4)=   "txtAux3(1)"
+      Tab(4).Control(5)=   "txtAux3(2)"
+      Tab(4).Control(6)=   "cmdAux(2)"
+      Tab(4).Control(7)=   "FrameToolAux2"
       Tab(4).ControlCount=   8
       TabCaption(5)   =   "Documentos"
       TabPicture(5)   =   "frmGesSocios.frx":008C
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Text1(26)"
-      Tab(5).Control(1)=   "Toolbar2"
-      Tab(5).Control(2)=   "lw1"
+      Tab(5).Control(0)=   "LabelDoc"
+      Tab(5).Control(1)=   "imgFecha(3)"
+      Tab(5).Control(2)=   "Label3"
       Tab(5).Control(3)=   "Frame3(0)"
-      Tab(5).Control(4)=   "Label3"
-      Tab(5).Control(5)=   "imgFecha(3)"
-      Tab(5).Control(6)=   "LabelDoc"
+      Tab(5).Control(4)=   "lw1"
+      Tab(5).Control(5)=   "Toolbar2"
+      Tab(5).Control(6)=   "Text1(26)"
       Tab(5).ControlCount=   7
       TabCaption(6)   =   "Contadores"
       TabPicture(6)   =   "frmGesSocios.frx":00A8
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "FrameToolAux3"
-      Tab(6).Control(1)=   "txtAux4(0)"
+      Tab(6).Control(0)=   "DataGrid3"
+      Tab(6).Control(1)=   "txtAux4(2)"
       Tab(6).Control(2)=   "txtAux4(1)"
-      Tab(6).Control(3)=   "txtAux4(2)"
-      Tab(6).Control(4)=   "DataGrid3"
+      Tab(6).Control(3)=   "txtAux4(0)"
+      Tab(6).Control(4)=   "FrameToolAux3"
       Tab(6).ControlCount=   5
       Begin VB.Frame FrameToolAux3 
          Height          =   555
@@ -3169,7 +3169,7 @@ Private Sub cmdAccCRM_Click(Index As Integer)
             'NUEVA, modificar o insertar acciones comerciales
             Set frmSerie = New frmRepNumSerie2
             
-            frmSerie.DatoAInsertar = Adodc1.Recordset!CodClien
+            frmSerie.DatoAInsertar = adodc1.Recordset!CodClien
             frmSerie.DatosADevolverBusqueda = ""   'NUEVA
             frmSerie.Show vbModal
         End Select
@@ -3183,13 +3183,13 @@ Private Sub cmdAccCRM_Click(Index As Integer)
         ' impresion de equipamiento del socio
         
         If Modo <> 2 Then Exit Sub
-        If Me.Adodc1.Recordset.EOF Then Exit Sub
+        If Me.adodc1.Recordset.EOF Then Exit Sub
         If Text1(0).Text = "" Then Exit Sub
         
         Screen.MousePointer = vbHourglass
         
         frmListado.OpcionListado = 60
-        frmListado.NumCod = Format(Adodc1.Recordset!CodClien, "000000")
+        frmListado.NumCod = Format(adodc1.Recordset!CodClien, "000000")
         frmListado.Show vbModal
         Screen.MousePointer = vbDefault
         
@@ -3198,7 +3198,7 @@ Private Sub cmdAccCRM_Click(Index As Integer)
             If lwCRM.SelectedItem Is Nothing Then Exit Sub
             If MsgBox("¿Desea eliminar las observaciones del departamento " & Me.lwCRM.SelectedItem.Text & "?", vbQuestion + vbYesNo) = vbNo Then Exit Sub
             
-            BuscaChekc = "DELETE from scrmobsclien  WHERE codclien = " & Me.Adodc1.Recordset!CodClien & " AND dpto=" & lwCRM.SelectedItem.SubItems(3)
+            BuscaChekc = "DELETE from scrmobsclien  WHERE codclien = " & Me.adodc1.Recordset!CodClien & " AND dpto=" & lwCRM.SelectedItem.SubItems(3)
             If ejecutar(BuscaChekc, False) Then CargaDatosLWCRM
             BuscaChekc = ""
         End If
@@ -3326,7 +3326,7 @@ Dim aaa As String
                 End If
                 Me.DataGrid1.Enabled = True
                 PonerModo 2
-                Me.lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+                Me.lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
             End If
 '            PonerCampos
     End Select
@@ -3580,7 +3580,7 @@ On Error GoTo EModificarLinea
         ' modificamos en la tabla de hco de choferes
         Sql = "UPDATE schofe_historia Set fechaini = '" & Format(txtAux1(2).Text, FormatoFecha) & "', "
         Sql = Sql & "fechafin=" & DBSet(txtAux1(3).Text, "F", "S") & ", observac=" & DBSet(txtAux1(4).Text, "T")
-        Sql = Sql & " where codchofe=" & DBSet(txtAux1(0).Text, "N") & " AND numeruve=" & DBSet(Adodc1.Recordset!NumerUve, "N")
+        Sql = Sql & " where codchofe=" & DBSet(txtAux1(0).Text, "N") & " AND numeruve=" & DBSet(adodc1.Recordset!NumerUve, "N")
         Sql = Sql & " and fechaini= " & DBSet(txtAux1(2).Text, "F")
         conn.Execute Sql
         
@@ -4101,7 +4101,7 @@ Dim Cad As String
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
         PonerModo 2
-        Me.lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+        Me.lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
         If DataGrid1.Row >= 0 Then
             DeseleccionaGrid DataGrid1
             DataGrid1.Bookmark = 1
@@ -4109,13 +4109,13 @@ Dim Cad As String
         End If
         cmdRegresar.Caption = "Regresar"
     Else 'Se llama desde algún Prismatico de otro Form al Mantenimiento de Trabajadores
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
         
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(2) & "|"
+        Cad = adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & adodc1.Recordset.Fields(2) & "|"
         RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
@@ -4214,7 +4214,7 @@ Dim i As Integer
     VieneDeBuscar = False
     PrimeraVez = True
     
-    ImgMail(1).Picture = frmppal.imgListComun1.ListImages(20).Picture
+    ImgMail(1).Picture = frmppal.imgIcoForms.ListImages(4).Picture
     Me.imgDoc(1).Picture = frmppal.ImageListTPV.ListImages(8).Picture
     Me.imgDoc(0).Picture = frmppal.ImageListTPV.ListImages(10).Picture
 
@@ -4226,9 +4226,9 @@ Dim i As Integer
     chkVistaPrevia.Value = CheckValueLeer(Name)
     
     'ASignamos un SQL al DATA1
-    Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = "Select * from " & NombreTabla & " where codclien=-1"
-    Adodc1.Refresh
+    adodc1.ConnectionString = conn
+    adodc1.RecordSource = "Select * from " & NombreTabla & " where codclien=-1"
+    adodc1.Refresh
     
     LimpiarDataGrids
     
@@ -4279,11 +4279,11 @@ On Error GoTo EPonerModo
     b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
-    If Not Adodc1.Recordset.EOF Then
-        If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not adodc1.Recordset.EOF Then
+        If adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1
+    DesplazamientoVisible b And Me.adodc1.Recordset.RecordCount > 1
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -4578,7 +4578,7 @@ Select Case Index
                     CadenaDesdeOtroForm = Text1(17).Text
                 Else
                     CadenaDesdeOtroForm = ""
-                    If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observac, "T")
+                    If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observac, "T")
                 End If
                 frmFacClienteObser.Modificar = Modo >= 3
                 frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -4661,23 +4661,23 @@ Dim porciva As Currency
         
         
         '[Monica]10/02/2011: si el socio tiene suplemento se le añade
-        base0 = base0 + DBLet(Adodc1.Recordset!suplecuota, "N")
+        base0 = base0 + DBLet(adodc1.Recordset!suplecuota, "N")
         '[Monica]10/02/2011:end
         
-        If DBLet(Adodc1.Recordset!suplecuota, "N") <> 0 Then
-            Cad = Cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
+        If DBLet(adodc1.Recordset!suplecuota, "N") <> 0 Then
+            Cad = Cad & "Suplemento:               " & Format(adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
         End If
         
         BaseImp = base0
         
         base1 = 0
-        If TieneChofer(CStr(Adodc1.Recordset!CodClien)) Then
+        If TieneChofer(CStr(adodc1.Recordset!CodClien)) Then
             base1 = vParamAplic.PrecioCuotaConChofe
             BaseImp = BaseImp + base1
             Cad = Cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
         End If
         
-        If Adodc1.Recordset!essocio = 0 Then
+        If adodc1.Recordset!essocio = 0 Then
             BaseImp = BaseImp + vParamAplic.PrecioPorAlquiler
             Cad = Cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
         End If
@@ -5094,7 +5094,7 @@ Private Sub cmdCancelar_Click()
             Me.DataGrid3.Enabled = True
             
             PonerModo 2
-            Me.lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+            Me.lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
     End Select
 End Sub
 Private Sub Text1_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -5751,44 +5751,44 @@ Dim encontrado As String
 
 On Error GoTo EEliminar
 
-msg = "Esta seguro que desea eliminar el socio:" & Me.Adodc1.Recordset!CodClien  '  Text1(0).Text & "?"
+msg = "Esta seguro que desea eliminar el socio:" & Me.adodc1.Recordset!CodClien  '  Text1(0).Text & "?"
 If MsgBox(msg, vbQuestion + vbYesNo) = vbYes Then
-    NumRegElim = Adodc1.Recordset.AbsolutePosition
-    encontrado = DevuelveDesdeBD(conAri, "codclien", "scafac", "codclien", Me.Adodc1.Recordset!CodClien, "T")
+    NumRegElim = adodc1.Recordset.AbsolutePosition
+    encontrado = DevuelveDesdeBD(conAri, "codclien", "scafac", "codclien", Me.adodc1.Recordset!CodClien, "T")
     If encontrado <> "" Then
         MsgBox "No es posible eliminar este socio, ya que tiene facturas asociadas.", vbExclamation
         Exit Sub
     End If
-    encontrado = DevuelveDesdeBD(conAri, "codsocio", "shiuve", "codsocio", Me.Adodc1.Recordset!CodClien, "T")
+    encontrado = DevuelveDesdeBD(conAri, "codsocio", "shiuve", "codsocio", Me.adodc1.Recordset!CodClien, "T")
     If encontrado <> "" Then
         MsgBox "No es posible eliminar este socio, se encuentra en el histórico de uves.", vbExclamation
         Exit Sub
     End If
     conn.BeginTrans
     'Primero borramos las lineas
-    Sql = "delete from schofe_historia where (codchofe, numeruve) in (select codchofe, " & DBSet(Me.Adodc1.Recordset!NumerUve, "N") & "  from sclien_chofer where codsocio = " & DBSet(Me.Adodc1.Recordset!CodClien, "N") & ")"
+    Sql = "delete from schofe_historia where (codchofe, numeruve) in (select codchofe, " & DBSet(Me.adodc1.Recordset!NumerUve, "N") & "  from sclien_chofer where codsocio = " & DBSet(Me.adodc1.Recordset!CodClien, "N") & ")"
     conn.Execute Sql
     
-    Sql = "Delete from sclien_chofer where codsocio=" & Me.Adodc1.Recordset!CodClien
+    Sql = "Delete from sclien_chofer where codsocio=" & Me.adodc1.Recordset!CodClien
     conn.Execute Sql
     
-    Sql = "Delete from sclien_publicidad where codsocio=" & Me.Adodc1.Recordset!CodClien
+    Sql = "Delete from sclien_publicidad where codsocio=" & Me.adodc1.Recordset!CodClien
     conn.Execute Sql
     
-    Sql = "Delete from sclien_cuotas where codsocio = " & Me.Adodc1.Recordset!CodClien
+    Sql = "Delete from sclien_cuotas where codsocio = " & Me.adodc1.Recordset!CodClien
     conn.Execute Sql
     
-    Sql = "Delete from sclien_contadores where codsocio = " & Me.Adodc1.Recordset!CodClien
+    Sql = "Delete from sclien_contadores where codsocio = " & Me.adodc1.Recordset!CodClien
     conn.Execute Sql
     
     
     'Ahora cabecera
-    Sql = "Delete from sclien where codclien=" & Me.Adodc1.Recordset!CodClien
+    Sql = "Delete from sclien where codclien=" & Me.adodc1.Recordset!CodClien
     conn.Execute Sql
     conn.CommitTrans
 End If
 
-If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
+If SituarDataTrasEliminar(adodc1, NumRegElim) Then
     PonerCampos
 End If
 
@@ -5875,7 +5875,7 @@ Private Sub BotonBuscar()
 '        Text1(0).BackColor = vbYellow
     Else
         HacerBusqueda
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             Text1(kCampo).Text = ""
 '            Text1(kCampo).BackColor = vbYellow
             PonerFoco Text1(kCampo)
@@ -5886,8 +5886,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If Adodc1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Adodc1, Index, True
+    If adodc1.Recordset.EOF Then Exit Sub
+    DesplazamientoData adodc1, Index, True
     PonerCampos
 End Sub
 
@@ -5895,9 +5895,9 @@ Private Sub PonerCadenaBusqueda()
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
-    Adodc1.RecordSource = CadenaConsulta
-    Adodc1.Refresh
-    If Adodc1.Recordset.RecordCount <= 0 Then
+    adodc1.RecordSource = CadenaConsulta
+    adodc1.Refresh
+    If adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -5906,7 +5906,7 @@ On Error GoTo EEPonerBusq
         End If
         Exit Sub
     Else
-        Adodc1.Recordset.MoveFirst
+        adodc1.Recordset.MoveFirst
         PonerCampos
         PonerModo 2
     End If
@@ -5926,8 +5926,8 @@ Dim encontrado As String
 On Error Resume Next
 
     
-    If Adodc1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, Adodc1
+    If adodc1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, adodc1
     
     
     'data2 para el grid de las lineas chofer
@@ -5973,7 +5973,7 @@ On Error Resume Next
     End If
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+    lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
     
     CargaDatosLWDoc
     CargaDatosLWCRM
@@ -6041,12 +6041,12 @@ On Error GoTo ECargaGrid
         vDataGrid.Columns(4).Alignment = dbgRight
         vDataGrid.Columns(4).NumberFormat = "###,##0.0000"
         
-        If Not Me.Adodc1.Recordset.EOF Then
+        If Not Me.adodc1.Recordset.EOF Then
             '[Monica]05/12/2013: tengo que sumar lo que hay almacenado
             'antes
             'SQL = "select sum(preciove) from sartic inner join sclien_cuotas on sartic.codartic = sclien_cuotas.codartic where codsocio = " & DBSet(Me.Adodc1.Recordset!CodClien, "N")
             'ahora
-            Sql = "select sum(importes) from sclien_cuotas where codsocio = " & DBSet(Me.Adodc1.Recordset!CodClien, "N")
+            Sql = "select sum(importes) from sclien_cuotas where codsocio = " & DBSet(Me.adodc1.Recordset!CodClien, "N")
             
             CalcularTotales Sql
         Else
@@ -6144,7 +6144,7 @@ Private Sub PosicionarData()
 Dim Cad As String, Indicador As String
 
     Cad = "(codclien=" & Text1(0).Text & ")"
-    If SituarData(Adodc1, Cad, Indicador) Then
+    If SituarData(adodc1, Cad, Indicador) Then
        PonerModo 2
        lblIndicador(0).Caption = Indicador
         'data4 para el grid contadores
@@ -6360,7 +6360,7 @@ Dim Nombre As String
         Else
             .cadRegSelec = ""
         End If
-        .cadRegActua = POS2SF(Adodc1, Me)
+        .cadRegActua = POS2SF(adodc1, Me)
         .cadTodosReg = ""
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
         .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"
@@ -6506,21 +6506,21 @@ Dim EsDTOFam As Boolean
     Case 2
         'LLAMADAS
         Cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
-        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
+        Cad = Cad & " codsocio=" & adodc1.Recordset!CodClien
         GroupBy = "1,2,3"
         BuscaChekc = "fecha"
         
     Case 3
         'FACTURAS como cliente
         Cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
-        Cad = Cad & " codclien=" & Adodc1.Recordset!CodClien
+        Cad = Cad & " codclien=" & adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
     Case 4
         'FACTURAS COMO PROVEEDOR
         Cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
-        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
+        Cad = Cad & " codsocio=" & adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
@@ -6613,7 +6613,7 @@ Dim s As String
                         .hcoCodMovim = RecuperaValor(s, 2)
                         .hcoCodTipoM = RecuperaValor(s, 1)
                         .hcoFechaMov = RecuperaValor(s, 3)
-                        .hcoCodSocio = Adodc1.Recordset!CodClien
+                        .hcoCodSocio = adodc1.Recordset!CodClien
                         .Show vbModal
                 End With
             Case "FLI", "FRL"
@@ -6622,7 +6622,7 @@ Dim s As String
                         .hcoCodMovim = RecuperaValor(s, 2)
                         .hcoCodTipoM = RecuperaValor(s, 1)
                         .hcoFechaMov = RecuperaValor(s, 3)
-                        .hcoCodSocio = Adodc1.Recordset!CodClien
+                        .hcoCodSocio = adodc1.Recordset!CodClien
                         .Show vbModal
                 End With
             Case "FCN", "FCE"
@@ -6777,7 +6777,7 @@ Dim MeteIT As Boolean
         'Nros de serie
         Cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
         Cad = Cad & " and sserie.codtipar = stipar.codtipar  "
-        Cad = Cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
+        Cad = Cad & " and sserie.codclien=" & adodc1.Recordset!CodClien
         GroupBy = ""
         BuscaChekc = "nomtipar, sserie.codartic, numserie "
     End Select

@@ -287,7 +287,7 @@ End Sub
 
 
 Private Sub Form_Unload(Cancel As Integer)
-    NumeroEmpresaMemorizar False
+    If Text1(0).Text <> "" Then NumeroEmpresaMemorizar False
 End Sub
 
 

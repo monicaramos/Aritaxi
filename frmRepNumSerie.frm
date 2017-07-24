@@ -220,29 +220,17 @@ Begin VB.Form frmRepNumSerie2
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(15)"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(7)"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "txtAux2(2)"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "chkAux"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "DataGrid1"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "txtAux(0)"
-      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "txtAux(1)"
-      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "txtAux2(0)"
-      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "txtAux2(1)"
-      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "txtAux(2)"
-      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "Frame3"
-      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "Frame4"
-      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).ControlCount=   12
       Begin VB.Frame Frame4 
          Caption         =   "Compras"
@@ -2355,26 +2343,26 @@ Dim Sql As String
 Dim RS As ADODB.Recordset
 
 
-    If Me.adodc1.Recordset.EOF Then Exit Sub
+    If Me.Adodc1.Recordset.EOF Then Exit Sub
     
 '    If Modo = 2 Then
-        Me.chkAux.Value = DBLet(Me.adodc1.Recordset!TieneMan, "N")
-        txtAux2(2).Text = DBLet(Me.adodc1.Recordset!nummante, "T")
-        txtAux2(3).Text = DBLet(Me.adodc1.Recordset!codtipom, "T")
+        Me.chkAux.Value = DBLet(Me.Adodc1.Recordset!TieneMan, "N")
+        txtAux2(2).Text = DBLet(Me.Adodc1.Recordset!nummante, "T")
+        txtAux2(3).Text = DBLet(Me.Adodc1.Recordset!codtipom, "T")
         
-        txtAux2(4).Text = DBLet(Me.adodc1.Recordset!NumAlbar, "T")
-        txtAux2(5).Text = DBLet(Me.adodc1.Recordset!NumFactu, "T")
-        txtAux2(6).Text = DBLet(Me.adodc1.Recordset!FechaVta, "F")
-        txtAux2(7).Text = DBLet(Me.adodc1.Recordset!numline1, "T")
+        txtAux2(4).Text = DBLet(Me.Adodc1.Recordset!NumAlbar, "T")
+        txtAux2(5).Text = DBLet(Me.Adodc1.Recordset!NumFactu, "T")
+        txtAux2(6).Text = DBLet(Me.Adodc1.Recordset!FechaVta, "F")
+        txtAux2(7).Text = DBLet(Me.Adodc1.Recordset!numline1, "T")
         
         '[Monica]14/02/2014:
-        txtAux2(8).Text = DBLet(Me.adodc1.Recordset!numalbpr, "T")
-        txtAux2(10).Text = DBLet(Me.adodc1.Recordset!fechaCom, "F")
-        txtAux2(11).Text = DBLet(Me.adodc1.Recordset!numline2, "T")
+        txtAux2(8).Text = DBLet(Me.Adodc1.Recordset!numalbpr, "T")
+        txtAux2(10).Text = DBLet(Me.Adodc1.Recordset!fechaCom, "F")
+        txtAux2(11).Text = DBLet(Me.Adodc1.Recordset!numline2, "T")
         
         txtAux2(9).Text = ""
         If txtAux2(8).Text <> "" Then
-            Sql = "select numfactu from scafpa where numalbar = " & DBSet(txtAux2(8).Text, "T") & " and codprove = " & DBSet(Me.adodc1.Recordset!codProve, "N")
+            Sql = "select numfactu from scafpa where numalbar = " & DBSet(txtAux2(8).Text, "T") & " and codprove = " & DBSet(Me.Adodc1.Recordset!codProve, "N")
             
             Set RS = New ADODB.Recordset
             RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -2888,16 +2876,16 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     'Visualizar flechas de desplazamiento en la toolbar si modo=2
     NumReg = 1
@@ -2944,14 +2932,14 @@ Dim NumReg As Byte
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     
-    For i = 0 To Me.imgBuscar.Count - 1
+    For I = 0 To Me.imgBuscar.Count - 1
 '        Me.imgBuscar(i).Enabled = b
-        BloquearImg Me.imgBuscar(i), Not b
-    Next i
+        BloquearImg Me.imgBuscar(I), Not b
+    Next I
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b 'Si es insertar o modificar
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b 'Si es insertar o modificar
+    Next I
     
     'Si Modificar y se ha insertado un nº Albaran no modificar datos
     'del proveedor
@@ -2989,7 +2977,7 @@ Dim b As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -3017,7 +3005,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 
 End Sub
 
@@ -3203,11 +3191,11 @@ Dim selElem As Byte
     If EsCabecera Then
    
         Set frmRepSerPre = New frmRepNumSerie2Prev
-    
+
         frmRepSerPre.DatosADevolverBusqueda = "0|1|2|"
         frmRepSerPre.cWhere = CadB
         frmRepSerPre.Show vbModal
-    
+
         Set frmRepSerPre = Nothing
 
    
@@ -3533,7 +3521,7 @@ Dim tots As String
 '    b = DataGrid1.Enabled
     
     Sql = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.adodc1, Sql, PrimeraVez
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, PrimeraVez
     
     tots = "N||||0|;N||||0|;N||||0|;"
     If vParamAplic.Departamento Then

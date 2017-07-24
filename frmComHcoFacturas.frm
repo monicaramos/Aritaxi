@@ -512,8 +512,8 @@ Begin VB.Form frmComHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
-      Tab(0).Control(1)=   "FrameFactura"
+      Tab(0).Control(0)=   "FrameFactura"
+      Tab(0).Control(1)=   "FrameCliente"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmComHcoFacturas.frx":0028
@@ -3213,7 +3213,7 @@ Private Sub cmdObserva_Click()
         Me.FrameToolAux.visible = False
         
         Me.FrameObserva.visible = True
-        Me.cmdObserva.Picture = frmppal.ImgListComun1.ListImages(18).Picture
+        Me.cmdObserva.Picture = frmppal.imgListComun1.ListImages(18).Picture
 '        CargarICO Me.cmdObserva, "volver.ico"
         Me.cmdObserva.ToolTipText = "volver lineas albaran"
         BloqueaText3
@@ -3222,7 +3222,7 @@ Private Sub cmdObserva_Click()
         Me.FrameObserva.visible = False
         Me.FrameToolAux.visible = True
 '        CargarICO Me.cmdObserva, "message.ico"
-        Me.cmdObserva.Picture = frmppal.ImgListComun1.ListImages(41).Picture
+        Me.cmdObserva.Picture = frmppal.imgListComun1.ListImages(41).Picture
         Me.cmdObserva.ToolTipText = "ver observaciones albaran"
     End If
 End Sub
@@ -3379,7 +3379,7 @@ Dim i As Integer
     With Toolbar1
         .HotImageList = frmppal.imgListComun_OM
         .DisabledImageList = frmppal.imgListComun_BN
-        .ImageList = frmppal.ImgListComun1
+        .ImageList = frmppal.imgListComun1
         'ASignamos botones
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2 'Ver Todos
@@ -3393,7 +3393,7 @@ Dim i As Integer
     With Me.ToolbarDes
         .HotImageList = frmppal.imgListComun_OM
         .DisabledImageList = frmppal.imgListComun_BN
-        .ImageList = frmppal.ImgListComun1
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -3425,7 +3425,7 @@ Dim i As Integer
      
     'cargar icono de observaciones de los albaranes de factura
 '    CargarICO Me.cmdObserva, "message.ico"
-    Me.cmdObserva.Picture = frmppal.ImgListComun1.ListImages(41).Picture
+    Me.cmdObserva.Picture = frmppal.imgIcoForms.ListImages(5).Picture 'imgListComun1.ListImages(41).Picture
     Me.FrameObserva.visible = False
     Me.cmdObserva.ToolTipText = "ver observaciones albaran"
     

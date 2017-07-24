@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Begin VB.Form frmRepNumSerie2Prev
+Begin VB.Form frmRepNumSerie2Prev 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Reparaciones"
    ClientHeight    =   7125
@@ -172,7 +172,6 @@ Begin VB.Form frmRepNumSerie2Prev
       Width           =   800
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmRepNumSerie2Prev .frx":000C
       Height          =   5295
       Left            =   120
       TabIndex        =   5
@@ -519,7 +518,7 @@ Private Sub BotonAnyadir()
         numF = NuevoCodigo
     End If
          
-    anc = DataGrid1.Top
+    anc = DataGrid1.top
     If DataGrid1.Row < 0 Then
         anc = anc + 206
     Else
@@ -552,7 +551,7 @@ Private Sub BotonBuscar()
         txtAux(I).Text = ""
     Next I
     txtAux2(1).Text = ""
-    LLamaLineas DataGrid1.Top + 230, 1 'Pone el form en Modo=1, Buscar
+    LLamaLineas DataGrid1.top + 230, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(1)
 End Sub
 
@@ -592,9 +591,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     
     'Fijamos el ancho
     For I = 0 To 2
-        txtAux(I).Top = alto
+        txtAux(I).top = alto
     Next I
-    txtAux2(1).Top = alto
+    txtAux2(1).top = alto
     ' ### [Monica] 12/09/2006
 End Sub
 
@@ -724,9 +723,9 @@ Private Sub Form_Load()
     PrimeraVez = True
 
     With Me.Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 1   'Buscar
         .Buttons(2).Image = 2   'Todos
     End With

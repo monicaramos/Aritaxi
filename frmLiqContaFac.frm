@@ -42,7 +42,7 @@ Begin VB.Form frmLiqContaFac
       Left            =   1710
       TabIndex        =   4
       Top             =   2640
-      Width           =   1095
+      Width           =   1250
    End
    Begin VB.Frame FrameContab 
       Caption         =   " Facturas "
@@ -159,7 +159,7 @@ Begin VB.Form frmLiqContaFac
       Left            =   4440
       TabIndex        =   3
       Top             =   1860
-      Width           =   1095
+      Width           =   1250
    End
    Begin VB.TextBox txtCodigo 
       BeginProperty Font 
@@ -176,7 +176,7 @@ Begin VB.Form frmLiqContaFac
       Left            =   1740
       TabIndex        =   2
       Top             =   1860
-      Width           =   1095
+      Width           =   1250
    End
    Begin VB.Label Label2 
       AutoSize        =   -1  'True
@@ -887,7 +887,7 @@ Dim SQLcuentas As String
                 If CtaBloq.Count > 0 Then
                     'EXISTEN CUENTAS BLOQUEADAS
                     For Ic = 1 To CtaBloq.Count
-                        QueCuentasSon = CtaBloq.item(Ic)
+                        QueCuentasSon = CtaBloq.Item(Ic)
                         Sql = Sql & RecuperaValor(QueCuentasSon, 1) & "   " & RecuperaValor(QueCuentasSon, 2) & vbCrLf
                     Next
                     Sql = "Cuentas bloqueadas en contabilidad: " & vbCrLf & String(30, "=") & vbCrLf & Sql
@@ -967,7 +967,7 @@ Dim SQLcuentas As String
             If CtaBloq.Count > 0 Then
                 'EXISTEN CUENTAS BLOQUEADAS
                 For Ic = 1 To CtaBloq.Count
-                    QueCuentasSon = CtaBloq.item(Ic)
+                    QueCuentasSon = CtaBloq.Item(Ic)
                     Sql = Sql & RecuperaValor(QueCuentasSon, 1) & "   " & RecuperaValor(QueCuentasSon, 2) & vbCrLf
                 Next
                 Sql = "Cuentas bloqueadas en contabilidad: " & vbCrLf & String(30, "=") & vbCrLf & Sql
@@ -1057,7 +1057,7 @@ Dim SQLcuentas As String
             If CtaBloq.Count > 0 Then
                 'EXISTEN CUENTAS BLOQUEADAS
                 For Ic = 1 To CtaBloq.Count
-                    QueCuentasSon = CtaBloq.item(Ic)
+                    QueCuentasSon = CtaBloq.Item(Ic)
                     Sql = Sql & RecuperaValor(QueCuentasSon, 1) & "   " & RecuperaValor(QueCuentasSon, 2) & vbCrLf
                 Next
                 Sql = "Cuentas bloqueadas en contabilidad: " & vbCrLf & String(30, "=") & vbCrLf & Sql
@@ -1870,13 +1870,13 @@ Private Sub Form_Load()
     txtcodigo(32).Text = Date
     
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     Me.ProgressBar1.visible = False
     
     For kCampo = 4 To 5
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
-    Me.imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(0).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     
     
     

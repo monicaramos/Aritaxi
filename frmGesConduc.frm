@@ -1211,7 +1211,7 @@ On Error GoTo EModificarLinea
         
         ' modificamos la tabla de choferes del socio
         Sql = "update sclien_chofer, sclien set sclien_chofer.fechaalt = " & DBSet(txtAux1(1).Text, "F") & ", sclien_chofer.fechabaj = " & DBSet(txtAux1(2).Text, "F", "S")
-        Sql = Sql & ", sclien_chofer.obsevac = " & DBSet(txtAux1(3).Text, "T") & " where codchofe = " & Me.Adodc1.Recordset!codchofe
+        Sql = Sql & ", sclien_chofer.obsevac = " & DBSet(txtAux1(3).Text, "T") & " where codchofe = " & Me.adodc1.Recordset!codchofe
         Sql = Sql & " and sclien.numeruve = " & DBSet(txtAux1(0).Text, "N")
         Sql = Sql & " and sclien.codclien = sclien_chofer.codsocio "
         
@@ -1244,7 +1244,7 @@ Dim Socio As String
             ' solo si no tiene fecha de baja hacemos las comprobaciones
             If txtAux1(2).Text = "" Then
                 ' comprobamos no sea conductor una V sin fecha de baja
-                Sql = "select count(*) from schofe_historia where codchofe = " & Me.Adodc1.Recordset!codchofe
+                Sql = "select count(*) from schofe_historia where codchofe = " & Me.adodc1.Recordset!codchofe
                 'SQL = SQL & " and numeruve = " & DBSet(txtAux1(0).Text, "N")
                 Sql = Sql & " and (fechafin is null or fechafin = '0000-00-00') "
                 
@@ -1395,19 +1395,19 @@ Dim Cad As String
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
         PonerModo 2
-        Me.lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+        Me.lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
         If DataGrid1.Row >= 0 Then
             DeseleccionaGrid DataGrid1
             DataGrid1.Bookmark = 1
         End If
         cmdRegresar.Caption = "Regresar"
     Else 'Se llama desde algún Prismatico de otro Form al Mantenimiento de Trabajadores
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+        Cad = adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & adodc1.Recordset.Fields(1) & "|"
         RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
@@ -1443,7 +1443,7 @@ Dim i As Integer
     With Toolbar1
         .HotImageList = frmppal.imgListComun_OM
         .DisabledImageList = frmppal.imgListComun_BN
-        .ImageList = frmppal.ImgListComun1
+        .ImageList = frmppal.imgListComun1
         'ASignamos botones
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2 'Ver Todos
@@ -1463,7 +1463,7 @@ Dim i As Integer
     With Me.ToolbarDes
         .HotImageList = frmppal.imgListComun_OM
         .DisabledImageList = frmppal.imgListComun_BN
-        .ImageList = frmppal.ImgListComun1
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -1492,7 +1492,7 @@ Dim i As Integer
     VieneDeBuscar = False
     PrimeraVez = True
         
-    ImgMail(1).Picture = frmppal.ImgListComun1.ListImages(20).Picture
+    ImgMail(1).Picture = frmppal.imgIcoForms.ListImages(4).Picture
     LimpiarDataGrids
     
     '## A mano
@@ -1503,9 +1503,9 @@ Dim i As Integer
     chkVistaPrevia.Value = CheckValueLeer(Name)
     
     'ASignamos un SQL al DATA1
-    Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = "Select * from " & NombreTabla & " where codchofe=-1"
-    Adodc1.Refresh
+    adodc1.ConnectionString = conn
+    adodc1.RecordSource = "Select * from " & NombreTabla & " where codchofe=-1"
+    adodc1.Refresh
     
     
     If DatosADevolverBusqueda = "" Then
@@ -1547,11 +1547,11 @@ On Error GoTo EPonerModo
     b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
-    If Not Adodc1.Recordset.EOF Then
-        If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not adodc1.Recordset.EOF Then
+        If adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1
+    DesplazamientoVisible b And Me.adodc1.Recordset.RecordCount > 1
 
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
@@ -1704,7 +1704,7 @@ Select Case Index
                     CadenaDesdeOtroForm = Text1(11).Text
                 Else
                     CadenaDesdeOtroForm = ""
-                    If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observac, "T")
+                    If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observac, "T")
                 End If
                 frmFacClienteObser.Modificar = Modo >= 3
                 frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -2078,7 +2078,7 @@ On Error GoTo EEliminar
 
 msg = "Esta seguro que desea eliminar el chofer:" & Text1(0).Text & "?"
 If MsgBox(msg, vbYesNo) = vbYes Then
-    NumRegElim = Adodc1.Recordset.AbsolutePosition
+    NumRegElim = adodc1.Recordset.AbsolutePosition
     
     conn.BeginTrans
     
@@ -2112,7 +2112,7 @@ If MsgBox(msg, vbYesNo) = vbYes Then
     conn.CommitTrans
 End If
 
-If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
+If SituarDataTrasEliminar(adodc1, NumRegElim) Then
     PonerCampos
 End If
 
@@ -2191,7 +2191,7 @@ Private Sub BotonBuscar()
         Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
@@ -2202,17 +2202,17 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If Adodc1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Adodc1, Index, True
+    If adodc1.Recordset.EOF Then Exit Sub
+    DesplazamientoData adodc1, Index, True
     PonerCampos
 End Sub
 Private Sub PonerCadenaBusqueda()
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
-    Adodc1.RecordSource = CadenaConsulta
-    Adodc1.Refresh
-    If Adodc1.Recordset.RecordCount <= 0 Then
+    adodc1.RecordSource = CadenaConsulta
+    adodc1.Refresh
+    If adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -2221,7 +2221,7 @@ On Error GoTo EEPonerBusq
         End If
         Exit Sub
     Else
-        Adodc1.Recordset.MoveFirst
+        adodc1.Recordset.MoveFirst
         PonerCampos
         PonerModo 2
     End If
@@ -2240,8 +2240,8 @@ Dim encontrado As String
 On Error Resume Next
 
     
-    If Adodc1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, Adodc1
+    If adodc1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, adodc1
     
     
     If Text1(10).Text <> "" Then
@@ -2257,7 +2257,7 @@ On Error Resume Next
     CargaGrid DataGrid1, Adodc2
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+    lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -2362,7 +2362,7 @@ Private Sub PosicionarData()
 Dim Cad As String, Indicador As String
 
     Cad = "(codchofe=" & Text1(0).Text & ")"
-    If SituarData(Adodc1, Cad, Indicador) Then
+    If SituarData(adodc1, Cad, Indicador) Then
        PonerModo 2
        lblIndicador(0).Caption = Indicador
     Else
@@ -2422,7 +2422,7 @@ Private Sub printNou()
         Else
             .cadRegSelec = ""
         End If
-        .cadRegActua = POS2SF(Adodc1, Me)
+        .cadRegActua = POS2SF(adodc1, Me)
         .cadTodosReg = ""
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
         .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"

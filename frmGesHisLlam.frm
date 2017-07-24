@@ -139,7 +139,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   1425
       Left            =   240
       TabIndex        =   88
-      Top             =   8280
+      Top             =   8340
       Width           =   10545
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1160,7 +1160,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   375
       Left            =   8430
       TabIndex        =   45
-      Top             =   9930
+      Top             =   9990
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -1178,7 +1178,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   375
       Left            =   9660
       TabIndex        =   46
-      Top             =   9930
+      Top             =   9990
       Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
@@ -1195,7 +1195,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   375
       Left            =   9660
       TabIndex        =   47
-      Top             =   9930
+      Top             =   9990
       Visible         =   0   'False
       Width           =   1135
    End
@@ -2092,7 +2092,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   585
       Left            =   240
       TabIndex        =   49
-      Top             =   9720
+      Top             =   9780
       Width           =   3975
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -2244,7 +2244,7 @@ Private Sub Check1_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim I As Long
+Dim i As Long
 Dim CadB As String
 Dim Cad As String
 Dim Indicador As String
@@ -2470,10 +2470,10 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
 
 '    'ICONITOS DE LA BARRA
@@ -2497,9 +2497,9 @@ Dim I As Integer
     
     With Me.Toolbar1
         btnPrimero = 11
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(5).Image = 1
         .Buttons(6).Image = 2
         .Buttons(1).Image = 3   'Anyadir
@@ -2509,9 +2509,9 @@ Dim I As Integer
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -2525,11 +2525,11 @@ Dim I As Integer
 '    End With
     
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For I = 0 To Me.imgFecha.Count - 1
-        imgFecha(I).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
 
     
@@ -2592,13 +2592,13 @@ Private Sub CargarCombo()
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -2642,19 +2642,19 @@ On Error GoTo EPonerModo
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     Combo1.Enabled = b
-    For I = 0 To 2
-        Check1(I).Enabled = b
-    Next I
+    For i = 0 To 2
+        Check1(i).Enabled = b
+    Next i
     
 '[Monica]04/02/2015: dejamos modificar liquidado y facturado, antes solo podian consultar
-    For I = 3 To 4
-        Check1(I).Enabled = b '(Modo = 1)
-    Next I
+    For i = 3 To 4
+        Check1(i).Enabled = b '(Modo = 1)
+    Next i
     
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Enabled = b
+    Next i
     
     ' No hay icono para las observaciones de 60 de longitud maxima
     Me.imgBuscar(2).Enabled = False
@@ -2667,9 +2667,9 @@ On Error GoTo EPonerModo
     
     
     
-    For I = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(i).Enabled = b
+    Next i
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -2702,7 +2702,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
@@ -2725,7 +2725,7 @@ Dim I As Byte
 End Sub
 
 Private Sub LimpiarCampos()
-Dim I As Integer
+Dim i As Integer
 
 On Error Resume Next
     
@@ -2734,9 +2734,9 @@ On Error Resume Next
     'Aqui va el especifico de cada form es
     Me.Combo1.ListIndex = -1
     
-    For I = 0 To Check1.Count - 1
-        Check1(I).Value = 0
-    Next I
+    For i = 0 To Check1.Count - 1
+        Check1(i).Value = 0
+    Next i
     
     '### a mano
     If Err.Number <> 0 Then Err.Clear

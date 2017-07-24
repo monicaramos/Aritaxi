@@ -563,7 +563,7 @@ Begin VB.Form frmppal
       MaskColor       =   12632256
       _Version        =   393216
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   4
+         NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":1017CA
             Key             =   ""
@@ -578,6 +578,10 @@ Begin VB.Form frmppal
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":102C89
+            Key             =   ""
+         EndProperty
+         BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpalN.frx":1094EB
             Key             =   ""
          EndProperty
       EndProperty
@@ -595,155 +599,155 @@ Begin VB.Form frmppal
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   38
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1094EB
+            Picture         =   "frmPpalN.frx":10FD4D
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":10A57D
+            Picture         =   "frmPpalN.frx":110DDF
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":10B60F
+            Picture         =   "frmPpalN.frx":111E71
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":10C6A1
+            Picture         =   "frmPpalN.frx":112F03
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":10D733
+            Picture         =   "frmPpalN.frx":113F95
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":10F1B5
+            Picture         =   "frmPpalN.frx":115A17
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":110247
+            Picture         =   "frmPpalN.frx":116AA9
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1112D9
+            Picture         =   "frmPpalN.frx":117B3B
             Key             =   ""
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":11236B
+            Picture         =   "frmPpalN.frx":118BCD
             Key             =   ""
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1133FD
+            Picture         =   "frmPpalN.frx":119C5F
             Key             =   ""
          EndProperty
          BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":11448F
+            Picture         =   "frmPpalN.frx":11ACF1
             Key             =   ""
          EndProperty
          BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":115521
+            Picture         =   "frmPpalN.frx":11BD83
             Key             =   ""
          EndProperty
          BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1165B3
+            Picture         =   "frmPpalN.frx":11CE15
             Key             =   ""
          EndProperty
          BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":117645
+            Picture         =   "frmPpalN.frx":11DEA7
             Key             =   ""
          EndProperty
          BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1186D7
+            Picture         =   "frmPpalN.frx":11EF39
             Key             =   ""
          EndProperty
          BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":119769
+            Picture         =   "frmPpalN.frx":11FFCB
             Key             =   ""
          EndProperty
          BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":11A7FB
+            Picture         =   "frmPpalN.frx":12105D
             Key             =   ""
          EndProperty
          BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":11B88D
+            Picture         =   "frmPpalN.frx":1220EF
             Key             =   ""
          EndProperty
          BeginProperty ListImage19 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":11C91F
+            Picture         =   "frmPpalN.frx":123181
             Key             =   ""
          EndProperty
          BeginProperty ListImage20 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":11E2B1
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage21 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":124B13
             Key             =   ""
          EndProperty
+         BeginProperty ListImage21 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpalN.frx":12B375
+            Key             =   ""
+         EndProperty
          BeginProperty ListImage22 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":129015
+            Picture         =   "frmPpalN.frx":12F877
             Key             =   ""
          EndProperty
          BeginProperty ListImage23 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":129A27
+            Picture         =   "frmPpalN.frx":130289
             Key             =   ""
          EndProperty
          BeginProperty ListImage24 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":12CE19
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage25 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":13367B
             Key             =   ""
          EndProperty
-         BeginProperty ListImage26 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+         BeginProperty ListImage25 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":139EDD
             Key             =   ""
          EndProperty
+         BeginProperty ListImage26 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpalN.frx":14073F
+            Key             =   ""
+         EndProperty
          BeginProperty ListImage27 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":13AF6F
+            Picture         =   "frmPpalN.frx":1417D1
             Key             =   ""
          EndProperty
          BeginProperty ListImage28 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":13C001
+            Picture         =   "frmPpalN.frx":142863
             Key             =   ""
          EndProperty
          BeginProperty ListImage29 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":13D093
+            Picture         =   "frmPpalN.frx":1438F5
             Key             =   ""
          EndProperty
          BeginProperty ListImage30 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":13E125
+            Picture         =   "frmPpalN.frx":144987
             Key             =   ""
          EndProperty
          BeginProperty ListImage31 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":13F1B7
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage32 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":145A19
             Key             =   ""
          EndProperty
-         BeginProperty ListImage33 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":146AAB
+         BeginProperty ListImage32 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpalN.frx":14C27B
             Key             =   ""
          EndProperty
-         BeginProperty ListImage34 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+         BeginProperty ListImage33 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":14D30D
             Key             =   ""
          EndProperty
+         BeginProperty ListImage34 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpalN.frx":153B6F
+            Key             =   ""
+         EndProperty
          BeginProperty ListImage35 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":14E39F
+            Picture         =   "frmPpalN.frx":154C01
             Key             =   ""
          EndProperty
          BeginProperty ListImage36 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":14F431
+            Picture         =   "frmPpalN.frx":155C93
             Key             =   ""
          EndProperty
          BeginProperty ListImage37 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1504C3
+            Picture         =   "frmPpalN.frx":156D25
             Key             =   ""
          EndProperty
          BeginProperty ListImage38 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":151555
+            Picture         =   "frmPpalN.frx":157DB7
             Key             =   ""
          EndProperty
       EndProperty
@@ -761,43 +765,43 @@ Begin VB.Form frmppal
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   10
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1525E7
+            Picture         =   "frmPpalN.frx":158E49
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":153F79
+            Picture         =   "frmPpalN.frx":15A7DB
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":15590B
+            Picture         =   "frmPpalN.frx":15C16D
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":15729D
+            Picture         =   "frmPpalN.frx":15DAFF
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":158C2F
+            Picture         =   "frmPpalN.frx":15F491
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":15A5C1
+            Picture         =   "frmPpalN.frx":160E23
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":15BF53
+            Picture         =   "frmPpalN.frx":1627B5
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":15D8E5
-            Key             =   ""
-         EndProperty
-         BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
             Picture         =   "frmPpalN.frx":164147
             Key             =   ""
          EndProperty
+         BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+            Picture         =   "frmPpalN.frx":16A9A9
+            Key             =   ""
+         EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":169939
+            Picture         =   "frmPpalN.frx":17019B
             Key             =   ""
          EndProperty
       EndProperty
@@ -815,43 +819,43 @@ Begin VB.Form frmppal
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   10
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":17019B
+            Picture         =   "frmPpalN.frx":1769FD
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":170BAD
+            Picture         =   "frmPpalN.frx":17740F
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1715BF
+            Picture         =   "frmPpalN.frx":177E21
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":171FD1
+            Picture         =   "frmPpalN.frx":178833
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1729E3
+            Picture         =   "frmPpalN.frx":179245
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":1733F5
+            Picture         =   "frmPpalN.frx":179C57
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":173E07
+            Picture         =   "frmPpalN.frx":17A669
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":174819
+            Picture         =   "frmPpalN.frx":17B07B
             Key             =   ""
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":17522B
+            Picture         =   "frmPpalN.frx":17BA8D
             Key             =   ""
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmPpalN.frx":175C3D
+            Picture         =   "frmPpalN.frx":17C49F
             Key             =   ""
          EndProperty
       EndProperty
@@ -878,7 +882,7 @@ Begin VB.Form frmppal
       _ExtentX        =   635
       _ExtentY        =   635
       _StockProps     =   0
-      Icons           =   "frmPpalN.frx":17664F
+      Icons           =   "frmPpalN.frx":17CEB1
    End
    Begin XtremeCommandBars.CommandBars CommandBars 
       Left            =   3840
@@ -905,7 +909,7 @@ Begin VB.Form frmppal
       _ExtentX        =   635
       _ExtentY        =   635
       _StockProps     =   0
-      Icons           =   "frmPpalN.frx":176669
+      Icons           =   "frmPpalN.frx":17CECB
    End
 End
 Attribute VB_Name = "frmppal"
@@ -1775,15 +1779,14 @@ Private Sub Form_Unload(Cancel As Integer)
     On Error Resume Next
     Dim i As Long
     For i = Forms.Count - 1 To 1 Step -1
-        
         Unload Forms(i)
     Next
     
-    
     GuardarDatosUltimaTab
   
+    AccionesCierre
+  
 End Sub
-
 
 
 Private Sub GuardarDatosUltimaTab()
@@ -1794,6 +1797,65 @@ Private Sub GuardarDatosUltimaTab()
         vUsu.GuardarTabPorDefecto
     End If
 End Sub
+
+
+Private Sub AccionesCierre()
+
+    NumeroEmpresaMemorizar False
+
+    'Alguna cosilla antes de cerrar. Eliminar bloqueos
+    Cad = "Delete from zbloqueos where codusu = " & vUsu.Codigo
+    conn.Execute Cad
+
+    'Elimnar bloquo BD
+    Set vUsu = Nothing
+    Set vConfig = Nothing
+    Set vEmpresa = Nothing
+    
+    Set vParam = Nothing
+    Set vParamAplic = Nothing
+    
+    
+    TerminaBloquear
+    
+    'cerrar las conexiones
+    conn.Close
+    CerrarConexionConta
+
+End Sub
+
+Private Sub NumeroEmpresaMemorizar(Leer As Boolean)
+Dim NF As Integer
+Dim C1 As String
+Dim Cad As String
+
+On Error GoTo ENumeroEmpresaMemorizar
+
+    Cad = App.Path & "\ultempre.dat"
+    If Leer Then
+        If Dir(Cad) <> "" Then
+            NF = FreeFile
+            Open Cad For Input As #NF
+            Line Input #NF, Cad
+            Close #NF
+            Cad = Trim(Cad)
+            If Cad <> "" Then
+                vUsu.CadenaConexion = RecuperaValor(Cad, 2)
+            End If
+        End If
+    Else 'Escribir
+        NF = FreeFile
+        Open Cad For Output As #NF
+        Cad = "NO ncesito|" & vUsu.CadenaConexion & "|"
+        Print #NF, Cad
+        Close #NF
+    End If
+    
+    
+ENumeroEmpresaMemorizar:
+    Err.Clear
+End Sub
+
 
 
 Public Function AddButton(Controls As CommandBarControls, ControlType As XTPControlType, Id As Long, Caption As String, Optional BeginGroup As Boolean = False, Optional DescriptionText As String = "", Optional ButtonStyle As XTPButtonStyle = xtpButtonAutomatic, Optional Category As String = "Controls") As CommandBarControl
@@ -2918,15 +2980,19 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 301 ' Actividades
             frmFacActividades.Show vbModal
         Case 302 ' Textos Clientes Agrupados
+            frmFacFormasEnvio.Show vbModal
         Case 303 ' Formas de Pago
+            frmFacFormasPago.Show vbModal
         Case 304 ' Bancos Propios
             frmFacBancosPropios.Show vbModal
         Case 305 ' Situaciones especiales
+            frmFacSituaciones.Show vbModal
         Case 306 ' Agentes comerciales
             frmFacAgentesCom.Show vbModal
         Case 307 ' Clientes
             frmFacClientes.Show vbModal
         Case 308 ' Tipos de Cartas
+            frmFacCartasOferta.Show vbModal
         Case 309 ' Incidencias
             frmIncidencias.Show vbModal
         Case 310 ' Tarjetas
@@ -2953,14 +3019,26 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 318 ' Mantenimiento Servicios Abonados
             frmGesServAbonados.Show vbModal
         Case 319 ' Facturación a Clientes
+            frmFCliFacturac.Show vbModal
         Case 320 ' Facturas Varias a Clientes
+            frmFCliFactuVar.Show vbModal
         Case 321 ' Histórico de Facturas
+            frmFCliHcoFac.Show vbModal
         Case 322 ' Reimprimir Facturas
+            frmFCliReImp.Show vbModal
         Case 323 ' Contabilizar Facturas
+            frmFCliContaFac.Show vbModal
         Case 324 ' Facturas Rectificativas
+            frmFCliRectif.hcoCodMovim = "" 'No carga el form con datos al abrir
+            frmFCliRectif.hcoCodTipoM = "ARN" ' albaran rectificativo de cliente
+            frmFCliRectif.EsHistorico = False
+            frmFCliRectif.RecuperarFactu = False
+            frmFCliRectif.Show vbModal
         Case 325 ' Ventas por Clientes
+            AbrirListadoPed (230)
+            BorrarTempInformes
         Case 326 ' Detalle Facturación
-        
+             AbrirListadoOfer (232)
         Case 401 ' Trabajadores
             frmAdmTrabajadores.Show vbModal
         Case 402 ' Vehículos
@@ -2976,14 +3054,42 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 408 ' Cartas a Socios
             AbrirListadoOfer 191
         Case 409 ' Mantenimiento Albaranes
+            frmFacEntAlbaranes.hcoCodMovim = "" 'No carga el form con datos al abrir
+            frmFacEntAlbaranes.hcoCodTipoM = "ALV"
+            frmFacEntAlbaranes.EsHistorico = False
+            frmFacEntAlbaranes.RecuperarFactu = False
+            frmFacEntAlbaranes.Show vbModal
         Case 410 ' Informe Albaranes por Artículo
+            AbrirListadoPed (49)
         Case 411 ' Histórico Albaranes Anulados
+        'Histórico de Albaranes eliminados
+            frmFacEntAlbaranes.hcoCodMovim = "" 'No carga el form con datos al abrir
+            frmFacEntAlbaranes.hcoCodTipoM = "ALV"
+            frmFacEntAlbaranes.EsHistorico = True
+            frmFacEntAlbaranes.RecuperarFactu = False
+            frmFacEntAlbaranes.Show vbModal
         Case 412 ' Previsión Facturación
+            frmListadoPed.CodClien = "ALV" 'utilizamos esta vble para pasarle el tipo de movimiento
+            AbrirListadoPed (50) 'NO IMPRIME LISTADO
         Case 413 ' Facturación de Albaranes
+            frmListadoPed.CodClien = "ALV" 'utilizamos esta vble para pasarle el tipo de movimiento
+            AbrirListadoPed (52)
         Case 414 ' Facturas Rectificativas
+            'Abre el formulario de Albaranes para introducir el Albaran Rectificativo
+            'y desde este generar la Factura Rectificativa
+            frmFacEntAlbaranes.hcoCodMovim = "" 'No carga el form con datos al abrir
+            frmFacEntAlbaranes.hcoCodTipoM = "ART"
+            frmFacEntAlbaranes.EsHistorico = False
+            frmFacEntAlbaranes.RecuperarFactu = False
+            frmFacEntAlbaranes.Show vbModal
         Case 415 ' Histórico Albaran / Factura
+            frmFacHcoFacturas2.hcoCodMovim = ""
+            frmFacHcoFacturas2.publicidad = False
+            frmFacHcoFacturas2.Show vbModal
         Case 416 ' Reimprimir Facturas
+            AbrirListadoOfer 226
         Case 417 ' Contabilizar Facturas
+            AbrirListado (223) 'Para pedir datos
         Case 418 ' Mantenimiento Servicios Socios
             frmGesServSocios.Show vbModal
         Case 419 ' Liquidación
@@ -2997,11 +3103,16 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 423 ' Retenciones Socio
             frmLiqRetencion.Show vbModal
         Case 424 ' Ventas por Socio
+            AbrirListadoPed (227)
+            BorrarTempInformes
         Case 425 ' Ventas por meses
+            AbrirListadoPed (229)
         Case 426 ' Ventas por Familia / Artículo
+            AbrirListadoOfer (230)
         Case 427 ' Detalle Facturación
-        
+            AbrirListadoOfer (231)
         Case 501 ' Proveedores
+            frmComProveedores.Show vbModal
         Case 502 ' Proveedores Varios
             frmComProveV.Show vbModal
         Case 503 ' Direcciones
@@ -3025,25 +3136,30 @@ Private Sub AbrirFormularios(Accion As Long)
             frmComEntPedidos.EsHistorico = True
             frmComEntPedidos.Show vbModal
         Case 511 ' List.Material pendiente de recibir
+            AbrirListadoOfer (307) '307: List. Materia pte recibir
         Case 512 ' Mant.Albaranes Proveedor
         'Mantenimiento de Albaranes a Proveedor
             frmComEntAlbaranes.hcoCodMovim = "" 'No carga el form con datos al abrir
             frmComEntAlbaranes.EsHistorico = False
             frmComEntAlbaranes.Show vbModal
         Case 513 ' Histórico Albaranes Anulados
+            frmComEntAlbaranes.EsHistorico = True
+            frmComEntAlbaranes.Show vbModal
         Case 514 ' Inf.Pendiente de facturar
             AbrirListadoOfer (308)
         Case 515 ' Recepción Facturas
+            frmComFacturar.Show vbModal
         Case 516 ' Histórico Albaran / Factura
             frmComHcoFacturas.hcoCodMovim = ""
             frmComHcoFacturas.Show vbModal
         Case 517 ' Contabilizar Facturas
+            AbrirListado (224) 'Para pedir datos
         Case 518 ' Compras por Proveedor
             AbrirListadoOfer (310)
         Case 519 ' Compras por Familia/Artic.
             AbrirListadoOfer (311)
         Case 520 ' Albaranes por Proveedor
-        
+            AbrirListadoOfer (312)
         Case 601 ' Facturación Clientes
             frmPubliFacCli.Show vbModal
         Case 602 ' Facturas Rectificativas
@@ -3072,19 +3188,30 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 607 ' Reimprimir Facturas
             frmPubliReImp.Show vbModal
         Case 608 ' Contabilizar Facturas
-        
+            frmPubliContaFac.Show vbModal
         Case 701 ' Generar Facturas Cuotas
+            frmCuotasFac.Show vbModal
         Case 702 ' Reimprimir Facturas
             frmCuotasReImp.Show vbModal
         Case 703 ' Histórico Facturas
             frmCuotasHcoFacturas.Show vbModal
         Case 704 ' Contabilizar Facturas
             frmCuotasContaFac.Show vbModal
-            
         Case 705 ' Mantenimiento Albaranes
+            frmFacEntAlbaranes.hcoCodTipoM = "ALS"
+            frmFacEntAlbaranes.Show vbModal
         Case 706 ' Previsión Facturación
+            frmListadoPed.CodClien = "ALS" 'utilizamos esta vble para pasarle el tipo de movimiento
+            AbrirListadoPed (50) 'NO IMPRIME LISTADO
         Case 707 ' Facturación
+            frmListadoPed.CodClien = "ALS" 'utilizamos esta vble para pasarle el tipo de movimiento
+            AbrirListadoPed (52)
         Case 708 ' Facturas Rectificativas
+            frmFacEntAlbaranes.hcoCodMovim = "" 'No carga el form con datos al abrir
+            frmFacEntAlbaranes.hcoCodTipoM = "ARC"
+            frmFacEntAlbaranes.EsHistorico = False
+            frmFacEntAlbaranes.RecuperarFactu = False
+            frmFacEntAlbaranes.Show vbModal
         
         Case 801 ' Mant.Reparaciones
             'Mantenimiento de Reparaciones
@@ -3140,9 +3267,13 @@ Private Sub AbrirFormularios(Accion As Long)
             End If
         
         Case 1002 ' llamadas
+            frmLlamadas.Show vbModal
         Case 1003 ' Concepto llamadas
+            frmLlamadasTipo.Show vbModal
         Case 1004 ' Copia Seguridad local
+            frmBackUP.Show vbModal
         Case 1005 ' Borre Facturas y Movimiento
+            AbrirListado 97
         Case 1006 ' Revisar caracteres especiales
             AbrirListado2 3
         Case 1007 ' Acciones realizadas
@@ -3155,7 +3286,7 @@ Private Sub AbrirFormularios(Accion As Long)
             frmVarios.Opcion = 1
             frmVarios.Show vbModal
         Case 1009 ' Facturacion Electrónica
-        
+            frmExportarFacturas.Show vbModal
         Case 1010 ' Errores en NºFactura Cliente
             'Buscar errores en nº de factura (solo en facturas de clientes)
             Screen.MousePointer = vbHourglass

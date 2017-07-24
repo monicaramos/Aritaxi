@@ -1433,6 +1433,7 @@ On Error GoTo Err3
         mvarArtRetenciones = DBLet(RS!ArtRetenciones, "T") 'articulo de retenciones
         
         '[Monica]02/05/2017: nueva contabilidad
+        
         mvarContabilidadNueva = (DBLet(RS!nuevacontabilidad, "N") = 1)
         
         
@@ -1767,7 +1768,7 @@ Dim RS As ADODB.Recordset
     Sql = "select codigiva from tiposiva"
     RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not RS.EOF
-        Sql = "INSERT INTO sivatra VALUES (" & RS!codigiva & "," & RS!codigiva & ")"
+        Sql = "INSERT INTO sivatra VALUES (" & RS!Codigiva & "," & RS!Codigiva & ")"
         
         conn.Execute Sql
         RS.MoveNext

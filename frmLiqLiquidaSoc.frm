@@ -155,7 +155,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Left            =   1410
       TabIndex        =   4
       Top             =   3150
-      Width           =   1005
+      Width           =   1245
    End
    Begin VB.TextBox txtcodigo 
       BeginProperty Font 
@@ -1020,18 +1020,18 @@ End Sub
 Private Sub Form_Load()
 
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     Me.chk_FactHco.Value = 1
    
     For kCampo = 0 To Me.imgBuscarOfer.Count - 1
-        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscarOfer(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     
     For kCampo = 23 To 24
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
-    Me.imgFecha(0).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(0).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     
     
     If vParamAplic.Cooperativa = 0 Then

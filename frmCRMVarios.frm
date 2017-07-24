@@ -12,7 +12,7 @@ Begin VB.Form frmCRMVarios
    ScaleHeight     =   6990
    ScaleWidth      =   9330
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  'Windows Default
+   StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameGenerar 
       Height          =   6735
       Left            =   120
@@ -925,7 +925,7 @@ Private Sub Form_Load()
 Dim H As Integer
 Dim W As Integer
 Dim i As Integer
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     FrameGenerar.visible = False
     limpiar Me
     
@@ -942,19 +942,19 @@ Dim i As Integer
     End If
     
     For i = 0 To Me.imgAccion.Count - 1
-        imgAccion(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgAccion(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        imgFecha(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
     For i = 0 To Me.imgCliente.Count - 1
-        imgCliente(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgCliente(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     For i = 0 To Me.imgTecnico.Count - 1
-        imgTecnico(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgTecnico(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     For i = 0 To Me.imgVarios.Count - 1
-        imgVarios(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgVarios(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     
     Me.cmdCancelar(Opcion).Cancel = True
@@ -964,7 +964,7 @@ Dim i As Integer
 End Sub
 
 Private Sub PonerFrameVisible(ByRef F As Frame, ByRef CH As Integer, CW As Integer)
-    F.Top = 0
+    F.top = 0
     F.Left = 120
     F.visible = True
     CH = F.Height + 420
