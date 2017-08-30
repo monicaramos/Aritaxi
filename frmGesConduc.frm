@@ -1124,7 +1124,7 @@ Private VieneDeBuscar As Boolean
 Dim cadB1 As String
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim CadB As String
 Dim Cad As String
 
@@ -1414,7 +1414,7 @@ Dim Cad As String
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del form
     Me.Icon = frmppal.Icon
@@ -1471,8 +1471,8 @@ Dim i As Integer
     End With
     
     'ICONITOS DE LAS BARRAS EN LOS TABS DE LINEA
-    For i = 0 To ToolAux.Count - 1
-        With Me.ToolAux(i)
+    For I = 0 To ToolAux.Count - 1
+        With Me.ToolAux(I)
             '.ImageList = frmPpal.imgListComun_VELL
             '  ### [Monica] 02/10/2006 acabo de comentarlo
             .HotImageList = frmppal.imgListComun_OM16
@@ -1482,7 +1482,7 @@ Dim i As Integer
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
         End With
-    Next i
+    Next I
     
     For kCampo = 0 To Me.imgBuscar.Count - 1
         Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
@@ -1517,7 +1517,7 @@ Dim i As Integer
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
@@ -1525,9 +1525,9 @@ On Error GoTo EPonerModo
     'Actualiza Iconos Insertar,Modificar,Eliminar
 '    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     Modo = Kmodo
@@ -1564,9 +1564,9 @@ On Error GoTo EPonerModo
     cmdAceptar.visible = b
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -1603,7 +1603,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim bAux As Boolean
 
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
@@ -1626,12 +1626,12 @@ Dim bAux As Boolean
     Toolbar1.Buttons(6).Enabled = Not b
 
     b = (Modo = 2)
-    For i = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
-        ToolAux(i).Buttons(1).Enabled = b
+    For I = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
+        ToolAux(I).Buttons(1).Enabled = b
         If b Then bAux = (b And Me.Adodc2.Recordset.RecordCount > 0)
-        ToolAux(i).Buttons(2).Enabled = bAux
-        ToolAux(i).Buttons(3).Enabled = bAux
-    Next i
+        ToolAux(I).Buttons(2).Enabled = bAux
+        ToolAux(I).Buttons(3).Enabled = bAux
+    Next I
 End Sub
 
 Private Sub LimpiarCampos()
@@ -1913,34 +1913,34 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim i As Byte
+Dim I As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For i = 0 To txtAux1.Count - 1 'TextBox
-            txtAux1(i).top = 290
-            txtAux1(i).visible = visible
-        Next i
+        For I = 0 To txtAux1.Count - 1 'TextBox
+            txtAux1(I).top = 290
+            txtAux1(I).visible = visible
+        Next I
         cmdAux(0).top = 290
         cmdAux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For i = 0 To txtAux1.Count - 1
-                txtAux1(i).Text = ""
-                BloquearTxt txtAux1(i), False
-            Next i
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = ""
+                BloquearTxt txtAux1(I), False
+            Next I
         Else 'Vamos a modificar
-            For i = 0 To txtAux1.Count - 1
-                txtAux1(i).Text = DataGrid1.Columns(i + 2).Text
-                If i = 0 Then
-                    txtAux1(i).Locked = True
-                    txtAux1(i).BackColor = &H80000005
-                    cmdAux(i).Enabled = False
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = DataGrid1.Columns(I + 2).Text
+                If I = 0 Then
+                    txtAux1(I).Locked = True
+                    txtAux1(I).BackColor = &H80000005
+                    cmdAux(I).Enabled = False
                 Else
-                    txtAux1(i).Locked = False
+                    txtAux1(I).Locked = False
                 End If
-            Next i
+            Next I
         End If
         
 
@@ -1948,10 +1948,10 @@ Dim i As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 10)
         
-        For i = 0 To txtAux1.Count - 1
-            txtAux1(i).top = alto
-            txtAux1(i).Height = 330 ' DataGrid1.RowHeight
-        Next i
+        For I = 0 To txtAux1.Count - 1
+            txtAux1(I).top = alto
+            txtAux1(I).Height = 330 ' DataGrid1.RowHeight
+        Next I
         
         
 '        'Fijamos anchura y posicion Left
@@ -1988,9 +1988,9 @@ Dim i As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For i = 0 To txtAux1.Count - 1
-            txtAux1(i).visible = visible
-        Next i
+        For I = 0 To txtAux1.Count - 1
+            txtAux1(I).visible = visible
+        Next I
         Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
         Me.cmdAux(0).top = alto
         Me.cmdAux(0).visible = visible
@@ -2234,6 +2234,7 @@ EEPonerBusq:
     PonerModo 0
     Screen.MousePointer = vbDefault
 End Sub
+
 Private Sub PonerCampos()
 Dim encontrado As String
 
@@ -2262,7 +2263,7 @@ On Error Resume Next
 End Sub
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Integer
+Dim I As Integer
 
 On Error GoTo ECargaGrid
 
@@ -2284,10 +2285,10 @@ On Error GoTo ECargaGrid
     
     
     vDataGrid.Enabled = (Modo = 0) Or (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
-    For i = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(i).Locked = True
-        vDataGrid.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(I).Locked = True
+        vDataGrid.Columns(I).AllowSizing = False
+    Next I
     
     vDataGrid.ScrollBars = dbgAutomatic
     
@@ -2344,6 +2345,7 @@ Dim Titulo As String
     Set frmB = Nothing
 
 End Sub
+
 Private Sub ImgMail_Click(Index As Integer)
 'Abrir Outlook para enviar e-mail
 Dim dirMail As String
@@ -2358,6 +2360,7 @@ Dim dirMail As String
     If LanzaMailGnral(dirMail) Then Espera 2
     Screen.MousePointer = vbDefault
 End Sub
+
 Private Sub PosicionarData()
 Dim Cad As String, Indicador As String
 
@@ -2412,7 +2415,6 @@ Dim encontrado As String
 End Sub
 
 Private Sub printNou()
-
 
     With frmImprimir2
         .cadTabla2 = "schofe"

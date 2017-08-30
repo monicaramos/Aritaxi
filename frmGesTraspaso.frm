@@ -758,7 +758,7 @@ Dim cWhere As String
     
     Screen.MousePointer = vbHourglass
     
-    conn.BeginTrans
+    
     
     Set RS = New ADODB.Recordset
     Sql = "select fecha,hora,codsocio,numeruve,codclien,codusuar,nomclien,dirllama,"
@@ -773,6 +773,9 @@ Dim cWhere As String
         Screen.MousePointer = vbDefault
         Exit Sub
     End If
+    
+    conn.BeginTrans
+    
     Contador = 0
     linea = ""
     values = ""
@@ -1161,14 +1164,14 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
 
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     For kCampo = 23 To 23
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
 
 
@@ -2569,7 +2572,7 @@ End Function
 Private Function ComprobarFichero(Escliente As Boolean) As Boolean
 Dim NF As Long
 Dim Cad As String
-Dim i As Integer
+Dim I As Integer
 Dim longitud As Long
 Dim RS As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2590,7 +2593,7 @@ Dim b As Boolean
     Open Text1.Text For Input As #NF
     
     Line Input #NF, Cad
-    i = 0
+    I = 0
     
     conn.Execute "delete from tmpinformes where codusu = " & vUsu.Codigo
     
@@ -2607,10 +2610,10 @@ Dim b As Boolean
     b = True
 
     While Not EOF(NF) And b
-        i = i + 1
+        I = I + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         b = ComprobarRegistro(Cad, Escliente)
@@ -2620,10 +2623,10 @@ Dim b As Boolean
     Close #NF
     
     If Cad <> "" Then
-        i = i + 1
+        I = I + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         b = ComprobarRegistro(Cad, Escliente)
@@ -2810,7 +2813,7 @@ End Function
 Private Function TraspasoFichero(EsClien As Boolean) As Boolean
 Dim NF As Long
 Dim Cad As String
-Dim i As Integer
+Dim I As Integer
 Dim longitud As Long
 Dim RS As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2843,7 +2846,7 @@ Dim SqlServ As String
     Open Text1.Text For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
     
     Line Input #NF, Cad
-    i = 0
+    I = 0
     
     Label1(0).Caption = "Procesando Fichero: " & Text1.Text
     
@@ -2864,10 +2867,10 @@ Dim SqlServ As String
         
     b = True
     While Not EOF(NF)
-        i = i + 1
+        I = I + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
@@ -2925,7 +2928,7 @@ Dim SqlServ As String
     
     If Cad <> "" Then
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & i
+        Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes

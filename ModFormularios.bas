@@ -853,7 +853,7 @@ Public Function EsVacio(ByRef campo As TextBox) As Boolean
 End Function
 
 
-Public Sub DesplazamientoVisible(ByRef toolb As Toolbar, iniBoton As Byte, bol As Boolean, nreg As Byte)
+Public Sub DesplazamientoVisible(ByRef toolb As ToolBar, iniBoton As Byte, bol As Boolean, nreg As Byte)
 'Oculta o Muestra las botones de  flechas de desplazamiento de la toolbar
 Dim i As Byte
 
@@ -898,7 +898,7 @@ Public Sub PonerIndicador(ByRef lblIndicador As Label, Modo As Byte, Optional Mo
 End Sub
 
 
-Public Sub ActualizarToolbarGnral(ByRef Toolbar1 As Toolbar, Modo As Byte, Kmodo As Byte, posic As Byte)
+Public Sub ActualizarToolbarGnral(ByRef Toolbar1 As ToolBar, Modo As Byte, Kmodo As Byte, posic As Byte)
 'Modo: Modo antiguo
 'Kmodo: Modo que se va a poner
 Dim b As Boolean
@@ -1019,7 +1019,7 @@ End Sub
 
 Public Function ObtenerAlto(ByRef vDataGrid As DataGrid, Optional alto As Integer) As Single
 Dim anc As Single
-    anc = vDataGrid.Top + alto
+    anc = vDataGrid.top + alto
     If vDataGrid.Row < 0 Then
         anc = anc + 250 '230
     Else
@@ -1467,21 +1467,21 @@ End Function
 
 Public Sub SubirItemList(ByRef LView As ListView)
 'Subir el item seleccionado del listview una posicion
-Dim i As Byte, item As Byte
+Dim i As Byte, Item As Byte
 Dim Aux As String
 On Error Resume Next
    
     For i = 2 To LView.ListItems.Count
         If LView.ListItems(i).Selected Then
-            item = i
+            Item = i
             Aux = LView.ListItems(i).Text
             LView.ListItems(i).Text = LView.ListItems(i - 1).Text
             LView.ListItems(i - 1).Text = Aux
         End If
     Next i
-    If item <> 0 Then
-        LView.ListItems(item).Selected = False
-        LView.ListItems(item - 1).Selected = True
+    If Item <> 0 Then
+        LView.ListItems(Item).Selected = False
+        LView.ListItems(Item - 1).Selected = True
     End If
     LView.SetFocus
     If Err.Number <> 0 Then Err.Clear
@@ -1490,21 +1490,21 @@ End Sub
 
 Public Sub BajarItemList(ByRef LView As ListView)
 'Bajar el item seleccionado del listview una posicion
-Dim i As Byte, item As Byte
+Dim i As Byte, Item As Byte
 Dim Aux As String
 On Error Resume Next
 
     For i = 1 To LView.ListItems.Count - 1
         If LView.ListItems(i).Selected Then
-            item = i
+            Item = i
             Aux = LView.ListItems(i).Text
             LView.ListItems(i).Text = LView.ListItems(i + 1).Text
             LView.ListItems(i + 1).Text = Aux
         End If
     Next i
-    If item <> 0 Then
-        LView.ListItems(item).Selected = False
-        LView.ListItems(item + 1).Selected = True
+    If Item <> 0 Then
+        LView.ListItems(Item).Selected = False
+        LView.ListItems(Item + 1).Selected = True
     End If
     LView.SetFocus
     If Err.Number <> 0 Then Err.Clear
@@ -1660,17 +1660,22 @@ Dim vClien As CCliente
 Dim vProve As CProveedor
 Dim vSocio As CSocio
 Dim b As Boolean
-
+Dim ElIban As String
     On Error GoTo EInsCta
     
-    Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,pais,forpa,ctabanco,entidad,oficina,CC,cuentaba" ') "
-    '[Monica]22/11/2013: iban
-    If vEmpresa.HayNorma19_34Nueva = 1 Then
-        Sql = Sql & ", iban)"
-    Else
-        Sql = Sql & ")"
-    End If
-    Sql = Sql & " VALUES (" & DBSet(cuenta, "T") & ","
+    ElIban = ""
+    
+    Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,pais,forpa,ctabanco,iban"
+    
+    
+    'REVISAR
+    If Not vParamAplic.ContabilidadNueva Then Sql = Sql & ",entidad,oficina,CC,cuentaba"
+    
+    Sql = Sql & ") VALUES (" & DBSet(cuenta, "T") & ","
+    
+    
+    If vParamAplic.ContabilidadNueva Then Sql = Replace(Sql, ",pais,", ",codpais,")
+    
     
     If cadClien <> "" Then
         Set vClien = New CCliente
@@ -1683,14 +1688,22 @@ Dim b As Boolean
             
             Sql = Sql & DBSet(vClien.CPostal, "T") & "," & DBSet(vClien.Poblacion, "T") & "," & DBSet(vClien.Provincia, "T") & "," & DBSet(vClien.NIF, "T") & "," & DBSet(vClien.EMailAdm, "T") & "," & DBSet(vClien.WebClien, "T") & "," & ValorNulo & "," & ValorNulo
             'Forma pago y cuenta banco por defecto
-            Sql = Sql & "," & DBSet(vClien.ForPago, "N", "S") & "," & ValorNulo & "," & DBSet(Format(vClien.Banco, "0000"), "T") & "," & DBSet(Format(vClien.Sucursal, "0000"), "T") & "," & DBSet(vClien.DigControl, "T") & "," & DBSet(vClien.CuentaBan, "T") '& ")"
+            Sql = Sql & "," & DBSet(vClien.ForPago, "N", "S") & "," & ValorNulo & ","
             
-            '[Monica]22/11/2013: iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & "," & DBSet(vClien.Iban, "T") & ")"
+            
+            
+            If Not vParamAplic.ContabilidadNueva Then
+                Sql = Sql & DBSet(Format(vClien.Banco, "0000"), "T") & "," & DBSet(Format(vClien.Sucursal, "0000"), "T") & "," & DBSet(vClien.DigControl, "T") & "," & DBSet(vClien.CuentaBan, "T")           '& ")"
+                Sql = Sql & "," & DBSet(vClien.Iban, "T")
+            
             Else
-                Sql = Sql & ")"
+                If vClien.Banco > 0 And vClien.Sucursal > 0 Then
+                        ElIban = vClien.Iban & Format(vClien.Banco, "0000") & Format(vClien.Sucursal, "0000") & Format(vClien.DigControl, "00") & Format(vClien.CuentaBan, "0000000000")
+                End If
+                Sql = Sql & DBSet(ElIban, "T")
             End If
+            
+               Sql = Sql & ")"
             
             ConnConta.Execute Sql
             cadClien = vClien.Nombre
@@ -1711,14 +1724,22 @@ Dim b As Boolean
             End If
             Sql = Sql & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Poblacion, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo
             'Forma pago y cuenta banco por defecto
-            Sql = Sql & "," & DBSet(vSocio.ForPago, "N", "S") & "," & ValorNulo & "," & DBSet(Format(vSocio.Banco, "0000"), "T") & "," & DBSet(Format(vSocio.Sucursal, "0000"), "T") & "," & DBSet(vSocio.DigControl, "T") & "," & DBSet(vSocio.CuentaBan, "T") '& ")"
+            Sql = Sql & "," & DBSet(vSocio.ForPago, "N", "S") & "," & ValorNulo & ","
             
-            '[Monica]22/11/2013: iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & "," & DBSet(vSocio.Iban, "T") & ")"
+            
+            
+            If Not vParamAplic.ContabilidadNueva Then
+                Sql = Sql & DBSet(Format(vSocio.Banco, "0000"), "T") & "," & DBSet(Format(vSocio.Sucursal, "0000"), "T") & "," & DBSet(vSocio.DigControl, "T") & "," & DBSet(vSocio.CuentaBan, "T")           '& ")"
+                Sql = Sql & "," & DBSet(vSocio.Iban, "T")
+            
             Else
-                Sql = Sql & ")"
+                If vSocio.Banco > 0 And vSocio.Sucursal > 0 Then
+                        ElIban = vSocio.Iban & Format(vSocio.Banco, "0000") & Format(vSocio.Sucursal, "0000") & Format(vSocio.DigControl, "00") & Format(vSocio.CuentaBan, "0000000000")
+                End If
+                Sql = Sql & DBSet(ElIban, "T")
             End If
+            
+               Sql = Sql & ")"
             
             ConnConta.Execute Sql
             cadClien = vSocio.Nombre
@@ -1775,7 +1796,7 @@ Dim b As Boolean
 EInsCta:
     If Err.Number <> 0 Then
         b = False
-        MuestraError Err.Description, "Insertando cuenta contable", Err.Description
+        MuestraError Err.Number, "Insertando cuenta contable", Err.Description
     End If
     InsertarCuentaCble = b
 End Function
@@ -1787,10 +1808,10 @@ Dim vClien As CCliente
 Dim vProve As CProveedor
 Dim vSocio As CSocio
 Dim b As Boolean
-
+Dim ElIban As String
     On Error GoTo EInsCta
     
-    
+    ElIban = ""
     If cadClien <> "" And Tabla = "scliente" Then
         Set vClien = New CCliente
         If vClien.LeerDatos(cadClien) Then
@@ -1804,15 +1825,21 @@ Dim b As Boolean
             Sql = Sql & ", nifdatos = " & DBSet(vClien.NIF, "T")
             Sql = Sql & ", maidatos = " & DBSet(vClien.EMailAdm, "T")
             Sql = Sql & ", forpa = " & DBSet(vClien.ForPago, "N", "S")
-            Sql = Sql & ", entidad = " & DBSet(Format(vClien.Banco, "0000"), "T")
-            Sql = Sql & ", oficina = " & DBSet(Format(vClien.Sucursal, "0000"), "T")
-            Sql = Sql & ", CC = " & DBSet(vClien.DigControl, "T")
-            Sql = Sql & ", cuentaba = " & DBSet(vClien.CuentaBan, "T")
-            '[Monica]22/11/2013: iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & ", iban = " & DBSet(vClien.Iban, "T")
+            If vParamAplic.ContabilidadNueva Then
+                If vClien.Banco > 0 Or vClien.Sucursal > 0 Then
+                    ElIban = vClien.Iban & Format(vClien.Banco, "0000") & Format(vClien.Sucursal, "0000") & Format(vClien.DigControl, "00") & Format(vClien.CuentaBan, "0000000000")
+                End If
+                 Sql = Sql & ", iban = " & DBSet(ElIban, "T")
+            Else
+                Sql = Sql & ", entidad = " & DBSet(Format(vClien.Banco, "0000"), "T")
+                Sql = Sql & ", oficina = " & DBSet(Format(vClien.Sucursal, "0000"), "T")
+                Sql = Sql & ", CC = " & DBSet(vClien.DigControl, "T")
+                Sql = Sql & ", cuentaba = " & DBSet(vClien.CuentaBan, "T")
+                '[Monica]22/11/2013: iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & ", iban = " & DBSet(vClien.Iban, "T")
+                End If
             End If
-            
             Sql = Sql & " where codmacta = " & DBSet(cuenta, "T")
             
             ConnConta.Execute Sql
@@ -1837,14 +1864,27 @@ Dim b As Boolean
             Sql = Sql & ", nifdatos = " & DBSet(vSocio.NIF, "T")
             Sql = Sql & ", forpa = " & DBSet(vSocio.ForPago, "N", "S")
             Sql = Sql & ", maidatos = " & DBSet(vSocio.EMailSocio, "T")
-            Sql = Sql & ", entidad = " & DBSet(Format(vSocio.Banco, "0000"), "T")
-            Sql = Sql & ", oficina = " & DBSet(Format(vSocio.Sucursal, "0000"), "T")
-            Sql = Sql & ", CC = " & DBSet(vSocio.DigControl, "T")
-            Sql = Sql & ", cuentaba = " & DBSet(vSocio.CuentaBan, "T")
-            '[Monica]22/11/2013: iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & ", iban = " & DBSet(vSocio.Iban, "T")
+           
+            
+            
+            If vParamAplic.ContabilidadNueva Then
+                If vSocio.Banco > 0 Or vSocio.Sucursal > 0 Then
+                    ElIban = vSocio.Iban & Format(vSocio.Banco, "0000") & Format(vSocio.Sucursal, "0000") & Format(vSocio.DigControl, "00") & Format(vSocio.CuentaBan, "0000000000")
+                End If
+                 Sql = Sql & ", iban = " & DBSet(ElIban, "T")
+            Else
+                Sql = Sql & ", entidad = " & DBSet(Format(vSocio.Banco, "0000"), "T")
+                Sql = Sql & ", oficina = " & DBSet(Format(vSocio.Sucursal, "0000"), "T")
+                Sql = Sql & ", CC = " & DBSet(vSocio.DigControl, "T")
+                Sql = Sql & ", cuentaba = " & DBSet(vSocio.CuentaBan, "T")
+                '[Monica]22/11/2013: iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & ", iban = " & DBSet(vSocio.Iban, "T")
+                End If
             End If
+            
+            
+            
             Sql = Sql & " where codmacta = " & DBSet(cuenta, "T")
             
             ConnConta.Execute Sql
@@ -1868,13 +1908,21 @@ Dim b As Boolean
             Sql = Sql & ", desprovi = " & DBSet(vProve.Provincia, "T")
             Sql = Sql & ", nifdatos = " & DBSet(vProve.NIF, "T")
             Sql = Sql & ", forpa = " & DBSet(vProve.ForPago, "N", "S")
-            Sql = Sql & ", entidad = " & DBSet(Format(vProve.Banco, "0000"), "T")
-            Sql = Sql & ", oficina = " & DBSet(Format(vProve.Sucursal, "0000"), "T")
-            Sql = Sql & ", CC = " & DBSet(vProve.DigControl, "T")
-            Sql = Sql & ", cuentaba = " & DBSet(vProve.CuentaBan, "T")
-            '[Monica]22/11/2013: iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
+            If Not vParamAplic.ContabilidadNueva Then
+                Sql = Sql & ", entidad = " & DBSet(Format(vProve.Banco, "0000"), "T")
+                Sql = Sql & ", oficina = " & DBSet(Format(vProve.Sucursal, "0000"), "T")
+                Sql = Sql & ", CC = " & DBSet(vProve.DigControl, "T")
+                Sql = Sql & ", cuentaba = " & DBSet(vProve.CuentaBan, "T")
                 Sql = Sql & ", iban = " & DBSet(vProve.Iban, "T")
+            Else
+
+                If vProve.Banco > 0 Or vProve.Sucursal > 0 Then
+                    ElIban = vSocio.Iban & Format(vProve.Banco, "0000") & Format(vProve.Sucursal, "0000") & Format(vProve.DigControl, "00") & Format(vProve.CuentaBan, "0000000000")
+                End If
+                 Sql = Sql & ", iban = " & DBSet(ElIban, "T")
+                
+                
+                
             End If
             Sql = Sql & " where codmacta = " & DBSet(cuenta, "T")
             
@@ -1891,7 +1939,7 @@ Dim b As Boolean
 EInsCta:
     If Err.Number <> 0 Then
         b = False
-        MuestraError Err.Description, "Insertando cuenta contable", Err.Description
+        MuestraError Err.Number, "Insertando cuenta contable", Err.Description
     End If
     ModificarCuentaCble = b
 End Function
