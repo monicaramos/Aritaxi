@@ -2244,7 +2244,7 @@ Private Sub Check1_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim i As Long
+Dim I As Long
 Dim CadB As String
 Dim Cad As String
 Dim Indicador As String
@@ -2470,7 +2470,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del form
     Me.Icon = frmppal.Icon
@@ -2525,11 +2525,11 @@ Dim i As Integer
 '    End With
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
 
     
@@ -2592,13 +2592,13 @@ Private Sub CargarCombo()
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim I As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -2642,19 +2642,19 @@ On Error GoTo EPonerModo
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     Combo1.Enabled = b
-    For i = 0 To 2
-        Check1(i).Enabled = b
-    Next i
+    For I = 0 To 2
+        Check1(I).Enabled = b
+    Next I
     
 '[Monica]04/02/2015: dejamos modificar liquidado y facturado, antes solo podian consultar
-    For i = 3 To 4
-        Check1(i).Enabled = b '(Modo = 1)
-    Next i
+    For I = 3 To 4
+        Check1(I).Enabled = b '(Modo = 1)
+    Next I
     
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
     
     ' No hay icono para las observaciones de 60 de longitud maxima
     Me.imgBuscar(2).Enabled = False
@@ -2667,9 +2667,9 @@ On Error GoTo EPonerModo
     
     
     
-    For i = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(I).Enabled = b
+    Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -2702,7 +2702,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
@@ -2725,7 +2725,7 @@ Dim i As Byte
 End Sub
 
 Private Sub LimpiarCampos()
-Dim i As Integer
+Dim I As Integer
 
 On Error Resume Next
     
@@ -2734,9 +2734,9 @@ On Error Resume Next
     'Aqui va el especifico de cada form es
     Me.Combo1.ListIndex = -1
     
-    For i = 0 To Check1.Count - 1
-        Check1(i).Value = 0
-    Next i
+    For I = 0 To Check1.Count - 1
+        Check1(I).Value = 0
+    Next I
     
     '### a mano
     If Err.Number <> 0 Then Err.Clear

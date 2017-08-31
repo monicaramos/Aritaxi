@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
-Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.CommandBars.v17.2.0.ocx"
+Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "CODEJO~3.OCX"
 Begin VB.Form pageBackstageHelp 
    BackColor       =   &H00FFFFFF&
    BorderStyle     =   0  'None
@@ -1152,7 +1152,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 Private Sub btnProtectDocument_Click()
-    frmPpal.OpcionesMenuInformacion ID_Licencia_Usuario_Final_web
+    frmppal.OpcionesMenuInformacion ID_Licencia_Usuario_Final_web
 End Sub
 
 Private Sub Form_Load()
@@ -1165,14 +1165,14 @@ End Sub
 Private Sub Form_Resize()
 On Error Resume Next
     lblBackstageSeparator4.Height = Me.ScaleHeight
-    i = Me.Width - tabPage(4).Left - 240
-    If i < 300 Then i = 300
-    tabPage(4).Width = i
+    I = Me.Width - tabPage(4).Left - 240
+    If I < 300 Then I = 300
+    tabPage(4).Width = I
     
     
-    i = i - ListViewEmpresa.Left - 120
-    If i < 100 Then i = 100
-    ListViewEmpresa.Width = i
+    I = I - ListViewEmpresa.Left - 120
+    If I < 100 Then I = 100
+    ListViewEmpresa.Width = I
     
     
     Me.Image1.Left = Me.Width - Image1.Width - 120
@@ -1247,8 +1247,8 @@ End Sub
 
 
 Private Function CargarInformacionBBDD() As String
-Dim SQL As String
-Dim Sql2 As String
+Dim Sql As String
+Dim SQL2 As String
 Dim CadValues As String
 Dim NroRegistros As Long
 Dim NroRegistrosSig As Long
@@ -1258,19 +1258,19 @@ Dim FecIniSig As Date
 Dim FecFinSig As Date
 Dim Porcen1 As Currency
 Dim Porcen2 As Currency
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 
     On Error GoTo eCargarInformacionBBDD
     
     CargarInformacionBBDD = False
     
-    SQL = "delete from tmpinfbbdd where codusu = " & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpinfbbdd where codusu = " & vUsu.Codigo
+    conn.Execute Sql
     
 '    FecIniSig = DateAdd("yyyy", 1, vParam.FechaIni)
 '    FecFinSig = DateAdd("yyyy", 1, vParam.FechaFin)
     
-    Sql2 = "insert into tmpinfbbdd (codusu,posicion,concepto,nactual,poractual,nsiguiente,porsiguiente) values "
+    SQL2 = "insert into tmpinfbbdd (codusu,posicion,concepto,nactual,poractual,nsiguiente,porsiguiente) values "
     
 '    'asientos
 '    SQL = "select count(*) from hcabapu where fechaent between " & DBSet(vParam.FechaIni, "F") & " and " & DBSet(vParam.FechaFin, "F")
@@ -1373,16 +1373,16 @@ End Function
 
 
 Private Sub CargaInformeBBDD()
-Dim IT As ListItem
+Dim It As ListItem
 Dim TotalArray  As Long
     On Error GoTo ECargaInformeBBDD
     
-    Set Rs = New ADODB.Recordset
+    Set RS = New ADODB.Recordset
     
-    SQL = "select * from tmpinfbbdd where codusu = " & vUsu.Codigo & " order by posicion "
+    Sql = "select * from tmpinfbbdd where codusu = " & vUsu.Codigo & " order by posicion "
     
-    Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set RS = New ADODB.Recordset
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     ListView3.ListItems.Clear
     ListView3.ColumnHeaders.Clear
@@ -1396,39 +1396,39 @@ Dim TotalArray  As Long
     
     
     TotalArray = 0
-    While Not Rs.EOF
-        Set IT = ListView3.ListItems.Add
+    While Not RS.EOF
+        Set It = ListView3.ListItems.Add
         
-        IT.Text = UCase(DBLet(Rs!Concepto, "T"))
+        It.Text = UCase(DBLet(RS!Concepto, "T"))
         
-        If DBLet(Rs!posicion, "N") > 2 Then
-            IT.SubItems(1) = Format(DBLet(Rs!nactual, "N"), "###,###,###,##0")
-            IT.SubItems(2) = Format(DBLet(Rs!Poractual, "N"), "##0.00") & "%"
-            IT.SubItems(3) = Format(DBLet(Rs!nsiguiente, "N"), "###,###,###,##0")
-            IT.SubItems(4) = Format(DBLet(Rs!Porsiguiente, "N"), "##0.00") & "%"
+        If DBLet(RS!posicion, "N") > 2 Then
+            It.SubItems(1) = Format(DBLet(RS!nactual, "N"), "###,###,###,##0")
+            It.SubItems(2) = Format(DBLet(RS!Poractual, "N"), "##0.00") & "%"
+            It.SubItems(3) = Format(DBLet(RS!nsiguiente, "N"), "###,###,###,##0")
+            It.SubItems(4) = Format(DBLet(RS!Porsiguiente, "N"), "##0.00") & "%"
         Else
-            IT.SubItems(1) = Format(DBLet(Rs!nactual, "N"), "###,###,###,##0")
-            IT.SubItems(3) = Format(DBLet(Rs!nsiguiente, "N"), "###,###,###,##0")
+            It.SubItems(1) = Format(DBLet(RS!nactual, "N"), "###,###,###,##0")
+            It.SubItems(3) = Format(DBLet(RS!nsiguiente, "N"), "###,###,###,##0")
         End If
         
-        Rs.MoveNext
+        RS.MoveNext
     Wend
     
-    Rs.Close
+    RS.Close
     
     Label5.Caption = Format(Now, "dd/mm/yyyy hh:nn:ss")
     Exit Sub
     
 ECargaInformeBBDD:
     MuestraError Err.Number, Err.Description
-    Set Rs = Nothing
+    Set RS = Nothing
 End Sub
 
 
 
 
 Private Sub CargaShowProcessList()
-Dim IT As ListItem
+Dim It As ListItem
 Dim TotalArray  As Long
 Dim SERVER As String
 Dim EquipoConBD As Boolean
@@ -1437,7 +1437,7 @@ Dim Equipo As String
 
     On Error GoTo ECargaShowProcessList
     
-    Set Rs = New ADODB.Recordset
+    Set RS = New ADODB.Recordset
     
     ListView4.ListItems.Clear
     ListView4.ColumnHeaders.Clear
@@ -1448,7 +1448,7 @@ Dim Equipo As String
     ListView4.ColumnHeaders.Add , , "Tiempo espera", 3050.2522, 1
     
     
-    Set Rs = New ADODB.Recordset
+    Set RS = New ADODB.Recordset
     
     SERVER = Mid(conn.ConnectionString, InStr(LCase(conn.ConnectionString), "server=") + 7)
     SERVER = Mid(SERVER, 1, InStr(1, SERVER, ";"))
@@ -1456,13 +1456,13 @@ Dim Equipo As String
     EquipoConBD = (UCase(vUsu.PC) = UCase(SERVER)) Or (LCase(SERVER) = "localhost")
     
     Cad = "show full processlist"
-    Rs.Open Cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
+    RS.Open Cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
     Cad = ""
-    While Not Rs.EOF
-        If Not IsNull(Rs.Fields(3)) Then
-            If InStr(1, Rs.Fields(3), "ariconta") <> 0 Then
-                If UCase(Rs.Fields(3)) = UCase(vUsu.CadenaConexion) Then
-                    Equipo = Rs.Fields(2)
+    While Not RS.EOF
+        If Not IsNull(RS.Fields(3)) Then
+            If InStr(1, RS.Fields(3), "ariconta") <> 0 Then
+                If UCase(RS.Fields(3)) = UCase(vUsu.CadenaConexion) Then
+                    Equipo = RS.Fields(2)
                     'Primero quitamos los dos puntos del puerto
                     NumRegElim = InStr(1, Equipo, ":")
                     If NumRegElim > 0 Then Equipo = Mid(Equipo, 1, NumRegElim - 1)
@@ -1474,26 +1474,26 @@ Dim Equipo As String
                     Equipo = UCase(Equipo)
                     
                     
-                    Set IT = ListView4.ListItems.Add
+                    Set It = ListView4.ListItems.Add
                     
-                    IT.Text = Rs.Fields(0)
-                    IT.SubItems(1) = Rs.Fields(1)
-                    IT.SubItems(2) = Equipo
+                    It.Text = RS.Fields(0)
+                    It.SubItems(1) = RS.Fields(1)
+                    It.SubItems(2) = Equipo
                     
                     'tiempo de espera
                     Dim FechaAnt As Date
-                    FechaAnt = DateAdd("s", Rs.Fields(5), Now)
-                    IT.SubItems(3) = Format((Now - FechaAnt), "hh:mm:ss")
+                    FechaAnt = DateAdd("s", RS.Fields(5), Now)
+                    It.SubItems(3) = Format((Now - FechaAnt), "hh:mm:ss")
                 End If
             End If
         End If
         
         'Siguiente
-        Rs.MoveNext
+        RS.MoveNext
     Wend
     NumRegElim = 0
-    Rs.Close
-    Set Rs = Nothing
+    RS.Close
+    Set RS = Nothing
     'Label6.Caption = Format(Now, "dd/mm/yyyy hh:nn:ss")
     
     
@@ -1501,14 +1501,14 @@ Dim Equipo As String
     
 ECargaShowProcessList:
     MuestraError Err.Number, Err.Description
-    Set Rs = Nothing
+    Set RS = Nothing
 End Sub
 
 
 Private Sub Cargadocumentos()
 Dim RN As ADODB.Recordset
 Dim Cad As String
-Dim IT As ListItem
+Dim It As ListItem
 '--quitado
 '    Set Me.ListView1.SmallIcons = frmPpal.ImageList1 'frmPpal.ImageListDocumentos
 '    On Error GoTo eCargadocumentos
@@ -1538,23 +1538,23 @@ Private Sub Label18_Click()
 End Sub
 
 Private Sub ListView1_DblClick()
-Dim Abrir As Boolean
+Dim abrir As Boolean
 
     If Me.ListView1.SelectedItem Is Nothing Then Exit Sub
     
-    Abrir = False 'antes \ImgFicFT
+    abrir = False 'antes \ImgFicFT
     If Dir(App.Path & "\temp\" & ListView1.SelectedItem & ".pdf", vbArchive) = "" Then
-        Adodc1.ConnectionString = conn
-        Adodc1.RecordSource = "Select * from usuarios.wfichdocs where idDocumento=" & Mid(ListView1.SelectedItem.Key, 2)
-        Adodc1.Refresh
+        adodc1.ConnectionString = conn
+        adodc1.RecordSource = "Select * from usuarios.wfichdocs where idDocumento=" & Mid(ListView1.SelectedItem.Key, 2)
+        adodc1.Refresh
 
-        If LeerBinary(Adodc1.Recordset!campo, App.Path & "\temp\" & ListView1.SelectedItem.Text & ".pdf") Then Abrir = True
+        If LeerBinary(adodc1.Recordset!campo, App.Path & "\temp\" & ListView1.SelectedItem.Text & ".pdf") Then abrir = True
     Else
-        Abrir = True
+        abrir = True
         
     End If
     
-    If Abrir Then LanzaVisorMimeDocumento Me.hwnd, App.Path & "\temp\" & ListView1.SelectedItem & ".pdf"
+    If abrir Then LanzaVisorMimeDocumento Me.hwnd, App.Path & "\temp\" & ListView1.SelectedItem & ".pdf"
         
 End Sub
 
@@ -1563,14 +1563,14 @@ End Sub
 
 Private Sub BuscaEmpresas()
 Dim Prohibidas As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 Dim Cad As String
-Dim SQL As String
+Dim Sql As String
 Dim ItmX As ListItem
 
 ListView1.ListItems.Clear
 
-Dim i As Integer
+Dim I As Integer
 
 
     If Me.ListViewEmpresa.Tag = "1" Then Exit Sub
@@ -1581,11 +1581,11 @@ Dim i As Integer
     ListViewEmpresa.ColumnHeaders(4).Width = 1400
     ListViewEmpresa.ColumnHeaders(5).Width = 1400
     
-    i = ListViewEmpresa.Width - 3840
-    If i < 0 Then i = 180
-    i = CInt(i / 4)
-    ListViewEmpresa.ColumnHeaders(2).Width = i * 3
-    ListViewEmpresa.ColumnHeaders(3).Width = i
+    I = ListViewEmpresa.Width - 3840
+    If I < 0 Then I = 180
+    I = CInt(I / 4)
+    ListViewEmpresa.ColumnHeaders(2).Width = I * 3
+    ListViewEmpresa.ColumnHeaders(3).Width = I
         
  
     
@@ -1597,30 +1597,30 @@ Dim i As Integer
     
     'Cargamos las empresas
     
-    Set Rs = New ADODB.Recordset
+    Set RS = New ADODB.Recordset
     
     '[Monica]11/04/2014: solo debe de salir las ariconta
-    Rs.Open "Select * from usuarios.empresasaritaxi where conta like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open "Select * from usuarios.empresasaritaxi where conta like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
-    While Not Rs.EOF
-        Cad = "|" & Rs!codempre & "|"
+    While Not RS.EOF
+        Cad = "|" & RS!codempre & "|"
         If InStr(1, Prohibidas, Cad) = 0 Then
-            Cad = Rs!nomempre
+            Cad = RS!nomempre
             Set ItmX = ListViewEmpresa.ListItems.Add()
-            ItmX.Text = Rs!codempre
+            ItmX.Text = RS!codempre
             
             
-            ItmX.SubItems(1) = Rs!nomempre
-            ItmX.SubItems(2) = Rs!nomresum
+            ItmX.SubItems(1) = RS!nomempre
+            ItmX.SubItems(2) = RS!nomresum
 '            Cad = "fechafin"
 '            SQL = DevuelveDesdeBD("fechaini", "ariconta" & Rs!codempre & ".parametros", "1", "1", "N", Cad)
 '            ItmX.SubItems(3) = SQL
 '            ItmX.SubItems(4) = Cad
             
                 
-            Cad = Rs!CONTA & "|" & Rs!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
+            Cad = RS!conta & "|" & RS!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
             
-            If Rs!codempre = vEmpresa.codempre Then
+            If RS!codempre = vEmpresa.codempre Then
                 ItmX.Bold = True
                 Set ListView1.SelectedItem = ItmX
             End If
@@ -1631,7 +1631,7 @@ Dim i As Integer
             
             'Si el codconta > 100 son empresas que viene del cambio del plan contable.
             'Atenuare su visibilidad
-            If Rs!codempre > 100 Then
+            If RS!codempre > 100 Then
                 ItmX.ForeColor = &H808080
                 ItmX.ListSubItems(1).ForeColor = &H808080
                 ItmX.ListSubItems(2).ForeColor = &H808080
@@ -1642,40 +1642,40 @@ Dim i As Integer
                 'ItmX.SmallIcon = 1
             End If
         End If
-        Rs.MoveNext
+        RS.MoveNext
     Wend
-    Rs.Close
+    RS.Close
     ListViewEmpresa.Tag = "1"
 End Sub
 
 
 Private Function DevuelveProhibidas() As String
-Dim Rs As ADODB.Recordset
+Dim RS As ADODB.Recordset
 Dim Cad As String
-Dim i As Integer
+Dim I As Integer
     On Error GoTo EDevuelveProhibidas
     DevuelveProhibidas = ""
-    Set Rs = New ADODB.Recordset
-    i = vUsu.Codigo Mod 1000
-    Rs.Open "Select * from usuarios.usuarioempresasariconta WHERE codusu =" & i, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set RS = New ADODB.Recordset
+    I = vUsu.Codigo Mod 1000
+    RS.Open "Select * from usuarios.usuarioempresasariconta WHERE codusu =" & I, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Cad = ""
-    While Not Rs.EOF
-        Cad = Cad & Rs.Fields(1) & "|"
-        Rs.MoveNext
+    While Not RS.EOF
+        Cad = Cad & RS.Fields(1) & "|"
+        RS.MoveNext
     Wend
     If Cad <> "" Then Cad = "|" & Cad
-    Rs.Close
+    RS.Close
     DevuelveProhibidas = Cad
 EDevuelveProhibidas:
     Err.Clear
-    Set Rs = Nothing
+    Set RS = Nothing
 End Function
 
 
 Private Sub ListViewEmpresa_DblClick()
     ' If Not ItemCheck Then Exit Sub
     If ListViewEmpresa.SelectedItem Is Nothing Then Exit Sub
-   frmPpal.CambiarEmpresa CInt(ListViewEmpresa.SelectedItem.Text)
+   frmppal.CambiarEmpresa CInt(ListViewEmpresa.SelectedItem.Text)
 End Sub
 
 

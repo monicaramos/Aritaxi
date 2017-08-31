@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "Codejock.ShortcutBar.v17.2.0.ocx"
+Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "CO08EA~1.OCX"
 Begin VB.Form frmShortcutBar2 
    BackColor       =   &H00FFFFFF&
    BorderStyle     =   0  'None
@@ -120,18 +120,18 @@ End Sub
 
 Private Sub wndShortcutBar_SelectedChanged(ByVal Item As XtremeShortcutBar.IShortcutBarItem)
 Dim TabNuevo As RibbonTab
-    Select Case Item.id
+    Select Case Item.Id
         Case SHORTCUT_CONTACTS:
 
-            frmInbox.CalendarControl.Visible = False
-            frmInbox.ScrollBarCalendar.Visible = False
+            frmInbox.CalendarControl.visible = False
+            frmInbox.ScrollBarCalendar.visible = False
             Set TabNuevo = frmppal.RibbonBar.FindTab(3)  'Diario
             
            
         Case SHORTCUT_CALENDAR:
             frmPaneCalendar.AsignarCalendar
-            frmInbox.CalendarControl.Visible = True
-            frmInbox.ScrollBarCalendar.Visible = True
+            frmInbox.CalendarControl.visible = True
+            frmInbox.ScrollBarCalendar.visible = True
             Set TabNuevo = frmppal.RibbonBar.FindTab(ID_TAB_CALENDAR_HOME)
             
             frmPaneCalendar.Enabled = True
@@ -179,17 +179,17 @@ Public Sub Form_Resize()
 End Sub
 
 
-Public Sub SetColor(id As Integer)
+Public Sub SetColor(Id As Integer)
     Set wndShortcutBar.Icons = CommandBarsGlobalSettings.Icons
     Me.BackColor = wndShortcutBar.PaintManager.PaneBackgroundColor
    ' Me.Image1.Visible = vUsu.Skin = 2
-    Me.Image1.Visible = True 'vUsu.Skin <> 2
+    Me.Image1.visible = True 'vUsu.Skin <> 2
     
     
-    If id = ID_OPTIONS_STYLEBLACK2010 Then
+    If Id = ID_OPTIONS_STYLEBLACK2010 Then
         Label1.ForeColor = vbWhite
         Label2.ForeColor = &HE0E0E0
-    ElseIf id = ID_OPTIONS_STYLESILVER2010 Then
+    ElseIf Id = ID_OPTIONS_STYLESILVER2010 Then
         'HexColor = &H73716B
         Label1.ForeColor = vbBlack
         Label2.ForeColor = vbWhite

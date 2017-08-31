@@ -1,9 +1,9 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.CommandBars.v17.2.0.ocx"
-Object = "{945E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "Codejock.DockingPane.v17.2.0.ocx"
-Object = "{BD0C1912-66C3-49CC-8B12-7B347BF6C846}#17.2#0"; "Codejock.SkinFramework.v17.2.0.ocx"
+Object = "{555E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "CODEJO~3.OCX"
+Object = "{945E8FCC-830E-45CC-AF00-A012D5AE7451}#17.2#0"; "COA2AE~1.OCX"
+Object = "{BD0C1912-66C3-49CC-8B12-7B347BF6C846}#17.2#0"; "COC9F8~1.OCX"
 Begin VB.Form frmppal 
    Caption         =   "Aritaxi"
    ClientHeight    =   8160
@@ -1069,7 +1069,7 @@ Dim N_Skin As Integer
 End Sub
 
 Public Sub SetBackstageTheme()
-Dim i As Integer
+Dim I As Integer
     Dim nTheme As XtremeCommandBars.XTPBackstageButtonControlAppearanceStyle
     nTheme = xtpAppearanceResource
 
@@ -1081,8 +1081,8 @@ Dim i As Integer
    ' End If
     
     If Not (pageBackstageHelp Is Nothing) Then
-        For i = 0 To 4
-            pageBackstageHelp.btnAcciones(i).Appearance = nTheme
+        For I = 0 To 4
+            pageBackstageHelp.btnAcciones(I).Appearance = nTheme
         Next
         
     End If
@@ -1715,7 +1715,7 @@ Dim TamanyoImgComun As Integer
 End Sub
 
 Public Sub GetIconsFromLibrary(ByVal sLibraryFilePath As String, ByVal Op As Integer, ByVal tam As Integer)
-    Dim i As Integer
+    Dim I As Integer
     Dim tRes As ResType, iCount As Integer
         
     opcio = Op
@@ -1777,9 +1777,9 @@ Private Sub Form_Unload(Cancel As Integer)
     
     'close all sub forms
     On Error Resume Next
-    Dim i As Long
-    For i = Forms.Count - 1 To 1 Step -1
-        Unload Forms(i)
+    Dim I As Long
+    For I = Forms.Count - 1 To 1 Step -1
+        Unload Forms(I)
     Next
     
     GuardarDatosUltimaTab
@@ -1790,10 +1790,10 @@ End Sub
 
 
 Private Sub GuardarDatosUltimaTab()
-    i = RibbonBar.SelectedTab.Id
-    If i = ID_TAB_CALENDAR_HOME Then Exit Sub 'no guardo este tab
-    If i <> vUsu.TabPorDefecto Then
-        vUsu.TabPorDefecto = i
+    I = RibbonBar.SelectedTab.Id
+    If I = ID_TAB_CALENDAR_HOME Then Exit Sub 'no guardo este tab
+    If I <> vUsu.TabPorDefecto Then
+        vUsu.TabPorDefecto = I
         vUsu.GuardarTabPorDefecto
     End If
 End Sub
@@ -1900,7 +1900,7 @@ Private Sub LoadIcons()
       
     'ICONOS PEQUEÑOS
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
-            Array(ID_Clientes, ID_ClientesInactivos, ID_TiposCartas, 1, 1, ID_FormasPago), xtpImageNormal
+            Array(ID_Clientes, ID_ClientesInactivos, ID_TiposCartas, ID_MotivosBajaEquipos, ID_TiposAveria, ID_FormasPago), xtpImageNormal
         
     
     
@@ -1925,22 +1925,24 @@ Private Sub LoadIcons()
 '
     Dim T() As Variant
     'Cad linea son 15
-    T = Array(1, 1, ID_TiposArticulos, 1, ID_Proveedores, ID_AltasClientes, 1, ID_ContaFacturas, ID_FrasRectificativas, ID_EtiquetasSocios, 1, 1, 1, 1, 1, _
-        ID_VentasporCliente, ID_DetalleFacturacion, 1, 1, 1, ID_HcoInventario, ID_Reparaciones, 1, ID_Trabajadores, 1, 1, 1, 1, 1, ID_EtiquetasClientes, _
+    T = Array(1, 1, ID_TiposArticulos, 1, ID_PreciosProv, ID_AltasClientes, 1, ID_ContaFacturas, ID_FrasRectificativas, ID_EtiquetasSocios, 1, 1, 1, 1, 1, _
+        ID_VentasporCliente, ID_DetalleFacturacion, 1, ID_RetenSocios, ID_ContabilFras, ID_HcoInventario, ID_Reparaciones, 1, 1, 1, 1, 1, 1, 1, ID_EtiquetasClientes, _
         1, ID_ValStocksInven, ID_Articulos, ID_Socios, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, ID_ClientesAgrup, ID_ControlRep, 1, 1, 1, ID_BancosPropio, 1, _
-        ID_ArticulosComponentes, 1, ID_ServiciosAbonados, 1, 1, ID_Informes, 1, ID_Usuarios, ID_HcoLlamadas, ID_TraspasoTaxitronic, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
-        1, ID_ActDiferencias, 1, ID_FacturacionClientes, 1, 1, 1, 1, 1, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
-        ID_ImportarFacturasCliente, 1, 1, ID_HistoricoUves, ID_AgentesCom, ID_Clientes, ID_TiposCartas, ID_TiposCartas, 1, 1, 1, 1, ID_ProvVarios, ID_Proveedores, ID_CartasSocios, _
-        ID_Renumeracióndeasientos, ID_CierredeEjercicio, ID_Deshacercierre, ID_DiarioOficial, ID_PresentaciónTelemáticadeLibros, ID_Traspasodecuentasenapuntes, ID_Renumerarregistrosproveedor, ID_TraspasocodigosdeIVA, 1, 1, 1, 1, 1, 1, 1, _
-        ID_TomaInventario, ID_ValoracionStocks, 1, 1, 1, 1, 1, ID_Albaranes, 1, 1, ID_StocksMaxMin, 1, 1, 1, 1, _
-        ID_AlbxArt, ID_StocksFecha, ID_Accionesrealizadas, 1, ID_EntradaExisReal, 1, 1, 1, ID_ListadoMovimientos, 1, 1, 1, 1, ID_AlbAnulados, 1, _
-        ID_ListadoDiferencias, ID_ReimprimirFras, 1, 1, ID_FactuVarClientes, 1, ID_Actividades, 1)
-    
-     
+        ID_ArticulosComponentes, 1, ID_ServiciosAbonados, ID_ServSocios, ID_RecepFacturas, ID_Informes, 1, ID_Usuarios, ID_HcoLlamadas, ID_TraspasoTaxitronic, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
+        1, ID_ActDiferencias, ID_EtiProveedores, ID_FacturacionClientes, 1, ID_VtasSocios, ID_ReimprFras, ID_HcoFras, ID_Liquidacion, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
+        ID_ProvVarios, 1, ID_FacturacionSocios, ID_HistoricoUves, ID_AgentesCom, ID_Clientes, ID_TiposCartas, ID_TiposCartas, ID_Actividades, 1, ID_ContabFacturas, 1, 1, ID_Proveedores, ID_CartasSocios, _
+        ID_Direcciones, ID_CartasProv, 1, ID_InfProveedores, 1, 1, ID_PedidosProv, 1, 1, ID_AlbAnuladosPro, ID_AlbProveedor, ID_HcoAlbxFra, 1, ID_ComprasProveedor, 1, _
+        ID_TomaInventario, ID_ValoracionStocks, 1, ID_DtosProv, ID_VtasFamArt, ID_VtasMeses, ID_ContabFras, ID_Albaranes, 1, ID_FacturarClientes, ID_StocksMaxMin, 1, 1, 1, 1, _
+        ID_AlbxArt, ID_StocksFecha, ID_Accionesrealizadas, 1, ID_EntradaExisReal, 1, ID_ComprasFamxArt, ID_PedidosAnulados, ID_ListadoMovimientos, 1, 1, 1, 1, ID_AlbAnulados, 1, _
+        ID_ListadoDiferencias, ID_ReimprimirFras, ID_InfAlbxProv, ID_DetalleFra, ID_FactuVarClientes)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlook2013L_32x32.bmp", T, xtpImageNormal
+
+    T = Array(ID_FrasRectifCli, ID_FrasRectifSocios, ID_HcoFrasClientes, ID_HcoFacturasSocios, ID_ReimprFrasSocios, ID_ContabFrasSocios, _
+        ID_HcoFrasCuotas, ID_ReimprFrasCuotas, ID_ContabFrasCuotas, ID_MtoAlbaranes, ID_PrevFacturacCuotas, ID_Facturacion, ID_FrasRectific)
     
-           
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
 
     'Este de abjo funciona correctamente.
     'NO tocar. Es por si falla volver a empezar
@@ -1962,28 +1964,24 @@ Private Sub LoadIcons()
     '---------------------------------------------------------
     '
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
-            Array(ID_CentrosdeCoste, ID_ExtractosporCentrodeCoste, ID_Detalledeexplotación, ID_CuentadeExplotaciónAnalítica, ID_Presupuestos, ID_BalancePresupuestario), xtpImageNormal
+            Array(ID_Vehiculos, ID_Trabajadores _
+                  ), xtpImageNormal
     
 
-    
 
     'Pequeños
-    ' ID_Compensaciones ID_Reclamaciones  ID_InformeImpagados ID_RemesasTalenPagare ID_Norma57Pagosventanilla  ID_TransferenciasAbonos
-    ' ID_InformePagosbancos ID_Transferencias ID_Pagosdomiciliados ID_GastosFijos ID_Compensarproveedor ID_Confirming
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
             Array(1, ID_PrevFacturacion, ID_FacturacionAlb, ID_FacturasRect, ID_HcoAlbFra, ID_ReimprirFras, ID_NrosSerie, _
-            ID_MotivosBajaEquipos, ID_MotivosPdteRepara, ID_ServAsistenciaTecnica), xtpImageNormal
-    
-    
+            ID_MotivosPdteRepara, ID_ServAsistenciaTecnica, _
+            ID_InfPdteFacturar, ID_MatPdteRecibir _
+            ), xtpImageNormal
     
     
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
-            Array(ID_TiposAveria, ID_TrabajosRealizados, ID_InfReparacionesDia, ID_Informeporcuenta, ID_SituaciónTesoreria, ID_InformeporNIF), xtpImageNormal
-    
-     
- 
-        
+            Array(ID_TrabajosRealizados, ID_InfReparacionesDia, ID_Informeporcuenta, ID_SituaciónTesoreria, ID_InformeporNIF, _
+                   ID_GrarFrasCuotas), xtpImageNormal
+  
         
     '------------------------------------------------------------------------------------------------------------------------
     '------------------------------------------------------------------------------------------------------------------------
@@ -2031,10 +2029,10 @@ Private Sub LoadIcons()
         CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\car_compact_grey.bmp", ID_Vehiculos, xtpImageNormal
             
             
-        Dim i As Integer
-        For i = 1 To 17
-            SuiteControlsGlobalSettings.Icons.LoadIcon App.Path & "\styles\TreeView\icon" & i & ".ico", i, xtpImageNormal
-        Next i
+        Dim I As Integer
+        For I = 1 To 17
+            SuiteControlsGlobalSettings.Icons.LoadIcon App.Path & "\styles\TreeView\icon" & I & ".ico", I, xtpImageNormal
+        Next I
 End Sub
 
 Private Sub SaveRibbonBarToXML()
@@ -2398,14 +2396,14 @@ Dim Anterior As Integer
     End If
     
     Cad = ""
-    For i = 0 To RibbonBar.TabCount - 1
-        J = RibbonBar.Tab(i).Id
+    For I = 0 To RibbonBar.TabCount - 1
+        J = RibbonBar.Tab(I).Id
         'Debug.Print J & " " & RibbonBar.Tab(i).Caption
         If J = Anterior Then
             
-            RibbonBar.Tab(i).visible = True
-            RibbonBar.Tab(i).Selected = True
-            Set RibbonBar.SelectedTab = RibbonBar.Tab(i)
+            RibbonBar.Tab(I).visible = True
+            RibbonBar.Tab(I).Selected = True
+            Set RibbonBar.SelectedTab = RibbonBar.Tab(I)
             Cad = "OK"
             Exit For
         End If
@@ -3307,16 +3305,16 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 1013 ' Usuarios activos
             'Muestra si hay otros usuarios conectados a la Gestion
             Dim Sql As String
-            Dim i As Integer
+            Dim I As Integer
             
                 CadenaDesdeOtroForm = OtrosPCsContraContabiliad
                 If CadenaDesdeOtroForm <> "" Then
-                    i = 1
+                    I = 1
                     Me.Tag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
                     Do
-                        Sql = RecuperaValor(CadenaDesdeOtroForm, i)
+                        Sql = RecuperaValor(CadenaDesdeOtroForm, I)
                         If Sql <> "" Then Me.Tag = Me.Tag & "    - " & Sql & vbCrLf
-                        i = i + 1
+                        I = I + 1
                     Loop Until Sql = ""
                     MsgBox Me.Tag, vbExclamation
                 Else

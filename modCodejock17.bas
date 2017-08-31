@@ -965,7 +965,7 @@ Public Const ID_ComprasProveedor = 518
 Public Const ID_ComprasFamxArt = 519
 Public Const ID_InfAlbxProv = 520
 
-
+' PUBLICIDAD
 Public Const ID_FacturarClientes = 601
 Public Const ID_FrasRectifCli = 602
 Public Const ID_HcoFrasClientes = 603
@@ -975,7 +975,7 @@ Public Const ID_HcoFacturasSocios = 606
 Public Const ID_ReimprFrasSocios = 607
 Public Const ID_ContabFrasSocios = 608
 
-
+' CUOTAS
 Public Const ID_GrarFrasCuotas = 701
 Public Const ID_ReimprFrasCuotas = 702
 Public Const ID_HcoFrasCuotas = 703
@@ -985,10 +985,7 @@ Public Const ID_PrevFacturacCuotas = 706
 Public Const ID_Facturacion = 707
 Public Const ID_FrasRectific = 708
 
-
-
-
-
+' REPARACIONES
 Public Const ID_Reparaciones = 801
 Public Const ID_ControlRep = 802
 Public Const ID_NrosSerie = 803
@@ -999,23 +996,14 @@ Public Const ID_TiposAveria = 807
 Public Const ID_TrabajosRealizados = 809
 Public Const ID_InfReparacionesDia = 810
 
+
+
+
+
 Public Const ID_InformeporNIF = 901
 Public Const ID_Informeporcuenta = 902
 Public Const ID_SituaciónTesoreria = 903
 
-Public Const ID_CentrosdeCoste = 1001
-Public Const ID_ExtractosporCentrodeCoste = 1002
-Public Const ID_CuentadeExplotaciónAnalítica = 1003
-Public Const ID_Detalledeexplotación = 1005
-Public Const ID_Presupuestos = 1101
-Public Const ID_BalancePresupuestario = 1103
-
-Public Const ID_Renumeracióndeasientos = 1301
-Public Const ID_CierredeEjercicio = 1303
-Public Const ID_Deshacercierre = 1304
-Public Const ID_DiarioOficial = 1306
-Public Const ID_PresentaciónTelemáticadeLibros = 1308
-Public Const ID_MemoriaPlazosdepago = 1309
 
 Public Const ID_Traspasodecuentasenapuntes = 1408
 Public Const ID_Renumerarregistrosproveedor = 1409
@@ -1028,12 +1016,5 @@ Public Const ID_ImportarFacturasCliente = 1413
 Public Const ID_Licencia_Usuario_Final_txt = 2001
 Public Const ID_Licencia_Usuario_Final_web = 2002
 Public Const ID_Ver_Version_operativa_web = 2003
-
-
-
-
-
-
-
 
 
