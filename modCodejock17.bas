@@ -885,8 +885,6 @@ Public Const ID_ActDiferencias = 220
 Public Const ID_ValStocksInven = 221
 Public Const ID_HcoInventario = 222
 
-
-
 Public Const ID_Actividades = 301
 Public Const ID_ClientesAgrup = 302
 Public Const ID_FormasPago = 303
@@ -943,7 +941,7 @@ Public Const ID_VtasMeses = 425
 Public Const ID_VtasFamArt = 426
 Public Const ID_DetalleFra = 427
 
-
+' Compras
 Public Const ID_Proveedores = 501
 Public Const ID_ProvVarios = 502
 Public Const ID_Direcciones = 503
@@ -997,7 +995,27 @@ Public Const ID_TrabajosRealizados = 809
 Public Const ID_InfReparacionesDia = 810
 
 
+' CMR
+Public Const ID_AccionesComer = 901
+Public Const ID_TiposAcciones = 902
+Public Const ID_GenerarAcciones = 903
 
+
+' UTILIDADES
+Public Const ID_Avisos = 1001
+Public Const ID_Llamadas = 1002
+Public Const ID_ConceptosLlamadas = 1003
+Public Const ID_CopiaSeguridadLocal = 1004
+Public Const ID_BorreFrasMovimientos = 1005
+Public Const ID_RevisarCaracteresEsp = 1006
+Public Const ID_AccionesRealizadas = 1007
+Public Const ID_EliminarArticulos = 1008
+Public Const ID_FacturacionElectronica = 1009
+
+Public Const ID_ErroresNrosFrasCliente = 1010
+Public Const ID_FrasPdtesContabilizar = 1011
+Public Const ID_UsuariosActivos = 1012
+Public Const ID_ConexionesActivas = 1013
 
 
 Public Const ID_InformeporNIF = 901
@@ -1009,7 +1027,7 @@ Public Const ID_Traspasodecuentasenapuntes = 1408
 Public Const ID_Renumerarregistrosproveedor = 1409
 Public Const ID_Aumentardígitoscontables = 1410
 Public Const ID_TraspasocodigosdeIVA = 1411
-Public Const ID_Accionesrealizadas = 1412
+'Public Const ID_AccionesRealizadas = 1412
 Public Const ID_ImportarFacturasCliente = 1413
 
 

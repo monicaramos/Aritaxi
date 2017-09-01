@@ -1891,19 +1891,13 @@ Private Sub LoadIcons()
 
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\help.png", ID_APP_ABOUT, xtpImageNormal
         
-        
-        
-   
     'Para que no carge imagen de ratios y graficas y punteo, no lo pongo aqui ya que los cargo "pequeños"
     '
-  
       
     'ICONOS PEQUEÑOS
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
             Array(ID_Clientes, ID_ClientesInactivos, ID_TiposCartas, ID_MotivosBajaEquipos, ID_TiposAveria, ID_FormasPago), xtpImageNormal
         
-    
-    
     
     'Pequeños
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
@@ -1933,14 +1927,39 @@ Private Sub LoadIcons()
         ID_ProvVarios, 1, ID_FacturacionSocios, ID_HistoricoUves, ID_AgentesCom, ID_Clientes, ID_TiposCartas, ID_TiposCartas, ID_Actividades, 1, ID_ContabFacturas, 1, 1, ID_Proveedores, ID_CartasSocios, _
         ID_Direcciones, ID_CartasProv, 1, ID_InfProveedores, 1, 1, ID_PedidosProv, 1, 1, ID_AlbAnuladosPro, ID_AlbProveedor, ID_HcoAlbxFra, 1, ID_ComprasProveedor, 1, _
         ID_TomaInventario, ID_ValoracionStocks, 1, ID_DtosProv, ID_VtasFamArt, ID_VtasMeses, ID_ContabFras, ID_Albaranes, 1, ID_FacturarClientes, ID_StocksMaxMin, 1, 1, 1, 1, _
-        ID_AlbxArt, ID_StocksFecha, ID_Accionesrealizadas, 1, ID_EntradaExisReal, 1, ID_ComprasFamxArt, ID_PedidosAnulados, ID_ListadoMovimientos, 1, 1, 1, 1, ID_AlbAnulados, 1, _
+        ID_AlbxArt, ID_StocksFecha, 1, 1, ID_EntradaExisReal, 1, ID_ComprasFamxArt, ID_PedidosAnulados, ID_ListadoMovimientos, 1, 1, 1, 1, ID_AlbAnulados, 1, _
         ID_ListadoDiferencias, ID_ReimprimirFras, ID_InfAlbxProv, ID_DetalleFra, ID_FactuVarClientes)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlook2013L_32x32.bmp", T, xtpImageNormal
 
     T = Array(ID_FrasRectifCli, ID_FrasRectifSocios, ID_HcoFrasClientes, ID_HcoFacturasSocios, ID_ReimprFrasSocios, ID_ContabFrasSocios, _
-        ID_HcoFrasCuotas, ID_ReimprFrasCuotas, ID_ContabFrasCuotas, ID_MtoAlbaranes, ID_PrevFacturacCuotas, ID_Facturacion, ID_FrasRectific)
+        1, 1, 1, 1)
     
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+
+    'cuotas
+    T = Array(1, ID_Facturacion, ID_PrevFacturacCuotas, ID_HcoFrasCuotas, ID_MtoAlbaranes, ID_ContabFrasCuotas, 1, ID_ReimprFrasCuotas, 1, ID_FrasRectific)
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+
+
+    'acciones comerciales
+    T = Array(1, 1, 1, ID_TiposAcciones, 1, 1, _
+        1, ID_GenerarAcciones, 1, ID_AccionesComer)
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+
+    ' UTILIDADES
+    T = Array(ID_FrasPdtesContabilizar, ID_Llamadas, ID_EliminarArticulos, ID_RevisarCaracteresEsp, ID_CopiaSeguridadLocal, ID_ErroresNrosFrasCliente, _
+        ID_BorreFrasMovimientos, ID_ConceptosLlamadas, ID_FacturacionElectronica, ID_BorreFrasMovimientos)
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+    T = Array(1, ID_UsuariosActivos, ID_Avisos, ID_AccionesRealizadas, ID_ConexionesActivas, 1, 1, 1, 1, 1)
+
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
 
 
@@ -1967,15 +1986,12 @@ Private Sub LoadIcons()
             Array(ID_Vehiculos, ID_Trabajadores _
                   ), xtpImageNormal
     
-
-
     'Pequeños
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
-            Array(1, ID_PrevFacturacion, ID_FacturacionAlb, ID_FacturasRect, ID_HcoAlbFra, ID_ReimprirFras, ID_NrosSerie, _
+            Array(ID_PrevFacturacion, ID_FacturacionAlb, ID_FacturasRect, ID_HcoAlbFra, ID_ReimprirFras, ID_NrosSerie, _
             ID_MotivosPdteRepara, ID_ServAsistenciaTecnica, _
             ID_InfPdteFacturar, ID_MatPdteRecibir _
             ), xtpImageNormal
-    
     
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
