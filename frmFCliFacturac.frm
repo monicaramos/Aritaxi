@@ -622,7 +622,7 @@ Dim b As Boolean
          numParam = 1
         
         
-        If vParamAplic.Cooperativa = 0 Then
+         If vParamAplic.Cooperativa = 0 Then
         
             If Not CargarTemporal2 Then
                 Screen.MousePointer = vbDefault
@@ -630,7 +630,7 @@ Dim b As Boolean
             End If
             
             If Not AnyadirAFormula(cadSelect, Tabla & ".codclien in (select codclien from tmpcrmclien where codusu = " & vUsu.Codigo & ")") Then Exit Sub
-        Else
+         Else
             
             'Desde/Hasta numero de cliente
             '---------------------------------------------
@@ -639,7 +639,7 @@ Dim b As Boolean
                 If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
             End If
         
-        End If
+         End If
            
          
          
@@ -1386,9 +1386,9 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     txtcodigo(2).Text = Date
 '    Text1(4).Text = vParamAplic.ConFactuPubli
@@ -1410,18 +1410,18 @@ Dim i As Integer
         Tabla = "shilla"
     End If
     
-    For i = 0 To imgAyuda.Count - 1
-        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
-    Next i
+    For I = 0 To imgAyuda.Count - 1
+        imgAyuda(I).Picture = frmppal.ImageListB.ListImages(10).Picture
+    Next I
     
-    Me.imgBuscar(0).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Me.imgBuscar(0).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     For kCampo = 3 To 5
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     
-    Me.imgFecha(2).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(2).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     For kCampo = 23 To 24
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
     
     Me.ChkAplicarFiltro.Enabled = (vParamAplic.Cooperativa = 0)
@@ -1440,7 +1440,7 @@ End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1513,7 +1513,7 @@ End Sub
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
     txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1574,18 +1574,18 @@ Dim EsNomCod As Boolean
             
         Case 0, 1 'cliente
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
             
         Case 3 ' forma de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
             
         Case 2 ' fecha de factura
             PonerFormatoFecha txtcodigo(Index)
              
         Case 5 'banco propio
             If PonerFormatoEntero(txtcodigo(5)) Then
-                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
+                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
             End If
            
     End Select
