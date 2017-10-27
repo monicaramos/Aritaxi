@@ -140,6 +140,9 @@ Private Sub cmdAceptar_Click()
             Mc = Mid(linea, I, 1)
             If Mc = ";" Then
                 i2 = i2 + 1
+                
+                campo = Replace(campo, """", "")
+                
                 Campos(i2) = campo
                 campo = ""
             Else
@@ -147,7 +150,7 @@ Private Sub cmdAceptar_Click()
             End If
         Next I
         i2 = i2 + 1
-        Campos(i2) = campo
+        Campos(i2) = Replace(campo, """", "")
         campo = ""
         '-- Asignar los campos?
         I = InStr(1, Campos(1), ".")
@@ -251,7 +254,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 End Sub
 
 Private Sub imgFich_Click(Index As Integer)

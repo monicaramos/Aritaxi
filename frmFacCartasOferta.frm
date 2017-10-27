@@ -661,8 +661,6 @@ Private nomRPT As String 'nombre del fichero .rpt a imprimir
 Private conSubRPT As Boolean 'si tiene subinformes para enlazarlos a las tablas correctas
 
 
-
-
 Private Sub chkVistaPrevia_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
@@ -742,7 +740,7 @@ Private Sub Form_Load()
 Dim I As Integer
 
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
 '    'ICONOS de La toolbar
 '    btnPrimero = 13 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
@@ -763,9 +761,9 @@ Dim I As Integer
     
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(5).Image = 1
         .Buttons(6).Image = 2
         .Buttons(1).Image = 3   'Anyadir
@@ -775,9 +773,9 @@ Dim I As Integer
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -795,10 +793,10 @@ Dim I As Integer
     
     LimpiarCampos   'Limpia los campos TextBox
     
-    Me.imgDoc(1).Picture = frmPpal.ImageListTPV.ListImages(8).Picture
+    Me.imgDoc(1).Picture = frmppal.ImageListTPV.ListImages(8).Picture
 
     For I = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
 
 

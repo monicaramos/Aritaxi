@@ -347,69 +347,112 @@ Begin VB.Form frmGesSocios
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame3(2)"
-      Tab(1).Control(1)=   "cmdAccCRM(0)"
-      Tab(1).Control(2)=   "cmdAccCRM(1)"
-      Tab(1).Control(3)=   "cmdAccCRM(2)"
-      Tab(1).Control(4)=   "lwCRM"
-      Tab(1).Control(5)=   "LabelCRM"
+      Tab(1).Control(0)=   "LabelCRM"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "lwCRM"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "cmdAccCRM(2)"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "cmdAccCRM(1)"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "cmdAccCRM(0)"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "Frame3(2)"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameToolAux0"
-      Tab(2).Control(1)=   "cmdAux(0)"
-      Tab(2).Control(2)=   "txtAux1(4)"
-      Tab(2).Control(3)=   "txtAux1(3)"
-      Tab(2).Control(4)=   "txtAux1(2)"
-      Tab(2).Control(5)=   "txtAux1(1)"
-      Tab(2).Control(6)=   "txtAux1(0)"
-      Tab(2).Control(7)=   "DataGrid1"
+      Tab(2).Control(0)=   "DataGrid1"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "txtAux1(0)"
+      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).Control(2)=   "txtAux1(1)"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "txtAux1(2)"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "txtAux1(3)"
+      Tab(2).Control(4).Enabled=   0   'False
+      Tab(2).Control(5)=   "txtAux1(4)"
+      Tab(2).Control(5).Enabled=   0   'False
+      Tab(2).Control(6)=   "cmdAux(0)"
+      Tab(2).Control(6).Enabled=   0   'False
+      Tab(2).Control(7)=   "FrameToolAux0"
+      Tab(2).Control(7).Enabled=   0   'False
       Tab(2).ControlCount=   8
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "FrameToolAux1"
-      Tab(3).Control(1)=   "cmdAux(1)"
-      Tab(3).Control(2)=   "txtAux2(4)"
-      Tab(3).Control(3)=   "cmdAux1"
+      Tab(3).Control(0)=   "DataGrid2"
+      Tab(3).Control(0).Enabled=   0   'False
+      Tab(3).Control(1)=   "txtAux2(0)"
+      Tab(3).Control(1).Enabled=   0   'False
+      Tab(3).Control(2)=   "txtAux2(1)"
+      Tab(3).Control(2).Enabled=   0   'False
+      Tab(3).Control(3)=   "txtAux2(2)"
+      Tab(3).Control(3).Enabled=   0   'False
       Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "txtAux2(2)"
-      Tab(3).Control(6)=   "txtAux2(1)"
-      Tab(3).Control(7)=   "txtAux2(0)"
-      Tab(3).Control(8)=   "DataGrid2"
+      Tab(3).Control(4).Enabled=   0   'False
+      Tab(3).Control(5)=   "cmdAux1"
+      Tab(3).Control(5).Enabled=   0   'False
+      Tab(3).Control(6)=   "txtAux2(4)"
+      Tab(3).Control(6).Enabled=   0   'False
+      Tab(3).Control(7)=   "cmdAux(1)"
+      Tab(3).Control(7).Enabled=   0   'False
+      Tab(3).Control(8)=   "FrameToolAux1"
+      Tab(3).Control(8).Enabled=   0   'False
       Tab(3).ControlCount=   9
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "FrameToolAux2"
-      Tab(4).Control(1)=   "cmdAux(2)"
-      Tab(4).Control(2)=   "txtAux3(2)"
-      Tab(4).Control(3)=   "txtAux3(1)"
-      Tab(4).Control(4)=   "txtAux3(0)"
-      Tab(4).Control(5)=   "Text3"
-      Tab(4).Control(6)=   "DataGrid4"
-      Tab(4).Control(7)=   "Label4"
+      Tab(4).Control(0)=   "Label4"
+      Tab(4).Control(0).Enabled=   0   'False
+      Tab(4).Control(1)=   "DataGrid4"
+      Tab(4).Control(1).Enabled=   0   'False
+      Tab(4).Control(2)=   "Text3"
+      Tab(4).Control(2).Enabled=   0   'False
+      Tab(4).Control(3)=   "txtAux3(0)"
+      Tab(4).Control(3).Enabled=   0   'False
+      Tab(4).Control(4)=   "txtAux3(1)"
+      Tab(4).Control(4).Enabled=   0   'False
+      Tab(4).Control(5)=   "txtAux3(2)"
+      Tab(4).Control(5).Enabled=   0   'False
+      Tab(4).Control(6)=   "cmdAux(2)"
+      Tab(4).Control(6).Enabled=   0   'False
+      Tab(4).Control(7)=   "FrameToolAux2"
+      Tab(4).Control(7).Enabled=   0   'False
       Tab(4).ControlCount=   8
       TabCaption(5)   =   "Documentos"
       TabPicture(5)   =   "frmGesSocios.frx":008C
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Text1(26)"
-      Tab(5).Control(1)=   "Toolbar2"
-      Tab(5).Control(2)=   "lw1"
+      Tab(5).Control(0)=   "LabelDoc"
+      Tab(5).Control(0).Enabled=   0   'False
+      Tab(5).Control(1)=   "imgFecha(3)"
+      Tab(5).Control(1).Enabled=   0   'False
+      Tab(5).Control(2)=   "Label3"
+      Tab(5).Control(2).Enabled=   0   'False
       Tab(5).Control(3)=   "Frame3(0)"
-      Tab(5).Control(4)=   "Label3"
-      Tab(5).Control(5)=   "imgFecha(3)"
-      Tab(5).Control(6)=   "LabelDoc"
+      Tab(5).Control(3).Enabled=   0   'False
+      Tab(5).Control(4)=   "lw1"
+      Tab(5).Control(4).Enabled=   0   'False
+      Tab(5).Control(5)=   "Toolbar2"
+      Tab(5).Control(5).Enabled=   0   'False
+      Tab(5).Control(6)=   "Text1(26)"
+      Tab(5).Control(6).Enabled=   0   'False
       Tab(5).ControlCount=   7
       TabCaption(6)   =   "Contadores"
       TabPicture(6)   =   "frmGesSocios.frx":00A8
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "FrameToolAux3"
-      Tab(6).Control(1)=   "txtAux4(0)"
+      Tab(6).Control(0)=   "DataGrid3"
+      Tab(6).Control(0).Enabled=   0   'False
+      Tab(6).Control(1)=   "txtAux4(2)"
+      Tab(6).Control(1).Enabled=   0   'False
       Tab(6).Control(2)=   "txtAux4(1)"
-      Tab(6).Control(3)=   "txtAux4(2)"
-      Tab(6).Control(4)=   "DataGrid3"
+      Tab(6).Control(2).Enabled=   0   'False
+      Tab(6).Control(3)=   "txtAux4(0)"
+      Tab(6).Control(3).Enabled=   0   'False
+      Tab(6).Control(4)=   "FrameToolAux3"
+      Tab(6).Control(4).Enabled=   0   'False
       Tab(6).ControlCount=   5
       Begin VB.Frame FrameToolAux3 
          Height          =   555
@@ -560,7 +603,7 @@ Begin VB.Form frmGesSocios
          TabIndex        =   17
          Tag             =   "Facturacion Electrónica|N|N|0|1|sclien|facturae|||"
          Top             =   2100
-         Width           =   2025
+         Width           =   2070
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -6495,7 +6538,7 @@ End Sub
 Private Sub CargaDatosLWDoc2()
 Dim Cad As String
 Dim RS As ADODB.Recordset
-Dim IT As ListItem
+Dim It As ListItem
 Dim ElIcono As Integer
 Dim GroupBy As String
 Dim EsDTOFam As Boolean
@@ -6557,25 +6600,25 @@ Dim EsDTOFam As Boolean
         Set RS = New ADODB.Recordset
         RS.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not RS.EOF
-            Set IT = lw1.ListItems.Add()
+            Set It = lw1.ListItems.Add()
             If lw1.ColumnHeaders(1).Tag <> "" Then
-            IT.Text = Format(RS.Fields(0), lw1.ColumnHeaders(1).Tag)
+            It.Text = Format(RS.Fields(0), lw1.ColumnHeaders(1).Tag)
             Else
-                IT.Text = RS.Fields(0)
+                It.Text = RS.Fields(0)
             End If
             'El resto de cmpos
             For NumRegElim = 2 To CInt(RecuperaValor(lw1.Tag, 2))
                 If IsNull(RS.Fields(NumRegElim - 1)) Then
-                    IT.SubItems(NumRegElim - 1) = " "
+                    It.SubItems(NumRegElim - 1) = " "
                 Else
                     If lw1.ColumnHeaders(NumRegElim).Tag <> "" Then
-                        IT.SubItems(NumRegElim - 1) = Format(RS.Fields(NumRegElim - 1), lw1.ColumnHeaders(NumRegElim).Tag)
+                        It.SubItems(NumRegElim - 1) = Format(RS.Fields(NumRegElim - 1), lw1.ColumnHeaders(NumRegElim).Tag)
                     Else
-                        IT.SubItems(NumRegElim - 1) = RS.Fields(NumRegElim - 1)
+                        It.SubItems(NumRegElim - 1) = RS.Fields(NumRegElim - 1)
                     End If
                 End If
             Next
-            IT.SmallIcon = ElIcono
+            It.SmallIcon = ElIcono
         
 '            'Para familia /dto
 '            If EsDTOFam Then
@@ -6763,7 +6806,7 @@ End Sub
 Private Sub CargaDatosLWcrm2()
 Dim Cad As String
 Dim RS As ADODB.Recordset
-Dim IT As ListItem
+Dim It As ListItem
 Dim ElIcono As Integer
 Dim GroupBy As String
 Dim Kopc As Byte
@@ -6826,21 +6869,21 @@ Dim MeteIT As Boolean
         End If
         
         If MeteIT Then
-                Set IT = lwCRM.ListItems.Add()
+                Set It = lwCRM.ListItems.Add()
                  
                 If lwCRM.ColumnHeaders(1).Tag <> "" Then
-                    IT.Text = Format(RS.Fields(0), lwCRM.ColumnHeaders(1).Tag)
+                    It.Text = Format(RS.Fields(0), lwCRM.ColumnHeaders(1).Tag)
                 Else
-                    IT.Text = RS.Fields(0)
+                    It.Text = RS.Fields(0)
                 End If
                 'El resto de cmpos
                 For NumRegElim = 2 To CInt(RecuperaValor(lwCRM.Tag, 2))
                     If IsNull(RS.Fields(NumRegElim - 1)) Then
-                        IT.SubItems(NumRegElim - 1) = " "
+                        It.SubItems(NumRegElim - 1) = " "
                     Else
                     
                         If lwCRM.ColumnHeaders(NumRegElim).Tag <> "" Then
-                            IT.SubItems(NumRegElim - 1) = Format(RS.Fields(NumRegElim - 1), lwCRM.ColumnHeaders(NumRegElim).Tag)
+                            It.SubItems(NumRegElim - 1) = Format(RS.Fields(NumRegElim - 1), lwCRM.ColumnHeaders(NumRegElim).Tag)
                         Else
                         
                             
@@ -6852,7 +6895,7 @@ Dim MeteIT As Boolean
                             End If
                             If NumRegElim = 3 And Kopc = 4 Then Cad = Replace(Cad, vbCrLf, " ")
                             
-                            IT.SubItems(NumRegElim - 1) = Cad
+                            It.SubItems(NumRegElim - 1) = Cad
                         
                             
                             
@@ -6861,17 +6904,17 @@ Dim MeteIT As Boolean
                 Next
                 'El icono
                 If Kopc = 1 Then
-                    IT.SmallIcon = 27
+                    It.SmallIcon = 27
                 ElseIf Kopc = 2 Then
 
                     If RS.Fields(1) = "Enviado" Then
-                        IT.SmallIcon = 28
+                        It.SmallIcon = 28
                     Else
-                        IT.SmallIcon = 29
+                        It.SmallIcon = 29
                     End If
                 Else
                     'el resto ponemos el del toolbar
-                    IT.SmallIcon = ElIcono
+                    It.SmallIcon = ElIcono
                 End If
         End If
         
@@ -6901,7 +6944,7 @@ Private Sub DevuelveMedio(ByRef Cad As String)
 End Sub
 
 
-Private Sub CalcularTotales(Cadena As String)
+Private Sub CalcularTotales(CADENA As String)
 Dim Importe  As Currency
 Dim Compleme As Currency
 Dim Penaliza As Currency
@@ -6911,7 +6954,7 @@ Dim Sql As String
 
     On Error Resume Next
     
-    Sql = Cadena ' "select sum(preciove) importe  from (" & CADENA & ") aaaaa"
+    Sql = CADENA ' "select sum(preciove) importe  from (" & CADENA & ") aaaaa"
     
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -6919,7 +6962,7 @@ Dim Sql As String
     Importe = 0
     Text3.Text = ""
     
-    If TotalRegistrosConsulta(Cadena) = 0 Then Exit Sub
+    If TotalRegistrosConsulta(CADENA) = 0 Then Exit Sub
     
     If Not RS.EOF Then
         If RS.Fields(0).Value <> 0 Then Importe = DBLet(RS.Fields(0).Value, "N") 'Solo es para saber que hay registros que mostrar

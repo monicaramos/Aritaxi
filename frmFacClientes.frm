@@ -1439,7 +1439,7 @@ Begin VB.Form frmFacClientes
             Width           =   2325
          End
          Begin VB.CheckBox chkPromociones 
-            Caption         =   "Aplicar Promociones"
+            Caption         =   "Sólo validados"
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   9.75
@@ -1450,11 +1450,11 @@ Begin VB.Form frmFacClientes
                Strikethrough   =   0   'False
             EndProperty
             Height          =   315
-            Left            =   3405
+            Left            =   3990
             TabIndex        =   50
             Tag             =   "Aplicar Promociones|N|N|||scliente|promocio||N|"
             Top             =   2250
-            Width           =   2325
+            Width           =   2505
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&

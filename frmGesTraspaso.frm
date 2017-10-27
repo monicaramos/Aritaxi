@@ -29,6 +29,7 @@ Begin VB.Form frmGesTraspaso
       TabIndex        =   17
       Tag             =   "Facturado|N|N|0|1|sclien|essocio|||"
       Top             =   1590
+      Value           =   1  'Checked
       Width           =   2895
    End
    Begin VB.Frame Frame2 

@@ -2139,7 +2139,10 @@ Dim NomLote As String
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
     
-    Sql = "Select codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) importe FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select shilla.codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) importe FROM " & QuitarCaracterACadena(cTabla, "_1")
+    
+    '[Monica]25/10/2017: para el caso de de solo validados
+    Sql = Sql & " inner join scliente on shilla.codclien = scliente.codclien "
     
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
@@ -2148,6 +2151,10 @@ Dim NomLote As String
         cWhere = Replace(cWhere, "[", "(")
         cWhere = Replace(cWhere, "]", ")")
         Sql = Sql & " WHERE " & cWhere
+        
+        '[Monica]25/10/2017: depediendo de si está marcado seleccionamos
+        Sql = Sql & " and if(scliente.promocio = 0,(1=1),shilla.validado = 1) "
+        
     End If
     
     Sql = Sql & " group by 1 having sum(if(impventa is null,0,impventa)) <> 0"
@@ -2422,7 +2429,7 @@ Dim NomLote As String
                 Sql4 = Sql4 & "dirllama,observa1,impventa,idservic,observac2,codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar) " '[Monica]03/10/2014: insertamos el destino
                                                                                                                                                     '[Monica]12/12/2014: faltaba insertar el codusuar
                 SqlLin = "select " & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "', @rownum:=@rownum+1 AS rownum, fecha, hora, codsocio, numeruve, "
-                SqlLin = SqlLin & " concat(dirllama,' ',numllama), observa2, impventa, idservic,  matricul, codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar from shilla,(SELECT @rownum:=0) r "  '[Monica]03/10/2014: insertamos el destino
+                SqlLin = SqlLin & " concat(coalesce(dirllama,''),' ',coalesce(numllama,'')), observa2, impventa, idservic,  matricul, codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar from shilla,(SELECT @rownum:=0) r "  '[Monica]03/10/2014: insertamos el destino
                 SqlLin = SqlLin & " where " & cWhere
                 SqlLin = SqlLin & " and codclien = " & DBSet(RSLineas!CodClien, "N") & " and facturadocliente = 0 and validado = 1 "
                 SqlLin = SqlLin & " order by fecha, hora "

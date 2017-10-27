@@ -1820,7 +1820,7 @@ Dim mCCC_CTa As String
 
 Dim vSocio As CSocio
 
-Dim i As Byte
+Dim I As Byte
 
     On Error GoTo EInsertarTesoreria
 
@@ -1876,7 +1876,7 @@ Dim i As Byte
                   
                   'Primer Vencimiento
                   '------------------------------------------------------------
-                  i = 1
+                  I = 1
                   'FECHA VTO
                   FecVenci = CDate(RsFact!FecFactu)
                   '=== Modificado: Laura 23/01/2007
@@ -1892,7 +1892,7 @@ Dim i As Byte
                       FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
                   End If
                  
-                  CadValues2 = CadValuesAux2 & i
+                  CadValues2 = CadValuesAux2 & I
                   CadValues2 = CadValues2 & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                   'IMPORTE del Vencimiento
@@ -1939,7 +1939,7 @@ Dim i As Byte
      
                   'Resto Vencimientos
                   '--------------------------------------------------------------------
-                  For i = 2 To rsVenci!numerove
+                  For I = 2 To rsVenci!numerove
                      'FECHA Resto Vencimientos
                       '==== Modificado: Laura 23/01/2007
                       'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -1954,7 +1954,7 @@ Dim i As Byte
                             FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
                       End If
     
-                      CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                      CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
     
                       'IMPORTE Resto de Vendimientos
                       ImpVenci = Round(RS!TotalFac / rsVenci!numerove, 2)
@@ -1985,7 +1985,7 @@ Dim i As Byte
                                 CadValues2 = CadValues2 & ")"
                             End If
                       End If
-                  Next i
+                  Next I
                 End If
                 
                 Set vSocio = Nothing
@@ -2121,7 +2121,7 @@ Dim FPagContado As String
         Sql = "insert into sfactusoc_serv (codtipom,codsocio,numfactu,fecfactu,numlinea,fecha,hora,numeruve,codclien,nomclien,dirllama,"
         Sql = Sql & " impventa,idservic,observac2,matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal) "  '[Monica]03/10/2014: insertamos el destino
         Sql = Sql & " select " & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
-        Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(dirllama,' ',numllama) , impcompr, idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
+        Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(coalesce(dirllama,''),' ',coalesce(numllama,'')) , impcompr, idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
         Sql = Sql & " from shilla left join scliente on shilla.codclien = scliente.codclien, (SELECT @rownum:=0) r "
     '[Monica]10/09/2014: cambiamos ahora los servicios son de la shilla
     '    SQL = SQL & " where (numeruve, fecfactu) in (select numeruve, fecfactu from sfactsoctr "

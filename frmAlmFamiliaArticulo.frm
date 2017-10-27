@@ -1140,13 +1140,13 @@ End Sub
 Private Sub Form_Load()
 Dim Im
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     If vParamAplic.Descriptores Then Me.Caption = "Categorias Art."
     
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(5).Image = 1
         .Buttons(6).Image = 2
         .Buttons(1).Image = 3   'Anyadir
@@ -1156,9 +1156,9 @@ Dim Im
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -1172,10 +1172,10 @@ Dim Im
 '    End With
     
     For Each Im In Me.imgBuscar
-        Im.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Im.Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     For Each Im In Me.imgCuentas
-        Im.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Im.Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     
     
@@ -1408,6 +1408,7 @@ Private Sub Text1_LostFocus(Index As Integer)
         
         ' ---- [19/10/2009] [LAURA]: añadir campo centro de coste familia
         Case 8: Me.Text2(Index).Text = PonerNombreCCoste(Me.Text1(Index))
+    
     End Select
 End Sub
 
@@ -1535,15 +1536,15 @@ End Sub
 
 
 Private Sub PonerCampos()
-Dim i As Byte
+Dim I As Byte
     
     If Data1.Recordset.EOF Then Exit Sub
     PonerCamposForma Me, Data1
     
     'poner la descripcion de las cuentas
-    For i = 2 To 7
-        Text2(i).Text = PonerNombreCuenta(Text1(i), Modo)
-    Next i
+    For I = 2 To 7
+        Text2(I).Text = PonerNombreCuenta(Text1(I), Modo)
+    Next I
         
     ' ---- [19/10/2009] [LAURA]: añadir campo centro de coste familia
     Me.Text2(8).Text = PonerNombreCCoste(Me.Text1(8))
@@ -1563,14 +1564,14 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim i As Integer
+Dim I As Integer
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '-------------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1757,17 +1758,17 @@ End Sub
 
 
 Private Sub TratarCtaContable()
-Dim i As Integer
+Dim I As Integer
 Dim CtaCreadas As String
-    For i = 2 To 7
-        If Text2(i).Text = vbCrearNuevaCta Then
-            If InStr(1, CtaCreadas, Text1(i).Text & "|") = 0 Then
-                InsertarCuentaCble Text1(i).Text, "", "", Text1(1).Text
-                CtaCreadas = CtaCreadas & Text1(i).Text & "|"
+    For I = 2 To 7
+        If Text2(I).Text = vbCrearNuevaCta Then
+            If InStr(1, CtaCreadas, Text1(I).Text & "|") = 0 Then
+                InsertarCuentaCble Text1(I).Text, "", "", Text1(1).Text
+                CtaCreadas = CtaCreadas & Text1(I).Text & "|"
             End If
-            Text2(i).Text = Text1(1).Text
+            Text2(I).Text = Text1(1).Text
         End If
-    Next i
+    Next I
 End Sub
 
 
