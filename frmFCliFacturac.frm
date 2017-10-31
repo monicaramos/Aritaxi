@@ -2143,7 +2143,7 @@ Dim NomLote As String
     
     '[Monica]25/10/2017: para el caso de de solo validados
     Sql = Sql & " inner join scliente on shilla.codclien = scliente.codclien "
-    
+
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
@@ -2154,7 +2154,7 @@ Dim NomLote As String
         
         '[Monica]25/10/2017: depediendo de si está marcado seleccionamos
         Sql = Sql & " and if(scliente.promocio = 0,(1=1),shilla.validado = 1) "
-        
+
     End If
     
     Sql = Sql & " group by 1 having sum(if(impventa is null,0,impventa)) <> 0"

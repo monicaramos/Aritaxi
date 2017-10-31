@@ -392,9 +392,9 @@ Dim ConexionContaOk As Boolean
 Dim CambiaConta As Boolean
 ' ====
 
-    If txtcodigo(0).Text = "" Then
+    If txtCodigo(0).Text = "" Then
         MsgBox "No ha introducido la Fecha de Recepción. Revise.", vbExclamation
-        PonerFoco txtcodigo(0)
+        PonerFoco txtCodigo(0)
         Exit Sub
     End If
 
@@ -430,10 +430,10 @@ Dim CambiaConta As Boolean
         'que guardamos en vbles Orden1,Orden2
         
         'fechaini del ejercicio de la conta
-        If txtcodigo(31).Text = "" Then txtcodigo(31).Text = Orden1
+        If txtCodigo(31).Text = "" Then txtCodigo(31).Text = Orden1
      
         'fecha fin del ejercicio de la conta
-        If txtcodigo(32).Text = "" Then txtcodigo(32).Text = Orden2
+        If txtCodigo(32).Text = "" Then txtCodigo(32).Text = Orden2
      
         'Comprobar que el intervalo de fechas D/H esta dentro del ejercicio de la
         'contabilidad par ello mirar en la BD de la Conta los parámetros
@@ -441,7 +441,7 @@ Dim CambiaConta As Boolean
         If Not ComprobarFechasConta(32) Then Exit Sub
     
     
-    devuelve = CadenaDesdeHasta(txtcodigo(31).Text, txtcodigo(32).Text, Codigo, "F", "Fecha Factura")
+    devuelve = CadenaDesdeHasta(txtCodigo(31).Text, txtCodigo(32).Text, Codigo, "F", "Fecha Factura")
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
     'Parametro D/H Fecha
     If devuelve <> "" And param <> "" Then
@@ -451,7 +451,7 @@ Dim CambiaConta As Boolean
     
     
     '- cadena para select en BDatos
-    cadSelect = CadenaDesdeHastaBD(txtcodigo(31).Text, txtcodigo(32).Text, Codigo, "F")
+    cadSelect = CadenaDesdeHastaBD(txtCodigo(31).Text, txtCodigo(32).Text, Codigo, "F")
     
     
     '== Cadena para seleccion Desde y Hasta NºFactura ==
@@ -532,7 +532,7 @@ On Error GoTo EComprobar
 
     ComprobarFechasConta = False
     
-    If txtcodigo(Ind).Text <> "" Then
+    If txtCodigo(Ind).Text <> "" Then
         FechaIni = "Select fechaini,fechafin From parametros"
         Set RS = New ADODB.Recordset
         RS.Open FechaIni, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -549,12 +549,12 @@ On Error GoTo EComprobar
             Orden1 = FechaIni
             Orden2 = FechaFin
         
-            If Not EntreFechas(FechaIni, txtcodigo(Ind).Text, FechaFin) Then
+            If Not EntreFechas(FechaIni, txtCodigo(Ind).Text, FechaFin) Then
                  Cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
                  Cad = Cad & "    Desde: " & FechaIni & vbCrLf
                  Cad = Cad & "    Hasta: " & FechaFin
                  MsgBox Cad, vbExclamation
-                 txtcodigo(Ind).Text = ""
+                 txtCodigo(Ind).Text = ""
             Else
                 ComprobarFechasConta = True
             End If
@@ -600,12 +600,12 @@ Dim CCoste2 As Byte
     'comprobar que se han rellenado los dos campos de fecha
     'sino rellenar con fechaini o fechafin del ejercicio
     'que guardamos en vbles Orden1,Orden2
-    If txtcodigo(31).Text = "" Then
-       txtcodigo(31).Text = vEmpresa.FechaIni  'fechaini del ejercicio de la conta
+    If txtCodigo(31).Text = "" Then
+       txtCodigo(31).Text = vEmpresa.FechaIni  'fechaini del ejercicio de la conta
     End If
 
-    If txtcodigo(32).Text = "" Then
-       txtcodigo(32).Text = vEmpresa.FechaFin  'fecha fin del ejercicio de la conta
+    If txtCodigo(32).Text = "" Then
+       txtCodigo(32).Text = vEmpresa.FechaFin  'fecha fin del ejercicio de la conta
     End If
 
      
@@ -620,7 +620,7 @@ Dim CCoste2 As Byte
     'La comprobacion solo lo hago para facturas nuestras, ya que mas adelante
     'el programa hara cdate(text1(31) cuando contabilice las facturas y dara error de tipos
     If cadTabla = "scafaccli" Then
-        If Me.txtcodigo(31).Text = "" Then
+        If Me.txtCodigo(31).Text = "" Then
             MsgBox "Fecha inicio incorrecta", vbExclamation
             Exit Function
         End If
@@ -631,7 +631,7 @@ Dim CCoste2 As Byte
     'comprobar si existen en Aritaxi facturas anteriores al periodo solicitado
     'sin contabilizar.
     
-    If Me.txtcodigo(31).Text <> "" Then 'anteriores a fechadesde
+    If Me.txtCodigo(31).Text <> "" Then 'anteriores a fechadesde
         Sql = "SELECT COUNT(*) FROM " & cadTabla
         If Me.OptClientes.Value Then
             Sql = Sql & " WHERE codtipom='FAC' and "
@@ -643,7 +643,7 @@ Dim CCoste2 As Byte
             End If
         End If
         Sql = Sql & "fecfactu <"
-        Sql = Sql & DBSet(txtcodigo(31), "F") & " AND intconta=0 "
+        Sql = Sql & DBSet(txtCodigo(31), "F") & " AND intconta=0 "
         
         
         
@@ -699,9 +699,9 @@ Dim CCoste2 As Byte
 '        Sql = "anofaccl>=" & Year(txtCodigo(31).Text) & " AND anofaccl<= " & Year(txtCodigo(32).Text)
 
         If vParamAplic.ContabilidadNueva Then
-            Sql = "anofactu>=" & Year(txtcodigo(0).Text) & " AND anofactu<= " & Year(txtcodigo(0).Text)
+            Sql = "anofactu>=" & Year(txtCodigo(0).Text) & " AND anofactu<= " & Year(txtCodigo(0).Text)
         Else
-            Sql = "anofaccl>=" & Year(txtcodigo(0).Text) & " AND anofaccl<= " & Year(txtcodigo(0).Text)
+            Sql = "anofaccl>=" & Year(txtCodigo(0).Text) & " AND anofaccl<= " & Year(txtCodigo(0).Text)
         End If
         b = ComprobarNumFacturas_new(cadTabla, Sql)
         IncrementarProgres Me.ProgressBar1, 20
@@ -1159,11 +1159,11 @@ End Sub
 Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     
-     If txtcodigo(indD).Text <> "" Then
-        Cad = Cad & "desde " & txtcodigo(indD).Text
+     If txtCodigo(indD).Text <> "" Then
+        Cad = Cad & "desde " & txtCodigo(indD).Text
      End If
-    If txtcodigo(indH).Text <> "" Then
-        Cad = Cad & "  hasta " & txtcodigo(indH).Text
+    If txtCodigo(indH).Text <> "" Then
+        Cad = Cad & "  hasta " & txtCodigo(indH).Text
     End If
     
     AnyadirParametroDH = Cad
@@ -1177,7 +1177,7 @@ Private Function PasarFacturasAContab(cadTabla As String, miCC As Byte) As Boole
 Dim Sql As String
 Dim RS As ADODB.Recordset
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 Dim NumFactu As Integer
 Dim Codigo1 As String
 Dim cContaFra As cContabilizarFacturas
@@ -1266,7 +1266,7 @@ Dim cContaFra As cContabilizarFacturas
         End If
             
         RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
-        i = 1
+        I = 1
 
         b = True
         
@@ -1293,10 +1293,10 @@ Dim cContaFra As cContabilizarFacturas
             '----
             
             IncrementarProgres Me.ProgressBar1, 1
-            Me.lblProgess(1).Caption = "Insertando Facturas en Contabilidad...   (" & i & " de " & NumFactu & ")"
+            Me.lblProgess(1).Caption = "Insertando Facturas en Contabilidad...   (" & I & " de " & NumFactu & ")"
             Me.Refresh
             DoEvents
-            i = i + 1
+            I = I + 1
             RS.MoveNext   'Siguiente factura
         Wend
         
@@ -1323,7 +1323,7 @@ Dim cadMen As String
 Dim Sql As String
 Dim Mc As Contadores
 Dim vLlevaRetencion As Boolean
-Dim i As Integer
+Dim I As Integer
 
     On Error GoTo EContab
 
@@ -1446,7 +1446,7 @@ Dim SQLaux As String
 Dim SQL2 As String
 Dim RS As ADODB.Recordset
 Dim Cad As String, Aux As String
-Dim i As Byte
+Dim I As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
 Dim LineaCentroCoste As Boolean
@@ -1471,7 +1471,7 @@ Dim CtaReten As String
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
     Cad = ""
-    i = 1
+    I = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
@@ -1487,7 +1487,7 @@ Dim CtaReten As String
         Sql = ""
         SQL2 = ""
         
-        Sql = numRegis & "," & Year(CDate(txtcodigo(0).Text)) & "," & i & ","
+        Sql = numRegis & "," & Year(CDate(txtCodigo(0).Text)) & "," & I & ","
         Sql = Sql & DBSet(vParamAplic.CtaLiquidacion, "T")
         
         SQL2 = Sql & "," 'nos guardamos la linea sin el importe por si a la última hay q descontarle para q coincida con total factura
@@ -1501,7 +1501,7 @@ Dim CtaReten As String
         
         Cad = Cad & "(" & Sql & ")" & ","
         
-        i = i + 1
+        I = I + 1
         
         'calculo la cuenta
         Socio = RS!codSocio
@@ -1510,15 +1510,15 @@ Dim CtaReten As String
     
         ' las retenciones si las hay
         If RS!impreten <> 0 Then
-            Sql = numRegis & "," & AnyoFacPr & "," & i & ","
+            Sql = numRegis & "," & AnyoFacPr & "," & I & ","
             Sql = Sql & DBSet(cuenta, "T")
             Sql = Sql & "," & DBSet(RS!impreten, "N") & ","
             Sql = Sql & ValorNulo ' no llevan centro de coste
             
             Cad = Cad & "(" & Sql & ")" & ","
-            i = i + 1
+            I = I + 1
             
-            Sql = numRegis & "," & AnyoFacPr & "," & i & ","
+            Sql = numRegis & "," & AnyoFacPr & "," & I & ","
             
             CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
             
@@ -1528,7 +1528,7 @@ Dim CtaReten As String
             Sql = Sql & ValorNulo ' no llevan centro de coste
             
             Cad = Cad & "(" & Sql & ")" & ","
-            i = i + 1
+            I = I + 1
         End If
         
     End If
@@ -1570,7 +1570,7 @@ Dim SQLaux As String
 Dim SQL2 As String
 Dim RS As ADODB.Recordset
 Dim Cad As String, Aux As String
-Dim i As Byte
+Dim I As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
 Dim LineaCentroCoste As Boolean
@@ -1595,7 +1595,7 @@ Dim CtaReten As String
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
     Cad = ""
-    i = 1
+    I = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
@@ -1612,7 +1612,7 @@ Dim CtaReten As String
         SQL2 = ""
         
         
-        Sql = DBSet(SerieFraPro, "T") & "," & numRegis & "," & DBSet(txtcodigo(0).Text, "F") & "," & Year(CDate(txtcodigo(0).Text)) & "," & i & ","
+        Sql = DBSet(SerieFraPro, "T") & "," & numRegis & "," & DBSet(txtCodigo(0).Text, "F") & "," & Year(CDate(txtCodigo(0).Text)) & "," & I & ","
         
         Sql = Sql & DBSet(vParamAplic.CtaLiquidacion, "T")
         
@@ -1635,7 +1635,7 @@ Dim CtaReten As String
         
         Cad = Cad & "(" & Sql & ")" & ","
         
-        i = i + 1
+        I = I + 1
         
     End If
     RS.Close
@@ -1717,16 +1717,16 @@ Dim CtaReten As String
         Set vSocio = New CSocio
         If vSocio.LeerDatos(Socio) Then
         
-            If Mc.ConseguirContador("1", (CDate(txtcodigo(0).Text) <= CDate(FechaFin) - 365), True) = 0 Then            'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
+            If Mc.ConseguirContador("1", (CDate(txtCodigo(0).Text) <= CDate(FechaFin) - 365), True) = 0 Then            'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
                 
                 vCF.NumeroFactura = Mc.Contador
-                vCF.Anofac = Year(CDate(txtcodigo(0).Text))
+                vCF.Anofac = Year(CDate(txtCodigo(0).Text))
                 
                 DtoPPago = 0
                 DtoGnral = 0
                 BaseImp = RS!BaseIVA1
                 TotalFac = RS!TotalFac
-                AnyoFacPr = Year(CDate(txtcodigo(0).Text)) 'Year(RS!FecFactu)
+                AnyoFacPr = Year(CDate(txtCodigo(0).Text)) 'Year(RS!FecFactu)
                 
                 Nulo2 = "N"
                 Nulo3 = "N"
@@ -1736,8 +1736,8 @@ Dim CtaReten As String
                 
                 Sql = ""
                 If vParamAplic.ContabilidadNueva Then Sql = "'" & SerieFraPro & "',"
-                Sql = Sql & Mc.Contador & "," & DBSet(RS!FecFactu, "F") & "," & AnyoFacPr & "," & DBSet(txtcodigo(0).Text, "F")
-                If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(txtcodigo(0).Text, "F") ' fecha de liquidacion
+                Sql = Sql & Mc.Contador & "," & DBSet(RS!FecFactu, "F") & "," & AnyoFacPr & "," & DBSet(txtCodigo(0).Text, "F")
+                If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(txtCodigo(0).Text, "F") ' fecha de liquidacion
                 Sql = Sql & "," & DBSet(NumFactura, "T") & "," & DBSet(cuenta, "T") & ","
                 
     '[Monica]13/05/2011: quieren que ponga LIQUID.SOCIOS
@@ -1800,7 +1800,7 @@ Dim CtaReten As String
                     'para las lineas
                     'factpro_totales(numserie,numregis,fecharec,anofactu,numlinea,baseimpo,codigiva,porciva,porcrec,impoiva,imporec)
                     'IVA 1, siempre existe
-                    Aux = "'" & SerieFraPro & "'," & Mc.Contador & "," & DBSet(txtcodigo(0).Text, "F") & "," & AnyoFacPr & ","
+                    Aux = "'" & SerieFraPro & "'," & Mc.Contador & "," & DBSet(txtCodigo(0).Text, "F") & "," & AnyoFacPr & ","
                     
                     SQL2 = Aux & "1," & DBSet(RS!BaseIVA1, "N") & "," & DBSet(RS!codiiva1, "N") & "," & DBSet(RS!porciva1, "N") & ","
                     SQL2 = SQL2 & ValorNulo & "," & DBSet(RS!impoiva1, "N") & "," & ValorNulo
@@ -1814,7 +1814,12 @@ Dim CtaReten As String
                     If DBLet(RS!porcreten, "N") <> 0 Then
                         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
                         
-                        CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
+                        '[Monica]31/10/2017: si es radio solo tiene una cta de retencion(gastos), no una por socio como tele
+                        If vParam.CifEmpresa = "B98877806" Then ' para el caso de radio
+                            CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(0, FormatSocio))
+                        Else
+                            CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
+                        End If
                     
                         Sql = Sql & DBSet(RS!porcreten, "N") & "," & DBSet(RS!impreten, "N") & "," & DBSet(CtaReten, "T") & ",1"
                     Else
@@ -1863,11 +1868,11 @@ End Sub
 
 Private Sub Form_Load()
 
-    txtcodigo(0).Text = Date
+    txtCodigo(0).Text = Date
 
 
-    txtcodigo(31).Text = Date
-    txtcodigo(32).Text = Date
+    txtCodigo(31).Text = Date
+    txtCodigo(32).Text = Date
     
     'Icono del form
     Me.Icon = frmppal.Icon
@@ -1903,27 +1908,27 @@ Dim indice As Byte
     Select Case Index
         Case 0
             indice = 0
-            PonerFormatoFecha txtcodigo(indice)
-            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
+            PonerFormatoFecha txtCodigo(indice)
+            If txtCodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(indice).Text)
         Case 4
             indice = 31
-            PonerFormatoFecha txtcodigo(indice)
-            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
+            PonerFormatoFecha txtCodigo(indice)
+            If txtCodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(indice).Text)
         Case 5
             indice = 32
-            PonerFormatoFecha txtcodigo(indice)
-            If txtcodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indice).Text)
+            PonerFormatoFecha txtCodigo(indice)
+            If txtCodigo(indice).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(indice).Text)
     End Select
     frmCal.Show vbModal
     If IsDate(Fecha) Then
-        txtcodigo(indice) = Fecha
+        txtCodigo(indice) = Fecha
     End If
     Set frmCal = Nothing
-    PonerFoco txtcodigo(indice)
+    PonerFoco txtCodigo(indice)
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1947,12 +1952,12 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 
     Select Case Index
         Case 0, 31
-            If txtcodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtCodigo(Index)
             End If
         Case 32
-            If txtcodigo(Index).Text <> "" Then
-                PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text <> "" Then
+                PonerFormatoFecha txtCodigo(Index)
             End If
     End Select
 End Sub

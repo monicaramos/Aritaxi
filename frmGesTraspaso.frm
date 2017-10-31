@@ -667,8 +667,9 @@ Dim cadTabla As String
                         
                         Sql = "select count(*) from shilla where fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H") & " and numeruve = " & DBSet(RS!NumerUve, "N") & " and (facturad=1 and abonados=1 and validado=1)"
                         If TotalRegistros(Sql) <> 0 Then
+                            '[Monica]31/10/2017: los marco como 2 para no mostrarlos
                             'esta entonces es repetido
-                            Sql = "UPDATE tmptaxi set error1=1,error='Registro duplicado' where id=" & RS!Id
+                            Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & RS!Id
                             conn.Execute Sql
                         End If
                         RS.MoveNext
