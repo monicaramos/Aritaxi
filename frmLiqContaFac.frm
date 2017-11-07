@@ -716,8 +716,13 @@ Dim CCoste2 As Byte
     If cadTabla = "sfactusoc" Then
         b = ComprobarCtaContable_local(cadTabla, cadWHERE)
         
-        If b Then b = ComprobarCtaContable_Reten(cadTabla, cadWHERE)
-    
+        If b Then
+            'MsgBox vParam.CifEmpresa, vbExclamation
+            If Trim(vParam.CifEmpresa) <> "B98877806" Then
+                b = ComprobarCtaContable_Reten(cadTabla, cadWHERE)
+            End If
+        End If
+        
         'comprobar que todas las CUENTAS de venta de la familia de los articulos que vamos a
         'contabilizar existen en la Conta: sfamia.ctaventa IN (conta.cuentas.codmacta)
         '-----------------------------------------------------------------------------
@@ -1815,13 +1820,16 @@ Dim CtaReten As String
                         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
                         
                         '[Monica]31/10/2017: si es radio solo tiene una cta de retencion(gastos), no una por socio como tele
-                        If vParam.CifEmpresa = "B98877806" Then ' para el caso de radio
+                        If Trim(vParam.CifEmpresa) = "B98877806" Then ' para el caso de radio
                             CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(0, FormatSocio))
+                        
+                            Sql = Sql & DBSet(RS!porcreten, "N") & "," & DBSet(RS!impreten, "N") & "," & DBSet(CtaReten, "T") & ",0"
                         Else
                             CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
+                            
+                            Sql = Sql & DBSet(RS!porcreten, "N") & "," & DBSet(RS!impreten, "N") & "," & DBSet(CtaReten, "T") & ",1"
                         End If
                     
-                        Sql = Sql & DBSet(RS!porcreten, "N") & "," & DBSet(RS!impreten, "N") & "," & DBSet(CtaReten, "T") & ",1"
                     Else
                         Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0"
                     End If

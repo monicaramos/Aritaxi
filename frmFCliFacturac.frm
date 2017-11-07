@@ -688,8 +688,10 @@ Dim b As Boolean
             '[Monica]13/11/2014: solo para teletaxi, solo se facturan los servicios validados
             If vParamAplic.Cooperativa = 0 Then
                 ' solo servicios validados
-                If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".validado} = 1") Then Exit Sub
-                If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".validado} = 1") Then Exit Sub
+                
+'[Monica]03/11/2017: lo miramos en la ficha del cliente
+'                If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".validado} = 1") Then Exit Sub
+'                If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".validado} = 1") Then Exit Sub
             End If
          Else
             If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".facturado} = 0") Then Exit Sub
@@ -2428,10 +2430,12 @@ Dim NomLote As String
                 Sql4 = "insert into scafaccli_serv (codtipom,numfactu,fecfactu,numlinea,fecha,hora,codsocio,numeruve,"
                 Sql4 = Sql4 & "dirllama,observa1,impventa,idservic,observac2,codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar) " '[Monica]03/10/2014: insertamos el destino
                                                                                                                                                     '[Monica]12/12/2014: faltaba insertar el codusuar
-                SqlLin = "select " & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "', @rownum:=@rownum+1 AS rownum, fecha, hora, codsocio, numeruve, "
-                SqlLin = SqlLin & " concat(coalesce(dirllama,''),' ',coalesce(numllama,'')), observa2, impventa, idservic,  matricul, codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar from shilla,(SELECT @rownum:=0) r "  '[Monica]03/10/2014: insertamos el destino
+                SqlLin = "select " & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "', @rownum:=@rownum+1 AS rownum, fecha, hora, shilla.codsocio, shilla.numeruve, "
+                SqlLin = SqlLin & " concat(coalesce(shilla.dirllama,''),' ',coalesce(shilla.numllama,'')), observa2, shilla.impventa, shilla.idservic,  shilla.matricul, shilla.codclien, shilla.destino, shilla.codautor, shilla.licencia, shilla.fecfinal, shilla.horfinal, shilla.codusuar from shilla,(SELECT @rownum:=0) r, scliente "  '[Monica]03/10/2014: insertamos el destino
                 SqlLin = SqlLin & " where " & cWhere
-                SqlLin = SqlLin & " and codclien = " & DBSet(RSLineas!CodClien, "N") & " and facturadocliente = 0 and validado = 1 "
+                '?????????
+                SqlLin = SqlLin & " and shilla.codclien = " & DBSet(RSLineas!CodClien, "N") & " and facturadocliente = 0 " 'and validado = 1 "
+                SqlLin = SqlLin & " and if(scliente.promocio = 0,(1=1),shilla.validado = 1) and shilla.codclien = scliente.codclien "
                 SqlLin = SqlLin & " order by fecha, hora "
                 
                 
