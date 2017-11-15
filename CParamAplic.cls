@@ -109,6 +109,7 @@ Private mvarArtCuotaExtraor As String
 
 Private mvarArtRetenciones As String 'Articulo para la factura de retenciones
 
+Private mvarArtSuplidos As String 'Articulo de suplidos para factura de liquidacion de socios y de cliente
 
 
 
@@ -1221,13 +1222,21 @@ Public Property Get ArtRetenciones() As String
      ArtRetenciones = mvarArtRetenciones
 End Property
 
+
+'[Monica]13/11/2017: articulo de suplidos
+Public Property Let ArtSuplidos(ByVal vData As String)
+     mvarArtSuplidos = vData
+End Property
+
+Public Property Get ArtSuplidos() As String
+     ArtSuplidos = mvarArtSuplidos
+End Property
+
+
 '[Monica]02/05/2017: si hay contabilidad nueva
 Public Property Get ContabilidadNueva() As Boolean
      ContabilidadNueva = mvarContabilidadNueva
 End Property
-
-
-
 
 
 
@@ -1436,7 +1445,8 @@ On Error GoTo Err3
         
         mvarContabilidadNueva = (DBLet(RS!nuevacontabilidad, "N") = 1)
         
-        
+        '[Monica]13/11/2017: articulo de suplidos
+        mvarArtSuplidos = DBLet(RS!ArtSuplidos, "T") ' articulo de suplidos
         
         
         Leer = 0
@@ -1650,6 +1660,8 @@ On Error GoTo EModificar
     ' Articulo de retenciones
     Sql = Sql & ", artretenciones= " & DBSet(mvarArtRetenciones, "T")
     
+    ' Articulo de suplidos
+    Sql = Sql & ", artsuplidos= " & DBSet(mvarArtSuplidos, "T")
     
     
     'where

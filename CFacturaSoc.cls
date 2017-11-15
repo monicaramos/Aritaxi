@@ -60,6 +60,7 @@ Private mCtaPrev As String 'Cuenta prevista de pago
 
 Private mConcepto As String 'Concepto de publicidad
 
+Private mSuplidos As Currency   'suplidos
 
 'DAVID###
 '[Monica]22/11/2013: iban
@@ -346,6 +347,20 @@ Public Property Get ImpIVA1() As Currency
      ImpIVA1 = mImpoiva1
 End Property
 
+
+'**** Suplidos
+
+Public Property Let Suplidos(ByVal vData As Currency)
+     mSuplidos = vData
+End Property
+
+Public Property Get Suplidos() As Currency
+     Suplidos = mSuplidos
+End Property
+
+
+
+
 '**** Total Factura
 
 Public Property Let TotalFac(ByVal vData As Currency)
@@ -474,7 +489,7 @@ Dim CADENA As String
     On Error GoTo ELeer
     
     LeerDatos3 = False
-    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac FROM sfactusoc "
+    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac, suplidos FROM sfactusoc "
     Sql = Sql & " WHERE codSocio=" & vCodsocio
     Sql = Sql & " AND numfactu=" & vNumfactu & ""
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
@@ -493,6 +508,9 @@ Dim CADENA As String
         mCodForpa = CStr(RS!codforpa)
         mBrutofac = CStr(RS!BaseIVA1)
         mTotalfac = CStr(RS!TotalFac)
+        '[Monica]14/11/2017: columan nueva de suplidos
+        mSuplidos = CStr(RS!Suplidos)
+        
         'obterner la ctaCble del proveedor
         'CtaSocio = DevuelveDesdeBDNew(conAri, "sclien", "codmacta", "codclien", vCodSocio, "N")
         CADENA = String(vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior, "0")
@@ -560,7 +578,7 @@ Dim CADENA As String
     On Error GoTo ELeer
     
     LeerDatosLiq = False
-    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac FROM sfactusoc "
+    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac, suplidos FROM sfactusoc "
     Sql = Sql & " WHERE codSocio=" & vCodsocio
     Sql = Sql & " AND numfactu=" & vNumfactu & ""
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
@@ -579,6 +597,9 @@ Dim CADENA As String
         mCodForpa = CStr(RS!codforpa)
         mBrutofac = CStr(RS!BaseIVA1)
         mTotalfac = CStr(RS!TotalFac)
+        '[Monica]14/11/2017: añadidos los suplidos
+        mSuplidos = CStr(RS!Suplidos)
+        
         mTipoMov = CStr(vCodtipom)
         
         SQL2 = "select iban, codbanco, codsucur, digcontr, cuentaba from sclien where codclien = " & DBSet(RS!codSocio, "N")
@@ -1298,6 +1319,9 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
     'TOTAL de la factura
     TotalFac = BaseIVA1 + ImpIVA1
     If PorRet > 0 And ImpRet2 <> 0 Then TotalFac = TotalFac - ImpRet2
+    
+    
+    
     
     CalcularDatosFacturaLiq = True
     

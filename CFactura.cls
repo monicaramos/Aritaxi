@@ -1128,7 +1128,7 @@ Dim CadValues3 As String
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single 'importe para insertar en la svenci
 Dim ImpVenci2 As Single 'importe para insertar en conta.scobro
-Dim i As Byte
+Dim I As Byte
 Dim TotalFactura2 As Currency   'Por si acaso lleva aportacion al terminal
 '1 Julio 2009. Los graba en scobro
 Dim CadenaDatosFiscales As String
@@ -1223,7 +1223,7 @@ Dim vvIban As String
                 '                    Añadire a la cadena fija esta los valores de textcsb41,txcs
                 CadValuesAuxConta = CadValuesAuxConta & vTextosCSB & ","
                 '-------- Primer Vencimiento
-                i = 1
+                I = 1
                 'FECHA VTO
                 FecVenci = CDate(FecFactu)
                 '=== Laura 23/01/2007
@@ -1243,8 +1243,8 @@ Dim vvIban As String
                 End If
                 
                 'Comprobar si cliente tiene dia de vencimiento atrasado
-                CadValues = cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                CadValues2 = CadValuesAuxConta & i & ", "
+                CadValues = cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                CadValues2 = CadValuesAuxConta & I & ", "
                 CadValues2 = CadValues2 & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                 
                 'IMPORTE del Vencimiento
@@ -1291,7 +1291,7 @@ Dim vvIban As String
                 
                 'Resto Vencimientos
                 '--------------------------------------------------------------------
-                For i = 2 To rsVenci!numerove
+                For I = 2 To rsVenci!numerove
                    'FECHA Resto Vencimientos
                     '=== Laura 23/01/2007
                     'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -1309,8 +1309,8 @@ Dim vvIban As String
                         FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
                     End If
                         
-                    CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues = CadValues & ", " & cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                     'IMPORTE Resto de Vendimientos
                     ImpVenci = Round2(TotalFactura2 / rsVenci!numerove, 2)
@@ -1338,14 +1338,14 @@ Dim vvIban As String
                            CadValues2 = CadValues2 & ")"
                         End If
                     End If
-                Next i
+                Next I
                 
                 '--- Cheque regalo: laura 1/12/2006   y/o    Aportacion terminal
                 'si hay cheque regalo insertar una linea más para la forma de pago correspondiente y el importe del cheque
                 If ImpCheque > 0 Then
                 
                     
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & "," & DBSet(codmacta, "T") & ", " & vParamAplic.ForPagoChequeRegalo & ", "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & "," & DBSet(codmacta, "T") & ", " & vParamAplic.ForPagoChequeRegalo & ", "
                     
                     'FECHA VTO
                     CadValuesAuxConta = "primerve"
@@ -1394,7 +1394,7 @@ Dim vvIban As String
                    'Montamos EL SQL para el cobro de la aportacion al termina
                     'ForPago
                     
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ",'" & vParamAplic.ctaAportacion & "', " & ForPago & ", "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ",'" & vParamAplic.ctaAportacion & "', " & ForPago & ", "
                     
                     
                     CadValuesAuxConta = "primerve"
@@ -1521,7 +1521,7 @@ Dim CadValues3 As String
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single 'importe para insertar en la svenci
 Dim ImpVenci2 As Single 'importe para insertar en conta.scobro
-Dim i As Byte
+Dim I As Byte
 Dim TotalFactura2 As Currency   'Por si acaso lleva aportacion al terminal
 '1 Julio 2009. Los graba en scobro
 Dim CadenaDatosFiscales As String
@@ -1529,8 +1529,6 @@ Dim vvIban As String
 
 
     On Error GoTo EInsertarTesoreria
-
-
 
     If vParamAplic.ContabilidadNueva Then
         If vTextosCSB = "" Then
@@ -1600,7 +1598,7 @@ Dim vvIban As String
                 '                    Añadire a la cadena fija esta los valores de textcsb41,txcs
                 CadValuesAuxConta = CadValuesAuxConta & vTextosCSB & ","
                 '-------- Primer Vencimiento
-                i = 1
+                I = 1
                 'FECHA VTO
                 FecVenci = CDate(FecFactu)
                 '=== Laura 23/01/2007
@@ -1620,8 +1618,8 @@ Dim vvIban As String
                 End If
                 
                 'Comprobar si cliente tiene dia de vencimiento atrasado
-                CadValues = cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                CadValues2 = CadValuesAuxConta & i & ", "
+                CadValues = cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                CadValues2 = CadValuesAuxConta & I & ", "
                 CadValues2 = CadValues2 & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                 
                 'IMPORTE del Vencimiento
@@ -1672,7 +1670,7 @@ Dim vvIban As String
                 
                 'Resto Vencimientos
                 '--------------------------------------------------------------------
-                For i = 2 To rsVenci!numerove
+                For I = 2 To rsVenci!numerove
                    'FECHA Resto Vencimientos
                     '=== Laura 23/01/2007
                     'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -1690,8 +1688,8 @@ Dim vvIban As String
                         FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
                     End If
                         
-                    CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues = CadValues & ", " & cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                     'IMPORTE Resto de Vendimientos
                     ImpVenci = Round2(TotalFactura2 / rsVenci!numerove, 2)
@@ -1722,14 +1720,14 @@ Dim vvIban As String
                         End If
                     End If
                     
-                Next i
+                Next I
                 
                 '--- Cheque regalo: laura 1/12/2006   y/o    Aportacion terminal
                 'si hay cheque regalo insertar una linea más para la forma de pago correspondiente y el importe del cheque
                 If ImpCheque > 0 Then
                 
                     
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & "," & codmacta & ", " & vParamAplic.ForPagoChequeRegalo & ", "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & "," & codmacta & ", " & vParamAplic.ForPagoChequeRegalo & ", "
                     
                     'FECHA VTO
                     CadValuesAuxConta = "primerve"
@@ -1779,7 +1777,7 @@ Dim vvIban As String
                    'Montamos EL SQL para el cobro de la aportacion al termina
                     'ForPago
                     
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ",'" & vParamAplic.ctaAportacion & "', " & ForPago & ", "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ",'" & vParamAplic.ctaAportacion & "', " & ForPago & ", "
                     
                     
                     CadValuesAuxConta = "primerve"
@@ -1925,7 +1923,7 @@ Dim CadValues As String, cadValuesAux As String 'para insertar en svenci
 Dim CadValues2 As String, CadValuesAux2 As String 'para insertar en conta.scobro
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single
-Dim i As Byte
+Dim I As Byte
 
 
     On Error GoTo EInsertarTesoreria
@@ -1959,7 +1957,7 @@ Dim i As Byte
 
               'Primer Vencimiento
               '------------------------------------------------------------
-                i = 1
+                I = 1
                 'FECHA VTO
                 FecVenci = CDate(FecFactu)
                 FecVenci = FecVenci + CByte(DBLet(rsVenci!primerve, "N"))
@@ -1976,8 +1974,8 @@ Dim i As Byte
                 End If
                 
                 'Comprobar si cliente tiene dia de vencimiento atrasado
-                CadValues = cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                CadValues2 = CadValuesAux2 & i & ", "
+                CadValues = cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                CadValues2 = CadValuesAux2 & I & ", "
                 CadValues2 = CadValues2 & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                 
                 'IMPORTE del Vencimiento
@@ -2000,7 +1998,7 @@ Dim i As Byte
                 
               'Resto Vencimientos
               '--------------------------------------------------------------------
-                For i = 2 To rsVenci!numerove
+                For I = 2 To rsVenci!numerove
                   'FECHA Resto Vencimientos
                     FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
                     'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
@@ -2015,15 +2013,15 @@ Dim i As Byte
                         FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
                     End If
                         
-                    CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                    CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues = CadValues & ", " & cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                   'IMPORTE Resto de Vendimientos
                     ImpVenci = Round(TotalFac / rsVenci!numerove, 2)
                     CadValues = CadValues & DBSet(ImpVenci, "N") & ")"
                     CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", '" & CuentaPrev & "', " & DBSet(Banco, "N") & ", " & DBSet(Sucursal, "N") & ", " & DBSet(DigControl, "T") & ", " & DBSet(CuentaBan, "T") & ", " & textcsb33 & ", " & DBSet(Agente, "N") & ", "
                     CadValues2 = CadValues2 & DBSet(Me.DirDpto, "N", "S") & ")"
-                Next i
+                Next I
             End If
         End If
         RS.Close
@@ -2105,7 +2103,7 @@ Public Function CalcularDatosFactura(Cliente As Boolean, cadWHERE As String, Nom
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
 Dim RS As ADODB.Recordset
-Dim i As Integer
+Dim I As Integer
 
 Dim Sql As String
 Dim cadAux As String
@@ -2222,7 +2220,7 @@ Dim NueroIvas As Integer
     TotBruto = 0
     TotImpIVA = 0
     TotRe = 0
-    i = 1
+    I = 1
     conDesplaz = False
 
     While Not RS.EOF
@@ -2239,7 +2237,7 @@ Dim NueroIvas As Integer
         If exento_IVA < 2 Then     'Con IVA normal o RE
             'comprobar que si hay km de DESPLAZAMIENTO se añadan al tipo de IVA correspondiente
             If TotalKm > 0 Then
-                If despIVA = RS!codigiva Then
+                If despIVA = RS!Codigiva Then
                     vBruto = vBruto + ImporteL
                     TotBruto = TotBruto + ImporteL
                     conDesplaz = True
@@ -2247,14 +2245,14 @@ Dim NueroIvas As Integer
             End If
         
             'comprobar si hay BONIFICACIONES que aplicar a la Factura
-            If IVABonif1 = RS!codigiva Then
+            If IVABonif1 = RS!Codigiva Then
                 vBruto = vBruto - TotBonif1
                 TotBruto = TotBruto - TotBonif1
-            ElseIf IVABonif2 = RS!codigiva Then
+            ElseIf IVABonif2 = RS!Codigiva Then
                 vBruto = vBruto - TotBonif2
                 TotBruto = TotBruto - TotBonif2
                 
-            ElseIf IVABonif3 = RS!codigiva Then
+            ElseIf IVABonif3 = RS!Codigiva Then
                 vBruto = vBruto - TotBonif3
                 TotBruto = TotBruto - TotBonif3
             End If
@@ -2278,7 +2276,7 @@ Dim NueroIvas As Integer
             'NUEVO. 22 Mayo 2008
             'Si tiene mas de un tipo de iva, compruebo en la ultima de las bases
             'Si el total sera igual al total a comparar
-            If i > 1 And i = NueroIvas Then
+            If I > 1 And I = NueroIvas Then
                 'ImporteParaComparar
                 If ImporteParaComparar - ImpBImIVA <> 0 Then
                     ImpBImIVA = ImporteParaComparar
@@ -2288,8 +2286,8 @@ Dim NueroIvas As Integer
             End If
             
             'Obtener el % de IVA
-            cadAux = RS!codigiva    'Por si no tiene  RE o si teniendo RE no tiene el correspondiente
-            If exento_IVA = 1 Then cadAux = CStr(vParamAplic.DevuleveTipoIVA_RE(RS!codigiva))
+            cadAux = RS!Codigiva    'Por si no tiene  RE o si teniendo RE no tiene el correspondiente
+            If exento_IVA = 1 Then cadAux = CStr(vParamAplic.DevuleveTipoIVA_RE(RS!Codigiva))
             TipoIVAAplicable = CInt(cadAux)
             
             '[Monica]
@@ -2300,7 +2298,7 @@ Dim NueroIvas As Integer
                     'Debido al cambio de IVA, los albaranes rectificativos podran ir en el IVA que llevaran en su momento
                     'Es decir, que aunque ahora sea al 18(a partir de Julio), para un albr rectifi podria ser
                     'con iva 16
-                    cadAux = CStr(vParamAplic.DevuleveTipoIVA_Ant(exento_IVA = 1, RS!codigiva))
+                    cadAux = CStr(vParamAplic.DevuleveTipoIVA_Ant(exento_IVA = 1, RS!Codigiva))
                     TipoIVAAplicable = CInt(cadAux)
             End If
             
@@ -2329,7 +2327,7 @@ Dim NueroIvas As Integer
             TotImpIVA = TotImpIVA + ImpIVA
             
             
-            Select Case i
+            Select Case I
                 Case 1  'IVA 1
                     TipoIVA1 = TipoIVAAplicable    'Antes Rs!codigiva
                     
@@ -2374,7 +2372,7 @@ Dim NueroIvas As Integer
                     ImpIVA3RE = impRE
                     
             End Select
-            i = i + 1
+            I = I + 1
         Else 'EXENTO DE IVA
             'si hay que factura KM añadirlos al bruto
             If TotalKm > 0 Then vBruto = vBruto + ImporteL
@@ -2455,7 +2453,7 @@ Dim NueroIvas As Integer
         'los vamos acumulando
         TotImpIVA = TotImpIVA + ImpIVA
         
-        Select Case i
+        Select Case I
             Case 2 'IVA 2
                 TipoIVA2 = despIVA
                 
@@ -2467,7 +2465,7 @@ Dim NueroIvas As Integer
                 ImpIVA2 = ImpIVA
                 
             Case 3 'IVA 3
-                TipoIVA3 = RS!codigiva
+                TipoIVA3 = RS!Codigiva
                 
                 BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
                 
@@ -2967,7 +2965,7 @@ Dim vClien As CCliente
 Dim Nulo2 As String
 Dim Nulo3 As String
 Dim ctaDpto As Boolean
-Dim cad As String, cad2 As String
+Dim Cad As String, cad2 As String
 
     On Error GoTo EInsertar
 
@@ -2996,18 +2994,18 @@ Dim cad As String, cad2 As String
             If Me.DirDpto <> "" Then
                 'comprobar que el dpto del cliente tiene cta bancaria
                 cad2 = "digcontr"
-                cad = DevuelveDesdeBDNew(conAri, "sdirec", "cuentaba", "codclien", Me.Cliente, "N", cad2, "coddirec", Me.DirDpto, "N")
-                If cad <> "" And cad2 <> "" Then ctaDpto = True
+                Cad = DevuelveDesdeBDNew(conAri, "sdirec", "cuentaba", "codclien", Me.Cliente, "N", cad2, "coddirec", Me.DirDpto, "N")
+                If Cad <> "" And cad2 <> "" Then ctaDpto = True
             End If
         End If
         
         If ctaDpto Then 'cogemos la cta bancaria del departamento
-            Me.CuentaBan = cad
+            Me.CuentaBan = Cad
 '            cad = DevuelveDesdeBDNew(conAri, "sdirec", "digcontr", "codclien", Me.Cliente, "N", , "coddirec", Me.DirDpto, "N")
             Me.DigControl = cad2
             cad2 = "codsucur"
-            cad = DevuelveDesdeBDNew(conAri, "sdirec", "codbanco", "codclien", Me.Cliente, "N", cad2, "coddirec", Me.DirDpto, "N")
-            Me.Banco = cad
+            Cad = DevuelveDesdeBDNew(conAri, "sdirec", "codbanco", "codclien", Me.Cliente, "N", cad2, "coddirec", Me.DirDpto, "N")
+            Me.Banco = Cad
             Me.Sucursal = cad2
         Else 'cuenta bancaria del cliente
             Set vClien = New CCliente
@@ -3191,7 +3189,7 @@ End Function
 Private Function InsertarLineasFactu(cadSQL As String) As Boolean
 'Insertar las lineas de los Albaranes de la factura en la tabla: slifac
 Dim Sql As String
-Dim cad As String
+Dim Cad As String
 Dim cad2 As String
 Dim cArt As CArticulo
 
@@ -3224,21 +3222,21 @@ Dim cArt As CArticulo
         If ArticFac <> "" Then
             Set cArt = New CArticulo
             If cArt.LeerDatos(ArticFac) Then
-                cad = cArt.Nombre   'Aunque luego machaco cad con la nueva amplicacion: contrato + numerocontrato
+                Cad = cArt.Nombre   'Aunque luego machaco cad con la nueva amplicacion: contrato + numerocontrato
             End If
 '            cad2 = "preciomp"
 '            cad = DevuelveDesdeBDNew(conAri, "sartic", "nomartic", "codartic", ArticFac, "T", cad2)
         End If
         
-        cad = DevuelveDesdeBDNew(conAri, "stipco", "nomtipco", "codtipco", TipCoMan, "T")
-        cad = cad & "  Nº: " & nummante
+        Cad = DevuelveDesdeBDNew(conAri, "stipco", "nomtipco", "codtipco", TipCoMan, "T")
+        Cad = Cad & "  Nº: " & nummante
         
-        Sql = Sql & DBSet(cad, "T") & ","
+        Sql = Sql & DBSet(Cad, "T") & ","
             
 
-        cad = mObservacion
+        Cad = mObservacion
         
-        Sql = Sql & DBSet(cad, "T") & ","
+        Sql = Sql & DBSet(Cad, "T") & ","
             
         'cantidad,numbultos, precio, dtos
         Sql = Sql & "1,1," & DBSet(BrutoFac, "N") & ", 0,0, "
@@ -3356,7 +3354,7 @@ End Function
 
 Private Function InsertarDetEquip() As Boolean
 Dim Sql As String
-Dim cad As String
+Dim Cad As String
 
     'si son facturas de MAntenimiento y parametro de stipco: detallar equipos en la factura=true
     'guardar en una tabla el resumen por tipo de articulo de los Nº Series de equipos
@@ -3368,11 +3366,11 @@ Dim cad As String
     Sql = DevuelveDesdeBDNew(conAri, "stipco", "detequip", "codtipco", TipCoMan, "T")
     
     If Sql = "1" Then 'Detalla Equipo
-        cad = ObtenerSQLcomponentes(" WHERE codclien=" & Cliente & " AND nummante=" & DBSet(nummante, "T"))
+        Cad = ObtenerSQLcomponentes(" WHERE codclien=" & Cliente & " AND nummante=" & DBSet(nummante, "T"))
         Sql = "Select distinct '" & codtipom & "' as codtipom," & NumFactu & " as numfactu,'" & Format(FecFactu, FormatoFecha) & "' as fecfactu,"
-        cad = Replace(cad, "Select distinct", Sql)
+        Cad = Replace(Cad, "Select distinct", Sql)
         Sql = "INSERT INTO srecom (codtipom,numfactu,fecfactu,codtipar,nomtipar,cantidad) "
-        Sql = Sql & cad
+        Sql = Sql & Cad
 
         conn.Execute Sql
     End If
@@ -3409,7 +3407,7 @@ Private Function InsertarDesplaz() As Boolean
 'Añadir cantkm * preciokm al bruto de la factura
 'Insertar linea en tabla slifac con el importe del desplazamiento
 Dim Sql As String
-Dim cad As String
+Dim Cad As String
 Dim b As Boolean
 
     On Error GoTo EDesplaz
@@ -3433,8 +3431,8 @@ Dim b As Boolean
         Sql = Sql & DBSet(AlmFactu, "N") & ","
             
         'codartic,nomartic,ampliaci
-        cad = DevuelveDesdeBDNew(conAri, "sartic", "nomartic", "codartic", codArtic, "T")
-        Sql = Sql & DBSet(codArtic, "T") & "," & DBSet(cad, "T") & "," & DBSet(Ampliacion, "T") & ","
+        Cad = DevuelveDesdeBDNew(conAri, "sartic", "nomartic", "codartic", codArtic, "T")
+        Sql = Sql & DBSet(codArtic, "T") & "," & DBSet(Cad, "T") & "," & DBSet(Ampliacion, "T") & ","
         'cantidad,precioar,dtoline1,dtoline2,importel,origpre
         Sql = Sql & DBSet(TotalKm, "N") & "," & DBSet(PrecioKm, "N") & ",0,0," & DBSet(ImporteL, "N") & ",'M')"
         
@@ -3721,7 +3719,7 @@ Private Function CalcularDatosFacturaTicket(cadSQL As String) As Boolean
 Dim b As Boolean
 Dim Sql As String
 Dim RS As ADODB.Recordset
-Dim i As Byte
+Dim I As Byte
 Dim ImpTotal As Currency
 Dim ImpDif As Currency
 
@@ -3751,10 +3749,10 @@ Dim ImpDif As Currency
     Sql = Sql & " group by codigiva"
     Set RS = New ADODB.Recordset
     RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    i = 1
-    While Not RS.EOF And i <= 3
-        Sql = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", CStr(RS!codigiva), "N")
-        Select Case i
+    I = 1
+    While Not RS.EOF And I <= 3
+        Sql = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", CStr(RS!Codigiva), "N")
+        Select Case I
             Case 1
                 TipoIVA1 = RS.Fields(0).Value
                 PorceIVA1 = CCur(Sql)
@@ -3780,7 +3778,7 @@ Dim ImpDif As Currency
                 ImpIVA3 = RS.Fields(1).Value - BaseIVA3
         End Select
         RS.MoveNext
-        i = i + 1
+        I = I + 1
     Wend
     RS.Close
     Set RS = Nothing
@@ -3906,7 +3904,7 @@ Dim CadValues3 As String
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single 'importe para insertar en la svenci
 Dim ImpVenci2 As Single 'importe para insertar en conta.scobro
-Dim i As Byte
+Dim I As Byte
 Dim TotalFactura2 As Currency   'Por si acaso lleva aportacion al terminal
 '1 Julio 2009. Los graba en scobro
 Dim CadenaDatosFiscales As String
@@ -4002,7 +4000,7 @@ Dim vvIban As String
                 '                    Añadire a la cadena fija esta los valores de textcsb41,txcs
                 CadValuesAuxConta = CadValuesAuxConta & vTextosCSB & ","
                 '-------- Primer Vencimiento
-                i = 1
+                I = 1
                 'FECHA VTO
                 FecVenci = CDate(FecFactu)
                 '=== Laura 23/01/2007
@@ -4022,8 +4020,8 @@ Dim vvIban As String
                 End If
                 
                 'Comprobar si cliente tiene dia de vencimiento atrasado
-                CadValues = cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                CadValues2 = CadValuesAuxConta & i & ", "
+                CadValues = cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                CadValues2 = CadValuesAuxConta & I & ", "
                 CadValues2 = CadValues2 & DBSet(codmacta, "T") & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                 
                 'IMPORTE del Vencimiento
@@ -4070,7 +4068,7 @@ Dim vvIban As String
                 End If
                 'Resto Vencimientos
                 '--------------------------------------------------------------------
-                For i = 2 To rsVenci!numerove
+                For I = 2 To rsVenci!numerove
                    'FECHA Resto Vencimientos
                     '=== Laura 23/01/2007
                     'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -4088,8 +4086,8 @@ Dim vvIban As String
                         FecVenci1 = ComprobarMesNoGira(FecVenci1, DBLet(RS!mesnogir, "N"), DBLet(RS!DiaVtoAt, "N"), DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
                     End If
                         
-                    CadValues = CadValues & ", " & cadValuesAux & i & ", '" & Format(FecVenci1, FormatoFecha) & "', "
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues = CadValues & ", " & cadValuesAux & I & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ", " & codmacta & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                     'IMPORTE Resto de Vendimientos
                     ImpVenci = Round2(TotalFactura2 / rsVenci!numerove, 2)
@@ -4117,14 +4115,14 @@ Dim vvIban As String
                            CadValues2 = CadValues2 & ")"
                         End If
                     End If
-                Next i
+                Next I
                 
                 '--- Cheque regalo: laura 1/12/2006   y/o    Aportacion terminal
                 'si hay cheque regalo insertar una linea más para la forma de pago correspondiente y el importe del cheque
                 If ImpCheque > 0 Then
                 
                     
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & "," & DBSet(codmacta, "T") & ", " & vParamAplic.ForPagoChequeRegalo & ", "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & "," & DBSet(codmacta, "T") & ", " & vParamAplic.ForPagoChequeRegalo & ", "
                     
                     'FECHA VTO
                     CadValuesAuxConta = "primerve"
@@ -4175,7 +4173,7 @@ Dim vvIban As String
                    'Montamos EL SQL para el cobro de la aportacion al termina
                     'ForPago
                     
-                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & i & ",'" & vParamAplic.ctaAportacion & "', " & ForPago & ", "
+                    CadValues2 = CadValues2 & ", " & CadValuesAuxConta & I & ",'" & vParamAplic.ctaAportacion & "', " & ForPago & ", "
                     
                     
                     CadValuesAuxConta = "primerve"

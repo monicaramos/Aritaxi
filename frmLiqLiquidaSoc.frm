@@ -673,6 +673,7 @@ Dim ImpoIva As Currency
 Dim ImpoReten As Currency
 Dim vPorcIva As String
 Dim PorceIVA As Currency
+Dim Suplidos As Currency
 
 Dim tipoMov As String
 Dim codSocio As String
@@ -1526,7 +1527,7 @@ ETraspasoAlbFac:
     TerminaBloquear
 End Function
 
-Private Function InsertCabeceraFactSocio(tipoMov As String, NumFactu As String, FecFac As String, Socio As String, Uve As String, Serv As String) As Boolean
+Private Function InsertCabeceraFactSocio(tipoMov As String, NumFactu As String, FecFac As String, Socio As String, Uve As String, Serv As String, Optional Suplidos As Currency) As Boolean
 Dim Sql As String
 Dim MensError As String
 Dim FPagContado As String
@@ -1536,7 +1537,7 @@ Dim FPagContado As String
     InsertCabeceraFactSocio = False
     
     Sql = "insert into sfactusoc (codtipom,codsocio,numfactu,fecfactu,concepto,importel,baseiva1,impoiva1, "
-    Sql = Sql & "codiiva1,porciva1,basereten,porcreten,totalfac,impreten,intconta,codforpa,numeruve, numserv) values ("
+    Sql = Sql & "codiiva1,porciva1,basereten,porcreten,totalfac,impreten,intconta,codforpa,numeruve, numserv, suplidos) values ("
     Sql = Sql & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
     Sql = Sql & DBSet(txtcodigo(4).Text, "T") & "," & DBSet(TotalFac, "N") & "," & DBSet(BaseImpo, "N") & "," & DBSet(ImpoIva, "N") & ","
     Sql = Sql & vParamAplic.IVA_REA & "," & DBSet(PorceIVA, "N") & "," & DBSet(BaseReten, "N") & "," & DBSet(vParamAplic.PorReten, "N") & ","
@@ -1552,7 +1553,10 @@ Dim FPagContado As String
     Else
         Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtcodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
     End If
-    Sql = Sql & DBSet(Serv, "N") & ")"
+    Sql = Sql & DBSet(Serv, "N")
+    
+    '[Monica]14/11/2017: aparecen los suplidos
+    Sql = Sql & "," & DBSet(Suplidos, "N") & ")"
     
     conn.Execute Sql
     
@@ -2240,7 +2244,7 @@ Dim BancoContado As String
 '    If vParamAplic.Cooperativa = 0 Then
 '        SQL = "select numeruve, sum(if(importe is null,0,importe)) from sfactsoctr where " & cadwhere & " group by numeruve having sum(if(importe is null,0,importe)) <> 0 "
 '    Else
-        Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
+        Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
 '    End If
     nTotal = TotalRegistrosConsulta(Sql)
     PB1.Max = nTotal
@@ -2253,7 +2257,7 @@ Dim BancoContado As String
 '        SQL = "select numeruve, sum(numserv) servicios, sum(if(importe is null,0,importe)) importe from sfactsoctr where " & cadwhere & " group by numeruve, concepto having sum(if(importe is null,0,importe)) <> 0 "
 '        SQL = SQL & " ORDER BY sfactsoctr.numeruve"
 '    Else
-        Sql = "select numeruve, count(*) servicios, sum(if(impcompr is null,0,impcompr)) importe from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
+        Sql = "select numeruve, count(*) servicios, sum(if(impcompr is null,0,impcompr))  + sum(if(suplemen is null,0,suplemen)) importe,  sum(if(extcompr is null,0,extcompr)) + sum(if(imppeaje is null,0,imppeaje)) suplidos from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) <> 0 "
         Sql = Sql & " ORDER BY shilla.numeruve"
 '    End If
     Set RSalb = New ADODB.Recordset
@@ -2293,12 +2297,18 @@ Dim BancoContado As String
             BaseReten = TotalFac
             ImpoIva = TotalFac - BaseImpo
             ImpoReten = Round2(TotalFac * vParamAplic.PorReten / 100, 2)
-            TotalLiq = TotalFac - ImpoReten
+            
+            '[Monica]14/11/2017: aparecen los suplidos
+            Suplidos = DBLet(RSalb.Fields(3).Value, "N")
+            
+            
+            TotalLiq = TotalFac - ImpoReten + Suplidos
+            
             
 '            txtcodigo(4).Text = RSalb!Concepto
             
             'insertar cabecera de factura
-            b = InsertCabeceraFactSocio(tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, RSalb!Servicios)
+            b = InsertCabeceraFactSocio(tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, RSalb!Servicios, Suplidos)
             
             '[Monica]31/03/2014: en el caso de teletaxi insertamos los servicios
             If vParamAplic.Cooperativa = 0 Then
@@ -2346,6 +2356,8 @@ Dim BancoContado As String
                 vFacSoc.ProvinciaSocio = vSocio.Provincia
                 vFacSoc.nifSocio = vSocio.NIF
                 
+                '[Monica]14/11/2017: nueva columna de suplidos
+                vFacSoc.Suplidos = Suplidos
                 
                 '[Monica]25/10/2012: socios contado ponemos la cuenta prevista como la de caja
                 If vParamAplic.Cooperativa = 0 Then
