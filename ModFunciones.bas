@@ -2931,6 +2931,37 @@ Public Sub AyudaCuentasContables(frmBas As frmBasico2, Optional CodActual As Str
 End Sub
 
 
+Public Sub AyudaTiposIva(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+' en total son 7000 = 1500 + 4000 hay que quitarle al width 1500
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1500|;S|txtAux(1)|T|Descripción|3500|;S|txtAux(2)|T|Porcentaje|2095|;"
+    frmBas.CadenaConsulta = "SELECT tiposiva.codigiva,tiposiva.nombriva,tiposiva.porceiva "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM tiposiva "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    frmBas.Tag1 = "Código Iva|N|N|||tiposiva|codigiva|###0|S|"
+    frmBas.Tag2 = "Descripción|T|N|||tiposiva|nombriva|||"
+    frmBas.Tag3 = "Porcentaje|N|N|||tiposiva|porceiva|##0.00||"
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 120
+    frmBas.Maxlen3 = 10
+    
+    frmBas.pConn = conConta
+    
+    frmBas.Tabla = "tiposiva"
+    frmBas.CampoCP = "codigiva"
+    frmBas.Caption = "Tipos de Iva"
+    frmBas.DeConsulta = True
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    
+    frmBas.Show vbModal
+End Sub
+
+
+
 Public Sub AyudaMovimientosArticulos(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
 ' en total son 7000 = 905 + 4595 hay que quitarle al width 1500
     frmBas.CadenaTots = "S|txtAux(0)|T|Código|1805|;S|txtAux(1)|T|Descripción|3495|;"

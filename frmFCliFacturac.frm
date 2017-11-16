@@ -2114,6 +2114,9 @@ Dim Ampliaci As String
 
 Dim NomLote As String
 
+Dim Nulo2 As String
+Dim Nulo3 As String
+
     On Error GoTo EGenFactu
 
     GenerarFacturasTeletaxiNew = False
@@ -2389,6 +2392,8 @@ Dim NomLote As String
             Sql = Sql & DBSet(fac.BaseIVA1, "N") & "," & DBSet(fac.TipoIVA1, "N")
             Sql = Sql & "," & DBSet(fac.PorceIVA1, "N") & "," & DBSet(fac.ImpIVA1, "N") & ","
             
+            Nulo2 = "N"
+            Nulo3 = "N"
             If fac.TipoIVA2 = 0 Then Nulo2 = "S"
             If fac.TipoIVA3 = 0 Then Nulo3 = "S"
             

@@ -985,13 +985,13 @@ Begin VB.Form frmLiqHcoFacSoc
             EndProperty
             Height          =   360
             Index           =   25
-            Left            =   2160
+            Left            =   120
             MaxLength       =   15
             TabIndex        =   21
             Tag             =   "Suplidos|N|S|||sfactusoc|suplidos|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   1080
-            Width           =   1545
+            Width           =   1635
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1219,10 +1219,10 @@ Begin VB.Form frmLiqHcoFacSoc
             EndProperty
             Height          =   255
             Index           =   6
-            Left            =   2145
+            Left            =   120
             TabIndex        =   87
             Top             =   810
-            Width           =   1635
+            Width           =   1815
          End
          Begin VB.Label Label1 
             Caption         =   "Base Retención"

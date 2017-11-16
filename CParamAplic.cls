@@ -73,6 +73,7 @@ Private mvarRaiz_Cta_Soc_liqui As String 'raiz de la cuenta socio de liquidacion
 Private mvarRaiz_CtaClien_Soc As String 'raiz de la cuenta cliente del socio para cuotas
 Private mvarRaiz_Cta_Reten_Soc As String 'raiz de la cuenta retencion socio de liquidacion
 Private mvarCtaLiquidacion As String 'Cuenta base de liquidacion socios
+Private mvarCtaLiqSuplidos As String 'Cuenta base de suplidos en liquidacion de socios
 
 Private mvarRaiz_Cta_Soc_Equip As String 'raiz de la cuenta socio de facturas de venta
 
@@ -283,6 +284,15 @@ End Property
 
 Public Property Let CtaLiquidacion(ByVal vData As String)
      mvarCtaLiquidacion = vData
+End Property
+
+'[Monica]16/11/2017: cta de suplidos
+Public Property Get CtaLiqSuplidos() As String
+     CtaLiqSuplidos = mvarCtaLiqSuplidos
+End Property
+
+Public Property Let CtaLiqSuplidos(ByVal vData As String)
+     mvarCtaLiqSuplidos = vData
 End Property
 
 
@@ -1282,6 +1292,8 @@ On Error GoTo Err3
         mvarRaiz_CtaClien_Soc = DBLet(RS!Raiz_CtaClien_Soc, "T") 'raiz cuenta cliente de socios(cuotas)
         mvarRaiz_Cta_Reten_Soc = DBLet(RS!Raiz_CtaReten, "T") 'raiz cuenta retencion socios liquidacion
         mvarCtaLiquidacion = DBLet(RS!CtaLiquidacion, "T")  'cuenta base de liquidacion de socios
+        '[Monica]16/11/2017: cta de liquidacion de suplidos
+        mvarCtaLiqSuplidos = DBLet(RS!CtaLiqSuplidos, "T")  'cuenta base gastos suplidos en liquidacion de socios
                 
         ' Datos de alta de socio
         mvarCtaTituloAlta = DBLet(RS!CtaTituloAlta, "T")  'cuenta titulo alta de socios
@@ -1574,6 +1586,9 @@ On Error GoTo EModificar
     Sql = Sql & ", PorReten = " & DBSet(mvarPorReten, "N", "S")
     Sql = Sql & ", CtaLiquidacion = " & DBSet(mvarCtaLiquidacion, "T", "S")
 
+    '[Monica]16/11/2017: gastos suplidos en liquidacion socios
+    Sql = Sql & ", CtaLiqsuplidos = " & DBSet(mvarCtaLiqSuplidos, "T", "S")
+
 
     ' datos de alta de socio
     Sql = Sql & ", Ctatituloalta  = " & DBSet(mvarCtaTituloAlta, "T", "S")
@@ -1758,11 +1773,6 @@ Dim devuelve As Integer
 End Function
 
 
-
-
-
-
-
 Private Sub CargarTablaTraduccionIVAS()
 Dim RS As ADODB.Recordset
 
@@ -1787,7 +1797,7 @@ Dim RS As ADODB.Recordset
     Wend
     RS.Close
     Set RS = Nothing
-    'Ahora acutalizo la relacion
+    'Ahora actualizo la relacion
     If mvarTipoIVAre1 > 0 Then
         Sql = "UPDATE sivatra set codigiva2=" & mvarTipoIVAre1 & " WHERE codigiva = " & mvarIVA1
         conn.Execute Sql

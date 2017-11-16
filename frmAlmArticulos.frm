@@ -3883,6 +3883,8 @@ Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 Private WithEvents frmArt As frmBasico2 'Form para busquedas
 Attribute frmArt.VB_VarHelpID = -1
+Private WithEvents frmTIva As frmBasico2 ' form para ayuda de tipos de iva
+Attribute frmTIva.VB_VarHelpID = -1
 Private WithEvents frmF As frmCal 'Form Calendario Fecha
 Attribute frmF.VB_VarHelpID = -1
 
@@ -4519,7 +4521,7 @@ End Sub
 
 Private Sub BotonModificarConjunto(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
 Dim anc As Single
-Dim i As Integer
+Dim I As Integer
 
     If vData.Recordset.EOF Then Exit Sub
     If vData.Recordset.RecordCount < 1 Then Exit Sub
@@ -4532,8 +4534,8 @@ Dim i As Integer
 '--    PonerBotonCabecera False
          
     If vDataGrid.Bookmark < vDataGrid.FirstRow Or vDataGrid.Bookmark > (vDataGrid.FirstRow + vDataGrid.VisibleRows - 1) Then
-        i = vDataGrid.Bookmark - vDataGrid.FirstRow
-        vDataGrid.Scroll 0, i
+        I = vDataGrid.Bookmark - vDataGrid.FirstRow
+        vDataGrid.Scroll 0, I
         vDataGrid.Refresh
     End If
     PonerFocoBtn Me.cmdAceptar
@@ -4982,11 +4984,11 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     PriVezForm = True
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     ' ICONITOS DE LA BARRA
     btnAnyadir = 6
@@ -5013,9 +5015,9 @@ Dim i As Integer
     
     
     With Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         'ASignamos botones
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2 'Ver Todos
@@ -5027,9 +5029,9 @@ Dim i As Integer
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -5037,28 +5039,28 @@ Dim i As Integer
     End With
     
     'ICONITOS DE LAS BARRAS EN LOS TABS DE LINEA
-    For i = 0 To ToolAux.Count - 1
-        With Me.ToolAux(i)
+    For I = 0 To ToolAux.Count - 1
+        With Me.ToolAux(I)
             '.ImageList = frmPpal.imgListComun_VELL
             '  ### [Monica] 02/10/2006 acabo de comentarlo
-            .HotImageList = frmPpal.imgListComun_OM16
-            .DisabledImageList = frmPpal.imgListComun_BN16
-            .ImageList = frmPpal.imgListComun16
+            .HotImageList = frmppal.imgListComun_OM16
+            .DisabledImageList = frmppal.imgListComun_BN16
+            .ImageList = frmppal.imgListComun16
             .Buttons(1).Image = 3   'Insertar
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
         End With
-    Next i
+    Next I
     
     
     
     
     
-    For i = 0 To Me.imgCuentas.Count - 1
-        imgCuentas(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgCuentas.Count - 1
+        imgCuentas(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
    
     
@@ -5181,11 +5183,11 @@ End Sub
 
 
 Private Sub LimpiarCamposAlmacenes()
-Dim i As Byte
+Dim I As Byte
     Text3(0).BackColor = vbRed
-    For i = 0 To Text3.Count - 1
-        Text3(i).Text = ""
-    Next i
+    For I = 0 To Text3.Count - 1
+        Text3(I).Text = ""
+    Next I
     Text2(8).Text = ""
     Me.chkInventario.Value = 0
     lblIndicador.Caption = ""
@@ -5296,6 +5298,15 @@ Private Sub frmTA_DatoSeleccionado(CadenaSeleccion As String)
     Text2(4).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
+Private Sub frmTIva_DatoSeleccionado(CadenaSeleccion As String)
+Dim indice As Integer
+    If CadenaSeleccion <> "" Then
+        indice = Val(Me.imgCuentas(0).Tag)
+        Text1(indice + 2).Text = RecuperaValor(CadenaSeleccion, 1)
+        Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2)
+    End If
+End Sub
+
 Private Sub frmTU_DatoSeleccionado(CadenaSeleccion As String)
 'Tipo de Unidad
     Text1(5).Text = RecuperaValor(CadenaSeleccion, 1)
@@ -5339,6 +5350,8 @@ Private Sub imgCuentas_Click(Index As Integer)
             imgCuentas(0).Tag = Index
             MandaBusquedaPrevia ""
             imgCuentas(0).Tag = -1
+            
+            
             
         Case 6 'Código de Almacen
             Set frmA = New frmAlmAlPropios
@@ -5478,7 +5491,7 @@ End Sub
 Private Sub mnModificar_Click()
 Dim Cad As String
 Dim Aux As String
-Dim i As Integer
+Dim I As Integer
 
     Select Case Modo
         Case 5  'Modificar lineas Artículos x Almacen
@@ -5776,12 +5789,18 @@ Dim Conexion As Byte
 '    Screen.MousePointer = vbDefault
 
 
-    Set frmArt = New frmBasico2
-    
-    AyudaArticulos frmArt, Text1(0).Text, CadB
-    
-    Set frmArt = Nothing
-    
+    If Val(Me.imgCuentas(0).Tag) = 5 Then
+        'tipo de iva
+        Set frmTIva = New frmBasico2
+        AyudaTiposIva frmTIva, Text1(5).Text, CadB
+        Set frmTIva = Nothing
+        
+    Else
+        'articulos
+        Set frmArt = New frmBasico2
+        AyudaArticulos frmArt, Text1(0).Text, CadB
+        Set frmArt = Nothing
+    End If
 
 End Sub
 
@@ -5997,16 +6016,16 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
 '--    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
     
-    For i = 0 To txtAux.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
@@ -6072,12 +6091,12 @@ Dim NumReg As Byte
 '--
 '    cmdCancelar.visible = b
 '    cmdAceptar.visible = b
-    For i = 0 To 1
-        Me.imgFecha(i).Enabled = b
-    Next i
-    For i = 0 To 5
-        Me.imgCuentas(i).Enabled = b
-    Next i
+    For I = 0 To 1
+        Me.imgFecha(I).Enabled = b
+    Next I
+    For I = 0 To 5
+        Me.imgCuentas(I).Enabled = b
+    Next I
     
     'Numero de orden
     'Busquedas o insertar modificar el supr usuario
@@ -6130,7 +6149,7 @@ Private Sub PonerModoOpcionesMenu(Modo As Byte)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
 Dim EsInstal As Boolean
-Dim i As Integer
+Dim I As Integer
 Dim bAux As Boolean
 
     '---- [23/09/2009] LAURA : Añadir lineas de Cod. EAN (se añade modo 8)
@@ -6192,14 +6211,14 @@ Dim bAux As Boolean
     
     b = (Modo = 2 Or Modo = 3 Or Modo = 4)
     
-    For i = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
-        If i = 0 Or i = 1 Then
-            ToolAux(i).Buttons(1).Enabled = b And vUsu.Nivel <= 1
+    For I = 0 To ToolAux.Count - 1 '[Monica]30/09/2013: antes - 1
+        If I = 0 Or I = 1 Then
+            ToolAux(I).Buttons(1).Enabled = b And vUsu.Nivel <= 1
         Else
-            ToolAux(i).Buttons(1).Enabled = b
+            ToolAux(I).Buttons(1).Enabled = b
         End If
         
-        Select Case i
+        Select Case I
             Case 0 'stocks
                 If b Then bAux = (b And Me.Data4.Recordset.RecordCount > 0) And vUsu.Nivel <= 1
             Case 1 'conjuntos
@@ -6209,9 +6228,9 @@ Dim bAux As Boolean
             Case 3 'codean
                 If b Then bAux = (b And Me.Data5.Recordset.RecordCount > 0)
         End Select
-        ToolAux(i).Buttons(2).Enabled = bAux
-        ToolAux(i).Buttons(3).Enabled = bAux
-    Next i
+        ToolAux(I).Buttons(2).Enabled = bAux
+        ToolAux(I).Buttons(3).Enabled = bAux
+    Next I
     
     
     
@@ -6226,15 +6245,15 @@ End Sub
 
 
 Private Sub PonerModoFrame(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
     ModoFrame = Kmodo
     
     Select Case ModoFrame
         Case 0  'MODO INICIAL
-                For i = 0 To Me.Text3.Count - 1
-                    BloquearTxt Text3(i), True
-                Next i
+                For I = 0 To Me.Text3.Count - 1
+                    BloquearTxt Text3(I), True
+                Next I
                 Me.imgFecha(2).Enabled = False
                 Me.imgCuentas(6).Enabled = False
                 Me.chkInventario.Enabled = False
@@ -6252,22 +6271,22 @@ Dim b As Boolean
         ' Ni stock, ni los datos de inventario se pueden insertar
         BloquearTxt Text3(0), ModoFrame = 3
         
-        For i = 1 To Me.Text3.Count - 1
+        For I = 1 To Me.Text3.Count - 1
         
-            If i = 1 Or i >= 5 Then
+            If I = 1 Or I >= 5 Then
                 b = True
             Else
                 b = False
             End If
-            BloquearTxt Text3(i), b
+            BloquearTxt Text3(I), b
             If ModoFrame = 3 Then
-                If b And i = 1 Then
-                    Text3(i).Text = "0"
+                If b And I = 1 Then
+                    Text3(I).Text = "0"
                 Else
-                    Text3(i).Text = ""
+                    Text3(I).Text = ""
                 End If
             End If
-        Next i
+        Next I
         chkInventario.Enabled = False
         Me.imgFecha(2).Enabled = False
         Me.imgCuentas(6).Enabled = (ModoFrame = 3)
@@ -7069,7 +7088,7 @@ End Function
    
     
 Private Function InsertarModificarLinea() As Boolean
-Dim i As Integer
+Dim I As Integer
 Dim Sql As String
 
     On Error GoTo EInsertarModificarLinea
@@ -7085,9 +7104,9 @@ Dim Sql As String
             
             'Campos Stocks (Son Decimales)
             Sql = Sql & DBSet(Text3(1).Text, "N", "N") & ", "
-            For i = 2 To 5
-                Sql = Sql & DBSet(Text3(i).Text, "N", "S") & ", "
-            Next i
+            For I = 2 To 5
+                Sql = Sql & DBSet(Text3(I).Text, "N", "S") & ", "
+            Next I
         
             'Campo Fecha
             Sql = Sql & DBSet(Text3(6).Text, "F", "S") & ", "
@@ -7404,22 +7423,22 @@ Dim b As Boolean
         
         txtAux(0).Height = DataGrid1.RowHeight
         txtAux(0).visible = b
-        txtAux(0).Top = alto
+        txtAux(0).top = alto
         txtAux(1).Height = DataGrid1.RowHeight
         txtAux(1).visible = b
-        txtAux(1).Top = alto
+        txtAux(1).top = alto
         txtAux2.Height = DataGrid1.RowHeight
         txtAux2.visible = b
-        txtAux2.Top = alto
+        txtAux2.top = alto
         cmdAux.visible = b
-        cmdAux.Top = alto
+        cmdAux.top = alto
         cmdAux.Height = DataGrid1.RowHeight
          
     Case 3 'INSTALACIONES
         DeseleccionaGrid Me.DataGrid2
         txtAux(2).Height = DataGrid2.RowHeight
         txtAux(2).visible = True
-        txtAux(2).Top = alto
+        txtAux(2).top = alto
         
         
     Case 4
@@ -7427,15 +7446,15 @@ Dim b As Boolean
         DeseleccionaGrid Me.DataGrid3
         Text3(0).Height = DataGrid3.RowHeight
         Text3(0).visible = b
-        Text3(0).Top = alto
+        Text3(0).top = alto
         Text3(1).Height = DataGrid3.RowHeight
         Text3(1).visible = b
-        Text3(1).Top = alto
+        Text3(1).top = alto
         
         If b Then
             If ModificaLineas = 1 Then
                 cmdAlma.visible = b And ModificaLineas = 1
-                cmdAlma.Top = alto
+                cmdAlma.top = alto
                 cmdAlma.Height = DataGrid1.RowHeight
             Else
                 cmdAlma.visible = False
@@ -7450,7 +7469,7 @@ Dim b As Boolean
         DeseleccionaGrid Me.DataGrid4
         txtAux(7).Height = DataGrid4.RowHeight
         txtAux(7).visible = True
-        txtAux(7).Top = alto
+        txtAux(7).top = alto
     '----
     End Select
 End Sub
@@ -7580,30 +7599,30 @@ End Sub
 
 
 Private Sub AccionesSobreTagText3_(Guardar As Boolean, Cargando As Boolean)
-Dim i As Integer
+Dim I As Integer
 
   
     If Guardar Then
         If Cargando Then TagText3 = ""
-        For i = 0 To Text3.Count - 1
-            If Cargando Then TagText3 = TagText3 & Replace(Text3(i).Tag, "|", ";") & "|"
-            Text3(i).Tag = ""
-        Next i
+        For I = 0 To Text3.Count - 1
+            If Cargando Then TagText3 = TagText3 & Replace(Text3(I).Tag, "|", ";") & "|"
+            Text3(I).Tag = ""
+        Next I
         
         'AÑADIMOS EL CHECK chkInventario.
         If Cargando Then TagText3 = TagText3 & Replace(chkInventario.Tag, "|", ";") & "|"
         chkInventario.Tag = ""
     Else
-        For i = 0 To Text3.Count - 1
-            Text3(i).Tag = Replace(RecuperaValor(TagText3, i + 1), ";", "|")
-        Next i
-        chkInventario.Tag = Replace(RecuperaValor(TagText3, i + 1), ";", "|")
+        For I = 0 To Text3.Count - 1
+            Text3(I).Tag = Replace(RecuperaValor(TagText3, I + 1), ";", "|")
+        Next I
+        chkInventario.Tag = Replace(RecuperaValor(TagText3, I + 1), ";", "|")
     End If
 End Sub
 
 
 Private Sub PonerDatosForaGrid(ForzarLimpiar As Boolean)
-Dim i As Integer
+Dim I As Integer
 Dim Limp As Boolean
 
     Limp = True
@@ -7617,9 +7636,9 @@ Dim Limp As Boolean
     If Limp Then
 
         'Limpiamos
-        For i = 0 To Text3.Count - 1
-            Text3(i).Text = ""
-        Next i
+        For I = 0 To Text3.Count - 1
+            Text3(I).Text = ""
+        Next I
 '        Text2(6).Text = ""
         Text2(8).Text = ""
         chkInventario.Value = 0
@@ -7659,7 +7678,7 @@ End Sub
 
 Private Sub ImagenesNavegacion()
     With Me.Toolbar2
-        .ImageList = frmPpal.ImgListPpal
+        .ImageList = frmppal.ImgListPpal
         .Buttons(1).Image = 5
         .Buttons(3).Image = 6
         .Buttons(5).Image = 7
@@ -7667,7 +7686,7 @@ Private Sub ImagenesNavegacion()
         .Buttons(11).Image = 2
     End With
     
-    Set lw1.SmallIcons = frmPpal.ImgListPpal
+    Set lw1.SmallIcons = frmppal.ImgListPpal
 End Sub
 
 

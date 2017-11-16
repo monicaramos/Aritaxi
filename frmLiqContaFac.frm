@@ -729,6 +729,12 @@ Dim CCoste2 As Byte
         Me.lblProgess(1).Caption = "Comprobando Cuentas Ctbles Ventas en contabilidad ..."
         If b Then b = ComprobarCtaContable_Ventas(cadTabla, 2)
     
+        'comprobar cta de suplidos
+        Me.lblProgess(1).Caption = "Comprobando Cuentas Ctbles Suplidos en contabilidad ..."
+        If b Then b = ComprobarCtaContable_Ventas(cadTabla, 2, True)
+            
+            
+    
     
     Else
         b = ComprobarCtaContable_new(cadTabla, 1)
@@ -921,7 +927,7 @@ ECompCta:
 End Function
 
 
-Private Function ComprobarCtaContable_Ventas(cadTabla As String, cadWHERE As String) As Boolean
+Private Function ComprobarCtaContable_Ventas(cadTabla As String, cadWHERE As String, Optional Suplidos As Boolean) As Boolean
 Dim cContabF As CControlFacturaContab
 Dim QueCuentasSon As String
 Dim CtaBloq As Collection
@@ -945,16 +951,27 @@ Dim SQLcuentas As String
     b = True
     QueCuentasSon = ""
         
-    Sql = SQLcuentas & " AND codmacta= " & DBSet(vParamAplic.CtaLiquidacion, "T")
+    If Suplidos Then
+        Sql = SQLcuentas & " AND codmacta= " & DBSet(vParamAplic.CtaLiqSuplidos, "T")
+        
+        'Para comporbar si estan bloqueadas
+        QueCuentasSon = QueCuentasSon & ", '" & vParamAplic.CtaLiqSuplidos & "'"
+    Else
+        Sql = SQLcuentas & " AND codmacta= " & DBSet(vParamAplic.CtaLiquidacion, "T")
+        
+        'Para comporbar si estan bloqueadas
+        QueCuentasSon = QueCuentasSon & ", '" & vParamAplic.CtaLiquidacion & "'"
     
-    'Para comporbar si estan bloqueadas
-    QueCuentasSon = QueCuentasSon & ", '" & vParamAplic.CtaLiquidacion & "'"
-    
+    End If
     
     If Not (RegistrosAListar(Sql, conConta) > 0) Then
     'si no lo encuentra
         b = False 'no encontrado
-        Sql = vParamAplic.CtaLiquidacion & " de liquidacion "
+        If Suplidos Then
+            Sql = vParamAplic.CtaLiqSuplidos & " de suplidos "
+        Else
+            Sql = vParamAplic.CtaLiquidacion & " de liquidacion "
+        End If
     End If
     
     If Not b Then
@@ -1174,6 +1191,7 @@ On Error Resume Next
     AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
+
 'Ccoste
 '   0: No tendra analitica
 '   1: Solo hay un CC que tratar. NO agruparemos por trabajador
@@ -1465,7 +1483,7 @@ Dim CtaReten As String
 
     On Error GoTo EInLinea
       
-    Sql = "SELECT sfactusoc.codsocio, sfactusoc.numfactu, sfactusoc.fecfactu, baseiva1 as importe, impreten  "
+    Sql = "SELECT sfactusoc.codsocio, sfactusoc.numfactu, sfactusoc.fecfactu, baseiva1 as importe, impreten, suplidos  "
     Sql = Sql & " FROM sfactusoc  "
     Sql = Sql & " WHERE "
     'si tiene analitica, enlazo por con scafpa
@@ -1527,12 +1545,34 @@ Dim CtaReten As String
             
             CtaReten = Trim(vParamAplic.Raiz_Cta_Reten_Soc & Format(Socio, FormatSocio))
             
-            
             Sql = Sql & DBSet(CtaReten, "T")
             Sql = Sql & "," & DBSet(RS!impreten * (-1), "N") & ","
             Sql = Sql & ValorNulo ' no llevan centro de coste
             
             Cad = Cad & "(" & Sql & ")" & ","
+            I = I + 1
+        End If
+        
+        '[Monica]16/11/2017: añadimos la linea de suplidos en la base de factura de la conta vieja
+        If DBLet(RS!Suplidos, "N") <> 0 Then
+            'concatenamos linea para insertar en la tabla de conta.linfact
+            Sql = ""
+            SQL2 = ""
+            
+            Sql = numRegis & "," & Year(CDate(txtCodigo(0).Text)) & "," & I & ","
+            Sql = Sql & DBSet(vParamAplic.CtaLiqSuplidos, "T")
+            
+            SQL2 = Sql & "," 'nos guardamos la linea sin el importe por si a la última hay q descontarle para q coincida con total factura
+            Sql = Sql & "," & DBSet(RS!Suplidos, "N") & ","
+            
+            
+            'CENTRO DE COSTE
+            LineaCentroCoste = False
+                
+            Sql = Sql & ValorNulo
+            
+            Cad = Cad & "(" & Sql & ")" & ","
+            
             I = I + 1
         End If
         
@@ -1589,7 +1629,8 @@ Dim CtaReten As String
 
     On Error GoTo EInLinea
       
-    Sql = "SELECT sfactusoc.codsocio, sfactusoc.numfactu, sfactusoc.fecfactu, baseiva1 as importe, impreten, codiiva1,porciva1,impoiva1  "
+    '[Monica]16/11/2017: añadida la columna de suplidos
+    Sql = "SELECT sfactusoc.codsocio, sfactusoc.numfactu, sfactusoc.fecfactu, baseiva1 as importe, impreten, codiiva1,porciva1,impoiva1, suplidos  "
     Sql = Sql & " FROM sfactusoc  "
     Sql = Sql & " WHERE "
     'si tiene analitica, enlazo por con scafpa
@@ -1641,6 +1682,48 @@ Dim CtaReten As String
         Cad = Cad & "(" & Sql & ")" & ","
         
         I = I + 1
+        
+        '[Monica]16/11/2017: añadimos la linea de suplidos en las lineas
+        If DBLet(RS!Suplidos, "N") <> 0 Then
+            Dim porIvaSuplidos As Currency
+            Dim ImpIvaSuplidos As Currency
+            Dim CodIvaSuplidos As Integer
+            Dim vDevuelve As String
+            
+            porIvaSuplidos = 0
+            ImpIvaSuplidos = 0
+            CodIvaSuplidos = 0
+            
+            CodIvaSuplidos = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtSuplidos, "T")
+            vDevuelve = DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(CodIvaSuplidos), "T")
+            If vDevuelve <> "" Then porIvaSuplidos = CCur(vDevuelve)
+            ImpIvaSuplidos = Round2(DBLet(RS!Suplidos, "N") * porIvaSuplidos / 100, 2)
+        
+            Sql = DBSet(SerieFraPro, "T") & "," & numRegis & "," & DBSet(txtCodigo(0).Text, "F") & "," & Year(CDate(txtCodigo(0).Text)) & "," & I & ","
+            
+            Sql = Sql & DBSet(vParamAplic.CtaLiqSuplidos, "T")
+        
+            'CENTRO DE COSTE
+            LineaCentroCoste = False
+            
+            Sql = Sql & "," & ValorNulo
+            
+            Sql = Sql & "," & DBSet(CodIvaSuplidos, "N")
+            Sql = Sql & "," & DBSet(porIvaSuplidos, "N")
+            'recargo
+            Sql = Sql & "," & ValorNulo
+            
+            Sql = Sql & "," & DBSet(RS!Suplidos, "N")
+            Sql = Sql & "," & DBSet(ImpIvaSuplidos, "N")
+                
+            'importe de recargo
+            Sql = Sql & "," & ValorNulo
+            Sql = Sql & ",0"
+            
+            Cad = Cad & "(" & Sql & ")" & ","
+            
+            I = I + 1
+        End If
         
     End If
     RS.Close
@@ -1729,14 +1812,29 @@ Dim CtaReten As String
                 
                 DtoPPago = 0
                 DtoGnral = 0
-                BaseImp = RS!BaseIVA1
+                '[Monica]16/11/2017: añadimos los suplidos
+                BaseImp = RS!BaseIVA1 + DBLet(RS!Suplidos, "N")
                 TotalFac = RS!TotalFac
                 AnyoFacPr = Year(CDate(txtCodigo(0).Text)) 'Year(RS!FecFactu)
                 
-                Nulo2 = "N"
+                '[Monica]16/11/2017: suplidos
+                Nulo2 = "S"
+                Dim porIvaSuplidos As Currency
+                Dim ImpIvaSuplidos As Currency
+                Dim CodIvaSuplidos As Integer
+                Dim vDevuelve As String
+                porIvaSuplidos = 0
+                ImpIvaSuplidos = 0
+                CodIvaSuplidos = 0
+                
+                If DBLet(RS!Suplidos, "N") <> 0 Then
+                    Nulo2 = "N"
+                    CodIvaSuplidos = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtSuplidos, "T")
+                    vDevuelve = DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(CodIvaSuplidos), "T")
+                    If vDevuelve <> "" Then porIvaSuplidos = CCur(vDevuelve)
+                    ImpIvaSuplidos = Round2(DBLet(RS!Suplidos, "N") * porIvaSuplidos / 100, 2)
+                End If
                 Nulo3 = "N"
-                
-                
                 
                 
                 Sql = ""
@@ -1764,13 +1862,15 @@ Dim CtaReten As String
                 End If
     
                 If Not vParamAplic.ContabilidadNueva Then
-                
-                    Sql = Sql & "," & DBSet(RS!BaseIVA1, "N") & "," & ValorNulo & "," & ValorNulo & ","
-                    Sql = Sql & DBSet(RS!porciva1, "N") & "," & ValorNulo & "," & ValorNulo & ","
-                    Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & DBSet(RS!impoiva1, "N") & "," & ValorNulo & "," & ValorNulo & ","
+                    '[Monica]16/11/2017: añadimos los suplidos
+                    Sql = Sql & "," & DBSet(RS!BaseIVA1, "N") & "," & DBSet(RS!Suplidos, "N", Nulo2) & "," & ValorNulo & ","
+                    Sql = Sql & DBSet(RS!porciva1, "N") & "," & DBSet(porIvaSuplidos, "N", Nulo2) & "," & ValorNulo & ","
                     Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
+                    Sql = Sql & DBSet(RS!impoiva1, "N") & "," & DBSet(ImpIvaSuplidos, "N", Nulo2) & "," & ValorNulo & ","
+                    Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
+                    
                     'ANTES era dbset de Rs!totalfac, ahora lo haremos de la variabele totalfac
-                    Sql = Sql & DBSet(RS!ImporteL, "N") & "," & DBSet(RS!codiiva1, "N") & "," & ValorNulo & "," & ValorNulo & ",0,"
+                    Sql = Sql & DBSet(RS!ImporteL, "N") + DBSet(RS!Suplidos, "N") & "," & DBSet(RS!codiiva1, "N") & "," & DBSet(RS!CodIvaSuplidos, "N", Nulo2) & "," & ValorNulo & ",0,"
                     
                     Nulo2 = ""
                     'NULOS
@@ -1794,7 +1894,7 @@ Dim CtaReten As String
                     TipoOpera = 0
                     Aux = "0"
                     
-                    If DBLet(RS!ImporteL, "N") < 0 Then Aux = "D"
+                    If DBLet(RS!ImporteL, "N") + DBLet(RS!Suplidos, "N") < 0 Then Aux = "D"
                     
                     Sql = Sql & TipoOpera & "," & DBSet(Aux, "T") & "," & ValorNulo & ","
                     
@@ -1811,9 +1911,18 @@ Dim CtaReten As String
                     SQL2 = SQL2 & ValorNulo & "," & DBSet(RS!impoiva1, "N") & "," & ValorNulo
                     CadenaInsertFaclin2 = CadenaInsertFaclin2 & "(" & SQL2 & ")"
                         
+                    'IVA 2, solo existe si hay suplidos y es a cero
+                    If DBLet(RS!Suplidos, "N") <> 0 Then
+                        Aux = "'" & SerieFraPro & "'," & Mc.Contador & "," & DBSet(txtCodigo(0).Text, "F") & "," & AnyoFacPr & ","
+                        
+                        SQL2 = Aux & "2," & DBSet(RS!Suplidos, "N") & "," & DBSet(CodIvaSuplidos, "N") & "," & DBSet(porIvaSuplidos, "N") & ","
+                        SQL2 = SQL2 & ValorNulo & "," & DBSet(ImpIvaSuplidos, "N") & "," & ValorNulo
+                        CadenaInsertFaclin2 = CadenaInsertFaclin2 & ",(" & SQL2 & ")"
+                    End If
+                        
                     'Los totales
                     'totbases,totbasesret,totivas,totrecargo,totfacpr,
-                    Sql = Sql & DBSet(RS!BaseIVA1, "N") & "," & DBSet(RS!BaseReten, "N", "S") & ","
+                    Sql = Sql & DBSet(RS!BaseIVA1 + DBLet(RS!Suplidos, "N"), "N") & "," & DBSet(RS!BaseReten, "N", "S") & ","
                     'totivas
                     Sql = Sql & DBSet(RS!impoiva1, "N") & "," & DBSet(RS!TotalFac, "N") & ","
                     If DBLet(RS!porcreten, "N") <> 0 Then
