@@ -277,7 +277,7 @@ End Sub
 
 Private Sub CargaImagen()
     On Error Resume Next
-    Me.Image1 = LoadPicture(App.Path & "\arifon.dat")
+    Me.Image1 = LoadPicture(App.Path & "\arifon6.dat")
     If Err.Number <> 0 Then
         MsgBox Err.Description & vbCrLf & vbCrLf & "Error cargando", vbCritical
         Set conn = Nothing

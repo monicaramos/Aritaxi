@@ -1600,7 +1600,7 @@ Dim I As Integer
     Set RS = New ADODB.Recordset
     
     '[Monica]11/04/2014: solo debe de salir las ariconta
-    RS.Open "Select * from usuarios.empresasaritaxi where conta like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    RS.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     While Not RS.EOF
         Cad = "|" & RS!codempre & "|"
@@ -1618,7 +1618,7 @@ Dim I As Integer
 '            ItmX.SubItems(4) = Cad
             
                 
-            Cad = RS!conta & "|" & RS!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
+            Cad = RS!AriTaxi & "|" & RS!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
             
             If RS!codempre = vEmpresa.codempre Then
                 ItmX.Bold = True
