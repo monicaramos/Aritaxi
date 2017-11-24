@@ -149,7 +149,7 @@ Begin VB.Form frmFacClientes
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   1
+      Tab             =   5
       TabsPerRow      =   7
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -164,99 +164,101 @@ Begin VB.Form frmFacClientes
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFacClientes.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Text1(47)"
-      Tab(0).Control(1)=   "Text1(11)"
-      Tab(0).Control(2)=   "Text1(45)"
-      Tab(0).Control(3)=   "chkClienteV"
-      Tab(0).Control(4)=   "Text1(13)"
-      Tab(0).Control(5)=   "Text2(10)"
-      Tab(0).Control(6)=   "Text2(11)"
-      Tab(0).Control(7)=   "Text1(10)"
-      Tab(0).Control(8)=   "Text2(12)"
-      Tab(0).Control(9)=   "Text2(9)"
-      Tab(0).Control(10)=   "Text1(9)"
-      Tab(0).Control(11)=   "Text1(12)"
-      Tab(0).Control(12)=   "frameComercial"
-      Tab(0).Control(13)=   "frameAdmon"
-      Tab(0).Control(14)=   "Text1(22)"
-      Tab(0).Control(15)=   "Text1(8)"
-      Tab(0).Control(16)=   "Text1(7)"
-      Tab(0).Control(17)=   "Text1(6)"
-      Tab(0).Control(18)=   "Text1(5)"
-      Tab(0).Control(19)=   "Text1(4)"
-      Tab(0).Control(20)=   "Text1(3)"
-      Tab(0).Control(21)=   "Label1(58)"
-      Tab(0).Control(22)=   "imgBuscar(12)"
-      Tab(0).Control(23)=   "imgBuscar(11)"
-      Tab(0).Control(24)=   "Label1(19)"
-      Tab(0).Control(25)=   "imgFecha(0)"
-      Tab(0).Control(26)=   "Label1(16)"
-      Tab(0).Control(27)=   "imgWeb"
-      Tab(0).Control(28)=   "imgBuscar(9)"
-      Tab(0).Control(29)=   "imgBuscar(1)"
-      Tab(0).Control(30)=   "imgBuscar(2)"
-      Tab(0).Control(31)=   "Label1(6)"
-      Tab(0).Control(32)=   "Label1(17)"
-      Tab(0).Control(33)=   "imgBuscar(3)"
-      Tab(0).Control(34)=   "imgBuscar(0)"
-      Tab(0).Control(35)=   "Label1(5)"
-      Tab(0).Control(36)=   "Label1(7)"
-      Tab(0).Control(37)=   "Label1(11)"
-      Tab(0).Control(38)=   "Label1(37)"
-      Tab(0).Control(39)=   "Label1(36)"
-      Tab(0).Control(40)=   "Label1(15)"
-      Tab(0).Control(41)=   "Label1(34)"
-      Tab(0).Control(42)=   "Label1(14)"
-      Tab(0).Control(43)=   "Label1(13)"
+      Tab(0).Control(0)=   "Label1(13)"
+      Tab(0).Control(1)=   "Label1(14)"
+      Tab(0).Control(2)=   "Label1(34)"
+      Tab(0).Control(3)=   "Label1(15)"
+      Tab(0).Control(4)=   "Label1(36)"
+      Tab(0).Control(5)=   "Label1(37)"
+      Tab(0).Control(6)=   "Label1(11)"
+      Tab(0).Control(7)=   "Label1(7)"
+      Tab(0).Control(8)=   "Label1(5)"
+      Tab(0).Control(9)=   "imgBuscar(0)"
+      Tab(0).Control(10)=   "imgBuscar(3)"
+      Tab(0).Control(11)=   "Label1(17)"
+      Tab(0).Control(12)=   "Label1(6)"
+      Tab(0).Control(13)=   "imgBuscar(2)"
+      Tab(0).Control(14)=   "imgBuscar(1)"
+      Tab(0).Control(15)=   "imgBuscar(9)"
+      Tab(0).Control(16)=   "imgWeb"
+      Tab(0).Control(17)=   "Label1(16)"
+      Tab(0).Control(18)=   "imgFecha(0)"
+      Tab(0).Control(19)=   "Label1(19)"
+      Tab(0).Control(20)=   "imgBuscar(11)"
+      Tab(0).Control(21)=   "imgBuscar(12)"
+      Tab(0).Control(22)=   "Label1(58)"
+      Tab(0).Control(23)=   "Text1(3)"
+      Tab(0).Control(24)=   "Text1(4)"
+      Tab(0).Control(25)=   "Text1(5)"
+      Tab(0).Control(26)=   "Text1(6)"
+      Tab(0).Control(27)=   "Text1(7)"
+      Tab(0).Control(28)=   "Text1(8)"
+      Tab(0).Control(29)=   "Text1(22)"
+      Tab(0).Control(30)=   "frameAdmon"
+      Tab(0).Control(31)=   "frameComercial"
+      Tab(0).Control(32)=   "Text1(12)"
+      Tab(0).Control(33)=   "Text1(9)"
+      Tab(0).Control(34)=   "Text2(9)"
+      Tab(0).Control(35)=   "Text2(12)"
+      Tab(0).Control(36)=   "Text1(10)"
+      Tab(0).Control(37)=   "Text2(11)"
+      Tab(0).Control(38)=   "Text2(10)"
+      Tab(0).Control(39)=   "Text1(13)"
+      Tab(0).Control(40)=   "chkClienteV"
+      Tab(0).Control(41)=   "Text1(45)"
+      Tab(0).Control(42)=   "Text1(11)"
+      Tab(0).Control(43)=   "Text1(47)"
       Tab(0).ControlCount=   44
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacClientes.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "frameDptoDirec"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "frameDptoAdmon"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "frameDptoVentas"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Frame4"
-      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "Frame4"
+      Tab(1).Control(1)=   "frameDptoVentas"
+      Tab(1).Control(2)=   "frameDptoAdmon"
+      Tab(1).Control(3)=   "frameDptoDirec"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Direcciones"
       TabPicture(2)   =   "frmFacClientes.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameDesplazamiento2"
+      Tab(2).Control(0)=   "FrameDirecciones"
       Tab(2).Control(1)=   "FrameAux1"
-      Tab(2).Control(2)=   "FrameDirecciones"
+      Tab(2).Control(2)=   "FrameDesplazamiento2"
       Tab(2).ControlCount=   3
       TabCaption(3)   =   "Documentos"
       TabPicture(3)   =   "frmFacClientes.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "Frame3(0)"
-      Tab(3).Control(1)=   "Text1(46)"
-      Tab(3).Control(2)=   "lw1"
-      Tab(3).Control(3)=   "Label3"
-      Tab(3).Control(4)=   "imgFecha(3)"
-      Tab(3).Control(5)=   "LabelDoc"
+      Tab(3).Control(0)=   "LabelDoc"
+      Tab(3).Control(1)=   "imgFecha(3)"
+      Tab(3).Control(2)=   "Label3"
+      Tab(3).Control(3)=   "lw1"
+      Tab(3).Control(4)=   "Text1(46)"
+      Tab(3).Control(5)=   "Frame3(0)"
       Tab(3).ControlCount=   6
       TabCaption(4)   =   "CRM"
       TabPicture(4)   =   "frmFacClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "cmdAccCRM(2)"
-      Tab(4).Control(1)=   "cmdAccCRM(1)"
-      Tab(4).Control(2)=   "cmdAccCRM(0)"
-      Tab(4).Control(3)=   "Frame3(1)"
-      Tab(4).Control(4)=   "lwCRM"
-      Tab(4).Control(5)=   "LabelCRM"
+      Tab(4).Control(0)=   "LabelCRM"
+      Tab(4).Control(1)=   "lwCRM"
+      Tab(4).Control(2)=   "Frame3(1)"
+      Tab(4).Control(3)=   "cmdAccCRM(0)"
+      Tab(4).Control(4)=   "cmdAccCRM(1)"
+      Tab(4).Control(5)=   "cmdAccCRM(2)"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Subclientes"
       TabPicture(5)   =   "frmFacClientes.frx":0098
-      Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "FrameToolAux"
-      Tab(5).Control(1)=   "txtAux1(0)"
-      Tab(5).Control(2)=   "txtAux1(1)"
-      Tab(5).Control(3)=   "cmdAux(0)"
-      Tab(5).Control(4)=   "DataGrid1"
-      Tab(5).Control(5)=   "Adodc2"
+      Tab(5).ControlEnabled=   -1  'True
+      Tab(5).Control(0)=   "Adodc2"
+      Tab(5).Control(0).Enabled=   0   'False
+      Tab(5).Control(1)=   "DataGrid1"
+      Tab(5).Control(1).Enabled=   0   'False
+      Tab(5).Control(2)=   "cmdAux(0)"
+      Tab(5).Control(2).Enabled=   0   'False
+      Tab(5).Control(3)=   "txtAux1(1)"
+      Tab(5).Control(3).Enabled=   0   'False
+      Tab(5).Control(4)=   "txtAux1(0)"
+      Tab(5).Control(4).Enabled=   0   'False
+      Tab(5).Control(5)=   "FrameToolAux"
+      Tab(5).Control(5).Enabled=   0   'False
       Tab(5).ControlCount=   6
       Begin VB.Frame Frame4 
          Caption         =   "Codigos DIR"
@@ -271,7 +273,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1470
-         Left            =   135
+         Left            =   -74865
          TabIndex        =   194
          Top             =   4245
          Width           =   5475
@@ -462,7 +464,7 @@ Begin VB.Form frmFacClientes
       End
       Begin VB.Frame FrameToolAux 
          Height          =   555
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   183
          Top             =   555
          Width           =   1605
@@ -508,7 +510,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74670
+         Left            =   330
          MaxLength       =   6
          TabIndex        =   177
          Tag             =   "Cliente de Albaran|N|N|||scliente_albaran|codclienalb|000000||"
@@ -532,7 +534,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73500
+         Left            =   1500
          TabIndex        =   176
          Text            =   "nomclien"
          Top             =   2070
@@ -543,7 +545,7 @@ Begin VB.Form frmFacClientes
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   -73710
+         Left            =   1290
          TabIndex        =   175
          ToolTipText     =   "Buscar cliente"
          Top             =   2070
@@ -1487,7 +1489,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   3735
-         Left            =   5670
+         Left            =   -69330
          TabIndex        =   103
          Top             =   450
          Width           =   6615
@@ -1895,7 +1897,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   3735
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   90
          Top             =   450
          Width           =   5475
@@ -3236,7 +3238,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1470
-         Left            =   5670
+         Left            =   -69330
          TabIndex        =   112
          Top             =   4245
          Width           =   6615
@@ -3512,7 +3514,7 @@ Begin VB.Form frmFacClientes
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFacClientes.frx":1A46
          Height          =   4125
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   178
          Top             =   1155
          Width           =   10185
@@ -3580,7 +3582,7 @@ Begin VB.Form frmFacClientes
       End
       Begin MSAdodcLib.Adodc Adodc2 
          Height          =   330
-         Left            =   -67110
+         Left            =   7890
          Top             =   4410
          Visible         =   0   'False
          Width           =   1455
@@ -5372,6 +5374,8 @@ Dim I As Integer
     Data1.RecordSource = "Select * from " & NombreTabla & " where codclien=-1"
     Data1.Refresh
     
+    LimpiarDataGrids
+    
     'Asignamos un SQL al DATA2
     CargaFrameDirec
     
@@ -5384,14 +5388,28 @@ Dim I As Integer
     
     Me.SSTab1.Tab = 0
     
-    
     If DatosADevolverBusqueda = "" Then
         PonerModo 0
     Else
         PonerModo 1
     End If
+    
 End Sub
 
+Private Sub LimpiarDataGrids()
+Dim Sql As String
+'Pone los Grids sin datos, apuntando a ningún registro
+On Error Resume Next
+
+    'SQL = "select * from sclien_chofer where codsocio=-1"
+    Sql = "select scliente_albaran.codclien, scliente_albaran.numlinea,scliente_albaran.codclienalb, scliente.nomclien from scliente_albaran inner join scliente on scliente_albaran.codclien=-1 and scliente_albaran.codclien=scliente.codclien"
+    CargaGridGnral DataGrid1, Me.Adodc2, Sql, True
+    CargaGrid DataGrid1, Adodc2
+
+'    CargaGrid DataGrid1, Adodc2, False
+    
+    If Err.Number <> 0 Then Err.Clear
+End Sub
 
 Private Sub LimpiarCampos()
 On Error Resume Next

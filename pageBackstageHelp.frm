@@ -1460,7 +1460,7 @@ Dim Equipo As String
     Cad = ""
     While Not RS.EOF
         If Not IsNull(RS.Fields(3)) Then
-            If InStr(1, RS.Fields(3), "ariconta") <> 0 Then
+            If InStr(1, RS.Fields(3), "aritaxi") <> 0 Then
                 If UCase(RS.Fields(3)) = UCase(vUsu.CadenaConexion) Then
                     Equipo = RS.Fields(2)
                     'Primero quitamos los dos puntos del puerto

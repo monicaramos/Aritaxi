@@ -451,7 +451,6 @@ Begin VB.Form frmFacEntAlbaranes
       _ExtentY        =   9208
       _Version        =   393216
       Style           =   1
-      Tab             =   2
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -465,25 +464,43 @@ Begin VB.Form frmFacEntAlbaranes
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmFacEntAlbaranes.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "DataGrid1"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "txtAux(0)"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "txtAux(1)"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "txtAux(3)"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "txtAux(4)"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "txtAux(6)"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "txtAux(7)"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "txtAux(8)"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "txtAux(2)"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "cmdAux(0)"
+      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "cmdAux(1)"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).Control(11)=   "FrameCliente"
+      Tab(0).Control(11).Enabled=   0   'False
       Tab(0).Control(12)=   "txtAux(5)"
+      Tab(0).Control(12).Enabled=   0   'False
       Tab(0).Control(13)=   "txtAux(9)"
+      Tab(0).Control(13).Enabled=   0   'False
       Tab(0).Control(14)=   "cmdAux(9)"
+      Tab(0).Control(14).Enabled=   0   'False
       Tab(0).Control(15)=   "txtAux(10)"
+      Tab(0).Control(15).Enabled=   0   'False
       Tab(0).Control(16)=   "txtAux(11)"
+      Tab(0).Control(16).Enabled=   0   'False
       Tab(0).Control(17)=   "FrameToolAux"
+      Tab(0).Control(17).Enabled=   0   'False
       Tab(0).ControlCount=   18
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacEntAlbaranes.frx":0028
@@ -520,13 +537,12 @@ Begin VB.Form frmFacEntAlbaranes
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmFacEntAlbaranes.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameFactura"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.Frame FrameToolAux 
          Height          =   555
-         Left            =   -74820
+         Left            =   180
          TabIndex        =   172
          Top             =   2340
          Width           =   1500
@@ -671,7 +687,7 @@ Begin VB.Form frmFacEntAlbaranes
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   11
-         Left            =   -62400
+         Left            =   12600
          MaxLength       =   15
          TabIndex        =   154
          Text            =   "numlote"
@@ -695,7 +711,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   -67560
+         Left            =   7440
          MaxLength       =   5
          TabIndex        =   41
          Tag             =   "Bultos"
@@ -709,7 +725,7 @@ Begin VB.Form frmFacEntAlbaranes
          Caption         =   "+"
          Height          =   315
          Index           =   9
-         Left            =   -62640
+         Left            =   12360
          TabIndex        =   150
          ToolTipText     =   "Buscar proveedor"
          Top             =   3960
@@ -732,7 +748,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   -63360
+         Left            =   11640
          MaxLength       =   6
          TabIndex        =   47
          Tag             =   "proveedor"
@@ -929,7 +945,7 @@ Begin VB.Form frmFacEntAlbaranes
       End
       Begin VB.Frame FrameFactura 
          Height          =   3300
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   91
          Top             =   600
          Width           =   10575
@@ -1796,7 +1812,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   -66120
+         Left            =   8880
          Locked          =   -1  'True
          MaxLength       =   1
          TabIndex        =   43
@@ -1808,7 +1824,7 @@ Begin VB.Form frmFacEntAlbaranes
       End
       Begin VB.Frame FrameCliente 
          Height          =   1950
-         Left            =   -74800
+         Left            =   200
          TabIndex        =   54
          Top             =   315
          Width           =   12320
@@ -2560,7 +2576,7 @@ Begin VB.Form frmFacEntAlbaranes
          Caption         =   "+"
          Height          =   315
          Index           =   1
-         Left            =   -72360
+         Left            =   2640
          TabIndex        =   53
          ToolTipText     =   "Buscar artículo"
          Top             =   3960
@@ -2572,7 +2588,7 @@ Begin VB.Form frmFacEntAlbaranes
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   -74040
+         Left            =   960
          TabIndex        =   52
          ToolTipText     =   "Buscar almacen"
          Top             =   3960
@@ -2594,7 +2610,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72120
+         Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   39
@@ -2620,7 +2636,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   -64440
+         Left            =   10560
          MaxLength       =   12
          TabIndex        =   46
          Tag             =   "Importe"
@@ -2645,7 +2661,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   -65040
+         Left            =   9960
          MaxLength       =   30
          TabIndex        =   45
          Tag             =   "Descuento 2"
@@ -2670,7 +2686,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   -65640
+         Left            =   9360
          MaxLength       =   5
          TabIndex        =   44
          Tag             =   "Descuento 1"
@@ -2695,7 +2711,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   -66960
+         Left            =   8040
          MaxLength       =   12
          TabIndex        =   42
          Tag             =   "Precio"
@@ -2720,7 +2736,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   -68880
+         Left            =   6120
          MaxLength       =   16
          TabIndex        =   40
          Tag             =   "Cantidad"
@@ -2744,7 +2760,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73800
+         Left            =   1200
          MaxLength       =   18
          TabIndex        =   38
          Tag             =   "Código Artículo"
@@ -2768,7 +2784,7 @@ Begin VB.Form frmFacEntAlbaranes
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   15
          TabIndex        =   37
          Tag             =   "Código Almacen"
@@ -2780,7 +2796,7 @@ Begin VB.Form frmFacEntAlbaranes
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFacEntAlbaranes.frx":0060
          Height          =   2040
-         Left            =   -74805
+         Left            =   195
          TabIndex        =   51
          Top             =   3015
          Width           =   12315
