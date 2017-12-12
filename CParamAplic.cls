@@ -112,6 +112,12 @@ Private mvarArtRetenciones As String 'Articulo para la factura de retenciones
 
 Private mvarArtSuplidos As String 'Articulo de suplidos para factura de liquidacion de socios y de cliente
 
+'[Monica]05/12/2017: socio y cliente cooperativa
+Private mvarSocioCooperativa As String 'Socio Cooperativa
+Private mvarClienteCooperativa As String 'Cliente Cooperativa
+
+Private mvarEmpresaTaxitronic As String 'Codigo de empresa taxitronicliente Cooperativa
+
 
 
     'aVISOS  al entrar
@@ -1243,6 +1249,35 @@ Public Property Get ArtSuplidos() As String
 End Property
 
 
+'[Monica]05/12/2017: Socio Cooperativa
+Public Property Let SocioCooperativa(ByVal vData As String)
+     mvarSocioCooperativa = vData
+End Property
+
+Public Property Get SocioCooperativa() As String
+     SocioCooperativa = mvarSocioCooperativa
+End Property
+
+
+'[Monica]05/12/2017: Cliente Cooperativa
+Public Property Let ClienteCooperativa(ByVal vData As String)
+     mvarClienteCooperativa = vData
+End Property
+
+Public Property Get ClienteCooperativa() As String
+     ClienteCooperativa = mvarClienteCooperativa
+End Property
+
+'[Monica]12/12/2017: Empresa taxitronic
+Public Property Let EmpresaTaxitronic(ByVal vData As String)
+     mvarEmpresaTaxitronic = vData
+End Property
+
+Public Property Get EmpresaTaxitronic() As String
+     EmpresaTaxitronic = mvarEmpresaTaxitronic
+End Property
+
+
 '[Monica]02/05/2017: si hay contabilidad nueva
 Public Property Get ContabilidadNueva() As Boolean
      ContabilidadNueva = mvarContabilidadNueva
@@ -1460,6 +1495,11 @@ On Error GoTo Err3
         '[Monica]13/11/2017: articulo de suplidos
         mvarArtSuplidos = DBLet(RS!ArtSuplidos, "T") ' articulo de suplidos
         
+        '[Monica]05/12/2017: socio cooperativa
+        mvarSocioCooperativa = DBLet(RS!codsoccooperativa, "N")
+        mvarClienteCooperativa = DBLet(RS!codclicooperativa, "N")
+        
+        mvarEmpresaTaxitronic = DBLet(RS!EmpresaTaxitronic, "N")
         
         Leer = 0
         
@@ -1677,6 +1717,12 @@ On Error GoTo EModificar
     
     ' Articulo de suplidos
     Sql = Sql & ", artsuplidos= " & DBSet(mvarArtSuplidos, "T")
+    
+    '[Monica]05/12/2017: socio cooperativa, cliente cooperativa
+    Sql = Sql & ", codsoccooperativa= " & DBSet(mvarSocioCooperativa, "N")
+    Sql = Sql & ", codclicooperativa= " & DBSet(mvarClienteCooperativa, "N")
+    
+    Sql = Sql & ", empresataxitronic= " & DBSet(mvarEmpresaTaxitronic, "N")
     
     
     'where

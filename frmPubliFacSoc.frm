@@ -692,6 +692,7 @@ Dim SQL2 As String
     End If
     Screen.MousePointer = vbDefault
 End Sub
+
 Private Function MostrarFacturas(CADENA As String) As Boolean
 
 MostrarFacturas = False
@@ -996,15 +997,15 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     
-    Me.imgFecha(2).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(2).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     For kCampo = 12 To 13
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
     
     

@@ -2145,7 +2145,7 @@ Dim Nulo3 As String
     cTabla = QuitarCaracterACadena(cTabla, "}")
     
     '[Monica]14/11/2017: se añade el suplemento al importe de venta
-    Sql = "Select shilla.codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) + sum(if(suplemen is null,0,suplemen)) importe, sum(if(extcompr is null,0,extcompr)) + sum(if(imppeaje is null,0,imppeaje)) suplidos FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select shilla.codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) + sum(if(suplemen is null,0,suplemen)) importe,  sum(if(imppeaje is null,0,imppeaje)) suplidos FROM " & QuitarCaracterACadena(cTabla, "_1")
     
     '[Monica]25/10/2017: para el caso de de solo validados
     Sql = Sql & " inner join scliente on shilla.codclien = scliente.codclien "

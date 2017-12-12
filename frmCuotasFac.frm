@@ -872,7 +872,7 @@ Dim NumFactu As Long
 Dim codtipom As String
 Dim Cantidad As Currency
 Dim total As Currency
-Dim i As Currency
+Dim I As Currency
 Dim J As Integer
 Dim SqlArt As String
 Dim RsArt As ADODB.Recordset
@@ -1110,11 +1110,11 @@ Dim cad1 As String
 '                    conn.Execute SQL
 '                End If
 '[Monica]20/04/2011
-                i = 1
+                I = 1
                 If base2 <> 0 Then ' si hay servicios
                     '3º linea seran los servicios
                     Cad = ""
-                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(i, "N") & "," & almac & ","
+                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
                     Cad = Cad & DBSet(vParamAplic.ArtServCuotas, "T") & "," & DBSet(NomArtic3, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorServicio)) & ","
                     Cad = Cad & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & ","
                     Cad = Cad & TransformaComasPuntos(CStr(base2)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base2)) & "," & Servicios & ")"
@@ -1128,7 +1128,7 @@ Dim cad1 As String
                 RsArt.Open SqlArt, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 While Not RsArt.EOF
-                    i = i + 1
+                    I = I + 1
                     '[Monica]27/04/2015: para taxivip
                     If vParamAplic.Cooperativa = 1 Then
                         If UCase(vParamAplic.ArtServCuotas) = UCase(DBLet(RsArt!codArtic, "T")) Then
@@ -1140,7 +1140,7 @@ Dim cad1 As String
                             NomArtic = Mid(RsArt!NomArtic, 1, 18) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
                     End If
                     
-                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(i, "N") & "," & almac & ","
+                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
                     '[Monica]05/12/2013: antes DBSet(RsArt!preciove, "N") ahora importes
                     Cad = Cad & DBSet(RsArt!codArtic, "T") & "," & DBSet(NomArtic, "T") & ",1," & DBSet(RsArt!Importes, "N") & ","
                     Cad = Cad & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & ","
@@ -1434,6 +1434,9 @@ Private Function VerSocios(ByRef Sql As String) As Boolean
     If Text1(3).Text <> "" Then Sql = Sql & " and sclien.codclien >= " & DBSet(Text1(3).Text, "N")
     If Text1(5).Text <> "" Then Sql = Sql & " and sclien.codclien <= " & DBSet(Text1(5).Text, "N")
     
+    '[Monica]12/12/2017: los socios que no sean el gros que engloban a los de la otra empresa
+    Sql = Sql & " and sclien.codclien <> " & DBSet(vParamAplic.SocioCooperativa, "N")
+    
 '    ' solo los clientes que tengan algun tipo de cuota
 '    Sql = Sql & " and sclien.codclien in (select codsocio from sclien_cuotas) "
 
@@ -1661,10 +1664,10 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     'ocultamos los frames
     Frame1(0).visible = False
@@ -1677,11 +1680,11 @@ Dim i As Integer
 '    Frame1(1).visible = True
 '    Frame1(0).visible = False
     
-    For i = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
     
     

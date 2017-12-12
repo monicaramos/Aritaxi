@@ -200,7 +200,7 @@ Begin VB.Form frmGesTraspaso
    End
    Begin VB.Frame Frame1 
       Height          =   1755
-      Left            =   240
+      Left            =   195
       TabIndex        =   6
       Top             =   2040
       Width           =   7455
@@ -439,6 +439,8 @@ Private Function RScontador(CADENA As String) As Currency
     
 End Function
 
+
+
 Private Sub cmdAceptar_Click()
 Dim cadSel As String
 Dim b As Boolean
@@ -451,9 +453,6 @@ Dim cadTabla As String
 
 
     ' solo puede haber una persona ejecutando el proceso de traspaso
-
-
-
 
     If Not DatosOk Then Exit Sub
     
@@ -573,6 +572,30 @@ Dim cadTabla As String
                 RS.Close
                 Label1(0).Caption = ""
                 Label1(0).Refresh
+                
+                '[Monica]12/12/2017: por el tema de fusion de empresas
+                '                    si el fichero es de la otra empresa ponemos que el cliente es el gros
+                If b Then
+                    If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
+                        Label1(2).Caption = "Modificando códigos de cliente de otra empresa"
+                        Label1(2).Refresh
+                        
+                        Sql = "update tmptaxi set codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                        Sql = Sql & " where error1 <> 1 and empresa <> " & vParamAplic.EmpresaTaxitronic
+                        b = EjecutarSQL(Sql)
+                    End If
+                End If
+                '[Monica]12/12/2017: eliminamos todos aquellas llamadas que no son de nuestros clientes ni lo ha hecho un asociado nuestro
+                If b Then
+                    Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
+                    Label1(2).Refresh
+                    
+                    Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                    Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
+                
+                    b = EjecutarSQL(Sql)
+                End If
+                
                 'buscamos en la misma tabla que los registros no esten duplicados
                 If b Then
                     ProgressBar1.Value = 0
@@ -706,7 +729,9 @@ On Error GoTo EUp
 Updatear = False
 
 If encontrado = "" Then
-    Sql = "UPDATE tmptaxi set error1=1,error='Ningun socio tiene asociado este codigo de vehiculo' where numeruve=" & vehiculo
+'[Monica]12/12/2017: ahora si no encuentro el socio que lleva ese numero de vehiculo es que es de la otra empresa
+'    Sql = "UPDATE tmptaxi set error1=1,error='Ningun socio tiene asociado este codigo de vehiculo' where numeruve=" & vehiculo
+    Sql = "UPDATE tmptaxi set codsocio=" & vParamAplic.SocioCooperativa & " where numeruve=" & vehiculo
 Else
     Sql = "UPDATE tmptaxi set codsocio=" & CInt(encontrado) & " where numeruve=" & vehiculo
 End If
@@ -1177,7 +1202,7 @@ Private Sub Form_Load()
     Next kCampo
 
 
-    txtcodigo(85).Text = Format(Now, "dd/mm/yyyy")
+    txtCodigo(85).Text = Format(Now, "dd/mm/yyyy")
 
     EnTomaDeDatos
     BorrarTablas
@@ -2488,13 +2513,13 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = Index + 62
    End Select
    
-   PonerFormatoFecha txtcodigo(indCodigo)
-   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtcodigo(indCodigo)
+   PonerFoco txtCodigo(indCodigo)
 
 End Sub
 
@@ -2530,7 +2555,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -2541,8 +2566,8 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 85  'FECHA Desde Hasta
-            If txtcodigo(Index).Text = "" Then Exit Sub
-            PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text = "" Then Exit Sub
+            PonerFormatoFecha txtCodigo(Index)
             
     End Select
     
@@ -2555,12 +2580,12 @@ Dim Codigo As String
 
     DatosOk = True
     If Me.Option1(1).Value Or Option1(2).Value Then
-        If txtcodigo(85).Text = "" Then
+        If txtCodigo(85).Text = "" Then
             MsgBox "Debe introducir obligatoriamente la fecha de  traspaso.", vbExclamation
             DatosOk = False
             Exit Function
         End If
-        If txtcodigo(4).Text = "" Then
+        If txtCodigo(4).Text = "" Then
             MsgBox "Debe introducir obligatoriamente un concepto.", vbExclamation
             DatosOk = False
             Exit Function
@@ -2684,17 +2709,17 @@ Dim RS As ADODB.Recordset
             If Sql = "" Then
                 Mens = "No existe el cliente"
                 Sql = "insert into tmpinformes (codusu, importe1, fecha1, importe2, nombre1) values (" & _
-                      vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtcodigo(85).Text, "F") & "," & Importe & "," & _
+                      vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtCodigo(85).Text, "F") & "," & Importe & "," & _
                       DBSet(Mens, "T") & ")"
                 conn.Execute Sql
             End If
             ' comprobamos que no exista el registro en la tabla
             Sql = ""
-            Sql = DevuelveDesdeBDNew(conAri, "sfactclitr", "codclien", "codclien", Id, "N", , "fecfactu", txtcodigo(85).Text, "F")
+            Sql = DevuelveDesdeBDNew(conAri, "sfactclitr", "codclien", "codclien", Id, "N", , "fecfactu", txtCodigo(85).Text, "F")
             If Sql <> "" Then
                 Mens = "Existe el registro en las facturas"
                 Sql = "insert into tmpinformes (codusu, importe1, fecha1, importe2, nombre1) values (" & _
-                      vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtcodigo(85).Text, "F") & "," & Importe & "," & _
+                      vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtCodigo(85).Text, "F") & "," & Importe & "," & _
                       DBSet(Mens, "T") & ")"
                 conn.Execute Sql
             End If
@@ -2740,7 +2765,7 @@ Dim RS As ADODB.Recordset
                 If Sql = "" Then
                     Mens = "No existe VSocio"
                     Sql = "insert into tmpinformes (codusu, importe1, fecha1, importe2, nombre1) values (" & _
-                          vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtcodigo(85).Text, "F") & "," & Importe & "," & _
+                          vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtCodigo(85).Text, "F") & "," & Importe & "," & _
                           DBSet(Mens, "T") & ")"
                     conn.Execute Sql
                 End If
@@ -2751,18 +2776,18 @@ Dim RS As ADODB.Recordset
                 If Sql = "" Then
                     Mens = "No existe el Socio"
                     Sql = "insert into tmpinformes (codusu, importe1, fecha1, importe2, nombre1) values (" & _
-                          vUsu.Codigo & "," & DBSet(CodSoc, "N") & "," & DBSet(txtcodigo(85).Text, "F") & "," & Importe & "," & _
+                          vUsu.Codigo & "," & DBSet(CodSoc, "N") & "," & DBSet(txtCodigo(85).Text, "F") & "," & Importe & "," & _
                           DBSet(Mens, "T") & ")"
                     conn.Execute Sql
                 End If
             
                 ' comprobamos que no exista el registro en la tabla
                 Sql = ""
-                Sql = DevuelveDesdeBDNew(conAri, "sfactsoctr", "numeruve", "numeruve", Id, "N", , "fecfactu", txtcodigo(85).Text, "F")
+                Sql = DevuelveDesdeBDNew(conAri, "sfactsoctr", "numeruve", "numeruve", Id, "N", , "fecfactu", txtCodigo(85).Text, "F")
                 If Sql <> "" Then
                     Mens = "Existe el registro en las facturas"
                     Sql = "insert into tmpinformes (codusu, importe1, fecha1, importe2, nombre1) values (" & _
-                          vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtcodigo(85).Text, "F") & "," & Importe & "," & _
+                          vUsu.Codigo & "," & DBSet(Id, "N") & "," & DBSet(txtCodigo(85).Text, "F") & "," & Importe & "," & _
                           DBSet(Mens, "T") & ")"
                     conn.Execute Sql
                 End If
@@ -2886,9 +2911,9 @@ Dim SqlServ As String
         End If
     
         If EsClien Then
-            CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(txtcodigo(85).Text, "F") & ","
+            CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(txtCodigo(85).Text, "F") & ","
             CadValues = CadValues & Importe & "," & DBSet(NServicios, "N") & ","
-            CadValues = CadValues & DBSet(txtcodigo(4).Text, "T") & ",0),"
+            CadValues = CadValues & DBSet(txtCodigo(4).Text, "T") & ",0),"
 
 '[Monica]10/09/2014: de momento comentado pq partimos de la shilla
 '            '[Monica]31/03/2014: en el caso de que se carguen los servicios los metemos en la tabla auxiliar
@@ -2907,9 +2932,9 @@ Dim SqlServ As String
             If c_Importe <> 0 Then
                 Socio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(Id, "N"))
                 
-                CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(Socio, "N") & "," & DBSet(txtcodigo(85).Text, "F") & ","
+                CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(Socio, "N") & "," & DBSet(txtCodigo(85).Text, "F") & ","
                 CadValues = CadValues & Importe & "," & DBSet(NServicios, "N") & ","
-                CadValues = CadValues & DBSet(txtcodigo(4).Text, "T") & ",0),"
+                CadValues = CadValues & DBSet(txtCodigo(4).Text, "T") & ",0),"
             
 '[Monica]10/09/2014: de momento comentado pq partimos de la shilla
 '                '[Monica]31/03/2014: en el caso de que se carguen los servicios los metemos en la tabla auxiliar
@@ -2945,9 +2970,9 @@ Dim SqlServ As String
         
         
         If EsClien Then
-            CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(txtcodigo(85).Text, "F") & ","
+            CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(txtCodigo(85).Text, "F") & ","
             CadValues = CadValues & Importe & "," & DBSet(NServicios, "N") & ","
-            CadValues = CadValues & DBSet(txtcodigo(4).Text, "T") & ",0),"
+            CadValues = CadValues & DBSet(txtCodigo(4).Text, "T") & ",0),"
             
 '[Monica]10/09/2014: de momento comentado pq partimos de la shilla
 '            '[Monica]31/03/2014: en el caso de que se carguen los servicios los metemos en la tabla auxiliar
@@ -2968,9 +2993,9 @@ Dim SqlServ As String
             If c_Importe <> 0 Then
                 Socio = DevuelveValor("select codclien from sclien where numeruve = " & DBSet(Id, "N"))
                 
-                CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(Socio, "N") & "," & DBSet(txtcodigo(85).Text, "F") & ","
+                CadValues = CadValues & "(" & DBSet(Id, "N") & "," & DBSet(Socio, "N") & "," & DBSet(txtCodigo(85).Text, "F") & ","
                 CadValues = CadValues & Importe & "," & DBSet(NServicios, "N") & ","
-                CadValues = CadValues & DBSet(txtcodigo(4).Text, "T") & ",0),"
+                CadValues = CadValues & DBSet(txtCodigo(4).Text, "T") & ",0),"
             
 '[Monica]10/09/2014: de momento comentado pq partimos de la shilla
 '                '[Monica]31/03/2014: en el caso de que se carguen los servicios los metemos en la tabla auxiliar

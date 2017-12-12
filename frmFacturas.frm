@@ -11,6 +11,40 @@ Begin VB.Form frmFacturas
    ScaleHeight     =   5220
    ScaleWidth      =   8175
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton CmdComprobar 
+      Caption         =   "&Comprobar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   1575
+      TabIndex        =   4
+      Top             =   4455
+      Width           =   1320
+   End
+   Begin VB.CommandButton CmdImprimir 
+      Caption         =   "&Imprimir"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   270
+      TabIndex        =   3
+      Top             =   4455
+      Width           =   1135
+   End
    Begin MSAdodcLib.Adodc Adodc1 
       Height          =   330
       Left            =   480
@@ -178,10 +212,65 @@ Private Sub cmdCancelar_Click()
     Unload Me
 End Sub
 
+Private Sub CmdComprobar_Click()
+    
+End Sub
+
+Private Sub CmdImprimir_Click()
+
+Dim cadFormula As String
+Dim cadParam As String
+Dim numParam As Byte
+Dim cadSelect As String 'select para insertar en tabla temporal
+Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
+Dim nomDocu As String 'Nombre de Informe rpt de crystal
+Dim devuelve As String
+Dim ImprimeDirecto As Boolean
+
+
+    cadFormula = ""
+    cadParam = ""
+    cadSelect = ""
+    numParam = 0
+    
+    '===================================================
+    '============ PARAMETROS ===========================
+    'Añadir el parametro de Empresa
+    cadParam = "|pEmpresa=""" & vEmpresa.nomempre & """|"
+    numParam = 1
+    
+    'Nombre fichero .rpt a Imprimir
+    frmImprimir.NombreRPT = "ErroresTraspaso2.rpt"
+        
+    '===================================================
+    '================= FORMULA =========================
+    'Cadena para seleccion Nº de Factura
+    '---------------------------------------------------
+    devuelve = "{tmptaxi.error1} <> 0"
+    If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
+        
+    cadSelect = cadFormula
+   
+    If Not HayRegParaInforme("tmptaxi", cadSelect) Then Exit Sub
+        With frmImprimir
+            .FormulaSeleccion = cadFormula
+            .OtrosParametros = cadParam
+            .NumeroParametros = numParam
+            .NombrePDF = pPdfRpt
+            .SoloImprimir = False
+            .EnvioEMail = False
+            .Opcion = OpcionListado
+            .Titulo = ""
+            .Show vbModal
+        End With
+    End If
+
+End Sub
+
 Private Sub Form_Load()
 
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     Screen.MousePointer = vbDefault
     Adodc1.ConnectionString = conn
@@ -196,7 +285,7 @@ End Sub
 
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim i As Integer
+Dim I As Integer
 
 On Error GoTo ECargaGrid
 
@@ -228,10 +317,10 @@ On Error GoTo ECargaGrid
     
     
     vDataGrid.Enabled = True
-    For i = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(i).Locked = True
-        vDataGrid.Columns(i).AllowSizing = False
-    Next i
+    For I = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(I).Locked = True
+        vDataGrid.Columns(I).AllowSizing = False
+    Next I
 
     Exit Sub
 ECargaGrid:
