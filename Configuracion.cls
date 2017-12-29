@@ -66,10 +66,6 @@ Public Property Get Aplicacion() As String
 End Property
 
 
-
-
-
-
 '------------------------------------------------------
 '------------------------------------------------------
 '      Propiedades del modulo de configuracion
@@ -229,14 +225,14 @@ Public Function Leer() As Byte
     Dim Lin As String
     Dim NomParam As String ' Para leer el nombre del parámetro
     Dim ValParam As String ' Para leer el valor del parámetro
-    Dim NFile As Integer
+    Dim nFile As Integer
     
     On Error GoTo Err1
     Fichero = App.Path & "\ConfigAritaxi.ini"
-    NFile = FreeFile
-    Open Fichero For Input As #NFile   ' Abre el archivo.
-    Do While Not EOF(NFile) ' Repite el bucle hasta el final del archivo.
-        Line Input #NFile, Lin
+    nFile = FreeFile
+    Open Fichero For Input As #nFile   ' Abre el archivo.
+    Do While Not EOF(nFile) ' Repite el bucle hasta el final del archivo.
+        Line Input #nFile, Lin
         Select Case Lin
            Case "[SERVER]", "[USER]", "[PASSWORD]", "[PEDIR]", "[INTEG]", "[EXPLORADOR]", "[CORREO]", "[APLICACION]", "[FORMATO]"
                
@@ -263,7 +259,7 @@ Public Function Leer() As Byte
                 End If
         End Select
     Loop
-    Close #NFile    ' Cierra el archivo.
+    Close #nFile    ' Cierra el archivo.
     
     'Desencriptamos password
     Desencripta (True)
@@ -287,30 +283,30 @@ Public Function Grabar() As Byte
     '   parámetros de la aplicación
     '--------------------------------------------------
     Dim Fichero As String ' Nombre completo del fichero a leer
-    Dim NFile As Integer
+    Dim nFile As Integer
 
     On Error GoTo Err1
     Fichero = App.Path & "\ConfigAritaxi.ini"
-    NFile = FreeFile
-    Open Fichero For Output As #NFile   ' Abre el archivo.
-    Print #NFile, "[SERVER]"
-    Print #NFile, mvarSERVER
-    Print #NFile, "<-------->"
-    Print #NFile, "[USER]"
-    Print #NFile, Encripta(mvarUser)
-    Print #NFile, "<-------->"
-    Print #NFile, "[PASSWORD]"
-    Print #NFile, Encripta(mvarPassword)
-    Print #NFile, "<-------->"
-    Print #NFile, "[EXPLORADOR]"
-    Print #NFile, "C:\Archivos de programa\Internet Explorer\IEXPLORE.EXE"
-    Print #NFile, "<-------->"
-    Print #NFile, "[CORREO]"
-    Print #NFile, "C:\Archivos de programa\Microsoft Office\OFFICE11\OUTLOOK.EXE"
-    Print #NFile, "<-------->"
-    Print #NFile, "[FORMATO]"
-    Print #NFile, "Tarjeta.rpt"
-    Print #NFile, "<-------->"
+    nFile = FreeFile
+    Open Fichero For Output As #nFile   ' Abre el archivo.
+    Print #nFile, "[SERVER]"
+    Print #nFile, mvarSERVER
+    Print #nFile, "<-------->"
+    Print #nFile, "[USER]"
+    Print #nFile, Encripta(mvarUser)
+    Print #nFile, "<-------->"
+    Print #nFile, "[PASSWORD]"
+    Print #nFile, Encripta(mvarPassword)
+    Print #nFile, "<-------->"
+    Print #nFile, "[EXPLORADOR]"
+    Print #nFile, "C:\Archivos de programa\Internet Explorer\IEXPLORE.EXE"
+    Print #nFile, "<-------->"
+    Print #nFile, "[CORREO]"
+    Print #nFile, "C:\Archivos de programa\Microsoft Office\OFFICE11\OUTLOOK.EXE"
+    Print #nFile, "<-------->"
+    Print #nFile, "[FORMATO]"
+    Print #nFile, "Tarjeta.rpt"
+    Print #nFile, "<-------->"
     
     
 '    Print #NFile, "[PEDIR]"
@@ -320,7 +316,7 @@ Public Function Grabar() As Byte
 '    Print #NFile, mvarIntegraciones
 '    Print #NFile, "<-------->"
        
-    Close #NFile
+    Close #nFile
     Grabar = 0
     Exit Function
 Err1:
@@ -332,7 +328,7 @@ End Function
 
 Private Sub Desencripta(ElPassword As Boolean)
 Dim C As String
-Dim i As Integer
+Dim I As Integer
 
 If ElPassword Then
     C = mvarPassword
@@ -340,14 +336,14 @@ If ElPassword Then
     C = mvarUser
 End If
 Mens = ""
-For i = 1 To Len(C)
-    If (i Mod 2) <> 0 Then
+For I = 1 To Len(C)
+    If (I Mod 2) <> 0 Then
         'Solo valen los caracteres impares
-        NF = Asc(Mid(C, i, 1))
+        NF = Asc(Mid(C, I, 1))
         NF = NF + 1
         Mens = Mens & Chr(NF)
     End If
-Next i
+Next I
 
 If ElPassword Then
     mvarPassword = Mens
@@ -360,20 +356,20 @@ End Sub
 
 
 Private Function Encripta(ByRef C As String) As String
-Dim i As Byte
+Dim I As Byte
 
 Mens = ""
 Randomize
-For i = 1 To Len(C)
+For I = 1 To Len(C)
         'Solo valen los caracteres impares
-        NF = Asc(Mid(C, i, 1))
+        NF = Asc(Mid(C, I, 1))
         NF = NF - 1
         Mens = Mens & Chr(NF)
         'Y el aleatorio , entre 48 y 122  <- 74 ->
         NF = Int((74 * Rnd)) ' Genera valores aleatorios entre 0y74.
         NF = NF + 48
         Mens = Mens & Chr(NF)
-Next i
+Next I
 Encripta = Mens
 
 End Function

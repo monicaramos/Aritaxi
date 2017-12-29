@@ -2472,7 +2472,7 @@ Dim Nulo3 As String
                 Sql4 = Sql4 & "dirllama,observa1,impventa,idservic,observac2,codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar) " '[Monica]03/10/2014: insertamos el destino
                                                                                                                                                     '[Monica]12/12/2014: faltaba insertar el codusuar
                 SqlLin = "select " & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "', @rownum:=@rownum+1 AS rownum, fecha, hora, shilla.codsocio, shilla.numeruve, "
-                SqlLin = SqlLin & " concat(coalesce(shilla.dirllama,''),' ',coalesce(shilla.numllama,'')), observa2, shilla.impventa, shilla.idservic,  shilla.matricul, shilla.codclien, shilla.destino, shilla.codautor, shilla.licencia, shilla.fecfinal, shilla.horfinal, shilla.codusuar from shilla,(SELECT @rownum:=0) r, scliente "  '[Monica]03/10/2014: insertamos el destino
+                SqlLin = SqlLin & " concat(coalesce(shilla.dirllama,''),' ',coalesce(shilla.numllama,'')), observa2, shilla.impventa + coalesce(shilla.suplemen,0), shilla.idservic,  shilla.matricul, shilla.codclien, shilla.destino, shilla.codautor, shilla.licencia, shilla.fecfinal, shilla.horfinal, shilla.codusuar from shilla,(SELECT @rownum:=0) r, scliente "  '[Monica]03/10/2014: insertamos el destino
                 SqlLin = SqlLin & " where " & cWhere
                 '?????????
                 SqlLin = SqlLin & " and shilla.codclien = " & DBSet(RSLineas!CodClien, "N") & " and facturadocliente = 0 " 'and validado = 1 "

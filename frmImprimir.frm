@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmImprimir 
    BorderStyle     =   3  'Fixed Dialog
@@ -156,7 +156,7 @@ Public Titulo As String 'Titulo informe a mostrar en el text1
 
 Public NombreSubRptConta As String 'Nombre del subreport si va conectado a la BDatos Contabilidad
 
-Public ConSubinforme As Boolean 'Para saber si hay subinformes y hay que enlazar las
+Public ConSubInforme As Boolean 'Para saber si hay subinformes y hay que enlazar las
                                  'tablas a la BD correspondiente
 
 
@@ -254,15 +254,15 @@ End Sub
 'Si no he ajustado el NombrePDF y no le he puesto valor entonces,
 'cogera el mismo que tiene en NombreRPT
 Private Sub Form_Load()
-Dim cad As String
+Dim Cad As String
 
     PrimeraVez = True
     Lanzado = False
     CargaICO
-    cad = Dir(App.Path & "\impre.dat", vbArchive)
+    Cad = Dir(App.Path & "\impre.dat", vbArchive)
 
     'ReestableceSoloImprimir = False
-    If cad = "" Then
+    If Cad = "" Then
         chkSoloImprimir.Value = 0
     Else
         chkSoloImprimir.Value = 1
@@ -293,7 +293,7 @@ Dim cad As String
         Select Case Opcion
         Case 2001 'Confirmacion de Pedido
             Text1.Text = "Reparaciones efectuadas"
-            ConSubinforme = False
+            ConSubInforme = False
             MostrarTree = True
             NombreRPT = "rRepEfectuadas.rpt"
         Case 2002
@@ -306,13 +306,13 @@ Dim cad As String
             
         Case 2004
             Text1.Text = "Listado Recarga móviles"
-            ConSubinforme = False
+            ConSubInforme = False
             MostrarTree = True
             NombreRPT = "rRecargaMov.rpt"
         Case 2006
             Text1.Text = "Listados ventas por proveedor"
             MostrarTree = True
-            ConSubinforme = False
+            ConSubInforme = False
             'El nombre lo dejo que venga del form listado2
             
         Case 2009
@@ -343,7 +343,8 @@ Dim cad As String
         'Normal. Los de antes
                 If Opcion <= 40 Then
                     Select Case Opcion
-                    
+                    Case 4
+                        Text1.Text = "Errores en el fichero de Traspaso"
                     
                     '---------------- Algunos listados basicos
                     Case 5
@@ -355,26 +356,26 @@ Dim cad As String
                 
                     Case 31 'Listado de Ofertas
                         Text1.Text = "Listado de Ofertas"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 32 'Listado Recordatorio de Ofertas
                         Text1.Text = "Recordatorio de Ofertas"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 33 'Listado Valoracion de Ofertas
                         Text1.Text = "Valoracion de Ofertas"
                 
                     Case 35 'Listado Historico de Ofertas
                         Text1.Text = "Histórico de Ofertas"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 36 'Listado Ofertas Pendientes y Traspaso a Historico
                         Text1.Text = "Ofertas Pendientes"
                         NombreRPT = "rFacOfePtes.rpt"
                 
                     Case 39 'Orden de Instalacion
                         Text1.Text = "Orden de Instalación"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 40 'Confirmacion de Pedido
                         Text1.Text = "Confirmación de Pedido"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case Else
                         Text1.Text = "Opcion incorrecta"
                         Me.cmdImprimir.Enabled = False
@@ -387,7 +388,7 @@ Dim cad As String
                     Case 42 'Informe de Disponibilidad de Stocks
                         Text1.Text = "Disponibilidad de Stocks"
                         NombreRPT = "rFacPedDispStocks.rpt"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 44 'Informe de Pedidos por Cliente
                         Text1.Text = "Pedidos por Cliente"
                         NombreRPT = "rFacPedxClien.rpt"
@@ -402,17 +403,17 @@ Dim cad As String
                         NombreRPT = "rFacAlbxArtic.rpt"
                     Case 53 'Factura cliente
                         Text1.Text = "Factura Socio"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 54 'Listado Descuentos Familia/Marca
                         Text1.Text = "Listado Descuentos Familia/Marca"
                         'NombreRPT = "rFacDtosFM.rpt" Se lo indico en frmlistado
                     Case 58 'Listado Proveedor
                         Text1.Text = "Listado Proveedores"
-                        ConSubinforme = False
+                        ConSubInforme = False
                          NombreRPT = "rComProve.rpt"
                     Case 60 'Informe Equipos con Nº Serie
                         Text1.Text = "Equipos con Nº Serie"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     Case 61 'Informe Motivos Pend. Rep.
                         NombreRPT = "rRepMotivosPend.rpt"
                         Text1.Text = "Motivos Pend. Rep."
@@ -424,7 +425,7 @@ Dim cad As String
                     
                     Case 63 'FACTURAs del TPV
                         Text1.Text = "Facturas formato TPV"
-                        ConSubinforme = True
+                        ConSubInforme = True
                     
                     Case 65 'Informe Motivos Baja equipos
                         NombreRPT = "rRepMotivosBaja.rpt"
@@ -490,7 +491,7 @@ Dim LanzaAbrirOutlook As Boolean
         .SoloImprimir = (Me.chkSoloImprimir.Value = 0)
         .OtrosParametros = OtrosParametros
         .NumeroParametros = NumeroParametros
-        .ConSubinforme = ConSubinforme
+        .ConSubInforme = ConSubInforme
         .Opcion = Opcion
         .ExportarPDF = (chkEMAIL.Value = 1)
         .MostrarTree = MostrarTree

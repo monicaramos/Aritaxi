@@ -769,7 +769,7 @@ Dim SqlUve As String
         End If
         
         '[Monica]12/12/2017: añado la condicion de que se trata de un socio de la cooperativa
-        '                    ya les liquidará la otra cooperativa a sus coches
+        '                    ya liquidará la otra cooperativa a sus coches
         If vParamAplic.Cooperativa = 0 Then
             If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".codsocio} <> " & vParamAplic.SocioCooperativa) Then Exit Sub
             If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".codsocio} <> " & vParamAplic.SocioCooperativa) Then Exit Sub
@@ -1590,7 +1590,8 @@ Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
 Dim RS As ADODB.Recordset
-    
+Dim Importe As Currency
+
     On Error GoTo eInsertLinea
     
     InsertLineasFactSocio = False
@@ -1613,12 +1614,15 @@ Dim RS As ADODB.Recordset
     While Not RS.EOF
         linea = linea + 1
     
+        '[Monica]28/12/2017: sumamos importe + suplemento
+        Importe = DBLet(RS!impcompr, "N") + DBLet(RS!suplemen, "N")
+    
         SqlValues = SqlValues & "(" & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & ","
         SqlValues = SqlValues & DBSet(FecFac, "F") & "," & DBSet(linea, "N") & "," & DBSet(RS!Fecha, "F") & ","
         SqlValues = SqlValues & DBSet(RS!hora, "H") & "," & DBSet(RS!NumerUve, "N") & "," & DBSet(RS!CodClien, "N") & ","
         SqlValues = SqlValues & DBSet(RS!nomclien, "T") & "," & DBSet(RS!dirllama, "T") & "," & DBSet(RS!numllama, "T") & ","
         SqlValues = SqlValues & DBSet(RS!puerllama, "T") & "," & DBSet(RS!ciudadre, "T") & "," & DBSet(RS!Telefono, "T") & ","
-        SqlValues = SqlValues & DBSet(RS!impcompr, "N") & "," & DBSet(RS!idservic, "T") & "," & DBSet(RS!observac2, "T") & "),"
+        SqlValues = SqlValues & DBSet(Importe, "N") & "," & DBSet(RS!idservic, "T") & "," & DBSet(RS!observac2, "T") & "),"
         
         RS.MoveNext
     Wend

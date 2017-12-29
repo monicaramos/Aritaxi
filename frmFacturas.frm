@@ -1,49 +1,46 @@
 VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmFacturas 
    Caption         =   "Form1"
-   ClientHeight    =   5220
+   ClientHeight    =   6330
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   8175
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5220
+   ScaleHeight     =   6330
    ScaleWidth      =   8175
    StartUpPosition =   3  'Windows Default
-   Begin VB.CommandButton CmdComprobar 
-      Caption         =   "&Comprobar"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   375
-      Left            =   1575
-      TabIndex        =   4
-      Top             =   4455
-      Width           =   1320
-   End
-   Begin VB.CommandButton CmdImprimir 
-      Caption         =   "&Imprimir"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   375
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   600
       Left            =   270
-      TabIndex        =   3
-      Top             =   4455
-      Width           =   1135
+      TabIndex        =   6
+      Top             =   135
+      Width           =   1230
+      Begin MSComctlLib.Toolbar Toolbar3 
+         Height          =   330
+         Index           =   0
+         Left            =   90
+         TabIndex        =   7
+         Top             =   135
+         Width           =   1005
+         _ExtentX        =   1773
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   2
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Comprobar"
+            EndProperty
+         EndProperty
+      End
    End
    Begin MSAdodcLib.Adodc Adodc1 
       Height          =   330
@@ -104,9 +101,9 @@ Begin VB.Form frmFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5250
+      Left            =   5295
       TabIndex        =   1
-      Top             =   4500
+      Top             =   5760
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -122,19 +119,19 @@ Begin VB.Form frmFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6510
+      Left            =   6555
       TabIndex        =   2
-      Top             =   4500
+      Top             =   5760
       Width           =   1135
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Height          =   3615
-      Left            =   240
+      Height          =   3795
+      Left            =   270
       TabIndex        =   0
-      Top             =   360
+      Top             =   900
       Width           =   7455
       _ExtentX        =   13150
-      _ExtentY        =   6376
+      _ExtentY        =   6694
       _Version        =   393216
       HeadLines       =   1
       RowHeight       =   19
@@ -191,6 +188,53 @@ Begin VB.Form frmFacturas
          EndProperty
       EndProperty
    End
+   Begin MSComctlLib.ProgressBar ProgressBar1 
+      Height          =   315
+      Left            =   225
+      TabIndex        =   3
+      Top             =   4770
+      Width           =   7455
+      _ExtentX        =   13150
+      _ExtentY        =   556
+      _Version        =   393216
+      Appearance      =   1
+   End
+   Begin VB.Label Label1 
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   210
+      Index           =   0
+      Left            =   255
+      TabIndex        =   5
+      Top             =   5130
+      Width           =   7425
+   End
+   Begin VB.Label Label1 
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   210
+      Index           =   2
+      Left            =   255
+      TabIndex        =   4
+      Top             =   5400
+      Width           =   7425
+   End
 End
 Attribute VB_Name = "frmFacturas"
 Attribute VB_GlobalNameSpace = False
@@ -201,22 +245,321 @@ Option Explicit
 
 Public Sql As String
 Public Socio As Boolean
+Public deExcel As Boolean
+
 
 Private Sub cmdAceptar_Click()
     CadenaDesdeOtroForm = "DATOS"
     Unload Me
 End Sub
 
+
 Private Sub cmdCancelar_Click()
     CadenaDesdeOtroForm = ""
     Unload Me
 End Sub
 
-Private Sub CmdComprobar_Click()
-    
-End Sub
 
-Private Sub CmdImprimir_Click()
+Private Sub Comprobaciones()
+Dim b As Boolean
+Dim Contador As Long
+Dim Sql As String
+Dim RS As ADODB.Recordset
+Dim total As Long
+Dim encontrado As String
+
+     b = True
+     If b Then
+     
+         Sql = "update tmptaxi set error1 = 3 where error1 = 1"
+         conn.Execute Sql
+     
+         ComprobacionDatos
+     
+         'verificamos que los numeruve esten asociados a algun socio
+         ProgressBar1.Value = 0
+         Contador = 0
+         Label1(0).Caption = ""
+         Set RS = New ADODB.Recordset
+         Sql = "select * from tmptaxi where error1 = 3 group by numeruve"
+         RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+         total = rsContador("select count(distinct(numeruve)) from tmptaxi where error1=3")
+         Label1(2).Caption = "Verificando códigos de socios."
+         Label1(2).Refresh
+ 
+'         While Not RS.EOF
+'             Contador = Contador + 1
+'             ProgressBar1.Value = (Contador * 100) / total
+'             DoEvents
+'             'Label1(0).Caption = Round(ProgressBar1.Value, 2) & "%"
+'             Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
+'             Label1(0).Refresh
+'             encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
+'             b = Updatear(RS!NumerUve, encontrado)
+'             RS.MoveNext
+'         Wend
+'[Monica]28/12/2017: cambiado por
+        If deExcel Then
+
+            While Not RS.EOF
+                Contador = Contador + 1
+                ProgressBar1.Value = (Contador * 100) / total
+                DoEvents
+                'Label1(0).Caption = Round(ProgressBar1.Value, 2) & "%"
+                Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
+                Label1(0).Refresh
+                
+                '??????????
+                ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
+                If Trim(vParam.CifEmpresa) = "B98877806" Then
+                
+                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
+                    
+                    b = Updatear(RS!NumerUve, encontrado, False)
+                
+                Else
+                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", RS!NumerUve, "T")
+                    
+                    If encontrado <> "" Then
+                        ' pq me viene la licencia
+                        Dim rs4 As ADODB.Recordset
+                        Dim Sql4 As String
+                        Set rs4 = New ADODB.Recordset
+                        Sql4 = "select codclien from sclien where licencia = " & DBSet(RS!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
+                        rs4.Open Sql4, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+                        
+                        encontrado = ""
+                        
+                        If Not rs4.EOF Then
+                            encontrado = DBLet(rs4.Fields(0))
+                        End If
+                        Set rs4 = Nothing
+                        
+                        b = Updatear(RS!NumerUve, encontrado, True)
+                    Else
+                        b = Updatear(RS!NumerUve, encontrado, False)
+                    End If
+                    
+                End If
+                                        
+                RS.MoveNext
+            Wend
+            
+        Else
+        
+            While Not RS.EOF
+                Contador = Contador + 1
+                ProgressBar1.Value = (Contador * 100) / total
+                DoEvents
+                'Label1(0).Caption = Round(ProgressBar1.Value, 2) & "%"
+                Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
+                Label1(0).Refresh
+                
+                encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
+                b = Updatear(RS!NumerUve, encontrado, False)
+                RS.MoveNext
+            Wend
+        
+        End If
+        
+
+         RS.Close
+         Label1(0).Caption = ""
+         Label1(0).Refresh
+         
+         '[Monica]12/12/2017: por el tema de fusion de empresas, SOLO SI VIENE DE EXCEL
+         '                    si el fichero es de la otra empresa ponemos que el cliente es el gros
+         If deExcel Then
+             If b Then
+                 If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
+                     Label1(2).Caption = "Modificando códigos de cliente de otra empresa"
+                     Label1(2).Refresh
+                     
+                     Sql = "update tmptaxi set codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                     Sql = Sql & " where error1 = 3 and empresa <> " & vParamAplic.EmpresaTaxitronic
+                     Sql = Sql & " and not codclien is null "
+                     b = EjecutarSQL(Sql)
+                 End If
+             End If
+             '[Monica]12/12/2017: eliminamos todos aquellas llamadas que no son de nuestros clientes ni lo ha hecho un asociado nuestro
+             If b Then
+                 Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
+                 Label1(2).Refresh
+                 
+                 Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                 Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
+                 Sql = Sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
+             
+                 b = EjecutarSQL(Sql)
+             End If
+         End If
+         
+         'buscamos en la misma tabla que los registros no esten duplicados
+         If b Then
+             ProgressBar1.Value = 0
+             Contador = 0
+ 
+             Set RS = New ADODB.Recordset
+             Sql = "select fecha,hora,numeruve, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
+             RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+             total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+             Label1(2).Caption = "eliminando(II) duplicidad de registros en el fichero."
+             Label1(2).Refresh
+             While Not RS.EOF
+                 Contador = Contador + 1
+                 ProgressBar1.Value = Round2((Contador * 100) / total, 0)
+                 DoEvents
+                 Label1(0).Caption = Round(ProgressBar1.Value, 0) & " %"
+                 Label1(0).Refresh
+ 
+                 Sql = "fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' and numeruve=" & RS!NumerUve
+                 Sql = Sql & " and impventa = 0 and codclien =0 "
+                 
+                 Dim Ident As Long
+                 
+                 Ident = DevuelveValor("select id from tmptaxi where " & Sql)
+                 
+                 If Ident <> 0 Then
+                     Sql = "delete from tmptaxi where id = " & DBSet(Ident, "N")
+                     conn.Execute Sql
+                 Else
+                     'Stop
+                 End If
+
+ '                End If
+                 RS.MoveNext
+             Wend
+             RS.Close
+ 
+             
+             '
+             Sql = "select fecha,hora,numeruve, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
+             RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+             total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+             Label1(2).Caption = "Verificando duplicidad de registros en el fichero."
+             Label1(2).Refresh
+             While Not RS.EOF
+                 Contador = Contador + 1
+                ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
+                 DoEvents
+                 Label1(0).Caption = Contador
+                 Label1(0).Refresh
+ 
+                 Sql = "fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' and numeruve=" & RS!NumerUve
+                 
+                 
+                 
+ '                If SituarDataMULTI(Adodc1, SQL, encontrado) Then
+ 
+                     'esta, entonces es repetido
+                     Sql = "UPDATE tmptaxi set error1=1,error='Registro duplicado' where " & Sql
+                     conn.Execute Sql
+ '                End If
+                 RS.MoveNext
+             Wend
+             RS.Close
+ 
+             '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto
+            If Trim(vParam.CifEmpresa) <> "B98877806" And deExcel Then
+                Dim NUve As Long
+            
+                Sql = "select codsocio from tmptaxi where error1 = 3 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
+                
+                RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                
+                total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+                Label1(2).Caption = "Modificando Vehículo en registros del fichero."
+                Label1(2).Refresh
+                
+                While Not RS.EOF
+                    Contador = Contador + 1
+                   ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
+                    DoEvents
+                    Label1(0).Caption = Contador
+                    Label1(0).Refresh
+                
+                    Sql = "select numeruve from sclien where codclien = " & DBSet(RS!codSocio, "N")
+                    NUve = DevuelveValor(Sql)
+                
+                    Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(RS!codSocio, "N") & " and error1 = 3 "
+                    conn.Execute Sql
+                    
+                    RS.MoveNext
+                Wend
+            End If
+            RS.Close
+
+ 
+ 
+ 
+ 
+ 
+ 
+             'ahora vamos a buscar en la tabla shilla
+             Sql = "select * from tmptaxi where error1 = 3"
+             RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+             ProgressBar1.Value = 0
+             Contador = 0
+             total = rsContador("select count(*) from tmptaxi where error1 = 3")
+             Label1(2).Caption = "Verificando duplicidad de registros en la tabla."
+             Label1(2).Refresh
+
+             While Not RS.EOF
+                 Contador = Contador + 1
+                 ProgressBar1.Value = Round2((Contador * 100) / total, 0)
+
+                 'Label1(0).Caption = Round2(ProgressBar1.Value, 2) & "%"
+                 Label1(0).Caption = Round2(ProgressBar1.Value, 0) & "%"
+                 Label1(0).Refresh
+                 DoEvents
+                 
+                 '[Monica]11/11/2014: si aparece en la shilla no damos error, updateamos (antes no la introducíamos la marcabamos como errónea)
+                 '                    SOLO EN EL CASO DE QUE NO ESTE LIQUIDADA NI FACTURADA
+                 '                    En el caso de que esté liquidada o facturada la marcamos como erronea
+'                        Sql = "fecha='" & Format(RS!Fecha, FormatoFecha) & "' and hora='" & Format(RS!hora, FormatoHora) & "' and numeruve"
+'                        encontrado = DevuelveDesdeBD(conAri, "codsocio", "shilla", Sql, RS!NumerUve, "N")
+'                        If encontrado <> "" Then
+                 
+                 Sql = "select count(*) from shilla where fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H") & " and numeruve = " & DBSet(RS!NumerUve, "N") & " and (facturad=1 and abonados=1 and validado=1)"
+                 If TotalRegistros(Sql) <> 0 Then
+                     '[Monica]31/10/2017: los marco como 2 para no mostrarlos
+                     'esta entonces es repetido
+                     Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & RS!Id
+                     conn.Execute Sql
+                 End If
+                 RS.MoveNext
+             Wend
+             RS.Close
+         End If
+     End If
+
+    'los que continuan con 3 es que ya no tienen error
+    Sql = "update tmptaxi set error1 = 0 where error1 = 3"
+    conn.Execute Sql
+
+
+
+
+     Label1(0).Caption = ""
+     Label1(2).Caption = ""
+     Me.ProgressBar1.visible = False
+     
+     CargaGrid DataGrid1, Adodc1
+
+End Sub
+Private Function rsContador(CADENA As String) As Currency
+    
+    rsContador = 0
+    Set miRsAux = New ADODB.Recordset
+    miRsAux.Open CADENA, conn, adOpenKeyset, adLockPessimistic, adCmdText
+    If Not miRsAux.EOF Then
+        rsContador = miRsAux.Fields(0)
+    End If
+    miRsAux.Close
+    
+End Function
+
+Private Sub Imprimir()
 
 Dim cadFormula As String
 Dim cadParam As String
@@ -240,32 +583,44 @@ Dim ImprimeDirecto As Boolean
     numParam = 1
     
     'Nombre fichero .rpt a Imprimir
-    frmImprimir.NombreRPT = "ErroresTraspaso2.rpt"
+    frmImprimir.NombreRPT = "rErroresTraspaso2.rpt"
         
     '===================================================
     '================= FORMULA =========================
     'Cadena para seleccion Nº de Factura
     '---------------------------------------------------
-    devuelve = "{tmptaxi.error1} <> 0"
+    devuelve = "{tmptaxi.error1} = 1"
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
         
     cadSelect = cadFormula
    
     If Not HayRegParaInforme("tmptaxi", cadSelect) Then Exit Sub
-        With frmImprimir
-            .FormulaSeleccion = cadFormula
-            .OtrosParametros = cadParam
-            .NumeroParametros = numParam
-            .NombrePDF = pPdfRpt
-            .SoloImprimir = False
-            .EnvioEMail = False
-            .Opcion = OpcionListado
-            .Titulo = ""
-            .Show vbModal
-        End With
-    End If
+    With frmImprimir
+        .FormulaSeleccion = cadFormula
+        .OtrosParametros = cadParam
+        .NumeroParametros = numParam
+        .NombrePDF = pPdfRpt
+        .SoloImprimir = False
+        .EnvioEMail = False
+        .Opcion = 4
+        .Titulo = ""
+        .Show vbModal
+    End With
 
 End Sub
+
+Private Sub DataGrid1_Click()
+
+    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & Adodc1.Recordset!Id
+    frmGesHisLlamTMP.Show vbModal
+    
+    CargaGrid Me.DataGrid1, Me.Adodc1
+    
+End Sub
+
+
+
+
 
 Private Sub Form_Load()
 
@@ -281,6 +636,22 @@ Private Sub Form_Load()
         CargaGrid DataGrid1, Adodc1
     End If
 
+    With Me.Toolbar3(0)
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .Buttons(1).Image = 16  'impresora
+        .Buttons(2).Image = 18  'Comprobar
+    End With
+
+    '[Monica]13/12/2017: para comprobar sin salir
+    FrameBotonGnral.visible = Not Socio
+    FrameBotonGnral.Enabled = Not Socio
+    
+    Label1(0).visible = Not Socio
+    Label1(2).visible = Not Socio
+    Me.ProgressBar1.visible = False
+    
 End Sub
 
 
@@ -310,7 +681,9 @@ On Error GoTo ECargaGrid
         vDataGrid.Columns(2).Width = 1000
         vDataGrid.Columns(2).NumberFormat = "hh:mm:ss"
         vDataGrid.Columns(3).Caption = "Error"
-        vDataGrid.Columns(3).Width = 4100
+        vDataGrid.Columns(3).Width = 3600
+        vDataGrid.Columns(4).Caption = "Id"
+        vDataGrid.Columns(4).Width = 0
     End If
     
     vDataGrid.RowHeight = 350
@@ -327,3 +700,326 @@ ECargaGrid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
+
+Private Function Updatear(Vehiculo, encontrado As String, LicenciaSinV As Boolean) As Boolean
+Dim Sql As String
+
+On Error GoTo EUp
+
+Updatear = False
+
+If encontrado = "" Then
+'[Monica]12/12/2017: ahora si no encuentro el socio que lleva ese numero de vehiculo es que es de la otra empresa
+'                    si viene de fichero plano lo marco como error
+    If Not deExcel Or LicenciaSinV Then
+        Sql = "UPDATE tmptaxi set error1=1,error='Ningun socio tiene asociado este codigo de vehiculo' where numeruve=" & Vehiculo
+    Else
+        Sql = "UPDATE tmptaxi set codsocio=" & vParamAplic.SocioCooperativa & " where numeruve=" & Vehiculo
+    End If
+Else
+    Sql = "UPDATE tmptaxi set codsocio=" & CInt(encontrado) & " where numeruve=" & Vehiculo
+End If
+
+conn.Execute Sql
+
+Updatear = True
+
+EUp:
+If Err.Number <> 0 Then
+    Updatear = False
+End If
+
+End Function
+
+
+Private Sub ComprobacionDatos()
+Dim RS As ADODB.Recordset
+Dim Telefono As String
+Dim Values1 As String
+Dim Error As String
+Dim Error1 As Byte
+Dim FechaHora As String
+
+Dim Valor As Double
+Dim Fecha As String
+Dim hora As String
+Dim Vehiculo As String
+
+Dim Contador As Long
+Dim total As Long
+
+
+    Contador = 0
+    Label1(0).Caption = ""
+    total = rsContador("select count(*) from tmptaxi where error1=3")
+    Label1(2).Caption = "Comprobación de datos."
+    Label1(2).Refresh
+
+    Sql = "select * from tmptaxi where error1 = 3"
+    Set RS = New ADODB.Recordset
+    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    While Not RS.EOF
+        Contador = Contador + 1
+        ProgressBar1.Value = (Contador * 100) / total
+        DoEvents
+    
+        Error1 = 0
+        Error = ""
+    
+        Fecha = DBLet(RS!Fecha, "F")
+        hora = DBLet(RS!hora, "F")
+        
+        If hora = "" Then hora = "00:00:00"
+        
+        Vehiculo = DBLet(RS!NumerUve, "N")
+    
+        Error1 = 0
+        Error = ""
+        'armamos los registros segun la cadena
+        Telefono = DBLet(RS!Telefono, "T")
+        'telefono
+    
+        Telefono = DBLet(RS!CodClien, "N")
+        'codclien
+        
+        Telefono = DBLet(RS!codautor, "T")
+        'codautor"
+    
+        Telefono = DBLet(RS!codusuar, "T")
+        'codusuar"
+        
+        Telefono = DBLet(RS!nomclien, "T")
+        'nomclien"
+    
+        Telefono = DBLet(RS!tipservi, "N")
+        'tipservi"
+        If Telefono <> "0" And Telefono <> "1" Then
+            Error1 = "1"
+            Error = "tipservi con formato incorrecto"
+        End If
+        
+        Telefono = DBLet(RS!observa1, "T")
+        'observa1"
+    
+        'numeruve"
+        If ComprobarCero(Vehiculo) = 0 Then
+            Error1 = 1
+            Error = "Vehiculo con formato incorrecto"
+        End If
+    
+        Telefono = DBLet(RS!Licencia, "T")
+        'licencia"
+    
+        Telefono = DBLet(RS!matricul, "T")
+        'matricul"
+    
+        Telefono = DBLet(RS!dirllama, "T")
+        'dirllama"
+        
+        Telefono = DBLet(RS!ciudadre, "T")
+        'ciudadre"
+        
+    
+        'fecha"
+        If Fecha = "" Then
+            Error1 = 1
+            Error = "Falta fecha"
+        End If
+        
+        'hora"
+        If hora = "" Then
+            Error1 = 1
+            Error = "Falta hora"
+        End If
+    
+        Telefono = DBLet(RS!idservic, "T")
+        'idservic"
+    
+        Telefono = DBLet(RS!opereser, "T")
+        'opereser"
+        
+        Telefono = DBLet(RS!opedespa, "T")
+        'opedespa"
+    
+    
+        '****** NO HE ENCONTRADO EL ESTADO
+        '******
+        Telefono = "" 'Trim(Mid(Cadena, 481, 4))
+        'estado"
+    
+        Telefono = DBLet(RS!observa2, "T")
+        'observa2"
+    
+        
+        '[Monica]02/08/2017: añadido
+        Fecha = DBLet(RS!fecreser, "F")
+        hora = DBLet(RS!horreser, "F")
+        
+        'fecreser"
+        If Fecha = "" Then
+        ElseIf Not IsDate(Fecha) Then
+            Error1 = 1
+            Error = "fecha reserva con formato incorrecto"
+        End If
+    
+        'horreser"
+        If hora = "" Then
+        ElseIf Not IsDate(hora) Then
+            Error1 = 1
+            Error = "hora reserva con formato incorrecto"
+        End If
+        
+        
+        Fecha = DBLet(RS!fecaviso, "F")
+        hora = DBLet(RS!horaviso, "F")
+        'fecaviso"
+        If Fecha = "" Then
+        ElseIf Not IsDate(Fecha) Then
+            Error1 = 1
+            Error = "fecha aviso con formato incorrecto"
+        End If
+    
+        'horaviso"
+        If hora = "" Then
+        ElseIf Not IsDate(hora) Then
+            Error1 = 1
+            Error = "hora aviso con formato incorrecto"
+        End If
+    
+    
+        Fecha = DBLet(RS!fecllega, "F")
+        hora = DBLet(RS!horllega, "F")
+        'fecllega"
+        If Fecha = "" Then
+        ElseIf Not IsDate(Fecha) Then
+            Error1 = 1
+            Error = "fecha llegada con formato incorrecto"
+        End If
+        
+        'horllega"
+        If hora = "" Then
+        ElseIf Not IsDate(hora) Then
+            Error1 = 1
+            Error = "hora llegada con formato incorrecto"
+        End If
+    
+        Fecha = DBLet(RS!fecocupa, "F")
+        hora = DBLet(RS!horocupa, "F")
+        'fecocupa"
+        If Fecha = "" Then
+        ElseIf Not IsDate(Fecha) Then
+            Error1 = 1
+            Error = "fecha ocupa con formato incorrecto"
+        End If
+        
+        'horocupa"
+        If hora = "" Then
+        ElseIf Not IsDate(hora) Then
+            Error1 = 1
+            Error = "hora ocupa con formato incorrecto"
+        End If
+    
+    
+        Fecha = DBLet(RS!fecfinal, "F")
+        hora = DBLet(RS!horfinal, "F")
+        'fecfinal"
+        If Fecha = "" Then
+        ElseIf Not IsDate(Fecha) Then
+            Error1 = 1
+            Error = "fecha final con formato incorrecto"
+        End If
+        
+        'horfinal"
+        If hora = "" Then
+        ElseIf Not IsDate(hora) Then
+            Error1 = 1
+            Error = "hora final con formato incorrecto"
+        End If
+    
+    
+        Telefono = DBLet(RS!importtx, "N")
+        'importtx"
+    
+    
+        Telefono = DBLet(RS!impcompr, "N")
+        'impcompr"
+    
+    
+        Telefono = DBLet(RS!extcompr, "N")
+        'extcompr"
+    
+        Telefono = DBLet(RS!impventa, "N")
+        'impventa"
+    
+        Telefono = DBLet(RS!extventa, "N")
+        'extventa"
+    
+        Telefono = DBLet(RS!distanci, "T")
+        'distanci"
+    
+        '[Monica]30/11/2017: ya tenemos el suplemento y peaje
+        Telefono = DBLet(RS!suplemen, "N")
+        'suplemen"
+    
+        Telefono = DBLet(RS!imppeaje, "N")
+        'imppeaje"
+        
+        Telefono = DBLet(RS!imppropi, "N")
+        'imppropi"
+    
+        Telefono = DBLet(RS!facturad, "N")
+        'facturad"
+        If Telefono <> "0" And Telefono <> "1" Then
+            Error1 = 1
+            Error = "facturado con formato incorrecto"
+        End If
+    
+        Telefono = DBLet(RS!abonados, "N")
+        'abonados"
+        If Telefono <> "0" And Telefono <> "1" Then
+            Error1 = 1
+            Error = "abonado con formato incorrecto"
+        End If
+    
+        Telefono = DBLet(RS!validado, "N")
+        'validado"
+        If Telefono <> "0" And Telefono <> "1" Then
+            Error1 = 1
+            Error = "validado con formato incorrecto"
+        End If
+    
+        '[Monica]03/10/2014: añadimos el destino del servicio
+        Telefono = DBLet(RS!Destino, "T")
+        'destino"
+        
+        '[Monica]12/12/2017: quien coge la llamada (radio o tele)
+        Telefono = DBLet(RS!Empresa, "N")
+        'empresa"
+        
+        'error1,error
+        If Error1 = 1 Then
+            Sql = "update tmptaxi set error1 = 1, error = " & DBSet(Error, "T") & " where id = " & DBSet(RS!Id, "N")
+            conn.Execute Sql
+        End If
+        
+        RS.MoveNext
+    Wend
+    
+    Set RS = Nothing
+EInsert:
+    If Err.Number <> 0 Then
+        MsgBox "Error en comprobación de datos. " & Err.Description
+    End If
+End Sub
+
+
+
+Private Sub Toolbar3_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1 ' Imprimir
+            Imprimir
+        Case 2 ' Comprobar
+            Comprobaciones
+    End Select
+End Sub
