@@ -488,24 +488,24 @@ Begin VB.Form frmLiqHcoFacSoc
       TabCaption(1)   =   "Llamadas"
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(48)"
-      Tab(1).Control(1)=   "Data2"
-      Tab(1).Control(2)=   "DataGrid1"
-      Tab(1).Control(3)=   "txtAux3(2)"
-      Tab(1).Control(4)=   "txtAux3(1)"
-      Tab(1).Control(5)=   "txtAux3(0)"
-      Tab(1).Control(6)=   "txtAux3(3)"
-      Tab(1).Control(7)=   "txtAux3(4)"
-      Tab(1).Control(8)=   "txtAux3(5)"
-      Tab(1).Control(9)=   "txtAux3(6)"
-      Tab(1).Control(10)=   "txtAux3(7)"
-      Tab(1).Control(11)=   "txtAux3(8)"
-      Tab(1).Control(12)=   "txtAux3(9)"
-      Tab(1).Control(13)=   "txtAux3(10)"
-      Tab(1).Control(14)=   "txtAux3(11)"
-      Tab(1).Control(15)=   "txtAux3(12)"
-      Tab(1).Control(16)=   "txtAux2(0)"
-      Tab(1).Control(17)=   "FrameToolAux"
+      Tab(1).Control(0)=   "FrameToolAux"
+      Tab(1).Control(1)=   "txtAux2(0)"
+      Tab(1).Control(2)=   "txtAux3(12)"
+      Tab(1).Control(3)=   "txtAux3(11)"
+      Tab(1).Control(4)=   "txtAux3(10)"
+      Tab(1).Control(5)=   "txtAux3(9)"
+      Tab(1).Control(6)=   "txtAux3(8)"
+      Tab(1).Control(7)=   "txtAux3(7)"
+      Tab(1).Control(8)=   "txtAux3(6)"
+      Tab(1).Control(9)=   "txtAux3(5)"
+      Tab(1).Control(10)=   "txtAux3(4)"
+      Tab(1).Control(11)=   "txtAux3(3)"
+      Tab(1).Control(12)=   "txtAux3(0)"
+      Tab(1).Control(13)=   "txtAux3(1)"
+      Tab(1).Control(14)=   "txtAux3(2)"
+      Tab(1).Control(15)=   "DataGrid1"
+      Tab(1).Control(16)=   "Data2"
+      Tab(1).Control(17)=   "Label1(48)"
       Tab(1).ControlCount=   18
       Begin VB.Frame FrameToolAux 
          Height          =   555
@@ -4142,7 +4142,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
         
     b = (Modo = 2)
     For I = 0 To ToolAux.Count - 1
@@ -4403,7 +4403,7 @@ On Error GoTo EComprobarPagoArimoney
         Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
     Else
         Cad = "Select * from pagos where codmacta='" & vCta & "'"
-        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & CLng(Codfaccl), "T")
+        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
         Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
     End If
     
@@ -4550,7 +4550,7 @@ Dim bol As Boolean
 
                     If vParamAplic.ContabilidadNueva Then
                         Sql = " numserie = " & DBSet(SerieFraPro, "T")
-                        Sql = Sql & " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = Sql & " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Format(Data1.Recordset.Fields!NumFactu, "0000000") & "'"
                         Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                         ConnConta.Execute "Delete from pagos WHERE " & Sql
                     

@@ -1615,7 +1615,7 @@ Dim Importe As Currency
         linea = linea + 1
     
         '[Monica]28/12/2017: sumamos importe + suplemento
-        Importe = DBLet(RS!impcompr, "N") + DBLet(RS!suplemen, "N")
+        Importe = DBLet(RS!impcompr, "N") '+ DBLet(RS!suplemen, "N")
     
         SqlValues = SqlValues & "(" & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & ","
         SqlValues = SqlValues & DBSet(FecFac, "F") & "," & DBSet(linea, "N") & "," & DBSet(RS!Fecha, "F") & ","
@@ -2133,7 +2133,7 @@ Dim FPagContado As String
         Sql = "insert into sfactusoc_serv (codtipom,codsocio,numfactu,fecfactu,numlinea,fecha,hora,numeruve,codclien,nomclien,dirllama,"
         Sql = Sql & " impventa,idservic,observac2,matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal) "  '[Monica]03/10/2014: insertamos el destino
         Sql = Sql & " select " & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
-        Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(coalesce(dirllama,''),' ',coalesce(numllama,'')) , impcompr, idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
+        Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(coalesce(dirllama,''),' ',coalesce(numllama,'')) , impcompr + coalesce(suplemen,0), idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
         Sql = Sql & " from shilla left join scliente on shilla.codclien = scliente.codclien, (SELECT @rownum:=0) r "
     '[Monica]10/09/2014: cambiamos ahora los servicios son de la shilla
     '    SQL = SQL & " where (numeruve, fecfactu) in (select numeruve, fecfactu from sfactsoctr "
