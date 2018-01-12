@@ -77,6 +77,11 @@ Private mTipoRet As Byte   '0.- Retencion NORMAL
 Private mPorRet As Currency
 Private mImpRet As Currency
 
+
+'[Monica]05/01/2018: ncluimos el numero de uve
+Private mNumerUve As String
+
+
 '------------------------------------------------
 'Propiedades del modulo CFacturaSoc
 '------------------------------------------------
@@ -473,6 +478,20 @@ Public Property Get Concepto() As String
 End Property
 
 
+'**** Numeruve
+
+Public Property Let NumerUve(ByVal vData As String)
+     mNumerUve = vData
+End Property
+
+Public Property Get NumerUve() As String
+     NumerUve = mNumerUve
+End Property
+
+
+
+
+
 '------------------------------------------------
 'Procedimientos del modulo CFacturaSoc
 '------------------------------------------------
@@ -489,7 +508,7 @@ Dim CADENA As String
     On Error GoTo ELeer
     
     LeerDatos3 = False
-    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac, suplidos FROM sfactusoc "
+    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac, suplidos, numeruve FROM sfactusoc "
     Sql = Sql & " WHERE codSocio=" & vCodsocio
     Sql = Sql & " AND numfactu=" & vNumfactu & ""
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
@@ -510,6 +529,8 @@ Dim CADENA As String
         mTotalfac = CStr(RS!TotalFac)
         '[Monica]14/11/2017: columan nueva de suplidos
         mSuplidos = CStr(RS!Suplidos)
+        '[Monica]05/01/2018: numero de uve
+        mNumerUve = CStr(RS!NumerUve)
         
         'obterner la ctaCble del proveedor
         'CtaSocio = DevuelveDesdeBDNew(conAri, "sclien", "codmacta", "codclien", vCodSocio, "N")
@@ -578,7 +599,7 @@ Dim CADENA As String
     On Error GoTo ELeer
     
     LeerDatosLiq = False
-    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac, suplidos FROM sfactusoc "
+    Sql = "SELECT codSocio,numfactu,fecfactu,codforpa,baseiva1,totalfac, suplidos, numeruve FROM sfactusoc "
     Sql = Sql & " WHERE codSocio=" & vCodsocio
     Sql = Sql & " AND numfactu=" & vNumfactu & ""
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
@@ -599,6 +620,8 @@ Dim CADENA As String
         mTotalfac = CStr(RS!TotalFac)
         '[Monica]14/11/2017: añadidos los suplidos
         mSuplidos = CStr(RS!Suplidos)
+        '[Monica]05/01/2018: numero de uve
+        mNumerUve = CStr(RS!NumerUve)
         
         mTipoMov = CStr(vCodtipom)
         
@@ -630,9 +653,9 @@ Dim CADENA As String
 '            Else
         
             If vParamAplic.ContabilidadNueva Then
-                Sql = DevuelveDesdeBDNew(conConta, "pagos", "ctabanc1", "codmacta", CtaSocio, "T", , "numfactu", ObtenerLetraSerie(vCodtipom) & CLng(vNumfactu), "T", "fecfactu", vFecfactu, "F")
+                Sql = DevuelveDesdeBDNew(conConta, "pagos", "ctabanc1", "codmacta", CtaSocio, "T", , "numfactu", ObtenerLetraSerie(vCodtipom) & Format(CLng(vNumfactu), "0000000"), "T", "fecfactu", vFecfactu, "F")
             Else
-                Sql = DevuelveDesdeBDNew(conConta, "spagop", "ctabanc1", "ctaprove", CtaSocio, "T", , "numfactu", ObtenerLetraSerie(vCodtipom) & CLng(vNumfactu), "T", "fecfactu", vFecfactu, "F")
+                Sql = DevuelveDesdeBDNew(conConta, "spagop", "ctabanc1", "ctaprove", CtaSocio, "T", , "numfactu", ObtenerLetraSerie(vCodtipom) & Format(CLng(vNumfactu), "0000000"), "T", "fecfactu", vFecfactu, "F")
             End If
 '            End If
             If Sql <> "" Then
@@ -795,6 +818,12 @@ Dim vvIban As String
 
               'David. JUNIO 07.   Los dos textos de grabacion de datos de csb
               Sql = "Factura num.: " & ObtenerLetraSerie(mTipoMov) & NumFactu & "-" & Format(FecFactu, "dd/mm/yyyy")
+              
+              '[Monica]05/01/2018: para el caso de radio quiere poner la licencia
+              If Trim(vParam.CifEmpresa) = "B98877806" Then
+                    Sql = Sql & " L-" & mNumerUve
+              End If
+              
               CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
               Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
               CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"
@@ -847,6 +876,12 @@ Dim vvIban As String
                   End If
 
                   Sql = "Factura num.: " & ObtenerLetraSerie(mTipoMov) & NumFactu & "-" & Format(FecFactu, "dd/mm/yyyy")
+                  
+                  '[Monica]05/01/2018: para el caso de radio quiere poner la licencia
+                  If Trim(vParam.CifEmpresa) = "B98877806" Then
+                      Sql = Sql & " L-" & mNumerUve
+                  End If
+                  
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
                   Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"

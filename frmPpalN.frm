@@ -1529,22 +1529,39 @@ Dim RB As RibbonBar
     
     Set vEmpresa = New Cempresa
     Set vParam = New Cparametros
+    '[Monica]11/01/2018: añadido el tema de empresas para cordoba
+    Set vParamAplic = New CParamAplic
+    
     'NO DEBERIAN DAR ERROR
     vEmpresa.LeerDatos
     vParam.Leer
     
+    '[Monica]11/01/2018: añadido el tema de empresas para cordoba
+    vParamAplic.Leer
+    If AbrirConexionConta(False) = False Then
+        MsgBox "La aplicación no puede continuar sin acceso a los datos. ", vbCritical
+        End
+    End If
+    ' hasta aqui
+
+    'Carga los Niveles de cuentas de Contabilidad de la empresa y las fechasINICIO y FIN
+    LeerNivelesEmpresa
+    
     PonerCaption
     
     Screen.MousePointer = vbHourglass
-   CargaDatosMenusDemas
-   frmPaneContacts.SeleccionarNodoEmpresa vEmpresa.codempre
-   pageBackstageHelp.Label9.Caption = vEmpresa.nomempre
-   pageBackstageHelp.tabPage(0).visible = False
-   pageBackstageHelp.tabPage(1).visible = False
-   frmInbox.OpenProvider
-   Set RB = RibbonBar
-   RB.Minimized = False
-   RB.RedrawBar
+    
+    CargaDatosMenusDemas
+    
+    frmPaneContacts.SeleccionarNodoEmpresa vEmpresa.codempre
+    pageBackstageHelp.Label9.Caption = vEmpresa.nomempre
+    pageBackstageHelp.tabPage(0).visible = False
+    pageBackstageHelp.tabPage(1).visible = False
+    frmInbox.OpenProvider
+    
+    Set RB = RibbonBar
+    RB.Minimized = False
+    RB.RedrawBar
    
    
   
@@ -1824,6 +1841,7 @@ Private Sub AccionesCierre()
 
 End Sub
 
+
 Private Sub NumeroEmpresaMemorizar(Leer As Boolean)
 Dim NF As Integer
 Dim C1 As String
@@ -1851,11 +1869,9 @@ On Error GoTo ENumeroEmpresaMemorizar
         Close #NF
     End If
     
-    
 ENumeroEmpresaMemorizar:
     Err.Clear
 End Sub
-
 
 
 Public Function AddButton(Controls As CommandBarControls, ControlType As XTPControlType, Id As Long, Caption As String, Optional BeginGroup As Boolean = False, Optional DescriptionText As String = "", Optional ButtonStyle As XTPButtonStyle = xtpButtonAutomatic, Optional Category As String = "Controls") As CommandBarControl

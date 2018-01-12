@@ -286,7 +286,7 @@ Begin VB.MDIForm frmPpal2
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:48"
+            TextSave        =   "11:20"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1845,6 +1845,7 @@ End Sub
 
 
 
+
 Private Sub MDIForm_Activate()
 Dim b As Boolean
 
@@ -1900,7 +1901,7 @@ End Sub
 
 
 Public Sub GetIconsFromLibrary(ByVal sLibraryFilePath As String, ByVal Op As Integer, ByVal tam As Integer)
-    Dim i As Integer
+    Dim I As Integer
     Dim tRes As ResType, iCount As Integer
         
     opcio = Op
@@ -3202,16 +3203,16 @@ End Sub
 Private Sub mnUtiUsuActivos_Click()
 'Muestra si hay otros usuarios conectados a la Gestion
 Dim Sql As String
-Dim i As Integer
+Dim I As Integer
 
     CadenaDesdeOtroForm = OtrosPCsContraContabiliad
     If CadenaDesdeOtroForm <> "" Then
-        i = 1
+        I = 1
         Me.Tag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
         Do
-            Sql = RecuperaValor(CadenaDesdeOtroForm, i)
+            Sql = RecuperaValor(CadenaDesdeOtroForm, I)
             If Sql <> "" Then Me.Tag = Me.Tag & "    - " & Sql & vbCrLf
-            i = i + 1
+            I = I + 1
         Loop Until Sql = ""
         MsgBox Me.Tag, vbExclamation
     Else
@@ -3243,6 +3244,9 @@ End Sub
 Private Sub msGesCoche_Click()
     frmGesVehic.Show vbModal
 End Sub
+
+
+
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
@@ -3400,7 +3404,7 @@ End Sub
 
 
 Private Sub LanzaHome(Opcion As String)
-Dim i As Integer
+Dim I As Integer
 Dim Cad As String
 
     On Error GoTo ELanzaHome

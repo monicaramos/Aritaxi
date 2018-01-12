@@ -400,7 +400,7 @@ Dim encontrado As String
              Contador = 0
  
              Set RS = New ADODB.Recordset
-             Sql = "select fecha,hora,numeruve, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
+             Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
              RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
              total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
              Label1(2).Caption = "eliminando(II) duplicidad de registros en el fichero."
@@ -412,7 +412,7 @@ Dim encontrado As String
                  Label1(0).Caption = Round(ProgressBar1.Value, 0) & " %"
                  Label1(0).Refresh
  
-                 Sql = "fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' and numeruve=" & RS!NumerUve
+                 Sql = "numeruve=" & RS!NumerUve & " and fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' "
                  Sql = Sql & " and impventa = 0 and codclien =0 "
                  
                  Dim Ident As Long
@@ -433,7 +433,7 @@ Dim encontrado As String
  
              
              '
-             Sql = "select fecha,hora,numeruve, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
+             Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
              RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
              total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
              Label1(2).Caption = "Verificando duplicidad de registros en el fichero."
@@ -445,7 +445,7 @@ Dim encontrado As String
                  Label1(0).Caption = Contador
                  Label1(0).Refresh
  
-                 Sql = "fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' and numeruve=" & RS!NumerUve
+                 Sql = "numeruve=" & RS!NumerUve & " and fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' "
                  
                  
                  
@@ -486,13 +486,11 @@ Dim encontrado As String
                     
                     RS.MoveNext
                 Wend
+                
+                RS.Close
             End If
-            RS.Close
 
- 
- 
- 
- 
+
  
  
              'ahora vamos a buscar en la tabla shilla
@@ -520,7 +518,7 @@ Dim encontrado As String
 '                        encontrado = DevuelveDesdeBD(conAri, "codsocio", "shilla", Sql, RS!NumerUve, "N")
 '                        If encontrado <> "" Then
                  
-                 Sql = "select count(*) from shilla where fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H") & " and numeruve = " & DBSet(RS!NumerUve, "N") & " and (facturad=1 and abonados=1 and validado=1)"
+                 Sql = "select count(*) from shilla where numeruve = " & DBSet(RS!NumerUve, "N") & " and fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H") & " and  (facturad=1 and abonados=1 and validado=1)"
                  If TotalRegistros(Sql) <> 0 Then
                      '[Monica]31/10/2017: los marco como 2 para no mostrarlos
                      'esta entonces es repetido
@@ -533,9 +531,9 @@ Dim encontrado As String
          End If
      End If
 
-    'los que continuan con 3 es que ya no tienen error
-    Sql = "update tmptaxi set error1 = 0 where error1 = 3"
-    conn.Execute Sql
+     'los que continuan con 3 es que ya no tienen error
+     Sql = "update tmptaxi set error1 = 0 where error1 = 3"
+     conn.Execute Sql
 
 
 

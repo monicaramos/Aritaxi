@@ -4399,7 +4399,7 @@ On Error GoTo EComprobarPagoArimoney
     
     If Not vParamAplic.ContabilidadNueva Then
         Cad = "Select * from spagop where ctaprove='" & vCta & "'"
-        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & CLng(Codfaccl), "T")
+        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
         Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
     Else
         Cad = "Select * from pagos where codmacta='" & vCta & "'"
@@ -4555,7 +4555,7 @@ Dim bol As Boolean
                         ConnConta.Execute "Delete from pagos WHERE " & Sql
                     
                     Else
-                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Data1.Recordset.Fields!NumFactu & "'"
+                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(CodTipoMov) & Format(Data1.Recordset.Fields!NumFactu, "0000000") & "'"
                         Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                         ConnConta.Execute "Delete from spagop WHERE " & Sql
                     End If

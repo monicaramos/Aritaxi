@@ -2944,6 +2944,7 @@ If Text1(Index).Text <> "" Then Text1(Index) = UCase(Text1(Index).Text)
 
 Select Case Index
     Case 0 'socio
+        If Modo = 1 Then Exit Sub
         If Text1(Index).Text <> "" Then
             Text1(Index).Text = Format(Text1(Index).Text, "00000")
             encontrado = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", Text1(Index).Text, "T")

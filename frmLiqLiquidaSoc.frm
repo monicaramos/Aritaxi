@@ -1373,7 +1373,7 @@ Dim BancoContado As String
         Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
     End If
     nTotal = TotalRegistrosConsulta(Sql)
-    PB1.Max = nTotal
+    Pb1.Max = nTotal
     
     FrameProgress.visible = True
     
@@ -1392,7 +1392,7 @@ Dim BancoContado As String
     While Not RSalb.EOF And b
         codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBLet(RSalb!NumerUve, "N"))
         
-        IncrementarProgresNew PB1, 1
+        IncrementarProgresNew Pb1, 1
         
         Set vSocio = New CSocio
         If vSocio.LeerDatos(codSocio) Then
@@ -2255,7 +2255,7 @@ Dim BancoContado As String
         Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
 '    End If
     nTotal = TotalRegistrosConsulta(Sql)
-    PB1.Max = nTotal
+    Pb1.Max = nTotal
     
     FrameProgress.visible = True
     
@@ -2275,7 +2275,7 @@ Dim BancoContado As String
     While Not RSalb.EOF And b
         codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBLet(RSalb!NumerUve, "N"))
         
-        IncrementarProgresNew PB1, 1
+        IncrementarProgresNew Pb1, 1
         
         Set vSocio = New CSocio
         If vSocio.LeerDatos(codSocio) Then
@@ -2325,6 +2325,10 @@ Dim BancoContado As String
             MensError = ""
             If b Then
                 Set vFacSoc = New CFacturaSoc
+                
+                '[Monica]05/01/2018: numero de vehiculo
+                vFacSoc.NumerUve = RSalb!NumerUve
+                
                 '[Monica]22/11/2013: iban
                 vFacSoc.CCC_Iban = vSocio.Iban
                 vFacSoc.CCC_Entidad = vSocio.Banco
