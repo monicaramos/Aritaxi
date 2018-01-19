@@ -847,6 +847,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 903
 
 Public Opcion As Byte
     '   0.-  Generacion
@@ -924,7 +925,7 @@ End Sub
 Private Sub Form_Load()
 Dim H As Integer
 Dim W As Integer
-Dim i As Integer
+Dim I As Integer
     Me.Icon = frmppal.Icon
     FrameGenerar.visible = False
     limpiar Me
@@ -941,20 +942,20 @@ Dim i As Integer
         miSQL = ""
     End If
     
-    For i = 0 To Me.imgAccion.Count - 1
-        imgAccion(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgAccion.Count - 1
+        imgAccion(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgFecha.Count - 1
-        imgFecha(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFecha.Count - 1
+        imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
-    For i = 0 To Me.imgCliente.Count - 1
-        imgCliente(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgCliente.Count - 1
+        imgCliente(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgTecnico.Count - 1
-        imgTecnico(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgTecnico.Count - 1
+        imgTecnico(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For i = 0 To Me.imgVarios.Count - 1
-        imgVarios(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    For I = 0 To Me.imgVarios.Count - 1
+        imgVarios(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     
     Me.cmdCancelar(Opcion).Cancel = True

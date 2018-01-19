@@ -408,6 +408,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public DeConsulta As Boolean 'Muestra Form para consulta, solo buscar y ver todos activos
 
+Private Const IdPrograma = 402
+
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 Private CadenaConsulta As String
@@ -434,15 +436,15 @@ Dim Modo As Byte
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
     
     Me.txtAux(0).visible = Not b
     txtAux(1).visible = Not b
@@ -527,7 +529,7 @@ Private Sub BotonBuscar()
     'Buscar
     txtAux(0).Text = ""
     txtAux(1).Text = ""
-    LLamaLineas DataGrid1.Top + 230, 1
+    LLamaLineas DataGrid1.top + 230, 1
     PonerFoco txtAux(0)
 End Sub
 
@@ -549,7 +551,7 @@ End Sub
 
 Private Sub BotonModificar()
 Dim anc As Single
-Dim i As Integer
+Dim I As Integer
 
     If Adodc1.Recordset.EOF Then Exit Sub
     If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
@@ -557,8 +559,8 @@ Dim i As Integer
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     
@@ -581,10 +583,10 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     DeseleccionaGrid Me.DataGrid1
     PonerModo xModo
     'Fijamos el ancho
-    txtAux(0).Top = alto
-    txtAux(1).Top = alto
-    Combo1(0).Top = alto
-    Combo1(1).Top = alto
+    txtAux(0).top = alto
+    txtAux(1).top = alto
+    Combo1(0).top = alto
+    Combo1(1).top = alto
     txtAux(0).Left = DataGrid1.Left + 360
     txtAux(1).Left = txtAux(0).Left + txtAux(0).Width + 100
     Combo1(0).Left = txtAux(1).Left + txtAux(1).Width + 100 '70
@@ -624,7 +626,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim CadB As String
 
     On Error Resume Next
@@ -651,11 +653,11 @@ Dim CadB As String
              If DatosOk And BLOQUEADesdeFormulario(Me) Then
                  If ModificaDesdeFormulario(Me, 3) Then
                       TerminaBloquear
-                      i = Adodc1.Recordset.Fields(0)
+                      I = Adodc1.Recordset.Fields(0)
                       PonerModo 2
                       CancelaADODC Me.Adodc1
                       CargaGrid
-                      Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
+                      Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & I)
                   End If
                   DataGrid1.SetFocus
             End If
@@ -690,16 +692,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = Adodc1.Recordset.Fields(0) & "|"
-    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Adodc1.Recordset.Fields(0) & "|"
+    cad = cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -730,14 +732,14 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'el 1 es separadors
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2   'Todos
@@ -896,9 +898,9 @@ Private Sub PonerOpcionesMenu()
     PonerOpcionesMenuGeneral Me
 End Sub
 Private Sub CargaComboTipoComb()
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim i As Byte
+Dim I As Byte
     
     On Error GoTo ECarga
     
@@ -906,17 +908,17 @@ Dim i As Byte
     
     Sql = "SELECT * from scoche_tipocomb"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
         'Combo1(1).AddItem RS!tipocomb & " - " & RS!nomtipocomb
-        Combo1(1).AddItem RS!nomtipocomb
-        Combo1(1).ItemData(Combo1(1).NewIndex) = i
-        i = i + 1
-        RS.MoveNext
+        Combo1(1).AddItem Rs!nomtipocomb
+        Combo1(1).ItemData(Combo1(1).NewIndex) = I
+        I = I + 1
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
 ECarga:
     If Err.Number <> 0 Then
@@ -925,9 +927,9 @@ ECarga:
 End Sub
 
 Private Sub CargaComboTipoVehic()
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim i As Byte
+Dim I As Byte
     
     On Error GoTo ECarga
     
@@ -935,17 +937,17 @@ Dim i As Byte
     
     Sql = "SELECT * from scoche_tipovehi"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
         'Combo1(0).AddItem RS!tipovehi & " - " & RS!nomtipovehi
-        Combo1(0).AddItem RS!nomtipovehi
-        Combo1(0).ItemData(Combo1(0).NewIndex) = i
-        i = i + 1
-        RS.MoveNext
+        Combo1(0).AddItem Rs!nomtipovehi
+        Combo1(0).ItemData(Combo1(0).NewIndex) = I
+        I = I + 1
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
 ECarga:
     If Err.Number <> 0 Then

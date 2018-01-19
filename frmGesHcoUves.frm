@@ -520,6 +520,8 @@ Option Explicit
 
 'Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 'Public Event DatoSeleccionado(CadenaSeleccion As String)
+Private Const IdPrograma = 405
+
 
 Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
@@ -666,7 +668,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     'ICONOS de La toolbar
 '    With Toolbar1
@@ -684,9 +686,9 @@ Private Sub Form_Load()
     
     
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'el 1 es separadors
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2   'Todos
@@ -761,16 +763,16 @@ Dim b As Boolean
 
         For jj = 0 To txtAux.Count - 1
             txtAux(jj).Height = DataGrid1.RowHeight
-            txtAux(jj).Top = alto
+            txtAux(jj).top = alto
             txtAux(jj).visible = b
         Next jj
         txtAux2.Height = Me.DataGrid1.RowHeight
-        txtAux2.Top = alto
+        txtAux2.top = alto
         txtAux2.visible = b
         
         For jj = 0 To Me.cmdAux.Count - 1
             Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
-            Me.cmdAux(jj).Top = alto
+            Me.cmdAux(jj).top = alto
             Me.cmdAux(jj).visible = b
         Next jj
 End Sub
@@ -912,7 +914,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnNuevo.Enabled = (b Or (Modo = 0))
+    Me.mnnuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -931,7 +933,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 
@@ -1119,7 +1121,7 @@ End Function
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim C As String
 Dim C2 As String
 Dim Sql As String
@@ -1130,7 +1132,7 @@ Dim NueDesFec As Date
     If Not b Then Exit Function
     
     'Como NO hay clave primaria tengo que comprobar que NO exista un valor
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     
     ' libera la V y activa la fecha de baja
     If b And Modo = 4 Then
@@ -1245,23 +1247,23 @@ End Function
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
-    Cad = ""
+    cad = ""
     'Estamos en Modo de Cabeceras
     'Registro de la tabla de cabeceras: slista
-    Cad = Cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
-    Cad = Cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
+    cad = cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
+    cad = cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
     Tabla = NombreTabla
     Titulo = "Precios Especiales"
 
-    If Cad <> "" Then
+    If cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
+        frmB.vCampos = cad
         frmB.vTabla = Tabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False

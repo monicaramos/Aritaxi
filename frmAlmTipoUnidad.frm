@@ -662,6 +662,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public DeConsulta As Boolean 'Muestra Form para consulta, solo buscar y ver todos activos
 
+Private Const IdPrograma = 203
+
+
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 
@@ -691,11 +694,11 @@ Dim ModificaLineas As Byte
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
     
 '    ActualizarToolbarGnral Me.Toolbar1, Modo, vModo, 5
     
@@ -703,9 +706,9 @@ Dim i As Integer
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
     
     
     b = Modo = 1 Or Modo = 3 Or Modo = 4
@@ -740,7 +743,47 @@ Dim i As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                             'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+                        
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        
+        'costes
+        ToolAux(0).Buttons(1).Enabled = ToolAux(0).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        ToolAux(0).Buttons(2).Enabled = ToolAux(0).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        ToolAux(0).Buttons(3).Enabled = ToolAux(0).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
 
 Private Sub PonerModoOpcionesMenu()
 Dim b As Boolean
@@ -859,9 +902,9 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim Cad As String
+Dim cad As String
 Dim anc As Single
-Dim i As Integer
+Dim I As Integer
 
     If Adodc1.Recordset.EOF Then Exit Sub
     If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
@@ -879,26 +922,26 @@ Dim i As Integer
         ModificaLineas = 2
         PonerBotonCabecera False
         'Los txts
-        For i = 0 To 2
-             txtAux2(i).Text = DataGrid2.Columns(i).Text
-         Next i
+        For I = 0 To 2
+             txtAux2(I).Text = DataGrid2.Columns(I).Text
+         Next I
         txtAux2(2).visible = True
         anc = ObtenerAlto(DataGrid2, 10)
         LLamaLineas2 anc
         PonerFoco txtAux2(2)
     Else
          If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-             i = DataGrid1.Bookmark - DataGrid1.FirstRow
-             DataGrid1.Scroll 0, i
+             I = DataGrid1.Bookmark - DataGrid1.FirstRow
+             DataGrid1.Scroll 0, I
              DataGrid1.Refresh
          End If
          
          anc = ObtenerAlto(DataGrid1, 10)
          
-         Cad = ""
-         For i = 0 To 2
-             Cad = Cad & DataGrid1.Columns(i).Text & "|"
-         Next i
+         cad = ""
+         For I = 0 To 2
+             cad = cad & DataGrid1.Columns(I).Text & "|"
+         Next I
          'Llamamos al form
          txtAux(0).Text = DataGrid1.Columns(0).Text
          txtAux(1).Text = DataGrid1.Columns(1).Text
@@ -915,10 +958,10 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     DeseleccionaGrid Me.DataGrid1
     PonerModo xModo
     'Fijamos el ancho
-    txtAux(0).Top = alto
-    txtAux(1).Top = alto
-    txtAux(2).Top = alto
-    txtAux(3).Top = alto
+    txtAux(0).top = alto
+    txtAux(1).top = alto
+    txtAux(2).top = alto
+    txtAux(3).top = alto
     txtAux(0).Left = DataGrid1.Left + 340
     txtAux(1).Left = txtAux(0).Left + txtAux(0).Width + 45
     txtAux(2).Left = txtAux(1).Left + txtAux(1).Width + 65
@@ -927,10 +970,10 @@ End Sub
 
 Private Sub LLamaLineas2(alto As Single)
     
-    txtAux2(0).Top = alto
-    txtAux2(1).Top = alto
-    txtAux2(2).Top = alto
-    cmdAux2.Top = alto
+    txtAux2(0).top = alto
+    txtAux2(1).top = alto
+    txtAux2(2).top = alto
+    cmdAux2.top = alto
     cmdAux2.visible = ModificaLineas = 1
     txtAux2(0).Locked = ModificaLineas = 2
     txtAux2(0).Left = DataGrid2.Left + 340
@@ -993,7 +1036,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim CadB As String
 On Error Resume Next
 
@@ -1010,11 +1053,11 @@ On Error Resume Next
             If DatosOk And BLOQUEADesdeFormulario(Me) Then
                 If ModificaDesdeFormulario(Me, 3) Then
                    TerminaBloquear
-                   i = Adodc1.Recordset.Fields(0)
+                   I = Adodc1.Recordset.Fields(0)
                    PonerModo 2
                    CancelaADODC Me.Adodc1
                    CargaGrid
-                   Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
+                   Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & I)
                 End If
                 DataGrid1.SetFocus
             End If
@@ -1048,13 +1091,13 @@ End Sub
 
 
 Private Sub cmdAux2_Click()
-Dim Cad As String
+Dim cad As String
         
         
-    Cad = "Código|sunidesc|codigo|N||20·Descripcion|sunidesc|descripcion|T||70·"
+    cad = "Código|sunidesc|codigo|N||20·Descripcion|sunidesc|descripcion|T||70·"
     
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
+        frmB.vCampos = cad
         frmB.vTabla = "sunidesc"
         frmB.vSQL = ""
     
@@ -1099,7 +1142,7 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Modo = 5 Then
         Me.lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
@@ -1122,9 +1165,9 @@ Dim Cad As String
             Exit Sub
         End If
     
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Adodc1.Recordset.Fields(0) & "|"
+        cad = cad & Adodc1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -1173,7 +1216,7 @@ End Sub
 
 Private Sub Form_Load()
     ' ICONITOS DE LA BARRA
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     If vParamAplic.Descriptores Then Me.Caption = "Formatos"
 '    With Me.Toolbar1
@@ -1189,9 +1232,9 @@ Private Sub Form_Load()
 '    End With
 
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'el 1 es separadors
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2   'Todos
@@ -1206,9 +1249,9 @@ Private Sub Form_Load()
     With Me.ToolAux(0)
         '.ImageList = frmPpal.imgListComun_VELL
         '  ### [Monica] 02/10/2006 acabo de comentarlo
-        .HotImageList = frmPpal.imgListComun_OM16
-        .DisabledImageList = frmPpal.imgListComun_BN16
-        .ImageList = frmPpal.imgListComun16
+        .HotImageList = frmppal.imgListComun_OM16
+        .DisabledImageList = frmppal.imgListComun_BN16
+        .ImageList = frmppal.imgListComun16
         .Buttons(1).Image = 3   'Insertar
         .Buttons(2).Image = 4   'Modificar
         .Buttons(3).Image = 5   'Borrar
@@ -1321,7 +1364,7 @@ Private Sub MtoLineas()
 End Sub
 
 Private Sub CargaGrid(Optional Sql As String)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
     
     b = DataGrid1.Enabled
@@ -1334,25 +1377,25 @@ Dim b As Boolean
     
     CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
     
-    i = 0 'Cod. Tipo Unidad
-        DataGrid1.Columns(i).Caption = "Unidad"
-        DataGrid1.Columns(i).Width = 700
-        DataGrid1.Columns(i).NumberFormat = FormatoCod
+    I = 0 'Cod. Tipo Unidad
+        DataGrid1.Columns(I).Caption = "Unidad"
+        DataGrid1.Columns(I).Width = 700
+        DataGrid1.Columns(I).NumberFormat = FormatoCod
     
-    i = 1 'Desc. Tipo Unidad
-        DataGrid1.Columns(i).Caption = "Denominación"
-        DataGrid1.Columns(i).Width = 2100
+    I = 1 'Desc. Tipo Unidad
+        DataGrid1.Columns(I).Caption = "Denominación"
+        DataGrid1.Columns(I).Width = 2100
         
-    i = 2 'Abrev.
-        DataGrid1.Columns(i).Caption = "Abrev."
-        DataGrid1.Columns(i).Width = 700
+    I = 2 'Abrev.
+        DataGrid1.Columns(I).Caption = "Abrev."
+        DataGrid1.Columns(I).Width = 700
             
             
-    i = 3 'Tasa reciclado
-        DataGrid1.Columns(i).Caption = "Tasa"
-        DataGrid1.Columns(i).Width = 1200
-        DataGrid1.Columns(i).Alignment = dbgRight
-        DataGrid1.Columns(i).NumberFormat = "0.00000"
+    I = 3 'Tasa reciclado
+        DataGrid1.Columns(I).Caption = "Tasa"
+        DataGrid1.Columns(I).Width = 1200
+        DataGrid1.Columns(I).Alignment = dbgRight
+        DataGrid1.Columns(I).NumberFormat = "0.00000"
             
     'Fiajamos el cadancho
     If Not CadAncho Then
@@ -1365,9 +1408,9 @@ Dim b As Boolean
     End If
    
    'No permitir cambiar tamaño de columnas
-   For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-   Next i
+   For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+   Next I
    
    DataGrid1.RowHeight = 350
    
@@ -1482,7 +1525,7 @@ Private Sub Campos_2_Visibles(visibles As Boolean)
 End Sub
 
 Private Sub CargaGrid2(enlaza As Boolean)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim Sql As String
 Dim PriVe As Boolean
@@ -1504,20 +1547,20 @@ Dim PriVe As Boolean
     
     CargaGridGnral DataGrid2, Me.Adodc2, Sql, PriVe
     
-    i = 0 'Cod. Tipo Unidad
-        DataGrid2.Columns(i).Caption = "Coste"
-        DataGrid2.Columns(i).Width = 700
-        DataGrid2.Columns(i).NumberFormat = FormatoCod
+    I = 0 'Cod. Tipo Unidad
+        DataGrid2.Columns(I).Caption = "Coste"
+        DataGrid2.Columns(I).Width = 700
+        DataGrid2.Columns(I).NumberFormat = FormatoCod
     
-    i = 1 'Desc. Tipo Unidad
-        DataGrid2.Columns(i).Caption = "Denominación"
-        DataGrid2.Columns(i).Width = 2500
+    I = 1 'Desc. Tipo Unidad
+        DataGrid2.Columns(I).Caption = "Denominación"
+        DataGrid2.Columns(I).Width = 2500
         
-    i = 2 'Tasa reciclado
-        DataGrid2.Columns(i).Caption = "Importe"
-        DataGrid2.Columns(i).Width = 1200
-        DataGrid2.Columns(i).Alignment = dbgRight
-        DataGrid2.Columns(i).NumberFormat = "0.00000"
+    I = 2 'Tasa reciclado
+        DataGrid2.Columns(I).Caption = "Importe"
+        DataGrid2.Columns(I).Width = 1200
+        DataGrid2.Columns(I).Alignment = dbgRight
+        DataGrid2.Columns(I).NumberFormat = "0.00000"
     'Fiajamos el cadancho
     If PriVe Then
         'La primera vez fijamos el ancho y alto de  los txtaux
@@ -1529,9 +1572,9 @@ Dim PriVe As Boolean
     End If
    
    'No permitir cambiar tamaño de columnas
-   For i = 0 To DataGrid2.Columns.Count - 1
-        DataGrid2.Columns(i).AllowSizing = False
-   Next i
+   For I = 0 To DataGrid2.Columns.Count - 1
+        DataGrid2.Columns(I).AllowSizing = False
+   Next I
    
    
    DataGrid2.Enabled = b
@@ -1551,13 +1594,13 @@ Private Sub txtAux2_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtAux2_LostFocus(Index As Integer)
-Dim Cad As String
+Dim cad As String
 
     If Index = 0 Then
-        Cad = ""
+        cad = ""
         If PonerFormatoEntero(txtAux2(Index)) Then
-            Cad = DevuelveDesdeBD(conAri, "descripcion", "sunidesc", "codigo", txtAux2(Index))
-            If Cad = "" Then
+            cad = DevuelveDesdeBD(conAri, "descripcion", "sunidesc", "codigo", txtAux2(Index))
+            If cad = "" Then
                 MsgBox "No existe el coste: " & txtAux2(Index).Text, vbExclamation
                 txtAux2(0).Text = ""
                 PonerFoco txtAux2(Index)
@@ -1565,7 +1608,7 @@ Dim Cad As String
         Else
             txtAux2(0).Text = ""
         End If
-        txtAux2(1).Text = Cad
+        txtAux2(1).Text = cad
         If txtAux2(0).Text <> "" Then PonerFoco txtAux2(2)
     End If
     If Index = 2 Then

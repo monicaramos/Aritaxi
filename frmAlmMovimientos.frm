@@ -957,6 +957,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 208
+
+
 Public EsHistorico As Boolean 'Si es true abrir el formulario con la tabla de
                               'historico schmov, y solo en modo de consulta
 
@@ -1023,7 +1026,7 @@ Private Sub chkVistaPrevia_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 On Error GoTo Error1
     
     Screen.MousePointer = vbHourglass
@@ -1040,8 +1043,8 @@ On Error GoTo Error1
         If DatosOk Then
             If ModificaDesdeFormulario(Me, 1) Then
                 TerminaBloquear
-                Cad = "(" & ObtenerWhereCP(False) & ")"
-                If SituarData(Data1, Cad, Indicador) Then
+                cad = "(" & ObtenerWhereCP(False) & ")"
+                If SituarData(Data1, cad, Indicador) Then
                     PonerModo 2
                     lblIndicador.Caption = Indicador
                 Else
@@ -1160,15 +1163,15 @@ Private Sub Form_Load()
 Dim I As Integer
 
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     'ICONOS de La toolbar
     btnAnyadir = 5 'Posicion del boton Añadir en la toolbar1
     btnPrimero = 15 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
     With Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         'ASignamos botones
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2 'Ver Todos
@@ -1186,17 +1189,17 @@ Dim I As Integer
     
     
     With Me.Toolbar2
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 39  'baja de socio
     End With
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -1208,9 +1211,9 @@ Dim I As Integer
         With Me.ToolAux(I)
             '.ImageList = frmPpal.imgListComun_VELL
             '  ### [Monica] 02/10/2006 acabo de comentarlo
-            .HotImageList = frmPpal.imgListComun_OM16
-            .DisabledImageList = frmPpal.imgListComun_BN16
-            .ImageList = frmPpal.imgListComun16
+            .HotImageList = frmppal.imgListComun_OM16
+            .DisabledImageList = frmppal.imgListComun_BN16
+            .ImageList = frmppal.imgListComun16
             .Buttons(1).Image = 3   'Insertar
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
@@ -1218,7 +1221,7 @@ Dim I As Integer
     Next I
     
     For I = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     
     
@@ -1350,10 +1353,10 @@ Dim alto As Single
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
         For I = 0 To txtAux.Count - 1
-            txtAux(I).Top = 290
+            txtAux(I).top = 290
         Next I
-        Me.cmdAux.Top = 290
-        Me.cboAux.Top = 290
+        Me.cmdAux.top = 290
+        Me.cboAux.top = 290
     Else
         DeseleccionaGrid Me.DataGrid1
         CargarComboAux
@@ -1384,19 +1387,19 @@ Dim alto As Single
         End If
         
         If DataGrid1.Row < 0 Then
-            alto = DataGrid1.Top + 240 '220
+            alto = DataGrid1.top + 240 '220
         Else
-            alto = DataGrid1.Top + DataGrid1.RowTop(DataGrid1.Row) + 10
+            alto = DataGrid1.top + DataGrid1.RowTop(DataGrid1.Row) + 10
         End If
         
         'Fijamos altura y posición Top
         For I = 0 To txtAux.Count - 1
-            txtAux(I).Top = alto
+            txtAux(I).top = alto
             txtAux(I).Height = DataGrid1.RowHeight
         Next I
-        Me.cmdAux.Top = alto
+        Me.cmdAux.top = alto
         Me.cmdAux.Height = DataGrid1.RowHeight
-        cboAux.Top = alto - 5
+        cboAux.top = alto - 5
         
         'Fijamos anchura y posicion Left
         txtAux(0).Left = DataGrid1.Left + 340 'codartic
@@ -1830,13 +1833,54 @@ Dim b As Boolean
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+                        
 End Sub
+
+
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF And Not EsHistorico Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+         
+        'Actualizar
+        Me.Toolbar2.Buttons(1).Enabled = Me.Toolbar2.Buttons(1).Enabled And DBLet(Rs!especial, "N")
+        
+        'lineas
+        ToolAux(0).Buttons(1).Enabled = ToolAux(0).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        ToolAux(0).Buttons(2).Enabled = ToolAux(0).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        ToolAux(0).Buttons(3).Enabled = ToolAux(0).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol
     FrameDesplazamiento.Enabled = bol
 End Sub
-
 
 
 Private Sub PonerLongCampos()
@@ -2329,7 +2373,7 @@ End Sub
 
 
 Private Function InsertarModificarLinea() As Boolean
-Dim Sql As String, Cad As String
+Dim Sql As String, cad As String
 On Error GoTo EInsertarModificarLinea
     
     Sql = ""
@@ -2344,11 +2388,11 @@ On Error GoTo EInsertarModificarLinea
             Sql = Sql & DBSet(txtAux(0).Text, "T") & ", "
             Sql = Sql & DBSet(txtAux(2).Text, "N") & ", "
             If cboAux.ListIndex = -1 Then
-                Cad = ValorNulo
+                cad = ValorNulo
             Else
-                 Cad = cboAux.ItemData(cboAux.ListIndex)
+                 cad = cboAux.ItemData(cboAux.ListIndex)
             End If
-            Sql = Sql & CSng(Cad) & ","
+            Sql = Sql & CSng(cad) & ","
             Sql = Sql & DBSet(txtAux(3).Text, "T") & ") "
         End If
     Case 2 'Modificar
@@ -2373,7 +2417,7 @@ End Function
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 
@@ -2695,23 +2739,23 @@ End Function
 
 Private Function InsertarCabeceraHistorico() As Boolean
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 On Error GoTo EInsertarCab
 
     Sql = "SELECT codmovim,codalmac,fecmovim,codtraba,observa1 from scamov where "
     Sql = Sql & " codmovim =" & Data1.Recordset!codMovim
     Sql = Sql & " AND fecmovim='" & Format(Data1.Recordset!fecmovim, "yyyy-mm-dd") & "'"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    If Not RS.EOF Then
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    If Not Rs.EOF Then
         Sql = "INSERT INTO schmov (codmovim, fecmovim,hormovim,codalmac,codtraba,observa1) "
-        Sql = Sql & " VALUES (" & RS.Fields(0).Value & ", '" & Format(RS.Fields(2).Value, "yyyy-mm-dd") & "','"
-        Sql = Sql & Format(Now, "yyyy-mm-dd hh:mm:ss") & "', " & RS.Fields(1).Value & ", " & RS.Fields(3).Value
-        Sql = Sql & ", " & DBSet(RS.Fields(4).Value, "T") & ")"
+        Sql = Sql & " VALUES (" & Rs.Fields(0).Value & ", '" & Format(Rs.Fields(2).Value, "yyyy-mm-dd") & "','"
+        Sql = Sql & Format(Now, "yyyy-mm-dd hh:mm:ss") & "', " & Rs.Fields(1).Value & ", " & Rs.Fields(3).Value
+        Sql = Sql & ", " & DBSet(Rs.Fields(4).Value, "T") & ")"
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     conn.Execute Sql
    
 EInsertarCab:
@@ -2726,32 +2770,32 @@ End Function
 
 Private Function InsertarLineasHistorico() As Boolean
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 On Error GoTo EInsertarLineas
 
     Sql = "SELECT codmovim, numlinea, codartic, cantidad, tipomovi, motimovi from slimov where "
     Sql = Sql & " codmovim =" & Data1.Recordset!codMovim
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    RS.MoveFirst
-    While Not RS.EOF
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.MoveFirst
+    While Not Rs.EOF
         Sql = "INSERT INTO slhmov (codmovim, fecmovim, numlinea, codartic, cantidad, tipomovi, motimovi)"
-        Sql = Sql & " VALUES (" & RS.Fields(0).Value & ", '" & Format(Data1.Recordset!fecmovim, "yyyy-mm-dd") & "', "
-        Sql = Sql & RS.Fields(1).Value & ", " & DBSet(RS.Fields(2).Value, "T") & ", "
-        Sql = Sql & DBSet(RS.Fields(3).Value, "N") & ", " & RS.Fields(4).Value
-        Sql = Sql & ", '" & RS.Fields(5).Value & "')"
+        Sql = Sql & " VALUES (" & Rs.Fields(0).Value & ", '" & Format(Data1.Recordset!fecmovim, "yyyy-mm-dd") & "', "
+        Sql = Sql & Rs.Fields(1).Value & ", " & DBSet(Rs.Fields(2).Value, "T") & ", "
+        Sql = Sql & DBSet(Rs.Fields(3).Value, "N") & ", " & Rs.Fields(4).Value
+        Sql = Sql & ", '" & Rs.Fields(5).Value & "')"
         conn.Execute Sql
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
 EInsertarLineas:
     If Err.Number <> 0 Then
         'Hay error , almacenamos y salimos
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
         InsertarLineasHistorico = False
     Else
         InsertarLineasHistorico = True
@@ -2761,11 +2805,11 @@ End Function
 
 Private Function InsertarMovimArticulos() As Boolean
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim vImporte As Single, vPrecioVenta As String
 Dim vTipoMov As CTiposMov
 Dim bol As Boolean
-Dim Cad As String
+Dim cad As String
 On Error GoTo EInsertar
 
     bol = True
@@ -2777,38 +2821,38 @@ On Error GoTo EInsertar
         Sql = Sql & " WHERE scamov.codmovim =" & Data1.Recordset!codMovim
         Sql = Sql & " AND fecmovim='" & Format(Data1.Recordset!fecmovim, "yyyy-mm-dd") & "'"
     
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-        While Not RS.EOF
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        While Not Rs.EOF
             'Obtener el precio de venta del articulo, si tiene control de stock
-            Cad = "ctrstock"
-            vPrecioVenta = DevuelveDesdeBDNew(conAri, "sartic", "preciomp", "codartic", RS.Fields!codArtic, "T", Cad)
+            cad = "ctrstock"
+            vPrecioVenta = DevuelveDesdeBDNew(conAri, "sartic", "preciomp", "codartic", Rs.Fields!codArtic, "T", cad)
             If vPrecioVenta <> "" Then
-                vImporte = RS.Fields!Cantidad * CSng(vPrecioVenta)
+                vImporte = Rs.Fields!Cantidad * CSng(vPrecioVenta)
             Else
                 vImporte = 0
             End If
-            If Val(Cad) = 1 Then
+            If Val(cad) = 1 Then
                 Sql = "INSERT INTO smoval (codartic, codalmac, fechamov, horamovi, tipomovi, detamovi, cantidad, impormov, codigope, letraser, document, numlinea) "
-                Sql = Sql & " VALUES (" & DBSet(RS.Fields!codArtic, "T") & ", " & RS.Fields!codAlmac & ", '" & Format(RS.Fields!fecmovim, "yyyy-mm-dd") & "', '"
-                Sql = Sql & Format(RS.Fields!fecmovim & " " & Time, "yyyy-mm-dd hh:mm:ss") & "', " & RS.Fields!tipomovi & ", '" & vTipoMov.TipoMovimiento & "', " & DBSet(RS.Fields!Cantidad, "N") & ", " & DBSet(vImporte, "N") & ", " & RS.Fields!CodTraba & ", '"
-                Sql = Sql & vTipoMov.LetraSerie & "', " & RS.Fields!codMovim & ", " & RS.Fields!numlinea & ")"
+                Sql = Sql & " VALUES (" & DBSet(Rs.Fields!codArtic, "T") & ", " & Rs.Fields!codAlmac & ", '" & Format(Rs.Fields!fecmovim, "yyyy-mm-dd") & "', '"
+                Sql = Sql & Format(Rs.Fields!fecmovim & " " & Time, "yyyy-mm-dd hh:mm:ss") & "', " & Rs.Fields!tipomovi & ", '" & vTipoMov.TipoMovimiento & "', " & DBSet(Rs.Fields!Cantidad, "N") & ", " & DBSet(vImporte, "N") & ", " & Rs.Fields!CodTraba & ", '"
+                Sql = Sql & vTipoMov.LetraSerie & "', " & Rs.Fields!codMovim & ", " & Rs.Fields!numlinea & ")"
                 conn.Execute Sql
             End If
-            RS.MoveNext
+            Rs.MoveNext
         Wend
     Else
         bol = False
     End If
     Set vTipoMov = Nothing
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
 EInsertar:
     If Err.Number <> 0 Then
         Set vTipoMov = Nothing
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
     End If
     If Err.Number <> 0 Or Not bol Then
          'Hay error , almacenamos y salimos
@@ -2887,11 +2931,11 @@ End Sub
 
 
 Public Sub ActualizarSituacionImpresion()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 On Error GoTo EImpresion
    
-    Cad = "(" & ObtenerWhereCP(False) & ")"
-    If SituarData(Data1, Cad, Indicador) Then
+    cad = "(" & ObtenerWhereCP(False) & ")"
+    If SituarData(Data1, cad, Indicador) Then
         If Modo <> 5 Then
             PonerModo 2
         Else
@@ -2922,7 +2966,7 @@ End Sub
 Private Sub BotonImprimirHco()
 Dim indRPT As Byte
 Dim cadParam As String
-Dim Cad As String
+Dim cad As String
 Dim numParam As Byte
 Dim nomDocu As String
 
@@ -2945,9 +2989,9 @@ Dim nomDocu As String
                 .FormulaSeleccion = cadSeleccion
             Else
                 'Se Llama desde dobleclick en frmAlmMovimArticulos
-                Cad = "{schmov.codmovim}= " & Data1.Recordset!codMovim
-                Cad = Cad & " and {schmov.fecmovim}= Date(" & Year(Data1.Recordset!fecmovim) & "," & Month(Data1.Recordset!fecmovim) & "," & Day(Data1.Recordset!fecmovim) & ")" & ""
-                .FormulaSeleccion = Cad
+                cad = "{schmov.codmovim}= " & Data1.Recordset!codMovim
+                cad = cad & " and {schmov.fecmovim}= Date(" & Year(Data1.Recordset!fecmovim) & "," & Month(Data1.Recordset!fecmovim) & "," & Day(Data1.Recordset!fecmovim) & ")" & ""
+                .FormulaSeleccion = cad
             End If
             .Show vbModal
         End With

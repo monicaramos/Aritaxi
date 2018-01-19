@@ -844,6 +844,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 303
+
 Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmFPa As frmBasico2
@@ -875,7 +877,7 @@ Private HaDevueltoDatos As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -894,8 +896,8 @@ Dim Cad As String, Indicador As String
                 If ModificaDesdeFormulario(Me, 1) Then
                     ModificarENTesoeria
                     TerminaBloquear
-                    Cad = "(codforpa=" & Text1(0).Text & ")"
-                    If SituarData(Data1, Cad, Indicador) Then
+                    cad = "(codforpa=" & Text1(0).Text & ")"
+                    If SituarData(Data1, cad, Indicador) Then
                         PonerModo 2
                         lblIndicador.Caption = Indicador
                         PonerFoco Text1(0)
@@ -991,7 +993,7 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Cad As String
+Dim cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
@@ -999,22 +1001,22 @@ Dim Cad As String
     If Not PuedeModificarFPenContab Then Exit Sub
     
     '### a mano
-    Cad = "¿Seguro que desea eliminar la Forma de Pago?" & vbCrLf
-    Cad = Cad & vbCrLf & "Cod. Forma Pago: " & Format(Data1.Recordset.Fields(0), "000")
-    Cad = Cad & vbCrLf & "Desc. Forma Pago: " & Data1.Recordset.Fields(1)
+    cad = "¿Seguro que desea eliminar la Forma de Pago?" & vbCrLf
+    cad = cad & vbCrLf & "Cod. Forma Pago: " & Format(Data1.Recordset.Fields(0), "000")
+    cad = cad & vbCrLf & "Desc. Forma Pago: " & Data1.Recordset.Fields(1)
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         NumRegElim = Data1.Recordset.AbsolutePosition
         Screen.MousePointer = vbHourglass
 
-        Cad = "En aritaxi"
+        cad = "En aritaxi"
         Data1.Recordset.Delete
         
         
         'Para eliminar en tesoreria
-        Cad = "DELETE FROM sforpa WHERE codforpa = " & Text1(0).Text
+        cad = "DELETE FROM sforpa WHERE codforpa = " & Text1(0).Text
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
         Else 'Solo habia un registro
@@ -1025,7 +1027,7 @@ Dim Cad As String
         
         'Borro en tesoreria
         
-        ConnConta.Execute Cad
+        ConnConta.Execute cad
         
     End If
     Screen.MousePointer = vbDefault
@@ -1033,22 +1035,22 @@ Error2:
     Screen.MousePointer = vbDefault
     If Err.Number <> 0 Then
         Data1.Recordset.CancelUpdate
-        MuestraError Err.Number, "Eliminar Forma de Pago" & vbCrLf & Cad, Err.Description
+        MuestraError Err.Number, "Eliminar Forma de Pago" & vbCrLf & cad, Err.Description
     End If
 End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = Data1.Recordset.Fields(0) & "|"
-    Cad = Cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Data1.Recordset.Fields(0) & "|"
+    cad = cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -1065,13 +1067,13 @@ End Sub
 Private Sub Form_Load()
 Dim Im
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(5).Image = 1
         .Buttons(6).Image = 2
         .Buttons(1).Image = 3   'Anyadir
@@ -1081,9 +1083,9 @@ Dim Im
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -1097,7 +1099,7 @@ Dim Im
 '    End With
 
     For Each Im In Me.imgFPago
-        Im.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Im.Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     
     LimpiarCampos
@@ -1141,7 +1143,7 @@ Private Sub CargarComboTipoPago()
 ' Si queremos que este ordenado, o lo ordenamos por la sentencia sql
 ' o marcamos la opcion sorted del combo
 '0-Contado, 1-Cheque, 2-Pagaré, 3-Transferencia, 4-Efecto
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 
     Combo1.Clear
@@ -1149,16 +1151,16 @@ Dim Sql As String
     On Error GoTo ECargar
 
     Sql = "SELECT tipforpa, destippa from stippa"
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
-        Combo1.AddItem RS!destippa
-        Combo1.ItemData(Combo1.NewIndex) = RS!tipforpa
-        RS.MoveNext
+    While Not Rs.EOF
+        Combo1.AddItem Rs!destippa
+        Combo1.ItemData(Combo1.NewIndex) = Rs!tipforpa
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
     
 ECargar:
@@ -1371,7 +1373,7 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-Dim Cad As String
+Dim cad As String
 
     Set frmFPa = New frmBasico2
     
@@ -1435,16 +1437,16 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
 Dim NumReg As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     '--------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1481,18 +1483,18 @@ Dim NumReg As Byte
     BloquearCmb Me.Combo1, Modo = 0 Or Modo = 2
     
     'Formas de Pago
-    For i = 0 To Text2.Count - 1
-        BloquearTxt Text2(i), True
-    Next i
+    For I = 0 To Text2.Count - 1
+        BloquearTxt Text2(I), True
+    Next I
     
     Combo1.Enabled = (Modo = 3) Or (Modo = 4) Or (Modo = 1)
     
     b = (Modo = 3) 'Insertar
     'Campos Importe Mínimo y % Adelantado
     If b Then
-        For i = 8 To 9
-            BloquearTxt Text1(i), True
-        Next i
+        For I = 8 To 9
+            BloquearTxt Text1(I), True
+        Next I
     End If
 
      
@@ -1503,7 +1505,47 @@ Dim NumReg As Byte
     PonerModoOpcionesMenu 'Activar opciones de menu según modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
 End Sub
+
+ 
+
+
+
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+            
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -1526,19 +1568,19 @@ Dim b As Boolean
     b = (Modo >= 3)
     'Insertar
     Toolbar1.Buttons(1).Enabled = Not b
-    Me.mnnuevo.Enabled = Not b
+    Me.mnNuevo.Enabled = Not b
     'Buscar
     Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'VerTodos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim Cad As String
+Dim cad As String
     
     DatosOk = False
     b = CompForm(Me, 1)
@@ -1549,11 +1591,11 @@ Dim Cad As String
         
         If b Then
             If vParamAplic.ContabilidadNueva Then
-                Cad = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", Text1(0), "N")
+                cad = DevuelveDesdeBDNew(conConta, "formapago", "codforpa", "codforpa", Text1(0), "N")
             Else
-                Cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
+                cad = DevuelveDesdeBDNew(conConta, "sforpa", "codforpa", "codforpa", Text1(0), "N")
             End If
-            If Cad <> "" Then
+            If cad <> "" Then
                 MsgBox "Esta Forma de Pago ya existe en Tesorería. Revise.", vbExclamation
                 b = False
             End If

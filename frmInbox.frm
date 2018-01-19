@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{79EB16A5-917F-4145-AB5F-D3AEA60612D8}#17.2#0"; "Codejock.Calendar.v17.2.0.ocx"
-Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "Codejock.Controls.v17.2.0.ocx"
+Object = "{79EB16A5-917F-4145-AB5F-D3AEA60612D8}#17.2#0"; "CODEJO~1.OCX"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "CODEJO~4.OCX"
 Begin VB.Form frmInbox 
    BackColor       =   &H00FFFFFF&
    BorderStyle     =   0  'None
@@ -24,7 +24,7 @@ Begin VB.Form frmInbox
       Width           =   255
       _Version        =   1114114
       _ExtentX        =   450
-      _ExtentY        =   36178808
+      _ExtentY        =   190739845
       _StockProps     =   64
       Orientation     =   1
       UseVisualStyle  =   0   'False

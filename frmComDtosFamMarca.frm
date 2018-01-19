@@ -653,6 +653,8 @@ Option Explicit
 'Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 'Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 508
+
 Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmF As frmCal 'Calendario de Fechas
@@ -812,13 +814,13 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     'ICONOS de laLa toolbar
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'el 1 es separadors
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2   'Todos
@@ -999,15 +1001,15 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
       
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -1041,6 +1043,37 @@ Dim i As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+
+End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
 End Sub
 
 
@@ -1050,7 +1083,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnnuevo.Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -1065,7 +1098,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 
     'Imprimir
     Toolbar1.Buttons(8).Enabled = False
@@ -1183,7 +1216,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim i As Integer
+Dim I As Integer
 Dim anc As Single
 
     'Escondemos el navegador y ponemos Modo Modificar
@@ -1191,8 +1224,8 @@ Dim anc As Single
     
     'Como el campo1, campo2 y campo3 es clave primaria, NO se puede modificar
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     
@@ -1202,10 +1235,10 @@ Dim anc As Single
     
     '---- poner valores grabados
     'prove y familia
-    For i = 0 To 1
-        txtAux(i).Text = DBLet(DataGrid1.Columns(i).Value, "N")
-        FormateaCampo txtAux(i)
-    Next i
+    For I = 0 To 1
+        txtAux(I).Text = DBLet(DataGrid1.Columns(I).Value, "N")
+        FormateaCampo txtAux(I)
+    Next I
     txtAux2(1).Text = DBLet(Me.DataGrid1.Columns(2).Value, "T")
     
     'Marca
@@ -1214,10 +1247,10 @@ Dim anc As Single
     txtAux2(2).Text = DBLet(Me.DataGrid1.Columns(4).Value, "T")
     
     txtAux(3).Text = DBLet(Me.DataGrid1.Columns(5).Value, "F")
-    For i = 4 To 5
-        txtAux(i).Text = DBLet(DataGrid1.Columns(i + 2), "N")
-        FormateaCampo txtAux(i)
-    Next i
+    For I = 4 To 5
+        txtAux(I).Text = DBLet(DataGrid1.Columns(I + 2), "N")
+        FormateaCampo txtAux(I)
+    Next I
     '-----
     If BLOQUEADesdeFormulario(Me) Then
         PonerFoco txtAux(3)
@@ -1349,12 +1382,12 @@ Private Sub BloquearClavesP(bol As Boolean)
 'Si BloquearClavesPrimarias=true deshablilita los textbox de codigos y lo pone amarillo
 'y habilita el resto de campos para introducir nuevos valores
 'Si BloquearClavesPrimarias=false habilita los textbox de codigos para introducir
-Dim i As Byte
+Dim I As Byte
 
-    For i = 0 To 2 'Codigos
-        BloquearTxt txtAux(i), bol
-        Me.cmdAux(i).Enabled = Not bol
-    Next i
+    For I = 0 To 2 'Codigos
+        BloquearTxt txtAux(I), bol
+        Me.cmdAux(I).Enabled = Not bol
+    Next I
 End Sub
 
 
@@ -1411,19 +1444,19 @@ Dim b As Boolean
 
         For jj = 0 To txtAux.Count - 1
             txtAux(jj).Height = DataGrid1.RowHeight
-            txtAux(jj).Top = alto
+            txtAux(jj).top = alto
             txtAux(jj).visible = b
         Next jj
         
         For jj = 1 To txtAux2.Count
             txtAux2(jj).Height = Me.DataGrid1.RowHeight
-            txtAux2(jj).Top = alto
+            txtAux2(jj).top = alto
             txtAux2(jj).visible = b
         Next jj
         
         For jj = 0 To Me.cmdAux.Count - 1
             Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
-            Me.cmdAux(jj).Top = alto
+            Me.cmdAux(jj).top = alto
             Me.cmdAux(jj).visible = b
         Next jj
 End Sub

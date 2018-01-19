@@ -699,6 +699,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 702
+
 Dim Tabla As String
 Dim cadFormula As String
 Dim cadSelect As String
@@ -833,25 +835,25 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
-    For i = 0 To imgAyuda.Count - 1
-        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
-    Next i
+    For I = 0 To imgAyuda.Count - 1
+        imgAyuda(I).Picture = frmppal.ImageListB.ListImages(10).Picture
+    Next I
     
-    For i = 0 To 1
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
-    Next i
-    For i = 3 To 4
-        imgBuscar(i).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
-    Next i
+    For I = 0 To 1
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    Next I
+    For I = 3 To 4
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    Next I
     
-    For i = 23 To 24
-        imgFecha(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
-    Next i
+    For I = 23 To 24
+        imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
+    Next I
     
     
     PrimeraVez = True
@@ -866,21 +868,21 @@ End Function
 
 
 Private Function ejecutaselect(CADENA As String) As String
-Dim RS As Recordset
+Dim Rs As Recordset
 Dim C As String
 
 ejecutaselect = ""
-Set RS = New ADODB.Recordset
-RS.Open CADENA, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-If Not RS.EOF Then
-    If Not IsNull((RS.Fields(0))) Then
-        C = RS.Fields(0)
+Set Rs = New ADODB.Recordset
+Rs.Open CADENA, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+If Not Rs.EOF Then
+    If Not IsNull((Rs.Fields(0))) Then
+        C = Rs.Fields(0)
     Else
         C = 0
     End If
 End If
-RS.Close
-Set RS = Nothing
+Rs.Close
+Set Rs = Nothing
 ejecutaselect = C
 
 
@@ -895,13 +897,13 @@ End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub imgAyuda_Click(Index As Integer)
@@ -935,7 +937,7 @@ Dim indice As Byte
             Set frmSoc = Nothing
             If CadenaDesdeOtroForm <> "" Then
                 txtcodigo(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                txtNombre(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                txtnombre(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
             
         Case 0, 1 ' Vsocio
@@ -1002,15 +1004,15 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 5, 3 'socio
-            txtNombre(Index).Text = ""
+            txtnombre(Index).Text = ""
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtNombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", txtcodigo(Index).Text, "N")
+                txtnombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "codclien", txtcodigo(Index).Text, "N")
             End If
             
         Case 0, 1 'v socio
-            txtNombre(Index).Text = ""
+            txtnombre(Index).Text = ""
             If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtNombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "numeruve", txtcodigo(Index).Text, "N")
+                txtnombre(Index).Text = DevuelveDesdeBD(conAri, "nomclien", "sclien", "numeruve", txtcodigo(Index).Text, "N")
             End If
             
     
@@ -1028,7 +1030,7 @@ End Sub
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim Cad As String
+Dim cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1040,8 +1042,8 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then

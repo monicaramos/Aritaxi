@@ -766,22 +766,34 @@ Begin VB.Form frmComEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":00B3
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(45)"
-      Tab(1).Control(1)=   "Label1(1)"
-      Tab(1).Control(2)=   "imgBuscar(4)"
-      Tab(1).Control(3)=   "Text1(15)"
-      Tab(1).Control(4)=   "Text1(16)"
+      Tab(1).Control(0)=   "FrameHco"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Text2(21)"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "Text1(21)"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "Text1(19)"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "Text1(18)"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Text1(17)"
-      Tab(1).Control(6)=   "Text1(18)"
-      Tab(1).Control(7)=   "Text1(19)"
-      Tab(1).Control(8)=   "Text1(21)"
-      Tab(1).Control(9)=   "Text2(21)"
-      Tab(1).Control(10)=   "FrameHco"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "Text1(16)"
+      Tab(1).Control(6).Enabled=   0   'False
+      Tab(1).Control(7)=   "Text1(15)"
+      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).Control(8)=   "imgBuscar(4)"
+      Tab(1).Control(8).Enabled=   0   'False
+      Tab(1).Control(9)=   "Label1(1)"
+      Tab(1).Control(9).Enabled=   0   'False
+      Tab(1).Control(10)=   "Label1(45)"
+      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).ControlCount=   11
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntAlbaranes.frx":00CF
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameFactura"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.Frame FrameToolAux 
          Height          =   555
@@ -2728,6 +2740,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 512
+
 'Si se llama de la busqueda en el frmAlmMovimArticulos se accede
 'a las tablas del Albaran o de Facturas de movimiento seleccionado (solo consulta)
 Public hcoCodMovim As String 'cod. movim
@@ -2976,7 +2990,7 @@ Private Function ComprobarCambioFecha() As Boolean
 'Comprueba si se ha modificado el campo fecha de la cabecera.
 'Ya que es clave primaria y se deberan cambiar tambien la fecha
 'en tablas sliap y smoval
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim Izquierda As String, Derecha As String
 Dim llis As Collection
@@ -2996,23 +3010,23 @@ Dim b As Boolean
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
         Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
         
         Set llis = New Collection
             
         'Nos guardamos todas las lineas con la modificacion de la fecha para
         'volverlas a insertar
-        BACKUP_TablaIzquierda RS, Izquierda
+        BACKUP_TablaIzquierda Rs, Izquierda
         
-        While Not RS.EOF
-            BACKUP_Tabla RS, Derecha, "fechaalb", CStr(Text1(1).Text)
+        While Not Rs.EOF
+            BACKUP_Tabla Rs, Derecha, "fechaalb", CStr(Text1(1).Text)
             llis.Add Derecha
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
         
         'Eliminamos las lineas que tenia ese albaran (slialp) para volverlas a insertar con la fecha nueva
         Sql = "DELETE from slialp WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
@@ -3326,22 +3340,22 @@ Private Sub BotonEliminar()
 ' - eliminar los movimientos que inserto el albaran en (smoval)
 ' - actualizar el ultprecio compra y ultima fecha compra en funcion del ult. movimiento ALC en smoval
 ' - reestablecer el precio medio ponderado
-Dim Cad As String
+Dim cad As String
 
     On Error GoTo EEliminar
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    Cad = "Cabecera de Albaranes Compras" & vbCrLf
-    Cad = Cad & "-------------------------------------------------" & vbCrLf & vbCrLf
-    Cad = Cad & "Va a eliminar el Albaran:            "
-    Cad = Cad & vbCrLf & "Nº:  " & Text1(0).Text
-    Cad = Cad & vbCrLf & "Fecha: " & Text1(1).Text
-    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    cad = "Cabecera de Albaranes Compras" & vbCrLf
+    cad = cad & "-------------------------------------------------" & vbCrLf & vbCrLf
+    cad = cad & "Va a eliminar el Albaran:            "
+    cad = cad & vbCrLf & "Nº:  " & Text1(0).Text
+    cad = cad & vbCrLf & "Fecha: " & Text1(1).Text
+    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
     
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         Screen.MousePointer = vbHourglass
     
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -3413,7 +3427,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -3430,9 +3444,9 @@ Dim Cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Data1.Recordset.Fields(0) & "|"
-        Cad = Cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Data1.Recordset.Fields(0) & "|"
+        cad = cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -3493,7 +3507,7 @@ Private Sub Form_Load()
 Dim I As Integer
 
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     
     ' ICONITOS DE LA BARRA
@@ -3521,9 +3535,9 @@ Dim I As Integer
 '    End With
 
     With Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         'ASignamos botones
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2 'Ver Todos
@@ -3534,18 +3548,18 @@ Dim I As Integer
     End With
     
     With Me.Toolbar5
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 45 'cambiar proveedor
         .Buttons(2).Image = 33 'nro de series
     End With
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -3554,9 +3568,9 @@ Dim I As Integer
 
 
     With Me.ToolAux(0)
-        .HotImageList = frmPpal.imgListComun_OM16
-        .DisabledImageList = frmPpal.imgListComun_BN16
-        .ImageList = frmPpal.imgListComun16
+        .HotImageList = frmppal.imgListComun_OM16
+        .DisabledImageList = frmppal.imgListComun_BN16
+        .ImageList = frmppal.imgListComun16
         .Buttons(1).Image = 3   'Insertar
         .Buttons(2).Image = 4   'Modificar
         .Buttons(3).Image = 5   'Borrar
@@ -3564,7 +3578,7 @@ Dim I As Integer
 
 
     For I = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(I).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
     
     Me.SSTab1.Tab = 0
@@ -4407,13 +4421,58 @@ Dim b As Boolean
     
     PonerModoOpcionesMenu (Modo) 'Activar opciones de menu según modo
     PonerOpcionesMenu 'Activar opciones de menu según nivel de permisos del usuario
-    
-    
+    PonerModoUsuarioGnral Modo, "aritaxi"
     
     
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
+
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        'cambio de proveedor y series
+        Me.Toolbar5.Buttons(1).Enabled = Me.Toolbar5.Buttons(1).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(2).Enabled = Me.Toolbar5.Buttons(2).Enabled And DBLet(Rs!especial, "N")
+        
+        'lineas de albaran
+        For I = 0 To ToolAux.Count - 1
+            ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+            ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+            ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        Next I
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+
+
 
 
 Private Sub DesplazamientoVisible(bol As Boolean)
@@ -4986,7 +5045,7 @@ Dim I As Byte
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
         For I = 0 To txtAux.Count - 1 'TextBox
-            txtAux(I).Top = 290
+            txtAux(I).top = 290
             txtAux(I).visible = visible
         Next I
         cmdAux(0).visible = visible
@@ -5046,12 +5105,12 @@ Dim I As Byte
         alto = ObtenerAlto(DataGrid1, 20)
         
         For I = 0 To txtAux.Count - 1
-            txtAux(I).Top = alto
+            txtAux(I).top = alto
             txtAux(I).Height = DataGrid1.RowHeight
         Next I
-        cmdAux(0).Top = alto
-        cmdAux(1).Top = alto
-        cmdAux(2).Top = alto
+        cmdAux(0).top = alto
+        cmdAux(1).top = alto
+        cmdAux(2).top = alto
         cmdAux(0).Height = DataGrid1.RowHeight
         cmdAux(1).Height = DataGrid1.RowHeight
         cmdAux(2).Height = DataGrid1.RowHeight
@@ -5298,7 +5357,7 @@ End Sub
 
 Private Sub ObtenerPrecioCompra()
 Dim vPrecio As CPreciosCom
-Dim Cad As String
+Dim cad As String
 
     On Error GoTo EPrecios
     
@@ -5314,9 +5373,9 @@ Dim Cad As String
         End If
     Else
         'Obtener el ult. precio de compra de ese articulo (sartic)
-        Cad = DevuelveDesdeBDNew(conAri, "sartic", "preciouc", "codartic", txtAux(1).Text, "T")
-        If Cad <> "" Then
-            txtAux(4).Text = Cad
+        cad = DevuelveDesdeBDNew(conAri, "sartic", "preciouc", "codartic", txtAux(1).Text, "T")
+        If cad <> "" Then
+            txtAux(4).Text = cad
             txtAux(5).Text = "0"
             txtAux(6).Text = "0"
         End If
@@ -5332,9 +5391,9 @@ EPrecios:
 End Sub
 
 
-Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, cad As String)
         Me.SSTab1.Tab = numTab
-        TituloLinea = Cad
+        TituloLinea = cad
         ModificaLineas = 0
         If Data2.Recordset.EOF Then Text2(16).Text = ""
         PonerModo 5
@@ -5476,7 +5535,7 @@ Dim I As Integer
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or Modo = 0) And (cadSelAlbaranes = "" Or (cadSelAlbaranes <> "" And Modo = 5)) And Not EsHistorico
-    Me.mnNuevo.Enabled = (b Or Modo = 0) And (cadSelAlbaranes = "" Or (cadSelAlbaranes <> "" And Modo = 5)) And Not EsHistorico
+    Me.mnnuevo.Enabled = (b Or Modo = 0) And (cadSelAlbaranes = "" Or (cadSelAlbaranes <> "" And Modo = 5)) And Not EsHistorico
     'Modificar
     Toolbar1.Buttons(2).Enabled = b And Not EsHistorico
     Me.mnModificar.Enabled = b And Not EsHistorico
@@ -5506,7 +5565,7 @@ Dim I As Integer
     Me.mnBuscar.Enabled = (Not b)
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = (Not b)
-    Me.mnVerTodos.Enabled = (Not b)
+    Me.mnvertodos.Enabled = (Not b)
         
     b = (Modo = 2 Or Modo = 3)
     For I = 0 To ToolAux.Count - 1
@@ -5679,7 +5738,7 @@ Private Function ReestablecerStock(cadSel As String) As Boolean
 Dim vCStock As CStock
 Dim cArt As CArticulo
 Dim b As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 
     On Error GoTo ERestablecer
@@ -5687,20 +5746,20 @@ Dim Sql As String
     Sql = "SELECT * FROM " & NomTablaLineas & " WHERE " & Replace(cadSel, NombreTabla, NomTablaLineas)
     Sql = Sql & " ORDER BY numlinea desc "
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     b = True
-    While (Not RS.EOF) And b
+    While (Not Rs.EOF) And b
         'para cada linea de albaran deshacemos movimientos y precios medios ponderados
         Set vCStock = New CStock
-           If InicializarCStock(vCStock, "S", RS!numlinea) Then
+           If InicializarCStock(vCStock, "S", Rs!numlinea) Then
                 'estos valores hay q leerlos del RS y no del data2
-                 vCStock.codArtic = RS!codArtic
-                 vCStock.codAlmac = CInt(RS!codAlmac)
-                 vCStock.Cantidad = CSng(RS!Cantidad)
-                 vCStock.Importe = CCur(RS!ImporteL)
-                 vCStock.LineaDocu = RS!numlinea
+                 vCStock.codArtic = Rs!codArtic
+                 vCStock.codAlmac = CInt(Rs!codAlmac)
+                 vCStock.Cantidad = CSng(Rs!Cantidad)
+                 vCStock.Importe = CCur(Rs!ImporteL)
+                 vCStock.LineaDocu = Rs!numlinea
            
                 '==== Laura 20/09/2006
                 'antes de actualizar el stock reestablecer el precio medio ponderado del articulo
@@ -5727,10 +5786,10 @@ Dim Sql As String
 '           Data2.Recordset.MoveNext
            Set vCStock = Nothing
     
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
     
     '#### ANTES DEL 20/09/2006
@@ -5921,7 +5980,7 @@ Dim RSLineas As ADODB.Recordset
 End Sub
 
 
-Private Sub PedirNSeries(ByRef RS As ADODB.Recordset)
+Private Sub PedirNSeries(ByRef Rs As ADODB.Recordset)
 Dim RSseries As ADODB.Recordset
 Dim Sql As String
 Dim linea As Integer
@@ -5929,16 +5988,16 @@ Dim linea As Integer
     On Error GoTo EPedirNSeries
 
         'Inicializo la tabla temporal de los num.serie
-        PedirNSeriesGnral RS, False
+        PedirNSeriesGnral Rs, False
         
-        RS.MoveFirst
-        While Not RS.EOF
+        Rs.MoveFirst
+        While Not Rs.EOF
             linea = 0
             'Cargar los Nº de serie asignados al albaran
             Sql = "SELECT numserie, codartic FROM sserie "
             Sql = Sql & " WHERE numalbpr=" & DBSet(Text1(0).Text, "T")
             Sql = Sql & " and fechacom='" & Format(Text1(1).Text, FormatoFecha) & "'"
-            Sql = Sql & " and codprove=" & Text1(4).Text & " and numline2=" & RS!numlinea
+            Sql = Sql & " and codprove=" & Text1(4).Text & " and numline2=" & Rs!numlinea
             Sql = Sql & " ORDER BY codartic "
             
             Set RSseries = New ADODB.Recordset
@@ -5946,13 +6005,13 @@ Dim linea As Integer
             While Not RSseries.EOF
                 linea = linea + 1
                 Sql = "UPDATE tmpnseries SET numserie=" & DBSet(RSseries!numSerie, "T")
-                Sql = Sql & " WHERE codusu=" & vUsu.Codigo & " and codartic=" & DBSet(RS!codArtic, "T")
-                Sql = Sql & " and numlinealb=" & RS!numlinea
+                Sql = Sql & " WHERE codusu=" & vUsu.Codigo & " and codartic=" & DBSet(Rs!codArtic, "T")
+                Sql = Sql & " and numlinealb=" & Rs!numlinea
                 Sql = Sql & " and numlinea=" & linea
                 conn.Execute Sql
                 RSseries.MoveNext
             Wend
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         RSseries.Close
         Set RSseries = Nothing

@@ -194,17 +194,28 @@ Begin VB.Form frmRepNumSerie2
       TabCaption(0)   =   "Datos compra/venta"
       TabPicture(0)   =   "frmRepNumSerie.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameActuales"
-      Tab(0).Control(1)=   "Text1(7)"
-      Tab(0).Control(2)=   "Text2(7)"
-      Tab(0).Control(3)=   "FrameSusti"
-      Tab(0).Control(4)=   "FrameBaja"
+      Tab(0).Control(0)=   "Label12"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "Label1(2)"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "imgBuscar(3)"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "Text1(3)"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "chkTieneMan"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "FrameNuevos"
-      Tab(0).Control(6)=   "chkTieneMan"
-      Tab(0).Control(7)=   "Text1(3)"
-      Tab(0).Control(8)=   "imgBuscar(3)"
-      Tab(0).Control(9)=   "Label1(2)"
-      Tab(0).Control(10)=   "Label12"
+      Tab(0).Control(5).Enabled=   0   'False
+      Tab(0).Control(6)=   "FrameBaja"
+      Tab(0).Control(6).Enabled=   0   'False
+      Tab(0).Control(7)=   "FrameSusti"
+      Tab(0).Control(7).Enabled=   0   'False
+      Tab(0).Control(8)=   "Text2(7)"
+      Tab(0).Control(8).Enabled=   0   'False
+      Tab(0).Control(9)=   "Text1(7)"
+      Tab(0).Control(9).Enabled=   0   'False
+      Tab(0).Control(10)=   "FrameActuales"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).ControlCount=   11
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
@@ -2193,6 +2204,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 803
+
+
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 Public DatoAInsertar As String
@@ -2331,18 +2345,18 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = Data1.Recordset.Fields(0) & "|" 'num serie
-    Cad = Cad & Data1.Recordset.Fields(1) & "|" 'cod artic
-    Cad = Cad & Text2(1).Text & "|"  'nom artic
-    Cad = Cad & Data1.Recordset.Fields(3) & "|" 'cod cliente
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Data1.Recordset.Fields(0) & "|" 'num serie
+    cad = cad & Data1.Recordset.Fields(1) & "|" 'cod artic
+    cad = cad & Text2(1).Text & "|"  'nom artic
+    cad = cad & Data1.Recordset.Fields(3) & "|" 'cod cliente
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -2351,7 +2365,7 @@ End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
 
     If Me.Adodc1.Recordset.EOF Then Exit Sub
@@ -2375,13 +2389,13 @@ Dim RS As ADODB.Recordset
         If txtAux2(8).Text <> "" Then
             Sql = "select numfactu from scafpa where numalbar = " & DBSet(txtAux2(8).Text, "T") & " and codprove = " & DBSet(Me.Adodc1.Recordset!codProve, "N")
             
-            Set RS = New ADODB.Recordset
-            RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-            If Not RS.EOF Then
-                txtAux2(9).Text = DBLet(RS!NumFactu)
+            Set Rs = New ADODB.Recordset
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            If Not Rs.EOF Then
+                txtAux2(9).Text = DBLet(Rs!NumFactu)
             End If
             
-            Set RS = Nothing
+            Set Rs = Nothing
         End If
         
         
@@ -2967,7 +2981,46 @@ Dim NumReg As Byte
     PonerModoOpcionesMenu   'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+
+    PonerModoUsuarioGnral Modo, "aritaxi"
+
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        'buscar series, sustituir, recuperar nro de serie....
+        Me.Toolbar5.Buttons(1).Enabled = Me.Toolbar5.Buttons(1).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(2).Enabled = Me.Toolbar5.Buttons(2).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(3).Enabled = Me.Toolbar5.Buttons(3).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(4).Enabled = Me.Toolbar5.Buttons(4).Enabled And DBLet(Rs!especial, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol
@@ -3192,13 +3245,13 @@ End Function
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String, Desc As String
 Dim selElem As Byte
 
     'Llamamos a al form
-    Cad = ""
+    cad = ""
     If EsCabecera Then
    
         Set frmRepSerPre = New frmRepNumSerie2Prev
@@ -3219,16 +3272,16 @@ Dim selElem As Byte
             Desc = "Direc."
         End If
         Titulo = Titulo & Text1(6).Text & " - " & Text2(6).Text 'Cod y Desc. Cliente
-        Cad = Cad & "Cod. " & Desc & "|sdirec|coddirec|N||20·"
-        Cad = Cad & "Desc. " & Desc & "|sdirec|nomdirec|T||40·"
+        cad = cad & "Cod. " & Desc & "|sdirec|coddirec|N||20·"
+        cad = cad & "Desc. " & Desc & "|sdirec|nomdirec|T||40·"
         Tabla = "sdirec"
         selElem = 1
     End If
            
-    If Cad <> "" Then
+    If cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
+        frmB.vCampos = cad
         frmB.vTabla = Tabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False
@@ -3316,7 +3369,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
  
     On Error GoTo EPonerCampos
     Toolbar5.Buttons(3).Enabled = False
@@ -3350,14 +3403,14 @@ Dim RS As ADODB.Recordset
     If Text1(13).Text <> "" Then
         Sql = "select numfactu, fecfactu from scafpa where numalbar = " & DBSet(Text1(13).Text, "T")
         
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If Not RS.EOF Then
-            Text2(3).Text = DBLet(RS!NumFactu)
-            Text2(4).Text = DBLet(RS!FecFactu)
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not Rs.EOF Then
+            Text2(3).Text = DBLet(Rs!NumFactu)
+            Text2(4).Text = DBLet(Rs!FecFactu)
         End If
         
-        Set RS = Nothing
+        Set Rs = Nothing
     End If
     
     

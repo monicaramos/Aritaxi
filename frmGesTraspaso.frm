@@ -398,6 +398,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 316
 
 Private menErrProceso As String 'mensaje final del proceso actualizacion de precios
 Dim Vehiculo As String
@@ -444,7 +445,7 @@ End Function
 Private Sub cmdAceptar_Click()
 Dim cadSel As String
 Dim b As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim encontrado As String
 Dim total As Currency
 Dim Contador As Currency
@@ -583,9 +584,9 @@ Dim cadTabla As String
                 ProgressBar1.Value = 0
                 Contador = 0
                 Label1(0).Caption = ""
-                Set RS = New ADODB.Recordset
+                Set Rs = New ADODB.Recordset
                 Sql = "select * from tmptaxi where error1 = 0 group by numeruve"
-                RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
                 total = rsContador("select count(distinct(numeruve)) from tmptaxi where error1=0")
                 Label1(2).Caption = "Verificando códigos de socios."
                 Label1(2).Refresh
@@ -594,7 +595,7 @@ Dim cadTabla As String
                 '[Monica]26/12/2017: solo si viene de excel, añado esta condicion
                 If Check1(0).visible And Check1(0).Value = 1 Then
         
-                    While Not RS.EOF
+                    While Not Rs.EOF
                         Contador = Contador + 1
                         ProgressBar1.Value = (Contador * 100) / total
                         DoEvents
@@ -606,9 +607,9 @@ Dim cadTabla As String
                         ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
                         If Trim(vParam.CifEmpresa) = "B98877806" Then
                         
-                            encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
+                            encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
                             
-                            b = Updatear(RS!NumerUve, encontrado, False)
+                            b = Updatear(Rs!NumerUve, encontrado, False)
                         
                         Else
                         
@@ -621,14 +622,14 @@ Dim cadTabla As String
                             '   si no los encuentro:
                             '                   el socio es de RADIO, y lo marco como tal
                         
-                            encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", RS!NumerUve, "T")
+                            encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", Rs!NumerUve, "T")
                             
                             If encontrado <> "" Then
                                 ' pq me viene la licencia
                                 Dim rs4 As ADODB.Recordset
                                 Dim Sql4 As String
                                 Set rs4 = New ADODB.Recordset
-                                Sql4 = "select codclien from sclien where licencia = " & DBSet(RS!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
+                                Sql4 = "select codclien from sclien where licencia = " & DBSet(Rs!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
                                 rs4.Open Sql4, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
                                 
                                 encontrado = ""
@@ -638,19 +639,19 @@ Dim cadTabla As String
                                 End If
                                 Set rs4 = Nothing
                                 
-                                b = Updatear(RS!NumerUve, encontrado, True)
+                                b = Updatear(Rs!NumerUve, encontrado, True)
                             Else
-                                b = Updatear(RS!NumerUve, encontrado, False)
+                                b = Updatear(Rs!NumerUve, encontrado, False)
                             End If
                             
                         End If
                                                 
-                        RS.MoveNext
+                        Rs.MoveNext
                     Wend
                     
                 Else
                 
-                    While Not RS.EOF
+                    While Not Rs.EOF
                         Contador = Contador + 1
                         ProgressBar1.Value = (Contador * 100) / total
                         DoEvents
@@ -658,14 +659,14 @@ Dim cadTabla As String
                         Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
                         Label1(0).Refresh
                         
-                        encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
-                        b = Updatear(RS!NumerUve, encontrado, False)
-                        RS.MoveNext
+                        encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                        b = Updatear(Rs!NumerUve, encontrado, False)
+                        Rs.MoveNext
                     Wend
                 
                 End If
                 
-                RS.Close
+                Rs.Close
                 Label1(0).Caption = ""
                 Label1(0).Refresh
                 
@@ -701,20 +702,20 @@ Dim cadTabla As String
                     ProgressBar1.Value = 0
                     Contador = 0
         
-                    Set RS = New ADODB.Recordset
+                    Set Rs = New ADODB.Recordset
                     Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 0 group by 1,2,3 having count(*) > 1"
-                    RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                    Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
                     total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
                     Label1(2).Caption = "eliminando(II) duplicidad de registros en el fichero."
                     Label1(2).Refresh
-                    While Not RS.EOF
+                    While Not Rs.EOF
                         Contador = Contador + 1
                         ProgressBar1.Value = Round2((Contador * 100) / total, 0)
                         DoEvents
                         Label1(0).Caption = Round(ProgressBar1.Value, 0) & " %"
                         Label1(0).Refresh
         
-                        Sql = "numeruve=" & RS!NumerUve & " and fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' "
+                        Sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
                         Sql = Sql & " and impventa = 0 and codclien =0 "
                         
                         Dim Ident As Long
@@ -729,25 +730,25 @@ Dim cadTabla As String
                         End If
        
         '                End If
-                        RS.MoveNext
+                        Rs.MoveNext
                     Wend
-                    RS.Close
+                    Rs.Close
         
                     
                     '
                     Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 0 group by 1,2,3 having count(*) > 1"
-                    RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                    Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
                     total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
                     Label1(2).Caption = "Verificando duplicidad de registros en el fichero."
                     Label1(2).Refresh
-                    While Not RS.EOF
+                    While Not Rs.EOF
                         Contador = Contador + 1
                        ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
                         DoEvents
                         Label1(0).Caption = Contador
                         Label1(0).Refresh
         
-                        Sql = "numeruve=" & RS!NumerUve & " and fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' "
+                        Sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
                         
                         
                         
@@ -757,9 +758,9 @@ Dim cadTabla As String
                             Sql = "UPDATE tmptaxi set error1=1,error='Registro duplicado' where " & Sql
                             conn.Execute Sql
         '                End If
-                        RS.MoveNext
+                        Rs.MoveNext
                     Wend
-                    RS.Close
+                    Rs.Close
         
                     '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto
                     If Trim(vParam.CifEmpresa) <> "B98877806" And Check1(0).Value = 1 Then
@@ -767,42 +768,42 @@ Dim cadTabla As String
                     
                         Sql = "select codsocio from tmptaxi where error1 = 0 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
                         
-                        RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                        Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
                         
                         total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
                         Label1(2).Caption = "Modificando Vehículo en registros del fichero."
                         Label1(2).Refresh
                         
-                        While Not RS.EOF
+                        While Not Rs.EOF
                             Contador = Contador + 1
                            ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
                             DoEvents
                             Label1(0).Caption = Contador
                             Label1(0).Refresh
                         
-                            Sql = "select numeruve from sclien where codclien = " & DBSet(RS!codSocio, "N")
+                            Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
                             NUve = DevuelveValor(Sql)
                         
-                            Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(RS!codSocio, "N") & " and error1 = 0 "
+                            Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 0 "
                             conn.Execute Sql
                             
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
-                        RS.Close
+                        Rs.Close
                     
                     End If
                     
         
                     'ahora vamos a buscar en la tabla shilla
                     Sql = "select * from tmptaxi where error1 = 0"
-                    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                     ProgressBar1.Value = 0
                     Contador = 0
                     total = rsContador("select count(*) from tmptaxi where error1 = 0")
                     Label1(2).Caption = "Verificando duplicidad de registros en la tabla."
                     Label1(2).Refresh
 
-                    While Not RS.EOF
+                    While Not Rs.EOF
                         Contador = Contador + 1
                         ProgressBar1.Value = Round2((Contador * 100) / total, 0)
 
@@ -818,16 +819,16 @@ Dim cadTabla As String
 '                        encontrado = DevuelveDesdeBD(conAri, "codsocio", "shilla", Sql, RS!NumerUve, "N")
 '                        If encontrado <> "" Then
                         
-                        Sql = "select count(*) from shilla where numeruve = " & DBSet(RS!NumerUve, "N") & " and fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H") & " and (facturad=1 and abonados=1 and validado=1)"
+                        Sql = "select count(*) from shilla where numeruve = " & DBSet(Rs!NumerUve, "N") & " and fecha = " & DBSet(Rs!Fecha, "F") & " and hora = " & DBSet(Rs!hora, "H") & " and (facturad=1 and abonados=1 and validado=1)"
                         If TotalRegistros(Sql) <> 0 Then
                             '[Monica]31/10/2017: los marco como 2 para no mostrarlos
                             'esta entonces es repetido
-                            Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & RS!Id
+                            Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & Rs!Id
                             conn.Execute Sql
                         End If
-                        RS.MoveNext
+                        Rs.MoveNext
                     Wend
-                    RS.Close
+                    Rs.Close
                 End If
             End If
             If procesoCancelado Then
@@ -884,13 +885,13 @@ End If
 End Function
 
 Private Sub MostrarTablas()
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     Sql = "select * from tmptaxi where error1=1"
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    If RS.EOF Then
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Rs.EOF Then
         If MsgBox("Se ha procesado el fichero correctamente. ¿Desea continuar?.", vbQuestion + vbYesNo) = vbYes Then
             ActualizarTabla
             BorrarTablas
@@ -904,14 +905,14 @@ Dim Sql As String
             BorrarTablas
         End If
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 End Sub
 
 Private Sub ActualizarTabla()
 Dim Sql As String
 Dim SQL1 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim linea As String
 Dim values As String
 Dim Contador As Currency
@@ -925,7 +926,7 @@ Dim cWhere As String
     
     
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     Sql = "select fecha,hora,codsocio,numeruve,codclien,codusuar,nomclien,dirllama,"
     Sql = Sql & "numllama,puerllama,ciudadre,tipservi,telefono,observac2,codautor,observa1,licencia,"
     Sql = Sql & "matricul,idservic,opereser,opedespa,estado,observa2,fecreser,horreser,fecaviso,"
@@ -933,7 +934,7 @@ Dim cWhere As String
     '[Monica]28/12/2017: al añadir la situacion 2, ésta tambien es erronea, luego no debe entrar, solo entran situacion = 0
     Sql = Sql & "extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,abonados,validado, destino, empresa from tmpTaxi where error1=0"
     
-    RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
     total = rsContador("select count(*) from tmpTaxi where error1=0")
     If total = 0 Then
         MsgBox "No hay datos para actualizar.", vbExclamation
@@ -960,302 +961,340 @@ Dim cWhere As String
     SqlUpdate = "update shilla set "
     
     
-    While Not RS.EOF
+    While Not Rs.EOF
         Contador = Contador + 1
         ProgressBar1.Value = Round2((Contador * 100) / total, 0)
         
-        cWhere = "numeruve = " & DBSet(RS!NumerUve, "N") & " and fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H")
+        cWhere = "numeruve = " & DBSet(Rs!NumerUve, "N") & " and fecha = " & DBSet(Rs!Fecha, "F") & " and hora = " & DBSet(Rs!hora, "H")
         
         If ExisteEnShilla(cWhere) Then
             '[Monica]13/11/2014: sólo en el caso de que sea de credito actualizamos
             If EsdeCredito(cWhere) Then
-                linea = " fecha = " & DBSet(RS!Fecha, "F")
-                linea = linea & ",hora = " & DBSet(RS!hora, "H")
-                linea = linea & ",codsocio = " & DBSet(RS!codSocio, "N")
-                linea = linea & ",numeruve = " & DBSet(RS!NumerUve, "N")
-                linea = linea & ",codclien = " & DBSet(RS!CodClien, "N")
-                linea = linea & ",codusuar = " & DBSet(RS!codusuar, "T")
-                linea = linea & ",nomclien = " & DBSet(RS!nomclien, "T")
-                linea = linea & ",dirllama = " & DBSet(RS!dirllama, "T")
-                linea = linea & ",numllama = " & DBSet(RS!numllama, "T")
-                linea = linea & ",puerllama = " & DBSet(RS!puerllama, "T")
-                linea = linea & ",ciudadre = " & DBSet(RS!ciudadre, "T")
-                linea = linea & ",tipservi = " & DBSet(RS!tipservi, "N")
-                linea = linea & ",telefono = " & DBSet(RS!Telefono, "T")
-                linea = linea & ",observac2 = " & DBSet(RS!observac2, "T")
-                linea = linea & ",codautor = " & DBSet(RS!codautor, "T")
-                linea = linea & ",observa1 = " & DBSet(RS!observa1, "T")
-                linea = linea & ",licencia = " & DBSet(RS!Licencia, "T")
-                linea = linea & ",matricul = " & DBSet(RS!matricul, "T")
-                linea = linea & ",idservic = " & DBSet(RS!idservic, "T")
-                linea = linea & ",opereser = " & DBSet(RS!opereser, "T")
-                linea = linea & ",opedespa = " & DBSet(RS!opedespa, "T")
-                linea = linea & ",estado = " & DBSet(RS!Estado, "T")
-                linea = linea & ",observa2 = " & DBSet(RS!observa2, "T")
-                linea = linea & ",fecreser = " & DBSet(RS!fecreser, "F")
-                linea = linea & ",horreser = " & DBSet(RS!horreser, "H")
-                linea = linea & ",fecaviso = " & DBSet(RS!fecaviso, "F")
-                linea = linea & ",horaviso = " & DBSet(RS!horaviso, "H")
-                linea = linea & ",fecllega = " & DBSet(RS!fecllega, "F")
-                linea = linea & ",horllega = " & DBSet(RS!horllega, "H")
-                linea = linea & ",fecocupa = " & DBSet(RS!fecocupa, "F")
-                linea = linea & ",horocupa = " & DBSet(RS!horocupa, "H")
-                linea = linea & ",fecfinal = " & DBSet(RS!fecfinal, "F")
-                linea = linea & ",horfinal = " & DBSet(RS!horfinal, "H")
-                linea = linea & ",importtx = " & DBSet(RS!importtx, "N")
-                linea = linea & ",impcompr = " & DBSet(RS!impcompr, "N")
-                linea = linea & ",extcompr = " & DBSet(RS!extcompr, "N")
-                linea = linea & ",impventa = " & DBSet(RS!impventa, "N")
-                linea = linea & ",extventa = " & DBSet(RS!extventa, "N")
-                linea = linea & ",distanci = " & DBSet(RS!distanci, "N")
-                linea = linea & ",suplemen = " & DBSet(RS!suplemen, "N")
-                linea = linea & ",imppeaje = " & DBSet(RS!imppeaje, "N")
-                linea = linea & ",imppropi = " & DBSet(RS!imppropi, "N")
-                linea = linea & ",facturad = " & DBSet(RS!facturad, "N")
-                linea = linea & ",abonados = " & DBSet(RS!abonados, "N")
-                linea = linea & ",validado = " & DBSet(RS!validado, "N")
-                linea = linea & ",destino = " & DBSet(RS!Destino, "T")
-                linea = linea & ",empresa = " & DBSet(RS!Empresa, "N")
+                linea = " fecha = " & DBSet(Rs!Fecha, "F")
+                linea = linea & ",hora = " & DBSet(Rs!hora, "H")
+                linea = linea & ",codsocio = " & DBSet(Rs!codSocio, "N")
+                linea = linea & ",numeruve = " & DBSet(Rs!NumerUve, "N")
+                linea = linea & ",codclien = " & DBSet(Rs!CodClien, "N")
+                linea = linea & ",codusuar = " & DBSet(Rs!codusuar, "T")
+                linea = linea & ",nomclien = " & DBSet(Rs!nomclien, "T")
+                linea = linea & ",dirllama = " & DBSet(Rs!dirllama, "T")
+                linea = linea & ",numllama = " & DBSet(Rs!numllama, "T")
+                linea = linea & ",puerllama = " & DBSet(Rs!puerllama, "T")
+                linea = linea & ",ciudadre = " & DBSet(Rs!ciudadre, "T")
+                linea = linea & ",tipservi = " & DBSet(Rs!tipservi, "N")
+                linea = linea & ",telefono = " & DBSet(Rs!Telefono, "T")
+                linea = linea & ",observac2 = " & DBSet(Rs!observac2, "T")
+                linea = linea & ",codautor = " & DBSet(Rs!codautor, "T")
+                
+                '[Monica]15/01/2018: cambio el orden de las observaciones si estamos en traspaso del alfa 6
+                If EsTeletaxi And Check1(0).Value = 1 Then
+                    linea = linea & ",observa1 = " & DBSet(Rs!observa2, "T")
+                Else
+                    linea = linea & ",observa1 = " & DBSet(Rs!observa1, "T")
+                End If
+                
+                linea = linea & ",licencia = " & DBSet(Rs!Licencia, "T")
+                linea = linea & ",matricul = " & DBSet(Rs!matricul, "T")
+                linea = linea & ",idservic = " & DBSet(Rs!idservic, "T")
+                linea = linea & ",opereser = " & DBSet(Rs!opereser, "T")
+                linea = linea & ",opedespa = " & DBSet(Rs!opedespa, "T")
+                linea = linea & ",estado = " & DBSet(Rs!Estado, "T")
+                
+                '[Monica]15/01/2018: cambio el orden de las observaciones si estamos en traspaso del alfa 6
+                If EsTeletaxi And Check1(0).Value = 1 Then
+                    linea = linea & ",observa2 = " & DBSet(Rs!observa1, "T")
+                Else
+                    linea = linea & ",observa2 = " & DBSet(Rs!observa2, "T")
+                End If
+                linea = linea & ",fecreser = " & DBSet(Rs!fecreser, "F")
+                linea = linea & ",horreser = " & DBSet(Rs!horreser, "H")
+                linea = linea & ",fecaviso = " & DBSet(Rs!fecaviso, "F")
+                linea = linea & ",horaviso = " & DBSet(Rs!horaviso, "H")
+                linea = linea & ",fecllega = " & DBSet(Rs!fecllega, "F")
+                linea = linea & ",horllega = " & DBSet(Rs!horllega, "H")
+                linea = linea & ",fecocupa = " & DBSet(Rs!fecocupa, "F")
+                linea = linea & ",horocupa = " & DBSet(Rs!horocupa, "H")
+                linea = linea & ",fecfinal = " & DBSet(Rs!fecfinal, "F")
+                linea = linea & ",horfinal = " & DBSet(Rs!horfinal, "H")
+                linea = linea & ",importtx = " & DBSet(Rs!importtx, "N")
+                linea = linea & ",impcompr = " & DBSet(Rs!impcompr, "N")
+                linea = linea & ",extcompr = " & DBSet(Rs!extcompr, "N")
+                linea = linea & ",impventa = " & DBSet(Rs!impventa, "N")
+                linea = linea & ",extventa = " & DBSet(Rs!extventa, "N")
+                linea = linea & ",distanci = " & DBSet(Rs!distanci, "N")
+                linea = linea & ",suplemen = " & DBSet(Rs!suplemen, "N")
+                linea = linea & ",imppeaje = " & DBSet(Rs!imppeaje, "N")
+                linea = linea & ",imppropi = " & DBSet(Rs!imppropi, "N")
+                linea = linea & ",facturad = " & DBSet(Rs!facturad, "N")
+                linea = linea & ",abonados = " & DBSet(Rs!abonados, "N")
+                linea = linea & ",validado = " & DBSet(Rs!validado, "N")
+                linea = linea & ",destino = " & DBSet(Rs!Destino, "T")
+                linea = linea & ",empresa = " & DBSet(Rs!Empresa, "N")
                 linea = linea & " where " & cWhere
                 
                 conn.Execute SqlUpdate & linea
             End If
         Else
             
-            If IsNull(RS!Fecha) Then
+            If IsNull(Rs!Fecha) Then
                 linea = "(NULL,"
             Else
-                linea = "(" & DBSet(RS!Fecha, "F") & ","
+                linea = "(" & DBSet(Rs!Fecha, "F") & ","
             End If
-            If IsNull(RS!hora) Then
+            If IsNull(Rs!hora) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!hora, FormatoHora) & "',"
+                linea = linea & "'" & Format(Rs!hora, FormatoHora) & "',"
             End If
-            If IsNull(RS!codSocio) Then
+            If IsNull(Rs!codSocio) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!codSocio, "N") & ","
+                linea = linea & DBSet(Rs!codSocio, "N") & ","
             End If
-            If IsNull(RS!NumerUve) Then
+            If IsNull(Rs!NumerUve) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!NumerUve, "N") & ","
+                linea = linea & DBSet(Rs!NumerUve, "N") & ","
             End If
-            If IsNull(RS!CodClien) Or RS!CodClien = 0 Then
+            If IsNull(Rs!CodClien) Or Rs!CodClien = 0 Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!CodClien, "N") & ","
+                linea = linea & DBSet(Rs!CodClien, "N") & ","
             End If
-            If IsNull(RS!codusuar) Then
+            If IsNull(Rs!codusuar) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!codusuar, "T") & ","
+                linea = linea & DBSet(Rs!codusuar, "T") & ","
             End If
-            If IsNull(RS!nomclien) Then
+            If IsNull(Rs!nomclien) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!nomclien, "T") & ","
+                linea = linea & DBSet(Rs!nomclien, "T") & ","
             End If
-            If IsNull(RS!dirllama) Then
+            If IsNull(Rs!dirllama) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!dirllama, "T") & ","
+                linea = linea & DBSet(Rs!dirllama, "T") & ","
             End If
-            If IsNull(RS!numllama) Then
+            If IsNull(Rs!numllama) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!numllama, "T") & ","
+                linea = linea & DBSet(Rs!numllama, "T") & ","
             End If
-            If IsNull(RS!puerllama) Then
+            If IsNull(Rs!puerllama) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!puerllama, "T") & ","
+                linea = linea & DBSet(Rs!puerllama, "T") & ","
             End If
-            If IsNull(RS!ciudadre) Then
+            If IsNull(Rs!ciudadre) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!ciudadre, "T") & ","
+                linea = linea & DBSet(Rs!ciudadre, "T") & ","
             End If
-            If IsNull(RS!tipservi) Then
+            If IsNull(Rs!tipservi) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!tipservi, "N") & ","
+                linea = linea & DBSet(Rs!tipservi, "N") & ","
             End If
-            If IsNull(RS!Telefono) Then
+            If IsNull(Rs!Telefono) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!Telefono, "T") & ","
+                linea = linea & DBSet(Rs!Telefono, "T") & ","
             End If
-            If IsNull(RS!observac2) Then
+            If IsNull(Rs!observac2) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!observac2, "T") & ","
+                linea = linea & DBSet(Rs!observac2, "T") & ","
             End If
-            If IsNull(RS!codautor) Then
+            If IsNull(Rs!codautor) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!codautor, "T") & ","
+                linea = linea & DBSet(Rs!codautor, "T") & ","
             End If
-            If IsNull(RS!observa1) Then
+            
+            '[Monica]15/01/2018: cambio el orden de las observaciones si estamos en traspaso del alfa 6, solo para tele
+            '                    pq tenia entradas anteriores que tenia q facturar
+            If EsTeletaxi And Check1(0).Value = 1 Then
+                If IsNull(Rs!observa2) Then
+                    linea = linea & "NULL,"
+                Else
+                    linea = linea & DBSet(Rs!observa2, "T") & ","
+                End If
+            Else
+            ' se queda como estaba
+                If IsNull(Rs!observa1) Then
+                    linea = linea & "NULL,"
+                Else
+                    linea = linea & DBSet(Rs!observa1, "T") & ","
+                End If
+            End If
+            If IsNull(Rs!Licencia) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!observa1, "T") & ","
+                linea = linea & DBSet(Rs!Licencia, "T") & ","
             End If
-            If IsNull(RS!Licencia) Then
+            If IsNull(Rs!matricul) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!Licencia, "T") & ","
+                linea = linea & DBSet(Rs!matricul, "T") & ","
             End If
-            If IsNull(RS!matricul) Then
+            If IsNull(Rs!idservic) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!matricul, "T") & ","
+                linea = linea & DBSet(Rs!idservic, "T") & ","
             End If
-            If IsNull(RS!idservic) Then
+            If IsNull(Rs!opereser) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!idservic, "T") & ","
+                linea = linea & DBSet(Rs!opereser, "T") & ","
             End If
-            If IsNull(RS!opereser) Then
+            If IsNull(Rs!opedespa) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!opereser, "T") & ","
+                linea = linea & DBSet(Rs!opedespa, "T") & ","
             End If
-            If IsNull(RS!opedespa) Then
+            If IsNull(Rs!Estado) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!opedespa, "T") & ","
+                linea = linea & DBSet(Rs!Estado, "T") & ","
             End If
-            If IsNull(RS!Estado) Then
+            
+            '[Monica]15/01/2018: cambio el orden de las observaciones si estamos en traspaso del alfa 6, solo para tele
+            '                    pq tenia entradas anteriores que tenia q facturar
+            If EsTeletaxi And Check1(0).Value = 1 Then
+                If IsNull(Rs!observa1) Then
+                    linea = linea & "NULL,"
+                Else
+                    linea = linea & DBSet(Rs!observa1, "T") & ","
+                End If
+            Else
+            ' se queda como estaba
+                If IsNull(Rs!observa2) Then
+                    linea = linea & "NULL,"
+                Else
+                    linea = linea & DBSet(Rs!observa2, "T") & ","
+                End If
+            End If
+            
+            If IsNull(Rs!fecreser) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!Estado, "T") & ","
+                linea = linea & "'" & Format(Rs!fecreser, FormatoFecha) & "',"
             End If
-            If IsNull(RS!observa2) Then
+            If IsNull(Rs!horreser) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!observa2, "T") & ","
+                linea = linea & "'" & Format(Rs!horreser, FormatoHora) & "',"
             End If
-            If IsNull(RS!fecreser) Then
+            If IsNull(Rs!fecaviso) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!fecreser, FormatoFecha) & "',"
+                linea = linea & "'" & Format(Rs!fecaviso, FormatoFecha) & "',"
             End If
-            If IsNull(RS!horreser) Then
+            If IsNull(Rs!horaviso) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!horreser, FormatoHora) & "',"
+                linea = linea & "'" & Format(Rs!horaviso, FormatoHora) & "',"
             End If
-            If IsNull(RS!fecaviso) Then
+            If IsNull(Rs!fecllega) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!fecaviso, FormatoFecha) & "',"
+                linea = linea & "'" & Format(Rs!fecllega, FormatoFecha) & "',"
             End If
-            If IsNull(RS!horaviso) Then
+            If IsNull(Rs!horllega) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!horaviso, FormatoHora) & "',"
+                linea = linea & "'" & Format(Rs!horllega, FormatoHora) & "',"
             End If
-            If IsNull(RS!fecllega) Then
+            If IsNull(Rs!fecocupa) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!fecllega, FormatoFecha) & "',"
+                linea = linea & "'" & Format(Rs!fecocupa, FormatoFecha) & "',"
             End If
-            If IsNull(RS!horllega) Then
+            If IsNull(Rs!horocupa) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!horllega, FormatoHora) & "',"
+                linea = linea & "'" & Format(Rs!horocupa, FormatoHora) & "',"
             End If
-            If IsNull(RS!fecocupa) Then
+            If IsNull(Rs!fecfinal) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!fecocupa, FormatoFecha) & "',"
+                linea = linea & "'" & Format(Rs!fecfinal, FormatoFecha) & "',"
             End If
-            If IsNull(RS!horocupa) Then
+            If IsNull(Rs!horfinal) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!horocupa, FormatoHora) & "',"
+                linea = linea & "'" & Format(Rs!horfinal, FormatoHora) & "',"
             End If
-            If IsNull(RS!fecfinal) Then
+            If IsNull(Rs!importtx) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!fecfinal, FormatoFecha) & "',"
+                linea = linea & DBSet(Rs!importtx, "N") & ","
             End If
-            If IsNull(RS!horfinal) Then
+            If IsNull(Rs!impcompr) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & "'" & Format(RS!horfinal, FormatoHora) & "',"
+                linea = linea & DBSet(Rs!impcompr, "N") & ","
             End If
-            If IsNull(RS!importtx) Then
+            If IsNull(Rs!extcompr) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!importtx, "N") & ","
+                linea = linea & DBSet(Rs!extcompr, "N") & ","
             End If
-            If IsNull(RS!impcompr) Then
+            If IsNull(Rs!impventa) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!impcompr, "N") & ","
+                linea = linea & DBSet(Rs!impventa, "N") & ","
             End If
-            If IsNull(RS!extcompr) Then
+            If IsNull(Rs!extventa) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!extcompr, "N") & ","
+                linea = linea & DBSet(Rs!extventa, "N") & ","
             End If
-            If IsNull(RS!impventa) Then
+            If IsNull(Rs!distanci) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!impventa, "N") & ","
+                linea = linea & DBSet(Rs!distanci, "N") & ","
             End If
-            If IsNull(RS!extventa) Then
+            If IsNull(Rs!suplemen) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!extventa, "N") & ","
+                linea = linea & DBSet(Rs!suplemen, "N") & ","
             End If
-            If IsNull(RS!distanci) Then
+            If IsNull(Rs!imppeaje) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!distanci, "N") & ","
+                linea = linea & DBSet(Rs!imppeaje, "N") & ","
             End If
-            If IsNull(RS!suplemen) Then
+            If IsNull(Rs!imppropi) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!suplemen, "N") & ","
+                linea = linea & DBSet(Rs!imppropi, "N") & ","
             End If
-            If IsNull(RS!imppeaje) Then
+            If IsNull(Rs!facturad) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!imppeaje, "N") & ","
+                linea = linea & DBSet(Rs!facturad, "N") & ","
             End If
-            If IsNull(RS!imppropi) Then
+            If IsNull(Rs!abonados) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!imppropi, "N") & ","
+                linea = linea & DBSet(Rs!abonados, "N") & ","
             End If
-            If IsNull(RS!facturad) Then
+            If IsNull(Rs!validado) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!facturad, "N") & ","
+                linea = linea & DBSet(Rs!validado, "N") & ","
             End If
-            If IsNull(RS!abonados) Then
+            If IsNull(Rs!Destino) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(RS!abonados, "N") & ","
+                linea = linea & DBSet(Rs!Destino, "T") & ","
             End If
-            If IsNull(RS!validado) Then
-                linea = linea & "NULL,"
-            Else
-                linea = linea & DBSet(RS!validado, "N") & ","
-            End If
-            If IsNull(RS!Destino) Then
-                linea = linea & "NULL,"
-            Else
-                linea = linea & DBSet(RS!Destino, "T") & ","
-            End If
-            If IsNull(RS!Empresa) Then
+            If IsNull(Rs!Empresa) Then
                 linea = linea & "NULL)"
             Else
-                linea = linea & DBSet(RS!Empresa, "N") & ")"
+                linea = linea & DBSet(Rs!Empresa, "N") & ")"
             End If
             values = values & linea & ","
             'If Len(values) > 100000 Then
@@ -1272,10 +1311,10 @@ Dim cWhere As String
         Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
         Label1(0).Refresh
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     'quitamos la ultima coma
 '    values = Mid(values, 1, Len(values) - 1)
 '    SQL = SQL & values
@@ -2113,38 +2152,38 @@ Private Function BuscarRegistro(ByRef V As String, ByRef F As String, ByRef H As
 Dim fec As Date
 Dim hor As Date
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo EBusqueda
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     fec = CDate(F)
     hora = CDate(H)
 
     Sql = "select * from tmptaxi where numeruve=" & CInt(V) & " and fecha='" & Format(fec, FormatoFecha)
     Sql = Sql & "' and hora='" & Format(hora, FormatoHora) & "'"
 
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If RS.EOF Then
-        RS.Close
+    If Rs.EOF Then
+        Rs.Close
         Sql = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", V, "T")
         If Sql <> "" Then
             Sql = "select * from shilla where codsocio=" & CInt(Sql) & " and numeruve=" & CInt(V) & " and fecha='" & Format(fec, FormatoFecha)
             Sql = Sql & "' and hora='" & Format(hora, FormatoHora) & "'"
-            RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-            If RS.EOF Then
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            If Rs.EOF Then
                 BuscarRegistro = False
             Else
                 BuscarRegistro = True
             End If
-            RS.Close
+            Rs.Close
         Else
             BuscarRegistro = False
         End If
     Else
         BuscarRegistro = True
-        RS.Close
+        Rs.Close
     End If
     
 EBusqueda:
@@ -2745,10 +2784,10 @@ End Function
 
 Private Function ComprobarFichero(Escliente As Boolean) As Boolean
 Dim NF As Long
-Dim Cad As String
+Dim cad As String
 Dim I As Integer
 Dim longitud As Long
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
 Dim NumReg As Long
 Dim Sql As String
@@ -2766,7 +2805,7 @@ Dim b As Boolean
     NF = FreeFile
     Open Text1.Text For Input As #NF
     
-    Line Input #NF, Cad
+    Line Input #NF, cad
     I = 0
     
     conn.Execute "delete from tmpinformes where codusu = " & vUsu.Codigo
@@ -2786,24 +2825,24 @@ Dim b As Boolean
     While Not EOF(NF) And b
         I = I + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
-        b = ComprobarRegistro(Cad, Escliente)
+        b = ComprobarRegistro(cad, Escliente)
         
-        Line Input #NF, Cad
+        Line Input #NF, cad
     Wend
     Close #NF
     
-    If Cad <> "" Then
+    If cad <> "" Then
         I = I + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
-        b = ComprobarRegistro(Cad, Escliente)
+        b = ComprobarRegistro(cad, Escliente)
     End If
     
     ProgressBar1.visible = False
@@ -2818,7 +2857,7 @@ eComprobarFichero:
 End Function
 
 
-Private Function ComprobarRegistro(Cad As String, EsClien As Boolean) As Boolean
+Private Function ComprobarRegistro(cad As String, EsClien As Boolean) As Boolean
 Dim Sql As String
 Dim c_Importe As Currency
 Dim Mens As String
@@ -2830,20 +2869,20 @@ Dim NServicios As String
 Dim vServicios As Long
 Dim vImporte As Currency
 
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eComprobarRegistro
 
     ComprobarRegistro = True
 
     If EsClien Then ' facturacion a clientes
-        Id = Mid(Cad, 1, 6)
-        Importe = Mid(Cad, 352, 10)
-        NServicios = Mid(Cad, 362, 5)
+        Id = Mid(cad, 1, 6)
+        Importe = Mid(cad, 352, 10)
+        NServicios = Mid(cad, 362, 5)
     Else ' liquidacion a socios
-        Id = Mid(Cad, 1, 6)
-        Importe = Mid(Cad, 375, 10)
-        NServicios = Mid(Cad, 385, 5)
+        Id = Mid(cad, 1, 6)
+        Importe = Mid(cad, 375, 10)
+        NServicios = Mid(cad, 385, 5)
     End If
     
     c_Importe = Replace(ComprobarCero(Importe), ".", ",")
@@ -2986,10 +3025,10 @@ End Function
 
 Private Function TraspasoFichero(EsClien As Boolean) As Boolean
 Dim NF As Long
-Dim Cad As String
+Dim cad As String
 Dim I As Integer
 Dim longitud As Long
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
 Dim NumReg As Long
 Dim Sql As String
@@ -3019,7 +3058,7 @@ Dim SqlServ As String
     
     Open Text1.Text For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
     
-    Line Input #NF, Cad
+    Line Input #NF, cad
     I = 0
     
     Label1(0).Caption = "Procesando Fichero: " & Text1.Text
@@ -3043,18 +3082,18 @@ Dim SqlServ As String
     While Not EOF(NF)
         I = I + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
-            Id = Mid(Cad, 1, 6)
-            Importe = Mid(Cad, 352, 10)
-            NServicios = Mid(Cad, 362, 5)
+            Id = Mid(cad, 1, 6)
+            Importe = Mid(cad, 352, 10)
+            NServicios = Mid(cad, 362, 5)
         Else ' liquidacion a socios
-            Id = Mid(Cad, 1, 6)
-            Importe = Mid(Cad, 375, 10)
-            NServicios = Mid(Cad, 385, 5)
+            Id = Mid(cad, 1, 6)
+            Importe = Mid(cad, 375, 10)
+            NServicios = Mid(cad, 385, 5)
         End If
     
         If EsClien Then
@@ -3096,23 +3135,23 @@ Dim SqlServ As String
 '                conn.Execute SqlServ
             End If
         End If
-        Line Input #NF, Cad
+        Line Input #NF, cad
     Wend
     Close #NF
     
-    If Cad <> "" Then
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
+    If cad <> "" Then
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
-            Id = Mid(Cad, 1, 6)
-            Importe = Mid(Cad, 352, 10)
-            NServicios = Mid(Cad, 362, 5)
+            Id = Mid(cad, 1, 6)
+            Importe = Mid(cad, 352, 10)
+            NServicios = Mid(cad, 362, 5)
         Else ' liquidacion a socios
-            Id = Mid(Cad, 1, 6)
-            Importe = Mid(Cad, 375, 10)
-            NServicios = Mid(Cad, 385, 5)
+            Id = Mid(cad, 1, 6)
+            Importe = Mid(cad, 375, 10)
+            NServicios = Mid(cad, 385, 5)
         End If
         
         

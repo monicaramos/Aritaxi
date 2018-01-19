@@ -590,7 +590,7 @@ Option Explicit
 
 'Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 'Public Event DatoSeleccionado(CadenaSeleccion As String)
-
+Private Const IdPrograma = 318
 
 Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
 Attribute frmB.VB_VarHelpID = -1
@@ -764,17 +764,17 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     PrimeraVez = True
     
     'ICONOS de laLa toolbar
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(1).Image = 3   'Botón Añadir Nuevo Registro
         .Buttons(2).Image = 4   'Botón Modificar Registro
         .Buttons(3).Image = 5   'Botón Borrar Registro
@@ -961,14 +961,14 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -1155,7 +1155,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim i As Integer
+Dim I As Integer
 Dim anc As Single
 
     If CInt(Data1.Recordset!facturado) = 1 Then
@@ -1168,8 +1168,8 @@ Dim anc As Single
     
     'Como el campo1, campo2 y campo3 es clave primaria, NO se puede modificar
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     
@@ -1181,7 +1181,7 @@ Dim anc As Single
     '---- poner valores grabados
     'codclien
     txtAux(0).Text = DBLet(DataGrid1.Columns(0).Value, "N")
-    FormateaCampo txtAux(i)
+    FormateaCampo txtAux(I)
     
     'nomclien
     Text2(0).Text = DBLet(DataGrid1.Columns(1).Value, "T")
@@ -1377,12 +1377,12 @@ Private Sub BloquearClavesP(bol As Boolean)
 'Si BloquearClavesPrimarias=true deshablilita los textbox de codigos y lo pone amarillo
 'y habilita el resto de campos para introducir nuevos valores
 'Si BloquearClavesPrimarias=false habilita los textbox de codigos para introducir
-Dim i As Byte
+Dim I As Byte
 
-    For i = 0 To 0 'Codigo socio
-        BloquearTxt txtAux(i), bol
-        Me.cmdAux(i).Enabled = Not bol
-    Next i
+    For I = 0 To 0 'Codigo socio
+        BloquearTxt txtAux(I), bol
+        Me.cmdAux(I).Enabled = Not bol
+    Next I
     ' fecha bloqueada
     Me.cmdAux(1).Enabled = Not bol
     BloquearTxt txtAux(3), bol
@@ -1431,23 +1431,23 @@ Dim b As Boolean
 
         For jj = 0 To txtAux.Count - 1
             txtAux(jj).Height = DataGrid1.RowHeight
-            txtAux(jj).Top = alto
+            txtAux(jj).top = alto
             txtAux(jj).visible = b
         Next jj
         
         For jj = 0 To Text2.Count - 1
             Text2(jj).Height = Me.DataGrid1.RowHeight
-            Text2(jj).Top = alto
+            Text2(jj).top = alto
             Text2(jj).visible = b
         Next jj
         
         For jj = 0 To Me.cmdAux.Count - 1
             Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
-            Me.cmdAux(jj).Top = alto
+            Me.cmdAux(jj).top = alto
             Me.cmdAux(jj).visible = b
         Next jj
         
-        Me.chkAux(0).Top = alto
+        Me.chkAux(0).top = alto
         Me.chkAux(0).visible = b
         
 
@@ -1461,28 +1461,28 @@ Dim Importe  As Currency
 Dim Compleme As Currency
 Dim Penaliza As Currency
 
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 
     On Error Resume Next
     
     Sql = "select sum(importe) importe  from (" & CADENA & ") aaaaa"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Importe = 0
     Text1.Text = ""
     
     If TotalRegistrosConsulta(CADENA) = 0 Then Exit Sub
     
-    If Not RS.EOF Then
-        If RS.Fields(0).Value <> 0 Then Importe = DBLet(RS.Fields(0).Value, "N") 'Solo es para saber que hay registros que mostrar
+    If Not Rs.EOF Then
+        If Rs.Fields(0).Value <> 0 Then Importe = DBLet(Rs.Fields(0).Value, "N") 'Solo es para saber que hay registros que mostrar
     
         Text1.Text = Format(Importe, "###,###,##0.00")
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 
     
     DoEvents

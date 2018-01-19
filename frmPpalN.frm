@@ -1917,7 +1917,7 @@ Private Sub LoadIcons()
     
     'Pequeños
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", _
-            Array(ID_CartasClientes, ID_Marcas, ID_TiposUnidad, 1, ID_SituEspe, ID_Incidencias, ID_Tarjetas, 1, 1, ID_InfClientes), xtpImageNormal
+            Array(ID_CartasClientes, ID_Marcas, ID_TiposUnidad, ID_ClientesAgrup, ID_SituEspe, ID_Incidencias, ID_Tarjetas, ID_BancosPropio, ID_AltasClientes, ID_InfClientes), xtpImageNormal
         
     'Pequeños diario
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\quickstepsgallery.png", _
@@ -1935,16 +1935,16 @@ Private Sub LoadIcons()
 '
     Dim T() As Variant
     'Cad linea son 15
-    T = Array(1, 1, ID_TiposArticulos, 1, ID_PreciosProv, ID_AltasClientes, 1, ID_ContaFacturas, ID_FrasRectificativas, ID_EtiquetasSocios, 1, 1, 1, 1, 1, _
-        ID_VentasporCliente, ID_DetalleFacturacion, 1, ID_RetenSocios, ID_ContabilFras, ID_HcoInventario, ID_Reparaciones, 1, 1, 1, 1, 1, 1, 1, ID_EtiquetasClientes, _
-        1, ID_ValStocksInven, ID_Articulos, ID_Socios, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, ID_ClientesAgrup, ID_ControlRep, 1, 1, 1, ID_BancosPropio, 1, _
-        ID_ArticulosComponentes, 1, ID_ServiciosAbonados, ID_ServSocios, ID_RecepFacturas, ID_Informes, 1, ID_Usuarios, ID_HcoLlamadas, ID_TraspasoTaxitronic, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
-        1, ID_ActDiferencias, ID_EtiProveedores, ID_FacturacionClientes, 1, ID_VtasSocios, ID_ReimprFras, ID_HcoFras, ID_Liquidacion, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
-        ID_ProvVarios, 1, ID_FacturacionSocios, ID_HistoricoUves, ID_AgentesCom, ID_Clientes, ID_TiposCartas, ID_TiposCartas, ID_Actividades, 1, ID_ContabFacturas, 1, 1, ID_Proveedores, ID_CartasSocios, _
+    T = Array(1, 1, ID_TiposArticulos, 1, ID_PreciosProv, 1, 1, ID_ContaFacturas, ID_FrasRectificativas, 1, 1, 1, 1, 1, 1, _
+        1, 1, 1, ID_RetenSocios, ID_ContabilFras, ID_HcoInventario, ID_Reparaciones, 1, 1, 1, 1, 1, 1, 1, 1, _
+        1, ID_ValStocksInven, ID_Articulos, ID_Socios, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, 1, ID_ControlRep, 1, 1, 1, 1, 1, _
+        ID_ArticulosComponentes, 1, 1, ID_ServSocios, ID_RecepFacturas, ID_Informes, 1, ID_Usuarios, ID_HcoLlamadas, ID_TraspasoTaxitronic, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
+        1, ID_ActDiferencias, ID_EtiProveedores, 1, 1, ID_VtasSocios, ID_ReimprFras, ID_HcoFras, ID_Liquidacion, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
+        ID_ProvVarios, 1, ID_FacturacionSocios, ID_HistoricoUves, 1, ID_Clientes, 1, 1, 1, 1, ID_ContabFacturas, 1, 1, ID_Proveedores, 1, _
         ID_Direcciones, ID_CartasProv, 1, ID_InfProveedores, 1, 1, ID_PedidosProv, 1, 1, ID_AlbAnuladosPro, ID_AlbProveedor, ID_HcoAlbxFra, 1, ID_ComprasProveedor, 1, _
         ID_TomaInventario, ID_ValoracionStocks, 1, ID_DtosProv, ID_VtasFamArt, ID_VtasMeses, ID_ContabFras, ID_Albaranes, 1, ID_FacturarClientes, ID_StocksMaxMin, 1, 1, 1, 1, _
         ID_AlbxArt, ID_StocksFecha, 1, 1, ID_EntradaExisReal, 1, ID_ComprasFamxArt, ID_PedidosAnulados, ID_ListadoMovimientos, 1, 1, 1, 1, ID_AlbAnulados, 1, _
-        ID_ListadoDiferencias, ID_ReimprimirFras, ID_InfAlbxProv, ID_DetalleFra, ID_FactuVarClientes)
+        ID_ListadoDiferencias, 1, ID_InfAlbxProv, ID_DetalleFra, 1)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\outlook2013L_32x32.bmp", T, xtpImageNormal
 
@@ -1953,11 +1953,20 @@ Private Sub LoadIcons()
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
 
-
-    'cuotas
-    T = Array(1, ID_Facturacion, ID_PrevFacturacCuotas, ID_HcoFrasCuotas, ID_MtoAlbaranes, ID_ContabFrasCuotas, 1, ID_ReimprFrasCuotas, 1, ID_FrasRectific)
+    'pequeños
+    T = Array(ID_EtiquetasClientes, ID_VentasporCliente, ID_DetalleFacturacion, ID_AgentesCom, ID_Actividades, ID_ServiciosAbonados, ID_FacturacionClientes, ID_FactuVarClientes, ID_ReimprimirFras, ID_EtiquetasSocios)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+
+
+    'cuotas
+    T = Array(1, ID_Facturacion, ID_PrevFacturacCuotas, ID_HcoFrasCuotas, ID_MtoAlbaranes, ID_ContabFrasCuotas, 1, ID_ReimprFrasCuotas, ID_CartasSocios, ID_FrasRectific)
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+
+
 
 
 
@@ -3007,8 +3016,9 @@ Private Sub AbrirFormularios(Accion As Long)
             AbrirListado (16)
         Case 222 ' Histórico inventario
             frmAlmHcoInven.Show vbModal
-        Case 301 ' Actividades
-            frmFacActividades.Show vbModal
+        Case 301 ' Clientes antes Actividades
+'            frmFacActividades.Show vbModal
+            frmFacClientes.Show vbModal
         Case 302 ' Textos Clientes Agrupados
             frmFacFormasEnvio.Show vbModal
         Case 303 ' Formas de Pago
@@ -3019,8 +3029,9 @@ Private Sub AbrirFormularios(Accion As Long)
             frmFacSituaciones.Show vbModal
         Case 306 ' Agentes comerciales
             frmFacAgentesCom.Show vbModal
-        Case 307 ' Clientes
-            frmFacClientes.Show vbModal
+        Case 307 ' Actividades , antes Clientes
+'            frmFacClientes.Show vbModal
+            frmFacActividades.Show vbModal
         Case 308 ' Tipos de Cartas
             frmFacCartasOferta.Show vbModal
         Case 309 ' Incidencias

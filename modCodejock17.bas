@@ -885,13 +885,13 @@ Public Const ID_ActDiferencias = 220
 Public Const ID_ValStocksInven = 221
 Public Const ID_HcoInventario = 222
 
-Public Const ID_Actividades = 301
+Public Const ID_Clientes = 301
 Public Const ID_ClientesAgrup = 302
 Public Const ID_FormasPago = 303
 Public Const ID_BancosPropio = 304
 Public Const ID_SituEspe = 305
 Public Const ID_AgentesCom = 306
-Public Const ID_Clientes = 307
+Public Const ID_Actividades = 307
 Public Const ID_TiposCartas = 308
 Public Const ID_Incidencias = 309
 Public Const ID_Tarjetas = 310

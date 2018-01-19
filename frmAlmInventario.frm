@@ -474,6 +474,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 218
+
 Private WithEvents frmA As frmAlmAlPropios 'Almacen Origen/Destino
 Attribute frmA.VB_VarHelpID = -1
 'Segun el Parametro se trabajara con Familia o con Proveedor (frmFA o frmP)
@@ -499,7 +501,7 @@ Private HaDevueltoDatos As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim Cad As String
+Dim cad As String
 
     On Error GoTo Error1
     
@@ -517,19 +519,19 @@ Dim Cad As String
                     CargaTxtAux True, True
                     cmdImportar.visible = True
                 Else 'No existen registros en la tabla sinven para ese criterio de búsqueda
-                    Cad = "No se esta realizando inventario para esos criterios de búsqueda."
-                    MsgBox Cad, vbInformation
+                    cad = "No se esta realizando inventario para esos criterios de búsqueda."
+                    MsgBox cad, vbInformation
                     PonerFoco Text1(0)
                 End If
             Else
-                Cad = "Criterio de Búsqueda incompleto." & vbCrLf
-                Cad = Cad & "Debe introducir ambos criterios de búsqueda: cod. almacen, "
+                cad = "Criterio de Búsqueda incompleto." & vbCrLf
+                cad = cad & "Debe introducir ambos criterios de búsqueda: cod. almacen, "
                 If vParamAplic.InventarioxProv Then
-                    Cad = Cad & "Cod. Proveedor"
+                    cad = cad & "Cod. Proveedor"
                 Else
-                    Cad = Cad & "Cod. Familia"
+                    cad = cad & "Cod. Familia"
                 End If
-                MsgBox Cad, vbExclamation
+                MsgBox cad, vbExclamation
                 PonerFoco Text1(0)
             End If
             
@@ -591,13 +593,13 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     'ICONOS de La toolbar
     With Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'ASignamos botones
         .Buttons(1).Image = 1   'Buscar
         .Buttons(2).Image = 4 'Modificar
@@ -610,7 +612,7 @@ Private Sub Form_Load()
 '    End With
 
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     
     'cargar el TAG en funcion del valor del parametro haydepar de la tabla spara1
@@ -633,7 +635,7 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim i As Byte
+Dim I As Byte
 Dim Sql As String
 On Error GoTo ECarga
 
@@ -671,10 +673,10 @@ On Error GoTo ECarga
     DataGrid1.Columns(5).Width = 1550
     DataGrid1.Columns(5).Alignment = dbgCenter
     
-    For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-        DataGrid1.Columns(i).Locked = True
-    Next i
+    For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+        DataGrid1.Columns(I).Locked = True
+    Next I
     
     DataGrid1.ScrollBars = dbgAutomatic
     
@@ -694,7 +696,7 @@ Dim alto As Single
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        txtAux.Top = 290
+        txtAux.top = 290
         txtAux.visible = visible
     Else
         DeseleccionaGrid Me.DataGrid1
@@ -704,14 +706,14 @@ Dim alto As Single
         End If
 
         If DataGrid1.Row < 0 Then
-            alto = DataGrid1.Top + 240
+            alto = DataGrid1.top + 240
         Else
-            alto = DataGrid1.Top + DataGrid1.RowTop(DataGrid1.Row) + 20
+            alto = DataGrid1.top + DataGrid1.RowTop(DataGrid1.Row) + 20
         End If
         
         'Fijamos altura y posición Top
         '-------------------------------
-        txtAux.Top = alto
+        txtAux.top = alto
         txtAux.Height = DataGrid1.RowHeight
         
         'Fijamos anchura y posicion Left
@@ -936,15 +938,15 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte
+Dim I As Byte
 Dim b As Boolean
        
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
     
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     
     
     
@@ -962,26 +964,15 @@ Dim b As Boolean
     PonerBotonCabecera b
    
     Select Case Kmodo
-'    Case 0    'Modo Inicial
-'        PonerBotonCabecera True
-'        lblIndicador.Caption = ""
-        
-    Case 1 'Modo Buscar
-'        PonerBotonCabecera False
-        PonerFoco Text1(0)
-'        lblIndicador.Caption = "BÚSQUEDA"
-'    Case 2    'Visualización de Datos
-'        PonerBotonCabecera True
-'    Case 3 'Insertar Datos en el Datagrid
-'        PonerBotonCabecera False 'Poner Aceptar y Cancelar Visible
-'        lblIndicador.Caption = "MODIFICAR"
+        Case 1 'Modo Buscar
+            PonerFoco Text1(0)
     End Select
            
     b = Modo <> 0 And Modo <> 2 And Modo <> 4
    
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Enabled = b
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Enabled = b
+    Next I
 
     b = (Modo = 1)
     Toolbar1.Buttons(1).Enabled = Not b
@@ -989,7 +980,37 @@ Dim b As Boolean
 
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+                    
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Ver, "N")
+     End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+
+
 
 
 Private Sub LimpiarCampos()
@@ -1214,14 +1235,14 @@ Private Function ProcesarFicheroInventario(Fichero As String) As Boolean
     '   Procesa el fichero pasado en el parámetro fichero y carga los datos correspondientes.
     '   si hay errores los graba en el fichero invddmmaahhmm.log
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim NfLeer As Integer ' controlador de fichero
     Dim NfLog As Integer ' controlador del fichero log
     Dim LineaLeida As String ' la linea leida del fichero
     Dim LineaLog As String ' la linea a grabar en el log
     Dim Codigo As String
     Dim Cantidad As String
-    Dim i As Integer
+    Dim I As Integer
     Dim pos As Integer
     On Error GoTo err_ProcesarFichero
     ProcesarFicheroInventario = True ' por defecto consideramos que todo va a ir bien
@@ -1231,8 +1252,8 @@ Private Function ProcesarFicheroInventario(Fichero As String) As Boolean
     Open App.Path & "\INV" & Format(Now, "ddMMyyhhmmss") & ".log" For Output As #NfLog '-- fichero log
     While Not EOF(NfLeer)
         Line Input #NfLeer, LineaLeida
-        i = i + 1
-        lblInfInv.Caption = "Registro " & CStr(i)
+        I = I + 1
+        lblInfInv.Caption = "Registro " & CStr(I)
         lblInfInv.Refresh
         DoEvents
         pos = InStr(1, LineaLeida, ",")
@@ -1245,27 +1266,27 @@ Private Function ProcesarFicheroInventario(Fichero As String) As Boolean
             Sql = "select * from sarti3 where codigoea = '" & Codigo & "'"
             '----
             
-            Set RS = New ADODB.Recordset
-            RS.Open Sql, conn, adOpenForwardOnly
-            If Not RS.EOF Then
+            Set Rs = New ADODB.Recordset
+            Rs.Open Sql, conn, adOpenForwardOnly
+            If Not Rs.EOF Then
                 '-- Si que lo ha encontrado vamos a actualizarlo
-                If Not ActualizarExistencia2(Cantidad, RS!codArtic) Then
-                    LineaLog = "Linea:" & CStr(i) & "|Error actualizando existencias " & _
+                If Not ActualizarExistencia2(Cantidad, Rs!codArtic) Then
+                    LineaLog = "Linea:" & CStr(I) & "|Error actualizando existencias " & _
                         " EAN: " & Codigo & _
-                        " ARTICULO: " & RS!codArtic & _
+                        " ARTICULO: " & Rs!codArtic & _
                         " CANTIDAD: " & Cantidad
                     Print #NfLog, LineaLog
                     ProcesarFicheroInventario = False
                 End If
             Else
-                LineaLog = "Linea:" & CStr(i) & "|No se ha encontrado artículo asociado " & _
+                LineaLog = "Linea:" & CStr(I) & "|No se ha encontrado artículo asociado " & _
                     " EAN: " & Codigo & _
                     " CANTIDAD: " & Cantidad
                 Print #NfLog, LineaLog
                 ProcesarFicheroInventario = False
             End If
         Else
-            LineaLog = "Linea:" & CStr(i) & "|No se reconoce el formato de la línea"
+            LineaLog = "Linea:" & CStr(I) & "|No se reconoce el formato de la línea"
             Print #NfLog, LineaLog
             ProcesarFicheroInventario = False
         End If

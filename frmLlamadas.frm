@@ -285,7 +285,7 @@ Option Explicit
 
 Private CadenaConsulta As String
 
-
+Private Const IdPrograma = 1002
 
 Dim Modo As Byte
 '-------------------------------------------------------
@@ -302,7 +302,7 @@ Dim PrimeraVez As Boolean
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     Modo = vModo
     b = (Modo = 2)
@@ -318,6 +318,37 @@ Dim i As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+    
+End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
 End Sub
 
 
@@ -330,12 +361,12 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnvertodos.Enabled = b
+    Me.mnVerTodos.Enabled = b
    
 
     'Insertar
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -485,14 +516,14 @@ End Sub
 
 Private Sub Form_Load()
     
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     PrimeraVez = True
     
     
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'el 1 es separadors
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2   'Todos
@@ -567,7 +598,7 @@ End Sub
 
 
 Private Sub CargaGrid(Optional ByVal Sql As String)
-Dim i As Byte
+Dim I As Byte
 
     
     lblIndicador.Caption = "Leyendo ..."
@@ -592,50 +623,50 @@ Dim i As Byte
     DataGrid1.RowHeight = 350
 
     'Nombre producto
-    i = 0
-        DataGrid1.Columns(i).Caption = "Fecha/Hora"
-        DataGrid1.Columns(i).Width = 2200
-        DataGrid1.Columns(i).NumberFormat = "dd/mm/yyyy hh:mm:ss"
+    I = 0
+        DataGrid1.Columns(I).Caption = "Fecha/Hora"
+        DataGrid1.Columns(I).Width = 2200
+        DataGrid1.Columns(I).NumberFormat = "dd/mm/yyyy hh:mm:ss"
     
     'Leemos del vector en 2
-    i = 1
-        DataGrid1.Columns(i).Caption = "Usuario"
-        DataGrid1.Columns(i).Width = 1175
+    I = 1
+        DataGrid1.Columns(I).Caption = "Usuario"
+        DataGrid1.Columns(I).Width = 1175
             
-    i = 2
-        DataGrid1.Columns(i).Caption = "Código"
-        DataGrid1.Columns(i).Width = 870
+    I = 2
+        DataGrid1.Columns(I).Caption = "Código"
+        DataGrid1.Columns(I).Width = 870
                     
-    i = 3
-        DataGrid1.Columns(i).Caption = "Cliente"
-        DataGrid1.Columns(i).Width = 3400
+    I = 3
+        DataGrid1.Columns(I).Caption = "Cliente"
+        DataGrid1.Columns(I).Width = 3400
                
-    i = 4
-        DataGrid1.Columns(i).Caption = "Teléfono"
-        DataGrid1.Columns(i).Width = 1250
+    I = 4
+        DataGrid1.Columns(I).Caption = "Teléfono"
+        DataGrid1.Columns(I).Width = 1250
                           
                
                
-    i = 5
-        DataGrid1.Columns(i).Caption = "Trabajador"
-        DataGrid1.Columns(i).Width = 1200
+    I = 5
+        DataGrid1.Columns(I).Caption = "Trabajador"
+        DataGrid1.Columns(I).Width = 1200
     'select feholla,usuario,codclien,nomclien,codtraba,nomtraba,nomllama1 from"
     
-    i = 6
-        DataGrid1.Columns(i).Caption = "Nombre"
-        DataGrid1.Columns(i).Width = 2190
+    I = 6
+        DataGrid1.Columns(I).Caption = "Nombre"
+        DataGrid1.Columns(I).Width = 2190
     
-    i = 7
-        DataGrid1.Columns(i).Caption = "Motivo"
-        DataGrid1.Columns(i).Width = 2075
+    I = 7
+        DataGrid1.Columns(I).Caption = "Motivo"
+        DataGrid1.Columns(I).Width = 2075
     
     
 
    
    'No permitir cambiar tamaño de columnas
-   For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-   Next i
+   For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+   Next I
    
     'Habilitamos botones Modificar y Eliminar
    'If Toolbar1.Buttons(6).Enabled = True Then

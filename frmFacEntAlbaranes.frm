@@ -505,35 +505,35 @@ Begin VB.Form frmFacEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacEntAlbaranes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(3)"
-      Tab(1).Control(1)=   "Label1(5)"
-      Tab(1).Control(2)=   "Label1(10)"
-      Tab(1).Control(3)=   "Label1(11)"
-      Tab(1).Control(4)=   "Label1(12)"
-      Tab(1).Control(5)=   "imgBuscar(7)"
-      Tab(1).Control(6)=   "Label1(9)"
-      Tab(1).Control(7)=   "imgBuscar(8)"
-      Tab(1).Control(8)=   "Label1(23)"
-      Tab(1).Control(9)=   "Label1(45)"
-      Tab(1).Control(10)=   "Text1(39)"
-      Tab(1).Control(11)=   "Frame3"
-      Tab(1).Control(12)=   "Text1(28)"
-      Tab(1).Control(13)=   "Text1(22)"
+      Tab(1).Control(0)=   "FrameFacRec"
+      Tab(1).Control(1)=   "FrameHco"
+      Tab(1).Control(2)=   "Text2(28)"
+      Tab(1).Control(3)=   "Text1(27)"
+      Tab(1).Control(4)=   "Text2(27)"
+      Tab(1).Control(5)=   "Text1(2)"
+      Tab(1).Control(6)=   "Text1(25)"
+      Tab(1).Control(7)=   "Text1(26)"
+      Tab(1).Control(8)=   "Text1(24)"
+      Tab(1).Control(9)=   "Text1(23)"
+      Tab(1).Control(10)=   "Text1(38)"
+      Tab(1).Control(11)=   "Text1(18)"
+      Tab(1).Control(12)=   "Text1(19)"
+      Tab(1).Control(13)=   "Text1(20)"
       Tab(1).Control(14)=   "Text1(21)"
-      Tab(1).Control(15)=   "Text1(20)"
-      Tab(1).Control(16)=   "Text1(19)"
-      Tab(1).Control(17)=   "Text1(18)"
-      Tab(1).Control(18)=   "Text1(38)"
-      Tab(1).Control(19)=   "Text1(23)"
-      Tab(1).Control(20)=   "Text1(24)"
-      Tab(1).Control(21)=   "Text1(26)"
-      Tab(1).Control(22)=   "Text1(25)"
-      Tab(1).Control(23)=   "Text1(2)"
-      Tab(1).Control(24)=   "Text2(27)"
-      Tab(1).Control(25)=   "Text1(27)"
-      Tab(1).Control(26)=   "Text2(28)"
-      Tab(1).Control(27)=   "FrameHco"
-      Tab(1).Control(28)=   "FrameFacRec"
+      Tab(1).Control(15)=   "Text1(22)"
+      Tab(1).Control(16)=   "Text1(28)"
+      Tab(1).Control(17)=   "Frame3"
+      Tab(1).Control(18)=   "Text1(39)"
+      Tab(1).Control(19)=   "Label1(45)"
+      Tab(1).Control(20)=   "Label1(23)"
+      Tab(1).Control(21)=   "imgBuscar(8)"
+      Tab(1).Control(22)=   "Label1(9)"
+      Tab(1).Control(23)=   "imgBuscar(7)"
+      Tab(1).Control(24)=   "Label1(12)"
+      Tab(1).Control(25)=   "Label1(11)"
+      Tab(1).Control(26)=   "Label1(10)"
+      Tab(1).Control(27)=   "Label1(5)"
+      Tab(1).Control(28)=   "Label1(3)"
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmFacEntAlbaranes.frx":0044
@@ -3641,6 +3641,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 409
+
 'Si se llama de la busqueda en el frmAlmMovimArticulos se accede
 'a las tablas del Albaran  de Venta de Facturas de movimiento seleccionado (solo consulta)
 Public hcoCodMovim As String 'cod. movim
@@ -4028,8 +4030,8 @@ End Sub
 Private Sub BotonAnyadir()
 'Añadir registro en tabla de cabecera de Pedidos: scaped (Cabecera)
 Dim NomTraba As String
-Dim Cad As String
-Dim RS As ADODB.Recordset
+Dim cad As String
+Dim Rs As ADODB.Recordset
 
     LimpiarCampos 'Vacía los TextBox
     'Poner los grid sin apuntar a nada
@@ -4063,43 +4065,43 @@ Dim RS As ADODB.Recordset
 
         
         
-        Set RS = New ADODB.Recordset
-        RS.Open NomTraba, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Set Rs = New ADODB.Recordset
+        Rs.Open NomTraba, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         
         PonerModo 3
         
-        If Not RS.EOF Then
-            Text1(4).Text = RS!CodClien
+        If Not Rs.EOF Then
+            Text1(4).Text = Rs!CodClien
             FormateaCampo Text1(4)
-            Text1(5).Text = RS!nomclien
-            Text1(6).Text = RS!nifClien
-            Text1(7).Text = DBLet(RS!telclien, "T")
-            Text1(8).Text = RS!domclien
-            Text1(9).Text = RS!codpobla
-            Text1(10).Text = RS!pobclien
-            Text1(11).Text = DBLet(RS!proclien, "T")
-            Text1(12).Text = DBLet(RS!CodDirec, "T")
+            Text1(5).Text = Rs!nomclien
+            Text1(6).Text = Rs!nifClien
+            Text1(7).Text = DBLet(Rs!telclien, "T")
+            Text1(8).Text = Rs!domclien
+            Text1(9).Text = Rs!codpobla
+            Text1(10).Text = Rs!pobclien
+            Text1(11).Text = DBLet(Rs!proclien, "T")
+            Text1(12).Text = DBLet(Rs!CodDirec, "T")
             FormateaCampo Text1(12)
-            Text2(12).Text = DBLet(RS!nomdirec, "T")
-            Text1(14).Text = RS!codforpa
+            Text2(12).Text = DBLet(Rs!nomdirec, "T")
+            Text1(14).Text = Rs!codforpa
             FormateaCampo Text1(14)
-            Text2(14).Text = RS!nomforpa
-            Text1(15).Text = DBLet(RS!DtoPPago, "N")
+            Text2(14).Text = Rs!nomforpa
+            Text1(15).Text = DBLet(Rs!DtoPPago, "N")
             FormateaCampo Text1(15)
-            Text1(16).Text = DBLet(RS!DtoGnral, "N")
+            Text1(16).Text = DBLet(Rs!DtoGnral, "N")
             FormateaCampo Text1(16)
-            Text1(17).Text = DBLet(RS!codagent, "T")
+            Text1(17).Text = DBLet(Rs!codagent, "T")
             FormateaCampo Text1(17)
-            Text2(17).Text = RS!nomagent
-            Text1(37).Text = RS!codtipmf
-            Text1(36).Text = DBLet(RS!NumFactu, "N")
+            Text2(17).Text = Rs!nomagent
+            Text1(37).Text = Rs!codtipmf
+            Text1(36).Text = DBLet(Rs!NumFactu, "N")
             FormateaCampo Text1(36)
-            Text1(35).Text = RS!FecFactu
+            Text1(35).Text = Rs!FecFactu
             
             'Observacion 1   'DAVID
             'Text1(18).Text = "RECTIFICA A FACTURA: " & RS!codtipmf & ", " & RS!NumFactu & ", " & RS!FecFactu
-            Text1(18).Text = RS!NumFactu & ", " & RS!FecFactu
+            Text1(18).Text = Rs!NumFactu & ", " & Rs!FecFactu
             'Observacion 2
             Text1(19).Text = motivo
             
@@ -4107,29 +4109,29 @@ Dim RS As ADODB.Recordset
             'cad = DevuelveDesdeBD(conAri, "clivario", "sclien", "codclien", Text1(4).Text, "N", NomTraba)
             
             NomTraba = "0"
-            Cad = "0"
-            If Cad = "0" Then BloquearDatosCliente (False)
+            cad = "0"
+            If cad = "0" Then BloquearDatosCliente (False)
             
             'Memorizo cad con codtipom
-            Cad = RS!codtipmf
+            cad = Rs!codtipmf
             
             'recuperamos el tipo de facturacion del cliente
             Me.cboFacturacion.ListIndex = CInt(NomTraba)
         Else
-            Cad = "N" 'para que la busqueda de despues no de error
+            cad = "N" 'para que la busqueda de despues no de error
         End If
-        RS.Close
+        Rs.Close
         
         'DAVID
         'Para que meta la letra de serie, NO el tipo moviemiento
-        RS.Open "SELECT * FROM stipom WHERE codtipom='" & Cad & "'"
-        If Not RS.EOF Then Cad = DBLet(RS!LetraSer, "T")
-        RS.Close
-        If Cad = "" Then Cad = CodTipoMov
-        Text1(18).Text = "RECTIFICA A FACTURA: " & Cad & ", " & Text1(18).Text
+        Rs.Open "SELECT * FROM stipom WHERE codtipom='" & cad & "'"
+        If Not Rs.EOF Then cad = DBLet(Rs!LetraSer, "T")
+        Rs.Close
+        If cad = "" Then cad = CodTipoMov
+        Text1(18).Text = "RECTIFICA A FACTURA: " & cad & ", " & Text1(18).Text
         
         
-        Set RS = Nothing
+        Set Rs = Nothing
     Else
         'Añadiremos el boton de aceptar y demas objetos para insertar
         PonerModo 3
@@ -4213,12 +4215,12 @@ End Sub
 
 
 Private Sub BotonVerTodos()
-Dim Cad As String
+Dim cad As String
 '    LimpiarCampos
     If chkVistaPrevia.Value = 1 Then
         EsCabecera = True
-        Cad = " codtipom='" & CodTipoMov & "'"
-        MandaBusquedaPrevia Cad
+        cad = " codtipom='" & CodTipoMov & "'"
+        MandaBusquedaPrevia cad
     Else
         LimpiarCampos
         LimpiarDataGrids
@@ -4319,7 +4321,7 @@ End Sub
 Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de Mantenimientos (scaman)
 ' y los registros correspondientes de las tablas de lineas (sliman y slima1)
-Dim Cad As String
+Dim cad As String
 Dim NumAlbElim As Long
 
     On Error GoTo EEliminar
@@ -4327,17 +4329,17 @@ Dim NumAlbElim As Long
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
 
-    Cad = "Cabecera de Albaranes." & vbCrLf
-    Cad = Cad & "------------------------------------       " & vbCrLf & vbCrLf
-    Cad = Cad & "Va a eliminar el Albaran:            "
-    Cad = Cad & vbCrLf & "Tipo:  " & Text1(30).Text
-    Cad = Cad & vbCrLf & "Nº:  " & Format(Text1(0).Text, "0000000")
-    Cad = Cad & vbCrLf & "Fecha:  " & Text1(1).Text
+    cad = "Cabecera de Albaranes." & vbCrLf
+    cad = cad & "------------------------------------       " & vbCrLf & vbCrLf
+    cad = cad & "Va a eliminar el Albaran:            "
+    cad = cad & vbCrLf & "Tipo:  " & Text1(30).Text
+    cad = cad & vbCrLf & "Nº:  " & Format(Text1(0).Text, "0000000")
+    cad = cad & vbCrLf & "Fecha:  " & Text1(1).Text
 '    cad = cad & vbCrLf & "Cliente:  " & Format(Text1(4).Text, "000000") & " - " & Text1(5).Text
-    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
       
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Abrir frame de informes para pedir datos antes de grabar en el historico
         cadList = ""
         Set frmList = New frmListadoOfer
@@ -4410,7 +4412,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 Dim Port As Integer      'Port: para saber si ha metido/Modificado el articulo de portes
 
     'Quitar lineas y volver a la cabecera
@@ -4449,9 +4451,9 @@ Dim Port As Integer      'Port: para saber si ha metido/Modificado el articulo d
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Data1.Recordset.Fields(0) & "|"
-        Cad = Cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Data1.Recordset.Fields(0) & "|"
+        cad = cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -4495,7 +4497,7 @@ End Sub
 
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 
     On Error GoTo Error1
@@ -4503,13 +4505,13 @@ Dim Sql As String
     If Not Data2.Recordset.EOF And ModificaLineas <> 1 Then '1: Insertar
         '- ampliacion lineas
         Sql = "select ampliaci from " & NomTablaLineas & Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas) & " and numlinea=" & Data2.Recordset!numlinea
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If Not RS.EOF Then
-            Text2(16).Text = DBLet(RS.Fields(0).Value, "T")
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not Rs.EOF Then
+            Text2(16).Text = DBLet(Rs.Fields(0).Value, "T")
         End If
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
         
         If vEmpresa.TieneAnalitica Then
             '- centro de coste
@@ -5469,13 +5471,13 @@ End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
     'Llamamos a al form
     '##A mano
-    Cad = ""
+    cad = ""
     If EsCabecera Then
 '        Cad = Cad & ParaGrid(Text1(30), 10, "Tipo Alb.")
 '        Cad = Cad & ParaGrid(Text1(0), 15, "Nº Albaran")
@@ -5512,16 +5514,16 @@ Dim Desc As String, devuelve As String
             Desc = "Direc."
         End If
         Titulo = Titulo & Text1(4).Text & " - " & Text1(5).Text
-        Cad = Cad & "Cod. " & Desc & "|sdirec|coddirec|N|000|15·"
-        Cad = Cad & "Desc. " & Desc & "|sdirec|nomdirec|T||55·"
+        cad = cad & "Cod. " & Desc & "|sdirec|coddirec|N|000|15·"
+        cad = cad & "Desc. " & Desc & "|sdirec|nomdirec|T||55·"
         Tabla = "sdirec"
         devuelve = "0|1|"
     End If
            
-    If Cad <> "" Then
+    If cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
+        frmB.vCampos = cad
         frmB.vTabla = Tabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False
@@ -5807,9 +5809,58 @@ Dim b As Boolean
     PonerModoOpcionesMenu (Modo) 'Activar opciones de menu según modo
     PonerOpcionesMenu 'Activar opciones de menu según nivel de permisos del usuario
 
+    PonerModoUsuarioGnral Modo, "aritaxi"
+
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
+
+ 
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        Me.Toolbar5.Buttons(1).Enabled = Me.Toolbar5.Buttons(1).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(2).Enabled = Me.Toolbar5.Buttons(2).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(3).Enabled = Me.Toolbar5.Buttons(3).Enabled And DBLet(Rs!especial, "N")
+        
+        For I = 0 To ToolAux.Count - 1
+            ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+            ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+            ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        Next I
+
+            
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol
@@ -6938,9 +6989,9 @@ Dim DtoPermitido As Boolean
 End Sub
 
 
-Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, cad As String)
     Me.SSTab1.Tab = numTab
-    TituloLinea = Cad
+    TituloLinea = cad
     ModificaLineas = 0
     
 '        If vParamAplic.ArtReciclado <> "" Then
@@ -7113,7 +7164,7 @@ Dim bAux As Boolean
     b = (Modo = 2) 'Or (Modo = 5 And ModificaLineas = 0))
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or Modo = 0) And Not EsHistorico
-    Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
+    Me.mnnuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
     'Modificar
     Toolbar1.Buttons(2).Enabled = b And Not EsHistorico
     Me.mnModificar.Enabled = b And Not EsHistorico
@@ -7151,7 +7202,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
         
     b = (Modo = 2 Or Modo = 3)
     For I = 0 To ToolAux.Count - 1
@@ -7629,7 +7680,7 @@ EMostrarNSeries:
 End Sub
 
 
-Private Sub PedirNSeries(ByRef RS As ADODB.Recordset)
+Private Sub PedirNSeries(ByRef Rs As ADODB.Recordset)
 Dim Sql As String
 
     On Error GoTo EPedirNSeries
@@ -7637,7 +7688,7 @@ Dim Sql As String
         Sql = "El artículo tienen control de Nº de Serie." & vbCrLf & vbCrLf
         Sql = Sql & "Introduzca los Nº De Serie." & vbCrLf
         MsgBox Sql, vbInformation
-        PedirNSeriesGnral RS, False
+        PedirNSeriesGnral Rs, False
         
         Set frmNSerie = New frmRepCargarNSerie
         frmNSerie.DeVentas = True 'Se llama desde Alb. de Venta
@@ -7816,22 +7867,22 @@ Dim RSLineas As ADODB.Recordset
     ModificaLineas = 0
 End Sub
 
-Private Sub PedirNSeriesT(ByRef RS As ADODB.Recordset)
+Private Sub PedirNSeriesT(ByRef Rs As ADODB.Recordset)
 Dim RSseries As ADODB.Recordset
 Dim Sql As String
 Dim linea As Integer
 
     On Error GoTo EPedirNSeries
 
-        PedirNSeriesGnral RS, False
-        RS.MoveFirst
-        While Not RS.EOF
+        PedirNSeriesGnral Rs, False
+        Rs.MoveFirst
+        While Not Rs.EOF
             linea = 0
             'Cargar los Nº de serie asignados
             Sql = "SELECT numserie, codartic,nummante FROM sserie "
             Sql = Sql & " WHERE codtipom='" & Text1(30).Text & "' and "
             Sql = Sql & "numalbar=" & Text1(0).Text
-            Sql = Sql & " and numline1=" & RS!numlinea
+            Sql = Sql & " and numline1=" & Rs!numlinea
             Sql = Sql & " ORDER BY codartic "
             Set RSseries = New ADODB.Recordset
             RSseries.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -7839,13 +7890,13 @@ Dim linea As Integer
                 linea = linea + 1
                 Sql = "UPDATE tmpnseries SET numserie=" & DBSet(RSseries!numSerie, "T")
                 Sql = Sql & ", nummante = " & DBSet(RSseries!nummante, "T")
-                Sql = Sql & " WHERE codartic=" & DBSet(RS!codArtic, "T")
-                Sql = Sql & " and numlinealb=" & RS!numlinea
+                Sql = Sql & " WHERE codartic=" & DBSet(Rs!codArtic, "T")
+                Sql = Sql & " and numlinealb=" & Rs!numlinea
                 Sql = Sql & " and numlinea=" & linea
                 conn.Execute Sql
                 RSseries.MoveNext
             Wend
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         RSseries.Close
         Set RSseries = Nothing
@@ -8312,7 +8363,7 @@ End Sub
  Private Sub InsertarLineasFactu(cadWHERE)
 'cadSerie = "INSERT INTO slialb(codtipom,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre) "
 'cadSerie = cadSerie & " SELECT '" & Text1(30).Text & "' as codtipom," & Text1(0).Text & " as numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre FROM slifac WHERE " & CadenaSeleccion
- Dim RS As ADODB.Recordset
+ Dim Rs As ADODB.Recordset
  Dim Sql As String
  Dim I As Integer
  Dim cadI As String
@@ -8331,27 +8382,27 @@ End Sub
     
         Sql = "SELECT * FROM slifac WHERE " & cadWHERE
     
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        While Not RS.EOF
-            txtAux(0).Text = RS!codAlmac
-            txtAux(1).Text = RS!codArtic
-            txtAux(2).Text = RS!NomArtic
-            Text2(16).Text = DBLet(RS!Ampliaci, "T")
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        While Not Rs.EOF
+            txtAux(0).Text = Rs!codAlmac
+            txtAux(1).Text = Rs!codArtic
+            txtAux(2).Text = Rs!NomArtic
+            Text2(16).Text = DBLet(Rs!Ampliaci, "T")
 '            Text2(9).Text = DBLet(RS!nomprove, "T")
-            txtAux(3).Text = CStr(RS!Cantidad * -1)
-            txtAux(4).Text = RS!precioar
-            txtAux(5).Text = DBLet(RS!origpre, "T")
-            txtAux(6).Text = RS!dtoline1
-            txtAux(7).Text = RS!dtoline2
-            txtAux(8).Text = CStr(RS!ImporteL * -1)
+            txtAux(3).Text = CStr(Rs!Cantidad * -1)
+            txtAux(4).Text = Rs!precioar
+            txtAux(5).Text = DBLet(Rs!origpre, "T")
+            txtAux(6).Text = Rs!dtoline1
+            txtAux(7).Text = Rs!dtoline2
+            txtAux(8).Text = CStr(Rs!ImporteL * -1)
             
             ' ---- [21/10/2009] [LAURA] : se añade el centro de coste
             If Not vEmpresa.TieneAnalitica Then
-                txtAux(9).Text = DBLet(RS!codprovex, "N")
-                Text2(9).Text = DevuelveDesdeBDNew(conAri, "sprove", "nomprove", "codprove", CStr(RS!codprovex), "N")
+                txtAux(9).Text = DBLet(Rs!codprovex, "N")
+                Text2(9).Text = DevuelveDesdeBDNew(conAri, "sprove", "nomprove", "codprove", CStr(Rs!codprovex), "N")
             Else
-                txtAux(9).Text = DBLet(RS!CodCCost, "T")
+                txtAux(9).Text = DBLet(Rs!CodCCost, "T")
                 Me.Text2(9).Text = PonerNombreCCoste(Me.txtAux(9))
             End If
             
@@ -8360,9 +8411,9 @@ End Sub
 '            Text2(9).Text = "*"
             
             'numbultos
-            txtAux(10).Text = CStr(RS!numbultos * -1)
+            txtAux(10).Text = CStr(Rs!numbultos * -1)
             'numlote
-            txtAux(11).Text = DBLet(RS!numlote, "T")
+            txtAux(11).Text = DBLet(Rs!numlote, "T")
             
             If InsertarLinea(numlin, True) Then
             
@@ -8378,10 +8429,10 @@ End Sub
 '                cadI = cadI & "," & SQL
 '            End If
 '            i = i + 1
-            RS.MoveNext
+            Rs.MoveNext
         Wend
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
         
         CalcularDatosFactura
         
@@ -8527,7 +8578,7 @@ End Function
 Private Sub DevolverNumSeries()
 Dim Sql As String
 Dim cadWHERE As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo EDevNumSerie
         
@@ -8546,14 +8597,14 @@ Dim RS As ADODB.Recordset
     
     
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'Hay articulos con nº de serie en las lineas del albaran rectificativo
     'que hay que quitar de los nº de serie que tenia asignados
     'estamos devolviendo nº serie y pedimos los que vamos a devolver y a estos
     'le limpiamos los campos de venta de la tabla sserie
-    If Not RS.EOF Then
+    If Not Rs.EOF Then
         Sql = "select sserie.numserie, sserie.codartic, sartic.nomartic"
         Sql = Sql & " from slialb inner join scaalb on slialb.codtipom=scaalb.codtipom and scaalb.numalbar=slialb.numalbar "
         '-- LAURA: 02/07/2007
@@ -8564,10 +8615,10 @@ Dim RS As ADODB.Recordset
         Sql = Sql & " inner join sartic on sserie.codartic=sartic.codartic "
         Sql = Sql & cadWHERE & " and scaalb.numfactu=" & CStr(Me.Data1.Recordset!NumFactu)
     
-        MostrarNSeries RS, , Sql
+        MostrarNSeries Rs, , Sql
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
 EDevNumSerie:
     If Err.Number <> 0 Then
@@ -8899,7 +8950,7 @@ End Function
 
 
 Private Sub DescuentosCantidad(Articulo As String)
-Dim Cad As String
+Dim cad As String
 Dim R As ADODB.Recordset
 Dim NuevoDto As Currency
 Dim Importe As Currency
@@ -8924,39 +8975,39 @@ Dim bAct As Boolean
         'Si tiene valor es para no tener que recalcular todos los valores del albaran, solo los
         ' del substring() del articulo que acabamos de insertar/actualizar o eliminar
         ' Si no lleva nada recalcular los dtos para todas la lineas
-        Cad = Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas)
-        Cad = "select substring(codartic,3,4) raiz,sum(cantidad) suma from slialb " & Cad
-        If Articulo <> "" Then Cad = Cad & " AND substring(codartic,3,4)= '" & Mid(Articulo, 3, 4) & "'"
+        cad = Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas)
+        cad = "select substring(codartic,3,4) raiz,sum(cantidad) suma from slialb " & cad
+        If Articulo <> "" Then cad = cad & " AND substring(codartic,3,4)= '" & Mid(Articulo, 3, 4) & "'"
         'Y origen PRECIO no es precio especial
-        Cad = Cad & " AND origpre <> 'E'"
-        Cad = Cad & " group by 1"
-        miRsAux.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        cad = cad & " AND origpre <> 'E'"
+        cad = cad & " group by 1"
+        miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not miRsAux.EOF
-                Cad = TransformaComasPuntos(CStr(miRsAux!Suma))
-                Cad = "select * from sdesca where desdecan <=" & Cad & " and " & Cad & " <= hastacan and envagran = '"
-                Cad = Cad & miRsAux!raiz & "'"
-                R.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                Cad = ""
-                If Not R.EOF Then Cad = R!dtolinea
+                cad = TransformaComasPuntos(CStr(miRsAux!Suma))
+                cad = "select * from sdesca where desdecan <=" & cad & " and " & cad & " <= hastacan and envagran = '"
+                cad = cad & miRsAux!raiz & "'"
+                R.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                cad = ""
+                If Not R.EOF Then cad = R!dtolinea
                 R.Close
                 
                 
-                If Cad <> "" Then
+                If cad <> "" Then
                     'OK tiene nuevo descuento
-                    NuevoDto = CCur(Cad)
+                    NuevoDto = CCur(cad)
                     
                     'Cojo los articulos del albaran y le meto el dto
-                    Cad = Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas)
-                    Cad = "select * from slialb " & Cad
+                    cad = Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas)
+                    cad = "select * from slialb " & cad
                     '                                 a partir de la 3era posicion
-                    Cad = Cad & " AND codartic like '__" & miRsAux!raiz & "%'"
-                    R.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                    cad = cad & " AND codartic like '__" & miRsAux!raiz & "%'"
+                    R.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                     While Not R.EOF
                         '-- comprobar si admite descuento
                         If R!origpre = "T" Then
-                            Cad = DevuelveDesdeBDNew(conAri, "sclien", "codtarif", "codclien", Text1(4).Text, "N")
-                            Cad = DevuelveDesdeBDNew(conAri, "slista", "dtopermi", "codartic", R!codArtic, "T", , "codlista", Cad, "N")
-                            bAct = (Cad = "1")
+                            cad = DevuelveDesdeBDNew(conAri, "sclien", "codtarif", "codclien", Text1(4).Text, "N")
+                            cad = DevuelveDesdeBDNew(conAri, "slista", "dtopermi", "codartic", R!codArtic, "T", , "codlista", cad, "N")
+                            bAct = (cad = "1")
                         ElseIf R!origpre = "A" Or R!origpre = "M" Then
                             bAct = True
                         Else
@@ -8964,13 +9015,13 @@ Dim bAct As Boolean
                         End If
                         
                         If bAct Then
-                            Cad = CalcularImporte(CStr(R!Cantidad), CStr(R!precioar), CStr(NuevoDto), CStr(R!dtoline2), vParamAplic.TipoDtos)
-                            Importe = CCur(Cad)
-                            Cad = "UPDATE slialb set dtoline1=" & TransformaComasPuntos(CStr(NuevoDto))
-                            Cad = Cad & ", importel = " & TransformaComasPuntos(CStr(Importe))
-                            Cad = Cad & Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas)
-                            Cad = Cad & " and numlinea = " & R!numlinea
-                            conn.Execute Cad
+                            cad = CalcularImporte(CStr(R!Cantidad), CStr(R!precioar), CStr(NuevoDto), CStr(R!dtoline2), vParamAplic.TipoDtos)
+                            Importe = CCur(cad)
+                            cad = "UPDATE slialb set dtoline1=" & TransformaComasPuntos(CStr(NuevoDto))
+                            cad = cad & ", importel = " & TransformaComasPuntos(CStr(Importe))
+                            cad = cad & Replace(ObtenerWhereCP(True), NombreTabla, NomTablaLineas)
+                            cad = cad & " and numlinea = " & R!numlinea
+                            conn.Execute cad
                         End If
                         
                         'Siguiente

@@ -640,6 +640,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 419
+
+
 Dim Tabla As String
 Dim cadFormula As String
 Dim cadParam As String
@@ -1100,7 +1103,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim Cad As String
+Dim cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1112,8 +1115,8 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -1218,17 +1221,17 @@ Private Sub imgFecha_Click(Index As Integer)
    PonerFoco txtcodigo(indCodigo)
 End Sub
 
-Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
-        Cad = Cad & "desde " & txtcodigo(indD).Text
-        If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
+        cad = cad & "desde " & txtcodigo(indD).Text
+        If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
-        Cad = Cad & "  hasta " & txtcodigo(indH).Text
-        If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
+        cad = cad & "  hasta " & txtcodigo(indH).Text
+        If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
     End If
-    AnyadirParametroDH = Cad
+    AnyadirParametroDH = cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 
@@ -1373,7 +1376,7 @@ Dim BancoContado As String
         Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
     End If
     nTotal = TotalRegistrosConsulta(Sql)
-    Pb1.Max = nTotal
+    PB1.Max = nTotal
     
     FrameProgress.visible = True
     
@@ -1392,7 +1395,7 @@ Dim BancoContado As String
     While Not RSalb.EOF And b
         codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBLet(RSalb!NumerUve, "N"))
         
-        IncrementarProgresNew Pb1, 1
+        IncrementarProgresNew PB1, 1
         
         Set vSocio = New CSocio
         If vSocio.LeerDatos(codSocio) Then
@@ -1589,7 +1592,7 @@ Dim SQL2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Importe As Currency
 
     On Error GoTo eInsertLinea
@@ -1608,25 +1611,25 @@ Dim Importe As Currency
     SqlValues = ""
     linea = 0
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
+    While Not Rs.EOF
         linea = linea + 1
     
         '[Monica]28/12/2017: sumamos importe + suplemento
-        Importe = DBLet(RS!impcompr, "N") '+ DBLet(RS!suplemen, "N")
+        Importe = DBLet(Rs!impcompr, "N") '+ DBLet(RS!suplemen, "N")
     
         SqlValues = SqlValues & "(" & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & ","
-        SqlValues = SqlValues & DBSet(FecFac, "F") & "," & DBSet(linea, "N") & "," & DBSet(RS!Fecha, "F") & ","
-        SqlValues = SqlValues & DBSet(RS!hora, "H") & "," & DBSet(RS!NumerUve, "N") & "," & DBSet(RS!CodClien, "N") & ","
-        SqlValues = SqlValues & DBSet(RS!nomclien, "T") & "," & DBSet(RS!dirllama, "T") & "," & DBSet(RS!numllama, "T") & ","
-        SqlValues = SqlValues & DBSet(RS!puerllama, "T") & "," & DBSet(RS!ciudadre, "T") & "," & DBSet(RS!Telefono, "T") & ","
-        SqlValues = SqlValues & DBSet(Importe, "N") & "," & DBSet(RS!idservic, "T") & "," & DBSet(RS!observac2, "T") & "),"
+        SqlValues = SqlValues & DBSet(FecFac, "F") & "," & DBSet(linea, "N") & "," & DBSet(Rs!Fecha, "F") & ","
+        SqlValues = SqlValues & DBSet(Rs!hora, "H") & "," & DBSet(Rs!NumerUve, "N") & "," & DBSet(Rs!CodClien, "N") & ","
+        SqlValues = SqlValues & DBSet(Rs!nomclien, "T") & "," & DBSet(Rs!dirllama, "T") & "," & DBSet(Rs!numllama, "T") & ","
+        SqlValues = SqlValues & DBSet(Rs!puerllama, "T") & "," & DBSet(Rs!ciudadre, "T") & "," & DBSet(Rs!Telefono, "T") & ","
+        SqlValues = SqlValues & DBSet(Importe, "N") & "," & DBSet(Rs!idservic, "T") & "," & DBSet(Rs!observac2, "T") & "),"
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If linea <> 0 Then
         'quitamos la ultima coma
@@ -1675,7 +1678,7 @@ End Function
 Private Function ListaFacturasGeneradas(Tipo As String) As String
 Dim Sql As String
 Dim rs1 As ADODB.Recordset
-Dim Cad As String
+Dim cad As String
     
     On Error GoTo eFacturasGeneradas
 
@@ -1687,19 +1690,19 @@ Dim Cad As String
     Set rs1 = New ADODB.Recordset
     rs1.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
-    Cad = ""
+    cad = ""
     While Not rs1.EOF
-        Cad = Cad & "(" & DBSet(rs1.Fields(0).Value, "T") & "," & DBLet(rs1.Fields(2).Value, "N") & ","
-        Cad = Cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "),"
+        cad = cad & "(" & DBSet(rs1.Fields(0).Value, "T") & "," & DBLet(rs1.Fields(2).Value, "N") & ","
+        cad = cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "),"
     
         rs1.MoveNext
     Wend
     Set rs1 = Nothing
     
     'si hay facturas quitamos la ultima coma
-    If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
+    If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
     
-    ListaFacturasGeneradas = Cad
+    ListaFacturasGeneradas = cad
     Exit Function
     
 eFacturasGeneradas:
@@ -1807,7 +1810,7 @@ End Function
 Private Function InsertarEnTesoreria(tipoMov As String, NumFactu As String, FecFac As String, Socio As String) As Boolean
 'Guarda datos de Tesoreria en tablas: aritaxi.svenci y en conta.scobros
 Dim b As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim RsFact As ADODB.Recordset
 Dim rsVenci As ADODB.Recordset
 Dim Sql As String
@@ -1867,10 +1870,10 @@ Dim I As Byte
             Sql = " SELECT  diapago1, diapago2, diapago3,mesnogir "
             Sql = Sql & " FROM spara1 "
             Sql = Sql & " WHERE codigo=1"
-            Set RS = New ADODB.Recordset
-            RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            Set Rs = New ADODB.Recordset
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
-            If Not RS.EOF Then
+            If Not Rs.EOF Then
                ' se construye como en el caso de publicidad
                CtaProve = ""
                
@@ -1896,12 +1899,12 @@ Dim I As Byte
                   FecVenci = DateAdd("d", DBLet(rsVenci!primerve, "N"), FecVenci)
                   '==================================
                   'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
-                  FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                  FecVenci = ComprobarFechaVenci(FecVenci, DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
     
                   'Comprobar si  tiene mes a no girar
                   FecVenci1 = FecVenci
-                  If DBSet(RS!mesnogir, "N") <> 0 Then
-                      FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
+                  If DBSet(Rs!mesnogir, "N") <> 0 Then
+                      FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                   End If
                  
                   CadValues2 = CadValuesAux2 & I
@@ -1958,18 +1961,18 @@ Dim I As Byte
                       FecVenci = DateAdd("d", DBLet(rsVenci!restoven, "N"), FecVenci)
                       '==================================================
                       'comprobar si tiene dias de pago y obtener la fecha del vencimiento correcta
-                      FecVenci = ComprobarFechaVenci(FecVenci, DBLet(RS!DiaPago1, "N"), DBLet(RS!DiaPago2, "N"), DBLet(RS!DiaPago3, "N"))
+                      FecVenci = ComprobarFechaVenci(FecVenci, DBLet(Rs!DiaPago1, "N"), DBLet(Rs!DiaPago2, "N"), DBLet(Rs!DiaPago3, "N"))
     
                       'Comprobar si tiene mes a no girar
                       FecVenci1 = FecVenci
-                      If DBSet(RS!mesnogir, "N") <> 0 Then
-                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(RS!mesnogir, "N"), DBSet(0, "N"), RS!DiaPago1, RS!DiaPago2, RS!DiaPago3)
+                      If DBSet(Rs!mesnogir, "N") <> 0 Then
+                            FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                       End If
     
                       CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
     
                       'IMPORTE Resto de Vendimientos
-                      ImpVenci = Round(RS!TotalFac / rsVenci!numerove, 2)
+                      ImpVenci = Round(Rs!TotalFac / rsVenci!numerove, 2)
     
                       CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", '" & CuentaPrev & "',"
                       
@@ -2004,8 +2007,8 @@ Dim I As Byte
             
             End If
         End If
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
     End If
     
     rsVenci.Close
@@ -2041,9 +2044,9 @@ Dim I As Byte
                 Else
                     Sql8 = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
                 End If
-                Sql8 = Sql8 & " VALUES(" & ForPago & ", " & DBSet(RS!nomforpa, "T") & ", " & DBSet(RS!tipforpa, "N")
+                Sql8 = Sql8 & " VALUES(" & ForPago & ", " & DBSet(Rs!nomforpa, "T") & ", " & DBSet(Rs!tipforpa, "N")
                 If vParamAplic.ContabilidadNueva Then
-                    Sql8 = Sql8 & "," & DBSet(RS!numerove, "N") & "," & DBSet(RS!primerve, "N") & "," & DBSet(RS!restoven, "N") & ")"
+                    Sql8 = Sql8 & "," & DBSet(Rs!numerove, "N") & "," & DBSet(Rs!primerve, "N") & "," & DBSet(Rs!restoven, "N") & ")"
                 Else
                     Sql8 = Sql8 & ")"
                 End If
@@ -2131,9 +2134,10 @@ Dim FPagContado As String
     
     If Tabla = "shilla" Then
         Sql = "insert into sfactusoc_serv (codtipom,codsocio,numfactu,fecfactu,numlinea,fecha,hora,numeruve,codclien,nomclien,dirllama,"
-        Sql = Sql & " impventa,idservic,observac2,matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal) "  '[Monica]03/10/2014: insertamos el destino
+        Sql = Sql & " impventa,idservic,observac2,matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal, suplidos) "  '[Monica]03/10/2014: insertamos el destino
         Sql = Sql & " select " & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
         Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(coalesce(dirllama,''),' ',coalesce(numllama,'')) , impcompr + coalesce(suplemen,0), idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
+        Sql = Sql & " , imppeaje "
         Sql = Sql & " from shilla left join scliente on shilla.codclien = scliente.codclien, (SELECT @rownum:=0) r "
     '[Monica]10/09/2014: cambiamos ahora los servicios son de la shilla
     '    SQL = SQL & " where (numeruve, fecfactu) in (select numeruve, fecfactu from sfactsoctr "
@@ -2255,7 +2259,7 @@ Dim BancoContado As String
         Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
 '    End If
     nTotal = TotalRegistrosConsulta(Sql)
-    Pb1.Max = nTotal
+    PB1.Max = nTotal
     
     FrameProgress.visible = True
     
@@ -2275,7 +2279,7 @@ Dim BancoContado As String
     While Not RSalb.EOF And b
         codSocio = DevuelveValor("select codclien from sclien where numeruve = " & DBLet(RSalb!NumerUve, "N"))
         
-        IncrementarProgresNew Pb1, 1
+        IncrementarProgresNew PB1, 1
         
         Set vSocio = New CSocio
         If vSocio.LeerDatos(codSocio) Then

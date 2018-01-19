@@ -399,6 +399,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public DeConsulta As Boolean 'Muestra Form para consulta, solo buscar y ver todos activos
 
+Private Const IdPrograma = 1007
+
+
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 Private CadenaConsulta As String
@@ -419,15 +422,15 @@ Dim Modo As Byte
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
     
     
     
@@ -471,7 +474,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(2).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
 End Sub
 
@@ -507,7 +510,7 @@ Private Sub BotonBuscar()
     CargaGrid "accion= -1"
     limpiar Me
     Me.CboTipoSitu.ListIndex = -1
-    LLamaLineas DataGrid1.Top + 250, 1
+    LLamaLineas DataGrid1.top + 250, 1
     PonerFoco txtAux(0)
 End Sub
 
@@ -569,11 +572,11 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     DeseleccionaGrid Me.DataGrid1
     PonerModo xModo
     'Fijamos el ancho
-    txtAux(0).Top = alto
-    txtAux(1).Top = alto
-    txtAux(2).Top = alto
-    txtAux(3).Top = alto
-    CboTipoSitu.Top = alto - 15
+    txtAux(0).top = alto
+    txtAux(1).top = alto
+    txtAux(2).top = alto
+    txtAux(3).top = alto
+    CboTipoSitu.top = alto - 15
     txtAux(0).Left = DataGrid1.Left + 320
     CboTipoSitu.Left = txtAux(0).Left + txtAux(0).Width + 45
     txtAux(1).Left = CboTipoSitu.Left + CboTipoSitu.Width + 45
@@ -694,16 +697,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = Adodc1.Recordset.Fields(0) & "|"
-    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Adodc1.Recordset.Fields(0) & "|"
+    cad = cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -743,12 +746,12 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     With Me.Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 1   'Buscar
         .Buttons(2).Image = 2   'Todos
     End With
@@ -861,8 +864,8 @@ Dim L As Collection
         If L.Count > 0 Then
             For NumRegElim = 1 To L.Count
                 
-                CboTipoSitu.AddItem RecuperaValor(L.item(NumRegElim), 2)
-                CboTipoSitu.ItemData(CboTipoSitu.NewIndex) = Val(RecuperaValor(L.item(NumRegElim), 1))
+                CboTipoSitu.AddItem RecuperaValor(L.Item(NumRegElim), 2)
+                CboTipoSitu.ItemData(CboTipoSitu.NewIndex) = Val(RecuperaValor(L.Item(NumRegElim), 1))
                 FormatoCod = FormatoCod & ",(" & vUsu.Codigo & ",0,'2007-07-04'," & CboTipoSitu.ItemData(CboTipoSitu.NewIndex) & ",0,'" & DevNombreSQL(CboTipoSitu.List(CboTipoSitu.NewIndex)) & "')"
             Next NumRegElim
         End If

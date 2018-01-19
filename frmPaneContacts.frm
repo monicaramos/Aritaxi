@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "Codejock.Controls.v17.2.0.ocx"
-Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "Codejock.ShortcutBar.v17.2.0.ocx"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "CODEJO~4.OCX"
+Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "CO08EA~1.OCX"
 Begin VB.Form frmPaneContacts2 
    BackColor       =   &H80000005&
    BorderStyle     =   0  'None
@@ -93,7 +93,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_Load()
-Dim Cad As String
+Dim cad As String
 
 
     Set tree.Icons = frmShortBar.wndShortcutBar.Icons
@@ -114,9 +114,9 @@ End Sub
 
 Private Sub BuscaEmpresas()
 Dim Prohibidas As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
-Dim Cad As String
+Dim cad As String
 Dim Sql As String
 
 Dim N
@@ -125,16 +125,16 @@ Dim N
 Prohibidas = DevuelveProhibidas
 
 'Cargamos las empresas
-Set RS = New ADODB.Recordset
+Set Rs = New ADODB.Recordset
 
 '[Monica]11/04/2014: solo debe de salir las ariconta
-RS.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+Rs.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
-While Not RS.EOF
-    Cad = "|" & RS!codempre & "|"
-    If InStr(1, Prohibidas, Cad) = 0 Then
-        Cad = RS!nomempre
-        Set N = tree.Nodes.Add(, , CStr("N" & RS!codempre), RS!nomempre)
+While Not Rs.EOF
+    cad = "|" & Rs!codempre & "|"
+    If InStr(1, Prohibidas, cad) = 0 Then
+        cad = Rs!nomempre
+        Set N = tree.Nodes.Add(, , CStr("N" & Rs!codempre), Rs!nomempre)
         
         
         
@@ -150,9 +150,9 @@ While Not RS.EOF
         'Set Rs2 = Nothing
         
             
-        Cad = RS!AriTaxi & "|" & RS!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
+        cad = Rs!AriTaxi & "|" & Rs!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
         
-        If RS!codempre = vEmpresa.codempre Then
+        If Rs!codempre = vEmpresa.codempre Then
             N.Bold = True
             Set tree.SelectedItem = N
         End If
@@ -174,32 +174,32 @@ While Not RS.EOF
         '    ItmX.SmallIcon = 1
         'End If
     End If
-    RS.MoveNext
+    Rs.MoveNext
 Wend
-RS.Close
+Rs.Close
 End Sub
 
 
 Private Function DevuelveProhibidas() As String
-Dim RS As ADODB.Recordset
-Dim Cad As String
-Dim i As Integer
+Dim Rs As ADODB.Recordset
+Dim cad As String
+Dim I As Integer
     On Error GoTo EDevuelveProhibidas
     DevuelveProhibidas = ""
-    Set RS = New ADODB.Recordset
-    i = vUsu.Codigo Mod 1000
-    RS.Open "Select * from usuarios.usuarioempresasaritaxi WHERE codusu =" & i, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    Cad = ""
-    While Not RS.EOF
-        Cad = Cad & RS.Fields(1) & "|"
-        RS.MoveNext
+    Set Rs = New ADODB.Recordset
+    I = vUsu.Codigo Mod 1000
+    Rs.Open "Select * from usuarios.usuarioempresasaritaxi WHERE codusu =" & I, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    cad = ""
+    While Not Rs.EOF
+        cad = cad & Rs.Fields(1) & "|"
+        Rs.MoveNext
     Wend
-    If Cad <> "" Then Cad = "|" & Cad
-    RS.Close
-    DevuelveProhibidas = Cad
+    If cad <> "" Then cad = "|" & cad
+    Rs.Close
+    DevuelveProhibidas = cad
 EDevuelveProhibidas:
     Err.Clear
-    Set RS = Nothing
+    Set Rs = Nothing
 End Function
 
 
@@ -255,20 +255,20 @@ End Sub
 
 
 Public Sub SeleccionarNodoEmpresa(QueEmpresa As Integer)
-Dim i As Integer
-    For i = 1 To tree.Nodes.Count
-        If Val(Mid(tree.Nodes(i).Key, 2)) = QueEmpresa Then
-            Set tree.SelectedItem = tree.Nodes(i)
+Dim I As Integer
+    For I = 1 To tree.Nodes.Count
+        If Val(Mid(tree.Nodes(I).Key, 2)) = QueEmpresa Then
+            Set tree.SelectedItem = tree.Nodes(I)
             tree.SelectedItem.Bold = True
         Else
-            tree.Nodes(i).Bold = False
+            tree.Nodes(I).Bold = False
         End If
     Next
 End Sub
 
 
 Private Sub tree_NodeClick(ByVal Node As XtremeSuiteControls.TreeViewNode)
-Dim Cad  As String
+Dim cad  As String
    
     
     If Val(Mid(Node.Key, 2)) = vEmpresa.codempre Then Exit Sub

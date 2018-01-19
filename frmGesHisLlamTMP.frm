@@ -2235,6 +2235,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 206
+
+
 Public FechaServ As String
 Public HoraServ As String
 Public NumerUve As String
@@ -2320,7 +2323,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim I As Long
 Dim CadB As String
-Dim Cad As String
+Dim cad As String
 Dim Indicador As String
 Dim cad1 As String
 
@@ -2492,16 +2495,16 @@ End Function
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
         If Adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Adodc1.Recordset.Fields(0) & "|"
+        cad = cad & Adodc1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     
 End Sub
@@ -3302,7 +3305,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 End Sub
 
 Private Sub PosicionarData()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 Dim vWhere As String
 
     If Not Adodc1.Recordset.EOF Then
@@ -3366,15 +3369,15 @@ End Sub
 
 
 Private Function ObtenerSelFactura() As String
-Dim Cad As String
-Dim RS As ADODB.Recordset
+Dim cad As String
+Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
-    Cad = ""
+    cad = ""
 '    If Me.DesdeFichaCliente Then
         '
-    Cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
+    cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
         
 '    Else
 '        'Tengo YA el codigo de la factura
@@ -3415,7 +3418,7 @@ Dim RS As ADODB.Recordset
 '                End If
 '
 '    End If
-    ObtenerSelFactura = Cad
+    ObtenerSelFactura = cad
 End Function
 
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)

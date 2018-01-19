@@ -1221,6 +1221,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 304
+
+
 Private WithEvents frmB As frmBuscaGrid 'Form para busquedas
 Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
@@ -1366,22 +1369,22 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Cad As String
+Dim cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
     '### a mano
-    Cad = "¿Seguro que desea eliminar el Banco Propio? " & vbCrLf
-    Cad = Cad & vbCrLf & "Cod. Banco : " & Format(Data1.Recordset.Fields(0), "0000")
-    Cad = Cad & vbCrLf & "Desc. Banco: " & Data1.Recordset.Fields(1)
+    cad = "¿Seguro que desea eliminar el Banco Propio? " & vbCrLf
+    cad = cad & vbCrLf & "Cod. Banco : " & Format(Data1.Recordset.Fields(0), "0000")
+    cad = cad & vbCrLf & "Desc. Banco: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then     'Borramos
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then     'Borramos
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        Cad = "Delete from sbanpr where codbanpr=" & Data1.Recordset!codbanpr
-        conn.Execute Cad
+        cad = "Delete from sbanpr where codbanpr=" & Data1.Recordset!codbanpr
+        conn.Execute cad
 '        Data1.Recordset.Delete
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
             PonerCampos
@@ -1398,16 +1401,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    Cad = Data1.Recordset.Fields(0) & "|"
-    Cad = Cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Data1.Recordset.Fields(0) & "|"
+    cad = cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -1422,20 +1425,20 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     'Icono de busqueda
-    Me.imgBuscar.Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+    Me.imgBuscar.Picture = frmppal.imgIcoForms.ListImages(1).Picture
     For kCampo = 0 To Me.imgCuentas.Count - 1
-        Me.imgCuentas(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgCuentas(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
 
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(5).Image = 1
         .Buttons(6).Image = 2
         .Buttons(1).Image = 3   'Anyadir
@@ -1445,9 +1448,9 @@ Private Sub Form_Load()
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -1795,13 +1798,13 @@ EEPonerBusq:
 End Sub
 
 Private Sub PonerCampos()
-Dim i As Byte
+Dim I As Byte
     
     If Data1.Recordset.EOF Then Exit Sub
     PonerCamposForma Me, Data1
-    For i = 14 To 17
-        Text2(i).Text = PonerNombreDeCod(Text1(i), conConta, "cuentas", "nommacta", "codmacta", , "T")
-    Next i
+    For I = 14 To 17
+        Text2(I).Text = PonerNombreDeCod(Text1(I), conConta, "cuentas", "nommacta", "codmacta", , "T")
+    Next I
     
     '-- Esto permanece para saber donde estamos
     lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
@@ -1815,13 +1818,13 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim i As Integer
+Dim I As Integer
 
     Modo = Kmodo
         
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
     '----------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2) Or (Kmodo = 0)
@@ -1867,7 +1870,42 @@ Dim i As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según el Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -1891,13 +1929,13 @@ Dim b As Boolean
     b = (Modo >= 3) 'Insertar/Modificar
     'Insertar
     Toolbar1.Buttons(1).Enabled = Not b
-    Me.mnnuevo.Enabled = Not b
+    Me.mnNuevo.Enabled = Not b
     'Buscar
     Toolbar1.Buttons(5).Enabled = Not b
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -1996,11 +2034,11 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim Cad As String
+Dim cad As String
 Dim Indicador As String
 
-    Cad = "(codbanpr=" & Text1(0).Text & ")"
-    If SituarData(Data1, Cad, Indicador) Then
+    cad = "(codbanpr=" & Text1(0).Text & ")"
+    If SituarData(Data1, cad, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else
@@ -2019,28 +2057,28 @@ End Function
 
 Private Sub ComprobarCrearCuentas()
 Dim C As String
-Dim i As Integer
+Dim I As Integer
 
     On Error Resume Next
     
-    For i = 14 To 17
-        If Text2(i).Text = vbCrearNuevaCta Then
+    For I = 14 To 17
+        If Text2(I).Text = vbCrearNuevaCta Then
             C = "INSERT INTO cuentas (codmacta, nommacta, apudirec, model347, razosoci) VALUES ('"
-            C = C & Text1(i).Text & "','" & DevNombreSQL(Text1(1).Text) & "','S',0,'" & DevNombreSQL(Text1(1).Text) & "')"
+            C = C & Text1(I).Text & "','" & DevNombreSQL(Text1(1).Text) & "','S',0,'" & DevNombreSQL(Text1(1).Text) & "')"
             ConnConta.Execute C
         End If
-    Next i
+    Next I
            
-    For i = 14 To 17
-        If Text2(i).Text = vbCrearNuevaCta Then
-            C = PonerNombreCuenta(Text1(i), 2)
+    For I = 14 To 17
+        If Text2(I).Text = vbCrearNuevaCta Then
+            C = PonerNombreCuenta(Text1(I), 2)
             If C = "" Then
-                MsgBox "Error en la cuenta: " & Text1(i).Text, vbExclamation
+                MsgBox "Error en la cuenta: " & Text1(I).Text, vbExclamation
             Else
-                Text2(i).Text = C
+                Text2(I).Text = C
             End If
         End If
-    Next i
+    Next I
 End Sub
 
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)

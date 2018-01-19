@@ -247,6 +247,8 @@ Public Sql As String
 Public Socio As Boolean
 Public deExcel As Boolean
 
+Private Const IdPrograma = 206
+
 
 Private Sub cmdAceptar_Click()
     CadenaDesdeOtroForm = "DATOS"
@@ -264,7 +266,7 @@ Private Sub Comprobaciones()
 Dim b As Boolean
 Dim Contador As Long
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim total As Long
 Dim encontrado As String
 
@@ -280,9 +282,9 @@ Dim encontrado As String
          ProgressBar1.Value = 0
          Contador = 0
          Label1(0).Caption = ""
-         Set RS = New ADODB.Recordset
+         Set Rs = New ADODB.Recordset
          Sql = "select * from tmptaxi where error1 = 3 group by numeruve"
-         RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+         Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
          total = rsContador("select count(distinct(numeruve)) from tmptaxi where error1=3")
          Label1(2).Caption = "Verificando códigos de socios."
          Label1(2).Refresh
@@ -301,7 +303,7 @@ Dim encontrado As String
 '[Monica]28/12/2017: cambiado por
         If deExcel Then
 
-            While Not RS.EOF
+            While Not Rs.EOF
                 Contador = Contador + 1
                 ProgressBar1.Value = (Contador * 100) / total
                 DoEvents
@@ -313,19 +315,19 @@ Dim encontrado As String
                 ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
                 If Trim(vParam.CifEmpresa) = "B98877806" Then
                 
-                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
+                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
                     
-                    b = Updatear(RS!NumerUve, encontrado, False)
+                    b = Updatear(Rs!NumerUve, encontrado, False)
                 
                 Else
-                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", RS!NumerUve, "T")
+                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", Rs!NumerUve, "T")
                     
                     If encontrado <> "" Then
                         ' pq me viene la licencia
                         Dim rs4 As ADODB.Recordset
                         Dim Sql4 As String
                         Set rs4 = New ADODB.Recordset
-                        Sql4 = "select codclien from sclien where licencia = " & DBSet(RS!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
+                        Sql4 = "select codclien from sclien where licencia = " & DBSet(Rs!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
                         rs4.Open Sql4, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
                         
                         encontrado = ""
@@ -335,19 +337,19 @@ Dim encontrado As String
                         End If
                         Set rs4 = Nothing
                         
-                        b = Updatear(RS!NumerUve, encontrado, True)
+                        b = Updatear(Rs!NumerUve, encontrado, True)
                     Else
-                        b = Updatear(RS!NumerUve, encontrado, False)
+                        b = Updatear(Rs!NumerUve, encontrado, False)
                     End If
                     
                 End If
                                         
-                RS.MoveNext
+                Rs.MoveNext
             Wend
             
         Else
         
-            While Not RS.EOF
+            While Not Rs.EOF
                 Contador = Contador + 1
                 ProgressBar1.Value = (Contador * 100) / total
                 DoEvents
@@ -355,15 +357,15 @@ Dim encontrado As String
                 Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
                 Label1(0).Refresh
                 
-                encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", RS!NumerUve, "T")
-                b = Updatear(RS!NumerUve, encontrado, False)
-                RS.MoveNext
+                encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                b = Updatear(Rs!NumerUve, encontrado, False)
+                Rs.MoveNext
             Wend
         
         End If
         
 
-         RS.Close
+         Rs.Close
          Label1(0).Caption = ""
          Label1(0).Refresh
          
@@ -399,20 +401,20 @@ Dim encontrado As String
              ProgressBar1.Value = 0
              Contador = 0
  
-             Set RS = New ADODB.Recordset
+             Set Rs = New ADODB.Recordset
              Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
-             RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+             Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
              total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
              Label1(2).Caption = "eliminando(II) duplicidad de registros en el fichero."
              Label1(2).Refresh
-             While Not RS.EOF
+             While Not Rs.EOF
                  Contador = Contador + 1
                  ProgressBar1.Value = Round2((Contador * 100) / total, 0)
                  DoEvents
                  Label1(0).Caption = Round(ProgressBar1.Value, 0) & " %"
                  Label1(0).Refresh
  
-                 Sql = "numeruve=" & RS!NumerUve & " and fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' "
+                 Sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
                  Sql = Sql & " and impventa = 0 and codclien =0 "
                  
                  Dim Ident As Long
@@ -427,25 +429,25 @@ Dim encontrado As String
                  End If
 
  '                End If
-                 RS.MoveNext
+                 Rs.MoveNext
              Wend
-             RS.Close
+             Rs.Close
  
              
              '
              Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
-             RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+             Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
              total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
              Label1(2).Caption = "Verificando duplicidad de registros en el fichero."
              Label1(2).Refresh
-             While Not RS.EOF
+             While Not Rs.EOF
                  Contador = Contador + 1
                 ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
                  DoEvents
                  Label1(0).Caption = Contador
                  Label1(0).Refresh
  
-                 Sql = "numeruve=" & RS!NumerUve & " and fecha=" & DBSet(RS!Fecha, "F") & " and hora='" & Format(RS!hora, "hh:mm:ss") & "' "
+                 Sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
                  
                  
                  
@@ -455,9 +457,9 @@ Dim encontrado As String
                      Sql = "UPDATE tmptaxi set error1=1,error='Registro duplicado' where " & Sql
                      conn.Execute Sql
  '                End If
-                 RS.MoveNext
+                 Rs.MoveNext
              Wend
-             RS.Close
+             Rs.Close
  
              '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto
             If Trim(vParam.CifEmpresa) <> "B98877806" And deExcel Then
@@ -465,29 +467,29 @@ Dim encontrado As String
             
                 Sql = "select codsocio from tmptaxi where error1 = 3 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
                 
-                RS.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
                 
                 total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
                 Label1(2).Caption = "Modificando Vehículo en registros del fichero."
                 Label1(2).Refresh
                 
-                While Not RS.EOF
+                While Not Rs.EOF
                     Contador = Contador + 1
                    ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
                     DoEvents
                     Label1(0).Caption = Contador
                     Label1(0).Refresh
                 
-                    Sql = "select numeruve from sclien where codclien = " & DBSet(RS!codSocio, "N")
+                    Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
                     NUve = DevuelveValor(Sql)
                 
-                    Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(RS!codSocio, "N") & " and error1 = 3 "
+                    Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 3 "
                     conn.Execute Sql
                     
-                    RS.MoveNext
+                    Rs.MoveNext
                 Wend
                 
-                RS.Close
+                Rs.Close
             End If
 
 
@@ -495,14 +497,14 @@ Dim encontrado As String
  
              'ahora vamos a buscar en la tabla shilla
              Sql = "select * from tmptaxi where error1 = 3"
-             RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+             Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
              ProgressBar1.Value = 0
              Contador = 0
              total = rsContador("select count(*) from tmptaxi where error1 = 3")
              Label1(2).Caption = "Verificando duplicidad de registros en la tabla."
              Label1(2).Refresh
 
-             While Not RS.EOF
+             While Not Rs.EOF
                  Contador = Contador + 1
                  ProgressBar1.Value = Round2((Contador * 100) / total, 0)
 
@@ -518,16 +520,16 @@ Dim encontrado As String
 '                        encontrado = DevuelveDesdeBD(conAri, "codsocio", "shilla", Sql, RS!NumerUve, "N")
 '                        If encontrado <> "" Then
                  
-                 Sql = "select count(*) from shilla where numeruve = " & DBSet(RS!NumerUve, "N") & " and fecha = " & DBSet(RS!Fecha, "F") & " and hora = " & DBSet(RS!hora, "H") & " and  (facturad=1 and abonados=1 and validado=1)"
+                 Sql = "select count(*) from shilla where numeruve = " & DBSet(Rs!NumerUve, "N") & " and fecha = " & DBSet(Rs!Fecha, "F") & " and hora = " & DBSet(Rs!hora, "H") & " and  (facturad=1 and abonados=1 and validado=1)"
                  If TotalRegistros(Sql) <> 0 Then
                      '[Monica]31/10/2017: los marco como 2 para no mostrarlos
                      'esta entonces es repetido
-                     Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & RS!Id
+                     Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & Rs!Id
                      conn.Execute Sql
                  End If
-                 RS.MoveNext
+                 Rs.MoveNext
              Wend
-             RS.Close
+             Rs.Close
          End If
      End If
 
@@ -731,7 +733,7 @@ End Function
 
 
 Private Sub ComprobacionDatos()
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Telefono As String
 Dim Values1 As String
 Dim Error As String
@@ -754,10 +756,10 @@ Dim total As Long
     Label1(2).Refresh
 
     Sql = "select * from tmptaxi where error1 = 3"
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
+    While Not Rs.EOF
         Contador = Contador + 1
         ProgressBar1.Value = (Contador * 100) / total
         DoEvents
@@ -765,39 +767,39 @@ Dim total As Long
         Error1 = 0
         Error = ""
     
-        Fecha = DBLet(RS!Fecha, "F")
-        hora = DBLet(RS!hora, "F")
+        Fecha = DBLet(Rs!Fecha, "F")
+        hora = DBLet(Rs!hora, "F")
         
         If hora = "" Then hora = "00:00:00"
         
-        Vehiculo = DBLet(RS!NumerUve, "N")
+        Vehiculo = DBLet(Rs!NumerUve, "N")
     
         Error1 = 0
         Error = ""
         'armamos los registros segun la cadena
-        Telefono = DBLet(RS!Telefono, "T")
+        Telefono = DBLet(Rs!Telefono, "T")
         'telefono
     
-        Telefono = DBLet(RS!CodClien, "N")
+        Telefono = DBLet(Rs!CodClien, "N")
         'codclien
         
-        Telefono = DBLet(RS!codautor, "T")
+        Telefono = DBLet(Rs!codautor, "T")
         'codautor"
     
-        Telefono = DBLet(RS!codusuar, "T")
+        Telefono = DBLet(Rs!codusuar, "T")
         'codusuar"
         
-        Telefono = DBLet(RS!nomclien, "T")
+        Telefono = DBLet(Rs!nomclien, "T")
         'nomclien"
     
-        Telefono = DBLet(RS!tipservi, "N")
+        Telefono = DBLet(Rs!tipservi, "N")
         'tipservi"
         If Telefono <> "0" And Telefono <> "1" Then
             Error1 = "1"
             Error = "tipservi con formato incorrecto"
         End If
         
-        Telefono = DBLet(RS!observa1, "T")
+        Telefono = DBLet(Rs!observa1, "T")
         'observa1"
     
         'numeruve"
@@ -806,16 +808,16 @@ Dim total As Long
             Error = "Vehiculo con formato incorrecto"
         End If
     
-        Telefono = DBLet(RS!Licencia, "T")
+        Telefono = DBLet(Rs!Licencia, "T")
         'licencia"
     
-        Telefono = DBLet(RS!matricul, "T")
+        Telefono = DBLet(Rs!matricul, "T")
         'matricul"
     
-        Telefono = DBLet(RS!dirllama, "T")
+        Telefono = DBLet(Rs!dirllama, "T")
         'dirllama"
         
-        Telefono = DBLet(RS!ciudadre, "T")
+        Telefono = DBLet(Rs!ciudadre, "T")
         'ciudadre"
         
     
@@ -831,13 +833,13 @@ Dim total As Long
             Error = "Falta hora"
         End If
     
-        Telefono = DBLet(RS!idservic, "T")
+        Telefono = DBLet(Rs!idservic, "T")
         'idservic"
     
-        Telefono = DBLet(RS!opereser, "T")
+        Telefono = DBLet(Rs!opereser, "T")
         'opereser"
         
-        Telefono = DBLet(RS!opedespa, "T")
+        Telefono = DBLet(Rs!opedespa, "T")
         'opedespa"
     
     
@@ -846,13 +848,13 @@ Dim total As Long
         Telefono = "" 'Trim(Mid(Cadena, 481, 4))
         'estado"
     
-        Telefono = DBLet(RS!observa2, "T")
+        Telefono = DBLet(Rs!observa2, "T")
         'observa2"
     
         
         '[Monica]02/08/2017: añadido
-        Fecha = DBLet(RS!fecreser, "F")
-        hora = DBLet(RS!horreser, "F")
+        Fecha = DBLet(Rs!fecreser, "F")
+        hora = DBLet(Rs!horreser, "F")
         
         'fecreser"
         If Fecha = "" Then
@@ -869,8 +871,8 @@ Dim total As Long
         End If
         
         
-        Fecha = DBLet(RS!fecaviso, "F")
-        hora = DBLet(RS!horaviso, "F")
+        Fecha = DBLet(Rs!fecaviso, "F")
+        hora = DBLet(Rs!horaviso, "F")
         'fecaviso"
         If Fecha = "" Then
         ElseIf Not IsDate(Fecha) Then
@@ -886,8 +888,8 @@ Dim total As Long
         End If
     
     
-        Fecha = DBLet(RS!fecllega, "F")
-        hora = DBLet(RS!horllega, "F")
+        Fecha = DBLet(Rs!fecllega, "F")
+        hora = DBLet(Rs!horllega, "F")
         'fecllega"
         If Fecha = "" Then
         ElseIf Not IsDate(Fecha) Then
@@ -902,8 +904,8 @@ Dim total As Long
             Error = "hora llegada con formato incorrecto"
         End If
     
-        Fecha = DBLet(RS!fecocupa, "F")
-        hora = DBLet(RS!horocupa, "F")
+        Fecha = DBLet(Rs!fecocupa, "F")
+        hora = DBLet(Rs!horocupa, "F")
         'fecocupa"
         If Fecha = "" Then
         ElseIf Not IsDate(Fecha) Then
@@ -919,8 +921,8 @@ Dim total As Long
         End If
     
     
-        Fecha = DBLet(RS!fecfinal, "F")
-        hora = DBLet(RS!horfinal, "F")
+        Fecha = DBLet(Rs!fecfinal, "F")
+        hora = DBLet(Rs!horfinal, "F")
         'fecfinal"
         If Fecha = "" Then
         ElseIf Not IsDate(Fecha) Then
@@ -936,51 +938,51 @@ Dim total As Long
         End If
     
     
-        Telefono = DBLet(RS!importtx, "N")
+        Telefono = DBLet(Rs!importtx, "N")
         'importtx"
     
     
-        Telefono = DBLet(RS!impcompr, "N")
+        Telefono = DBLet(Rs!impcompr, "N")
         'impcompr"
     
     
-        Telefono = DBLet(RS!extcompr, "N")
+        Telefono = DBLet(Rs!extcompr, "N")
         'extcompr"
     
-        Telefono = DBLet(RS!impventa, "N")
+        Telefono = DBLet(Rs!impventa, "N")
         'impventa"
     
-        Telefono = DBLet(RS!extventa, "N")
+        Telefono = DBLet(Rs!extventa, "N")
         'extventa"
     
-        Telefono = DBLet(RS!distanci, "T")
+        Telefono = DBLet(Rs!distanci, "T")
         'distanci"
     
         '[Monica]30/11/2017: ya tenemos el suplemento y peaje
-        Telefono = DBLet(RS!suplemen, "N")
+        Telefono = DBLet(Rs!suplemen, "N")
         'suplemen"
     
-        Telefono = DBLet(RS!imppeaje, "N")
+        Telefono = DBLet(Rs!imppeaje, "N")
         'imppeaje"
         
-        Telefono = DBLet(RS!imppropi, "N")
+        Telefono = DBLet(Rs!imppropi, "N")
         'imppropi"
     
-        Telefono = DBLet(RS!facturad, "N")
+        Telefono = DBLet(Rs!facturad, "N")
         'facturad"
         If Telefono <> "0" And Telefono <> "1" Then
             Error1 = 1
             Error = "facturado con formato incorrecto"
         End If
     
-        Telefono = DBLet(RS!abonados, "N")
+        Telefono = DBLet(Rs!abonados, "N")
         'abonados"
         If Telefono <> "0" And Telefono <> "1" Then
             Error1 = 1
             Error = "abonado con formato incorrecto"
         End If
     
-        Telefono = DBLet(RS!validado, "N")
+        Telefono = DBLet(Rs!validado, "N")
         'validado"
         If Telefono <> "0" And Telefono <> "1" Then
             Error1 = 1
@@ -988,23 +990,23 @@ Dim total As Long
         End If
     
         '[Monica]03/10/2014: añadimos el destino del servicio
-        Telefono = DBLet(RS!Destino, "T")
+        Telefono = DBLet(Rs!Destino, "T")
         'destino"
         
         '[Monica]12/12/2017: quien coge la llamada (radio o tele)
-        Telefono = DBLet(RS!Empresa, "N")
+        Telefono = DBLet(Rs!Empresa, "N")
         'empresa"
         
         'error1,error
         If Error1 = 1 Then
-            Sql = "update tmptaxi set error1 = 1, error = " & DBSet(Error, "T") & " where id = " & DBSet(RS!Id, "N")
+            Sql = "update tmptaxi set error1 = 1, error = " & DBSet(Error, "T") & " where id = " & DBSet(Rs!Id, "N")
             conn.Execute Sql
         End If
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
 EInsert:
     If Err.Number <> 0 Then
         MsgBox "Error en comprobación de datos. " & Err.Description

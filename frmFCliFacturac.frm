@@ -563,6 +563,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 319
+
 Public WithEvents frmCal As frmCal
 Attribute frmCal.VB_VarHelpID = -1
 Public WithEvents frmCli As frmFacClientes
@@ -580,7 +582,7 @@ Dim PrimeraVez As Boolean
 Dim NumFactu As Long
 Dim FecFactu As Date
 Dim Modo As Byte
-Dim Cad As String
+Dim cad As String
 Dim Codigo As String
 Dim CadServicios As String
 Dim Salir As Boolean
@@ -904,7 +906,7 @@ Dim BaseivaServ As Currency
 Dim ImpivaServ As Currency
 
 Dim RsServ As ADODB.Recordset
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim devuelve As String
 Dim Existe As Boolean
 Dim SQL2 As String
@@ -969,26 +971,26 @@ Dim NomLote As String
     
     Sql = Sql & " group by 1 having sum(if(importe is null,0,importe)) <> 0"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Dim Cliente As String
     
     SQLSub = "Insert into tmpinformes (codusu, codigo1, importe1, importe2, importe3) values "
     SQLSubValues = ""
-    While Not RS.EOF
+    While Not Rs.EOF
         Cliente = ""
-        Cliente = DevuelveDesdeBDNew(conAri, "scliente_albaran", "codclien", "codclienalb", RS!CodClien, "N")
-        If Cliente = "" Then Cliente = RS!CodClien
+        Cliente = DevuelveDesdeBDNew(conAri, "scliente_albaran", "codclien", "codclienalb", Rs!CodClien, "N")
+        If Cliente = "" Then Cliente = Rs!CodClien
         
-        SQLSubValues = SQLSubValues & "(" & vUsu.Codigo & "," & DBSet(Cliente, "N") & "," & DBSet(RS!CodClien, "N") & ","
-        SQLSubValues = SQLSubValues & DBSet(RS!Servicios, "N") & "," & DBSet(RS!Importe, "N")
+        SQLSubValues = SQLSubValues & "(" & vUsu.Codigo & "," & DBSet(Cliente, "N") & "," & DBSet(Rs!CodClien, "N") & ","
+        SQLSubValues = SQLSubValues & DBSet(Rs!Servicios, "N") & "," & DBSet(Rs!Importe, "N")
         SQLSubValues = SQLSubValues & "),"
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If SQLSubValues <> "" Then
         conn.Execute SQLSub & Mid(SQLSubValues, 1, Len(SQLSubValues) - 1)
@@ -1005,8 +1007,8 @@ Dim NomLote As String
     Sql = Sql & " group by 1"
     Sql = Sql & " order by 1"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Set miRsAux = New ADODB.Recordset
     
@@ -1034,15 +1036,15 @@ Dim NomLote As String
     
     FacturasaImprimir = ""
     
-    While Not RS.EOF And b
+    While Not Rs.EOF And b
         Set cli = New CCliente
         Set fac = New CFactura
         
         
-        If cli.LeerDatos(RS!CodClien, False) Then
+        If cli.LeerDatos(Rs!CodClien, False) Then
             
             '[Monica]04/02/2015
-            Label4.Caption = "Cliente: " & Format(RS!CodClien, "N") & " " & cli.Nombre
+            Label4.Caption = "Cliente: " & Format(Rs!CodClien, "N") & " " & cli.Nombre
             DoEvents
             
             
@@ -1075,8 +1077,8 @@ Dim NomLote As String
             
             Suplidos = 0
             DtoGnral = 0
-            BaseivaServ = Round2(RS!Importe / (1 + (porIvaServ / 100)), 2)
-            ImpivaServ = Round2(RS!Importe - BaseivaServ, 2)
+            BaseivaServ = Round2(Rs!Importe / (1 + (porIvaServ / 100)), 2)
+            ImpivaServ = Round2(Rs!Importe - BaseivaServ, 2)
             
             ' calculo de base iva de GASTOS ADMON
             iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtGastosAdmon, "T")
@@ -1127,7 +1129,7 @@ Dim NomLote As String
             '[Monica]31/01/2017: si el cliente tiene banco propio cojo el del banco propio, en caso contrario el que me pongan
             If ChkAplicarFiltro.Value = 0 Then
                 Dim banPr As Integer
-                banPr = DevuelveValor("select codbanpr from scliente where codclien = " & DBSet(RS!CodClien, "N"))
+                banPr = DevuelveValor("select codbanpr from scliente where codclien = " & DBSet(Rs!CodClien, "N"))
                 If CInt(banPr) = 0 Then
                     fac.BancoPr = txtcodigo(5).Text
                     fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
@@ -1173,7 +1175,7 @@ Dim NomLote As String
             Sql = Sql & DBSet(fac.BaseIVA2, "N", "S") & "," & DBSet(fac.TipoIVA2, "N", "S") & "," & DBSet(fac.PorceIVA2, "N", "S") & ","
             Sql = Sql & DBSet(fac.ImpIVA2, "N", "S") & "," & DBSet(fac.TotalFac, "N") & ",0,NULL,"
             Sql = Sql & DBSet(fac.Banco, "N") & "," & DBSet(fac.Sucursal, "N") & "," & DBSet(fac.DigControl, "T") & "," & DBSet(fac.CuentaBan, "T") & ","
-            Sql = Sql & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
+            Sql = Sql & DBSet(Rs!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
             '[Monica]30/01/2017: insertamos el codbanpr
             Sql = Sql & "," & DBSet(txtcodigo(5).Text, "N")
             Sql = Sql & ")"
@@ -1190,7 +1192,7 @@ Dim NomLote As String
             Mens = "Insertando Albaran"
             
             
-            sqlLineas = "Select importe1 codclien, importe2 servicios, importe3 importe FROM tmpinformes where codusu = " & vUsu.Codigo & " and codigo1 = " & DBSet(RS!CodClien, "N")
+            sqlLineas = "Select importe1 codclien, importe2 servicios, importe3 importe FROM tmpinformes where codusu = " & vUsu.Codigo & " and codigo1 = " & DBSet(Rs!CodClien, "N")
     
             Set RSLineas = New ADODB.Recordset
             RSLineas.Open sqlLineas, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -1220,11 +1222,11 @@ Dim NomLote As String
                 Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,"
                 Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
                 Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",0," & almac & ","
-                If RSLineas!CodClien = RS!CodClien And chk_agrupados.Value = 0 Then
+                If RSLineas!CodClien = Rs!CodClien And chk_agrupados.Value = 0 Then
                     Sql = Sql & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtcodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 Else
                     NomLote = ""
-                    NomLote = DevuelveValor("select nomenvio from senvio inner join scliente on senvio.codenvio = scliente.codenvio where scliente.codclien = " & DBSet(RS!CodClien, "N"))
+                    NomLote = DevuelveValor("select nomenvio from senvio inner join scliente on senvio.codenvio = scliente.codenvio where scliente.codclien = " & DBSet(Rs!CodClien, "N"))
                     NomArtic = Trim(NomArtic) & " " & UCase(Format(txtcodigo(86).Text, "mmmm")) & " " & Year(CDate(txtcodigo(86).Text)) & " " & NomLote
                     Ampliaci = DevuelveValor("select nomclien from scliente where codclien = " & DBSet(RSLineas!CodClien, "N"))
                     Sql = Sql & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(Ampliaci, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
@@ -1302,11 +1304,11 @@ Dim NomLote As String
             MsgBox "No existe el cliente " & cli.Codigo & " " & cli.Nombre
             b = False
         End If
-        RS.MoveNext
+        Rs.MoveNext
     
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
 ' hasta aqui
     GenerarFacturasTeletaxi = True
@@ -1433,7 +1435,7 @@ Dim I As Integer
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    Cad = CadenaDevuelta
+    cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
@@ -1595,7 +1597,7 @@ End Sub
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim Cad As String
+Dim cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1607,8 +1609,8 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -1657,7 +1659,7 @@ Dim BaseivaServ As Currency
 Dim ImpivaServ As Currency
 
 Dim RsServ As ADODB.Recordset
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim devuelve As String
 Dim Existe As Boolean
 Dim SQL2 As String
@@ -1707,8 +1709,8 @@ Dim DtoGnral As Currency
         Sql = Sql & " group by 1 having sum(if(impventa is null,0,impventa)) <> 0"
     End If
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     
     Set miRsAux = New ADODB.Recordset
@@ -1737,11 +1739,11 @@ Dim DtoGnral As Currency
     
     FacturasaImprimir = ""
     
-    While Not RS.EOF And b
+    While Not Rs.EOF And b
         Set cli = New CCliente
         Set fac = New CFactura
         
-        If cli.LeerDatos(RS!CodClien, False) Then
+        If cli.LeerDatos(Rs!CodClien, False) Then
             
             Set vTipoMov = New CTiposMov
             If vTipoMov.Leer(TipoMovimiento) Then
@@ -1772,16 +1774,16 @@ Dim DtoGnral As Currency
             Suplidos = 0
             DtoGnral = 0
             If vParamAplic.Cooperativa = 0 Then
-                BaseivaServ = Round2(RS!Importe / (1 + (porIvaServ / 100)), 2)
-                ImpivaServ = Round2(RS!Importe - BaseivaServ, 2)
+                BaseivaServ = Round2(Rs!Importe / (1 + (porIvaServ / 100)), 2)
+                ImpivaServ = Round2(Rs!Importe - BaseivaServ, 2)
             Else
-                Suplidos = RS!Suplidos
-                DtoGnral = Round2((RS!Importe - Suplidos) * cli.DtoGnral / 100, 2)
+                Suplidos = Rs!Suplidos
+                DtoGnral = Round2((Rs!Importe - Suplidos) * cli.DtoGnral / 100, 2)
                 
-                BaseivaServ = Round2((RS!Importe - Suplidos - DtoGnral) / (1 + (porIvaServ / 100)), 2)
+                BaseivaServ = Round2((Rs!Importe - Suplidos - DtoGnral) / (1 + (porIvaServ / 100)), 2)
 '                vBruto = Round2(BaseivaServ / (1 - (cli.DtoGnral / 100)), 2)
 '                DtoGnral = Round2(vBruto * cli.DtoGnral / 100, 2)
-                ImpivaServ = Round2(RS!Importe - Suplidos - DtoGnral - BaseivaServ, 2)
+                ImpivaServ = Round2(Rs!Importe - Suplidos - DtoGnral - BaseivaServ, 2)
             End If
             ' calculo de base iva de GASTOS ADMON
             iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtGastosAdmon, "T")
@@ -1813,7 +1815,7 @@ Dim DtoGnral As Currency
             If vParamAplic.Cooperativa = 0 Then
                 fac.BaseImp = BaseivaServ + BaseivaGtos
             Else
-                fac.BaseImp = DBLet(RS!Importe, "N") - Suplidos
+                fac.BaseImp = DBLet(Rs!Importe, "N") - Suplidos
             End If
             fac.ImpGnral = DtoGnral
             fac.DtoGnral = cli.DtoGnral
@@ -1862,7 +1864,7 @@ Dim DtoGnral As Currency
             Sql = Sql & DBSet(fac.BaseIVA2, "N", "S") & "," & DBSet(fac.TipoIVA2, "N", "S") & "," & DBSet(fac.PorceIVA2, "N", "S") & ","
             Sql = Sql & DBSet(fac.ImpIVA2, "N", "S") & "," & DBSet(fac.TotalFac, "N") & ",0,NULL,"
             Sql = Sql & DBSet(fac.Banco, "N") & "," & DBSet(fac.Sucursal, "N") & "," & DBSet(fac.DigControl, "T") & "," & DBSet(fac.CuentaBan, "T") & ","
-            Sql = Sql & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T") & ")"
+            Sql = Sql & DBSet(Rs!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T") & ")"
         
         
             conn.Execute Sql
@@ -2003,7 +2005,7 @@ Dim DtoGnral As Currency
             
             ' marcamos los registros de sfactclitr
             If b And vParamAplic.Cooperativa = 0 Then
-                SQL3 = "update sfactclitr set facturado = 1 where " & cWhere & " and codclien = " & DBSet(RS!CodClien, "N")
+                SQL3 = "update sfactclitr set facturado = 1 where " & cWhere & " and codclien = " & DBSet(Rs!CodClien, "N")
                 conn.Execute SQL3
             End If
             
@@ -2016,11 +2018,11 @@ Dim DtoGnral As Currency
             MsgBox "No existe el cliente " & cli.Codigo & " " & cli.Nombre
             b = False
         End If
-        RS.MoveNext
+        Rs.MoveNext
     
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     
     GenerarFacturas = True
@@ -2090,7 +2092,7 @@ Dim BaseivaServ As Currency
 Dim ImpivaServ As Currency
 
 Dim RsServ As ADODB.Recordset
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim devuelve As String
 Dim Existe As Boolean
 Dim SQL2 As String
@@ -2165,29 +2167,29 @@ Dim Nulo3 As String
     
     Sql = Sql & " group by 1 having sum(if(impventa is null,0,impventa)) + sum(if(suplemen is null,0,suplemen)) <> 0"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Dim Cliente As String
     
     '[Monica]14/11/2017: en importe4 añadimos los suplidos
     SQLSub = "Insert into tmpinformes (codusu, codigo1, importe1, importe2, importe3, importe4) values "
     SQLSubValues = ""
-    While Not RS.EOF
+    While Not Rs.EOF
         Cliente = ""
-        Cliente = DevuelveDesdeBDNew(conAri, "scliente_albaran", "codclien", "codclienalb", RS!CodClien, "N")
-        If Cliente = "" Then Cliente = RS!CodClien
+        Cliente = DevuelveDesdeBDNew(conAri, "scliente_albaran", "codclien", "codclienalb", Rs!CodClien, "N")
+        If Cliente = "" Then Cliente = Rs!CodClien
         
-        SQLSubValues = SQLSubValues & "(" & vUsu.Codigo & "," & DBSet(Cliente, "N") & "," & DBSet(RS!CodClien, "N") & ","
-        SQLSubValues = SQLSubValues & DBSet(RS!Servicios, "N") & "," & DBSet(RS!Importe, "N")
+        SQLSubValues = SQLSubValues & "(" & vUsu.Codigo & "," & DBSet(Cliente, "N") & "," & DBSet(Rs!CodClien, "N") & ","
+        SQLSubValues = SQLSubValues & DBSet(Rs!Servicios, "N") & "," & DBSet(Rs!Importe, "N")
         '[Monica]14/11/2017: incluimos en importe4 los suplidos
-        SQLSubValues = SQLSubValues & ", " & DBSet(RS!Suplidos, "N")
+        SQLSubValues = SQLSubValues & ", " & DBSet(Rs!Suplidos, "N")
         SQLSubValues = SQLSubValues & "),"
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If SQLSubValues <> "" Then
         conn.Execute SQLSub & Mid(SQLSubValues, 1, Len(SQLSubValues) - 1)
@@ -2204,8 +2206,8 @@ Dim Nulo3 As String
     Sql = Sql & " group by 1"
     Sql = Sql & " order by 1"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Set miRsAux = New ADODB.Recordset
     
@@ -2233,15 +2235,15 @@ Dim Nulo3 As String
     
     FacturasaImprimir = ""
     
-    While Not RS.EOF And b
+    While Not Rs.EOF And b
         Set cli = New CCliente
         Set fac = New CFactura
         
         
-        If cli.LeerDatos(RS!CodClien, False) Then
+        If cli.LeerDatos(Rs!CodClien, False) Then
             
             '[Monica]04/02/2015
-            Label4.Caption = "Cliente: " & Format(RS!CodClien, "N") & " " & cli.Nombre
+            Label4.Caption = "Cliente: " & Format(Rs!CodClien, "N") & " " & cli.Nombre
             DoEvents
             
             
@@ -2274,8 +2276,8 @@ Dim Nulo3 As String
             
             Suplidos = 0
             DtoGnral = 0
-            BaseivaServ = Round2(RS!Importe / (1 + (porIvaServ / 100)), 2)
-            ImpivaServ = Round2(RS!Importe - BaseivaServ, 2)
+            BaseivaServ = Round2(Rs!Importe / (1 + (porIvaServ / 100)), 2)
+            ImpivaServ = Round2(Rs!Importe - BaseivaServ, 2)
             
             ' calculo de base iva de GASTOS ADMON
             iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtGastosAdmon, "T")
@@ -2309,7 +2311,7 @@ Dim Nulo3 As String
             '                    se supone que el articulo de suplidos no debe de llevar iva
             Dim porIvaSuplidos As Currency
             Dim ImpIvaSuplidos As Currency
-            Suplidos = DBLet(RS!Suplidos, "N")
+            Suplidos = DBLet(Rs!Suplidos, "N")
             iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtSuplidos, "T")
             vDevuelve = DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(iva), "T")
             porIvaSuplidos = 0
@@ -2350,7 +2352,7 @@ Dim Nulo3 As String
             '[Monica]31/01/2017: si el cliente tiene banco propio cojo el del banco propio, en caso contrario el que me pongan
             If ChkAplicarFiltro.Value = 0 Then
                 Dim banPr As Integer
-                banPr = DevuelveValor("select codbanpr from scliente where codclien = " & DBSet(RS!CodClien, "N"))
+                banPr = DevuelveValor("select codbanpr from scliente where codclien = " & DBSet(Rs!CodClien, "N"))
                 If CInt(banPr) = 0 Then
                     fac.BancoPr = txtcodigo(5).Text
                     fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
@@ -2404,7 +2406,7 @@ Dim Nulo3 As String
             
             Sql = Sql & DBSet(fac.TotalFac, "N") & ",0,NULL,"
             Sql = Sql & DBSet(fac.Banco, "N") & "," & DBSet(fac.Sucursal, "N") & "," & DBSet(fac.DigControl, "T") & "," & DBSet(fac.CuentaBan, "T") & ","
-            Sql = Sql & DBSet(RS!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
+            Sql = Sql & DBSet(Rs!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
             '[Monica]30/01/2017: banco propio
             Sql = Sql & "," & DBSet(fac.BancoPr, "N")
             Sql = Sql & ")"
@@ -2418,7 +2420,7 @@ Dim Nulo3 As String
             Mens = "Insertando Albaran"
             
             
-            sqlLineas = "Select importe1 codclien, importe2 servicios, importe3 importe FROM tmpinformes where codusu = " & vUsu.Codigo & " and codigo1 = " & DBSet(RS!CodClien, "N")
+            sqlLineas = "Select importe1 codclien, importe2 servicios, importe3 importe FROM tmpinformes where codusu = " & vUsu.Codigo & " and codigo1 = " & DBSet(Rs!CodClien, "N")
     
             Set RSLineas = New ADODB.Recordset
             RSLineas.Open sqlLineas, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -2448,11 +2450,11 @@ Dim Nulo3 As String
                 Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,"
                 Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
                 Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",0," & almac & ","
-                If RSLineas!CodClien = RS!CodClien And chk_agrupados.Value = 0 Then
+                If RSLineas!CodClien = Rs!CodClien And chk_agrupados.Value = 0 Then
                     Sql = Sql & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtcodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 Else
                     NomLote = ""
-                    NomLote = DevuelveValor("select nomenvio from senvio inner join scliente on senvio.codenvio = scliente.codenvio where scliente.codclien = " & DBSet(RS!CodClien, "N"))
+                    NomLote = DevuelveValor("select nomenvio from senvio inner join scliente on senvio.codenvio = scliente.codenvio where scliente.codclien = " & DBSet(Rs!CodClien, "N"))
                     NomArtic = Trim(NomArtic) & " " & UCase(Format(txtcodigo(86).Text, "mmmm")) & " " & Year(CDate(txtcodigo(86).Text)) & " " & NomLote
                     Ampliaci = DevuelveValor("select nomclien from scliente where codclien = " & DBSet(RSLineas!CodClien, "N"))
                     Sql = Sql & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(Ampliaci, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
@@ -2486,7 +2488,8 @@ Dim Nulo3 As String
             
             
 '[Monica]10/09/2014: actualizamos la shilla
-                SQL3 = "update shilla set facturadocliente = 1, facturad = 1 where " & cWhere & " and codclien = " & DBSet(RSLineas!CodClien, "N")
+                SQL3 = "update shilla, scliente set facturadocliente = 1, facturad = 1 where " & cWhere & " and shilla.codclien = " & DBSet(RSLineas!CodClien, "N")
+                SQL3 = SQL3 & " and if(scliente.promocio = 0,(1=1),shilla.validado = 1) and shilla.codclien = scliente.codclien "
                 conn.Execute SQL3
                 
                 RSLineas.MoveNext
@@ -2551,11 +2554,11 @@ Dim Nulo3 As String
             MsgBox "No existe el cliente " & cli.Codigo & " " & cli.Nombre
             b = False
         End If
-        RS.MoveNext
+        Rs.MoveNext
     
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
 ' hasta aqui
     GenerarFacturasTeletaxiNew = True

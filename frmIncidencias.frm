@@ -365,6 +365,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public DeConsulta As Boolean 'Muestra Form para consulta, solo buscar y ver todos activos
 
+Private Const IdPrograma = 309
+
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 Private CadenaConsulta As String
@@ -383,11 +385,11 @@ Dim Modo As Byte
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
 
     Modo = vModo
     b = (Modo = 2)
@@ -499,7 +501,7 @@ End Sub
 
 Private Sub BotonModificar()
 Dim anc As Single
-Dim i As Integer
+Dim I As Integer
     
     If Adodc1.Recordset.EOF Then Exit Sub
     If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
@@ -507,8 +509,8 @@ Dim i As Integer
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
 
@@ -536,7 +538,7 @@ Dim b As Boolean
     
     For jj = 0 To txtAux.Count - 1
         txtAux(jj).Height = DataGrid1.RowHeight
-        txtAux(jj).Top = alto
+        txtAux(jj).top = alto
         txtAux(jj).visible = b
     Next jj
   
@@ -572,7 +574,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim CadB As String
 On Error Resume Next
 
@@ -589,12 +591,12 @@ On Error Resume Next
              If DatosOk And BLOQUEADesdeFormulario(Me) Then
                  If ModificaDesdeFormulario(Me, 3) Then
                       TerminaBloquear
-                      i = Adodc1.Recordset.Fields(0)
+                      I = Adodc1.Recordset.Fields(0)
 '                      LLamaLineas Modo, 0
                       PonerModo 2
                       CancelaADODC Me.Adodc1
                       CargaGrid
-                      Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & i)
+                      Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & I)
                   End If
                   DataGrid1.SetFocus
             End If
@@ -633,7 +635,7 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 On Error GoTo ERegresar
 
     If Adodc1.Recordset.EOF Then
@@ -641,9 +643,9 @@ On Error GoTo ERegresar
         Exit Sub
     End If
 
-    Cad = Adodc1.Recordset.Fields(0) & "|"
-    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Adodc1.Recordset.Fields(0) & "|"
+    cad = cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 ERegresar:
     If Err.Number <> 0 Then Err.Clear
@@ -670,13 +672,13 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(1).Image = 3   'Botón Añadir Nuevo Registro
         .Buttons(2).Image = 4   'Botón Modificar Registro
         .Buttons(3).Image = 5   'Botón Borrar Registro

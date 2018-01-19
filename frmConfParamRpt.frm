@@ -663,6 +663,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 104
+
+
 Private NombreTabla As String  'Nombre de la tabla o de la
 Private Ordenacion As String
 Private CadenaConsulta As String
@@ -699,7 +702,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim vParamRpt As CParamRpt 'Clase Parametros para Reports
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 Dim actualiza As Boolean
 
     Select Case Modo
@@ -737,8 +740,8 @@ Dim actualiza As Boolean
                 End If
                 Set vParamRpt = Nothing
                 If actualiza = 0 Then 'Inserta o Modifica
-                    Cad = "codcryst=" & Text1(0).Text
-                    If SituarData(Data1, Cad, Indicador) Then
+                    cad = "codcryst=" & Text1(0).Text
+                    If SituarData(Data1, cad, Indicador) Then
                         PonerModo 2
                         Me.lblIndicador.Caption = Indicador
                     End If
@@ -790,7 +793,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     ' ICONITOS DE LA BARRA
 '    With Me.Toolbar1
@@ -809,9 +812,9 @@ Private Sub Form_Load()
     
     With Me.Toolbar1
         btnPrimero = 11
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         .Buttons(5).Image = 1
         .Buttons(6).Image = 2
         .Buttons(1).Image = 3   'Anyadir
@@ -821,9 +824,9 @@ Private Sub Form_Load()
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -955,8 +958,6 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             mnNuevo_Click
         Case 2  'Modificar
             mnModificar_Click
-        Case btnPrimero To btnPrimero + 3 'Desplazamiento Registros
-            Desplazamiento (Button.Index - btnPrimero)
         Case 5
             'BUSCAR
             BotonBuscar
@@ -1060,7 +1061,7 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
 Dim NumReg As Byte
-Dim i As Integer
+Dim I As Integer
 
    
     Modo = Kmodo
@@ -1068,9 +1069,9 @@ Dim i As Integer
     '----------------------------------------------
     'Modo 2. Hay datos y estamos visualizandolos
    
-    For i = 0 To Text1.Count - 1
-        Text1(i).BackColor = vbWhite
-    Next i
+    For I = 0 To Text1.Count - 1
+        Text1(I).BackColor = vbWhite
+    Next I
    
    
    
@@ -1105,7 +1106,41 @@ Dim i As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según el Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = False
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
+
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol

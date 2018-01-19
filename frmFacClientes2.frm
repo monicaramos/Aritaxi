@@ -394,6 +394,8 @@ Public DeConsulta As Boolean 'Muestra Form para consulta, solo buscar y ver todo
 
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 206
+
 Private CadenaConsulta As String
 
 Dim FormatoCod As String 'formato del campo de codigo
@@ -415,15 +417,15 @@ Dim Modo As Byte
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).BackColor = vbWhite
+    Next I
     
     Me.txtAux(0).visible = Not b
     txtAux(1).visible = Not b
@@ -458,7 +460,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(2).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
 '     b = b And Not DeConsulta
 '    'Añadir
@@ -597,7 +599,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim CadB As String
 
     On Error Resume Next
@@ -673,16 +675,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    Cad = Adodc1.Recordset.Fields(0) & "|"
-    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Adodc1.Recordset.Fields(0) & "|"
+    cad = cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -713,7 +715,7 @@ Private Sub Form_Load()
 
     ' ICONITOS DE LA BARRA
     With Me.Toolbar1
-        .ImageList = frmppal.ImgListComun1
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 1    'Botón Busqueda
         .Buttons(2).Image = 2    'Botón Recuperar Todos
         .Buttons(5).Image = 3    'Botón Añadir Nuevo Registro

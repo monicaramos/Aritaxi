@@ -342,6 +342,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 1009
+
+
 Public Tipo As Byte
     'Tipo:  0 Impresion de facturas
 
@@ -434,10 +437,10 @@ End Function
 
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     txtcodigo(0).Text = Date
     txtcodigo(1).Text = Date
@@ -447,8 +450,8 @@ Dim i As Integer
     Combo1(1).ListIndex = 0
     
     
-    For i = 0 To Me.imgFec.Count - 1
-        imgFec(i).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    For I = 0 To Me.imgFec.Count - 1
+        imgFec(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
     
     
@@ -468,19 +471,19 @@ Private Sub imgFec_Click(Index As Integer)
     frmC.Fecha = Now
 
     esq = imgFec(Index).Left
-    dalt = imgFec(Index).Top
+    dalt = imgFec(Index).top
 
     Set obj = imgFec(Index).Container
 
     While imgFec(Index).Parent.Name <> obj.Name
         esq = esq + obj.Left
-        dalt = dalt + obj.Top
+        dalt = dalt + obj.top
         Set obj = obj.Container
     Wend
        
     ' es desplega dalt i cap a la esquerra
     frmC.Left = esq + imgFec(Index).Parent.Left + 30
-    frmC.Top = dalt + imgFec(Index).Parent.Top + imgFec(Index).Height + 420 + 30
+    frmC.top = dalt + imgFec(Index).Parent.top + imgFec(Index).Height + 420 + 30
 
     ' ***canviar l'index de imgFec pel 1r index de les imagens de buscar data***
     imgFec(0).Tag = Index 'independentment de les dates que tinga, sempre pose l'index en la 27
@@ -556,9 +559,9 @@ End Sub
 
 Private Sub CargaFacturasLiq(DFecha As Date, HFecha As Date)
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -602,10 +605,10 @@ Dim cadParam As String
     If txtcodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtcodigo(3).Text, "N")
             
             
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
+    If Not Rs.EOF Then
         Sql = "insert into tmpinformes (codusu, nombre1, importe1, codigo1, fecha1) "
         Sql = Sql & " select " & vUsu.Codigo & ", sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.codsocio, sfactusoc.fecfactu from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
                 " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
@@ -620,10 +623,10 @@ Dim cadParam As String
         conn.Execute Sql
         
         
-        RS.MoveFirst
-        While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+        Rs.MoveFirst
+        While Not Rs.EOF
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -650,28 +653,28 @@ Dim cadParam As String
             Fr.Informe = App.Path & "\Informes\" & pPdfRpt 'nomDocu
             Fr.ExportarPDF = True
             Fr.FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.Codigo & " and " & _
-                                  "{tmpinformes.nombre1} = '" & RS!codtipom & "' and " & _
-                                  "{tmpinformes.importe1} =" & CStr(RS!NumFactu) & " and " & _
-                                  "{tmpinformes.codigo1} =" & DBSet(RS!codSocio, "N") & " and " & _
-                                  "{tmpinformes.fecha1} = Date(" & Format(RS!FecFactu, "yyyy") & _
-                                                        "," & Format(RS!FecFactu, "mm") & _
-                                                        "," & Format(RS!FecFactu, "dd") & ")"
+                                  "{tmpinformes.nombre1} = '" & Rs!codtipom & "' and " & _
+                                  "{tmpinformes.importe1} =" & CStr(Rs!NumFactu) & " and " & _
+                                  "{tmpinformes.codigo1} =" & DBSet(Rs!codSocio, "N") & " and " & _
+                                  "{tmpinformes.fecha1} = Date(" & Format(Rs!FecFactu, "yyyy") & _
+                                                        "," & Format(Rs!FecFactu, "mm") & _
+                                                        "," & Format(Rs!FecFactu, "dd") & ")"
 '            fr.FicheroPDF = FicheroPDF
             Load Fr 'trabaja sin mostrar el formulario
             Screen.MousePointer = vbDefault
 
-            FileCopy FicheroPDF, nompath & "\aritaxi_" & Format(RS!codSocio, "000000") & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_S.pdf"
+            FileCopy FicheroPDF, nompath & "\aritaxi_" & Format(Rs!codSocio, "000000") & Rs!LetraSer & "_" & Format(Rs!NumFactu, "0000000") & "_" & Format(Rs!FecFactu, "yyyymmdd") & "_S.pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            Sql = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
-            Sql = Sql & " and codsocio = " & DBSet(RS!codSocio, "N")
+            Sql = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(Rs!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N") & " and fecfactu = " & DBSet(Rs!FecFactu, "F")
+            Sql = Sql & " and codsocio = " & DBSet(Rs!codSocio, "N")
             conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         MsgBox "Proceso finalizado", vbInformation
@@ -681,7 +684,7 @@ Dim cadParam As String
     
     End If
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     Exit Sub
 err_CargaFacturas:
@@ -692,9 +695,9 @@ End Sub
 
 Private Sub CargaFacturasCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -733,14 +736,14 @@ Dim cadParam As String
     If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtcodigo(3).Text, "N")
     
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        RS.MoveFirst
-        While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+    If Not Rs.EOF Then
+        Rs.MoveFirst
+        While Not Rs.EOF
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -751,7 +754,7 @@ Dim cadParam As String
             numParam = 1
             
             indRPT = 52
-            If DBLet(RS!codtipom) = "FRN" Then indRPT = 54
+            If DBLet(Rs!codtipom) = "FRN" Then indRPT = 54
             
             '[Monica]31/04/2014: si se detallan los servicios en las facturas o no
             If vParamAplic.Cooperativa = 0 Then
@@ -767,27 +770,27 @@ Dim cadParam As String
             Fr.ConSubInforme = True
             Fr.Informe = App.Path & "\Informes\" & pPdfRpt 'nomDocu
             Fr.ExportarPDF = True
-            Fr.FormulaSeleccion = "{scafaccli.codtipom} = '" & RS!codtipom & "' and " & _
-                                  "{scafaccli.numfactu} =" & CStr(RS!NumFactu) & " and " & _
-                                  "{scafaccli.fecfactu} = Date(" & Format(RS!FecFactu, "yyyy") & _
-                                                        "," & Format(RS!FecFactu, "mm") & _
-                                                        "," & Format(RS!FecFactu, "dd") & ")"
+            Fr.FormulaSeleccion = "{scafaccli.codtipom} = '" & Rs!codtipom & "' and " & _
+                                  "{scafaccli.numfactu} =" & CStr(Rs!NumFactu) & " and " & _
+                                  "{scafaccli.fecfactu} = Date(" & Format(Rs!FecFactu, "yyyy") & _
+                                                        "," & Format(Rs!FecFactu, "mm") & _
+                                                        "," & Format(Rs!FecFactu, "dd") & ")"
 '            fr.FicheroPDF = FicheroPDF
             Load Fr 'trabaja sin mostrar el formulario
             Screen.MousePointer = vbDefault
 
-            FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_F.pdf"
+            FileCopy FicheroPDF, nompath & "\aritaxi_" & Rs!LetraSer & "_" & Format(Rs!NumFactu, "0000000") & "_" & Format(Rs!FecFactu, "yyyymmdd") & "_F.pdf"
             
             'actualizamos el pasaridoc de facturas clientes
-            Sql = "update scafaccli set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = "update scafaccli set exportada = 1 where codtipom = " & DBSet(Rs!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N") & " and fecfactu = " & DBSet(Rs!FecFactu, "F")
             
             conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         MsgBox "Proceso finalizado", vbInformation
@@ -797,7 +800,7 @@ Dim cadParam As String
     
     End If
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     Exit Sub
 err_CargaFacturas:
@@ -808,9 +811,9 @@ End Sub
 
 Private Sub CargaFacturasCuotasSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -850,14 +853,14 @@ Dim cadParam As String
     If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtcodigo(2).Text, "N")
     If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        RS.MoveFirst
-        While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+    If Not Rs.EOF Then
+        Rs.MoveFirst
+        While Not Rs.EOF
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -876,26 +879,26 @@ Dim cadParam As String
             Fr.ConSubInforme = True
             Fr.Informe = App.Path & "\Informes\" & pPdfRpt 'nomDocu
             Fr.ExportarPDF = True
-            Fr.FormulaSeleccion = "{scafac.codtipom} = '" & RS!codtipom & "' and " & _
-                                  "{scafac.numfactu} =" & CStr(RS!NumFactu) & " and " & _
-                                  "{scafac.fecfactu} = Date(" & Format(RS!FecFactu, "yyyy") & _
-                                                        "," & Format(RS!FecFactu, "mm") & _
-                                                        "," & Format(RS!FecFactu, "dd") & ")"
+            Fr.FormulaSeleccion = "{scafac.codtipom} = '" & Rs!codtipom & "' and " & _
+                                  "{scafac.numfactu} =" & CStr(Rs!NumFactu) & " and " & _
+                                  "{scafac.fecfactu} = Date(" & Format(Rs!FecFactu, "yyyy") & _
+                                                        "," & Format(Rs!FecFactu, "mm") & _
+                                                        "," & Format(Rs!FecFactu, "dd") & ")"
 '            fr.FicheroPDF = FicheroPDF
             Load Fr 'trabaja sin mostrar el formulario
             Screen.MousePointer = vbDefault
 
-            FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_C.pdf"
+            FileCopy FicheroPDF, nompath & "\aritaxi_" & Rs!LetraSer & "_" & Format(Rs!NumFactu, "0000000") & "_" & Format(Rs!FecFactu, "yyyymmdd") & "_C.pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            Sql = "update scafac set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = "update scafac set exportada = 1 where codtipom = " & DBSet(Rs!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N") & " and fecfactu = " & DBSet(Rs!FecFactu, "F")
             conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         MsgBox "Proceso finalizado", vbInformation
@@ -905,7 +908,7 @@ Dim cadParam As String
     
     End If
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     Exit Sub
 err_CargaFacturas:
@@ -916,9 +919,9 @@ End Sub
 
 Private Sub CargaFacturasPublicidadSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -959,14 +962,14 @@ Dim cadParam As String
     If txtcodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtcodigo(3).Text, "N")
             
             
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        RS.MoveFirst
-        While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+    If Not Rs.EOF Then
+        Rs.MoveFirst
+        While Not Rs.EOF
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -985,28 +988,28 @@ Dim cadParam As String
             Fr.ConSubInforme = True
             Fr.Informe = App.Path & "\Informes\" & pPdfRpt 'nomDocu
             Fr.ExportarPDF = True
-            Fr.FormulaSeleccion = "{sfactusoc.codtipom} = '" & RS!codtipom & "' and " & _
-                                  "{sfactusoc.numfactu} =" & CStr(RS!NumFactu) & " and " & _
-                                  "{sfactusoc.codsocio} =" & DBSet(RS!codSocio, "N") & " and " & _
-                                  "{sfactusoc.fecfactu} = Date(" & Format(RS!FecFactu, "yyyy") & _
-                                                        "," & Format(RS!FecFactu, "mm") & _
-                                                        "," & Format(RS!FecFactu, "dd") & ")"
+            Fr.FormulaSeleccion = "{sfactusoc.codtipom} = '" & Rs!codtipom & "' and " & _
+                                  "{sfactusoc.numfactu} =" & CStr(Rs!NumFactu) & " and " & _
+                                  "{sfactusoc.codsocio} =" & DBSet(Rs!codSocio, "N") & " and " & _
+                                  "{sfactusoc.fecfactu} = Date(" & Format(Rs!FecFactu, "yyyy") & _
+                                                        "," & Format(Rs!FecFactu, "mm") & _
+                                                        "," & Format(Rs!FecFactu, "dd") & ")"
 '            fr.FicheroPDF = FicheroPDF
             Load Fr 'trabaja sin mostrar el formulario
             Screen.MousePointer = vbDefault
 
-            FileCopy FicheroPDF, nompath & "\aritaxi_" & Format(RS!codSocio, "000000") & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_S" & ".pdf"
+            FileCopy FicheroPDF, nompath & "\aritaxi_" & Format(Rs!codSocio, "000000") & Rs!LetraSer & "_" & Format(Rs!NumFactu, "0000000") & "_" & Format(Rs!FecFactu, "yyyymmdd") & "_S" & ".pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            Sql = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
-            Sql = Sql & " and codsocio = " & DBSet(RS!codSocio, "N")
+            Sql = "update sfactusoc set exportada = 1 where codtipom = " & DBSet(Rs!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N") & " and fecfactu = " & DBSet(Rs!FecFactu, "F")
+            Sql = Sql & " and codsocio = " & DBSet(Rs!codSocio, "N")
             conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         MsgBox "Proceso finalizado", vbInformation
@@ -1016,7 +1019,7 @@ Dim cadParam As String
     
     End If
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     Exit Sub
 err_CargaFacturas:
@@ -1027,9 +1030,9 @@ End Sub
 
 Private Sub CargaFacturasPublicidadCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -1070,14 +1073,14 @@ Dim cadParam As String
     If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
             
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        RS.MoveFirst
-        While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+    If Not Rs.EOF Then
+        Rs.MoveFirst
+        While Not Rs.EOF
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -1096,27 +1099,27 @@ Dim cadParam As String
             Fr.ConSubInforme = True
             Fr.Informe = App.Path & "\Informes\" & pPdfRpt 'nomDocu
             Fr.ExportarPDF = True
-            Fr.FormulaSeleccion = "{scafaccli.codtipom} = '" & RS!codtipom & "' and " & _
-                                  "{scafaccli.numfactu} =" & CStr(RS!NumFactu) & " and " & _
-                                  "{scafaccli.fecfactu} = Date(" & Format(RS!FecFactu, "yyyy") & _
-                                                        "," & Format(RS!FecFactu, "mm") & _
-                                                        "," & Format(RS!FecFactu, "dd") & ")"
+            Fr.FormulaSeleccion = "{scafaccli.codtipom} = '" & Rs!codtipom & "' and " & _
+                                  "{scafaccli.numfactu} =" & CStr(Rs!NumFactu) & " and " & _
+                                  "{scafaccli.fecfactu} = Date(" & Format(Rs!FecFactu, "yyyy") & _
+                                                        "," & Format(Rs!FecFactu, "mm") & _
+                                                        "," & Format(Rs!FecFactu, "dd") & ")"
 '            fr.FicheroPDF = FicheroPDF
             Load Fr 'trabaja sin mostrar el formulario
             Screen.MousePointer = vbDefault
 
-            FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_F.pdf"
+            FileCopy FicheroPDF, nompath & "\aritaxi_" & Rs!LetraSer & "_" & Format(Rs!NumFactu, "0000000") & "_" & Format(Rs!FecFactu, "yyyymmdd") & "_F.pdf"
             
             'actualizamos el pasaridoc de facturas clientes
-            Sql = "update scafaccli set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = "update scafaccli set exportada = 1 where codtipom = " & DBSet(Rs!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N") & " and fecfactu = " & DBSet(Rs!FecFactu, "F")
             
             conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         MsgBox "Proceso finalizado", vbInformation
@@ -1126,7 +1129,7 @@ Dim cadParam As String
     
     End If
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     Exit Sub
 err_CargaFacturas:
@@ -1137,9 +1140,9 @@ End Sub
 
 Private Sub CargaFacturasVentaSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
-    Dim RS As ADODB.Recordset
+    Dim Rs As ADODB.Recordset
     Dim Rs2 As ADODB.Recordset
-    Dim i As Long
+    Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -1180,14 +1183,14 @@ Dim cadParam As String
             
             
             
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        RS.MoveFirst
-        While Not RS.EOF
-            i = i + 1
-            lblInf.Caption = "Procesando registro " & CStr(i)
+    If Not Rs.EOF Then
+        Rs.MoveFirst
+        While Not Rs.EOF
+            I = I + 1
+            lblInf.Caption = "Procesando registro " & CStr(I)
             lblInf.Refresh
             '-- Creamos el pdf
             FicheroPDF = App.Path & "\docum.pdf"
@@ -1206,26 +1209,26 @@ Dim cadParam As String
             Fr.ConSubInforme = True
             Fr.Informe = App.Path & "\Informes\" & pPdfRpt 'nomDocu
             Fr.ExportarPDF = True
-            Fr.FormulaSeleccion = "{scafac.codtipom} = '" & RS!codtipom & "' and " & _
-                                  "{scafac.numfactu} =" & CStr(RS!NumFactu) & " and " & _
-                                  "{scafac.fecfactu} = Date(" & Format(RS!FecFactu, "yyyy") & _
-                                                        "," & Format(RS!FecFactu, "mm") & _
-                                                        "," & Format(RS!FecFactu, "dd") & ")"
+            Fr.FormulaSeleccion = "{scafac.codtipom} = '" & Rs!codtipom & "' and " & _
+                                  "{scafac.numfactu} =" & CStr(Rs!NumFactu) & " and " & _
+                                  "{scafac.fecfactu} = Date(" & Format(Rs!FecFactu, "yyyy") & _
+                                                        "," & Format(Rs!FecFactu, "mm") & _
+                                                        "," & Format(Rs!FecFactu, "dd") & ")"
 '            fr.FicheroPDF = FicheroPDF
             Load Fr 'trabaja sin mostrar el formulario
             Screen.MousePointer = vbDefault
 
-            FileCopy FicheroPDF, nompath & "\aritaxi_" & RS!LetraSer & "_" & Format(RS!NumFactu, "0000000") & "_" & Format(RS!FecFactu, "yyyymmdd") & "_C.pdf"
+            FileCopy FicheroPDF, nompath & "\aritaxi_" & Rs!LetraSer & "_" & Format(Rs!NumFactu, "0000000") & "_" & Format(Rs!FecFactu, "yyyymmdd") & "_C.pdf"
             
             'actualizamos el pasaridoc de facturas socios
-            Sql = "update scafac set exportada = 1 where codtipom = " & DBSet(RS!codtipom, "T")
-            Sql = Sql & " and numfactu = " & DBSet(RS!NumFactu, "N") & " and fecfactu = " & DBSet(RS!FecFactu, "F")
+            Sql = "update scafac set exportada = 1 where codtipom = " & DBSet(Rs!codtipom, "T")
+            Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N") & " and fecfactu = " & DBSet(Rs!FecFactu, "F")
             conn.Execute Sql
             
             Unload Fr
             Set Fr = Nothing
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         MsgBox "Proceso finalizado", vbInformation
@@ -1235,7 +1238,7 @@ Dim cadParam As String
     
     End If
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     Exit Sub
 err_CargaFacturas:
@@ -1248,7 +1251,7 @@ End Sub
 Private Sub CargaCombo()
 Dim ini As Integer
 Dim Fin As Integer
-Dim i As Integer
+Dim I As Integer
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
 '    For I = 0 To Combo1.Count - 1
@@ -1278,26 +1281,26 @@ End Sub
 
 
 Private Function IntentaMatar(FicheroPDF As String) As Boolean
-Dim i As Integer
+Dim I As Integer
 
     On Error Resume Next
-    i = 1
+    I = 1
     IntentaMatar = False
     Do
         If Dir(FicheroPDF, vbArchive) <> "" Then
             Kill FicheroPDF
             If Err.Number <> 0 Then
                 Err.Clear
-                i = i + 1
+                I = I + 1
             Else
                 IntentaMatar = True
-                i = 6
+                I = 6
             End If
         Else
             IntentaMatar = True
-            i = 6
+            I = 6
         End If
-    Loop Until i < 5 Or IntentaMatar = True
+    Loop Until I < 5 Or IntentaMatar = True
     
     
 End Function

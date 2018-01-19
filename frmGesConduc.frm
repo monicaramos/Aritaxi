@@ -1092,6 +1092,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 403
+
 Public WithEvents frmB As frmBasico2
 Attribute frmB.VB_VarHelpID = -1
 Public WithEvents frmCP As frmCPostal
@@ -1126,7 +1128,7 @@ Dim cadB1 As String
 Private Sub cmdAceptar_Click()
 Dim I As Integer
 Dim CadB As String
-Dim Cad As String
+Dim cad As String
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -1211,7 +1213,7 @@ On Error GoTo EModificarLinea
         
         ' modificamos la tabla de choferes del socio
         Sql = "update sclien_chofer, sclien set sclien_chofer.fechaalt = " & DBSet(txtAux1(1).Text, "F") & ", sclien_chofer.fechabaj = " & DBSet(txtAux1(2).Text, "F", "S")
-        Sql = Sql & ", sclien_chofer.obsevac = " & DBSet(txtAux1(3).Text, "T") & " where codchofe = " & Me.adodc1.Recordset!codchofe
+        Sql = Sql & ", sclien_chofer.obsevac = " & DBSet(txtAux1(3).Text, "T") & " where codchofe = " & Me.Adodc1.Recordset!codchofe
         Sql = Sql & " and sclien.numeruve = " & DBSet(txtAux1(0).Text, "N")
         Sql = Sql & " and sclien.codclien = sclien_chofer.codsocio "
         
@@ -1244,7 +1246,7 @@ Dim Socio As String
             ' solo si no tiene fecha de baja hacemos las comprobaciones
             If txtAux1(2).Text = "" Then
                 ' comprobamos no sea conductor una V sin fecha de baja
-                Sql = "select count(*) from schofe_historia where codchofe = " & Me.adodc1.Recordset!codchofe
+                Sql = "select count(*) from schofe_historia where codchofe = " & Me.Adodc1.Recordset!codchofe
                 'SQL = SQL & " and numeruve = " & DBSet(txtAux1(0).Text, "N")
                 Sql = Sql & " and (fechafin is null or fechafin = '0000-00-00') "
                 
@@ -1390,25 +1392,25 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
         PonerModo 2
-        Me.lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+        Me.lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
         If DataGrid1.Row >= 0 Then
             DeseleccionaGrid DataGrid1
             DataGrid1.Bookmark = 1
         End If
         cmdRegresar.Caption = "Regresar"
     Else 'Se llama desde algún Prismatico de otro Form al Mantenimiento de Trabajadores
-        If adodc1.Recordset.EOF Then
+        If Adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & adodc1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Adodc1.Recordset.Fields(0) & "|"
+        cad = cad & Adodc1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -1503,9 +1505,9 @@ Dim I As Integer
     chkVistaPrevia.Value = CheckValueLeer(Name)
     
     'ASignamos un SQL al DATA1
-    adodc1.ConnectionString = conn
-    adodc1.RecordSource = "Select * from " & NombreTabla & " where codchofe=-1"
-    adodc1.Refresh
+    Adodc1.ConnectionString = conn
+    Adodc1.RecordSource = "Select * from " & NombreTabla & " where codchofe=-1"
+    Adodc1.Refresh
     
     
     If DatosADevolverBusqueda = "" Then
@@ -1547,11 +1549,11 @@ On Error GoTo EPonerModo
     b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
-    If Not adodc1.Recordset.EOF Then
-        If adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not Adodc1.Recordset.EOF Then
+        If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Me.adodc1.Recordset.RecordCount > 1
+    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1
 
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
@@ -1704,7 +1706,7 @@ Select Case Index
                     CadenaDesdeOtroForm = Text1(11).Text
                 Else
                     CadenaDesdeOtroForm = ""
-                    If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observac, "T")
+                    If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observac, "T")
                 End If
                 frmFacClienteObser.Modificar = Modo >= 3
                 frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -1874,7 +1876,7 @@ Private Sub mnLineas_Click()
     BotonMtoLineas "Histórico"
 End Sub
 
-Private Sub BotonMtoLineas(Cad As String)
+Private Sub BotonMtoLineas(cad As String)
     ModificaLineas = 0
     PonerModo 5
     PonerBotonCabecera True
@@ -2072,22 +2074,22 @@ Private Sub BotonEliminar()
 Dim msg As String
 Dim Sql As String
 Dim SQL2 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
 On Error GoTo EEliminar
 
 msg = "Esta seguro que desea eliminar el chofer:" & Text1(0).Text & "?"
 If MsgBox(msg, vbYesNo) = vbYes Then
-    NumRegElim = adodc1.Recordset.AbsolutePosition
+    NumRegElim = Adodc1.Recordset.AbsolutePosition
     
     conn.BeginTrans
     
     Sql = "select * from schofe_historia where codchofe = " & DBSet(Text1(0).Text, "N")
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
+    While Not Rs.EOF
         SQL2 = "delete from sclien_chofer where codchofe = " & DBSet(Text1(0).Text, "N")
         SQL2 = SQL2 & " and codsocio in (select codclien from sclien where numeruve = " & DBSet(txtAux1(0).Text, "N")
         SQL2 = SQL2 & " and fechaalt = " & DBSet(txtAux1(1).Text, "F")
@@ -2099,7 +2101,7 @@ If MsgBox(msg, vbYesNo) = vbYes Then
         
         conn.Execute SQL2
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
     
     'Ahora borramos las lineas
     Sql = "Delete from schofe_historia where codchofe=" & Text1(0).Text
@@ -2112,7 +2114,7 @@ If MsgBox(msg, vbYesNo) = vbYes Then
     conn.CommitTrans
 End If
 
-If SituarDataTrasEliminar(adodc1, NumRegElim) Then
+If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
     PonerCampos
 End If
 
@@ -2191,7 +2193,7 @@ Private Sub BotonBuscar()
         Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
-        If adodc1.Recordset.EOF Then
+        If Adodc1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
@@ -2202,17 +2204,17 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If adodc1.Recordset.EOF Then Exit Sub
-    DesplazamientoData adodc1, Index, True
+    If Adodc1.Recordset.EOF Then Exit Sub
+    DesplazamientoData Adodc1, Index, True
     PonerCampos
 End Sub
 Private Sub PonerCadenaBusqueda()
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
-    adodc1.RecordSource = CadenaConsulta
-    adodc1.Refresh
-    If adodc1.Recordset.RecordCount <= 0 Then
+    Adodc1.RecordSource = CadenaConsulta
+    Adodc1.Refresh
+    If Adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -2221,7 +2223,7 @@ On Error GoTo EEPonerBusq
         End If
         Exit Sub
     Else
-        adodc1.Recordset.MoveFirst
+        Adodc1.Recordset.MoveFirst
         PonerCampos
         PonerModo 2
     End If
@@ -2241,8 +2243,8 @@ Dim encontrado As String
 On Error Resume Next
 
     
-    If adodc1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, adodc1
+    If Adodc1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, Adodc1
     
     
     If Text1(10).Text <> "" Then
@@ -2258,7 +2260,7 @@ On Error Resume Next
     CargaGrid DataGrid1, Adodc2
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador(0).Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+    lblIndicador(0).Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -2302,7 +2304,7 @@ End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim Tabla As String
 Dim Titulo As String
 
@@ -2362,10 +2364,10 @@ Dim dirMail As String
 End Sub
 
 Private Sub PosicionarData()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 
-    Cad = "(codchofe=" & Text1(0).Text & ")"
-    If SituarData(adodc1, Cad, Indicador) Then
+    cad = "(codchofe=" & Text1(0).Text & ")"
+    If SituarData(Adodc1, cad, Indicador) Then
        PonerModo 2
        lblIndicador(0).Caption = Indicador
     Else
@@ -2424,7 +2426,7 @@ Private Sub printNou()
         Else
             .cadRegSelec = ""
         End If
-        .cadRegActua = POS2SF(adodc1, Me)
+        .cadRegActua = POS2SF(Adodc1, Me)
         .cadTodosReg = ""
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
         .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"

@@ -477,6 +477,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 320
+
+
 Public WithEvents frmCal As frmCal
 Attribute frmCal.VB_VarHelpID = -1
 Public WithEvents frmCli As frmFacClientes
@@ -496,7 +499,7 @@ Dim PrimeraVez As Boolean
 Dim NumFactu As Long
 Dim FecFactu As Date
 Dim Modo As Byte
-Dim Cad As String
+Dim cad As String
 Dim Codigo As String
 Dim CadServicios As String
 Dim Salir As Boolean
@@ -591,8 +594,8 @@ Dim Sql As String
         PonerFoco txtcodigo(1)
         Exit Function
     Else
-        txtNombre(1).Text = PonerNombreDeCod(txtcodigo(1), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
-        If txtNombre(1).Text = "" Then
+        txtnombre(1).Text = PonerNombreDeCod(txtcodigo(1), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
+        If txtnombre(1).Text = "" Then
             MsgBox "El artículo debe de existir. Revise.", vbExclamation
             PonerFoco txtcodigo(1)
             Exit Function
@@ -647,7 +650,7 @@ Dim BaseivaServ As Currency
 Dim ImpivaServ As Currency
 
 Dim RsServ As ADODB.Recordset
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim devuelve As String
 Dim Existe As Boolean
 Dim SQL2 As String
@@ -900,7 +903,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     txtcodigo(2).Text = Date
 '    Text1(4).Text = vParamAplic.ConFactuPubli
@@ -911,22 +914,22 @@ Private Sub Form_Load()
         Tabla = "shilla"
     End If
     For kCampo = 0 To 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     For kCampo = 3 To 5
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
-    Me.imgFecha(2).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(2).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     
 End Sub
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    Cad = CadenaDevuelta
+    cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
@@ -935,13 +938,13 @@ End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1006,7 +1009,7 @@ End Sub
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
     txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1062,27 +1065,27 @@ Dim EsNomCod As Boolean
             
         Case 0 'cliente
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
-            If txtNombre(Index).Text <> "" Then
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
+            If txtnombre(Index).Text <> "" Then
                 txtcodigo(3).Text = DevuelveDesdeBDNew(conAri, "scliente", "codforpa", "codclien", txtcodigo(0).Text, "N")
                 If txtcodigo(3).Text <> "" Then
-                    txtNombre(3).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", txtcodigo(3).Text, "N")
+                    txtnombre(3).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", txtcodigo(3).Text, "N")
                 End If
             End If
             
         Case 1 'articulo
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
             
         Case 3 ' forma de pago
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
             
         Case 2 ' fecha de factura
             PonerFormatoFecha txtcodigo(Index)
              
         Case 5 'banco propio
             If PonerFormatoEntero(txtcodigo(5)) Then
-                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
+                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
             End If
            
         Case 85  'Importe
@@ -1094,7 +1097,7 @@ End Sub
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim Cad As String
+Dim cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1106,8 +1109,8 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then

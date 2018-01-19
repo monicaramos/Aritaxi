@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{79EB16A5-917F-4145-AB5F-D3AEA60612D8}#17.2#0"; "Codejock.Calendar.v17.2.0.ocx"
-Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "Codejock.ShortcutBar.v17.2.0.ocx"
+Object = "{79EB16A5-917F-4145-AB5F-D3AEA60612D8}#17.2#0"; "CODEJO~1.OCX"
+Object = "{C8E5842E-102B-4289-9D57-3B3F5B5E15D3}#17.2#0"; "CO08EA~1.OCX"
 Begin VB.Form frmPaneCalendar2 
    BackColor       =   &H80000005&
    BorderStyle     =   0  'None

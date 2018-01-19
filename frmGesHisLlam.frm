@@ -13,9 +13,9 @@ Begin VB.Form frmGesHisLlam
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   3450
+      Left            =   3960
       TabIndex        =   99
-      Top             =   60
+      Top             =   90
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
@@ -56,14 +56,14 @@ Begin VB.Form frmGesHisLlam
       Left            =   240
       TabIndex        =   97
       Top             =   60
-      Width           =   3075
+      Width           =   3615
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   240
          TabIndex        =   98
          Top             =   180
-         Width           =   2655
-         _ExtentX        =   4683
+         Width           =   3195
+         _ExtentX        =   5636
          _ExtentY        =   582
          ButtonWidth     =   609
          ButtonHeight    =   582
@@ -101,8 +101,6 @@ Begin VB.Form frmGesHisLlam
                Style           =   3
             EndProperty
             BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Enabled         =   0   'False
-               Object.Visible         =   0   'False
                Object.ToolTipText     =   "Imprimir"
             EndProperty
             BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
@@ -2196,6 +2194,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 317
+
 Public FechaServ As String
 Public HoraServ As String
 Public NumerUve As String
@@ -2283,7 +2283,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim I As Long
 Dim CadB As String
-Dim Cad As String
+Dim cad As String
 Dim Indicador As String
 Dim cad1 As String
 
@@ -2454,16 +2454,16 @@ End Function
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
         If Adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Adodc1.Recordset.Fields(0) & "|"
+        cad = cad & Adodc1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     
 End Sub
@@ -2542,6 +2542,7 @@ Dim I As Integer
         .Buttons(1).Image = 3   'Anyadir
         .Buttons(2).Image = 4   'Modificar
         .Buttons(3).Image = 5   'Eliminar
+        .Buttons(8).Image = 16 'Imprmir
     End With
     
     ' desplazamiento
@@ -3032,8 +3033,6 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             mnModificar_Click
         Case 3  'Borrar
             mnEliminar_Click
-'        Case 9
-'            mnLineas_Click
         Case 8  'imprimir
             printNou
     End Select
@@ -3291,7 +3290,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 End Sub
 
 Private Sub PosicionarData()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 Dim vWhere As String
 
     If Not Adodc1.Recordset.EOF Then
@@ -3355,15 +3354,15 @@ End Sub
 
 
 Private Function ObtenerSelFactura() As String
-Dim Cad As String
-Dim RS As ADODB.Recordset
+Dim cad As String
+Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
-    Cad = ""
+    cad = ""
 '    If Me.DesdeFichaCliente Then
         '
-    Cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
+    cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
         
 '    Else
 '        'Tengo YA el codigo de la factura
@@ -3404,7 +3403,7 @@ Dim RS As ADODB.Recordset
 '                End If
 '
 '    End If
-    ObtenerSelFactura = Cad
+    ObtenerSelFactura = cad
 End Function
 
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)

@@ -380,6 +380,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 206
+
+
 Dim Tabla As String
 Dim cadFormula As String
 Dim cadParam As String
@@ -476,7 +479,7 @@ Private Function HaySociosConLiquidacionesPosteriores(cTabla As String, cWhere A
 Dim Sql As String
 Dim vSocio As CSocio
 Dim CadSocios As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eHaySociosConLiquidacionesPosteriores
 
@@ -494,25 +497,25 @@ Dim RS As ADODB.Recordset
         Sql = Sql & " WHERE " & cWhere
     End If
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     CadSocios = ""
     
-    While Not RS.EOF
+    While Not Rs.EOF
     
         Set vSocio = New CSocio
-        If vSocio.LeerDatos(CStr(RS!codSocio)) Then
-            If DBLet(RS!NumFactu, "N") <> (vSocio.ConseguirContador("FLI") - 1) Then
+        If vSocio.LeerDatos(CStr(Rs!codSocio)) Then
+            If DBLet(Rs!NumFactu, "N") <> (vSocio.ConseguirContador("FLI") - 1) Then
                 CadSocios = CadSocios & Format(vSocio.Codigo, "000000") & ","
             End If
         End If
         Set vSocio = Nothing
     
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If CadSocios <> "" Then
         ' quitamos la ultima coma
@@ -537,7 +540,7 @@ Private Function HayFacturasContabilizadas(cTabla As String, cWhere As String) A
 Dim Sql As String
 Dim vSocio As CSocio
 Dim CadSocios As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eHayFacturasContabilizadas
 
@@ -589,15 +592,15 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     Tabla = "sfactusoc"
     
     For kCampo = 0 To Me.imgBuscarOfer.Count - 1
-        Me.imgBuscarOfer(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscarOfer(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     For kCampo = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
     
     
@@ -619,7 +622,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim Cad As String
+Dim cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -631,8 +634,8 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -652,7 +655,7 @@ End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
     txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
-    txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub imgBuscarOfer_Click(Index As Integer)
@@ -698,17 +701,17 @@ Private Sub imgFecha_Click(Index As Integer)
    PonerFoco txtcodigo(indCodigo)
 End Sub
 
-Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
-        Cad = Cad & "desde " & txtcodigo(indD).Text
-        If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
+        cad = cad & "desde " & txtcodigo(indD).Text
+        If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
-        Cad = Cad & "  hasta " & txtcodigo(indH).Text
-        If txtNombre(indH).Text <> "" Then Cad = Cad & " - " & txtNombre(indH).Text
+        cad = cad & "  hasta " & txtcodigo(indH).Text
+        If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
     End If
-    AnyadirParametroDH = Cad
+    AnyadirParametroDH = cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 
@@ -755,7 +758,7 @@ Dim EsNomCod As Boolean
     Select Case Index
         Case 0, 1 'V Socio
             PonerFormatoEntero txtcodigo(Index)
-            txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' fecha de liquidacion
             PonerFormatoFecha txtcodigo(Index)
@@ -774,16 +777,16 @@ Dim EsNomCod As Boolean
 End Sub
 
 Private Sub ActivarCLAVE()
-Dim i As Integer
+Dim I As Integer
     
-    For i = 0 To 2
-        txtcodigo(i).Enabled = False
-    Next i
+    For I = 0 To 2
+        txtcodigo(I).Enabled = False
+    Next I
     txtcodigo(8).Enabled = True
-    For i = 0 To 1
-        imgBuscarOfer(i).Enabled = False
-        imgBuscarOfer(i).visible = False
-    Next i
+    For I = 0 To 1
+        imgBuscarOfer(I).Enabled = False
+        imgBuscarOfer(I).visible = False
+    Next I
     
     imgFecha(0).Enabled = False
     cmdAceptar.Enabled = False
@@ -794,16 +797,16 @@ Dim i As Integer
 End Sub
 
 Private Sub DesactivarCLAVE()
-Dim i As Integer
+Dim I As Integer
 
-    For i = 0 To 2
-        txtcodigo(i).Enabled = True
-    Next i
+    For I = 0 To 2
+        txtcodigo(I).Enabled = True
+    Next I
     txtcodigo(8).Enabled = False
-    For i = 0 To 1
-        imgBuscarOfer(i).Enabled = True
-        imgBuscarOfer(i).visible = True
-    Next i
+    For I = 0 To 1
+        imgBuscarOfer(I).Enabled = True
+        imgBuscarOfer(I).visible = True
+    Next I
     imgFecha(0).Enabled = True
     cmdAceptar.Enabled = True
     cmdCancelar.Enabled = False
@@ -925,7 +928,7 @@ Dim SQL2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
     
     On Error GoTo eInsertLinea
     
@@ -965,7 +968,7 @@ Dim SQL2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
     
     On Error GoTo eInsertLinea
     
@@ -1002,7 +1005,7 @@ Dim SQL2 As String
 Dim SqlValues As String
 Dim linea As Long
 Dim MensError As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
     
     On Error GoTo eInsertLinea
     

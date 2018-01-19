@@ -353,6 +353,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+
 '=========================== PUBLICAS =======================
 Public Event CargarNumSeries()
 Public DeVentas As Boolean 'Si llamo a cargar Nº Series desde VEntas, sino se llamo desde compras
@@ -461,7 +462,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     'ICONOS de La toolbar
 '    With Toolbar1
@@ -473,9 +474,9 @@ Private Sub Form_Load()
 '    End With
     
     With Me.Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 4   'Modificar
         .Buttons(2).Image = 21   'Cargar Nº Series
     End With
@@ -498,7 +499,7 @@ End Sub
 
 
 Private Sub CargaGrid(enlaza As Boolean)
-Dim i As Byte
+Dim I As Byte
 Dim Sql As String
 On Error GoTo ECarga
 
@@ -534,10 +535,10 @@ On Error GoTo ECarga
     DataGrid1.Columns(6).Width = 2800
     
     
-    For i = 0 To DataGrid1.Columns.Count - 1
-        DataGrid1.Columns(i).AllowSizing = False
-        DataGrid1.Columns(i).Locked = True
-    Next i
+    For I = 0 To DataGrid1.Columns.Count - 1
+        DataGrid1.Columns(I).AllowSizing = False
+        DataGrid1.Columns(I).Locked = True
+    Next I
     DataGrid1.ScrollBars = dbgVertical
     
     DataGrid1.RowHeight = 350
@@ -557,8 +558,8 @@ Dim alto As Single
     
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        txtAux.Top = 290
-        txtauz.Top = 290
+        txtAux.top = 290
+        txtauz.top = 290
     Else
         DeseleccionaGrid Me.DataGrid1
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
@@ -570,16 +571,16 @@ Dim alto As Single
         End If
 
         If DataGrid1.Row < 0 Then
-            alto = DataGrid1.Top + 220
+            alto = DataGrid1.top + 220
         Else
-            alto = DataGrid1.Top + DataGrid1.RowTop(DataGrid1.Row) + 10
+            alto = DataGrid1.top + DataGrid1.RowTop(DataGrid1.Row) + 10
         End If
 
         'Fijamos altura y posición Top
         '-------------------------------
-        txtAux.Top = alto
+        txtAux.top = alto
         txtAux.Height = DataGrid1.RowHeight
-        txtauz.Top = alto
+        txtauz.top = alto
         txtauz.Height = DataGrid1.RowHeight
         
         'Fijamos anchura y posicion Left
@@ -801,7 +802,7 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo

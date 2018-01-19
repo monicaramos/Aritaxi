@@ -410,6 +410,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 601
+
 Public WithEvents frmCal As frmCal
 Attribute frmCal.VB_VarHelpID = -1
 Public WithEvents frmCli As frmFacClientes
@@ -428,7 +430,7 @@ Dim NumFactu As Long
 Dim FecFactu As Date
 Dim numParam As Integer
 Dim Modo As Byte
-Dim Cad As String
+Dim cad As String
 
 
 Dim kCampo As Integer
@@ -517,7 +519,7 @@ End Sub
 Private Function GenerarFacturas() As Boolean
 Dim vC As CTiposMov
 Dim fac As CFactura
-Dim Cad As String
+Dim cad As String
 Dim Sql As String
 Dim iva As String
 Dim porIva As Currency
@@ -542,15 +544,15 @@ Dim vDevuelve As String
     On Error GoTo EGenFactu
 
     GenerarFacturas = False
-    Cad = "FPC"
+    cad = "FPC"
 
     Set vC = New CTiposMov
     Set cli = New CCliente
     Set fac = New CFactura
     
 
-    If vC.TipoMovimiento <> Cad Then
-        If Not vC.Leer(Cad) Then
+    If vC.TipoMovimiento <> cad Then
+        If Not vC.Leer(cad) Then
             miRsAux.Close
             If NumRegElim > 0 Then MsgBox "Se han generado " & NumRegElim & " factura(s) antes del error", vbExclamation
             Exit Function
@@ -569,10 +571,10 @@ Dim vDevuelve As String
     ImpIVA = (BaseImp * porIva) / 100
     totfactu = BaseImp + ImpIVA
     fac.TotalFac = totfactu
-    fac.codtipom = Cad
+    fac.codtipom = cad
     FecFactu = Text1(1).Text
     fac.FecFactu = FecFactu
-    fac.LetraSerie = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", Cad, "T")
+    fac.LetraSerie = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", cad, "T")
     NumFactu = vC.Contador
     fac.NumFactu = NumFactu
     'Cuenta Prevista de Cobro de las Facturas
@@ -631,7 +633,7 @@ Dim vDevuelve As String
     Sql = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
     Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
     Sql = Sql & "imporiv1,totalfac,intconta,coddirec, iban, codbanco, codsucur, digcontr, cuentaba ) VALUES ("
-    Sql = Sql & DBSet(Cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & Text1(0).Text & ","
+    Sql = Sql & DBSet(cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & Text1(0).Text & ","
     Sql = Sql & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
     Sql = Sql & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
     Sql = Sql & "," & Text1(2).Text & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
@@ -677,7 +679,7 @@ Dim vDevuelve As String
         
         Sql = "INSERT INTO scafaccli1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
         Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
-        Sql = Sql & DBSet(Cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
+        Sql = Sql & DBSet(cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
         Sql = Sql & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
         Sql = Sql & "," & CodTraba & "," & DBSet(o1, "T") & "," & DBSet(o2, "T") & "," & DBSet(o3, "T") & ","
         Sql = Sql & DBSet(o4, "T") & "," & DBSet(o5, "T") & ",NULL)"
@@ -706,7 +708,7 @@ Dim vDevuelve As String
         
         Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
         Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
-        Sql = Sql & DBSet(Cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,0," & almac & ","
+        Sql = Sql & DBSet(cad, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,0," & almac & ","
         Sql = Sql & DBSet(vParamAplic.CodarticTfnia, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & TransformaComasPuntos(CStr(BaseImp)) & ","
         Sql = Sql & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
         Sql = Sql & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & ")"
@@ -760,13 +762,13 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgIcoForms.ListImages(1).Picture
+        Me.imgBuscar(kCampo).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next kCampo
     
-    Me.imgFecha(2).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+    Me.imgFecha(2).Picture = frmppal.imgIcoForms.ListImages(2).Picture
 
 
 
@@ -779,7 +781,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    Cad = CadenaDevuelta
+    cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)

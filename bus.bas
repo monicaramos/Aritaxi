@@ -302,7 +302,10 @@ Public Function LeerParametros()
         MsgBox devuelve & "Debe configurar la aplicación.", vbExclamation
         Set vParamAplic = Nothing
     End If
-                
+    
+    
+    'Pondra la tb ppal
+    vUsu.LeerTabPorDefecto
     
 End Function
 

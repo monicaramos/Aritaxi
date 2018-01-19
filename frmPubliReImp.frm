@@ -351,6 +351,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Const IdPrograma = 607
+
+
 Dim Tabla As String
 Dim cadFormula As String
 Dim cadParam As String
@@ -459,10 +462,10 @@ End Sub
 Private Sub Form_Load()
 
     'Icono del form
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
     
     For kCampo = 23 To 24
-        Me.imgFecha(kCampo).Picture = frmPpal.imgIcoForms.ListImages(2).Picture
+        Me.imgFecha(kCampo).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next kCampo
 
 '    CargarComboAnyo
@@ -527,21 +530,21 @@ End Function
 'End Sub
 
 Private Function ejecutaselect(CADENA As String) As String
-Dim RS As Recordset
+Dim Rs As Recordset
 Dim C As String
 
 ejecutaselect = ""
-Set RS = New ADODB.Recordset
-RS.Open CADENA, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-If Not RS.EOF Then
-    If Not IsNull((RS.Fields(0))) Then
-        C = RS.Fields(0)
+Set Rs = New ADODB.Recordset
+Rs.Open CADENA, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+If Not Rs.EOF Then
+    If Not IsNull((Rs.Fields(0))) Then
+        C = Rs.Fields(0)
     Else
         C = 0
     End If
 End If
-RS.Close
-Set RS = Nothing
+Rs.Close
+Set Rs = Nothing
 ejecutaselect = C
 
 
@@ -549,7 +552,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim Cad As String
+Dim cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -561,8 +564,8 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then

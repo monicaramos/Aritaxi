@@ -477,6 +477,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 902
+
+
 Private WithEvents frmB As frmBasico2
 Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmCP As frmCPostal 'Codigos Postales
@@ -589,15 +592,15 @@ End Sub
 
 
 Private Sub BotonVerTodos()
-Dim Cad As String
+Dim cad As String
     'Ver todos
-    If vUsu.Nivel > 0 Then Cad = "codigo > 20"
+    If vUsu.Nivel > 0 Then cad = "codigo > 20"
     If chkVistaPrevia.Value = 1 Then
-        MandaBusquedaPrevia Cad
+        MandaBusquedaPrevia cad
     Else
-        If vUsu.Nivel > 0 Then Cad = " WHERE " & Cad
+        If vUsu.Nivel > 0 Then cad = " WHERE " & cad
         LimpiarCampos
-        CadenaConsulta = "Select * from " & NombreTabla & Cad & Ordenacion
+        CadenaConsulta = "Select * from " & NombreTabla & cad & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
@@ -618,17 +621,17 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Cad As String
+Dim cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
     
     'Copmpruebo si se puede eliminar
-    Cad = DevuelveDesdeBD(conAri, "count(*)", "scrmacciones", "tipo", CStr(Data1.Recordset!Codigo))
-    If Cad = "" Then Cad = "0"
-    If Val(Cad) > 0 Then
-        MsgBox "Existen acciones comerciales realizadas con este tipo(" & Cad & ")", vbExclamation
+    cad = DevuelveDesdeBD(conAri, "count(*)", "scrmacciones", "tipo", CStr(Data1.Recordset!Codigo))
+    If cad = "" Then cad = "0"
+    If Val(cad) > 0 Then
+        MsgBox "Existen acciones comerciales realizadas con este tipo(" & cad & ")", vbExclamation
         Exit Sub
     End If
     
@@ -636,10 +639,10 @@ Dim Cad As String
 
  
     
-            Cad = "¿Seguro que desea eliminar la accion comercial? " & vbCrLf
-            Cad = Cad & vbCrLf & "Código: " & Format(Data1.Recordset.Fields(0), "0000")
-            Cad = Cad & vbCrLf & "Descripción: " & Data1.Recordset.Fields(1)
-            If MsgBox(Cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
+            cad = "¿Seguro que desea eliminar la accion comercial? " & vbCrLf
+            cad = cad & vbCrLf & "Código: " & Format(Data1.Recordset.Fields(0), "0000")
+            cad = cad & vbCrLf & "Descripción: " & Data1.Recordset.Fields(1)
+            If MsgBox(cad, vbQuestion + vbYesNo) = vbNo Then Exit Sub
    
 
     'Borramos
@@ -648,8 +651,8 @@ Dim Cad As String
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        Cad = "Delete from scrmtipo where codigo=" & Data1.Recordset!Codigo
-        conn.Execute Cad
+        cad = "Delete from scrmtipo where codigo=" & Data1.Recordset!Codigo
+        conn.Execute cad
         
     
         If SituarDataTrasEliminar(Data1, NumRegElim) Then
@@ -668,16 +671,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    Cad = Data1.Recordset.Fields(0) & "|"
-    Cad = Cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(Cad)
+    cad = Data1.Recordset.Fields(0) & "|"
+    cad = cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -697,7 +700,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 '    Me.Width = 7410
     ' ICONITOS DE LA BARRA
 '    btnPrimero = 13
@@ -716,9 +719,9 @@ Private Sub Form_Load()
 '    End With
     
     With Me.Toolbar1
-        .ImageList = frmPpal.imgListComun1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
         'el 1 es separadors
         .Buttons(5).Image = 1   'Buscar
         .Buttons(6).Image = 2   'Todos
@@ -732,9 +735,9 @@ Private Sub Form_Load()
     
     ' desplazamiento
     With Me.ToolbarDes
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 6
         .Buttons(2).Image = 7
         .Buttons(3).Image = 8
@@ -1104,7 +1107,39 @@ Dim I As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol
@@ -1197,11 +1232,11 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim Cad As String
+Dim cad As String
 Dim Indicador As String
 
-    Cad = "(codigo=" & Text1(0).Text & ")"
-    If SituarData(Data1, Cad, Indicador) Then
+    cad = "(codigo=" & Text1(0).Text & ")"
+    If SituarData(Data1, cad, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else

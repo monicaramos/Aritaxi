@@ -2033,6 +2033,9 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
+Private Const IdPrograma = 420
+
+
 Public DesdeFichaSocio As Boolean
 
 'Si se llama de la busqueda en el frmAlmMovimArticulos se accede
@@ -2192,11 +2195,11 @@ On Error GoTo EModFact
 '                    If Text1(1).Text = "FLI" Then
                         If vParamAplic.ContabilidadNueva Then
                             Sql = " numserie = " & DBSet(SerieFraPro, "T")
-                            Sql = Sql & " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(Data1.Recordset.Fields!NumFactu) & "'"
+                            Sql = Sql & " AND codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & Format(CLng(Data1.Recordset.Fields!NumFactu), "0000000") & "'"
                             Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                             ConnConta.Execute "Delete from pagos WHERE " & Sql
                         Else
-                            Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & CLng(Data1.Recordset.Fields!NumFactu) & "'"
+                            Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(vFactu.tipoMov) & Format(CLng(Data1.Recordset.Fields!NumFactu), "0000000") & "'"
                             Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                             ConnConta.Execute "Delete from spagop WHERE " & Sql
                         End If
@@ -2726,7 +2729,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -2740,9 +2743,9 @@ Dim Cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Data1.Recordset.Fields(0) & "|"
-        Cad = Cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Data1.Recordset.Fields(0) & "|"
+        cad = cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 
@@ -3123,14 +3126,14 @@ Dim indice As Byte
 End Sub
 
 Private Sub PonerDatosSocio()
-Dim Cad As String
+Dim cad As String
 
     If Text1(4).Text = "" Then Exit Sub
 
     Set miRsAux = New ADODB.Recordset
     
-    Cad = "select * from sclien where codclien=" & Text1(4).Text
-    miRsAux.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    cad = "select * from sclien where codclien=" & Text1(4).Text
+    miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         Text1(5).Text = miRsAux!nomclien
         Text1(6).Text = miRsAux!nifClien
@@ -3587,8 +3590,8 @@ End Sub
 Private Sub BotonAnyadir()
 'Añadir registro en tabla de cabecera de Pedidos: scaped (Cabecera)
 Dim NomTraba As String
-Dim Cad As String
-Dim RS As ADODB.Recordset
+Dim cad As String
+Dim Rs As ADODB.Recordset
 
     LimpiarCampos 'Vacía los TextBox
     'Poner los grid sin apuntar a nada
@@ -3661,9 +3664,12 @@ Dim devuelve As String
         Dim PorceReten As Currency
         Dim ImpoReten As Currency
         Dim ImpoIva As Currency
+        Dim Suplidos As Currency
         
         If Index = 15 Or Index = 21 Then
             BaseImpo = CCur(ImporteSinFormato(Text1(16).Text))
+            
+            Suplidos = CCur(ComprobarCero(Text1(25).Text))
             
             Text1(17).Text = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", Text1(15).Text, "N")
             PorceIVA = 0
@@ -3671,7 +3677,8 @@ Dim devuelve As String
             ImpoIva = Round2(BaseImpo * PorceIVA / 100, 2)
             PorceReten = CCur(ImporteSinFormato(Text1(21).Text))
             ImpoReten = Round2((BaseImpo + ImpoIva) * PorceReten / 100, 2)
-            TotalFac1 = BaseImpo + ImpoIva - ImpoReten
+            
+            TotalFac1 = BaseImpo + ImpoIva - ImpoReten + Suplidos
         
             Text1(16).Text = Format(BaseImpo, "#,###,###,##0.00")
             Text1(17).Text = Format(PorceIVA, "#0.00")
@@ -3904,7 +3911,7 @@ End Sub
 
 Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de Facturas (sfactusoc)
-Dim Cad As String
+Dim cad As String
 Dim EstaEnTesoreria As String
 
     On Error GoTo EEliminar
@@ -3915,18 +3922,18 @@ Dim EstaEnTesoreria As String
     'solo se puede modificar la factura si no esta contabilizada
     If FactContabilizada(EstaEnTesoreria) Then Exit Sub
     
-    Cad = "Cabecera de Facturas." & vbCrLf
-    Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
-    Cad = Cad & "Va a eliminar la Factura:            "
-    Cad = Cad & vbCrLf & "Tipo:  " & Text1(1).Text
-    Cad = Cad & vbCrLf & "Nº Fact.:  " & Format(Text1(0).Text, "0000000")
-    Cad = Cad & vbCrLf & "Socio.:  " & Format(Text1(4).Text, "000000")
-    Cad = Cad & vbCrLf & "Fecha:  " & Format(Text1(2).Text, "dd/mm/yyyy")
+    cad = "Cabecera de Facturas." & vbCrLf
+    cad = cad & "-------------------------------------      " & vbCrLf & vbCrLf
+    cad = cad & "Va a eliminar la Factura:            "
+    cad = cad & vbCrLf & "Tipo:  " & Text1(1).Text
+    cad = cad & vbCrLf & "Nº Fact.:  " & Format(Text1(0).Text, "0000000")
+    cad = cad & vbCrLf & "Socio.:  " & Format(Text1(4).Text, "000000")
+    cad = cad & vbCrLf & "Fecha:  " & Format(Text1(2).Text, "dd/mm/yyyy")
 
-    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarla? "
+    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarla? "
 
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -4095,9 +4102,48 @@ Dim b As Boolean
     PonerModoOpcionesMenu (Modo) 'Activar opciones de menu según modo
     PonerOpcionesMenu 'Activar opciones de menu según nivel de permisos del usuario
     
+    PonerModoUsuarioGnral Modo, "aritaxi"
+    
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        'subclientes
+        For I = 0 To ToolAux.Count - 1
+            ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+            ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+            ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        Next I
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol
@@ -4296,7 +4342,7 @@ End Sub
 'Es decir. El  msgbox que pondra al final lo guardo en esta variable
 Private Function ComprobarCobroArimoney(vTesoreria As String, LEtra As String, codmacta As String, Codfaccl As Long, Fecha As Date) As Boolean
 Dim vR As ADODB.Recordset
-Dim Cad As String
+Dim cad As String
 
 
 On Error GoTo EComprobarCobroArimoney
@@ -4304,38 +4350,38 @@ On Error GoTo EComprobarCobroArimoney
     Set vR = New ADODB.Recordset
     
     If vParamAplic.ContabilidadNueva Then
-        Cad = "Select * from cobros where numserie='" & LEtra & "'"
-        Cad = Cad & " AND numfactu =" & Codfaccl
-        Cad = Cad & " AND codmacta =" & DBSet(codmacta, "T")
-        Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
+        cad = "Select * from cobros where numserie='" & LEtra & "'"
+        cad = cad & " AND numfactu =" & Codfaccl
+        cad = cad & " AND codmacta =" & DBSet(codmacta, "T")
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
     Else
-        Cad = "Select * from scobro where numserie='" & LEtra & "'"
-        Cad = Cad & " AND codfaccl =" & Codfaccl
-        Cad = Cad & " AND codmacta =" & DBSet(codmacta, "T")
-        Cad = Cad & " AND fecfaccl =" & DBSet(Fecha, "F")
+        cad = "Select * from scobro where numserie='" & LEtra & "'"
+        cad = cad & " AND codfaccl =" & Codfaccl
+        cad = cad & " AND codmacta =" & DBSet(codmacta, "T")
+        cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
     End If
     '
     vTesoreria = ""
-    vR.Open Cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
-    Cad = ""
+    vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    cad = ""
     If vR.EOF Then
         vTesoreria = "NO se ha encotrado ningun vencimiento en la tesoreria"
     Else
         While Not vR.EOF
-            Cad = ""
+            cad = ""
             If DBLet(vR!codrem, "T") <> "" Then
-                Cad = "El cobro asociado a la factura esta remesado(" & vR!codrem & ")"
+                cad = "El cobro asociado a la factura esta remesado(" & vR!codrem & ")"
             Else
                 If DBLet(vR!recedocu, "N") = 1 Then
-                    Cad = "Documento recibido"
+                    cad = "Documento recibido"
                 Else
                 
                     If vParamAplic.ContabilidadNueva Then
                             
                         If DBLet(vR!transfer, "N") = 1 Then
-                            Cad = "Esta en una transferencia"
+                            cad = "Esta en una transferencia"
                         Else
-                           If DBLet(vR!impcobro, "N") > 0 Then Cad = "Esta parcialmente cobrado: " & vR!impcobro
+                           If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
                         
                             
                                     'Si hubeira que poner mas coas iria aqui
@@ -4343,12 +4389,12 @@ On Error GoTo EComprobarCobroArimoney
                     
                     Else
                         If DBLet(vR!Estacaja, "N") = 1 Then
-                            Cad = "Cobrado por caja"
+                            cad = "Cobrado por caja"
                         Else
                             If DBLet(vR!transfer, "N") = 1 Then
-                                Cad = "Esta en una transferencia"
+                                cad = "Esta en una transferencia"
                             Else
-                               If DBLet(vR!impcobro, "N") > 0 Then Cad = "Esta parcialmente cobrado: " & vR!impcobro
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
                             
                                 
                                         'Si hubeira que poner mas coas iria aqui
@@ -4357,7 +4403,7 @@ On Error GoTo EComprobarCobroArimoney
                     End If
                 End If 'recdedocu
             End If 'remesado
-            If Cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & Cad & vbCrLf
+            If cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & cad & vbCrLf
             vR.MoveNext
         Wend
     End If
@@ -4366,12 +4412,12 @@ On Error GoTo EComprobarCobroArimoney
     
     
     If vTesoreria <> "" Then
-        Cad = vTesoreria & vbCrLf & vbCrLf
+        cad = vTesoreria & vbCrLf & vbCrLf
         If vUsu.Nivel > 1 Then
-            MsgBox Cad, vbExclamation
+            MsgBox cad, vbExclamation
         Else
-            Cad = Cad & "¿Continuar?"
-            If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then ComprobarCobroArimoney = True
+            cad = cad & "¿Continuar?"
+            If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then ComprobarCobroArimoney = True
         End If
     Else
         ComprobarCobroArimoney = True
@@ -4388,7 +4434,7 @@ End Function
 'Es decir. El  msgbox que pondra al final lo guardo en esta variable
 Private Function ComprobarPagoArimoney(vTesoreria As String, vCta As String, Codfaccl As Long, Fecha As Date) As Boolean
 Dim vR As ADODB.Recordset
-Dim Cad As String
+Dim cad As String
 
 On Error GoTo EComprobarPagoArimoney
     
@@ -4398,47 +4444,47 @@ On Error GoTo EComprobarPagoArimoney
     
     
     If Not vParamAplic.ContabilidadNueva Then
-        Cad = "Select * from spagop where ctaprove='" & vCta & "'"
-        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
-        Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
+        cad = "Select * from spagop where ctaprove='" & vCta & "'"
+        cad = cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
     Else
-        Cad = "Select * from pagos where codmacta='" & vCta & "'"
-        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
-        Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
+        cad = "Select * from pagos where codmacta='" & vCta & "'"
+        cad = cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
+        cad = cad & " AND fecfactu =" & DBSet(Fecha, "F")
     End If
     
     '
     vTesoreria = ""
-    vR.Open Cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
-    Cad = ""
+    vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    cad = ""
     If vR.EOF Then
         vTesoreria = "NO se ha encotrado ningun pago en la tesoreria"
     Else
         While Not vR.EOF
-            Cad = ""
+            cad = ""
             If Not vParamAplic.ContabilidadNueva Then
                 If DBLet(vR!Estacaja, "N") = 1 Then
-                    Cad = "Pagado por caja"
+                    cad = "Pagado por caja"
                 Else
                     If DBLet(vR!transfer, "N") <> 0 Then
-                        Cad = "Esta en una transferencia"
+                        cad = "Esta en una transferencia"
                     Else
-                       If DBLet(vR!imppagad, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!impcobro
+                       If DBLet(vR!imppagad, "N") > 0 Then cad = "Esta parcialmente pagado: " & vR!impcobro
                         
                                 'Si hubeira que poner mas coas iria aqui
                     End If 'transfer
                 End If 'estacaja
-                If Cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & Cad & vbCrLf
+                If cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & cad & vbCrLf
             
             Else
                 If DBLet(vR!nrodocum, "N") <> 0 Then
-                    Cad = "Esta en una transferencia"
+                    cad = "Esta en una transferencia"
                 Else
-                   If DBLet(vR!imppagad, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!imppagad
+                   If DBLet(vR!imppagad, "N") > 0 Then cad = "Esta parcialmente pagado: " & vR!imppagad
                     
                             'Si hubeira que poner mas coas iria aqui
                 End If 'transfer
-                If Cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & Cad & vbCrLf
+                If cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & cad & vbCrLf
             
             End If
             vR.MoveNext
@@ -4449,12 +4495,12 @@ On Error GoTo EComprobarPagoArimoney
     
     
     If vTesoreria <> "" Then
-        Cad = vTesoreria & vbCrLf & vbCrLf
+        cad = vTesoreria & vbCrLf & vbCrLf
         If vUsu.Nivel > 1 Then
-            MsgBox Cad, vbExclamation
+            MsgBox cad, vbExclamation
         Else
-            Cad = Cad & "¿Continuar?"
-            If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then ComprobarPagoArimoney = True
+            cad = cad & "¿Continuar?"
+            If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then ComprobarPagoArimoney = True
         End If
     Else
         ComprobarPagoArimoney = True
@@ -4762,7 +4808,7 @@ On Error Resume Next
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, cad As String)
     
     Me.SSTab1.Tab = numTab
     If Me.DataGrid1.visible Then
@@ -4770,7 +4816,7 @@ Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
             MsgBox "La factura no tiene lineas.", vbInformation
             Exit Sub
         End If
-        TituloLinea = Cad
+        TituloLinea = cad
     End If
     If vUsu.Nivel >= 1 Then
         MsgBox "No tiene permiso", vbExclamation
@@ -4817,15 +4863,15 @@ End Sub
 
 
 Private Function ObtenerSelFactura() As String
-Dim Cad As String
-Dim RS As ADODB.Recordset
+Dim cad As String
+Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
-    Cad = ""
+    cad = ""
     If Me.DesdeFichaSocio Then
         '
-        Cad = " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F") & " and codsocio = " & DBSet(hcoCodSocio, "N")
+        cad = " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F") & " and codsocio = " & DBSet(hcoCodSocio, "N")
         
     Else
         'Tengo YA el codigo de la factura
@@ -4835,38 +4881,38 @@ Dim RS As ADODB.Recordset
                     'no hay albaran directamente va a factura de ticket
                     
                     'ver si lo encontramos como factura: codtipom, numfactu,fecfactu
-                    Cad = "SELECT COUNT(*) FROM sfactusoc "
-                    Cad = Cad & " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
-                    If RegistrosAListar(Cad) > 0 Then
-                        Cad = " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
+                    cad = "SELECT COUNT(*) FROM sfactusoc "
+                    cad = cad & " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
+                    If RegistrosAListar(cad) > 0 Then
+                        cad = " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
                     Else
-                        Cad = ""
+                        cad = ""
                     End If
                 Else
                     If hcoCodTipoM = "FAM" Then
-                        Cad = "  WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
+                        cad = "  WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
                     End If
                 End If
                 '******************************************************
                     
-                If Cad = "" Then
+                If cad = "" Then
                     'En la smoval estaba e mov. de ALbaran
-                    Cad = "SELECT codtipom,numfactu,fecfactu FROM sfactusoc "
-                    Cad = Cad & " WHERE codtipoa=" & DBSet(hcoCodTipoM, "T") & " AND numalbar=" & hcoCodMovim & " AND fechaalb=" & DBSet(hcoFechaMov, "F")
+                    cad = "SELECT codtipom,numfactu,fecfactu FROM sfactusoc "
+                    cad = cad & " WHERE codtipoa=" & DBSet(hcoCodTipoM, "T") & " AND numalbar=" & hcoCodMovim & " AND fechaalb=" & DBSet(hcoFechaMov, "F")
                     
-                    Set RS = New ADODB.Recordset
-                    RS.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                    If Not RS.EOF Then 'where para la factura
-                        Cad = " WHERE codtipom='" & RS!codtipom & "' AND numfactu= " & RS!NumFactu & " AND fecfactu=" & DBSet(RS!FecFactu, "F")
+                    Set Rs = New ADODB.Recordset
+                    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                    If Not Rs.EOF Then 'where para la factura
+                        cad = " WHERE codtipom='" & Rs!codtipom & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
                     Else
-                        Cad = " WHERE numfactu=-1"
+                        cad = " WHERE numfactu=-1"
                     End If
-                    RS.Close
-                    Set RS = Nothing
+                    Rs.Close
+                    Set Rs = Nothing
                 End If
     
     End If
-    ObtenerSelFactura = Cad
+    ObtenerSelFactura = cad
 End Function
 
 Private Sub LimpiarDatosSocio()
@@ -4939,7 +4985,7 @@ End Function
 
 
 Private Sub CargaCombo()
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim I As Byte
     
@@ -4949,18 +4995,18 @@ Dim I As Byte
     '                    y las facturas de cliente FAC y FPC
     Sql = "SELECT codtipom,nomtipom FROM stipom WHERE codtipom in ('FLI','FRL')"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
-        Sql = RS!nomtipom
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        Sql = Rs!nomtipom
         Sql = Replace(Sql, "Factura", "")
-        Combo1.AddItem RS!codtipom & "-" & Sql
+        Combo1.AddItem Rs!codtipom & "-" & Sql
         Combo1.ItemData(Combo1.NewIndex) = I
         I = I + 1
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 End Sub
 
 
