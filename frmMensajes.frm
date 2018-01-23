@@ -15,6 +15,118 @@ Begin VB.Form frmMensajes
    ScaleWidth      =   14160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameFrasPteContabilizar 
+      Height          =   5790
+      Left            =   0
+      TabIndex        =   72
+      Top             =   0
+      Width           =   13660
+      Begin VB.CommandButton cmdCerrarFras 
+         Caption         =   "Continuar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   5
+         Left            =   12060
+         TabIndex        =   74
+         Top             =   5280
+         Width           =   1215
+      End
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   0
+         ItemData        =   "frmMensajes.frx":000C
+         Left            =   240
+         List            =   "frmMensajes.frx":0016
+         Style           =   2  'Dropdown List
+         TabIndex        =   73
+         Tag             =   "Tipo de cliente|N|N|0|2|ssocio|tipsocio|||"
+         Top             =   240
+         Width           =   2055
+      End
+      Begin MSComctlLib.ListView ListView22 
+         Height          =   4545
+         Left            =   240
+         TabIndex        =   75
+         Top             =   630
+         Width           =   13085
+         _ExtentX        =   23072
+         _ExtentY        =   8017
+         View            =   3
+         LabelWrap       =   -1  'True
+         HideSelection   =   -1  'True
+         FullRowSelect   =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         BorderStyle     =   1
+         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   4
+         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Text            =   "Código"
+            Object.Width           =   1764
+         EndProperty
+         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   1
+            Text            =   "Variedad"
+            Object.Width           =   3881
+         EndProperty
+         BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   2
+            Text            =   "Clase "
+            Object.Width           =   1411
+         EndProperty
+         BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   3
+            Text            =   "Descripcion"
+            Object.Width           =   3706
+         EndProperty
+      End
+      Begin VB.Label Label24 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Facturas Pendientes de Contabilizar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   375
+         Left            =   4920
+         TabIndex        =   76
+         Top             =   300
+         Width           =   8355
+      End
+   End
    Begin VB.Frame FrameNSeries 
       Height          =   5000
       Left            =   480
@@ -207,7 +319,7 @@ Begin VB.Form frmMensajes
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   51
-         Text            =   "frmMensajes.frx":000C
+         Text            =   "frmMensajes.frx":002C
          Top             =   2760
          Width           =   7335
       End
@@ -420,7 +532,7 @@ Begin VB.Form frmMensajes
          Left            =   240
          MultiLine       =   -1  'True
          TabIndex        =   23
-         Text            =   "frmMensajes.frx":0012
+         Text            =   "frmMensajes.frx":0032
          Top             =   120
          Width           =   6615
       End
@@ -595,7 +707,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   5
          Left            =   180
-         Picture         =   "frmMensajes.frx":0018
+         Picture         =   "frmMensajes.frx":0038
          Top             =   5550
          Width           =   240
       End
@@ -603,7 +715,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   4
          Left            =   540
-         Picture         =   "frmMensajes.frx":0162
+         Picture         =   "frmMensajes.frx":0182
          Top             =   5550
          Width           =   240
       End
@@ -699,7 +811,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   1
          Left            =   600
-         Picture         =   "frmMensajes.frx":02AC
+         Picture         =   "frmMensajes.frx":02CC
          Top             =   6960
          Width           =   240
       End
@@ -707,7 +819,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   0
          Left            =   240
-         Picture         =   "frmMensajes.frx":03F6
+         Picture         =   "frmMensajes.frx":0416
          Top             =   6960
          Width           =   240
       End
@@ -729,9 +841,9 @@ Begin VB.Form frmMensajes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         ItemData        =   "frmMensajes.frx":0540
+         ItemData        =   "frmMensajes.frx":0560
          Left            =   7800
-         List            =   "frmMensajes.frx":0542
+         List            =   "frmMensajes.frx":0562
          Style           =   2  'Dropdown List
          TabIndex        =   41
          Top             =   5960
@@ -876,7 +988,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   2
          Left            =   11760
-         Picture         =   "frmMensajes.frx":0544
+         Picture         =   "frmMensajes.frx":0564
          Top             =   240
          Width           =   240
       End
@@ -884,7 +996,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   3
          Left            =   12360
-         Picture         =   "frmMensajes.frx":068E
+         Picture         =   "frmMensajes.frx":06AE
          Top             =   240
          Width           =   240
       End
@@ -962,7 +1074,7 @@ Begin VB.Form frmMensajes
          MultiLine       =   -1  'True
          ScrollBars      =   3  'Both
          TabIndex        =   28
-         Text            =   "frmMensajes.frx":07D8
+         Text            =   "frmMensajes.frx":07F8
          Top             =   360
          Width           =   7695
       End
@@ -1484,6 +1596,7 @@ Public OpcionMensaje As Byte
 
 '30 .- Bloqueo de empresas por usuarios.
 
+'31 .- facturas no contabilizadas
 
 Public cadWHERE As String 'Cadena para pasarle la WHERE de la SELECT de los cobros pendientes o de Pedido(para comp. stock)
                           'o CodArtic para seleccionar los Nº Series
@@ -1494,7 +1607,7 @@ Public cadWHERE2 As String
 Public vCampos As String 'Articulo y cantidad Empipados para Nº de Series
                          'Tambien para pasar el nombre de la tabla de lineas (sliped, slirep,...)
                          'Dependiendo desde donde llamemos, de Pedidos o Reparaciones
-
+Public CADENA As String
 
 '====================== VBLES LOCALES ================================
 
@@ -1509,7 +1622,7 @@ Dim Cantidad() As Integer
 
 Public Parametros As String
 
-Dim i As Integer
+Dim I As Integer
 Dim SQL As String
 Dim Rs As Recordset
 Dim ItmX As ListItem
@@ -1518,16 +1631,16 @@ Dim NE As Integer
 Dim Ok As Integer
 
 Private Sub cmdAcepServ_Click(Index As Integer)
-Dim Cad As String
+Dim cad As String
 
-    Cad = ""
+    cad = ""
     For TotalArray = 1 To ListView5.ListItems.Count
         If ListView5.ListItems(TotalArray).Checked Then
-            Cad = Cad & "(" & DBSet(ListView5.ListItems(TotalArray).Text, "F") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(1), "H") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(2), "N") & "),"
+            cad = cad & "(" & DBSet(ListView5.ListItems(TotalArray).Text, "F") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(1), "H") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(2), "N") & "),"
         End If
     Next TotalArray
-    If Len(Cad) > 0 Then Cad = Mid(Cad, 1, Len(Cad) - 1) ' quitamos la ultima coma
-    RaiseEvent DatoSeleccionado(Cad)
+    If Len(cad) > 0 Then cad = Mid(cad, 1, Len(cad) - 1) ' quitamos la ultima coma
+    RaiseEvent DatoSeleccionado(cad)
     PulsadoSalir = True
     Unload Me
     
@@ -1566,9 +1679,9 @@ End Sub
 
 
 Private Sub cmdAceptarNSeries_Click()
-Dim i As Integer, J As Byte
+Dim I As Integer, J As Byte
 Dim Seleccionados As Integer
-Dim Cad As String, SQL As String
+Dim cad As String, SQL As String
 Dim Articulo As String
 Dim Rs As ADODB.Recordset
 Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
@@ -1581,21 +1694,21 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
       
         'Si se ha seleccionado la cantidad correcta de Nº de series, empiparlos y
         'devolverlos al form de Albaranes(facturacion)
-        Cad = ""
+        cad = ""
         For J = 0 To TotalArray
             Articulo = codArtic(J)
-            Cad = Cad & Articulo & "|"
-            For i = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(i).Checked Then
-                    If Articulo = ListView2.ListItems(i).ListSubItems(1).Text Then
+            cad = cad & Articulo & "|"
+            For I = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(I).Checked Then
+                    If Articulo = ListView2.ListItems(I).ListSubItems(1).Text Then
                         If Seleccionados < Abs(Cantidad(J)) Then
                             Seleccionados = Seleccionados + 1
-                            Cad = Cad & ListView2.ListItems(i).Text & "|"
+                            cad = cad & ListView2.ListItems(I).Text & "|"
                         End If
                    'cad = cad & Data1.Recordset.Fields(1) & "|"
                     End If
                 End If
-            Next i
+            Next I
             If Seleccionados < Abs(Cantidad(J)) Then
                 'Comprobar que si tiene Nºs de serie de ese articulos cargados seleccione los
                 'que corresponden
@@ -1617,7 +1730,7 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
                 Set Rs = Nothing
             
             End If
-            Cad = Cad & "·"
+            cad = cad & "·"
             Seleccionados = 0
         Next J
       
@@ -1626,100 +1739,100 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
         If OpcionMensaje = 17 Then
             
             '----------------------------------------------------------------
-            Cad = "insert into tmpnlotes (codusu,numalbar,fechaalb,codalmac,codprove) values ("
+            cad = "insert into tmpnlotes (codusu,numalbar,fechaalb,codalmac,codprove) values ("
             ' ---- [30/10/2009] (LAURA) : agrupar por cliente y departamento
 '            cad = cad & vUsu.Codigo & ",1,'2005-04-12',1,"
-            Cad = Cad & vUsu.Codigo & ",1,'2005-04-12',"
+            cad = cad & vUsu.Codigo & ",1,'2005-04-12',"
             
             
-            For i = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(i).Checked Then
+            For I = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(I).Checked Then
                     ' ---- [30/10/2009] (LAURA) : agrupar por cliente y departamento
 '                    conn.Execute cad & (ListView2.ListItems(I).Text) & ")"
-                    conn.Execute Cad & DBSet(ListView2.ListItems(i).ListSubItems(3).Text, "N", "S") & "," & (ListView2.ListItems(i).Text) & ")"
+                    conn.Execute cad & DBSet(ListView2.ListItems(I).ListSubItems(3).Text, "N", "S") & "," & (ListView2.ListItems(I).Text) & ")"
                     
                     NumRegElim = NumRegElim + 1
                 End If
-            Next i
+            Next I
             
             
             '----------------------------------------------------------------
             
         Else
-            Cad = ""
+            cad = ""
             NumRegElim = 0
-            For i = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(i).Checked Then
+            For I = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(I).Checked Then
                     NumRegElim = NumRegElim + 1
-                    Cad = Cad & Val(ListView2.ListItems(i).Text) & ","
+                    cad = cad & Val(ListView2.ListItems(I).Text) & ","
                      'cad = cad & Data1.Recordset.Fields(1) & "|"
                 End If
-            Next i
+            Next I
             If NumRegElim > 1000 Then
                 MsgBox "Maximo número de etiquetas: 1000 (" & NumRegElim & ")", vbExclamation
                 NumRegElim = 0
-                Cad = ""
+                cad = ""
                 Exit Sub
             End If
             NumRegElim = 0
-            If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
+            If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
         End If
     ElseIf OpcionMensaje = 11 Or OpcionMensaje = 111 Then
     'Lineas Factura a rectificar
         'cad = "(" & cadWHERE & ")"
-        Cad = ""
+        cad = ""
         C1 = ""
         C2 = ""
         c3 = ""
         SQL = ""
-        For i = 1 To ListView2.ListItems.Count
-            If ListView2.ListItems(i).Checked Then
+        For I = 1 To ListView2.ListItems.Count
+            If ListView2.ListItems(I).Checked Then
                 If SQL = "" Then
-                    C1 = DBSet(ListView2.ListItems(i), "T", "N")
-                    C2 = ListView2.ListItems(i).ListSubItems(1)
+                    C1 = DBSet(ListView2.ListItems(I), "T", "N")
+                    C2 = ListView2.ListItems(I).ListSubItems(1)
 '                    c3 = ListView2.ListItems(i).ListSubItems(2)
-                    Cad = "(codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(i).ListSubItems(2)
+                    cad = "(codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(I).ListSubItems(2)
 
                 Else
-                    If Trim(DBSet(ListView2.ListItems(i), "T", "N")) = Trim(C1) And Trim(ListView2.ListItems(i).ListSubItems(1)) = Trim(C2) Then
+                    If Trim(DBSet(ListView2.ListItems(I), "T", "N")) = Trim(C1) And Trim(ListView2.ListItems(I).ListSubItems(1)) = Trim(C2) Then
                     'es el mismo albaran y concatenamos lineas
-                        Cad = "," & ListView2.ListItems(i).ListSubItems(2)
+                        cad = "," & ListView2.ListItems(I).ListSubItems(2)
 
                     Else
-                        If Cad <> "" Then SQL = SQL & ")) "
-                        C1 = DBSet(ListView2.ListItems(i), "T", "N")
-                        C2 = ListView2.ListItems(i).ListSubItems(1)
+                        If cad <> "" Then SQL = SQL & ")) "
+                        C1 = DBSet(ListView2.ListItems(I), "T", "N")
+                        C2 = ListView2.ListItems(I).ListSubItems(1)
 '                    c3 = ListView2.ListItems(i).ListSubItems(2)
-                        Cad = " or (codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(i).ListSubItems(2)
+                        cad = " or (codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(I).ListSubItems(2)
                         
 '                       cad=cad &
                     End If
                 End If
-                SQL = SQL & Cad
+                SQL = SQL & cad
 '                If cad <> "" Then cad = cad & " OR "
 '                cad = cad & "(codtipoa=" & DBSet(ListView2.ListItems(i), "T", "N") & " and numalbar=" & Val(ListView2.ListItems(i).ListSubItems(1)) & " and numlinea=" & ListView2.ListItems(i).ListSubItems(2) & ")"
             Else
 '                cad = ""
             End If
-        Next i
-        If Cad <> "" Then
+        Next I
+        If cad <> "" Then
             SQL = SQL & "))"
-            Cad = "(" & cadWHERE & ") AND (" & SQL & ")"
+            cad = "(" & cadWHERE & ") AND (" & SQL & ")"
         End If
 '        If cad <> "" Then cad = "(" & cadWHERE & ") AND (" & cad & ")"
     ElseIf OpcionMensaje = 14 Then
-        Cad = RegresarCargaEmpresas
+        cad = RegresarCargaEmpresas
     ElseIf OpcionMensaje = 25 Then
-            Cad = ""
+            cad = ""
             NumRegElim = 0
-            For i = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(i).Checked Then
+            For I = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(I).Checked Then
                     NumRegElim = NumRegElim + 1
-                    Cad = Cad & Val(ListView2.ListItems(i).Text) & ","
+                    cad = cad & Val(ListView2.ListItems(I).Text) & ","
                      'cad = cad & Data1.Recordset.Fields(1) & "|"
                 End If
-            Next i
-            If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
+            Next I
+            If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
     End If
     
     
@@ -1729,7 +1842,7 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
       'y Salir (Volver a Mto Albaranes Clientes (Facturacion)
       PulsadoSalir = True
       'RaiseEvent CargarNumSeries
-      RaiseEvent DatoSeleccionado(Cad)
+      RaiseEvent DatoSeleccionado(cad)
       Unload Me
 End Sub
 
@@ -1741,8 +1854,8 @@ Private Sub cmdBlEmp_Click(Index As Integer)
         'Index Me dira que listview
         For Ok = ListView6(Index).ListItems.Count To 1 Step -1
             If ListView6(Index).ListItems(Ok).Selected Then
-                i = ListView6(Index).ListItems(Ok).Index
-                PasarUnaEmpresaBloqueada Index = 0, i
+                I = ListView6(Index).ListItems(Ok).Index
+                PasarUnaEmpresaBloqueada Index = 0, I
             End If
         Next Ok
     Case Else
@@ -1758,7 +1871,7 @@ Private Sub cmdBlEmp_Click(Index As Integer)
     End Select
 End Sub
 
-Private Sub PasarUnaEmpresaBloqueada(ABLoquedas As Boolean, Indice As Integer)
+Private Sub PasarUnaEmpresaBloqueada(ABLoquedas As Boolean, indice As Integer)
 Dim Origen As Integer
 Dim Destino As Integer
 Dim IT
@@ -1772,14 +1885,14 @@ Dim IT
         NE = 1 'icono
     End If
     
-    SQL = ListView6(Origen).ListItems(Indice).Key
+    SQL = ListView6(Origen).ListItems(indice).Key
     Set IT = ListView6(Destino).ListItems.Add(, SQL)
     IT.SmallIcon = NE
-    IT.Text = ListView6(Origen).ListItems(Indice).Text
-    IT.SubItems(1) = ListView6(Origen).ListItems(Indice).SubItems(1)
+    IT.Text = ListView6(Origen).ListItems(indice).Text
+    IT.SubItems(1) = ListView6(Origen).ListItems(indice).SubItems(1)
 
     'Borramos en origen
-    ListView6(Origen).ListItems.Remove Indice
+    ListView6(Origen).ListItems.Remove indice
 End Sub
 
 Private Sub cmdBloqEmpre_Click(Index As Integer)
@@ -1787,9 +1900,9 @@ Private Sub cmdBloqEmpre_Click(Index As Integer)
         SQL = "DELETE FROM usuarios.usuarioempresasaritaxi WHERE codusu =" & Parametros
         conn.Execute SQL
         SQL = ""
-        For i = 1 To ListView6(1).ListItems.Count
-            SQL = SQL & ", (" & Parametros & "," & Val(Mid(ListView6(1).ListItems(i).Key, 2)) & ")"
-        Next i
+        For I = 1 To ListView6(1).ListItems.Count
+            SQL = SQL & ", (" & Parametros & "," & Val(Mid(ListView6(1).ListItems(I).Key, 2)) & ")"
+        Next I
         If SQL <> "" Then
             'Quitmos la primera coma
             SQL = Mid(SQL, 2)
@@ -1998,11 +2111,11 @@ End Function
 
 
 Private Sub cmdDeselTodos_Click()
-Dim i As Integer
+Dim I As Integer
 
-    For i = 1 To ListView2.ListItems.Count
-        ListView2.ListItems(i).Checked = False
-    Next i
+    For I = 1 To ListView2.ListItems.Count
+        ListView2.ListItems(I).Checked = False
+    Next I
 End Sub
 
 Private Sub cmdEmail_Click()
@@ -2043,11 +2156,11 @@ Private Sub GenerarEtiquetasEstanterias()
 End Sub
 
 Private Sub cmdSelTodos_Click()
-    Dim i As Integer
+    Dim I As Integer
 
-    For i = 1 To ListView2.ListItems.Count
-        ListView2.ListItems(i).Checked = True
-    Next i
+    For I = 1 To ListView2.ListItems.Count
+        ListView2.ListItems(I).Checked = True
+    Next I
 End Sub
 
 Private Sub Form_Activate()
@@ -2106,6 +2219,12 @@ Dim Ok As Boolean
             cargaempresasbloquedas
         
         
+        Case 31 ' facturas pendientes de contabilizar
+            CargarFacturasPendientesContabilizar
+            
+            Combo1(0).ListIndex = 0
+        
+        
     End Select
     
     Screen.MousePointer = vbDefault
@@ -2114,7 +2233,7 @@ End Sub
 
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
-Dim Cad As String
+Dim cad As String
 On Error Resume Next
 
     'Icono del formulario
@@ -2132,6 +2251,9 @@ On Error Resume Next
     FrameCorreccionPrecios.visible = False
     FrameEMail.visible = False
     FrameServicios.visible = False
+    
+    FrameFrasPteContabilizar.visible = False
+    
     PulsadoSalir = True
     PrimeraVez = True
     
@@ -2172,25 +2294,25 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaPreFacturar
             Me.Caption = "Prefacturación Albaranes"
-            Cad = RecuperaValor(vCampos, 1)
-            If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
-            Me.txtParam.Text = Cad
-            Cad = RecuperaValor(vCampos, 2)
-            If Cad <> "" Then
-                Cad = Mid(Cad, 1, Len(Cad) - 1)
+            cad = RecuperaValor(vCampos, 1)
+            If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
+            Me.txtParam.Text = cad
+            cad = RecuperaValor(vCampos, 2)
+            If cad <> "" Then
+                cad = Mid(cad, 1, Len(cad) - 1)
                 If Trim(Me.txtParam.Text) <> "" Then
-                    txtParam.Text = Me.txtParam.Text & vbCrLf & Cad
+                    txtParam.Text = Me.txtParam.Text & vbCrLf & cad
                 Else
-                    txtParam.Text = Cad
+                    txtParam.Text = cad
                 End If
             End If
-            Cad = RecuperaValor(vCampos, 3)
-            If Cad <> "" Then
-                Cad = Mid(Cad, 1, Len(Cad) - 1)
+            cad = RecuperaValor(vCampos, 3)
+            If cad <> "" Then
+                cad = Mid(cad, 1, Len(cad) - 1)
                 If Trim(Me.txtParam.Text) <> "" Then
-                    txtParam.Text = Me.txtParam.Text & vbCrLf & Cad
+                    txtParam.Text = Me.txtParam.Text & vbCrLf & cad
                 Else
-                    txtParam.Text = Cad
+                    txtParam.Text = cad
                 End If
             End If
             
@@ -2326,6 +2448,13 @@ On Error Resume Next
             Me.ListView6(0).SmallIcons = frmMantenusu.ImageList1
             Me.ListView6(1).SmallIcons = frmMantenusu.ImageList1
             Me.cmdBloqEmpre(1).Cancel = True
+        
+        Case 31 ' 31-facturas de pendientes de contabilizar
+            H = Me.FrameFrasPteContabilizar.Height
+            W = FrameFrasPteContabilizar.Width
+            PonerFrameVisible FrameFrasPteContabilizar, True, H, W
+        
+            CargarCombo
         
         
     End Select
@@ -3244,7 +3373,7 @@ Private Sub CargarListaEmpresas()
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
 Dim SQL As String
-Dim i As Integer
+Dim I As Integer
 
 Dim Prohibidas As String
 
@@ -3262,7 +3391,7 @@ Dim Prohibidas As String
     ListView2.ListItems.Clear
     
     Set Rs = New ADODB.Recordset
-    i = -1
+    I = -1
     Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     While Not Rs.EOF
         SQL = "|" & Rs!codempre & "|"
@@ -3271,14 +3400,14 @@ Dim Prohibidas As String
             ItmX.Tag = Rs!codempre
             If ItmX.Tag = vEmpresa.codempre Then
                 ItmX.Checked = True
-                i = ItmX.Index
+                I = ItmX.Index
             End If
             ItmX.ToolTipText = Rs!AriTaxi
         End If
         Rs.MoveNext
     Wend
     Rs.Close
-    If i > 0 Then Set ListView2.SelectedItem = ListView2.ListItems(i)
+    If I > 0 Then Set ListView2.SelectedItem = ListView2.ListItems(I)
 
     
 ECargarLista:
@@ -3331,15 +3460,15 @@ Private Function ObtenerTamanyosArray() As Boolean
 'Para el frame de los Nº de Serie de los Articulos
 'En cada indice pone en CodArtic(i) el codigo del articulo
 'y en Cantidad(i) la cantidad solicitada de cada codartic
-Dim i As Integer, J As Integer
+Dim I As Integer, J As Integer
 
     ObtenerTamanyosArray = False
     'Primero a los campos de la tabla
     TotalArray = -1
     J = 0
     Do
-        i = J + 1
-        J = InStr(i, vCampos, "·")
+        I = J + 1
+        J = InStr(I, vCampos, "·")
         If J > 0 Then TotalArray = TotalArray + 1
     Loop Until J = 0
     
@@ -3356,53 +3485,53 @@ End Function
 Private Function SeparaCampos() As Boolean
 'Para el frame de los Nº de Serie de los Articulos
 Dim Grupo As String
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 Dim C As Integer 'Contador dentro del array
 
     SeparaCampos = False
-    i = 0
+    I = 0
     C = 0
     Do
-        J = i + 1
-        i = InStr(J, vCampos, "·")
-        If i > 0 Then
-            Grupo = Mid(vCampos, J, i - J)
+        J = I + 1
+        I = InStr(J, vCampos, "·")
+        If I > 0 Then
+            Grupo = Mid(vCampos, J, I - J)
             'Y en la martriz
             InsertaGrupo Grupo, C
             C = C + 1
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     SeparaCampos = True
 End Function
 
 
 Private Sub InsertaGrupo(Grupo As String, Contador As Integer)
 Dim J As Integer
-Dim Cad As String
+Dim cad As String
 
     J = 0
-    Cad = ""
+    cad = ""
     
     'Cod Artic
     J = InStr(1, Grupo, "|")
     If J > 0 Then
-        Cad = Mid(Grupo, 1, J - 1)
+        cad = Mid(Grupo, 1, J - 1)
         Grupo = Mid(Grupo, J + 1)
         J = 1
     End If
-    codArtic(Contador) = Cad
+    codArtic(Contador) = cad
     
     'Cantidad
     J = InStr(1, Grupo, "|")
     If J > 0 Then
-        Cad = Mid(Grupo, 1, J - 1)
+        cad = Mid(Grupo, 1, J - 1)
         Grupo = Mid(Grupo, J + 1)
     Else
-        Cad = Grupo
+        cad = Grupo
         Grupo = ""
     End If
-    Cantidad(Contador) = Cad
+    Cantidad(Contador) = cad
 End Sub
 
 
@@ -3477,26 +3606,26 @@ End Sub
 Private Function RegresarCargaEmpresas() As String
 Dim SQL As String
 Dim Parametros As String
-Dim i As Integer
+Dim I As Integer
 
     CadenaDesdeOtroForm = ""
     
         SQL = ""
         Parametros = ""
-        For i = 1 To ListView2.ListItems.Count
-            If Me.ListView2.ListItems(i).Checked Then
-                SQL = SQL & Me.ListView2.ListItems(i).Text & "|"
+        For I = 1 To ListView2.ListItems.Count
+            If Me.ListView2.ListItems(I).Checked Then
+                SQL = SQL & Me.ListView2.ListItems(I).Text & "|"
                 Parametros = Parametros & "1" 'Contador
             End If
-        Next i
+        Next I
         CadenaDesdeOtroForm = Len(Parametros) & "|" & SQL
         'Vemos las conta
         SQL = ""
-        For i = 1 To ListView2.ListItems.Count
-            If Me.ListView2.ListItems(i).Checked Then
-                SQL = SQL & Me.ListView2.ListItems(i).Tag & "|"
+        For I = 1 To ListView2.ListItems.Count
+            If Me.ListView2.ListItems(I).Checked Then
+                SQL = SQL & Me.ListView2.ListItems(I).Tag & "|"
             End If
-        Next i
+        Next I
         CadenaDesdeOtroForm = CadenaDesdeOtroForm & SQL
     
     
@@ -3938,5 +4067,101 @@ Ecargaempresasbloquedas:
     Set Rs = Nothing
 End Sub
 
+Private Sub CargarFacturasPendientesContabilizar()
+Dim SQL As String
+Dim Sql2 As String
+Dim Rs As ADODB.Recordset
+Dim IT As ListItem
 
+    SQL = CADENA
+    
+    Select Case Combo1(0).ListIndex
+        Case 0 'todos
+        
+        Case 1 ' clientes
+            Sql2 = " and codigo1 = 0"
+        Case 2 ' socios
+            Sql2 = " and codigo1 = 1"
+        Case 3 ' proveedores
+            Sql2 = " and codigo1 = 2"
+        Case 4 ' transportistas
+            Sql2 = " and codigo1 = 3"
+    End Select
+    
+    SQL = SQL & Sql2 & " order by 7,6 "
+    
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    ListView22.ColumnHeaders.Clear
+
+    ListView22.ColumnHeaders.Add , , "Tipo Factura", 3000 '2600
+    ListView22.ColumnHeaders.Add , , "Fecha", 1400
+    ListView22.ColumnHeaders.Add , , "Factura", 1500, 0
+    ListView22.ColumnHeaders.Add , , "Nombre", 4900, 0 '3400, 0
+    ListView22.ColumnHeaders.Add , , "Importe", 2000, 1 '1800, 1
+    
+    ListView22.ListItems.Clear
+    
+    ListView22.SmallIcons = frmppal.ImgListPpal
+    
+    TotalArray = 0
+    While Not Rs.EOF
+        Set IT = ListView22.ListItems.Add
+            
+        IT.Text = DBLet(Rs!nombre1, "T")
+        IT.SubItems(1) = DBLet(Rs!fecha1, "F")
+        IT.SubItems(2) = DBLet(Rs!Nombre2, "T")
+        IT.SubItems(3) = DBLet(Rs!nombre3, "T")
+        IT.SubItems(4) = Format(DBLet(Rs!Importe1, "N"), "###,###,##0.00")
+        
+        If vEmpresa.TieneSII Then
+            If DBLet(Rs!fecha1, "F") < DateAdd("d", vEmpresa.SIIDiasAviso * (-1), Now) Then
+                IT.ForeColor = vbRed
+                IT.ListSubItems.Item(1).ForeColor = vbRed
+                IT.ListSubItems.Item(2).ForeColor = vbRed
+                IT.ListSubItems.Item(3).ForeColor = vbRed
+                IT.ListSubItems.Item(4).ForeColor = vbRed
+            End If
+        End If
+        
+        Select Case DBLet(Rs!Codigo1, "N")
+            Case 0 ' clientes
+                IT.SmallIcon = 23
+            Case 2 ' proveedor
+                IT.SmallIcon = 22
+            Case 3 'transportistsa
+                IT.SmallIcon = 7
+        End Select
+        
+        ListView22.Refresh
+        
+        Rs.MoveNext
+        TotalArray = TotalArray + 1
+        If TotalArray > 300 Then
+            TotalArray = 0
+            DoEvents
+        End If
+    Wend
+    Rs.Close
+    
+End Sub
+
+Private Sub CargarCombo()
+    ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
+    Combo1(0).Clear
+    
+    Combo1(0).AddItem "Todas"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 0
+    Combo1(0).AddItem "Cliente"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 1
+    Combo1(0).AddItem "Socio"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 2
+    Combo1(0).AddItem "Proveedor"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 3
+    Combo1(0).AddItem "Transportista"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 4
+
+End Sub
 

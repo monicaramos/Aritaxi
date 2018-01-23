@@ -64,10 +64,15 @@ Private mvarDiario As String
 
 Private mvarNorma19_34Nueva As Byte
 
-Private sql As String  'Para la sentencia
+Private SQL As String  'Para la sentencia
 Private Mens As String    'Para los mensajes
 Private Rs As ADODB.Recordset
 Private Rc As Byte
+
+
+Private mvarTieneSII As Boolean
+Private mvarSIIFechaInicio As Date
+Private mvarSIIDiasAviso As Byte
 
 
 
@@ -261,16 +266,35 @@ Public Property Get HayNorma19_34Nueva() As Byte
 End Property
 
 
+Public Property Get TieneSII() As Boolean
+     TieneSII = mvarTieneSII
+End Property
+
+
+Public Property Get SIIDiasAviso() As Byte
+     SIIDiasAviso = mvarSIIDiasAviso
+End Property
+
+
+Public Property Get SIIFechaInicio() As Date
+     SIIFechaInicio = mvarSIIFechaInicio
+End Property
+
+
+
+
+
+
 '****   LEER  ***
 Public Function LeerDatos() As Byte
 'Leer los parametros de una empresa
 'Lee de la BD: Usuarios, Tabla: EmpresasAritaxi
 
     On Error GoTo Err3
-    sql = "SELECT * FROM usuarios.empresasaritaxi WHERE aritaxi='" & vUsu.CadenaConexion & "'"
+    SQL = "SELECT * FROM usuarios.empresasaritaxi WHERE aritaxi='" & vUsu.CadenaConexion & "'"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
     
     If Rs.EOF Then
@@ -306,10 +330,10 @@ Public Function LeerNiveles() As Byte
 
     On Error GoTo Err3
     
-    sql = "SELECT * FROM empresa "
+    SQL = "SELECT * FROM empresa "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open sql, ConnConta, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
     
     If Rs.EOF Then
@@ -337,8 +361,8 @@ Public Function LeerNiveles() As Byte
     'Asigno los valores por defecto a las variables de fechaini y fechafin
     If LeerNiveles = 0 Then
         LeerNiveles = 2
-        sql = "Select * from parametros"
-        Rs.Open sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        SQL = "Select * from parametros"
+        Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Rs.EOF Then
             MsgBox "Fecha inicio y fin de ejercicio", vbExclamation
         Else
@@ -353,6 +377,10 @@ Public Function LeerNiveles() As Byte
        
        '[Monica]20/11/2013: miramos lo del iban
        mvarNorma19_34Nueva = TieneNorma19_34Nueva
+        
+       '[Monica]23/01/2018: datos del sii
+       mvarTieneSII = LeerSII
+        
         
     End If
     
@@ -369,8 +397,40 @@ Err3:
     LeerNiveles = 1
 End Function
 
+Private Function LeerSII() As Boolean
+Dim SQL As String
+
+    On Error Resume Next
+
+    SQL = "select SIIFechaInicio, SIIDiasAviso from parametros "
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    LeerSII = True
+    If Not Rs.EOF Then
+        If Not IsNull(Rs!SIIFechaInicio) Then
+            mvarSIIFechaInicio = CDate(Rs!SIIFechaInicio)
+        Else
+            mvarSIIFechaInicio = Rs!SIIFechaInicio
+        End If
+        mvarSIIDiasAviso = DBLet(Rs!SIIDiasAviso, "N")
+    End If
+    Rs.Close
+    Set Rs = Nothing
+
+    If Err.Number <> 0 Then
+        LeerSII = False
+        Err.Clear
+    End If
+End Function
+
+
+
+
+
 Private Function TieneNorma19_34Nueva() As Byte
-Dim sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 
     On Error GoTo eTieneNorma19_34Nueva
@@ -379,8 +439,8 @@ Dim Rs As ADODB.Recordset
 
     Set Rs = New ADODB.Recordset
 
-    sql = "select norma19_34Nueva from paramtesor"
-    Rs.Open sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    SQL = "select norma19_34Nueva from paramtesor"
+    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
          
     TieneNorma19_34Nueva = 1
     
@@ -403,10 +463,10 @@ Public Function ModificarDatos() As Byte
     On Error GoTo Err4
 
     'Modificamos en la tabla Usuarios.empresasaritaxi
-    sql = "UPDATE usuarios.empresasaritaxi SET nomempre= '" & mvarNomempre
-    sql = sql & "', nomresum= '" & mvarNomresum
-    sql = sql & "' WHERE codempre=" & mvarCodempre
-    conn.Execute sql
+    SQL = "UPDATE usuarios.empresasaritaxi SET nomempre= '" & mvarNomempre
+    SQL = SQL & "', nomresum= '" & mvarNomresum
+    SQL = SQL & "' WHERE codempre=" & mvarCodempre
+    conn.Execute SQL
     
     ModificarDatos = 0
     Exit Function
@@ -427,42 +487,42 @@ End Function
 '---------------------------------------------------------
 
 Private Sub FijaLongitudMaxima()
-Dim i As Byte
+Dim I As Byte
 Dim J As Byte
 
     Select Case mvarnumnivel
         Case 1
-            i = mvarnumdigi1
+            I = mvarnumdigi1
             J = 10
         Case 2
-            i = mvarnumdigi2
+            I = mvarnumdigi2
             J = 1
         Case 3
-            i = mvarnumdigi3
+            I = mvarnumdigi3
             J = 2
         Case 4
-            i = mvarnumdigi4
+            I = mvarnumdigi4
             J = 3
         Case 5
-            i = mvarnumdigi5
+            I = mvarnumdigi5
             J = 4
         Case 6
-            i = mvarnumdigi6
+            I = mvarnumdigi6
             J = 5
         Case 7
-            i = mvarnumdigi7
+            I = mvarnumdigi7
             J = 6
         Case 8
-            i = mvarnumdigi8
+            I = mvarnumdigi8
             J = 7
         Case 9
-            i = mvarnumdigi9
+            I = mvarnumdigi9
             J = 8
         Case 10
-            i = mvarnumdigi10
+            I = mvarnumdigi10
             J = 9
     End Select
-    mvarDigitosUltimoNivel = i
+    mvarDigitosUltimoNivel = I
     Select Case J
         Case 1
             mvarDigitosNivelAnterior = mvarnumdigi1
