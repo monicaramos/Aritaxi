@@ -1601,11 +1601,11 @@ Dim NumReg As Byte
     
     Select Case Kmodo
     Case 0    'Modo Inicial
-        Toolbar1.Buttons(5).Enabled = False 'Imprimir
+        Toolbar1.Buttons(4).Enabled = False 'Imprimir
         PonerBotonCabecera True
     Case 1 'Modo Buscar
         lblIndicador.Caption = "BUSQUEDA"
-        Toolbar1.Buttons(5).Enabled = False 'Imprimir
+        Toolbar1.Buttons(4).Enabled = False 'Imprimir
         PonerBotonCabecera False
         PonerFoco Text1(0)
         
@@ -1613,6 +1613,7 @@ Dim NumReg As Byte
         PonerBotonCabecera True
     End Select
            
+    PonerModoUsuarioGnral Modo, "aritaxi"
     b = Modo <> 0 And Modo <> 2
   
     For I = 0 To Me.imgBuscar.Count - 1
@@ -1626,6 +1627,31 @@ Dim NumReg As Byte
     Toolbar1.Buttons(1).Enabled = Not b
     Toolbar1.Buttons(2).Enabled = Not b
 End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(4).Enabled = Toolbar1.Buttons(4).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
 
 
 Private Sub PonerLongCampos()

@@ -483,35 +483,35 @@ Begin VB.Form frmFCliRectif
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFCliRectif.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameFacRec"
-      Tab(1).Control(1)=   "Text1(39)"
-      Tab(1).Control(2)=   "FrameHco"
-      Tab(1).Control(3)=   "Text2(28)"
-      Tab(1).Control(4)=   "Text1(27)"
-      Tab(1).Control(5)=   "Text2(27)"
-      Tab(1).Control(6)=   "Text1(2)"
-      Tab(1).Control(7)=   "Text1(25)"
-      Tab(1).Control(8)=   "Text1(26)"
-      Tab(1).Control(9)=   "Text1(24)"
-      Tab(1).Control(10)=   "Text1(23)"
-      Tab(1).Control(11)=   "Text1(38)"
-      Tab(1).Control(12)=   "Text1(18)"
-      Tab(1).Control(13)=   "Text1(19)"
+      Tab(1).Control(0)=   "Label1(3)"
+      Tab(1).Control(1)=   "Label1(5)"
+      Tab(1).Control(2)=   "Label1(10)"
+      Tab(1).Control(3)=   "Label1(11)"
+      Tab(1).Control(4)=   "Label1(12)"
+      Tab(1).Control(5)=   "imgBuscar(7)"
+      Tab(1).Control(6)=   "Label1(9)"
+      Tab(1).Control(7)=   "imgBuscar(8)"
+      Tab(1).Control(8)=   "Label1(23)"
+      Tab(1).Control(9)=   "Label1(45)"
+      Tab(1).Control(10)=   "Frame3"
+      Tab(1).Control(11)=   "Text1(28)"
+      Tab(1).Control(12)=   "Text1(22)"
+      Tab(1).Control(13)=   "Text1(21)"
       Tab(1).Control(14)=   "Text1(20)"
-      Tab(1).Control(15)=   "Text1(21)"
-      Tab(1).Control(16)=   "Text1(22)"
-      Tab(1).Control(17)=   "Text1(28)"
-      Tab(1).Control(18)=   "Frame3"
-      Tab(1).Control(19)=   "Label1(45)"
-      Tab(1).Control(20)=   "Label1(23)"
-      Tab(1).Control(21)=   "imgBuscar(8)"
-      Tab(1).Control(22)=   "Label1(9)"
-      Tab(1).Control(23)=   "imgBuscar(7)"
-      Tab(1).Control(24)=   "Label1(12)"
-      Tab(1).Control(25)=   "Label1(11)"
-      Tab(1).Control(26)=   "Label1(10)"
-      Tab(1).Control(27)=   "Label1(5)"
-      Tab(1).Control(28)=   "Label1(3)"
+      Tab(1).Control(15)=   "Text1(19)"
+      Tab(1).Control(16)=   "Text1(18)"
+      Tab(1).Control(17)=   "Text1(38)"
+      Tab(1).Control(18)=   "Text1(23)"
+      Tab(1).Control(19)=   "Text1(24)"
+      Tab(1).Control(20)=   "Text1(26)"
+      Tab(1).Control(21)=   "Text1(25)"
+      Tab(1).Control(22)=   "Text1(2)"
+      Tab(1).Control(23)=   "Text2(27)"
+      Tab(1).Control(24)=   "Text1(27)"
+      Tab(1).Control(25)=   "Text2(28)"
+      Tab(1).Control(26)=   "FrameHco"
+      Tab(1).Control(27)=   "Text1(39)"
+      Tab(1).Control(28)=   "FrameFacRec"
       Tab(1).ControlCount=   29
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmFCliRectif.frx":0044
@@ -5782,10 +5782,52 @@ Dim b As Boolean
     
     PonerModoOpcionesMenu (Modo) 'Activar opciones de menu según modo
     PonerOpcionesMenu 'Activar opciones de menu según nivel de permisos del usuario
-
+    PonerModoUsuarioGnral Modo, "aritaxi"
+    
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        'imprimir albaranes
+        Me.Toolbar5.Buttons(1).Enabled = Me.Toolbar5.Buttons(1).Enabled And DBLet(Rs!especial, "N")
+        Me.Toolbar5.Buttons(2).Enabled = Me.Toolbar5.Buttons(2).Enabled And DBLet(Rs!especial, "N")
+        
+        'lineas de albaran
+        For I = 0 To ToolAux.Count - 1
+            ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+            ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+            ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        Next I
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol
@@ -7076,7 +7118,7 @@ Dim b As Boolean
         b = ((Modo = 2) Or (Modo = 5 And ModificaLineas = 0))
         'Insertar
         Toolbar1.Buttons(1).Enabled = (b Or Modo = 0) And Not EsHistorico
-        Me.mnnuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
+        Me.mnNuevo.Enabled = (b Or Modo = 0) And Not EsHistorico
         'Modificar
         Toolbar1.Buttons(2).Enabled = b And Not EsHistorico
         Me.mnModificar.Enabled = b And Not EsHistorico
@@ -7110,7 +7152,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(6).Enabled = Not b
-        Me.mnvertodos.Enabled = Not b
+        Me.mnVerTodos.Enabled = Not b
 End Sub
 
 Private Sub CargarComboFacturacion()

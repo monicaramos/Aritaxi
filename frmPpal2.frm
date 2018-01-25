@@ -286,7 +286,7 @@ Begin VB.MDIForm frmPpal2
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:20"
+            TextSave        =   "18:56"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1811,7 +1811,7 @@ Attribute statusBar.VB_VarHelpID = -1
 Dim FontSizes(4) As Integer
 Dim RibbonSeHaCreado As Boolean
 Dim Pane As Pane
-Dim Cad As String
+Dim cad As String
 
 'Variables comunes para todos los procedimientos de carga menus en el ribbon
 'Codejock
@@ -2131,11 +2131,11 @@ End Sub
 
 Private Sub MDIForm_Unload(Cancel As Integer)
 'Formulario Principal
-Dim Cad As String
+Dim cad As String
 
     'Alguna cosilla antes de cerrar. Eliminar bloqueos
-    Cad = "Delete from zbloqueos where codusu = " & vUsu.Codigo
-    conn.Execute Cad
+    cad = "Delete from zbloqueos where codusu = " & vUsu.Codigo
+    conn.Execute cad
 
     'Elimnar bloquo BD
     Set vUsu = Nothing
@@ -2334,6 +2334,11 @@ Private Sub mnCambioEmpresa_Click()
     MDIForm_Activate
 
     CargaImagen
+
+    '[Monica]23/01/2018
+    'If vParamAplic.ContabilidadNueva And (vUsu.Nivel = 0 Or vUsu.Nivel = 1) Then FrasPendientesContabilizar False
+     If (vUsu.Nivel = 0 Or vUsu.Nivel = 1) Then FrasPendientesContabilizar
+
 
     Screen.MousePointer = vbDefault
 End Sub
@@ -3194,7 +3199,7 @@ End Sub
 
 Private Sub mnUtiConnActivas_Click()
 'ver las conexiones a donde apuntan
-Dim Cad As String
+Dim cad As String
  
     
     MostrarCadenasConexion
@@ -3314,13 +3319,13 @@ End Sub
 
 Private Sub PonerDatosVisiblesForm()
 'Escribe texto de la barra de la aplicación
-Dim Cad As String
-    Cad = UCase(Mid(Format(Now, "dddd"), 1, 1)) & Mid(Format(Now, "dddd"), 2)
-    Cad = Cad & ", " & Format(Now, "d")
-    Cad = Cad & " de " & Format(Now, "mmmm")
-    Cad = Cad & " de " & Format(Now, "yyyy")
-    Cad = "    " & Cad & "    "
-    Me.StatusBar1.Panels(5).Text = Cad
+Dim cad As String
+    cad = UCase(Mid(Format(Now, "dddd"), 1, 1)) & Mid(Format(Now, "dddd"), 2)
+    cad = cad & ", " & Format(Now, "d")
+    cad = cad & " de " & Format(Now, "mmmm")
+    cad = cad & " de " & Format(Now, "yyyy")
+    cad = "    " & cad & "    "
+    Me.StatusBar1.Panels(5).Text = cad
     If vEmpresa Is Nothing Then
         Caption = "AriTaxi" & " ver. " & App.Major & "." & App.Minor & "." & App.Revision & "   -  " & "   Usuario: " & vUsu.Nombre & " FALTA CONFIGURAR"
         'Panel con el nombre de la empresa
@@ -3334,11 +3339,11 @@ End Sub
 
 Private Sub HabilitarSoloPrametros_o_Empresas(Habilitar As Boolean)
 Dim T As Control
-Dim Cad As String
+Dim cad As String
 
     
     For Each T In Me
-        Cad = T.Name
+        cad = T.Name
         If Mid(T.Name, 1, 2) = "mn" Then
             If LCase(Mid(T.Caption, 1, 1)) <> "-" Then T.Enabled = Habilitar
         End If
@@ -3349,7 +3354,7 @@ Dim Cad As String
     Me.mnConfParamAplic = True
     Me.mnConfParamGenerales = True
 
-    Me.mnSalir.Enabled = True
+    Me.mnsalir.Enabled = True
     Me.mnCambioEmpresa.Enabled = True
 End Sub
 
@@ -3405,7 +3410,7 @@ End Sub
 
 Private Sub LanzaHome(Opcion As String)
 Dim I As Integer
-Dim Cad As String
+Dim cad As String
 
     On Error GoTo ELanzaHome
 
@@ -3435,7 +3440,7 @@ Dim Cad As String
 '        LanzaHome = True
 '    End If
 ELanzaHome:
-    If Err.Number <> 0 Then MuestraError Err.Number, Cad & vbCrLf & Err.Description
+    If Err.Number <> 0 Then MuestraError Err.Number, cad & vbCrLf & Err.Description
     CadenaDesdeOtroForm = ""
 End Sub
 
@@ -3628,8 +3633,8 @@ Private Function ComprobarBotonMenuVisible(objMenu As Menu, Activado As Boolean)
 '(se comprueba hasta q se encuentra el false o se llega al padre)
 Dim nomMenu As String
 Dim Sql As String
-Dim RS As ADODB.Recordset
-Dim Cad As String
+Dim Rs As ADODB.Recordset
+Dim cad As String
 Dim b As Boolean
 
 
@@ -3644,39 +3649,39 @@ Dim b As Boolean
     
         nomMenu = objMenu.Name
         
-        Set RS = New ADODB.Recordset
+        Set Rs = New ADODB.Recordset
         
         'Obtener el padre del menu
         Sql = "select padre from usuarios.appmenus where aplicacion='Aritaxi' and name=" & DBSet(nomMenu, "T")
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If Not RS.EOF Then
-            Cad = RS.Fields(0).Value
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not Rs.EOF Then
+            cad = Rs.Fields(0).Value
         End If
-        RS.Close
+        Rs.Close
         
         b = True
-        While b And Cad <> ""
-                Sql = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & Cad
-                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                If Not RS.EOF Then
-                    Cad = RS!Padre
-                    nomMenu = RS!Name
+        While b And cad <> ""
+                Sql = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & cad
+                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                If Not Rs.EOF Then
+                    cad = Rs!Padre
+                    nomMenu = Rs!Name
                 End If
-                RS.Close
+                Rs.Close
                 
                 'comprobar si el padre esta bloqueado
                 Sql = "Select count(*) from usuarios.appmenususuario where aplicacion='Aritaxi' and codusu=" & Val(Right(CStr(vUsu.Codigo), 3))
                 Sql = Sql & " and tag='" & nomMenu & "|'"
-                RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                If RS.Fields(0).Value > 0 Then
+                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                If Rs.Fields(0).Value > 0 Then
                     'Esta bloqueado el menu para el usuario
                     b = False
                 End If
-                RS.Close
-                If Cad = "0" Then Cad = "" 'terminar si llegamos a la raiz
+                Rs.Close
+                If cad = "0" Then cad = "" 'terminar si llegamos a la raiz
         Wend
         ComprobarBotonMenuVisible = b
-        Set RS = Nothing
+        Set Rs = Nothing
     End If
     
 EComprobar:

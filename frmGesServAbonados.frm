@@ -1008,6 +1008,38 @@ Dim I As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+    
+End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
 End Sub
 
 
@@ -1017,7 +1049,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnnuevo.Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -1037,7 +1069,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
@@ -1381,10 +1413,10 @@ Dim I As Byte
 
     For I = 0 To 0 'Codigo socio
         BloquearTxt txtAux(I), bol
-        Me.cmdAux(I).Enabled = Not bol
+        Me.cmdaux(I).Enabled = Not bol
     Next I
     ' fecha bloqueada
-    Me.cmdAux(1).Enabled = Not bol
+    Me.cmdaux(1).Enabled = Not bol
     BloquearTxt txtAux(3), bol
     
 End Sub
@@ -1441,10 +1473,10 @@ Dim b As Boolean
             Text2(jj).visible = b
         Next jj
         
-        For jj = 0 To Me.cmdAux.Count - 1
-            Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
-            Me.cmdAux(jj).top = alto
-            Me.cmdAux(jj).visible = b
+        For jj = 0 To Me.cmdaux.Count - 1
+            Me.cmdaux(jj).Height = Me.DataGrid1.RowHeight
+            Me.cmdaux(jj).top = alto
+            Me.cmdaux(jj).visible = b
         Next jj
         
         Me.chkAux(0).top = alto

@@ -15,7 +15,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   705
       Left            =   3960
       TabIndex        =   99
-      Top             =   90
+      Top             =   60
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
@@ -2716,9 +2716,40 @@ On Error GoTo EPonerModo
     PonerModoOpcionesMenu (Modo) 'Activar opciones menu según modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+    
 EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
+
 
 Private Sub DesplazamientoVisible(bol As Boolean)
     FrameDesplazamiento.visible = bol

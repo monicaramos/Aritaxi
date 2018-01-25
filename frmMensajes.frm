@@ -58,7 +58,7 @@ Begin VB.Form frmMensajes
          TabIndex        =   73
          Tag             =   "Tipo de cliente|N|N|0|2|ssocio|tipsocio|||"
          Top             =   240
-         Width           =   2055
+         Width           =   3180
       End
       Begin MSComctlLib.ListView ListView22 
          Height          =   4545
@@ -1623,12 +1623,13 @@ Dim Cantidad() As Integer
 Public Parametros As String
 
 Dim I As Integer
-Dim SQL As String
+Dim Sql As String
 Dim Rs As Recordset
 Dim ItmX As ListItem
 Dim Errores As String
 Dim NE As Integer
 Dim Ok As Integer
+Dim vAnt As Integer
 
 Private Sub cmdAcepServ_Click(Index As Integer)
 Dim cad As String
@@ -1681,7 +1682,7 @@ End Sub
 Private Sub cmdAceptarNSeries_Click()
 Dim I As Integer, J As Byte
 Dim Seleccionados As Integer
-Dim cad As String, SQL As String
+Dim cad As String, Sql As String
 Dim Articulo As String
 Dim Rs As ADODB.Recordset
 Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
@@ -1712,13 +1713,13 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
             If Seleccionados < Abs(Cantidad(J)) Then
                 'Comprobar que si tiene Nºs de serie de ese articulos cargados seleccione los
                 'que corresponden
-                SQL = "SELECT count(sserie.numserie)"
-                SQL = SQL & " FROM sserie " 'INNER JOIN sartic ON sserie.codartic=sartic.codartic "
-                SQL = SQL & " WHERE sserie.codartic=" & DBSet(Articulo, "T")
-                SQL = SQL & " AND (isnull(sserie.numfactu) or sserie.numfactu='') and (isnull(sserie.numalbar) or sserie.numalbar='') "
-                SQL = SQL & " ORDER BY sserie.codartic, numserie "
+                Sql = "SELECT count(sserie.numserie)"
+                Sql = Sql & " FROM sserie " 'INNER JOIN sartic ON sserie.codartic=sartic.codartic "
+                Sql = Sql & " WHERE sserie.codartic=" & DBSet(Articulo, "T")
+                Sql = Sql & " AND (isnull(sserie.numfactu) or sserie.numfactu='') and (isnull(sserie.numalbar) or sserie.numalbar='') "
+                Sql = Sql & " ORDER BY sserie.codartic, numserie "
                 Set Rs = New ADODB.Recordset
-                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 If Rs.Fields(0).Value >= Abs(Cantidad(J)) - Seleccionados Then
                     MsgBox "Debe seleccionar " & Cantidad(J) & " Nº Series para el articulo " & codArtic(J), vbExclamation
@@ -1784,10 +1785,10 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
         C1 = ""
         C2 = ""
         c3 = ""
-        SQL = ""
+        Sql = ""
         For I = 1 To ListView2.ListItems.Count
             If ListView2.ListItems(I).Checked Then
-                If SQL = "" Then
+                If Sql = "" Then
                     C1 = DBSet(ListView2.ListItems(I), "T", "N")
                     C2 = ListView2.ListItems(I).ListSubItems(1)
 '                    c3 = ListView2.ListItems(i).ListSubItems(2)
@@ -1799,7 +1800,7 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
                         cad = "," & ListView2.ListItems(I).ListSubItems(2)
 
                     Else
-                        If cad <> "" Then SQL = SQL & ")) "
+                        If cad <> "" Then Sql = Sql & ")) "
                         C1 = DBSet(ListView2.ListItems(I), "T", "N")
                         C2 = ListView2.ListItems(I).ListSubItems(1)
 '                    c3 = ListView2.ListItems(i).ListSubItems(2)
@@ -1808,7 +1809,7 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
 '                       cad=cad &
                     End If
                 End If
-                SQL = SQL & cad
+                Sql = Sql & cad
 '                If cad <> "" Then cad = cad & " OR "
 '                cad = cad & "(codtipoa=" & DBSet(ListView2.ListItems(i), "T", "N") & " and numalbar=" & Val(ListView2.ListItems(i).ListSubItems(1)) & " and numlinea=" & ListView2.ListItems(i).ListSubItems(2) & ")"
             Else
@@ -1816,8 +1817,8 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
             End If
         Next I
         If cad <> "" Then
-            SQL = SQL & "))"
-            cad = "(" & cadWHERE & ") AND (" & SQL & ")"
+            Sql = Sql & "))"
+            cad = "(" & cadWHERE & ") AND (" & Sql & ")"
         End If
 '        If cad <> "" Then cad = "(" & cadWHERE & ") AND (" & cad & ")"
     ElseIf OpcionMensaje = 14 Then
@@ -1874,7 +1875,7 @@ End Sub
 Private Sub PasarUnaEmpresaBloqueada(ABLoquedas As Boolean, indice As Integer)
 Dim Origen As Integer
 Dim Destino As Integer
-Dim IT
+Dim It
     If ABLoquedas Then
         Origen = 0
         Destino = 1
@@ -1885,11 +1886,11 @@ Dim IT
         NE = 1 'icono
     End If
     
-    SQL = ListView6(Origen).ListItems(indice).Key
-    Set IT = ListView6(Destino).ListItems.Add(, SQL)
-    IT.SmallIcon = NE
-    IT.Text = ListView6(Origen).ListItems(indice).Text
-    IT.SubItems(1) = ListView6(Origen).ListItems(indice).SubItems(1)
+    Sql = ListView6(Origen).ListItems(indice).Key
+    Set It = ListView6(Destino).ListItems.Add(, Sql)
+    It.SmallIcon = NE
+    It.Text = ListView6(Origen).ListItems(indice).Text
+    It.SubItems(1) = ListView6(Origen).ListItems(indice).SubItems(1)
 
     'Borramos en origen
     ListView6(Origen).ListItems.Remove indice
@@ -1897,26 +1898,26 @@ End Sub
 
 Private Sub cmdBloqEmpre_Click(Index As Integer)
     If Index = 0 Then
-        SQL = "DELETE FROM usuarios.usuarioempresasaritaxi WHERE codusu =" & Parametros
-        conn.Execute SQL
-        SQL = ""
+        Sql = "DELETE FROM usuarios.usuarioempresasaritaxi WHERE codusu =" & Parametros
+        conn.Execute Sql
+        Sql = ""
         For I = 1 To ListView6(1).ListItems.Count
-            SQL = SQL & ", (" & Parametros & "," & Val(Mid(ListView6(1).ListItems(I).Key, 2)) & ")"
+            Sql = Sql & ", (" & Parametros & "," & Val(Mid(ListView6(1).ListItems(I).Key, 2)) & ")"
         Next I
-        If SQL <> "" Then
+        If Sql <> "" Then
             'Quitmos la primera coma
-            SQL = Mid(SQL, 2)
-            SQL = "INSERT INTO usuarios.usuarioempresasaritaxi(codusu,codempre) VALUES " & SQL
-            If Not EjecutaSQL(SQL) Then MsgBox "Se han producido errores insertando datos", vbExclamation
+            Sql = Mid(Sql, 2)
+            Sql = "INSERT INTO usuarios.usuarioempresasaritaxi(codusu,codempre) VALUES " & Sql
+            If Not EjecutaSQL(Sql) Then MsgBox "Se han producido errores insertando datos", vbExclamation
         End If
     End If
     Unload Me
 End Sub
 
-Private Function EjecutaSQL(ByRef SQL As String) As Boolean
+Private Function EjecutaSQL(ByRef Sql As String) As Boolean
     EjecutaSQL = False
     On Error Resume Next
-    conn.Execute SQL
+    conn.Execute Sql
     If Err.Number <> 0 Then
         Err.Clear
     Else
@@ -1969,7 +1970,7 @@ Private Sub cmdCorrecotrPrecios_Click(Index As Integer)
 End Sub
 
 Private Function ActualizarPrecios() As Boolean
-Dim SQL As String
+Dim Sql As String
     
     
     
@@ -1977,18 +1978,18 @@ Dim SQL As String
         ActualizarPrecios = False
         'Compruebo si ha seleccionado algun articulo de los de precio ultima compra=0
         cadWHERE2 = ""
-        SQL = ""
+        Sql = ""
         For TotalArray = 1 To Me.ListView4.ListItems.Count
             If ListView4.ListItems(TotalArray).Checked Then
                 If ListView4.ListItems(TotalArray).Tag = "" Then
-                    SQL = SQL & "M"
+                    Sql = Sql & "M"
                 Else
                     cadWHERE2 = cadWHERE2 & "M"
                 End If
             End If
         Next
     
-        If SQL <> "" Then
+        If Sql <> "" Then
             MsgBox "No puede actualizar los articulos cuyo precio ultima compra sea 0", vbExclamation
             Exit Function
         End If
@@ -1999,10 +2000,10 @@ Dim SQL As String
         End If
     
         'Llegado aqui todo correcto. Hacemos la pregunta de actualizar y a correr
-        SQL = "artículo"
-        If Len(cadWHERE2) > 1 Then SQL = SQL & "s"
-        SQL = "Va a actualizar los precios de " & Len(cadWHERE2) & " " & SQL & vbCrLf & vbCrLf & "¿Desea continuar?"
-        If MsgBox(SQL, vbQuestion + vbYesNo) <> vbYes Then Exit Function
+        Sql = "artículo"
+        If Len(cadWHERE2) > 1 Then Sql = Sql & "s"
+        Sql = "Va a actualizar los precios de " & Len(cadWHERE2) & " " & Sql & vbCrLf & vbCrLf & "¿Desea continuar?"
+        If MsgBox(Sql, vbQuestion + vbYesNo) <> vbYes Then Exit Function
         
         
         'Aqui esta el proceso de actualizacion de articulos
@@ -2011,18 +2012,18 @@ Dim SQL As String
         Espera 0.5
         
        'Para el LOG
-       SQL = cadWHERE & vbCrLf
+       Sql = cadWHERE & vbCrLf
        For TotalArray = 1 To Me.ListView4.ListItems.Count
             If ListView4.ListItems(TotalArray).Checked Then
-                If ListView4.ListItems(TotalArray).Tag <> "" Then SQL = SQL & ListView4.ListItems(TotalArray).Text & "|"
+                If ListView4.ListItems(TotalArray).Tag <> "" Then Sql = Sql & ListView4.ListItems(TotalArray).Text & "|"
             End If
         Next
-        SQL = Mid(SQL, 1, 237)
+        Sql = Mid(Sql, 1, 237)
         
         '------------------------------------------------------------------------------
         '  LOG de acciones
         Set LOG = New cLOG
-        LOG.Insertar 4, vUsu, "Correccion precios: " & vbCrLf & SQL
+        LOG.Insertar 4, vUsu, "Correccion precios: " & vbCrLf & Sql
         Set LOG = Nothing
         '-----------------------------------------------------------------------------
         
@@ -2162,6 +2163,27 @@ Private Sub cmdSelTodos_Click()
         ListView2.ListItems(I).Checked = True
     Next I
 End Sub
+
+
+
+
+Private Sub Combo1_Click(Index As Integer)
+   Select Case Index
+        Case 0
+            If vAnt <> Combo1(0).ListIndex Then CargarFacturasPendientesContabilizar
+            vAnt = Combo1(0).ListIndex
+    End Select
+End Sub
+
+Private Sub Combo1_GotFocus(Index As Integer)
+    Select Case Index
+        Case 0
+            vAnt = Combo1(0).ListIndex
+    End Select
+End Sub
+
+
+
 
 Private Sub Form_Activate()
 Dim Ok As Boolean
@@ -2585,22 +2607,22 @@ Private Sub CargarListaCobrosPtes()
 'Carga los valores de la tabla scobro de la Contabilidad
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 Dim Impor As Currency
 Dim Borrame As Currency
 
     If vParamAplic.ContabilidadNueva Then
-        SQL = "SELECT numserie, numfactu, fecfactu, fecvenci, impvenci, impcobro ,gastos"
-        SQL = SQL & " FROM cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
-        SQL = SQL & cadWHERE
+        Sql = "SELECT numserie, numfactu, fecfactu, fecvenci, impvenci, impcobro ,gastos"
+        Sql = Sql & " FROM cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
+        Sql = Sql & cadWHERE
     Else
-        SQL = "SELECT numserie, codfaccl, fecfaccl, fecvenci, impvenci, impcobro ,gastos"
-        SQL = SQL & " FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
-        SQL = SQL & cadWHERE
+        Sql = "SELECT numserie, codfaccl, fecfaccl, fecvenci, impvenci, impcobro ,gastos"
+        Sql = Sql & " FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+        Sql = Sql & cadWHERE
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
      
     ListView1.top = 900
     ListView1.Height = 3250
@@ -2644,17 +2666,17 @@ End Sub
 Private Sub CargarListaArtSinStock(NomTabla As String)
 'Muestra la lista Detallada de Articulos que no tienen stock suficiente en un ListView
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
     
-    SQL = "SELECT " & NomTabla & ".codalmac," & NomTabla & ".codartic, " & NomTabla & ".nomartic, salmac.canstock as canstock, SUM(cantidad) as cantidad, canstock-SUM(cantidad) as disp ,conjunto "
-    SQL = SQL & " FROM ((" & NomTabla & " INNER JOIN sartic ON " & NomTabla & ".codartic=sartic.codartic) INNER JOIN sfamia ON sartic.codfamia=sfamia.codfamia) "
-    SQL = SQL & " INNER JOIN salmac ON " & NomTabla & ".codalmac=salmac.codalmac and " & NomTabla & ".codartic=salmac.codartic "
-    SQL = SQL & cadWHERE 'Where numpedcl = 2 And sfamia.instalac = 0
-    SQL = SQL & " GROUP by " & NomTabla & ".codalmac, " & NomTabla & ".codartic "
+    Sql = "SELECT " & NomTabla & ".codalmac," & NomTabla & ".codartic, " & NomTabla & ".nomartic, salmac.canstock as canstock, SUM(cantidad) as cantidad, canstock-SUM(cantidad) as disp ,conjunto "
+    Sql = Sql & " FROM ((" & NomTabla & " INNER JOIN sartic ON " & NomTabla & ".codartic=sartic.codartic) INNER JOIN sfamia ON sartic.codfamia=sfamia.codfamia) "
+    Sql = Sql & " INNER JOIN salmac ON " & NomTabla & ".codalmac=salmac.codalmac and " & NomTabla & ".codartic=salmac.codartic "
+    Sql = Sql & cadWHERE 'Where numpedcl = 2 And sfamia.instalac = 0
+    Sql = Sql & " GROUP by " & NomTabla & ".codalmac, " & NomTabla & ".codartic "
     
 
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
      
     Me.ListView1.top = 500
      
@@ -2675,8 +2697,8 @@ Dim SQL As String
         'Si no tiene produccion miraremos si es conjunto
         If Not vParamAplic.Produccion Then
             If Rs!Conjunto = 1 Then
-                SQL = Rs!codAlmac & "|" & Rs!codArtic & "|" & Rs!Cantidad & "|"
-                CargaStockConjuntos SQL
+                Sql = Rs!codAlmac & "|" & Rs!codArtic & "|" & Rs!Cantidad & "|"
+                CargaStockConjuntos Sql
             End If
         End If
         Rs.MoveNext
@@ -2734,7 +2756,7 @@ Private Sub CargarListaNSeries()
 'y que esten disponibles: numfactu y numalbar no tengan valor
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 Dim cadLista As String
 Dim Dif As Single
 
@@ -2742,12 +2764,12 @@ Dim Dif As Single
 
     If cadWHERE2 = "" Then
         'Mostramos los nº serie libres para seleccionar la cantidad
-        SQL = "SELECT sserie.numserie, sserie.codartic, sartic.nomartic "
-        SQL = SQL & "FROM sserie INNER JOIN sartic ON sserie.codartic=sartic.codartic "
-        SQL = SQL & cadWHERE 'Where codartic='000012'
+        Sql = "SELECT sserie.numserie, sserie.codartic, sartic.nomartic "
+        Sql = Sql & "FROM sserie INNER JOIN sartic ON sserie.codartic=sartic.codartic "
+        Sql = Sql & cadWHERE 'Where codartic='000012'
         'seleccionamos los que no esten asignados a ninguna factura ni albaran
-        SQL = SQL & " AND ((isnull(sserie.numfactu) or sserie.numfactu='') and (isnull(sserie.numalbar) or sserie.numalbar='')) "
-        SQL = SQL & " ORDER BY sserie.codartic, numserie "
+        Sql = Sql & " AND ((isnull(sserie.numfactu) or sserie.numfactu='') and (isnull(sserie.numalbar) or sserie.numalbar='')) "
+        Sql = Sql & " ORDER BY sserie.codartic, numserie "
         
     Else 'venimos de modificar la cantidad y seleccionamos los ya asignados
         If InStr(1, cadWHERE2, "|") > 0 Then
@@ -2755,9 +2777,9 @@ Dim Dif As Single
             cadWHERE2 = RecuperaValor(cadWHERE2, 2)
         
             'seleccionamos nº serie del albaran que modificamos
-            SQL = "SELECT sserie.numserie, sserie.codartic, sartic.nomartic "
-            SQL = SQL & "FROM sserie INNER JOIN sartic ON sserie.codartic=sartic.codartic "
-            SQL = SQL & cadWHERE2
+            Sql = "SELECT sserie.numserie, sserie.codartic, sartic.nomartic "
+            Sql = Sql & "FROM sserie INNER JOIN sartic ON sserie.codartic=sartic.codartic "
+            Sql = Sql & cadWHERE2
                 
             
             If Dif < 0 Then
@@ -2769,7 +2791,7 @@ Dim Dif As Single
                 'ya tenia asignados la linea del albaran más los libres para seleccionar los que añadimos de mas
                 cadLista = ""
                 Set Rs = New ADODB.Recordset
-                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 While Not Rs.EOF
                     cadLista = cadLista & ", " & Rs!numSerie
                     Rs.MoveNext
@@ -2778,18 +2800,18 @@ Dim Dif As Single
                 Set Rs = Nothing
                 
                 'mostrar tambien los nº serie sin asignar
-                SQL = SQL & " OR (" & Replace(cadWHERE, "WHERE", "") & " and (numalbar=''or isnull(numalbar)))"
+                Sql = Sql & " OR (" & Replace(cadWHERE, "WHERE", "") & " and (numalbar=''or isnull(numalbar)))"
             End If
         Else
             'viene de una factura rectificativa, seleccionamos los nº de serie de
             'esa factura y marcamos los que queremos quitar
-            SQL = cadWHERE2
+            Sql = cadWHERE2
         End If
     End If
     
 
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'Los encabezados
     ListView2.Width = 7400
@@ -2835,7 +2857,7 @@ Private Sub CargarListaComponentes(opt As Byte)
 'Carga los valores de la tabla scobro de la Contabilidad
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 Dim Codigo As String, cadCodigo As String
 
     Select Case opt
@@ -2846,7 +2868,7 @@ Dim Codigo As String, cadCodigo As String
             Else
                 cadCodigo = " nummante=" & DBSet(Codigo, "T")
             End If
-            SQL = ObtenerSQLcomponentes(cadWHERE & " and " & cadCodigo)
+            Sql = ObtenerSQLcomponentes(cadWHERE & " and " & cadCodigo)
             Me.Label1(0).Caption = "Mantenimiento: " & Codigo
             
         Case 2 'Departamento
@@ -2856,7 +2878,7 @@ Dim Codigo As String, cadCodigo As String
             Else
                 cadCodigo = " coddirec=" & Codigo
             End If
-            SQL = ObtenerSQLcomponentes(cadWHERE & " and " & cadCodigo)
+            Sql = ObtenerSQLcomponentes(cadWHERE & " and " & cadCodigo)
             If vParamAplic.Departamento Then
                 Me.Caption = "Equipos del Departamento"
                 Me.Label1(0).Caption = " Departamento: " & RecuperaValor(vCampos, 3)
@@ -2866,13 +2888,13 @@ Dim Codigo As String, cadCodigo As String
             End If
         
         Case 3 'Cliente
-            SQL = ObtenerSQLcomponentes(cadWHERE)
+            Sql = ObtenerSQLcomponentes(cadWHERE)
             Me.Caption = "Equipos del Cliente"
             Me.Label1(0).Caption = "Cliente: " & RecuperaValor(vCampos, 4)
     End Select
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'Los encabezados
     ListView1.top = 800
@@ -2904,38 +2926,38 @@ Private Sub CargarListaPreFacturar()
 'Carga los valores de la tabla scobro de la Contabilidad
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargarList
     
-    SQL = "CREATE TEMPORARY TABLE tmp ( "
-    SQL = SQL & "codforpa SMALLINT(3) UNSIGNED  DEFAULT '0' NOT NULL, "
-    SQL = SQL & "numalbar MEDIUMINT(7) UNSIGNED  DEFAULT '0' NOT NULL, "
-    SQL = SQL & "dtoppago DECIMAL(4,2) UNSIGNED  DEFAULT '0.0' NOT NULL, "
-    SQL = SQL & "dtopgnral DECIMAL(4,2) UNSIGNED  DEFAULT '0.0' NOT NULL, "
-    SQL = SQL & "importe DECIMAL(12,2) UNSIGNED  DEFAULT '0.0' NOT NULL, "
-    SQL = SQL & "bruto DECIMAL(12,2) UNSIGNED  DEFAULT '0.0' NOT NULL) "
-    conn.Execute SQL
+    Sql = "CREATE TEMPORARY TABLE tmp ( "
+    Sql = Sql & "codforpa SMALLINT(3) UNSIGNED  DEFAULT '0' NOT NULL, "
+    Sql = Sql & "numalbar MEDIUMINT(7) UNSIGNED  DEFAULT '0' NOT NULL, "
+    Sql = Sql & "dtoppago DECIMAL(4,2) UNSIGNED  DEFAULT '0.0' NOT NULL, "
+    Sql = Sql & "dtopgnral DECIMAL(4,2) UNSIGNED  DEFAULT '0.0' NOT NULL, "
+    Sql = Sql & "importe DECIMAL(12,2) UNSIGNED  DEFAULT '0.0' NOT NULL, "
+    Sql = Sql & "bruto DECIMAL(12,2) UNSIGNED  DEFAULT '0.0' NOT NULL) "
+    conn.Execute Sql
      
 '     SQL = "LOCK TABLES scaalb READ, slialb READ;"
 '     Conn.Execute SQL
      
-    SQL = "SELECT scaalb.codforpa, scaalb.numalbar, dtoppago, dtognral, round(sum(importel),2) as importe, round(sum(importel),2) - round(((round(sum(importel),2)*dtoppago)/100),2) - round(((round(sum(importel),2)*dtognral)/100),2) as bruto "
-    SQL = SQL & " FROM (scaalb INNER JOIN slialb ON scaalb.codtipom=slialb.codtipom and scaalb.numalbar=slialb.numalbar) "
-    SQL = SQL & " WHERE " & cadWHERE
-    SQL = SQL & " GROUP BY scaalb.numalbar "
-    SQL = SQL & " ORDER BY scaalb.codforpa, scaalb.numalbar "
+    Sql = "SELECT scaalb.codforpa, scaalb.numalbar, dtoppago, dtognral, round(sum(importel),2) as importe, round(sum(importel),2) - round(((round(sum(importel),2)*dtoppago)/100),2) - round(((round(sum(importel),2)*dtognral)/100),2) as bruto "
+    Sql = Sql & " FROM (scaalb INNER JOIN slialb ON scaalb.codtipom=slialb.codtipom and scaalb.numalbar=slialb.numalbar) "
+    Sql = Sql & " WHERE " & cadWHERE
+    Sql = Sql & " GROUP BY scaalb.numalbar "
+    Sql = Sql & " ORDER BY scaalb.codforpa, scaalb.numalbar "
 
-    SQL = " INSERT INTO tmp " & SQL
-    conn.Execute SQL
+    Sql = " INSERT INTO tmp " & Sql
+    conn.Execute Sql
      
-    SQL = " SELECT tmp.codforpa, sforpa.nomforpa, sum(tmp.bruto) as bruto"
-    SQL = SQL & " FROM tmp, sforpa WHERE tmp.codforpa=sforpa.codforpa "
-    SQL = SQL & " GROUP BY tmp.codforpa "
+    Sql = " SELECT tmp.codforpa, sforpa.nomforpa, sum(tmp.bruto) as bruto"
+    Sql = Sql & " FROM tmp, sforpa WHERE tmp.codforpa=sforpa.codforpa "
+    Sql = Sql & " GROUP BY tmp.codforpa "
     
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         ListView1.Height = 3850
         ListView1.Width = 5400
@@ -2961,14 +2983,14 @@ Dim SQL As String
     Set Rs = Nothing
     
     'Borrar la tabla temporal
-    SQL = " DROP TABLE IF EXISTS tmp;"
-    conn.Execute SQL
+    Sql = " DROP TABLE IF EXISTS tmp;"
+    conn.Execute Sql
 
 ECargarList:
     If Err.Number <> 0 Then
          'Borrar la tabla temporal
-        SQL = " DROP TABLE IF EXISTS tmp;"
-        conn.Execute SQL
+        Sql = " DROP TABLE IF EXISTS tmp;"
+        conn.Execute Sql
 '        SQL = "UNLOCK TABLES "
 '        Conn.Execute SQL
     End If
@@ -2980,62 +3002,62 @@ Private Sub CargarListaClientes()
 'para imprimir etiquetas, pasando como parametro la cadwhere
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String, Men As String
+Dim Sql As String, Men As String
 
     On Error GoTo ECargarLista
 
     Select Case OpcionMensaje
     Case 8
         'CLIENTES
-        SQL = "SELECT codclien,nomclien,nifclien "
-        SQL = SQL & "FROM scliente "
-        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-        SQL = SQL & " ORDER BY codclien "
+        Sql = "SELECT codclien,nomclien,nifclien "
+        Sql = Sql & "FROM scliente "
+        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+        Sql = Sql & " ORDER BY codclien "
         Men = "Cliente"
     Case 9
         'PROVEEDORES
-        SQL = "SELECT codprove,nomprove,nifprove "
-        SQL = SQL & "FROM sprove "
-        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-        SQL = SQL & " ORDER BY codprove "
+        Sql = "SELECT codprove,nomprove,nifprove "
+        Sql = Sql & "FROM sprove "
+        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+        Sql = Sql & " ORDER BY codprove "
         Men = "Proveedor"
     Case 17
         'CLIENTES MANTENIMIENTO
-        SQL = cadWHERE
+        Sql = cadWHERE
         Men = "Cliente"
     Case 23
         'Socios
-        SQL = "SELECT codclien,nomclien,nifclien "
-        SQL = SQL & "FROM sclien "
-        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-        SQL = SQL & " ORDER BY codclien "
+        Sql = "SELECT codclien,nomclien,nifclien "
+        Sql = Sql & "FROM sclien "
+        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+        Sql = Sql & " ORDER BY codclien "
         Men = "Socios"
     Case 24
         ' situaciones de socios
-        SQL = "SELECT codsitua,nomsitua "
-        SQL = SQL & "FROM ssitua "
-        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-        SQL = SQL & " ORDER BY codsitua "
+        Sql = "SELECT codsitua,nomsitua "
+        Sql = Sql & "FROM ssitua "
+        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+        Sql = Sql & " ORDER BY codsitua "
         Men = "Situaciones"
         
     Case 25
         ' socios para liquidar de efectivo
         If cadWHERE2 = "shilla" Then
-            SQL = "SELECT distinct sclien.codclien,sclien.numeruve,sclien.nomclien,sclien.nifclien "
-            SQL = SQL & "FROM sclien INNER JOIN shilla on sclien.codclien = shilla.codsocio and sclien.numeruve = shilla.numeruve "
+            Sql = "SELECT distinct sclien.codclien,sclien.numeruve,sclien.nomclien,sclien.nifclien "
+            Sql = Sql & "FROM sclien INNER JOIN shilla on sclien.codclien = shilla.codsocio and sclien.numeruve = shilla.numeruve "
         Else
-            SQL = "SELECT sclien.codclien,sclien.numeruve,nomclien,nifclien "
-            SQL = SQL & "FROM sclien inner join sfactsoctr on sclien.codclien = sfactsoctr.codsocio and sclien.numeruve = sfactsoctr.numeruve "
+            Sql = "SELECT sclien.codclien,sclien.numeruve,nomclien,nifclien "
+            Sql = Sql & "FROM sclien inner join sfactsoctr on sclien.codclien = sfactsoctr.codsocio and sclien.numeruve = sfactsoctr.numeruve "
         End If
         
-        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-        SQL = SQL & " ORDER BY sclien.codclien "
+        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+        Sql = Sql & " ORDER BY sclien.codclien "
         Men = "Socios"
         
     End Select
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         'Los encabezados
         ListView2.Width = 9400
@@ -3109,23 +3131,23 @@ Private Sub CargarListaVarios()
 'para imprimir etiquetas, pasando como parametro la cadwhere
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String, Men As String
+Dim Sql As String, Men As String
 
     On Error GoTo ECargarLista
 
     Select Case OpcionMensaje
     Case 24
         ' situaciones de socios
-        SQL = "SELECT codsitua,nomsitua "
-        SQL = SQL & "FROM ssitua "
-        If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-        SQL = SQL & " ORDER BY codsitua "
+        Sql = "SELECT codsitua,nomsitua "
+        Sql = Sql & "FROM ssitua "
+        If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+        Sql = Sql & " ORDER BY codsitua "
         Men = "Situaciones"
         
     End Select
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         'Los encabezados
         ListView2.Width = 9400
@@ -3182,15 +3204,15 @@ Private Sub CargarListaErrContab()
 'en un ListView
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargarList
 
-    SQL = " SELECT  * "
-    SQL = SQL & " FROM tmpErrFac "
+    Sql = " SELECT  * "
+    Sql = Sql & " FROM tmpErrFac "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         ListView1.Height = 4500
         ListView1.Width = 7400
@@ -3236,20 +3258,20 @@ Private Sub CargarListaLinFactu()
 'seleccionamos las que nos queremos llevar al Albaran de rectificacion
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargarLista
 
-    SQL = "SELECT codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre"
-    SQL = SQL & " FROM slifac "
-    If cadWHERE <> "" Then SQL = SQL & " WHERE " & cadWHERE
-    SQL = SQL & " ORDER BY codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea "
+    Sql = "SELECT codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel,origpre"
+    Sql = Sql & " FROM slifac "
+    If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+    Sql = Sql & " ORDER BY codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea "
     
-    If OpcionMensaje = 111 Then SQL = Replace(SQL, "slifac", "slifaccli")
+    If OpcionMensaje = 111 Then Sql = Replace(Sql, "slifac", "slifaccli")
     
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         
         ListView2.top = 500
@@ -3322,14 +3344,14 @@ Private Sub CargarListaAlbaranes()
 'en un ListView
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargarList
 
-    SQL = cadWHERE 'cadwhere ya le pasamos toda la SQL
+    Sql = cadWHERE 'cadwhere ya le pasamos toda la SQL
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         ListView1.Height = 3900
@@ -3372,7 +3394,7 @@ Private Sub CargarListaEmpresas()
 'Carga las lista con todas las empresas que hay en el sistema
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 Dim I As Integer
 
 Dim Prohibidas As String
@@ -3381,7 +3403,7 @@ Dim Prohibidas As String
 
     VerEmresasProhibidas Prohibidas
     
-    SQL = "Select * from usuarios.empresasaritaxi order by codempre"
+    Sql = "Select * from usuarios.empresasaritaxi order by codempre"
     Set ListView2.SmallIcons = frmppal.ImageListB
     ListView2.Width = 5000
     ListView2.ColumnHeaders.Clear
@@ -3392,10 +3414,10 @@ Dim Prohibidas As String
     
     Set Rs = New ADODB.Recordset
     I = -1
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     While Not Rs.EOF
-        SQL = "|" & Rs!codempre & "|"
-        If InStr(1, Prohibidas, SQL) = 0 Then
+        Sql = "|" & Rs!codempre & "|"
+        If InStr(1, Prohibidas, Sql) = 0 Then
             Set ItmX = ListView2.ListItems.Add(, , Rs!nomempre, , 5)
             ItmX.Tag = Rs!codempre
             If ItmX.Tag = vEmpresa.codempre Then
@@ -3420,15 +3442,15 @@ End Sub
 
 
 Private Sub VerEmresasProhibidas(ByRef VarProhibidas As String)
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
 On Error GoTo EVerEmresasProhibidas
     VarProhibidas = "|"
-    SQL = "Select codempre from usuarios.usuarioempresasaritaxi WHERE codusu = " & (vUsu.Codigo Mod 1000)
-    SQL = SQL & " order by codempre"
+    Sql = "Select codempre from usuarios.usuarioempresasaritaxi WHERE codusu = " & (vUsu.Codigo Mod 1000)
+    Sql = Sql & " order by codempre"
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     While Not Rs.EOF
           VarProhibidas = VarProhibidas & Rs!codempre & "|"
           Rs.MoveNext
@@ -3604,29 +3626,29 @@ End Sub
 
 
 Private Function RegresarCargaEmpresas() As String
-Dim SQL As String
+Dim Sql As String
 Dim Parametros As String
 Dim I As Integer
 
     CadenaDesdeOtroForm = ""
     
-        SQL = ""
+        Sql = ""
         Parametros = ""
         For I = 1 To ListView2.ListItems.Count
             If Me.ListView2.ListItems(I).Checked Then
-                SQL = SQL & Me.ListView2.ListItems(I).Text & "|"
+                Sql = Sql & Me.ListView2.ListItems(I).Text & "|"
                 Parametros = Parametros & "1" 'Contador
             End If
         Next I
-        CadenaDesdeOtroForm = Len(Parametros) & "|" & SQL
+        CadenaDesdeOtroForm = Len(Parametros) & "|" & Sql
         'Vemos las conta
-        SQL = ""
+        Sql = ""
         For I = 1 To ListView2.ListItems.Count
             If Me.ListView2.ListItems(I).Checked Then
-                SQL = SQL & Me.ListView2.ListItems(I).Tag & "|"
+                Sql = Sql & Me.ListView2.ListItems(I).Tag & "|"
             End If
         Next I
-        CadenaDesdeOtroForm = CadenaDesdeOtroForm & SQL
+        CadenaDesdeOtroForm = CadenaDesdeOtroForm & Sql
     
     
         RegresarCargaEmpresas = CadenaDesdeOtroForm
@@ -3636,24 +3658,24 @@ End Function
 
 
 Private Sub CargarArticulosEstanteria()
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
-Dim IT As ListItem
+Dim It As ListItem
 
-    SQL = "select sartic.codartic,nomartic,preciove,codigiva,nomfamia from sartic,sfamia where sartic.codfamia=sfamia.codfamia"
-    If cadWHERE <> "" Then SQL = SQL & " AND " & cadWHERE
+    Sql = "select sartic.codartic,nomartic,preciove,codigiva,nomfamia from sartic,sfamia where sartic.codfamia=sfamia.codfamia"
+    If cadWHERE <> "" Then Sql = Sql & " AND " & cadWHERE
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     TotalArray = 0
     While Not Rs.EOF
-        Set IT = ListView3.ListItems.Add
+        Set It = ListView3.ListItems.Add
         
         'Ponemos el codigo de articulo y el TIPO de IVA
-        IT.Tag = "'" & DevNombreSQL(Rs!codArtic) & "'," & Rs!Codigiva
-        IT.Text = Rs!NomArtic
-        IT.SubItems(1) = Format(Rs!preciove, cadWHERE2)
-        IT.SubItems(2) = Rs!nomfamia
-        IT.Checked = True
+        It.Tag = "'" & DevNombreSQL(Rs!codArtic) & "'," & Rs!Codigiva
+        It.Text = Rs!NomArtic
+        It.SubItems(1) = Format(Rs!preciove, cadWHERE2)
+        It.SubItems(2) = Rs!nomfamia
+        It.Checked = True
         Rs.MoveNext
         TotalArray = TotalArray + 1
         If TotalArray > 300 Then
@@ -3670,9 +3692,9 @@ End Sub
 
 
 Private Sub CargarArticulosCorreccionPrecio()
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
-Dim IT As ListItem
+Dim It As ListItem
 Dim margen As Currency
 Dim MargenT As Currency
 Dim ImpPVP As Currency
@@ -3698,30 +3720,30 @@ Dim SobreUPC As Boolean
     
     
     'Comprobamos la tarifa donde se aplica, si sobre PVP o sobre ultima compra (%tarifa)
-    SQL = DevuelveDesdeBD(conAri, "opcionINC", "starif", "codlista", vCampos)
-    SobreUPC = Val(SQL) = 1
+    Sql = DevuelveDesdeBD(conAri, "opcionINC", "starif", "codlista", vCampos)
+    SobreUPC = Val(Sql) = 1
             
     
     TotalArray = InStr(1, cadWHERE2, ",")
-    SQL = Mid(cadWHERE2, TotalArray + 1)
-    decimales = Len(SQL)
+    Sql = Mid(cadWHERE2, TotalArray + 1)
+    decimales = Len(Sql)
     'Formato
     cadWHERE2 = "#,##0." & Mid(cadWHERE2, TotalArray + 1)
     
     'Sql
-    SQL = " SELECT sartic.nomartic,slista.codartic,sartic.preciove,sartic.preciouc,"
-    SQL = SQL & "slista.precioac, slista.codlista, starif.nomlista,"
-    SQL = SQL & "sartic.margecom as margenArt,starif.margecom as margetar"
-    SQL = SQL & " FROM   (slista INNER JOIN sartic ON slista.codartic=sartic.codartic)"
-    SQL = SQL & " INNER JOIN starif  ON slista.codlista=starif.codlista WHERE "
+    Sql = " SELECT sartic.nomartic,slista.codartic,sartic.preciove,sartic.preciouc,"
+    Sql = Sql & "slista.precioac, slista.codlista, starif.nomlista,"
+    Sql = Sql & "sartic.margecom as margenArt,starif.margecom as margetar"
+    Sql = Sql & " FROM   (slista INNER JOIN sartic ON slista.codartic=sartic.codartic)"
+    Sql = Sql & " INNER JOIN starif  ON slista.codlista=starif.codlista WHERE "
 
-    SQL = SQL & cadWHERE '& " AND "
+    Sql = Sql & cadWHERE '& " AND "
     ''SQL = SQL & " sartic.preciove <> sartic.preciouc + round((sartic.preciouc * if(isnull(sartic.margecom),0,sartic.margecom))/100," & Decimales & ")"
     
-    SQL = SQL & " ORDER BY slista.codartic"
+    Sql = Sql & " ORDER BY slista.codartic"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
 
     '
@@ -3751,7 +3773,7 @@ Dim SobreUPC As Boolean
         End If
         Aux = Round2(Rs!preciove, decimales)
         
-        SQL = ""
+        Sql = ""
         
 
         If SoloImporteMenor Then
@@ -3759,9 +3781,9 @@ Dim SobreUPC As Boolean
                 'El primero esta bien
                 'Veamos el segundo. En la tarifa
                 Aux = Round2(Rs!precioac, decimales)
-                If Aux < ImpTar Then SQL = "M"
+                If Aux < ImpTar Then Sql = "M"
             Else
-                SQL = "M"
+                Sql = "M"
             End If
         
         
@@ -3770,46 +3792,46 @@ Dim SobreUPC As Boolean
                 'El primero esta bien
                 'Veamos el segundo. En la tarifa
                 Aux = Round2(Rs!precioac, decimales)
-                If Aux <> ImpTar Then SQL = "M"
+                If Aux <> ImpTar Then Sql = "M"
             Else
-                SQL = "M"
+                Sql = "M"
             End If
         End If
         
-        If SQL <> "" Then
-            Set IT = ListView4.ListItems.Add
-            IT.Tag = DevNombreSQL(Rs!codArtic)
-            IT.ToolTipText = IT.Tag
-            IT.Text = IT.Tag
-            IT.SubItems(1) = Rs!NomArtic
+        If Sql <> "" Then
+            Set It = ListView4.ListItems.Add
+            It.Tag = DevNombreSQL(Rs!codArtic)
+            It.ToolTipText = It.Tag
+            It.Text = It.Tag
+            It.SubItems(1) = Rs!NomArtic
             Aux = Round2(precioUC, decimales)
-            IT.SubItems(2) = Format(Aux, cadWHERE2)
+            It.SubItems(2) = Format(Aux, cadWHERE2)
             
-            IT.SubItems(3) = Format(margen * 100, FormatoPorcen)
+            It.SubItems(3) = Format(margen * 100, FormatoPorcen)
             Aux = Round2(Rs!preciove, decimales)
-            IT.SubItems(4) = Format(Aux, cadWHERE2)
+            It.SubItems(4) = Format(Aux, cadWHERE2)
             
-            IT.SubItems(5) = Format(MargenT * 100, FormatoPorcen)
+            It.SubItems(5) = Format(MargenT * 100, FormatoPorcen)
             Aux = Round2(Rs!precioac, decimales)
-            IT.SubItems(6) = Format(Aux, cadWHERE2)
+            It.SubItems(6) = Format(Aux, cadWHERE2)
             
 
-            IT.SubItems(7) = Format(ImpPVP, cadWHERE2)
-            IT.SubItems(8) = Format(ImpTar, cadWHERE2)
+            It.SubItems(7) = Format(ImpPVP, cadWHERE2)
+            It.SubItems(8) = Format(ImpTar, cadWHERE2)
             
             
             
             If precioUC = 0 Then
                 'Precio ultima compra =0
                 'NOOOOO se puede actualizar la tarifa
-                IT.Tag = "" 'para no actualizar
-                IT.Checked = False
-                IT.Bold = True
-                IT.ForeColor = vbRed
+                It.Tag = "" 'para no actualizar
+                It.Checked = False
+                It.Bold = True
+                It.ForeColor = vbRed
             Else
                 
             End If
-            IT.Checked = False
+            It.Checked = False
         End If
         Rs.MoveNext
         TotalArray = TotalArray + 1
@@ -3830,7 +3852,7 @@ End Sub
 
 Private Sub CargaPVPPreciosArticulosConComponentes()
 Dim decimales As Byte
-Dim SQL As String
+Dim Sql As String
 Dim Impor As Currency
 Dim IA As Currency
 Dim PC As Currency
@@ -3844,8 +3866,8 @@ Dim PCC As Currency
     
     'Fomato importe
     TotalArray = InStr(1, cadWHERE2, ",")
-    SQL = Mid(cadWHERE2, TotalArray + 1)
-    decimales = Len(SQL)
+    Sql = Mid(cadWHERE2, TotalArray + 1)
+    decimales = Len(Sql)
     'Formato
     cadWHERE2 = "#,##0." & Mid(cadWHERE2, TotalArray + 1)
     
@@ -3854,27 +3876,27 @@ Dim PCC As Currency
     ListView4.ColumnHeaders(6).Width = 0
     ListView4.ColumnHeaders(7).Width = 0
     
-    SQL = "select sarti1.*,s1.nomartic,s1.preciove pre2,s1.margecom,s1.preciouc,"
-    SQL = SQL & " sarti1.cantidad,s2.preciove, s2.preciouc coste"
-    SQL = SQL & " from sarti1,sartic as s1,sartic as s2 where sarti1.codartic=s1.codartic and sarti1.codarti1=s2.codartic"
+    Sql = "select sarti1.*,s1.nomartic,s1.preciove pre2,s1.margecom,s1.preciouc,"
+    Sql = Sql & " sarti1.cantidad,s2.preciove, s2.preciouc coste"
+    Sql = Sql & " from sarti1,sartic as s1,sartic as s2 where sarti1.codartic=s1.codartic and sarti1.codarti1=s2.codartic"
     'Si lleva WHERE
     If cadWHERE <> "" Then
         vCampos = Replace(cadWHERE, "sartic.", "s1.")
-        SQL = SQL & " AND " & vCampos
+        Sql = Sql & " AND " & vCampos
         vCampos = ""
     End If
     
-    SQL = SQL & " ORDER BY sarti1.codartic"
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = Sql & " ORDER BY sarti1.codartic"
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
-    SQL = ""
+    Sql = ""
 
     While Not miRsAux.EOF
-        If SQL <> miRsAux!codArtic Then
+        If Sql <> miRsAux!codArtic Then
             'Nuevo articulo
             lblIndicadorCorregir = miRsAux!codArtic
             lblIndicadorCorregir.Refresh
-            If SQL <> "" Then
+            If Sql <> "" Then
                 'Si precioventa distionto   o pcompra distionto
                 If IA <> Impor Or PC <> PCC Then
                     vCampos = vCampos & Format(IA, cadWHERE2) & "|" & Format(Impor, cadWHERE2) & "|"
@@ -3884,7 +3906,7 @@ Dim PCC As Currency
                     
                 
             End If
-            SQL = miRsAux!codArtic
+            Sql = miRsAux!codArtic
             vCampos = miRsAux!codArtic & "|" & miRsAux!NomArtic & "|"
             PC = DBLet(miRsAux!precioUC, "N")
             vCampos = vCampos & Format(PC, cadWHERE2)
@@ -3898,7 +3920,7 @@ Dim PCC As Currency
         PCC = PCC + Round2((miRsAux!Cantidad * DBLet(miRsAux!coste, "N")), CLng(decimales))
         miRsAux.MoveNext
     Wend
-    If SQL <> "" Then
+    If Sql <> "" Then
         If IA <> Impor Or PC <> PCC Then
             vCampos = vCampos & Format(IA, cadWHERE2) & "|" & Format(Impor, cadWHERE2) & "|"
             vCampos = vCampos & Format(PC, cadWHERE2) & "|" & Format(PCC, cadWHERE2) & "|"
@@ -3912,20 +3934,20 @@ End Sub
 
 
 Private Sub InsertarItemARticuloConjunto(Datos As String)
-Dim IT As ListItem
+Dim It As ListItem
 
-        Set IT = ListView4.ListItems.Add
-        IT.Tag = RecuperaValor(Datos, 1)
-        IT.ToolTipText = IT.Tag
-        IT.Text = IT.Tag
-        IT.SubItems(1) = RecuperaValor(Datos, 2)  'nomartic
+        Set It = ListView4.ListItems.Add
+        It.Tag = RecuperaValor(Datos, 1)
+        It.ToolTipText = It.Tag
+        It.Text = It.Tag
+        It.SubItems(1) = RecuperaValor(Datos, 2)  'nomartic
     
-        IT.SubItems(2) = RecuperaValor(Datos, 3)  'precio UC del articulo
-        IT.SubItems(3) = RecuperaValor(Datos, 4)  ' Margen
+        It.SubItems(2) = RecuperaValor(Datos, 3)  'precio UC del articulo
+        It.SubItems(3) = RecuperaValor(Datos, 4)  ' Margen
         
-        IT.SubItems(4) = RecuperaValor(Datos, 5)  'PVP articulo
-        IT.SubItems(7) = RecuperaValor(Datos, 6)  'PVP calculado
-        IT.SubItems(8) = RecuperaValor(Datos, 8)  'PUC calculado
+        It.SubItems(4) = RecuperaValor(Datos, 5)  'PVP articulo
+        It.SubItems(7) = RecuperaValor(Datos, 6)  'PVP calculado
+        It.SubItems(8) = RecuperaValor(Datos, 8)  'PUC calculado
         
             
 End Sub
@@ -3973,18 +3995,18 @@ Private Sub CargarServiciosAFacturar()
 'seleccionamos las que nos queremos llevar al Albaran de rectificacion
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargarLista
 
-    SQL = "SELECT fecha, hora, shilla.codsocio, sclien.nomclien, idservic, codusuar, impventa "
-    SQL = SQL & " FROM shilla INNER JOIN sclien ON shilla.codsocio = sclien.codclien "
-    SQL = SQL & " where facturadocliente = 0 "
-    If cadWHERE <> "" Then SQL = SQL & " AND " & cadWHERE
-    SQL = SQL & " ORDER BY fecha, hora, codsocio "
+    Sql = "SELECT fecha, hora, shilla.codsocio, sclien.nomclien, idservic, codusuar, impventa "
+    Sql = Sql & " FROM shilla INNER JOIN sclien ON shilla.codsocio = sclien.codclien "
+    Sql = Sql & " where facturadocliente = 0 "
+    If cadWHERE <> "" Then Sql = Sql & " AND " & cadWHERE
+    Sql = Sql & " ORDER BY fecha, hora, codsocio "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         
 '        ListView5.Top = 500
@@ -4031,29 +4053,29 @@ ECargarLista:
 End Sub
 
 Private Sub cargaempresasbloquedas()
-Dim IT As ListItem
+Dim It As ListItem
     On Error GoTo Ecargaempresasbloquedas
     Set Rs = New ADODB.Recordset
-    SQL = "select empresasaritaxi.codempre,nomempre,nomresum,usuarioempresasaritaxi.codempre bloqueada from usuarios.empresasaritaxi left join usuarios.usuarioempresasaritaxi on "
-    SQL = SQL & " empresasaritaxi.codempre = usuarioempresasaritaxi.codempre And (usuarioempresasaritaxi.codusu = " & Parametros & " Or codusu Is Null)"
+    Sql = "select empresasaritaxi.codempre,nomempre,nomresum,usuarioempresasaritaxi.codempre bloqueada from usuarios.empresasaritaxi left join usuarios.usuarioempresasaritaxi on "
+    Sql = Sql & " empresasaritaxi.codempre = usuarioempresasaritaxi.codempre And (usuarioempresasaritaxi.codusu = " & Parametros & " Or codusu Is Null)"
     '[Monica] solo ariconta
-    SQL = SQL & " WHERE aritaxi like 'aritaxi%' "
-    SQL = SQL & " ORDER BY empresasaritaxi.codempre"
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Sql = Sql & " WHERE aritaxi like 'aritaxi%' "
+    Sql = Sql & " ORDER BY empresasaritaxi.codempre"
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     While Not Rs.EOF
         Errores = Format(Rs!codempre, "00000")
-        SQL = "C" & Errores
+        Sql = "C" & Errores
         
         If IsNull(Rs!bloqueada) Then
             'Va al list de la derecha
-            Set IT = ListView6(0).ListItems.Add(, SQL)
-            IT.SmallIcon = 1
+            Set It = ListView6(0).ListItems.Add(, Sql)
+            It.SmallIcon = 1
         Else
-            Set IT = ListView6(1).ListItems.Add(, SQL)
-            IT.SmallIcon = 2
+            Set It = ListView6(1).ListItems.Add(, Sql)
+            It.SmallIcon = 2
         End If
-        IT.Text = Errores
-        IT.SubItems(1) = Rs!nomempre
+        It.Text = Errores
+        It.SubItems(1) = Rs!nomempre
         Rs.MoveNext
     Wend
     Rs.Close
@@ -4068,31 +4090,48 @@ Ecargaempresasbloquedas:
 End Sub
 
 Private Sub CargarFacturasPendientesContabilizar()
-Dim SQL As String
-Dim Sql2 As String
+Dim Sql As String
+Dim SQL2 As String
 Dim Rs As ADODB.Recordset
-Dim IT As ListItem
+Dim It As ListItem
 
-    SQL = CADENA
+    Sql = CADENA
     
     Select Case Combo1(0).ListIndex
         Case 0 'todos
         
-        Case 1 ' clientes
-            Sql2 = " and codigo1 = 0"
-        Case 2 ' socios
-            Sql2 = " and codigo1 = 1"
-        Case 3 ' proveedores
-            Sql2 = " and codigo1 = 2"
-        Case 4 ' transportistas
-            Sql2 = " and codigo1 = 3"
+        Case 1 ' facturas venta
+            SQL2 = " and codigo1 = 0"
+        Case 2 ' facturas cuotas extraordinarias
+            SQL2 = " and codigo1 = 1"
+        Case 3 ' facturas cuotas
+            SQL2 = " and codigo1 = 2"
+        Case 4 ' fras rectificativas cuotas
+            SQL2 = " and codigo1 = 3"
+        Case 5 ' fras servicios cliente
+            SQL2 = " and codigo1 = 4"
+        Case 6 ' fras publicidad cliente
+            SQL2 = " and codigo1 = 5"
+        Case 7 ' fras rectificativas cliente
+            SQL2 = " and codigo1 = 6"
+        Case 8 ' fras rectificativas publicidad
+            SQL2 = " and codigo1 = 7"
+        Case 9 ' fras ventas cliente
+            SQL2 = " and codigo1 = 8"
+        Case 10 ' fras liquidacion
+            SQL2 = " and codigo1 = 9"
+        Case 11 ' fras publicidad socio
+            SQL2 = " and codigo1 = 10"
+        Case 12 ' fras rectificativas liquidacion
+            SQL2 = " and codigo1 = 11"
+            
     End Select
     
-    SQL = SQL & Sql2 & " order by 7,6 "
+    Sql = Sql & SQL2 & " order by 7,6 "
     
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     ListView22.ColumnHeaders.Clear
 
@@ -4108,31 +4147,29 @@ Dim IT As ListItem
     
     TotalArray = 0
     While Not Rs.EOF
-        Set IT = ListView22.ListItems.Add
+        Set It = ListView22.ListItems.Add
             
-        IT.Text = DBLet(Rs!nombre1, "T")
-        IT.SubItems(1) = DBLet(Rs!fecha1, "F")
-        IT.SubItems(2) = DBLet(Rs!Nombre2, "T")
-        IT.SubItems(3) = DBLet(Rs!nombre3, "T")
-        IT.SubItems(4) = Format(DBLet(Rs!Importe1, "N"), "###,###,##0.00")
+        It.Text = DBLet(Rs!nombre1, "T")
+        It.SubItems(1) = DBLet(Rs!fecha1, "F")
+        It.SubItems(2) = DBLet(Rs!Nombre2, "T")
+        It.SubItems(3) = DBLet(Rs!nombre3, "T")
+        It.SubItems(4) = Format(DBLet(Rs!Importe1, "N"), "###,###,##0.00")
         
         If vEmpresa.TieneSII Then
             If DBLet(Rs!fecha1, "F") < DateAdd("d", vEmpresa.SIIDiasAviso * (-1), Now) Then
-                IT.ForeColor = vbRed
-                IT.ListSubItems.Item(1).ForeColor = vbRed
-                IT.ListSubItems.Item(2).ForeColor = vbRed
-                IT.ListSubItems.Item(3).ForeColor = vbRed
-                IT.ListSubItems.Item(4).ForeColor = vbRed
+                It.ForeColor = vbRed
+                It.ListSubItems.Item(1).ForeColor = vbRed
+                It.ListSubItems.Item(2).ForeColor = vbRed
+                It.ListSubItems.Item(3).ForeColor = vbRed
+                It.ListSubItems.Item(4).ForeColor = vbRed
             End If
         End If
         
         Select Case DBLet(Rs!Codigo1, "N")
-            Case 0 ' clientes
-                IT.SmallIcon = 23
-            Case 2 ' proveedor
-                IT.SmallIcon = 22
-            Case 3 'transportistsa
-                IT.SmallIcon = 7
+            Case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ' clientes
+                It.SmallIcon = 8
+            Case 10, 11, 12 ' proveedor
+                It.SmallIcon = 36
         End Select
         
         ListView22.Refresh
@@ -4154,14 +4191,37 @@ Private Sub CargarCombo()
     
     Combo1(0).AddItem "Todas"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 0
-    Combo1(0).AddItem "Cliente"
+    Combo1(0).AddItem "Ventas Socios"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 1
-    Combo1(0).AddItem "Socio"
+    Combo1(0).AddItem "Cuotas extraordinarias"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 2
-    Combo1(0).AddItem "Proveedor"
+    Combo1(0).AddItem "Cuotas Socios"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 3
-    Combo1(0).AddItem "Transportista"
+    Combo1(0).AddItem "Rectificativas Cuotas"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 4
+    
+    Combo1(0).AddItem "Servicios Cliente"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 5
+    Combo1(0).AddItem "Publicidad Cliente"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 6
+    Combo1(0).AddItem "Rectificativas Servicios"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 7
+    Combo1(0).AddItem "Rectif.Publicidad Cliente"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 8
+    Combo1(0).AddItem "Ventas Cliente"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 9
 
+    Combo1(0).AddItem "Liquidacion Socio"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 10
+    Combo1(0).AddItem "Publicidad Socio"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 11
+    Combo1(0).AddItem "Rectificativas Liquidacion"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 12
+
+End Sub
+
+
+Private Sub cmdCerrarFras_Click(Index As Integer)
+    Unload Me
 End Sub
 

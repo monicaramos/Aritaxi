@@ -1178,7 +1178,6 @@ Dim NumReg As Byte
     PonerModoOpcionesMenu 'Activar opciones de menu según modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
-    PonerModoUsuarioGnral Modo, "aritaxi"
 End Sub
 
 
@@ -1199,8 +1198,8 @@ Dim cad As String
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
             

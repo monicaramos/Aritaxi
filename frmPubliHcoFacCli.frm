@@ -4713,10 +4713,6 @@ Dim TipoA As String
     
 End Sub
 
-Private Sub mnLineas_Click()
-    BotonMtoLineas 1, "Facturas"
-End Sub
-
 
 Private Sub mnModificar_Click()
 
@@ -5671,26 +5667,6 @@ EModificarLinea:
 End Function
 
 
-Private Sub PonerBotonCabecera(b As Boolean)
-'Pone el boton de Regresar a la Cabecera si pasamos a MAntenimiento de Lineas
-'o Pone los botones de Aceptar y cancelar en Insert,update o delete lineas
-    On Error Resume Next
-
-    Me.cmdAceptar.visible = Not b
-    Me.cmdCancelar.visible = Not b
-    Me.cmdRegresar.visible = b
-    Me.cmdRegresar.Caption = "Cabecera"
-    If b Then
-        Me.lblIndicador.Caption = "Líneas " & TituloLinea
-        PonerFocoBtn Me.cmdRegresar
-    End If
-    'Habilitar las opciones correctas del menu segun Modo
-    PonerModoOpcionesMenu (Modo)
-    PonerOpcionesMenu 'Habilitar las opciones correctas del menu segun Nivel de Acceso
-    DataGrid2.Enabled = Not b
-    
-    If Err.Number <> 0 Then Err.Clear
-End Sub
 
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, enlaza As Boolean)
@@ -5860,26 +5836,6 @@ Private Sub txtAux_LostFocus(Index As Integer)
 End Sub
 
 
-Private Sub BotonMtoLineas(numTab As Integer, cad As String)
-    
-    Me.SSTab1.Tab = numTab
-    If Me.DataGrid1.visible Then
-        If Me.Data2.Recordset.RecordCount < 1 Then
-            MsgBox "La factura no tiene lineas.", vbInformation
-            Exit Sub
-        End If
-        TituloLinea = cad
-    End If
-    If vUsu.Nivel >= 1 Then
-        MsgBox "No tiene permiso", vbExclamation
-        Exit Sub
-    End If
-    
-    
-    ModificaLineas = 0
-    PonerModo 5
-    PonerBotonCabecera True
-End Sub
 
 
 Private Function Eliminar() As Boolean

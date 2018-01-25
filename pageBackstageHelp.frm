@@ -20,16 +20,16 @@ Begin VB.Form pageBackstageHelp
       BorderStyle     =   0  'None
       Height          =   6855
       Index           =   3
-      Left            =   6120
+      Left            =   6255
       ScaleHeight     =   6855
       ScaleWidth      =   10575
-      TabIndex        =   33
-      Top             =   1440
+      TabIndex        =   32
+      Top             =   1350
       Width           =   10575
       Begin XtremeCommandBars.BackstageButton btnProtectDocument 
          Height          =   1230
          Left            =   3120
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   4800
          Width           =   1290
          _Version        =   1114114
@@ -54,7 +54,7 @@ Begin VB.Form pageBackstageHelp
       Begin XtremeCommandBars.BackstageButton btnManageVersions 
          Height          =   1230
          Left            =   8280
-         TabIndex        =   35
+         TabIndex        =   34
          Top             =   4800
          Width           =   1290
          _Version        =   1114114
@@ -91,7 +91,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   375
          Index           =   5
          Left            =   4800
-         TabIndex        =   53
+         TabIndex        =   52
          Top             =   5160
          Width           =   4215
       End
@@ -111,7 +111,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   375
          Left            =   720
          MousePointer    =   14  'Arrow and Question
-         TabIndex        =   52
+         TabIndex        =   51
          Top             =   3000
          Width           =   2535
       End
@@ -130,7 +130,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   44
+         TabIndex        =   43
          Top             =   240
          Width           =   4695
       End
@@ -148,7 +148,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   43
+         TabIndex        =   42
          Top             =   4920
          Width           =   4695
       End
@@ -167,7 +167,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   375
          Index           =   4
          Left            =   720
-         TabIndex        =   42
+         TabIndex        =   41
          Top             =   2520
          Width           =   4215
       End
@@ -186,7 +186,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   375
          Index           =   3
          Left            =   720
-         TabIndex        =   41
+         TabIndex        =   40
          Top             =   2280
          Width           =   4215
       End
@@ -205,7 +205,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   375
          Index           =   2
          Left            =   720
-         TabIndex        =   40
+         TabIndex        =   39
          Top             =   2040
          Width           =   4215
       End
@@ -224,7 +224,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   300
          Left            =   720
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   4320
          Width           =   2190
       End
@@ -244,7 +244,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   300
          Left            =   4800
-         TabIndex        =   38
+         TabIndex        =   37
          Top             =   4320
          Width           =   795
       End
@@ -263,7 +263,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   375
          Index           =   0
          Left            =   4800
-         TabIndex        =   37
+         TabIndex        =   36
          Top             =   4800
          Width           =   4215
       End
@@ -282,7 +282,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H00C00000&
          Height          =   615
          Left            =   720
-         TabIndex        =   36
+         TabIndex        =   35
          Top             =   1320
          Width           =   3975
       End
@@ -339,17 +339,17 @@ Begin VB.Form pageBackstageHelp
       BorderStyle     =   0  'None
       Height          =   7215
       Index           =   4
-      Left            =   6120
+      Left            =   6255
       ScaleHeight     =   7215
       ScaleWidth      =   10815
-      TabIndex        =   45
+      TabIndex        =   44
       Top             =   1320
       Visible         =   0   'False
       Width           =   10815
       Begin XtremeCommandBars.BackstageSeparator lblBackstageSeparator111 
          Height          =   255
          Left            =   0
-         TabIndex        =   46
+         TabIndex        =   45
          Top             =   0
          Width           =   4695
          _Version        =   1114114
@@ -361,7 +361,7 @@ Begin VB.Form pageBackstageHelp
       Begin MSComctlLib.ListView ListViewEmpresa 
          Height          =   6015
          Left            =   120
-         TabIndex        =   47
+         TabIndex        =   46
          Top             =   840
          Width           =   9855
          _ExtentX        =   17383
@@ -425,7 +425,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   49
+         TabIndex        =   48
          Top             =   4920
          Width           =   4695
       End
@@ -444,7 +444,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   0
-         TabIndex        =   48
+         TabIndex        =   47
          Top             =   240
          Width           =   2535
       End
@@ -452,9 +452,10 @@ Begin VB.Form pageBackstageHelp
    Begin XtremeCommandBars.BackstageButton btnAcciones 
       Height          =   1095
       Index           =   3
-      Left            =   360
+      Left            =   225
       TabIndex        =   0
-      Top             =   7800
+      Top             =   6570
+      Visible         =   0   'False
       Width           =   5295
       _Version        =   1114114
       _ExtentX        =   9340
@@ -470,6 +471,7 @@ Begin VB.Form pageBackstageHelp
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      Enabled         =   0   'False
       TextAlignment   =   4
       EnableMarkup    =   -1  'True
       ImageAlignment  =   0
@@ -478,10 +480,11 @@ Begin VB.Form pageBackstageHelp
    End
    Begin XtremeCommandBars.BackstageButton btnAcciones 
       Height          =   975
-      Index           =   1
-      Left            =   240
+      Index           =   2
+      Left            =   180
       TabIndex        =   1
-      Top             =   4800
+      Top             =   7785
+      Visible         =   0   'False
       Width           =   5415
       _Version        =   1114114
       _ExtentX        =   9551
@@ -497,51 +500,25 @@ Begin VB.Form pageBackstageHelp
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      Enabled         =   0   'False
       TextAlignment   =   4
       EnableMarkup    =   -1  'True
       ImageAlignment  =   0
       IconWidth       =   64
-      Icon            =   "pageBackstageHelp.frx":62B0
-   End
-   Begin XtremeCommandBars.BackstageButton btnAcciones 
-      Height          =   975
-      Index           =   2
-      Left            =   240
-      TabIndex        =   2
-      Top             =   6000
-      Width           =   5415
-      _Version        =   1114114
-      _ExtentX        =   9551
-      _ExtentY        =   1720
-      _StockProps     =   79
-      Caption         =   $"pageBackstageHelp.frx":A31A
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Segoe UI"
-         Size            =   9
-         Charset         =   204
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      TextAlignment   =   4
-      EnableMarkup    =   -1  'True
-      ImageAlignment  =   0
-      IconWidth       =   64
-      Icon            =   "pageBackstageHelp.frx":A3F9
+      Icon            =   "pageBackstageHelp.frx":62C7
    End
    Begin XtremeCommandBars.BackstageButton btnAcciones 
       Height          =   975
       Index           =   0
       Left            =   240
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   3600
       Width           =   5415
       _Version        =   1114114
       _ExtentX        =   9551
       _ExtentY        =   1720
       _StockProps     =   79
-      Caption         =   $"pageBackstageHelp.frx":E463
+      Caption         =   $"pageBackstageHelp.frx":A331
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Segoe UI"
          Size            =   9
@@ -555,20 +532,20 @@ Begin VB.Form pageBackstageHelp
       EnableMarkup    =   -1  'True
       ImageAlignment  =   0
       IconWidth       =   64
-      Icon            =   "pageBackstageHelp.frx":E51C
+      Icon            =   "pageBackstageHelp.frx":A3EA
    End
    Begin XtremeCommandBars.BackstageButton btnAcciones 
       Height          =   1095
       Index           =   4
-      Left            =   360
-      TabIndex        =   6
-      Top             =   9000
+      Left            =   225
+      TabIndex        =   5
+      Top             =   5355
       Width           =   5295
       _Version        =   1114114
       _ExtentX        =   9340
       _ExtentY        =   1931
       _StockProps     =   79
-      Caption         =   $"pageBackstageHelp.frx":12586
+      Caption         =   $"pageBackstageHelp.frx":E454
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Segoe UI"
          Size            =   9
@@ -582,12 +559,12 @@ Begin VB.Form pageBackstageHelp
       EnableMarkup    =   -1  'True
       ImageAlignment  =   0
       IconWidth       =   64
-      Icon            =   "pageBackstageHelp.frx":1264A
+      Icon            =   "pageBackstageHelp.frx":E518
    End
    Begin XtremeCommandBars.BackstageSeparator BackstageSeparator1 
       Height          =   255
       Left            =   6360
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   1320
       Width           =   10335
       _Version        =   1114114
@@ -599,7 +576,7 @@ Begin VB.Form pageBackstageHelp
    Begin XtremeCommandBars.BackstageSeparator lblBackstageSeparator4 
       Height          =   10095
       Left            =   5760
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   120
       Width           =   135
       _Version        =   1114114
@@ -611,9 +588,9 @@ Begin VB.Form pageBackstageHelp
    End
    Begin XtremeCommandBars.BackstageSeparator lblBackstageSeparator2 
       Height          =   255
-      Left            =   360
-      TabIndex        =   4
-      Top             =   7440
+      Left            =   270
+      TabIndex        =   3
+      Top             =   5055
       Width           =   5175
       _Version        =   1114114
       _ExtentX        =   9128
@@ -625,14 +602,14 @@ Begin VB.Form pageBackstageHelp
       Height          =   975
       Index           =   5
       Left            =   240
-      TabIndex        =   29
+      TabIndex        =   28
       Top             =   720
       Width           =   5295
       _Version        =   1114114
       _ExtentX        =   9340
       _ExtentY        =   1720
       _StockProps     =   79
-      Caption         =   $"pageBackstageHelp.frx":166B4
+      Caption         =   $"pageBackstageHelp.frx":12582
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Segoe UI"
          Size            =   9
@@ -646,12 +623,12 @@ Begin VB.Form pageBackstageHelp
       EnableMarkup    =   -1  'True
       ImageAlignment  =   0
       IconWidth       =   48
-      Icon            =   "pageBackstageHelp.frx":16779
+      Icon            =   "pageBackstageHelp.frx":12646
    End
    Begin XtremeCommandBars.BackstageSeparator BackstageSeparator2 
       Height          =   255
       Left            =   240
-      TabIndex        =   30
+      TabIndex        =   29
       Top             =   360
       Width           =   5175
       _Version        =   1114114
@@ -664,14 +641,14 @@ Begin VB.Form pageBackstageHelp
       Height          =   975
       Index           =   6
       Left            =   240
-      TabIndex        =   32
+      TabIndex        =   31
       Top             =   1920
       Width           =   5295
       _Version        =   1114114
       _ExtentX        =   9340
       _ExtentY        =   1720
       _StockProps     =   79
-      Caption         =   $"pageBackstageHelp.frx":18D99
+      Caption         =   $"pageBackstageHelp.frx":14C66
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Segoe UI"
          Size            =   9
@@ -685,7 +662,7 @@ Begin VB.Form pageBackstageHelp
       EnableMarkup    =   -1  'True
       ImageAlignment  =   0
       IconWidth       =   48
-      Icon            =   "pageBackstageHelp.frx":18E5A
+      Icon            =   "pageBackstageHelp.frx":14D27
    End
    Begin VB.PictureBox tabPage 
       BackColor       =   &H00FFFFFF&
@@ -695,14 +672,14 @@ Begin VB.Form pageBackstageHelp
       Left            =   6240
       ScaleHeight     =   6375
       ScaleWidth      =   10575
-      TabIndex        =   20
+      TabIndex        =   19
       Top             =   2040
       Visible         =   0   'False
       Width           =   10575
       Begin MSComctlLib.ListView ListView4 
          Height          =   5145
          Left            =   120
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   720
          Width           =   10395
          _ExtentX        =   18336
@@ -741,7 +718,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   22
+         TabIndex        =   21
          Top             =   240
          Width           =   4695
       End
@@ -760,7 +737,7 @@ Begin VB.Form pageBackstageHelp
          Height          =   255
          Index           =   1
          Left            =   120
-         TabIndex        =   21
+         TabIndex        =   20
          Top             =   6120
          Width           =   4695
       End
@@ -773,14 +750,14 @@ Begin VB.Form pageBackstageHelp
       Left            =   6120
       ScaleHeight     =   6375
       ScaleWidth      =   10695
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   1920
       Visible         =   0   'False
       Width           =   10695
       Begin MSComctlLib.ListView ListView3 
          Height          =   4905
          Left            =   240
-         TabIndex        =   11
+         TabIndex        =   10
          Top             =   1065
          Width           =   10395
          _ExtentX        =   18336
@@ -819,7 +796,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   19
+         TabIndex        =   18
          Top             =   6120
          Width           =   4695
       End
@@ -828,7 +805,7 @@ Begin VB.Form pageBackstageHelp
          Caption         =   "Concepto"
          Height          =   255
          Left            =   240
-         TabIndex        =   17
+         TabIndex        =   16
          Top             =   720
          Width           =   2355
       End
@@ -847,7 +824,7 @@ Begin VB.Form pageBackstageHelp
          EndProperty
          Height          =   285
          Left            =   2985
-         TabIndex        =   16
+         TabIndex        =   15
          Top             =   360
          Width           =   3705
       End
@@ -866,7 +843,7 @@ Begin VB.Form pageBackstageHelp
          EndProperty
          Height          =   285
          Left            =   6735
-         TabIndex        =   15
+         TabIndex        =   14
          Top             =   360
          Width           =   3435
       End
@@ -885,7 +862,7 @@ Begin VB.Form pageBackstageHelp
          EndProperty
          Height          =   285
          Left            =   5685
-         TabIndex        =   14
+         TabIndex        =   13
          Top             =   720
          Width           =   1005
       End
@@ -904,7 +881,7 @@ Begin VB.Form pageBackstageHelp
          EndProperty
          Height          =   285
          Left            =   9015
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   720
          Width           =   1005
       End
@@ -923,7 +900,7 @@ Begin VB.Form pageBackstageHelp
          EndProperty
          Height          =   285
          Left            =   8145
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   720
          Width           =   795
       End
@@ -942,7 +919,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   240
-         TabIndex        =   10
+         TabIndex        =   9
          Top             =   240
          Width           =   4695
       End
@@ -955,14 +932,14 @@ Begin VB.Form pageBackstageHelp
       Left            =   6240
       ScaleHeight     =   6375
       ScaleWidth      =   10575
-      TabIndex        =   24
+      TabIndex        =   23
       Top             =   2160
       Visible         =   0   'False
       Width           =   10575
       Begin MSComctlLib.ListView ListView1 
          Height          =   4035
          Left            =   120
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   720
          Width           =   9495
          _ExtentX        =   16748
@@ -1004,7 +981,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   4920
          Width           =   4695
       End
@@ -1023,7 +1000,7 @@ Begin VB.Form pageBackstageHelp
          ForeColor       =   &H005B5B5B&
          Height          =   255
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   240
          Width           =   4695
       End
@@ -1031,7 +1008,7 @@ Begin VB.Form pageBackstageHelp
    Begin XtremeCommandBars.BackstageSeparator BackstageSeparator3 
       Height          =   255
       Left            =   240
-      TabIndex        =   50
+      TabIndex        =   49
       Top             =   3240
       Width           =   5175
       _Version        =   1114114
@@ -1039,6 +1016,35 @@ Begin VB.Form pageBackstageHelp
       _ExtentY        =   450
       _StockProps     =   2
       MarkupText      =   ""
+   End
+   Begin XtremeCommandBars.BackstageButton btnAcciones 
+      Height          =   975
+      Index           =   1
+      Left            =   180
+      TabIndex        =   53
+      Top             =   8865
+      Visible         =   0   'False
+      Width           =   5415
+      _Version        =   1114114
+      _ExtentX        =   9551
+      _ExtentY        =   1720
+      _StockProps     =   79
+      Caption         =   $"pageBackstageHelp.frx":17191
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Segoe UI"
+         Size            =   9
+         Charset         =   204
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Enabled         =   0   'False
+      TextAlignment   =   4
+      EnableMarkup    =   -1  'True
+      ImageAlignment  =   0
+      IconWidth       =   64
+      Icon            =   "pageBackstageHelp.frx":17259
    End
    Begin VB.Label Label1 
       BackColor       =   &H00FFFFFF&
@@ -1055,14 +1061,14 @@ Begin VB.Form pageBackstageHelp
       ForeColor       =   &H005B5B5B&
       Height          =   255
       Left            =   240
-      TabIndex        =   51
+      TabIndex        =   50
       Top             =   3000
       Width           =   2535
    End
    Begin VB.Image Image1 
       Height          =   1065
       Left            =   12840
-      Picture         =   "pageBackstageHelp.frx":1B2C4
+      Picture         =   "pageBackstageHelp.frx":1B2C3
       Stretch         =   -1  'True
       Top             =   120
       Width           =   975
@@ -1082,7 +1088,7 @@ Begin VB.Form pageBackstageHelp
       ForeColor       =   &H005B5B5B&
       Height          =   255
       Left            =   240
-      TabIndex        =   31
+      TabIndex        =   30
       Top             =   120
       Width           =   2535
    End
@@ -1100,7 +1106,7 @@ Begin VB.Form pageBackstageHelp
       ForeColor       =   &H005B5B5B&
       Height          =   255
       Left            =   6360
-      TabIndex        =   28
+      TabIndex        =   27
       Top             =   1680
       Visible         =   0   'False
       Width           =   8175
@@ -1120,7 +1126,7 @@ Begin VB.Form pageBackstageHelp
       ForeColor       =   &H005B5B5B&
       Height          =   255
       Left            =   6360
-      TabIndex        =   18
+      TabIndex        =   17
       Top             =   2760
       Visible         =   0   'False
       Width           =   2535
@@ -1139,9 +1145,9 @@ Begin VB.Form pageBackstageHelp
       EndProperty
       ForeColor       =   &H005B5B5B&
       Height          =   255
-      Left            =   360
-      TabIndex        =   3
-      Top             =   7200
+      Left            =   225
+      TabIndex        =   2
+      Top             =   4770
       Width           =   2535
    End
 End
@@ -1258,7 +1264,7 @@ Dim FecIniSig As Date
 Dim FecFinSig As Date
 Dim Porcen1 As Currency
 Dim Porcen2 As Currency
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eCargarInformacionBBDD
     
@@ -1377,12 +1383,12 @@ Dim It As ListItem
 Dim TotalArray  As Long
     On Error GoTo ECargaInformeBBDD
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     
     Sql = "select * from tmpinfbbdd where codusu = " & vUsu.Codigo & " order by posicion "
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     ListView3.ListItems.Clear
     ListView3.ColumnHeaders.Clear
@@ -1396,32 +1402,32 @@ Dim TotalArray  As Long
     
     
     TotalArray = 0
-    While Not RS.EOF
+    While Not Rs.EOF
         Set It = ListView3.ListItems.Add
         
-        It.Text = UCase(DBLet(RS!Concepto, "T"))
+        It.Text = UCase(DBLet(Rs!Concepto, "T"))
         
-        If DBLet(RS!posicion, "N") > 2 Then
-            It.SubItems(1) = Format(DBLet(RS!nactual, "N"), "###,###,###,##0")
-            It.SubItems(2) = Format(DBLet(RS!Poractual, "N"), "##0.00") & "%"
-            It.SubItems(3) = Format(DBLet(RS!nsiguiente, "N"), "###,###,###,##0")
-            It.SubItems(4) = Format(DBLet(RS!Porsiguiente, "N"), "##0.00") & "%"
+        If DBLet(Rs!posicion, "N") > 2 Then
+            It.SubItems(1) = Format(DBLet(Rs!nactual, "N"), "###,###,###,##0")
+            It.SubItems(2) = Format(DBLet(Rs!Poractual, "N"), "##0.00") & "%"
+            It.SubItems(3) = Format(DBLet(Rs!nsiguiente, "N"), "###,###,###,##0")
+            It.SubItems(4) = Format(DBLet(Rs!Porsiguiente, "N"), "##0.00") & "%"
         Else
-            It.SubItems(1) = Format(DBLet(RS!nactual, "N"), "###,###,###,##0")
-            It.SubItems(3) = Format(DBLet(RS!nsiguiente, "N"), "###,###,###,##0")
+            It.SubItems(1) = Format(DBLet(Rs!nactual, "N"), "###,###,###,##0")
+            It.SubItems(3) = Format(DBLet(Rs!nsiguiente, "N"), "###,###,###,##0")
         End If
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    RS.Close
+    Rs.Close
     
     Label5.Caption = Format(Now, "dd/mm/yyyy hh:nn:ss")
     Exit Sub
     
 ECargaInformeBBDD:
     MuestraError Err.Number, Err.Description
-    Set RS = Nothing
+    Set Rs = Nothing
 End Sub
 
 
@@ -1432,12 +1438,12 @@ Dim It As ListItem
 Dim TotalArray  As Long
 Dim SERVER As String
 Dim EquipoConBD As Boolean
-Dim Cad As String
+Dim cad As String
 Dim Equipo As String
 
     On Error GoTo ECargaShowProcessList
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     
     ListView4.ListItems.Clear
     ListView4.ColumnHeaders.Clear
@@ -1448,21 +1454,21 @@ Dim Equipo As String
     ListView4.ColumnHeaders.Add , , "Tiempo espera", 3050.2522, 1
     
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     
     SERVER = Mid(conn.ConnectionString, InStr(LCase(conn.ConnectionString), "server=") + 7)
     SERVER = Mid(SERVER, 1, InStr(1, SERVER, ";"))
     
     EquipoConBD = (UCase(vUsu.PC) = UCase(SERVER)) Or (LCase(SERVER) = "localhost")
     
-    Cad = "show full processlist"
-    RS.Open Cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
-    Cad = ""
-    While Not RS.EOF
-        If Not IsNull(RS.Fields(3)) Then
-            If InStr(1, RS.Fields(3), "aritaxi") <> 0 Then
-                If UCase(RS.Fields(3)) = UCase(vUsu.CadenaConexion) Then
-                    Equipo = RS.Fields(2)
+    cad = "show full processlist"
+    Rs.Open cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
+    cad = ""
+    While Not Rs.EOF
+        If Not IsNull(Rs.Fields(3)) Then
+            If InStr(1, Rs.Fields(3), "aritaxi") <> 0 Then
+                If UCase(Rs.Fields(3)) = UCase(vUsu.CadenaConexion) Then
+                    Equipo = Rs.Fields(2)
                     'Primero quitamos los dos puntos del puerto
                     NumRegElim = InStr(1, Equipo, ":")
                     If NumRegElim > 0 Then Equipo = Mid(Equipo, 1, NumRegElim - 1)
@@ -1476,24 +1482,24 @@ Dim Equipo As String
                     
                     Set It = ListView4.ListItems.Add
                     
-                    It.Text = RS.Fields(0)
-                    It.SubItems(1) = RS.Fields(1)
+                    It.Text = Rs.Fields(0)
+                    It.SubItems(1) = Rs.Fields(1)
                     It.SubItems(2) = Equipo
                     
                     'tiempo de espera
                     Dim FechaAnt As Date
-                    FechaAnt = DateAdd("s", RS.Fields(5), Now)
+                    FechaAnt = DateAdd("s", Rs.Fields(5), Now)
                     It.SubItems(3) = Format((Now - FechaAnt), "hh:mm:ss")
                 End If
             End If
         End If
         
         'Siguiente
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     NumRegElim = 0
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     'Label6.Caption = Format(Now, "dd/mm/yyyy hh:nn:ss")
     
     
@@ -1501,13 +1507,13 @@ Dim Equipo As String
     
 ECargaShowProcessList:
     MuestraError Err.Number, Err.Description
-    Set RS = Nothing
+    Set Rs = Nothing
 End Sub
 
 
 Private Sub Cargadocumentos()
 Dim RN As ADODB.Recordset
-Dim Cad As String
+Dim cad As String
 Dim It As ListItem
 '--quitado
 '    Set Me.ListView1.SmallIcons = frmPpal.ImageList1 'frmPpal.ImageListDocumentos
@@ -1544,11 +1550,11 @@ Dim abrir As Boolean
     
     abrir = False 'antes \ImgFicFT
     If Dir(App.Path & "\temp\" & ListView1.SelectedItem & ".pdf", vbArchive) = "" Then
-        adodc1.ConnectionString = conn
-        adodc1.RecordSource = "Select * from usuarios.wfichdocs where idDocumento=" & Mid(ListView1.SelectedItem.Key, 2)
-        adodc1.Refresh
+        Adodc1.ConnectionString = conn
+        Adodc1.RecordSource = "Select * from usuarios.wfichdocs where idDocumento=" & Mid(ListView1.SelectedItem.Key, 2)
+        Adodc1.Refresh
 
-        If LeerBinary(adodc1.Recordset!campo, App.Path & "\temp\" & ListView1.SelectedItem.Text & ".pdf") Then abrir = True
+        If LeerBinary(Adodc1.Recordset!campo, App.Path & "\temp\" & ListView1.SelectedItem.Text & ".pdf") Then abrir = True
     Else
         abrir = True
         
@@ -1563,8 +1569,8 @@ End Sub
 
 Private Sub BuscaEmpresas()
 Dim Prohibidas As String
-Dim RS As ADODB.Recordset
-Dim Cad As String
+Dim Rs As ADODB.Recordset
+Dim cad As String
 Dim Sql As String
 Dim ItmX As ListItem
 
@@ -1597,30 +1603,30 @@ Dim I As Integer
     
     'Cargamos las empresas
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     
     '[Monica]11/04/2014: solo debe de salir las ariconta
-    RS.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open "Select * from usuarios.empresasaritaxi where aritaxi like 'aritaxi%' ORDER BY Codempre", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
-    While Not RS.EOF
-        Cad = "|" & RS!codempre & "|"
-        If InStr(1, Prohibidas, Cad) = 0 Then
-            Cad = RS!nomempre
+    While Not Rs.EOF
+        cad = "|" & Rs!codempre & "|"
+        If InStr(1, Prohibidas, cad) = 0 Then
+            cad = Rs!nomempre
             Set ItmX = ListViewEmpresa.ListItems.Add()
-            ItmX.Text = RS!codempre
+            ItmX.Text = Rs!codempre
             
             
-            ItmX.SubItems(1) = RS!nomempre
-            ItmX.SubItems(2) = RS!nomresum
+            ItmX.SubItems(1) = Rs!nomempre
+            ItmX.SubItems(2) = Rs!nomresum
 '            Cad = "fechafin"
 '            SQL = DevuelveDesdeBD("fechaini", "ariconta" & Rs!codempre & ".parametros", "1", "1", "N", Cad)
 '            ItmX.SubItems(3) = SQL
 '            ItmX.SubItems(4) = Cad
             
                 
-            Cad = RS!AriTaxi & "|" & RS!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
+            cad = Rs!AriTaxi & "|" & Rs!nomresum '& "|" & Rs!Usuario & "|" & Rs!Pass & "|"
             
-            If RS!codempre = vEmpresa.codempre Then
+            If Rs!codempre = vEmpresa.codempre Then
                 ItmX.Bold = True
                 Set ListView1.SelectedItem = ItmX
             End If
@@ -1631,7 +1637,7 @@ Dim I As Integer
             
             'Si el codconta > 100 son empresas que viene del cambio del plan contable.
             'Atenuare su visibilidad
-            If RS!codempre > 100 Then
+            If Rs!codempre > 100 Then
                 ItmX.ForeColor = &H808080
                 ItmX.ListSubItems(1).ForeColor = &H808080
                 ItmX.ListSubItems(2).ForeColor = &H808080
@@ -1642,33 +1648,33 @@ Dim I As Integer
                 'ItmX.SmallIcon = 1
             End If
         End If
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
+    Rs.Close
     ListViewEmpresa.Tag = "1"
 End Sub
 
 
 Private Function DevuelveProhibidas() As String
-Dim RS As ADODB.Recordset
-Dim Cad As String
+Dim Rs As ADODB.Recordset
+Dim cad As String
 Dim I As Integer
     On Error GoTo EDevuelveProhibidas
     DevuelveProhibidas = ""
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     I = vUsu.Codigo Mod 1000
-    RS.Open "Select * from usuarios.usuarioempresasariconta WHERE codusu =" & I, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    Cad = ""
-    While Not RS.EOF
-        Cad = Cad & RS.Fields(1) & "|"
-        RS.MoveNext
+    Rs.Open "Select * from usuarios.usuarioempresasariconta WHERE codusu =" & I, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    cad = ""
+    While Not Rs.EOF
+        cad = cad & Rs.Fields(1) & "|"
+        Rs.MoveNext
     Wend
-    If Cad <> "" Then Cad = "|" & Cad
-    RS.Close
-    DevuelveProhibidas = Cad
+    If cad <> "" Then cad = "|" & cad
+    Rs.Close
+    DevuelveProhibidas = cad
 EDevuelveProhibidas:
     Err.Clear
-    Set RS = Nothing
+    Set Rs = Nothing
 End Function
 
 

@@ -246,6 +246,7 @@ Form=frmMantenusu.frm
 Form=frmEditorMenus.frm
 Form=frmRepNumSerie2Prev.frm
 Form=frmGesHisLlamTMP.frm
+Form=frmGesHisLlamAnt.frm
 IconForm="frmppal"
 Startup="Sub Main"
 HelpFile=""

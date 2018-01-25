@@ -462,6 +462,30 @@ Dim I As Integer
     
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+    
+End Sub
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!ver, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
 End Sub
 
 
@@ -474,7 +498,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(2).Enabled = b
-    Me.mnvertodos.Enabled = b
+    Me.mnVerTodos.Enabled = b
     
 End Sub
 

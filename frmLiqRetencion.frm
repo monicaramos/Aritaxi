@@ -1082,6 +1082,39 @@ Dim I As Integer
     PonerModoOpcionesMenu 'Activar opciones de menu según Modo
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
+    PonerModoUsuarioGnral Modo, "aritaxi"
+End Sub
+
+
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+        
+        Toolbar2.Buttons(1).Enabled = Toolbar2.Buttons(1).Enabled And DBLet(Rs!especial, "N")
+        Toolbar2.Buttons(2).Enabled = Toolbar2.Buttons(2).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    Rs.Close
+    Set Rs = Nothing
+    
 End Sub
 
 
@@ -1091,7 +1124,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnnuevo.Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -1118,7 +1151,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
     
 End Sub
 

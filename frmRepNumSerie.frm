@@ -179,7 +179,6 @@ Begin VB.Form frmRepNumSerie2
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -193,7 +192,7 @@ Begin VB.Form frmRepNumSerie2
       EndProperty
       TabCaption(0)   =   "Datos compra/venta"
       TabPicture(0)   =   "frmRepNumSerie.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label12"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(2)"
@@ -219,7 +218,7 @@ Begin VB.Form frmRepNumSerie2
       Tab(0).ControlCount=   11
       TabCaption(1)   =   "Histórico"
       TabPicture(1)   =   "frmRepNumSerie.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(15)"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label1(7)"
@@ -258,7 +257,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   1695
-         Left            =   9210
+         Left            =   -65790
          TabIndex        =   86
          Top             =   2400
          Width           =   2645
@@ -422,7 +421,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   2055
-         Left            =   9210
+         Left            =   -65790
          TabIndex        =   75
          Top             =   330
          Width           =   2645
@@ -623,7 +622,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2355
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   27
          Top             =   440
          Width           =   6030
@@ -950,7 +949,7 @@ Begin VB.Form frmRepNumSerie2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   7
-         Left            =   -74490
+         Left            =   510
          MaxLength       =   3
          TabIndex        =   61
          Tag             =   "Direccion/Dpto.|N|S|0|999|sserie|coddirec|000|N|"
@@ -962,7 +961,7 @@ Begin VB.Form frmRepNumSerie2
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   7
-         Left            =   -73875
+         Left            =   1125
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   60
@@ -985,7 +984,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   320
          Index           =   2
-         Left            =   240
+         Left            =   -74760
          MaxLength       =   10
          TabIndex        =   58
          Text            =   "fecha"
@@ -1008,7 +1007,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   4200
+         Left            =   -70800
          Locked          =   -1  'True
          TabIndex        =   57
          Text            =   "nomdpto"
@@ -1031,7 +1030,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   1920
+         Left            =   -73080
          Locked          =   -1  'True
          TabIndex        =   56
          Text            =   "nomclien"
@@ -1054,7 +1053,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   320
          Index           =   1
-         Left            =   3360
+         Left            =   -71640
          MaxLength       =   6
          TabIndex        =   55
          Text            =   "coddpt"
@@ -1077,7 +1076,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          Height          =   320
          Index           =   0
-         Left            =   1080
+         Left            =   -73920
          MaxLength       =   6
          TabIndex        =   54
          Text            =   "codcli"
@@ -1098,7 +1097,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1035
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   50
          Top             =   2880
          Visible         =   0   'False
@@ -1155,7 +1154,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1035
-         Left            =   -68670
+         Left            =   6330
          TabIndex        =   45
          Top             =   2880
          Width           =   5625
@@ -1257,7 +1256,7 @@ Begin VB.Form frmRepNumSerie2
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2355
-         Left            =   -68670
+         Left            =   6330
          TabIndex        =   35
          Top             =   440
          Width           =   5625
@@ -1526,7 +1525,7 @@ Begin VB.Form frmRepNumSerie2
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmRepNumSerie.frx":004C
          Height          =   2625
-         Left            =   160
+         Left            =   -74840
          TabIndex        =   53
          Top             =   600
          Width           =   8915
@@ -1597,7 +1596,7 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Tiene Mantenimiento"
          Enabled         =   0   'False
          Height          =   195
-         Left            =   -74280
+         Left            =   720
          TabIndex        =   63
          Tag             =   "¿Tiene Mantenimiento?|N|S|||sserie|tieneman||N|"
          Top             =   1470
@@ -1607,7 +1606,7 @@ Begin VB.Form frmRepNumSerie2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   3
-         Left            =   -73290
+         Left            =   1710
          MaxLength       =   10
          TabIndex        =   64
          Tag             =   "Nº Mantenimiento|T|S|||sserie|nummante||N|"
@@ -1618,7 +1617,7 @@ Begin VB.Form frmRepNumSerie2
       Begin VB.CheckBox chkAux 
          Enabled         =   0   'False
          Height          =   195
-         Left            =   5100
+         Left            =   -69900
          TabIndex        =   59
          Top             =   750
          Width           =   255
@@ -1627,7 +1626,7 @@ Begin VB.Form frmRepNumSerie2
          Alignment       =   1  'Right Justify
          Height          =   315
          Index           =   2
-         Left            =   5775
+         Left            =   -69225
          MaxLength       =   10
          TabIndex        =   66
          Top             =   1140
@@ -1637,7 +1636,7 @@ Begin VB.Form frmRepNumSerie2
          Enabled         =   0   'False
          Height          =   240
          Index           =   3
-         Left            =   -73875
+         Left            =   1125
          ToolTipText     =   "Buscar direc./dpto"
          Top             =   720
          Width           =   240
@@ -1646,7 +1645,7 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Direc."
          Height          =   255
          Index           =   2
-         Left            =   -74490
+         Left            =   510
          TabIndex        =   62
          Top             =   720
          Width           =   495
@@ -1654,7 +1653,7 @@ Begin VB.Form frmRepNumSerie2
       Begin VB.Label Label12 
          Caption         =   "Nº Mantenim."
          Height          =   255
-         Left            =   -74310
+         Left            =   690
          TabIndex        =   65
          Top             =   1620
          Width           =   975
@@ -1663,7 +1662,7 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Nº Manteni."
          Height          =   255
          Index           =   7
-         Left            =   4860
+         Left            =   -70140
          TabIndex        =   68
          Top             =   1140
          Width           =   975
@@ -1672,7 +1671,7 @@ Begin VB.Form frmRepNumSerie2
          Caption         =   "Tiene Mantenimiento"
          Height          =   255
          Index           =   15
-         Left            =   5250
+         Left            =   -69750
          TabIndex        =   67
          Top             =   780
          Width           =   1575
@@ -3004,8 +3003,8 @@ Dim cad As String
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
         
@@ -3041,7 +3040,7 @@ Dim b As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnnuevo.Enabled = b
+    Me.mnNuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -3069,7 +3068,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 
 End Sub
 

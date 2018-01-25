@@ -526,14 +526,14 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmCuotasHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1(25)"
-      Tab(0).Control(1)=   "Label1(26)"
-      Tab(0).Control(2)=   "Text1(23)"
-      Tab(0).Control(3)=   "Text1(24)"
-      Tab(0).Control(4)=   "FrameFactura"
-      Tab(0).Control(5)=   "Text1(16)"
-      Tab(0).Control(6)=   "Text1(17)"
-      Tab(0).Control(7)=   "FrameCliente"
+      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(1)=   "Text1(17)"
+      Tab(0).Control(2)=   "Text1(16)"
+      Tab(0).Control(3)=   "FrameFactura"
+      Tab(0).Control(4)=   "Text1(24)"
+      Tab(0).Control(5)=   "Text1(23)"
+      Tab(0).Control(6)=   "Label1(26)"
+      Tab(0).Control(7)=   "Label1(25)"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0028
@@ -2444,10 +2444,10 @@ Begin VB.Form frmCuotasHcoFacturas
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2145
-         Left            =   240
+         Left            =   225
          TabIndex        =   71
          Tag             =   "Observación 4|T|S|||scafac1|observa4||N|"
-         Top             =   2910
+         Top             =   2880
          Width           =   13695
          Begin VB.TextBox Text3 
             BeginProperty Font 
@@ -4606,39 +4606,6 @@ EPonerModo:
 End Sub
 
 
-Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
-Dim Rs As ADODB.Recordset
-Dim cad As String
-    
-    On Error Resume Next
-
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
-    
-    Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    
-    If Not Rs.EOF Then
-        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
-        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
-        
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
-        
-        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
-        
-        'subclientes
-        For I = 0 To ToolAux.Count - 1
-            ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
-            ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
-            ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
-        Next I
-    End If
-    
-    Rs.Close
-    Set Rs = Nothing
-    
-End Sub
 
 
 Private Sub DesplazamientoVisible(bol As Boolean)
@@ -4892,10 +4859,44 @@ Private Sub PonerBotonCabecera(b As Boolean)
     'Habilitar las opciones correctas del menu segun Modo
     PonerModoOpcionesMenu (Modo)
     PonerOpcionesMenu 'Habilitar las opciones correctas del menu segun Nivel de Acceso
-    
+    PonerModoUsuarioGnral Modo, "aritaxi"
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
+Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
+Dim Rs As ADODB.Recordset
+Dim cad As String
+    
+    On Error Resume Next
+
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        
+        Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
+    End If
+    
+    'subclientes
+    For I = 0 To ToolAux.Count - 1
+        ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+        ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+        ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+    Next I
+    
+    
+    Rs.Close
+    Set Rs = Nothing
+    
+End Sub
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, enlaza As Boolean)
 Dim b As Boolean

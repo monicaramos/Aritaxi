@@ -1509,11 +1509,6 @@ Dim NumReg As Byte
 End Sub
 
  
-
-
-
-
-
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
 Dim cad As String
@@ -1531,8 +1526,8 @@ Dim cad As String
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
             
@@ -1542,9 +1537,6 @@ Dim cad As String
     Set Rs = Nothing
     
 End Sub
-
-
-
 
 
 Private Sub PonerLongCampos()
