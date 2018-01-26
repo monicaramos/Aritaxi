@@ -2200,7 +2200,7 @@ Public FechaServ As String
 Public HoraServ As String
 Public NumerUve As String
 
-Public WithEvents frmLlamPre As frmGesHisLlamPrev
+Public WithEvents frmLlamPre As frmGesHisLlamAntPrev
 Attribute frmLlamPre.VB_VarHelpID = -1
 Public WithEvents frmCP As frmCPostal
 Attribute frmCP.VB_VarHelpID = -1
@@ -2283,7 +2283,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim I As Long
 Dim CadB As String
-Dim cad As String
+Dim Cad As String
 Dim Indicador As String
 Dim cad1 As String
 
@@ -2366,9 +2366,9 @@ Dim cad1 As String
                     TerminaBloquear
                     
                     '[Monica] 02/06/2011: tras modificar volvemos al registro correspondiente
-                    NumRegElim = Adodc1.Recordset.AbsolutePosition
-                    Me.Adodc1.Refresh
-                    If SituarDataPosicion(Adodc1, NumRegElim, "") Then
+                    NumRegElim = adodc1.Recordset.AbsolutePosition
+                    Me.adodc1.Refresh
+                    If SituarDataPosicion(adodc1, NumRegElim, "") Then
                         PonerCampos
                     End If
                     PonerModo 2
@@ -2454,16 +2454,16 @@ End Function
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Adodc1.Recordset.Fields(0) & "|"
-        cad = cad & Adodc1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & adodc1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     
 End Sub
@@ -2497,7 +2497,7 @@ Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
         If FechaServ <> "" Then
-            If Me.Adodc1.Recordset.EOF Then
+            If Me.adodc1.Recordset.EOF Then
                 PonerCadenaBusqueda
             Else
                 PonerCampos
@@ -2602,9 +2602,9 @@ Dim I As Integer
     chkVistaPrevia.Value = CheckValueLeer(Name)
     
     'ASignamos un SQL al DATA1
-    Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = CadenaConsulta ' "Select * from " & NombreTabla & " where numeruve=-1"
-    Adodc1.Refresh
+    adodc1.ConnectionString = conn
+    adodc1.RecordSource = CadenaConsulta ' "Select * from " & NombreTabla & " where numeruve=-1"
+    adodc1.Refresh
     
     If FechaServ = "" Then
         If DatosADevolverBusqueda = "" Then
@@ -2613,7 +2613,7 @@ Dim I As Integer
             PonerModo 1
         End If
     Else
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             PonerModo 0
         Else
             PonerModo 2
@@ -2660,11 +2660,11 @@ On Error GoTo EPonerModo
     b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
-    If Not Adodc1.Recordset.EOF Then
-        If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+    If Not adodc1.Recordset.EOF Then
+        If adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.adodc1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
     
     
     
@@ -2724,15 +2724,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
@@ -2876,7 +2876,7 @@ Select Case Index
             CadenaDesdeOtroForm = Text1(38).Text
         Else
             CadenaDesdeOtroForm = ""
-            If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observa1, "T")
+            If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observa1, "T")
         End If
         frmFacClienteObser.Modificar = Modo >= 3
         frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -2894,7 +2894,7 @@ Select Case Index
             CadenaDesdeOtroForm = Text1(39).Text
         Else
             CadenaDesdeOtroForm = ""
-            If Not Adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(Adodc1.Recordset!observa2, "T")
+            If Not adodc1.Recordset.EOF Then CadenaDesdeOtroForm = DBLet(adodc1.Recordset!observa2, "T")
         End If
         frmFacClienteObser.Modificar = Modo >= 3
         frmFacClienteObser.Text1 = CadenaDesdeOtroForm
@@ -3151,13 +3151,13 @@ On Error GoTo EEliminar
 
 msg = "Esta seguro que desea eliminar la llamada del día:" & Text1(1).Text & "?"
 If MsgBox(msg, vbYesNo) = vbYes Then
-    NumRegElim = Adodc1.Recordset.AbsolutePosition
+    NumRegElim = adodc1.Recordset.AbsolutePosition
     Sql = "Delete from shilla1 where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
     Sql = Sql & "' and codsocio=" & Text1(0).Text & " and numeruve=" & Text1(8).Text
     conn.Execute Sql
 End If
 
-If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
+If SituarDataTrasEliminar(adodc1, NumRegElim) Then
     PonerCampos
 End If
 
@@ -3193,7 +3193,7 @@ Private Sub BotonBuscar()
         Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
-        If Adodc1.Recordset.EOF Then
+        If adodc1.Recordset.EOF Then
             Text1(kCampo).Text = ""
             Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
@@ -3204,8 +3204,8 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
-    If Adodc1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Adodc1, Index, True
+    If adodc1.Recordset.EOF Then Exit Sub
+    DesplazamientoData adodc1, Index, True
     PonerCampos
 End Sub
 
@@ -3213,9 +3213,9 @@ Private Sub PonerCadenaBusqueda()
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
-    Adodc1.RecordSource = CadenaConsulta
-    Adodc1.Refresh
-    If Adodc1.Recordset.RecordCount <= 0 Then
+    adodc1.RecordSource = CadenaConsulta
+    adodc1.Refresh
+    If adodc1.Recordset.RecordCount <= 0 Then
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
@@ -3224,7 +3224,7 @@ On Error GoTo EEPonerBusq
         End If
         Exit Sub
     Else
-        Adodc1.Recordset.MoveFirst
+        adodc1.Recordset.MoveFirst
         PonerCampos
         PonerModo 2
     End If
@@ -3243,8 +3243,8 @@ Dim encontrado As String
 On Error Resume Next
 
     
-    If Adodc1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, Adodc1
+    If adodc1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, adodc1
     
     If Combo1.Text = "1" Then
         If Text1(13).Text <> "" Then
@@ -3264,7 +3264,7 @@ On Error Resume Next
     
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
+    lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
     If Err.Number <> 0 Then Err.Clear
 End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
@@ -3309,7 +3309,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 
     
     
-    Set frmLlamPre = New frmGesHisLlamPrev
+    Set frmLlamPre = New frmGesHisLlamAntPrev
 
     frmLlamPre.DatosADevolverBusqueda = "0|1|2|4|"
     frmLlamPre.cWhere = CadB
@@ -3321,13 +3321,13 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 End Sub
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 Dim vWhere As String
 
-    If Not Adodc1.Recordset.EOF Then
+    If Not adodc1.Recordset.EOF Then
         'Hay datos en el Data1 bien porque se ha hecho VerTodos o una Busqueda
          vWhere = "(" & ObtenerWhereCP(False) & ")"
-         If SituarDataMULTI(Me.Adodc1, vWhere, Indicador) Then
+         If SituarDataMULTI(Me.adodc1, vWhere, Indicador) Then
              PonerModo 2
              lblIndicador.Caption = Indicador
         Else
@@ -3370,7 +3370,7 @@ Private Sub printNou()
         Else
             .cadRegSelec = ""
         End If
-        .cadRegActua = POS2SF(Adodc1, Me)
+        .cadRegActua = POS2SF(adodc1, Me)
         .cadTodosReg = ""
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
         .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"
@@ -3385,15 +3385,15 @@ End Sub
 
 
 Private Function ObtenerSelFactura() As String
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
-    cad = ""
+    Cad = ""
 '    If Me.DesdeFichaCliente Then
         '
-    cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
+    Cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
         
 '    Else
 '        'Tengo YA el codigo de la factura
@@ -3434,7 +3434,7 @@ Dim Rs As ADODB.Recordset
 '                End If
 '
 '    End If
-    ObtenerSelFactura = cad
+    ObtenerSelFactura = Cad
 End Function
 
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
