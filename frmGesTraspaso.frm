@@ -968,8 +968,11 @@ Dim cWhere As String
         cWhere = "numeruve = " & DBSet(Rs!NumerUve, "N") & " and fecha = " & DBSet(Rs!Fecha, "F") & " and hora = " & DBSet(Rs!hora, "H")
         
         If ExisteEnShilla(cWhere) Then
+        
+'[Monica]02/02/2018: levanto la condicion de que solo se actualicen las llamadas que sean de credito (ahora se actualizan todas)
+            
             '[Monica]13/11/2014: sólo en el caso de que sea de credito actualizamos
-            If EsdeCredito(cWhere) Then
+'            If EsdeCredito(cWhere) Then
                 linea = " fecha = " & DBSet(Rs!Fecha, "F")
                 linea = linea & ",hora = " & DBSet(Rs!hora, "H")
                 linea = linea & ",codsocio = " & DBSet(Rs!codSocio, "N")
@@ -1033,7 +1036,7 @@ Dim cWhere As String
                 linea = linea & " where " & cWhere
                 
                 conn.Execute SqlUpdate & linea
-            End If
+'            End If
         Else
             
             If IsNull(Rs!Fecha) Then
@@ -2784,7 +2787,7 @@ End Function
 
 Private Function ComprobarFichero(Escliente As Boolean) As Boolean
 Dim NF As Long
-Dim cad As String
+Dim Cad As String
 Dim I As Integer
 Dim longitud As Long
 Dim Rs As ADODB.Recordset
@@ -2805,7 +2808,7 @@ Dim b As Boolean
     NF = FreeFile
     Open Text1.Text For Input As #NF
     
-    Line Input #NF, cad
+    Line Input #NF, Cad
     I = 0
     
     conn.Execute "delete from tmpinformes where codusu = " & vUsu.Codigo
@@ -2825,24 +2828,24 @@ Dim b As Boolean
     While Not EOF(NF) And b
         I = I + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
-        b = ComprobarRegistro(cad, Escliente)
+        b = ComprobarRegistro(Cad, Escliente)
         
-        Line Input #NF, cad
+        Line Input #NF, Cad
     Wend
     Close #NF
     
-    If cad <> "" Then
+    If Cad <> "" Then
         I = I + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
-        b = ComprobarRegistro(cad, Escliente)
+        b = ComprobarRegistro(Cad, Escliente)
     End If
     
     ProgressBar1.visible = False
@@ -2857,7 +2860,7 @@ eComprobarFichero:
 End Function
 
 
-Private Function ComprobarRegistro(cad As String, EsClien As Boolean) As Boolean
+Private Function ComprobarRegistro(Cad As String, EsClien As Boolean) As Boolean
 Dim Sql As String
 Dim c_Importe As Currency
 Dim Mens As String
@@ -2876,13 +2879,13 @@ Dim Rs As ADODB.Recordset
     ComprobarRegistro = True
 
     If EsClien Then ' facturacion a clientes
-        Id = Mid(cad, 1, 6)
-        Importe = Mid(cad, 352, 10)
-        NServicios = Mid(cad, 362, 5)
+        Id = Mid(Cad, 1, 6)
+        Importe = Mid(Cad, 352, 10)
+        NServicios = Mid(Cad, 362, 5)
     Else ' liquidacion a socios
-        Id = Mid(cad, 1, 6)
-        Importe = Mid(cad, 375, 10)
-        NServicios = Mid(cad, 385, 5)
+        Id = Mid(Cad, 1, 6)
+        Importe = Mid(Cad, 375, 10)
+        NServicios = Mid(Cad, 385, 5)
     End If
     
     c_Importe = Replace(ComprobarCero(Importe), ".", ",")
@@ -3025,7 +3028,7 @@ End Function
 
 Private Function TraspasoFichero(EsClien As Boolean) As Boolean
 Dim NF As Long
-Dim cad As String
+Dim Cad As String
 Dim I As Integer
 Dim longitud As Long
 Dim Rs As ADODB.Recordset
@@ -3058,7 +3061,7 @@ Dim SqlServ As String
     
     Open Text1.Text For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
     
-    Line Input #NF, cad
+    Line Input #NF, Cad
     I = 0
     
     Label1(0).Caption = "Procesando Fichero: " & Text1.Text
@@ -3082,18 +3085,18 @@ Dim SqlServ As String
     While Not EOF(NF)
         I = I + 1
         
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 352, 10)
-            NServicios = Mid(cad, 362, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 352, 10)
+            NServicios = Mid(Cad, 362, 5)
         Else ' liquidacion a socios
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 375, 10)
-            NServicios = Mid(cad, 385, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 375, 10)
+            NServicios = Mid(Cad, 385, 5)
         End If
     
         If EsClien Then
@@ -3135,23 +3138,23 @@ Dim SqlServ As String
 '                conn.Execute SqlServ
             End If
         End If
-        Line Input #NF, cad
+        Line Input #NF, Cad
     Wend
     Close #NF
     
-    If cad <> "" Then
-        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(cad)
+    If Cad <> "" Then
+        Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
         Label1(2).Caption = "Linea " & I
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 352, 10)
-            NServicios = Mid(cad, 362, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 352, 10)
+            NServicios = Mid(Cad, 362, 5)
         Else ' liquidacion a socios
-            Id = Mid(cad, 1, 6)
-            Importe = Mid(cad, 375, 10)
-            NServicios = Mid(cad, 385, 5)
+            Id = Mid(Cad, 1, 6)
+            Importe = Mid(Cad, 375, 10)
+            NServicios = Mid(Cad, 385, 5)
         End If
         
         

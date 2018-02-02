@@ -843,8 +843,9 @@ Dim SqlUve As String
                 LlamarImprimir False
             End If
             
-            '[Monica]20/11/2014: en teletaxi no dejamos imprimir las facturas que lo hagan en reimpresion de facturas
-            If vParamAplic.Cooperativa = 0 Then Check1(0).Value = 0
+'[Monica]02/02/2018: quieren volver a imprimir las facturas cuando se acabe la liquidacion
+'            '[Monica]20/11/2014: en teletaxi no dejamos imprimir las facturas que lo hagan en reimpresion de facturas
+'            If vParamAplic.Cooperativa = 0 Then Check1(0).Value = 0
             
             'IMPRESION DE LAS FACTURAS RESULTANTES DE LA LIQUIDACION SOCIO
             If Me.Check1(0).Value Then
@@ -1103,7 +1104,7 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1115,8 +1116,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -1221,17 +1222,17 @@ Private Sub imgFecha_Click(Index As Integer)
    PonerFoco txtcodigo(indCodigo)
 End Sub
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     If txtcodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtcodigo(indD).Text
-        If txtnombre(indD).Text <> "" Then cad = cad & " - " & txtnombre(indD).Text
+        Cad = Cad & "desde " & txtcodigo(indD).Text
+        If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
     End If
     If txtcodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtcodigo(indH).Text
-        If txtnombre(indH).Text <> "" Then cad = cad & " - " & txtnombre(indH).Text
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
+        If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
     End If
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 
@@ -1678,7 +1679,7 @@ End Function
 Private Function ListaFacturasGeneradas(Tipo As String) As String
 Dim Sql As String
 Dim rs1 As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error GoTo eFacturasGeneradas
 
@@ -1690,19 +1691,19 @@ Dim cad As String
     Set rs1 = New ADODB.Recordset
     rs1.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
-    cad = ""
+    Cad = ""
     While Not rs1.EOF
-        cad = cad & "(" & DBSet(rs1.Fields(0).Value, "T") & "," & DBLet(rs1.Fields(2).Value, "N") & ","
-        cad = cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "),"
+        Cad = Cad & "(" & DBSet(rs1.Fields(0).Value, "T") & "," & DBLet(rs1.Fields(2).Value, "N") & ","
+        Cad = Cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "),"
     
         rs1.MoveNext
     Wend
     Set rs1 = Nothing
     
     'si hay facturas quitamos la ultima coma
-    If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
+    If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
     
-    ListaFacturasGeneradas = cad
+    ListaFacturasGeneradas = Cad
     Exit Function
     
 eFacturasGeneradas:
