@@ -252,99 +252,99 @@ Begin VB.Form frmGesSocios
       TabCaption(0)   =   "Datos"
       TabPicture(0)   =   "frmGesSocios.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Check1(2)"
-      Tab(0).Control(1)=   "Text1(28)"
-      Tab(0).Control(2)=   "Check1(1)"
-      Tab(0).Control(3)=   "Text1(27)"
-      Tab(0).Control(4)=   "Text1(25)"
-      Tab(0).Control(5)=   "Text1(19)"
-      Tab(0).Control(6)=   "Text1(20)"
-      Tab(0).Control(7)=   "Text1(21)"
-      Tab(0).Control(8)=   "Text1(22)"
-      Tab(0).Control(9)=   "Text1(7)"
-      Tab(0).Control(10)=   "Text1(3)"
-      Tab(0).Control(11)=   "Text1(4)"
-      Tab(0).Control(12)=   "Text1(5)"
-      Tab(0).Control(13)=   "Text1(6)"
-      Tab(0).Control(14)=   "Text1(8)"
-      Tab(0).Control(15)=   "Text1(9)"
-      Tab(0).Control(16)=   "Text1(10)"
-      Tab(0).Control(17)=   "Text1(12)"
-      Tab(0).Control(18)=   "Text1(13)"
-      Tab(0).Control(19)=   "Text1(17)"
-      Tab(0).Control(20)=   "Check1(0)"
-      Tab(0).Control(21)=   "Frame3(1)"
-      Tab(0).Control(22)=   "Text1(23)"
-      Tab(0).Control(23)=   "Label1(21)"
-      Tab(0).Control(24)=   "Label2"
-      Tab(0).Control(25)=   "imgDoc(0)"
-      Tab(0).Control(26)=   "imgDoc(1)"
-      Tab(0).Control(27)=   "Label14"
-      Tab(0).Control(28)=   "Label1(20)"
-      Tab(0).Control(29)=   "Label1(19)"
-      Tab(0).Control(30)=   "Label1(3)"
-      Tab(0).Control(31)=   "Label1(5)"
-      Tab(0).Control(32)=   "imgBuscar(0)"
-      Tab(0).Control(33)=   "Label1(6)"
-      Tab(0).Control(34)=   "Label1(7)"
-      Tab(0).Control(35)=   "Label1(8)"
-      Tab(0).Control(36)=   "Label1(9)"
-      Tab(0).Control(37)=   "Label1(10)"
-      Tab(0).Control(38)=   "Label1(11)"
-      Tab(0).Control(39)=   "imgBuscar(2)"
-      Tab(0).Control(40)=   "ImgMail(1)"
-      Tab(0).Control(41)=   "Label1(4)"
-      Tab(0).Control(42)=   "Label1(13)"
-      Tab(0).Control(43)=   "imgFecha(0)"
-      Tab(0).Control(44)=   "Label1(14)"
-      Tab(0).Control(45)=   "imgFecha(1)"
+      Tab(0).Control(0)=   "imgFecha(1)"
+      Tab(0).Control(1)=   "Label1(14)"
+      Tab(0).Control(2)=   "imgFecha(0)"
+      Tab(0).Control(3)=   "Label1(13)"
+      Tab(0).Control(4)=   "Label1(4)"
+      Tab(0).Control(5)=   "ImgMail(1)"
+      Tab(0).Control(6)=   "imgBuscar(2)"
+      Tab(0).Control(7)=   "Label1(11)"
+      Tab(0).Control(8)=   "Label1(10)"
+      Tab(0).Control(9)=   "Label1(9)"
+      Tab(0).Control(10)=   "Label1(8)"
+      Tab(0).Control(11)=   "Label1(7)"
+      Tab(0).Control(12)=   "Label1(6)"
+      Tab(0).Control(13)=   "imgBuscar(0)"
+      Tab(0).Control(14)=   "Label1(5)"
+      Tab(0).Control(15)=   "Label1(3)"
+      Tab(0).Control(16)=   "Label1(19)"
+      Tab(0).Control(17)=   "Label1(20)"
+      Tab(0).Control(18)=   "Label14"
+      Tab(0).Control(19)=   "imgDoc(1)"
+      Tab(0).Control(20)=   "imgDoc(0)"
+      Tab(0).Control(21)=   "Label2"
+      Tab(0).Control(22)=   "Label1(21)"
+      Tab(0).Control(23)=   "Text1(23)"
+      Tab(0).Control(24)=   "Frame3(1)"
+      Tab(0).Control(25)=   "Check1(0)"
+      Tab(0).Control(26)=   "Text1(17)"
+      Tab(0).Control(27)=   "Text1(13)"
+      Tab(0).Control(28)=   "Text1(12)"
+      Tab(0).Control(29)=   "Text1(10)"
+      Tab(0).Control(30)=   "Text1(9)"
+      Tab(0).Control(31)=   "Text1(8)"
+      Tab(0).Control(32)=   "Text1(6)"
+      Tab(0).Control(33)=   "Text1(5)"
+      Tab(0).Control(34)=   "Text1(4)"
+      Tab(0).Control(35)=   "Text1(3)"
+      Tab(0).Control(36)=   "Text1(7)"
+      Tab(0).Control(37)=   "Text1(22)"
+      Tab(0).Control(38)=   "Text1(21)"
+      Tab(0).Control(39)=   "Text1(20)"
+      Tab(0).Control(40)=   "Text1(19)"
+      Tab(0).Control(41)=   "Text1(25)"
+      Tab(0).Control(42)=   "Text1(27)"
+      Tab(0).Control(43)=   "Check1(1)"
+      Tab(0).Control(44)=   "Text1(28)"
+      Tab(0).Control(45)=   "Check1(2)"
       Tab(0).ControlCount=   46
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame3(2)"
-      Tab(1).Control(1)=   "cmdAccCRM(0)"
-      Tab(1).Control(2)=   "cmdAccCRM(1)"
-      Tab(1).Control(3)=   "cmdAccCRM(2)"
-      Tab(1).Control(4)=   "lwCRM"
-      Tab(1).Control(5)=   "LabelCRM"
+      Tab(1).Control(0)=   "LabelCRM"
+      Tab(1).Control(1)=   "lwCRM"
+      Tab(1).Control(2)=   "cmdAccCRM(2)"
+      Tab(1).Control(3)=   "cmdAccCRM(1)"
+      Tab(1).Control(4)=   "cmdAccCRM(0)"
+      Tab(1).Control(5)=   "Frame3(2)"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameToolAux0"
-      Tab(2).Control(1)=   "cmdAux(0)"
-      Tab(2).Control(2)=   "txtAux1(4)"
-      Tab(2).Control(3)=   "txtAux1(3)"
-      Tab(2).Control(4)=   "txtAux1(2)"
-      Tab(2).Control(5)=   "txtAux1(1)"
-      Tab(2).Control(6)=   "txtAux1(0)"
-      Tab(2).Control(7)=   "DataGrid1"
+      Tab(2).Control(0)=   "DataGrid1"
+      Tab(2).Control(1)=   "txtAux1(0)"
+      Tab(2).Control(2)=   "txtAux1(1)"
+      Tab(2).Control(3)=   "txtAux1(2)"
+      Tab(2).Control(4)=   "txtAux1(3)"
+      Tab(2).Control(5)=   "txtAux1(4)"
+      Tab(2).Control(6)=   "cmdAux(0)"
+      Tab(2).Control(7)=   "FrameToolAux0"
       Tab(2).ControlCount=   8
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "FrameToolAux1"
-      Tab(3).Control(1)=   "cmdAux(1)"
-      Tab(3).Control(2)=   "txtAux2(4)"
-      Tab(3).Control(3)=   "cmdAux1"
+      Tab(3).Control(0)=   "DataGrid2"
+      Tab(3).Control(1)=   "txtAux2(0)"
+      Tab(3).Control(2)=   "txtAux2(1)"
+      Tab(3).Control(3)=   "txtAux2(2)"
       Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "txtAux2(2)"
-      Tab(3).Control(6)=   "txtAux2(1)"
-      Tab(3).Control(7)=   "txtAux2(0)"
-      Tab(3).Control(8)=   "DataGrid2"
+      Tab(3).Control(5)=   "cmdAux1"
+      Tab(3).Control(6)=   "txtAux2(4)"
+      Tab(3).Control(7)=   "cmdAux(1)"
+      Tab(3).Control(8)=   "FrameToolAux1"
       Tab(3).ControlCount=   9
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "FrameToolAux2"
-      Tab(4).Control(1)=   "cmdAux(2)"
-      Tab(4).Control(2)=   "txtAux3(2)"
-      Tab(4).Control(3)=   "txtAux3(1)"
-      Tab(4).Control(4)=   "txtAux3(0)"
-      Tab(4).Control(5)=   "Text3"
-      Tab(4).Control(6)=   "DataGrid4"
-      Tab(4).Control(7)=   "Label4"
+      Tab(4).Control(0)=   "Label4"
+      Tab(4).Control(1)=   "DataGrid4"
+      Tab(4).Control(2)=   "Text3"
+      Tab(4).Control(3)=   "txtAux3(0)"
+      Tab(4).Control(4)=   "txtAux3(1)"
+      Tab(4).Control(5)=   "txtAux3(2)"
+      Tab(4).Control(6)=   "cmdAux(2)"
+      Tab(4).Control(7)=   "FrameToolAux2"
       Tab(4).ControlCount=   8
       TabCaption(5)   =   "Documentos"
       TabPicture(5)   =   "frmGesSocios.frx":008C
@@ -367,11 +367,11 @@ Begin VB.Form frmGesSocios
       TabCaption(6)   =   "Contadores"
       TabPicture(6)   =   "frmGesSocios.frx":00A8
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "FrameToolAux3"
-      Tab(6).Control(1)=   "txtAux4(0)"
+      Tab(6).Control(0)=   "DataGrid3"
+      Tab(6).Control(1)=   "txtAux4(2)"
       Tab(6).Control(2)=   "txtAux4(1)"
-      Tab(6).Control(3)=   "txtAux4(2)"
-      Tab(6).Control(4)=   "DataGrid3"
+      Tab(6).Control(3)=   "txtAux4(0)"
+      Tab(6).Control(4)=   "FrameToolAux3"
       Tab(6).ControlCount=   5
       Begin VB.Frame FrameToolAux3 
          Height          =   555
@@ -3213,7 +3213,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim I As Integer
 Dim CadB As String
-Dim cad As String
+Dim Cad As String
 Dim aaa As String
 
 
@@ -3381,47 +3381,53 @@ Dim b As Boolean
          '[Monica]13/03/2012: cuando inserten un socio que inserten en la contabilidad todas las cuentas contables
          If b And vParamAplic.Cooperativa = 0 Then
                ' Cuenta de retencion para liquidacion
-               If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
-                   b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text, True)
-               Else
-                   b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+               If vParamAplic.Raiz_Cta_Reten_Soc <> "" Then
+                    If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
+                        b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text, True)
+                    Else
+                        b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                    End If
                End If
-         
                ' Cuenta de ventas de equipos
-               If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), "T") = "" Then
-                   b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-               Else
-                   b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+               If vParamAplic.Raiz_Cta_Soc_Equip <> "" Then
+                    If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), "T") = "" Then
+                        b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                    Else
+                        b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                    End If
                End If
-               
                ' Cuenta de liquidacion
-               If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), "T") = "" Then
-                   b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-               Else
-                   b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+               If vParamAplic.Raiz_Cta_Soc_Liqui <> "" Then
+                    If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), "T") = "" Then
+                        b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                    Else
+                        b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                    End If
                End If
-               
                ' Cuenta de publicidad
-               If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), "T") = "" Then
-                   b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-               Else
-                   b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+               If vParamAplic.Raiz_Cta_Soc_publi <> "" Then
+                    If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), "T") = "" Then
+                        b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                    Else
+                        b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                    End If
                End If
-               
                ' Cuenta de alta/baja socios
-               If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), "T") = "" Then
-                   b = InsertarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), , , , Text1(0).Text, True)
-               Else
-                   b = ModificarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+               If vParamAplic.Raiz_CtaAltaSoc <> "" Then
+                    If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), "T") = "" Then
+                        b = InsertarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), , , , Text1(0).Text, True)
+                    Else
+                        b = ModificarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                    End If
                End If
-               
                ' Cuenta de cuotas
-               If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
-                   b = InsertarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-               Else
-                   b = ModificarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+               If vParamAplic.Raiz_CtaClien_Soc <> "" Then
+                    If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
+                        b = InsertarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                    Else
+                        b = ModificarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                    End If
                End If
-         
          End If
     End If
     If b Then
@@ -3498,47 +3504,53 @@ Dim b As Boolean
         '[Monica]13/03/2012: en teletaxi si me modifican miro si existen sus cuentas y las modifico
         If vParamAplic.Cooperativa = 0 Then
             ' Cuenta de retencion para liquidacion
-            If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
-                 b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-            Else
-                 b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+            If vParamAplic.Raiz_Cta_Reten_Soc <> "" Then
+                If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
+                     b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                Else
+                     b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                End If
             End If
-        
             ' Cuenta de ventas de equipos
-            If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), "T") = "" Then
-                 b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-            Else
-                 b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+            If vParamAplic.Raiz_Cta_Soc_Equip <> "" Then
+                If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), "T") = "" Then
+                     b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                Else
+                     b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Equip & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                End If
             End If
-              
             ' Cuenta de liquidacion
-            If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), "T") = "" Then
-                 b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-            Else
-                 b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+            If vParamAplic.Raiz_Cta_Soc_Liqui <> "" Then
+                If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), "T") = "" Then
+                     b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                Else
+                     b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                End If
             End If
-              
             ' Cuenta de publicidad
-            If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), "T") = "" Then
-                 b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-            Else
-                 b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+            If vParamAplic.Raiz_Cta_Soc_publi <> "" Then
+                If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), "T") = "" Then
+                     b = InsertarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                Else
+                     b = ModificarCuentaCble(vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                End If
             End If
-              
             ' Cuenta de alta/baja socios
-            If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), "T") = "" Then
-                 b = InsertarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-            Else
-                 b = ModificarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+            If vParamAplic.Raiz_CtaAltaSoc <> "" Then
+                If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), "T") = "" Then
+                     b = InsertarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                Else
+                     b = ModificarCuentaCble(vParamAplic.Raiz_CtaAltaSoc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                End If
             End If
-              
             ' Cuenta de cuotas
-            If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
-                 b = InsertarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
-            Else
-                 b = ModificarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+            If vParamAplic.Raiz_CtaClien_Soc <> "" Then
+                If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
+                     b = InsertarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), , , , Text1(0).Text)
+                Else
+                     b = ModificarCuentaCble(vParamAplic.Raiz_CtaClien_Soc & Format(Text1(0).Text, LCad), Text1(0).Text, "sclien")
+                End If
             End If
-         
         End If
     End If
                         
@@ -4114,7 +4126,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -4132,9 +4144,9 @@ Dim cad As String
             Exit Sub
         End If
         
-        cad = Adodc1.Recordset.Fields(0) & "|"
-        cad = cad & Adodc1.Recordset.Fields(2) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & Adodc1.Recordset.Fields(2) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
 End Sub
@@ -4396,15 +4408,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
@@ -4477,7 +4489,7 @@ Dim bAux As Boolean
 '    'lineas de contadores
 '    Toolbar1.Buttons(12).Enabled = b And vUsu.Nivel = 0
     
-    b = (Modo = 0 Or Modo = 2)
+    b = (Modo = 2)
     'imprimir
     Toolbar1.Buttons(8).Enabled = b
     
@@ -4700,14 +4712,14 @@ End Sub
 Private Sub CalculoCuotas()
 Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim cad As String
+Dim Cad As String
 Dim base0 As Single
 Dim base1 As Single
 Dim BaseImp As Single
 Dim iva As String
 Dim porciva As Currency
         
-        cad = "CALCULO DE IMPORTE DE CUOTAS SOCIO: " & vbCrLf & vbCrLf
+        Cad = "CALCULO DE IMPORTE DE CUOTAS SOCIO: " & vbCrLf & vbCrLf
         
         'busco el iva del articulo
         iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtCuotaSinChofer, "T")
@@ -4717,7 +4729,7 @@ Dim porciva As Currency
         
         base0 = vParamAplic.PrecioCuotaSinChofe
         
-            cad = cad & "Cuota sin Chofer:      " & Format(base0, "###,##0.00") & vbCrLf
+            Cad = Cad & "Cuota sin Chofer:      " & Format(base0, "###,##0.00") & vbCrLf
         
         
         '[Monica]10/02/2011: si el socio tiene suplemento se le añade
@@ -4725,7 +4737,7 @@ Dim porciva As Currency
         '[Monica]10/02/2011:end
         
         If DBLet(Adodc1.Recordset!suplecuota, "N") <> 0 Then
-            cad = cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
+            Cad = Cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
         End If
         
         BaseImp = base0
@@ -4734,19 +4746,19 @@ Dim porciva As Currency
         If TieneChofer(CStr(Adodc1.Recordset!CodClien)) Then
             base1 = vParamAplic.PrecioCuotaConChofe
             BaseImp = BaseImp + base1
-            cad = cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
+            Cad = Cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
         End If
         
         If Adodc1.Recordset!essocio = 0 Then
             BaseImp = BaseImp + vParamAplic.PrecioPorAlquiler
-            cad = cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
+            Cad = Cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
         End If
     
-            cad = cad & vbCrLf
-            cad = cad & "--------------------------------" & vbCrLf
-            cad = cad & "TOTAL BRUTO:         " & Format(BaseImp, "###,##0.00")
+            Cad = Cad & vbCrLf
+            Cad = Cad & "--------------------------------" & vbCrLf
+            Cad = Cad & "TOTAL BRUTO:         " & Format(BaseImp, "###,##0.00")
 
-        MsgBox cad, vbInformation, "Cálculo de Cuotas"
+        MsgBox Cad, vbInformation, "Cálculo de Cuotas"
 
 
 End Sub
@@ -4845,9 +4857,10 @@ Dim Seleccionado As Long
         
     'Pase lo que pase, por si acaso, cargamos el lw
     lw1.SetFocus
-    Seleccionado = lw1.SelectedItem.Index
+    '[Monica]07/02/2018: en el caso de que quedara uno daba error, ponemos condicion de que el count > 0
+    If lw1.ListItems.Count > 0 Then Seleccionado = lw1.SelectedItem.Index
     CargaDatosLWDoc
-    lw1.SelectedItem.Selected = False
+    If lw1.ListItems.Count > 0 Then lw1.SelectedItem.Selected = False
     Set lw1.SelectedItem = Nothing
     If lw1.ListItems.Count >= Seleccionado Then
             lw1.ListItems(Seleccionado).Selected = True
@@ -5258,8 +5271,8 @@ End Sub
 
 
 
-Private Sub BotonMtoLineas(cad As String)
-        Select Case cad
+Private Sub BotonMtoLineas(Cad As String)
+        Select Case Cad
             Case "Choferes"
                 SSTab1.Tab = 2
             Case "Publicidad"
@@ -6210,10 +6223,10 @@ Dim dirMail As String
 End Sub
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
-    cad = "(codclien=" & Text1(0).Text & ")"
-    If SituarData(Adodc1, cad, Indicador) Then
+    Cad = "(codclien=" & Text1(0).Text & ")"
+    If SituarData(Adodc1, Cad, Indicador) Then
        PonerModo 2
        lblIndicador(0).Caption = Indicador
         'data4 para el grid contadores
@@ -6421,6 +6434,7 @@ Dim Nombre As String
 '    Else
 '        Nombre = "rGesSocios.rpt"
 '    End If
+
     With frmImprimir2
         .cadTabla2 = "((sclien left join sclien_cuotas) left join sclien_chofer) left join sclien_publicidad"
         .Informe2 = "rGesSocios.rpt"
@@ -6548,7 +6562,7 @@ Dim bs As Byte
 End Sub
 
 Private Sub CargaDatosLWDoc2()
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -6574,22 +6588,22 @@ Dim EsDTOFam As Boolean
     Select Case CByte(RecuperaValor(lw1.Tag, 1))
     Case 2
         'LLAMADAS
-        cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
-        cad = cad & " codsocio=" & Adodc1.Recordset!CodClien
+        Cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
+        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
         GroupBy = "1,2,3"
         BuscaChekc = "fecha"
         
     Case 3
         'FACTURAS como cliente
-        cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
-        cad = cad & " codclien=" & Adodc1.Recordset!CodClien
+        Cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
+        Cad = Cad & " codclien=" & Adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
     Case 4
         'FACTURAS COMO PROVEEDOR
-        cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
-        cad = cad & " codsocio=" & Adodc1.Recordset!CodClien
+        Cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
+        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
@@ -6597,20 +6611,20 @@ Dim EsDTOFam As Boolean
     
     
     'La fecha
-    If BuscaChekc <> "" Then cad = cad & " and " & BuscaChekc & " >='" & Format(imgFecha(3).Tag, FormatoFecha) & "'"
+    If BuscaChekc <> "" Then Cad = Cad & " and " & BuscaChekc & " >='" & Format(imgFecha(3).Tag, FormatoFecha) & "'"
     
     'El group by
-    If GroupBy <> "" Then cad = cad & " GROUP BY " & GroupBy
+    If GroupBy <> "" Then Cad = Cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    cad = cad & " ORDER BY " & BuscaChekc & " DESC"
+    Cad = Cad & " ORDER BY " & BuscaChekc & " DESC"
     
     BuscaChekc = ""
     
     lw1.ListItems.Clear
-    If cad <> "" Then
+    If Cad <> "" Then
         Set Rs = New ADODB.Recordset
-        Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not Rs.EOF
             Set It = lw1.ListItems.Add()
             If lw1.ColumnHeaders(1).Tag <> "" Then
@@ -6816,7 +6830,7 @@ Dim bs As Byte
 End Sub
 
 Private Sub CargaDatosLWcrm2()
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -6843,18 +6857,18 @@ Dim MeteIT As Boolean
     Select Case Kopc
     Case 0
         'Nros de serie
-        cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
-        cad = cad & " and sserie.codtipar = stipar.codtipar  "
-        cad = cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
+        Cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
+        Cad = Cad & " and sserie.codtipar = stipar.codtipar  "
+        Cad = Cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
         GroupBy = ""
         BuscaChekc = "nomtipar, sserie.codartic, numserie "
     End Select
     
     'El group by
-    If GroupBy <> "" Then cad = cad & " GROUP BY " & GroupBy
+    If GroupBy <> "" Then Cad = Cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    cad = cad & " ORDER BY " & BuscaChekc
+    Cad = Cad & " ORDER BY " & BuscaChekc
 '     If Kopc <> 4 Then cad = cad & " DESC"
 
     BuscaChekc = ""
@@ -6863,10 +6877,10 @@ Dim MeteIT As Boolean
    
     Set Rs = New ADODB.Recordset
     If Kopc <> 3 Then
-        Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     Else
         'Va contra la contabilidad
-        Rs.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     End If
     While Not Rs.EOF
         If Kopc <> 3 Then
@@ -6898,15 +6912,15 @@ Dim MeteIT As Boolean
                         Else
                         
                             
-                            cad = Rs.Fields(NumRegElim - 1)
+                            Cad = Rs.Fields(NumRegElim - 1)
                             'no TIENE FORMATO. sEGUN LO QUE SEA puedo hacer unas cosas u otras
-                            If NumRegElim = 4 And Kopc = 1 Then cad = Replace(cad, vbCrLf, " ")
+                            If NumRegElim = 4 And Kopc = 1 Then Cad = Replace(Cad, vbCrLf, " ")
                             'Medio
                             If NumRegElim = 3 And Kopc = 0 Then 'DevuelveMedio cad
                             End If
-                            If NumRegElim = 3 And Kopc = 4 Then cad = Replace(cad, vbCrLf, " ")
+                            If NumRegElim = 3 And Kopc = 4 Then Cad = Replace(Cad, vbCrLf, " ")
                             
-                            It.SubItems(NumRegElim - 1) = cad
+                            It.SubItems(NumRegElim - 1) = Cad
                         
                             
                             
@@ -6943,14 +6957,14 @@ ECargaDatosLW:
     Set Rs = Nothing
 End Sub
 
-Private Sub DevuelveMedio(ByRef cad As String)
+Private Sub DevuelveMedio(ByRef Cad As String)
     'pendiente,en curso finalizada
-    If cad = "0" Then
-        cad = "Pendiente"
-    ElseIf cad = "1" Then
-        cad = "En curso"
+    If Cad = "0" Then
+        Cad = "Pendiente"
+    ElseIf Cad = "1" Then
+        Cad = "En curso"
     Else
-        cad = "Finalizada"
+        Cad = "Finalizada"
     End If
 End Sub
 

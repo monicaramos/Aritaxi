@@ -619,7 +619,7 @@ Dim CADENA As String
         mBrutofac = CStr(Rs!BaseIVA1)
         mTotalfac = CStr(Rs!TotalFac)
         '[Monica]14/11/2017: añadidos los suplidos
-        mSuplidos = CStr(Rs!Suplidos)
+        mSuplidos = CStr(DBLet(Rs!Suplidos, "N"))
         '[Monica]05/01/2018: numero de uve
         mNumerUve = CStr(Rs!NumerUve)
         
