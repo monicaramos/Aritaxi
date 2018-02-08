@@ -731,7 +731,7 @@ Private WithEvents frmFPag As frmFacFormasPago
 Attribute frmFPag.VB_VarHelpID = -1
 
 Dim Fecha As Date
-Dim cad As String
+Dim Cad As String
 'variables para el report
 Dim cadFormula As String
 Dim cadParam As String
@@ -854,7 +854,7 @@ End Sub
 Private Function GenerarFactura(normal As Boolean) As Boolean
 Dim vC As CTiposMov
 Dim fac As CFactura
-Dim cad As String
+Dim Cad As String
 Dim Sql As String
 Dim totfactu As Currency
 Dim BaseImp As Currency
@@ -939,7 +939,7 @@ Dim cad1 As String
     b = True
     
     'inicializamos cadenas
-    cad = ""
+    Cad = ""
     While Not Data1.Recordset.EOF
         Cantidad = Cantidad + 1
         PB1.Value = Cantidad * 100 / total
@@ -957,8 +957,8 @@ Dim cad1 As String
         vC.IncrementarContador (vC.TipoMovimiento)
         
         If normal Then 'calculo los servicios
-
-            SqlArt = "select sclien_cuotas.*, sartic.preciove, sartic.nomartic from sclien_cuotas inner join sartic on sclien_cuotas.codartic = sartic.codartic where codsocio = " & DBSet(Data1.Recordset!CodClien, "N")
+            '[Monica]08/02/2018: si tiene valor en txtauxdocumento lo concatena con esto
+            SqlArt = "select sclien_cuotas.*, sartic.preciove, sartic.nomartic, sartic.txtauxdocumento from sclien_cuotas inner join sartic on sclien_cuotas.codartic = sartic.codartic where codsocio = " & DBSet(Data1.Recordset!CodClien, "N")
             
             BaseImp = 0
             
@@ -1023,16 +1023,16 @@ Dim cad1 As String
         fac.CuentaBan = DBLet(Data1.Recordset!cuentaba, "T")
     
         'scafac
-        cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
-        cad = cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
-        cad = cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
-        cad = cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
-        cad = cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
-        cad = cad & DBSet(Data1.Recordset!codbanco, "N", "S") & "," & DBSet(Data1.Recordset!codsucur, "N", "S") & "," & DBSet(Data1.Recordset!digcontr, "T", "S") & "," & DBSet(Data1.Recordset!cuentaba, "T", "S") & "," & DBSet(Data1.Recordset!Iban, "T") & ")"
+        Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
+        Cad = Cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
+        Cad = Cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
+        Cad = Cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
+        Cad = Cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
+        Cad = Cad & DBSet(Data1.Recordset!codbanco, "N", "S") & "," & DBSet(Data1.Recordset!codsucur, "N", "S") & "," & DBSet(Data1.Recordset!digcontr, "T", "S") & "," & DBSet(Data1.Recordset!cuentaba, "T", "S") & "," & DBSet(Data1.Recordset!Iban, "T") & ")"
         Sql = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
         Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
         Sql = Sql & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
-        Sql = Sql & cad
+        Sql = Sql & Cad
         If Not ejecutar(Sql, False) Then
             vC.DevolverContador vC.TipoMovimiento, vC.Contador
             Exit Function
@@ -1043,17 +1043,17 @@ Dim cad1 As String
             Else
                 cadFormula = cadFormula & " or {scafac.numfactu}=" & NumFactu
             End If
-            cad = ""
-            cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
-            cad = cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
-            cad = cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
+            Cad = ""
+            Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
+            Cad = Cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+            Cad = Cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
     
             Sql = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
             Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
-            Sql = Sql & cad & ")"
+            Sql = Sql & Cad & ")"
             conn.Execute Sql
             'slifac
-            cad = ""
+            Cad = ""
             If normal Then
 '[Monica]20/04/2011
 '                i = 1
@@ -1114,14 +1114,14 @@ Dim cad1 As String
                 I = 1
                 If base2 <> 0 Then ' si hay servicios
                     '3º linea seran los servicios
-                    cad = ""
-                    cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
-                    cad = cad & DBSet(vParamAplic.ArtServCuotas, "T") & "," & DBSet(NomArtic3, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorServicio)) & ","
-                    cad = cad & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & ","
-                    cad = cad & TransformaComasPuntos(CStr(base2)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base2)) & "," & Servicios & ")"
+                    Cad = ""
+                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
+                    Cad = Cad & DBSet(vParamAplic.ArtServCuotas, "T") & "," & DBSet(NomArtic3, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorServicio)) & ","
+                    Cad = Cad & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & ","
+                    Cad = Cad & TransformaComasPuntos(CStr(base2)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base2)) & "," & Servicios & ")"
                     Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
                     Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-                    Sql = Sql & cad
+                    Sql = Sql & Cad
                     conn.Execute Sql
                 End If
                 
@@ -1138,18 +1138,23 @@ Dim cad1 As String
                             NomArtic = Mid(RsArt!NomArtic, 1, 18) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
                         End If
                     Else
-                            NomArtic = Mid(RsArt!NomArtic, 1, 18) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
+                        '[Monica]08/02/2018: solo en el caso de que tenga valor
+                        If DBLet(RsArt!txtauxdocumento, "T") = "" Then
+                            NomArtic = Trim(Mid(RsArt!NomArtic, 1, 18)) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
+                        Else
+                            NomArtic = Trim(Mid(RsArt!NomArtic, 1, 24)) & " " & Trim(Mid(UCase(RsArt!txtauxdocumento), 1, 15))
+                        End If
                     End If
                     
-                    cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
+                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
                     '[Monica]05/12/2013: antes DBSet(RsArt!preciove, "N") ahora importes
-                    cad = cad & DBSet(RsArt!codArtic, "T") & "," & DBSet(NomArtic, "T") & ",1," & DBSet(RsArt!Importes, "N") & ","
-                    cad = cad & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & ","
-                    cad = cad & DBSet(RsArt!Importes, "N") & ",0,0,'M'," & Prove & "," & DBSet(RsArt!Importes, "N") & ",1)"
+                    Cad = Cad & DBSet(RsArt!codArtic, "T") & "," & DBSet(NomArtic, "T") & ",1," & DBSet(RsArt!Importes, "N") & ","
+                    Cad = Cad & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & ","
+                    Cad = Cad & DBSet(RsArt!Importes, "N") & ",0,0,'M'," & Prove & "," & DBSet(RsArt!Importes, "N") & ",1)"
                     
                     Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
                     Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-                    Sql = Sql & cad
+                    Sql = Sql & Cad
                     
                     conn.Execute Sql
                                 
@@ -1159,13 +1164,13 @@ Dim cad1 As String
 
             Else
 
-                cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
-                cad = cad & DBSet(vParamAplic.ArtCuotaExtraor, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
-                cad = cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
-                cad = cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & DBSet(Text1(6).Text, "T") & ",1)"
+                Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
+                Cad = Cad & DBSet(vParamAplic.ArtCuotaExtraor, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
+                Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
+                Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & DBSet(Text1(6).Text, "T") & ",1)"
                 Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
                 Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
-                Sql = Sql & cad
+                Sql = Sql & Cad
                 conn.Execute Sql
             End If
             
@@ -1749,7 +1754,7 @@ Private Sub CargarComboMes()
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    cad = CadenaDevuelta
+    Cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
