@@ -311,38 +311,40 @@ Dim encontrado As String
                 Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
                 Label1(0).Refresh
                 
-                '??????????
-                ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
-                If Trim(vParam.CifEmpresa) = "B98877806" Then
+'[Monica]09/02/2018: quito la concicion Trim(vParam.CifEmpresa) = "B98877806"
+'                    pq ahora tele es igual que radio en el numeruve lleva la licencia
+'                '??????????
+'                ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
+'                If Trim(vParam.CifEmpresa) = "B98877806" Then
                 
                     encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
                     
                     b = Updatear(Rs!NumerUve, encontrado, False)
                 
-                Else
-                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", Rs!NumerUve, "T")
-                    
-                    If encontrado <> "" Then
-                        ' pq me viene la licencia
-                        Dim rs4 As ADODB.Recordset
-                        Dim Sql4 As String
-                        Set rs4 = New ADODB.Recordset
-                        Sql4 = "select codclien from sclien where licencia = " & DBSet(Rs!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
-                        rs4.Open Sql4, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-                        
-                        encontrado = ""
-                        
-                        If Not rs4.EOF Then
-                            encontrado = DBLet(rs4.Fields(0))
-                        End If
-                        Set rs4 = Nothing
-                        
-                        b = Updatear(Rs!NumerUve, encontrado, True)
-                    Else
-                        b = Updatear(Rs!NumerUve, encontrado, False)
-                    End If
-                    
-                End If
+'                Else
+'                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", Rs!NumerUve, "T")
+'
+'                    If encontrado <> "" Then
+'                        ' pq me viene la licencia
+'                        Dim rs4 As ADODB.Recordset
+'                        Dim Sql4 As String
+'                        Set rs4 = New ADODB.Recordset
+'                        Sql4 = "select codclien from sclien where licencia = " & DBSet(Rs!NumerUve, "N") & " and not numeruve is null and numeruve <> 0"
+'                        rs4.Open Sql4, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+'
+'                        encontrado = ""
+'
+'                        If Not rs4.EOF Then
+'                            encontrado = DBLet(rs4.Fields(0))
+'                        End If
+'                        Set rs4 = Nothing
+'
+'                        b = Updatear(Rs!NumerUve, encontrado, True)
+'                    Else
+'                        b = Updatear(Rs!NumerUve, encontrado, False)
+'                    End If
+'
+'                End If
                                         
                 Rs.MoveNext
             Wend
