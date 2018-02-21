@@ -1088,15 +1088,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
@@ -1468,7 +1468,8 @@ Dim devuelve As String
 
     InicializarVbles
     
-    If vParamAplic.Cooperativa = 0 Then
+    '[Monica]19/02/2018: Entra Cordoba
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
     
         cadNombreRPT = "rRecRetenciones.rpt"
         cadTitulo = "Reimpresion Recibos Retenciones"
@@ -1579,7 +1580,7 @@ Dim I As Byte
 
     For I = 0 To 0 'Codigo socio
         BloquearTxt txtAux(I), bol
-        Me.cmdAux(I).Enabled = Not bol
+        Me.cmdaux(I).Enabled = Not bol
     Next I
     BloquearTxt txtAux(2), bol
     BloquearTxt txtAux(3), bol
@@ -1643,10 +1644,10 @@ Dim b As Boolean
             Text2(jj).visible = b
         Next jj
         
-        For jj = 0 To Me.cmdAux.Count - 1
-            Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
-            Me.cmdAux(jj).top = alto
-            Me.cmdAux(jj).visible = b
+        For jj = 0 To Me.cmdaux.Count - 1
+            Me.cmdaux(jj).Height = Me.DataGrid1.RowHeight
+            Me.cmdaux(jj).top = alto
+            Me.cmdaux(jj).visible = b
         Next jj
         
         For jj = 0 To Combo1.Count - 1

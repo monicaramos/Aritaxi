@@ -255,47 +255,50 @@ Begin VB.Form frmFacClientes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacClientes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame4"
-      Tab(1).Control(1)=   "frameDptoVentas"
-      Tab(1).Control(2)=   "frameDptoAdmon"
-      Tab(1).Control(3)=   "frameDptoDirec"
+      Tab(1).Control(0)=   "frameDptoDirec"
+      Tab(1).Control(1)=   "frameDptoAdmon"
+      Tab(1).Control(2)=   "frameDptoVentas"
+      Tab(1).Control(3)=   "Frame4"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Direcciones"
       TabPicture(2)   =   "frmFacClientes.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FrameDesplazamiento2"
+      Tab(2).Control(0)=   "FrameDirecciones"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "FrameAux1"
-      Tab(2).Control(2)=   "FrameDirecciones"
+      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).Control(2)=   "FrameDesplazamiento2"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).ControlCount=   3
       TabCaption(3)   =   "Documentos"
       TabPicture(3)   =   "frmFacClientes.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "LabelDoc"
-      Tab(3).Control(1)=   "imgFecha(3)"
-      Tab(3).Control(2)=   "Label3"
-      Tab(3).Control(3)=   "lw1"
-      Tab(3).Control(4)=   "Text1(46)"
-      Tab(3).Control(5)=   "Frame3(0)"
+      Tab(3).Control(0)=   "Frame3(0)"
+      Tab(3).Control(1)=   "Text1(46)"
+      Tab(3).Control(2)=   "lw1"
+      Tab(3).Control(3)=   "Label3"
+      Tab(3).Control(4)=   "imgFecha(3)"
+      Tab(3).Control(5)=   "LabelDoc"
       Tab(3).ControlCount=   6
       TabCaption(4)   =   "CRM"
       TabPicture(4)   =   "frmFacClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "cmdAccCRM(2)"
-      Tab(4).Control(1)=   "cmdAccCRM(1)"
-      Tab(4).Control(2)=   "cmdAccCRM(0)"
-      Tab(4).Control(3)=   "Frame3(1)"
-      Tab(4).Control(4)=   "lwCRM"
-      Tab(4).Control(5)=   "LabelCRM"
+      Tab(4).Control(0)=   "LabelCRM"
+      Tab(4).Control(1)=   "lwCRM"
+      Tab(4).Control(2)=   "Frame3(1)"
+      Tab(4).Control(3)=   "cmdAccCRM(0)"
+      Tab(4).Control(4)=   "cmdAccCRM(1)"
+      Tab(4).Control(5)=   "cmdAccCRM(2)"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Subclientes"
       TabPicture(5)   =   "frmFacClientes.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "FrameToolAux"
-      Tab(5).Control(1)=   "txtAux1(0)"
-      Tab(5).Control(2)=   "txtAux1(1)"
-      Tab(5).Control(3)=   "cmdAux(0)"
-      Tab(5).Control(4)=   "DataGrid1"
-      Tab(5).Control(5)=   "Adodc2"
+      Tab(5).Control(0)=   "Adodc2"
+      Tab(5).Control(1)=   "DataGrid1"
+      Tab(5).Control(2)=   "cmdAux(0)"
+      Tab(5).Control(3)=   "txtAux1(1)"
+      Tab(5).Control(4)=   "txtAux1(0)"
+      Tab(5).Control(5)=   "FrameToolAux"
       Tab(5).ControlCount=   6
       Begin VB.Frame Frame4 
          Caption         =   "Codigos DIR"
@@ -1091,12 +1094,12 @@ Begin VB.Form frmFacClientes
             Height          =   360
             Index           =   1
             Left            =   1410
-            MaxLength       =   30
+            MaxLength       =   40
             TabIndex        =   132
             Tag             =   "Nombre Direc./Dpto|T|N|||sdirec|nomdirec||N|"
             Text            =   "Text3"
             Top             =   780
-            Width           =   3270
+            Width           =   4260
          End
          Begin VB.TextBox Text3 
             BeginProperty Font 
@@ -2854,7 +2857,7 @@ Begin VB.Form frmFacClientes
             Height          =   315
             Index           =   21
             Left            =   1140
-            MaxLength       =   40
+            MaxLength       =   50
             TabIndex        =   22
             Tag             =   "e-mail Comercial|T|S|||scliente|maiclie2||N|"
             Text            =   "Text1"
@@ -2973,7 +2976,7 @@ Begin VB.Form frmFacClientes
             Height          =   360
             Index           =   17
             Left            =   1140
-            MaxLength       =   40
+            MaxLength       =   50
             TabIndex        =   18
             Tag             =   "e-mail Admon.|T|S|||scliente|maiclie1||N|"
             Text            =   "maiclie1"
@@ -6538,7 +6541,7 @@ Dim bAux As Boolean
     b = (Modo = 2 Or Modo = 0 Or (Modo = 5 And ModificaLineas = 0))
     'Insertar
     Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
-    Me.mnnuevo.Enabled = b And Not DeConsulta
+    Me.mnNuevo.Enabled = b And Not DeConsulta
     
     b1 = (Modo = 2 Or (Modo = 5 And ModificaLineas = 0 And SSTab1.Tab <> 5))
     b = (Modo = 2 Or (Modo = 5 And ModificaLineas = 0))
@@ -6562,7 +6565,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
     
     
     'BARRA DE DIRECCIONES
@@ -8160,7 +8163,7 @@ Dim I As Byte
             txtAux1(I).top = 290
             txtAux1(I).visible = visible
         Next I
-        Me.cmdAux(0).visible = visible
+        Me.cmdaux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
@@ -8178,7 +8181,7 @@ Dim I As Byte
                     txtAux1(I).Locked = True
                 End If
             Next I
-            cmdAux(0).Enabled = False
+            cmdaux(0).Enabled = False
         End If
         
         'Fijamos altura(Height) y posición Top
@@ -8196,12 +8199,12 @@ Dim I As Byte
         'cliente
         txtAux1(0).Left = DataGrid1.Left + 330
         txtAux1(0).Width = DataGrid1.Columns(2).Width - 160
-        cmdAux(0).Left = txtAux1(0).Left + txtAux1(0).Width - 50
+        cmdaux(0).Left = txtAux1(0).Left + txtAux1(0).Width - 50
 '        txtAux1(0).Left = DataGrid1.Left + 330
 '        txtAux1(0).Width = DataGrid1.Columns(2).Width - 100
         
         'nombre
-        txtAux1(1).Left = cmdAux(0).Left + cmdAux(0).Width + 10
+        txtAux1(1).Left = cmdaux(0).Left + cmdaux(0).Width + 10
         txtAux1(1).Width = DataGrid1.Columns(3).Width - 50
 '        txtAux1(1).Width = DataGrid1.Columns(3).Width - 100
 '        txtAux1(1).Left = txtAux1(0).Left + (txtAux1(0).Width + 100)
@@ -8212,9 +8215,9 @@ Dim I As Byte
         For I = 0 To txtAux1.Count - 1
             txtAux1(I).visible = visible
         Next I
-        Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
-        Me.cmdAux(0).top = alto
-        Me.cmdAux(0).visible = visible
+        Me.cmdaux(0).Height = Me.DataGrid1.RowHeight
+        Me.cmdaux(0).top = alto
+        Me.cmdaux(0).visible = visible
 '        cmdAux1.Top = alto
 '        cmdAux1.visible = visible
     End If

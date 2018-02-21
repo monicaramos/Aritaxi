@@ -541,7 +541,7 @@ Private Sub BotonAnyadir()
         numF = NuevoCodigo
     End If
          
-    anc = DataGrid1.Top
+    anc = DataGrid1.top
     If DataGrid1.Row < 0 Then
         anc = anc + 206
     Else
@@ -574,7 +574,7 @@ Private Sub BotonBuscar()
         txtAux(I).Text = ""
     Next I
     txtAux2(2).Text = ""
-    LLamaLineas DataGrid1.Top + 230, 1 'Pone el form en Modo=1, Buscar
+    LLamaLineas DataGrid1.top + 230, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(1)
 End Sub
 
@@ -614,9 +614,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     
     'Fijamos el ancho
     For I = 0 To 3
-        txtAux(I).Top = alto
+        txtAux(I).top = alto
     Next I
-    txtAux2(2).Top = alto
+    txtAux2(2).top = alto
     
     ' ### [Monica] 12/09/2006
 End Sub
@@ -665,7 +665,7 @@ Dim I As Integer
 Dim J As Integer
 Dim Aux As String
 
-    If Adodc1.Recordset.EOF Then
+    If adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
@@ -677,7 +677,7 @@ Dim Aux As String
         If I > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, I - J)
             J = Val(Aux)
-            Cad = Cad & Adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until I = 0
     RaiseEvent DatoSeleccionado(Cad)
@@ -695,8 +695,8 @@ End Sub
 Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
 Dim Cad As String
 
-    If Adodc1.Recordset Is Nothing Then Exit Sub
-    If Adodc1.Recordset.EOF Then Exit Sub
+    If adodc1.Recordset Is Nothing Then Exit Sub
+    If adodc1.Recordset.EOF Then Exit Sub
         
     Me.Refresh
     Screen.MousePointer = vbHourglass
@@ -735,7 +735,7 @@ Private Sub Form_Activate()
         Else
             PonerModo 2
              If Me.CodigoActual <> "" Then
-                SituarData Me.Adodc1, "=", "", True
+                SituarData Me.adodc1, "=", "", True
             End If
         End If
     End If
@@ -747,9 +747,9 @@ Private Sub Form_Load()
     PrimeraVez = True
 
     With Me.Toolbar1
-        .HotImageList = frmPpal.imgListComun_OM
-        .DisabledImageList = frmPpal.imgListComun_BN
-        .ImageList = frmPpal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .ImageList = frmppal.imgListComun1
         .Buttons(1).Image = 1   'Buscar
         .Buttons(2).Image = 2   'Todos
     End With
@@ -811,12 +811,13 @@ Private Sub CargaGrid(Optional vSQL As String)
 '    End If
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.Adodc1, Sql, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Fecha|1405|;S|txtAux(1)|T|Hora|1005|;"
     tots = tots & "S|txtAux(2)|T|Socio|1105|;"
-    If vParamAplic.Cooperativa = 0 Then
+    '[Monica]19/02/2018: Entra Cordoba
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
         tots = tots & "S|txtAux2(2)|T|Nombre|3895|;S|txtAux(3)|T|Vehículo|1100|;"
     Else
         tots = tots & "S|txtAux2(2)|T|Nombre|4995|;N|txtAux(3)|T|Vehículo|1100|;"
@@ -876,7 +877,7 @@ Private Sub PonerContRegIndicador()
 Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
-        cadReg = PonerContRegistros(Me.Adodc1)
+        cadReg = PonerContRegistros(Me.adodc1)
         If CadB = "" Then
             lblIndicador.Caption = cadReg
         Else

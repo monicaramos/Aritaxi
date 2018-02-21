@@ -492,21 +492,21 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
     
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
+    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".numeruve}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
     End If
     
     'Desde/Hasta numero de FACTURA
     '---------------------------------------------
-    If txtcodigo(36).Text <> "" Or txtcodigo(37).Text <> "" Then
+    If txtCodigo(36).Text <> "" Or txtCodigo(37).Text <> "" Then
         Codigo = "{" & Tabla & ".numfactu}"
         If Not PonerDesdeHasta(Codigo, "N", 36, 37, "") Then Exit Sub
     End If
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
+    If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
         Codigo = "{" & Tabla & ".fecfactu}"
         If Not PonerDesdeHasta(Codigo, "F", 85, 86, "") Then Exit Sub
     End If
@@ -522,7 +522,8 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
     numParam = numParam + 1
     
     '[Monica]31/03/2014
-    If vParamAplic.Cooperativa = 0 Then
+    '[Monica]19/02/2018: Entra Cordoba
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
         'preguntamos si quiere imprimirlo o no con los servicios
         If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
             cadParam = cadParam & "pDetalle=0|"
@@ -611,7 +612,7 @@ Private Sub Form_Activate()
     numParam = 0
     cadParam = ""
 
-    PonerFoco txtcodigo(0)
+    PonerFoco txtCodigo(0)
 
 End Sub
 
@@ -713,10 +714,10 @@ End Function
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -725,8 +726,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -742,11 +743,11 @@ End Function
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
@@ -763,7 +764,7 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             Set frmMtoV = Nothing
         
         End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 
 
 End Sub
@@ -778,13 +779,13 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = Index + 62
    End Select
    
-   PonerFormatoFecha txtcodigo(indCodigo)
-   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtcodigo(indCodigo)
+   PonerFoco txtCodigo(indCodigo)
 End Sub
 
 'Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
@@ -821,7 +822,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -832,17 +833,17 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 0, 1 'V Socio
-            If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            If PonerFormatoEntero(txtCodigo(Index)) Then
+                txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             End If
         
         Case 85, 86  'FECHA Desde Hasta
-            If txtcodigo(Index).Text = "" Then Exit Sub
-            PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text = "" Then Exit Sub
+            PonerFormatoFecha txtCodigo(Index)
             
         Case 36, 37 'Nº de FACTURA
-            If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtcodigo(Index).Text = Format(txtcodigo(Index).Text, "0000000")
+            If PonerFormatoEntero(txtCodigo(Index)) Then
+                txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "0000000")
             End If
     End Select
     

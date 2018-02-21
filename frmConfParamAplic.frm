@@ -199,7 +199,7 @@ Begin VB.Form frmConfParamAplic
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   1
+      Tab             =   5
       TabsPerRow      =   6
       TabHeight       =   520
       ForeColor       =   9907723
@@ -244,21 +244,14 @@ Begin VB.Form frmConfParamAplic
       Tab(0).ControlCount=   26
       TabCaption(1)   =   "Datos Facturación"
       TabPicture(1)   =   "frmConfParamAplic.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Frame12"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame4"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Frame9"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Frame2"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Frame3"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Frame10"
-      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "Frame15"
-      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).ControlCount=   7
       TabCaption(2)   =   "Internet"
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
@@ -271,74 +264,78 @@ Begin VB.Form frmConfParamAplic
       TabCaption(3)   =   "Datos Contabilidad "
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "Label1(15)"
-      Tab(3).Control(1)=   "Label1(17)"
-      Tab(3).Control(2)=   "Label1(18)"
-      Tab(3).Control(3)=   "Label1(19)"
-      Tab(3).Control(4)=   "Label1(49)"
-      Tab(3).Control(5)=   "Label1(50)"
-      Tab(3).Control(6)=   "imgBuscar(41)"
-      Tab(3).Control(7)=   "Label1(53)"
-      Tab(3).Control(8)=   "imgBuscar(45)"
-      Tab(3).Control(9)=   "Label1(47)"
-      Tab(3).Control(10)=   "Label1(51)"
-      Tab(3).Control(11)=   "Label1(58)"
-      Tab(3).Control(12)=   "Text1(20)"
-      Tab(3).Control(13)=   "Text1(21)"
-      Tab(3).Control(14)=   "Text1(22)"
-      Tab(3).Control(15)=   "Text1(23)"
-      Tab(3).Control(16)=   "Frame8"
-      Tab(3).Control(17)=   "Text1(48)"
-      Tab(3).Control(18)=   "Text2(48)"
-      Tab(3).Control(19)=   "cboObsFactura"
-      Tab(3).Control(20)=   "Text2(52)"
-      Tab(3).Control(21)=   "Text1(52)"
-      Tab(3).Control(22)=   "Text1(50)"
-      Tab(3).Control(23)=   "CboModAnalitica"
+      Tab(3).Control(0)=   "CboModAnalitica"
+      Tab(3).Control(1)=   "Text1(50)"
+      Tab(3).Control(2)=   "Text1(52)"
+      Tab(3).Control(3)=   "Text2(52)"
+      Tab(3).Control(4)=   "cboObsFactura"
+      Tab(3).Control(5)=   "Text2(48)"
+      Tab(3).Control(6)=   "Text1(48)"
+      Tab(3).Control(7)=   "Frame8"
+      Tab(3).Control(8)=   "Text1(23)"
+      Tab(3).Control(9)=   "Text1(22)"
+      Tab(3).Control(10)=   "Text1(21)"
+      Tab(3).Control(11)=   "Text1(20)"
+      Tab(3).Control(12)=   "Label1(58)"
+      Tab(3).Control(13)=   "Label1(51)"
+      Tab(3).Control(14)=   "Label1(47)"
+      Tab(3).Control(15)=   "imgBuscar(45)"
+      Tab(3).Control(16)=   "Label1(53)"
+      Tab(3).Control(17)=   "imgBuscar(41)"
+      Tab(3).Control(18)=   "Label1(50)"
+      Tab(3).Control(19)=   "Label1(49)"
+      Tab(3).Control(20)=   "Label1(19)"
+      Tab(3).Control(21)=   "Label1(18)"
+      Tab(3).Control(22)=   "Label1(17)"
+      Tab(3).Control(23)=   "Label1(15)"
       Tab(3).ControlCount=   24
       TabCaption(4)   =   "Publicidad / Cuotas"
       TabPicture(4)   =   "frmConfParamAplic.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "imgBuscar(30)"
-      Tab(4).Control(1)=   "imgBuscar(25)"
-      Tab(4).Control(2)=   "imgBuscar(27)"
-      Tab(4).Control(3)=   "imgBuscar(26)"
-      Tab(4).Control(4)=   "Label1(30)"
-      Tab(4).Control(5)=   "Label1(27)"
-      Tab(4).Control(6)=   "Label1(26)"
-      Tab(4).Control(7)=   "Label1(25)"
-      Tab(4).Control(8)=   "imgBuscar(31)"
-      Tab(4).Control(9)=   "imgBuscar(29)"
-      Tab(4).Control(10)=   "Label1(29)"
-      Tab(4).Control(11)=   "Label1(31)"
-      Tab(4).Control(12)=   "Text1(68)"
-      Tab(4).Control(13)=   "Text1(64)"
-      Tab(4).Control(14)=   "Text1(63)"
-      Tab(4).Control(15)=   "Text1(62)"
-      Tab(4).Control(16)=   "Frame7"
-      Tab(4).Control(17)=   "Frame5"
-      Tab(4).Control(18)=   "Text1(31)"
-      Tab(4).Control(19)=   "Text2(31)"
-      Tab(4).Control(20)=   "Text1(30)"
-      Tab(4).Control(21)=   "Text2(30)"
-      Tab(4).Control(22)=   "Text1(29)"
-      Tab(4).Control(23)=   "Text2(29)"
-      Tab(4).Control(24)=   "Text1(27)"
-      Tab(4).Control(25)=   "Text2(27)"
-      Tab(4).Control(26)=   "Text1(26)"
-      Tab(4).Control(27)=   "Text2(26)"
-      Tab(4).Control(28)=   "Text1(25)"
-      Tab(4).Control(29)=   "Text2(25)"
-      Tab(4).Control(30)=   "Frame11"
-      Tab(4).Control(31)=   "Frame6"
+      Tab(4).Control(0)=   "Frame6"
+      Tab(4).Control(1)=   "Frame11"
+      Tab(4).Control(2)=   "Text2(25)"
+      Tab(4).Control(3)=   "Text1(25)"
+      Tab(4).Control(4)=   "Text2(26)"
+      Tab(4).Control(5)=   "Text1(26)"
+      Tab(4).Control(6)=   "Text2(27)"
+      Tab(4).Control(7)=   "Text1(27)"
+      Tab(4).Control(8)=   "Text2(29)"
+      Tab(4).Control(9)=   "Text1(29)"
+      Tab(4).Control(10)=   "Text2(30)"
+      Tab(4).Control(11)=   "Text1(30)"
+      Tab(4).Control(12)=   "Text2(31)"
+      Tab(4).Control(13)=   "Text1(31)"
+      Tab(4).Control(14)=   "Frame5"
+      Tab(4).Control(15)=   "Frame7"
+      Tab(4).Control(16)=   "Text1(62)"
+      Tab(4).Control(17)=   "Text1(63)"
+      Tab(4).Control(18)=   "Text1(64)"
+      Tab(4).Control(19)=   "Text1(68)"
+      Tab(4).Control(20)=   "Label1(31)"
+      Tab(4).Control(21)=   "Label1(29)"
+      Tab(4).Control(22)=   "imgBuscar(29)"
+      Tab(4).Control(23)=   "imgBuscar(31)"
+      Tab(4).Control(24)=   "Label1(25)"
+      Tab(4).Control(25)=   "Label1(26)"
+      Tab(4).Control(26)=   "Label1(27)"
+      Tab(4).Control(27)=   "Label1(30)"
+      Tab(4).Control(28)=   "imgBuscar(26)"
+      Tab(4).Control(29)=   "imgBuscar(27)"
+      Tab(4).Control(30)=   "imgBuscar(25)"
+      Tab(4).Control(31)=   "imgBuscar(30)"
       Tab(4).ControlCount=   32
       TabCaption(5)   =   "Varios"
       TabPicture(5)   =   "frmConfParamAplic.frx":0098
-      Tab(5).ControlEnabled=   0   'False
+      Tab(5).ControlEnabled=   -1  'True
       Tab(5).Control(0)=   "Label1(81)"
+      Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "Frame14"
+      Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "Text1(82)"
+      Tab(5).Control(2).Enabled=   0   'False
       Tab(5).Control(3)=   "Frame17"
+      Tab(5).Control(3).Enabled=   0   'False
       Tab(5).ControlCount=   4
       Begin VB.Frame Frame17 
          Caption         =   "Datos de Intercambio entre empresas"
@@ -353,7 +350,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2175
-         Left            =   -74820
+         Left            =   180
          TabIndex        =   285
          Top             =   4320
          Width           =   10725
@@ -566,7 +563,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   82
-         Left            =   -72000
+         Left            =   3000
          MaxLength       =   100
          TabIndex        =   245
          Tag             =   "Impresora Tarjetas|T|S|||spara1|impretarjeta|||"
@@ -627,7 +624,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   825
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   257
          Top             =   6045
          Width           =   10635
@@ -702,7 +699,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2715
-         Left            =   -74850
+         Left            =   150
          TabIndex        =   255
          Top             =   650
          Width           =   10695
@@ -975,7 +972,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2760
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   214
          Top             =   3210
          Width           =   10665
@@ -3338,7 +3335,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   855
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   118
          Top             =   630
          Width           =   10665
@@ -3476,7 +3473,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1605
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   115
          Top             =   1500
          Width           =   10665
@@ -4633,7 +4630,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   735
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   164
          Top             =   6000
          Visible         =   0   'False
@@ -4722,7 +4719,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   735
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   126
          Top             =   6000
          Visible         =   0   'False
@@ -5098,7 +5095,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   975
-         Left            =   210
+         Left            =   -74790
          TabIndex        =   172
          Top             =   4230
          Visible         =   0   'False
@@ -5266,7 +5263,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   81
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   266
          Top             =   3735
          Visible         =   0   'False
@@ -6271,8 +6268,9 @@ Dim Im
    '     Me.imgBuscar(NumRegElim).Picture = frmPpal.imgListComun.ListImages(19).Picture
    ' Next NumRegElim
     
-    Frame16.visible = (vParamAplic.Cooperativa <> 0)
-    Frame16.Enabled = (vParamAplic.Cooperativa <> 0)
+    '[Monica]19/02/2018: Entra Cordoba
+    Frame16.visible = (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2)
+    Frame16.Enabled = (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2)
 
 
     LimpiarCampos   'Limpia los campos TextBox
@@ -6444,6 +6442,15 @@ Dim I As Integer
             frmMtoArt.DatosADevolverBusqueda2 = "@1@"
             frmMtoArt.Show vbModal
             Set frmMtoArt = Nothing
+        
+        Case 4 'codarticulo
+            Me.imgBuscar(1).Tag = 69
+            Set frmMtoArt = New frmAlmArticulos
+            frmMtoArt.DatosADevolverBusqueda2 = "@1@"
+            frmMtoArt.Show vbModal
+            Set frmMtoArt = Nothing
+        
+        
         Case 24 'forma de pago
             If Modo = 4 Then TerminaBloquear
             Set frmFP = New frmFacFormasPago
@@ -6476,12 +6483,12 @@ Dim I As Integer
             frmFP.DatosADevolverBusqueda = "0"
             frmFP.Show vbModal
             Set frmFP = Nothing
-        Case 4  'Cod. Forma de Pago
-            Set frmFP = New frmFacFormasPago
-            frmFP.DatosADevolverBusqueda = "0"
-            If Not IsNumeric(Text1(Index)) Then Text1(Index).Text = ""
-            frmFP.Show vbModal
-            Set frmFP = Nothing
+'        Case 4  'Cod. Forma de Pago
+'            Set frmFP = New frmFacFormasPago
+'            frmFP.DatosADevolverBusqueda = "0"
+'            If Not IsNumeric(Text1(Index)) Then Text1(Index).Text = ""
+'            frmFP.Show vbModal
+'            Set frmFP = Nothing
             
             
         Case 31 'Código de Agente
@@ -6521,6 +6528,8 @@ Dim I As Integer
                         I = 65 ' cta de titulo d alta de socio
                     Case 8
                         I = 65 ' cta de gastos de alta de socio
+                    Case 9, 10, 11, 12
+                        I = 74
                     Case 13
                         I = 75
                     Case Else
@@ -6544,6 +6553,13 @@ Dim I As Integer
             frmMtoArt.Show vbModal
             Set frmMtoArt = Nothing
         
+        Case 5 ' articulo de  cuotas normales sin con
+            Me.imgBuscar(1).Tag = 70
+            Set frmMtoArt = New frmAlmArticulos
+            frmMtoArt.DatosADevolverBusqueda2 = "@1@"
+            frmMtoArt.Show vbModal
+            Set frmMtoArt = Nothing
+        
         Case 14 ' codigo de socio que es la otra cooperativa
             indCodigo = 89
             Set frmSoc = New frmGesSocios
@@ -6551,9 +6567,10 @@ Dim I As Integer
             frmSoc.Show vbModal
             Set frmSoc = Nothing
             If CadenaDesdeOtroForm <> "" Then
-                Text1(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                Text2(indice).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                Text1(indCodigo).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
+                Text2(indCodigo).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
+            
         Case 16 ' codigo de cliente que es la otra cooperativa
             indCodigo = 90
             Set frmCli = New frmFacClientes
@@ -6632,11 +6649,64 @@ Private Sub Text1_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer
     KEYdown KeyCode
 End Sub
 
+'*********************
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
-    KEYpress (KeyAscii)
+    If KeyAscii = teclaBuscar Then
+        If Modo = 1 Or Modo = 3 Or Modo = 4 Then
+            Select Case Index
+                Case 1: KEYBusqueda KeyAscii, 1 'tarifa
+                
+                Case 15: KEYBusqueda KeyAscii, 15 'articulo servicios
+                Case 53: KEYBusqueda KeyAscii, 53 'articulo gastos adm
+                Case 87: KEYBusqueda KeyAscii, 87 'articulo suplidos
+                Case 46: KEYBusqueda KeyAscii, 39 'iva liquidacion
+                
+                Case 71: KEYBusqueda KeyAscii, 6 'cta base liquidacion
+                Case 88: KEYBusqueda KeyAscii, 13 'cta base de suplidos
+                Case 48: KEYBusqueda KeyAscii, 41 'iva exento
+                Case 52: KEYBusqueda KeyAscii, 45 'iva intracomunitario
+                
+                'ivas
+                Case 43: KEYBusqueda KeyAscii, 36 'ivas
+                Case 40: KEYBusqueda KeyAscii, 33 'ivas
+                Case 44: KEYBusqueda KeyAscii, 37 'ivas
+                Case 41: KEYBusqueda KeyAscii, 34 'ivas
+                Case 45: KEYBusqueda KeyAscii, 38 'ivas
+                Case 42: KEYBusqueda KeyAscii, 35 'ivas
+                Case 83: KEYBusqueda KeyAscii, 9 'ivas
+                Case 84: KEYBusqueda KeyAscii, 10 'ivas
+                Case 85: KEYBusqueda KeyAscii, 11 'ivas
+                Case 86: KEYBusqueda KeyAscii, 12 'ivas
+                
+                Case 28: KEYBusqueda KeyAscii, 28 'cuota normal con
+                Case 70: KEYBusqueda KeyAscii, 5 'cuota sin
+                Case 61: KEYBusqueda KeyAscii, 2 'cuota
+                Case 67: KEYBusqueda KeyAscii, 3 'alquiler
+                Case 69: KEYBusqueda KeyAscii, 4 'servicios
+                Case 32: KEYBusqueda KeyAscii, 32 'publicidad
+                Case 59: KEYBusqueda KeyAscii, 0 'concepto
+                Case 84: KEYBusqueda KeyAscii, 10 'ivas
+                
+                Case 72: KEYBusqueda KeyAscii, 7 'cta aportacion
+                Case 73: KEYBusqueda KeyAscii, 8 'cta reserva
+                Case 89: KEYBusqueda KeyAscii, 14 'socio cooperativa
+                Case 90: KEYBusqueda KeyAscii, 16 'cliente a facturar servicios
+                
+            End Select
+        End If
+    Else
+        KEYpress KeyAscii
+    End If
 End Sub
 
 
+Private Sub KEYBusqueda(KeyAscii As Integer, indice As Integer)
+    KeyAscii = 0
+    imgBuscar_Click (indice)
+End Sub
+
+
+'*********************
 Private Sub Text1_LostFocus(Index As Integer)
 '    If Text1(Index).Text = "" Then Exit Sub
 
@@ -7066,15 +7136,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!Modificar, "N")

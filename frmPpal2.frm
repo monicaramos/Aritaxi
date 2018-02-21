@@ -286,7 +286,7 @@ Begin VB.MDIForm frmPpal2
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "18:56"
+            TextSave        =   "10:45"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1811,7 +1811,7 @@ Attribute statusBar.VB_VarHelpID = -1
 Dim FontSizes(4) As Integer
 Dim RibbonSeHaCreado As Boolean
 Dim Pane As Pane
-Dim cad As String
+Dim Cad As String
 
 'Variables comunes para todos los procedimientos de carga menus en el ribbon
 'Codejock
@@ -2075,7 +2075,8 @@ End Function
 
 Private Sub CargaImagen()
     On Error Resume Next
-    If vParamAplic.Cooperativa = 0 Then
+    '[Monica]19/02/2018: Entra Cordoba
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
         Me.Picture = LoadPicture(App.Path & "\arifon2.dat")
     Else
         Me.Picture = LoadPicture(App.Path & "\arifon3.dat")
@@ -2131,11 +2132,11 @@ End Sub
 
 Private Sub MDIForm_Unload(Cancel As Integer)
 'Formulario Principal
-Dim cad As String
+Dim Cad As String
 
     'Alguna cosilla antes de cerrar. Eliminar bloqueos
-    cad = "Delete from zbloqueos where codusu = " & vUsu.Codigo
-    conn.Execute cad
+    Cad = "Delete from zbloqueos where codusu = " & vUsu.Codigo
+    conn.Execute Cad
 
     'Elimnar bloquo BD
     Set vUsu = Nothing
@@ -3199,7 +3200,7 @@ End Sub
 
 Private Sub mnUtiConnActivas_Click()
 'ver las conexiones a donde apuntan
-Dim cad As String
+Dim Cad As String
  
     
     MostrarCadenasConexion
@@ -3319,13 +3320,13 @@ End Sub
 
 Private Sub PonerDatosVisiblesForm()
 'Escribe texto de la barra de la aplicación
-Dim cad As String
-    cad = UCase(Mid(Format(Now, "dddd"), 1, 1)) & Mid(Format(Now, "dddd"), 2)
-    cad = cad & ", " & Format(Now, "d")
-    cad = cad & " de " & Format(Now, "mmmm")
-    cad = cad & " de " & Format(Now, "yyyy")
-    cad = "    " & cad & "    "
-    Me.StatusBar1.Panels(5).Text = cad
+Dim Cad As String
+    Cad = UCase(Mid(Format(Now, "dddd"), 1, 1)) & Mid(Format(Now, "dddd"), 2)
+    Cad = Cad & ", " & Format(Now, "d")
+    Cad = Cad & " de " & Format(Now, "mmmm")
+    Cad = Cad & " de " & Format(Now, "yyyy")
+    Cad = "    " & Cad & "    "
+    Me.StatusBar1.Panels(5).Text = Cad
     If vEmpresa Is Nothing Then
         Caption = "AriTaxi" & " ver. " & App.Major & "." & App.Minor & "." & App.Revision & "   -  " & "   Usuario: " & vUsu.Nombre & " FALTA CONFIGURAR"
         'Panel con el nombre de la empresa
@@ -3339,11 +3340,11 @@ End Sub
 
 Private Sub HabilitarSoloPrametros_o_Empresas(Habilitar As Boolean)
 Dim T As Control
-Dim cad As String
+Dim Cad As String
 
     
     For Each T In Me
-        cad = T.Name
+        Cad = T.Name
         If Mid(T.Name, 1, 2) = "mn" Then
             If LCase(Mid(T.Caption, 1, 1)) <> "-" Then T.Enabled = Habilitar
         End If
@@ -3354,7 +3355,7 @@ Dim cad As String
     Me.mnConfParamAplic = True
     Me.mnConfParamGenerales = True
 
-    Me.mnsalir.Enabled = True
+    Me.mnSalir.Enabled = True
     Me.mnCambioEmpresa.Enabled = True
 End Sub
 
@@ -3410,7 +3411,7 @@ End Sub
 
 Private Sub LanzaHome(Opcion As String)
 Dim I As Integer
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo ELanzaHome
 
@@ -3440,7 +3441,7 @@ Dim cad As String
 '        LanzaHome = True
 '    End If
 ELanzaHome:
-    If Err.Number <> 0 Then MuestraError Err.Number, cad & vbCrLf & Err.Description
+    If Err.Number <> 0 Then MuestraError Err.Number, Cad & vbCrLf & Err.Description
     CadenaDesdeOtroForm = ""
 End Sub
 
@@ -3634,7 +3635,7 @@ Private Function ComprobarBotonMenuVisible(objMenu As Menu, Activado As Boolean)
 Dim nomMenu As String
 Dim Sql As String
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
 Dim b As Boolean
 
 
@@ -3655,16 +3656,16 @@ Dim b As Boolean
         Sql = "select padre from usuarios.appmenus where aplicacion='Aritaxi' and name=" & DBSet(nomMenu, "T")
         Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not Rs.EOF Then
-            cad = Rs.Fields(0).Value
+            Cad = Rs.Fields(0).Value
         End If
         Rs.Close
         
         b = True
-        While b And cad <> ""
-                Sql = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & cad
+        While b And Cad <> ""
+                Sql = "Select name,padre from usuarios.appmenus where aplicacion='Aritaxi' and contador= " & Cad
                 Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 If Not Rs.EOF Then
-                    cad = Rs!Padre
+                    Cad = Rs!Padre
                     nomMenu = Rs!Name
                 End If
                 Rs.Close
@@ -3678,7 +3679,7 @@ Dim b As Boolean
                     b = False
                 End If
                 Rs.Close
-                If cad = "0" Then cad = "" 'terminar si llegamos a la raiz
+                If Cad = "0" Then Cad = "" 'terminar si llegamos a la raiz
         Wend
         ComprobarBotonMenuVisible = b
         Set Rs = Nothing

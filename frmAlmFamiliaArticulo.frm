@@ -387,7 +387,7 @@ Begin VB.Form frmAlmFamiliaArticulo
          TabIndex        =   4
          Tag             =   "Cta. Abono Ventas|T|N|||sfamia|aboventa||N|"
          Text            =   "Text1"
-         Top             =   645
+         Top             =   675
          Width           =   1350
       End
       Begin VB.TextBox Text2 
@@ -1079,7 +1079,7 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
@@ -1089,12 +1089,12 @@ Dim cad As String
     
     
     '### a mano
-    cad = "¿Seguro que desea eliminar la Familia de Artículo?:" & vbCrLf
-    cad = cad & vbCrLf & "Cod. : " & Format(Data1.Recordset.Fields(0), FormatoCampo(Text1(0)))
-    cad = cad & vbCrLf & "Desc.: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar la Familia de Artículo?:" & vbCrLf
+    Cad = Cad & vbCrLf & "Cod. : " & Format(Data1.Recordset.Fields(0), FormatoCampo(Text1(0)))
+    Cad = Cad & vbCrLf & "Desc.: " & Data1.Recordset.Fields(1)
 
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         On Error GoTo Error2
         Screen.MousePointer = vbHourglass
@@ -1118,16 +1118,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = Data1.Recordset.Fields(0) & "|"
-    cad = cad & Data1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Data1.Recordset.Fields(0) & "|"
+    Cad = Cad & Data1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -1227,7 +1227,7 @@ End Sub
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 Dim CadB As String
 Dim Aux As String
-Dim indice As Byte
+Dim Indice As Byte
     
     If CadenaDevuelta <> "" Then
         If Val(imgCuentas(0).Tag) >= 0 Then
@@ -1236,9 +1236,9 @@ Dim indice As Byte
             HaDevueltoDatos = True
             Screen.MousePointer = vbHourglass
     
-            indice = Val(Me.imgCuentas(0).Tag)
-            Text1(indice + 2).Text = RecuperaValor(CadenaDevuelta, 1)
-            Text2(indice + 2).Text = RecuperaValor(CadenaDevuelta, 2)
+            Indice = Val(Me.imgCuentas(0).Tag)
+            Text1(Indice + 2).Text = RecuperaValor(CadenaDevuelta, 1)
+            Text2(Indice + 2).Text = RecuperaValor(CadenaDevuelta, 2)
             
         ElseIf Val(imgBuscar(0).Tag) >= 0 Then
             'Centro de coste
@@ -1286,34 +1286,6 @@ Dim CadB As String
 
 End Sub
 
-Private Sub imgBuscar_Click(Index As Integer)
-    ' ---- [19/10/2009] [LAURA]: añadir campo centro de coste familia
-    
-    If Modo = 2 Or Modo = 5 Or Modo = 0 Then Exit Sub
-    
-    Select Case Index
-        Case 0 'Centros de coste de la conta
-            Screen.MousePointer = vbHourglass
-            Me.imgBuscar(0).Tag = Index
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = "Codigo|cabccost|codccost|T||20·Descripción|cabccost|nomccost|T||70·"
-            frmB.vTabla = "cabccost"
-            frmB.vSQL = ""
-            HaDevueltoDatos = False
-            '###A mano
-            frmB.vDevuelve = "0|1|"
-            frmB.vTitulo = "Centros de coste"
-            frmB.vselElem = 0
-            frmB.vConexionGrid = conConta
-            
-            frmB.Show vbModal
-            Set frmB = Nothing
-            imgBuscar(0).Tag = -1
-            Screen.MousePointer = vbDefault
-            PonerFoco Text1(8)
-    End Select
-End Sub
-
 
 Private Sub imgCuentas_Click(Index As Integer)
 
@@ -1330,7 +1302,6 @@ Private Sub imgCuentas_Click(Index As Integer)
     PonerFoco Text1(indCodigo)
 
     Screen.MousePointer = vbDefault
-
 
 End Sub
 
@@ -1373,7 +1344,27 @@ Private Sub Text1_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer
 End Sub
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
-    KEYpress KeyAscii
+    If KeyAscii = teclaBuscar Then
+        If Modo = 1 Or Modo = 3 Or Modo = 4 Then
+            Select Case Index
+                Case 2: KEYBusqueda KeyAscii, 0 'cuenta
+                Case 4: KEYBusqueda KeyAscii, 2 'cuenta
+                Case 6: KEYBusqueda KeyAscii, 4 'cuenta
+                Case 7: KEYBusqueda KeyAscii, 5 'cuenta
+                
+                Case 3: KEYBusqueda KeyAscii, 1 'cuenta
+                Case 5: KEYBusqueda KeyAscii, 3 'cuenta
+            End Select
+        End If
+    Else
+        KEYpress KeyAscii
+    End If
+End Sub
+
+
+Private Sub KEYBusqueda(KeyAscii As Integer, Indice As Integer)
+    KeyAscii = 0
+    imgCuentas_Click (Indice)
 End Sub
 
 
@@ -1618,23 +1609,23 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
      End If
@@ -1661,7 +1652,7 @@ On Error Resume Next
     b = (Modo = 2) Or (Modo = 0) Or (Modo = 1)
     'Añadir
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar
@@ -1678,7 +1669,7 @@ On Error Resume Next
     Me.mnBuscar.Enabled = Not b
     'VerTodos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -1755,10 +1746,10 @@ End Sub
 
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
-    cad = "(codfamia=" & Text1(0).Text & ")"
-    If SituarData(Data1, cad, Indicador) Then
+    Cad = "(codfamia=" & Text1(0).Text & ")"
+    If SituarData(Data1, Cad, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador
     Else
