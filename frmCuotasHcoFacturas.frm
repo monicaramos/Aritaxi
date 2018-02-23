@@ -526,14 +526,14 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmCuotasHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
-      Tab(0).Control(1)=   "Text1(17)"
-      Tab(0).Control(2)=   "Text1(16)"
-      Tab(0).Control(3)=   "FrameFactura"
-      Tab(0).Control(4)=   "Text1(24)"
-      Tab(0).Control(5)=   "Text1(23)"
-      Tab(0).Control(6)=   "Label1(26)"
-      Tab(0).Control(7)=   "Label1(25)"
+      Tab(0).Control(0)=   "Label1(25)"
+      Tab(0).Control(1)=   "Label1(26)"
+      Tab(0).Control(2)=   "Text1(23)"
+      Tab(0).Control(3)=   "Text1(24)"
+      Tab(0).Control(4)=   "FrameFactura"
+      Tab(0).Control(5)=   "Text1(16)"
+      Tab(0).Control(6)=   "Text1(17)"
+      Tab(0).Control(7)=   "FrameCliente"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0028
@@ -3134,7 +3134,7 @@ Private Sub BotonModificar()
 Dim DeVarios As Boolean
 Dim EnTesoreria  As String
     'solo se puede modificar la factura si no esta contabilizada
-    If FactContabilizada3(EnTesoreria) Then
+    If FactContabilizada(EnTesoreria) Then ' antes FactContabilizada3
         TerminaBloquear
         Exit Sub
     End If
@@ -3312,7 +3312,7 @@ Dim EstaEnTesoreria As String
     If Data1.Recordset.EOF Then Exit Sub
     
     'solo se puede modificar la factura si no esta contabilizada
-    If FactContabilizada3(EstaEnTesoreria) Then Exit Sub
+    If FactContabilizada(EstaEnTesoreria) Then Exit Sub  ' antes factcontabilizada3
     
     Cad = "Cabecera de Facturas." & vbCrLf
     Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
@@ -5283,7 +5283,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
         
         
     b = (Modo = 2)
@@ -5851,6 +5851,40 @@ EContab:
 End Function
 
 
+Private Function FactContabilizada(ByRef EstaEnTesoreria As String) As Boolean
+Dim cta As String, numasien As String
+Dim vSocio As CSocio
+Dim LEtra As String
+Dim NumFac As String
+
+    On Error GoTo EContab
+    
+    FactContabilizada = False
+    
+    If Me.Check1(0).Value = 1 Then 'si esta contabilizada
+        'comprobar en la contabilidad si esta contabilizada
+        MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
+        Exit Function
+    Else
+        Set vSocio = New CSocio
+        If vSocio.LeerDatos(Text1(4).Text) Then
+        
+            'Primero comprobaremos que esta el pago en contabilidad
+            EstaEnTesoreria = ""
+    
+            If Not ComprobarCobroArimoney(EstaEnTesoreria, ObtenerLetraSerie(Text1(1).Text), CLng(Text1(0).Text), CDate(Text1(2).Text)) Then
+                FactContabilizada = True
+                Exit Function
+            End If
+        Else
+            FactContabilizada = False
+        End If
+        Set vSocio = Nothing
+    End If
+        
+EContab:
+    If Err.Number <> 0 Then MuestraError Err.Number, "Comprobar Factura contabilizada", Err.Description
+End Function
 
 
 Private Function FactContabilizada2(ByRef EstaEnTesoreria As String) As Boolean

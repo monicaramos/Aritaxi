@@ -1241,6 +1241,8 @@ Dim cuenta As String
 Dim vDevuelve As String
 Dim MenError As String
 
+Dim devuelve As Long
+Dim Existe As Boolean
 
 
     On Error GoTo EGenFactu
@@ -1265,7 +1267,20 @@ Dim MenError As String
         Set vSocio = New CSocio
         
         If vSocio.LeerDatos(miRsAux!codSocio) Then
-            NumFactu = vSocio.ConseguirContador(codtipom)
+            '[Monica]22/02/2018: no incrementaba el contador
+            Do
+                NumFactu = vSocio.ConseguirContador(codtipom)
+                Sql = "select numfactu from sfactusoc where codtipom = " & DBSet(codtipom, "T") & " and numfactu = " & DBSet(NumFactu, "N") & " and codsocio = " & DBSet(vSocio.Codigo, "N")
+                devuelve = DevuelveValor(Sql) 'DevuelveDesdeBDNew(cAgro, "rfacttra", "numfactu", "codtipom", tipoMov, "T", , "numfactu", CStr(numfactu), "N", "fecfactu", FecFac, "F")
+                If devuelve <> 0 Then
+                    'Ya existe el contador incrementarlo
+                    Existe = True
+                    vSocio.IncrementarContador (codtipom)
+                    NumFactu = vSocio.ConseguirContador(codtipom)
+                Else
+                    Existe = False
+                End If
+            Loop Until Not Existe
             
             vFactu.tipoMov = codtipom
             vFactu.BaseIVA1 = miRsAux!Importes
@@ -1310,6 +1325,9 @@ Dim MenError As String
             If b Then
                  b = vFactu.InsertarEnTesoreria(MenError)
             End If
+            
+            If b Then b = vSocio.IncrementarContador(codtipom)
+
         Else
             b = False
         End If

@@ -546,7 +546,7 @@ Dim encontrado As String
      Label1(2).Caption = ""
      Me.ProgressBar1.visible = False
      
-     CargaGrid DataGrid1, Adodc1
+     CargaGrid DataGrid1, adodc1
 
 End Sub
 Private Function rsContador(CADENA As String) As Currency
@@ -613,10 +613,10 @@ End Sub
 
 Private Sub DataGrid1_Click()
 
-    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & Adodc1.Recordset!Id
+    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & adodc1.Recordset!Id
     frmGesHisLlamTMP.Show vbModal
     
-    CargaGrid Me.DataGrid1, Me.Adodc1
+    CargaGrid Me.DataGrid1, Me.adodc1
     
 End Sub
 
@@ -630,12 +630,12 @@ Private Sub Form_Load()
     Me.Icon = frmppal.Icon
 
     Screen.MousePointer = vbDefault
-    Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = Sql
-    Adodc1.Refresh
+    adodc1.ConnectionString = conn
+    adodc1.RecordSource = Sql
+    adodc1.Refresh
     
-    If Not Adodc1.Recordset.EOF Then
-        CargaGrid DataGrid1, Adodc1
+    If Not adodc1.Recordset.EOF Then
+        CargaGrid DataGrid1, adodc1
     End If
 
     With Me.Toolbar3(0)
@@ -671,9 +671,9 @@ On Error GoTo ECargaGrid
         vDataGrid.Columns(1).Width = 1200
         vDataGrid.Columns(1).NumberFormat = "#,###,###,##0.00"
         vDataGrid.Columns(2).Caption = "Desde"
-        vDataGrid.Columns(2).Width = 1000
+        vDataGrid.Columns(2).Width = 1200
         vDataGrid.Columns(3).Caption = "Hasta"
-        vDataGrid.Columns(3).Width = 1000
+        vDataGrid.Columns(3).Width = 1200
     Else
         vDataGrid.Columns(0).Caption = "Vehiculo"
         vDataGrid.Columns(0).Width = 1000
