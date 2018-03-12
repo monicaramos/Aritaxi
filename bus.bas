@@ -100,6 +100,8 @@ Public UltimaLecturaReminders As Single
 
 Public DireccionAyuda As String
 
+Public ComoValidados As Boolean
+Public ContinuarValidar As Boolean
 
 
 
@@ -1698,19 +1700,19 @@ Dim I As Integer
 Dim C As Integer
 Dim L As Integer
 Dim Cad As String
-Dim b As Boolean
+Dim B As Boolean
     
     EsNumerico = False
-    b = True
+    B = True
     Cad = ""
     If Not IsNumeric(Texto) Then
         Cad = "El campo debe ser numérico"
-        b = False
+        B = False
         '======= Añade Laura
         'formato: (.25)
         I = InStr(1, Texto, ".")
         If I = 1 Then
-            If IsNumeric(Mid(Texto, 2, Len(Texto))) Then b = True
+            If IsNumeric(Mid(Texto, 2, Len(Texto))) Then B = True
         End If
         '======================
     Else
@@ -1726,7 +1728,7 @@ Dim b As Boolean
         Loop Until I = 0
         If C > 1 Then
             Cad = "Numero de puntos incorrecto"
-            b = False
+            B = False
         End If
         
         'Si ha puesto mas de una coma y no tiene puntos
@@ -1741,14 +1743,14 @@ Dim b As Boolean
             Loop Until I = 0
             If C > 1 Then
                 Cad = "Numero incorrecto"
-                b = False
+                B = False
             End If
         End If
     End If
-    If Not b Then
+    If Not B Then
         MsgBox Cad, vbExclamation
     Else
-        EsNumerico = b
+        EsNumerico = B
     End If
 End Function
 

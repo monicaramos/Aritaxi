@@ -11,9 +11,36 @@ Begin VB.Form frmGesHisLlam
    ScaleHeight     =   10485
    ScaleWidth      =   11070
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3915
+      TabIndex        =   105
+      Top             =   60
+      Width           =   750
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   106
+         Top             =   180
+         Width           =   420
+         _ExtentX        =   741
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   1
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Marcar Validados"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   3960
+      Left            =   4725
       TabIndex        =   99
       Top             =   60
       Width           =   2415
@@ -2148,6 +2175,24 @@ Begin VB.Form frmGesHisLlam
          Width           =   3615
       End
    End
+   Begin VB.Label Label1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   210
+      Index           =   38
+      Left            =   4320
+      TabIndex        =   107
+      Top             =   9990
+      Visible         =   0   'False
+      Width           =   2955
+   End
    Begin VB.Menu mnopciones 
       Caption         =   "&Opciones"
       Enabled         =   0   'False
@@ -2267,6 +2312,11 @@ Private VieneDeBuscar As Boolean
 Private BuscaChekc As String
 
 
+Dim CadB As String
+
+
+
+
 Private Sub Check1_Click(Index As Integer)
     If Modo = 1 Then CheckCadenaBusqueda Check1(Index), BuscaChekc
 End Sub
@@ -2283,7 +2333,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim I As Long
 Dim CadB As String
-Dim cad As String
+Dim Cad As String
 Dim Indicador As String
 Dim cad1 As String
 
@@ -2384,7 +2434,6 @@ Error1:
 End Sub
 
 Private Sub HacerBusqueda()
-Dim CadB As String
 
     CadB = ObtenerBusqueda(Me, False, BuscaChekc)
     cadB1 = ObtenerBusqueda(Me, True, BuscaChekc)
@@ -2454,16 +2503,16 @@ End Function
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
         If Adodc1.Recordset.EOF Then
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Adodc1.Recordset.Fields(0) & "|"
-        cad = cad & Adodc1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Adodc1.Recordset.Fields(0) & "|"
+        Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     
 End Sub
@@ -2543,6 +2592,13 @@ Dim I As Integer
         .Buttons(2).Image = 4   'Modificar
         .Buttons(3).Image = 5   'Eliminar
         .Buttons(8).Image = 16 'Imprmir
+    End With
+    
+    With Me.Toolbar5
+        .ImageList = frmppal.imgListComun1
+        .HotImageList = frmppal.imgListComun_OM
+        .DisabledImageList = frmppal.imgListComun_BN
+        .Buttons(1).Image = 39  'marcar como validados
     End With
     
     ' desplazamiento
@@ -2631,7 +2687,7 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim I As Byte, NumReg As Byte
-Dim b As Boolean
+Dim B As Boolean
 On Error GoTo EPonerModo
 
     For I = 0 To Text1.Count - 1
@@ -2657,14 +2713,14 @@ On Error GoTo EPonerModo
     End If
     
     '=======================================
-    b = (Modo = 2)
+    B = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
     If Not Adodc1.Recordset.EOF Then
         If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible B And Me.Adodc1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
     
     
     
@@ -2676,22 +2732,22 @@ On Error GoTo EPonerModo
     BloquearCmb Combo1, (Modo = 0 Or Modo = 2)
     
     '---------------------------------------------
-    b = Modo <> 0 And Modo <> 2 And Modo <> 5
-    cmdCancelar.visible = b
-    cmdAceptar.visible = b
-    Combo1.Enabled = b
+    B = Modo <> 0 And Modo <> 2 And Modo <> 5
+    cmdCancelar.visible = B
+    cmdAceptar.visible = B
+    Combo1.Enabled = B
     For I = 0 To 2
-        Check1(I).Enabled = b
+        Check1(I).Enabled = B
     Next I
     
 '[Monica]04/02/2015: dejamos modificar liquidado y facturado, antes solo podian consultar
     For I = 3 To 4
-        Check1(I).Enabled = b '(Modo = 1)
+        Check1(I).Enabled = B '(Modo = 1)
     Next I
     
     
     For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = b
+        Me.imgBuscar(I).Enabled = B
     Next I
     
     ' No hay icono para las observaciones de 60 de longitud maxima
@@ -2706,7 +2762,7 @@ On Error GoTo EPonerModo
     
     
     For I = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(I).Enabled = b
+        Me.imgFecha(I).Enabled = B
     Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
@@ -2724,15 +2780,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
@@ -2770,27 +2826,27 @@ Private Sub PonerOpcionesMenu()
 End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
-Dim b As Boolean
+Dim B As Boolean
 Dim I As Byte
 
-    b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
+    B = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(1).Enabled = b
+    Toolbar1.Buttons(1).Enabled = B
     
-    b = (Modo = 2 Or Modo = 5)
+    B = (Modo = 2 Or Modo = 5)
     'Modificar
-    Toolbar1.Buttons(2).Enabled = b
+    Toolbar1.Buttons(2).Enabled = B
     'eliminar
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(3).Enabled = B
     'imprimir
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(8).Enabled = B
     '------------------------------------------
     
-    b = (Modo >= 3)
+    B = (Modo >= 3)
     'Buscar
-    Toolbar1.Buttons(5).Enabled = Not b
+    Toolbar1.Buttons(5).Enabled = Not B
     'Ver Todos
-    Toolbar1.Buttons(6).Enabled = Not b
+    Toolbar1.Buttons(6).Enabled = Not B
 End Sub
 
 Private Sub LimpiarCampos()
@@ -3321,7 +3377,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 End Sub
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 Dim vWhere As String
 
     If Not Adodc1.Recordset.EOF Then
@@ -3385,15 +3441,15 @@ End Sub
 
 
 Private Function ObtenerSelFactura() As String
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
-    cad = ""
+    Cad = ""
 '    If Me.DesdeFichaCliente Then
         '
-    cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
+    Cad = " WHERE fecha=" & DBSet(FechaServ, "F") & " AND hora= " & DBSet(HoraServ, "H") & " AND numeruve=" & DBSet(NumerUve, "N")
         
 '    Else
 '        'Tengo YA el codigo de la factura
@@ -3434,8 +3490,102 @@ Dim Rs As ADODB.Recordset
 '                End If
 '
 '    End If
-    ObtenerSelFactura = cad
+    ObtenerSelFactura = Cad
 End Function
+
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1 ' Marcar validados
+            MarcarValidados
+    End Select
+
+End Sub
+
+Private Sub MarcarValidados()
+Dim Sql As String
+Dim NRegs As Long
+Dim vMens As String
+Dim B As Boolean
+Dim Rs As ADODB.Recordset
+Dim frmMens As frmMensajes
+    On Error GoTo eMarcarValidados
+
+    If Me.Adodc1.Recordset.EOF Then Exit Sub
+
+    If CadB <> "" Then
+        ContinuarValidar = False
+        ComoValidados = False
+        
+        
+'        If MsgBox("¿ Desea marcarlos como validados ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
+'            ComoValidados = True
+'            ContinuarValidar = True
+'        Else
+'            If MsgBox("¿ Desea marcarlos como NO validados ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
+'                ComoValidados = False
+'                ContinuarValidar = True
+'            End If
+'        End If
+
+        Set frmMens = New frmMensajes
+        frmMens.OpcionMensaje = 32
+        frmMens.Show vbModal
+        Set frmMens = Nothing
+
+        B = False
+        
+        If ContinuarValidar Then
+            NRegs = Adodc1.Recordset.RecordCount
+            vMens = "Va a actualizar " & NRegs & " registros. " & vbCrLf & vbCrLf & " ¿ Desea continuar ?"
+            If MsgBox(vMens, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
+                conn.BeginTrans
+                
+                B = True
+                Adodc1.Recordset.MoveFirst
+                I = 1
+                Label1(38).visible = True
+                While Not Adodc1.Recordset.EOF
+                    Label1(38).Caption = "Servicio " & I & " de " & NRegs
+                    DoEvents
+                    
+                    If ComoValidados Then
+                        Adodc1.Recordset!validado = 1
+                        Adodc1.Recordset.Update
+                    Else
+                        Adodc1.Recordset!validado = 0
+                        Adodc1.Recordset.Update
+                    End If
+                
+                    Adodc1.Recordset.MoveNext
+                    I = I + 1
+                Wend
+                Label1(38).visible = False
+            
+            
+                MsgBox "Proceso realizado correctamente", vbExclamation
+                conn.CommitTrans
+            
+                Adodc1.Recordset.MoveFirst
+                PonerCampos
+
+                Screen.MousePointer = vbDefault
+            
+                Exit Sub
+            
+            
+            End If
+        End If
+    End If
+
+    Exit Sub
+    
+eMarcarValidados:
+    MuestraError Err.Number, "Marcar Validados", Err.Description
+    Label1(38).visible = False
+    If B Then conn.RollbackTrans
+End Sub
+
+
 
 Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
     Desplazamiento (Button.Index)

@@ -5,13 +5,13 @@ Begin VB.Form frmEMail
    ClientHeight    =   5400
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   6165
+   ClientWidth     =   6300
    Icon            =   "frmEMail.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5400
-   ScaleWidth      =   6165
+   ScaleWidth      =   6300
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCartaConf 
@@ -21,70 +21,6 @@ Begin VB.Form frmEMail
       TabIndex        =   33
       Top             =   4920
       Width           =   1215
-   End
-   Begin VB.Frame FrameASuntoMsg 
-      Height          =   4815
-      Left            =   120
-      TabIndex        =   27
-      Top             =   0
-      Width           =   6015
-      Begin VB.TextBox Text1 
-         Height          =   3135
-         Index           =   5
-         Left            =   1140
-         MultiLine       =   -1  'True
-         ScrollBars      =   2  'Vertical
-         TabIndex        =   29
-         Text            =   "frmEMail.frx":0442
-         Top             =   1440
-         Width           =   4455
-      End
-      Begin VB.TextBox Text1 
-         Height          =   315
-         Index           =   4
-         Left            =   1140
-         TabIndex        =   28
-         Text            =   "Text1"
-         Top             =   840
-         Width           =   4455
-      End
-      Begin VB.Label Label13 
-         Alignment       =   2  'Center
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   14.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00800000&
-         Height          =   345
-         Index           =   0
-         Left            =   120
-         TabIndex        =   32
-         Top             =   240
-         Width           =   5775
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Mensaje"
-         Height          =   255
-         Index           =   5
-         Left            =   360
-         TabIndex        =   31
-         Top             =   1440
-         Width           =   615
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Asunto"
-         Height          =   255
-         Index           =   4
-         Left            =   360
-         TabIndex        =   30
-         Top             =   840
-         Width           =   555
-      End
    End
    Begin VB.CommandButton Command2 
       Caption         =   "Salir"
@@ -99,7 +35,7 @@ Begin VB.Form frmEMail
       BorderStyle     =   0  'None
       Height          =   4695
       Index           =   0
-      Left            =   0
+      Left            =   90
       TabIndex        =   6
       Top             =   0
       Width           =   6075
@@ -201,7 +137,7 @@ Begin VB.Form frmEMail
          Left            =   1080
          MultiLine       =   -1  'True
          TabIndex        =   3
-         Text            =   "frmEMail.frx":0448
+         Text            =   "frmEMail.frx":0442
          Top             =   2520
          Width           =   4455
       End
@@ -235,7 +171,7 @@ Begin VB.Form frmEMail
       Begin VB.Image Image1 
          Height          =   240
          Left            =   720
-         Picture         =   "frmEMail.frx":044E
+         Picture         =   "frmEMail.frx":0448
          Top             =   1260
          Width           =   240
       End
@@ -253,7 +189,7 @@ Begin VB.Form frmEMail
       BorderStyle     =   0  'None
       Height          =   3735
       Index           =   1
-      Left            =   0
+      Left            =   90
       TabIndex        =   7
       Top             =   0
       Width           =   5715
@@ -263,7 +199,7 @@ Begin VB.Form frmEMail
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   5
-         Text            =   "frmEMail.frx":0550
+         Text            =   "frmEMail.frx":054A
          Top             =   1800
          Width           =   5355
       End
@@ -367,6 +303,70 @@ Begin VB.Form frmEMail
       Top             =   4920
       Width           =   1215
    End
+   Begin VB.Frame FrameASuntoMsg 
+      Height          =   4815
+      Left            =   120
+      TabIndex        =   27
+      Top             =   0
+      Width           =   6015
+      Begin VB.TextBox Text1 
+         Height          =   3135
+         Index           =   5
+         Left            =   1140
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   29
+         Text            =   "frmEMail.frx":0550
+         Top             =   1440
+         Width           =   4455
+      End
+      Begin VB.TextBox Text1 
+         Height          =   315
+         Index           =   4
+         Left            =   1140
+         TabIndex        =   28
+         Text            =   "Text1"
+         Top             =   840
+         Width           =   4455
+      End
+      Begin VB.Label Label13 
+         Alignment       =   2  'Center
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   345
+         Index           =   0
+         Left            =   120
+         TabIndex        =   32
+         Top             =   240
+         Width           =   5775
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Mensaje"
+         Height          =   255
+         Index           =   5
+         Left            =   360
+         TabIndex        =   31
+         Top             =   1440
+         Width           =   615
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Asunto"
+         Height          =   255
+         Index           =   4
+         Left            =   360
+         TabIndex        =   30
+         Top             =   840
+         Width           =   555
+      End
+   End
    Begin VB.Image Image2 
       Height          =   480
       Left            =   360
@@ -400,7 +400,7 @@ Private WithEvents frmB As frmBuscaGrid 'Form para busquedas
 Attribute frmB.VB_VarHelpID = -1
 
 
-Dim cad As String
+Dim Cad As String
 Dim PrimeraVez As Boolean
 
 
@@ -475,29 +475,29 @@ Private Sub Enviar2(ListaArchivos As Collection)
         '====David
 '        Cad = DevuelveDesdeBD("mailsoporte", "parametros", "fechaini", Format(vParam.fechaini, FormatoFecha), "F")
         '====
-        cad = DevuelveDesdeBDNew(conAri, "sparam", "maiempre", "codempre", 1, "N")
-        If cad = "" Then
+        Cad = DevuelveDesdeBDNew(conAri, "sparam", "maiempre", "codempre", 1, "N")
+        If Cad = "" Then
             MsgBox "Falta configurar en parametros el mail de soporte", vbExclamation
             Exit Sub
         End If
     
-        If cad = "" Then GoTo GotException
-        email.AddTo "Soporte Gestión", cad
-        cad = "Soporte AriTaxi. "
-        If Option1(0).Value Then cad = cad & Option1(0).Caption
-        If Option1(1).Value Then cad = cad & Option1(1).Caption
-        If Option1(2).Value Then cad = cad & "Otro: " & Text2.Text
-        email.Subject = cad
+        If Cad = "" Then GoTo GotException
+        email.AddTo "Soporte Gestión", Cad
+        Cad = "Soporte AriTaxi. "
+        If Option1(0).Value Then Cad = Cad & Option1(0).Caption
+        If Option1(1).Value Then Cad = Cad & Option1(1).Caption
+        If Option1(2).Value Then Cad = Cad & "Otro: " & Text2.Text
+        email.Subject = Cad
         
         'Ahora en text1(3).text generaremos nuestro mensaje
-        cad = "Fecha: " & Format(Now, "dd/mm/yyyy") & vbCrLf
-        cad = cad & "Hora: " & Format(Now, "hh:mm") & vbCrLf
-        cad = cad & "Usuario: " & vUsu.Nombre & vbCrLf
-        cad = cad & "Nivel USU: " & vUsu.Nivel & vbCrLf
-        cad = cad & "Empresa: " & vEmpresa.nomempre & vbCrLf
-        cad = cad & "&nbsp;<hr>"
-        cad = cad & Text3.Text & vbCrLf & vbCrLf
-        Text1(3).Text = cad
+        Cad = "Fecha: " & Format(Now, "dd/mm/yyyy") & vbCrLf
+        Cad = Cad & "Hora: " & Format(Now, "hh:mm") & vbCrLf
+        Cad = Cad & "Usuario: " & vUsu.Nombre & vbCrLf
+        Cad = Cad & "Nivel USU: " & vUsu.Nivel & vbCrLf
+        Cad = Cad & "Empresa: " & vEmpresa.nomempre & vbCrLf
+        Cad = Cad & "&nbsp;<hr>"
+        Cad = Cad & Text3.Text & vbCrLf & vbCrLf
+        Text1(3).Text = Cad
     Else
         'Opcion=0 or opcion= 3 or envio=4
         'Envio de mensajes normal
@@ -515,25 +515,25 @@ Private Sub Enviar2(ListaArchivos As Collection)
         '### Añade: Laura 11/10/05
         '### Modifica david.     Lo que hare sera para c
         If Opcion < 4 Then
-            cad = RecuperaValor(Valores, 4)
-            email.AddBcc RecuperaValor(Valores, 2), cad    'vParam.SmtpPass
+            Cad = RecuperaValor(Valores, 4)
+            email.AddBcc RecuperaValor(Valores, 2), Cad    'vParam.SmtpPass
             
         Else
             'Para el multienvio de facturacion y renovacion
-            cad = RecuperaValor(DatosEnvio, 3)
-            If cad = "1" Then
-                cad = RecuperaValor(Valores, 4)
-                email.AddBcc RecuperaValor(Valores, 2), cad    'vParam.SmtpPass
+            Cad = RecuperaValor(DatosEnvio, 3)
+            If Cad = "1" Then
+                Cad = RecuperaValor(Valores, 4)
+                email.AddBcc RecuperaValor(Valores, 2), Cad    'vParam.SmtpPass
             End If
         End If
         'Si la opcion es 3   Envio del mail con tooodos los datos en datosenvio
         If Opcion = 3 Then
             CadenaDesdeOtroForm = RecuperaValor(DatosEnvio, 5)
             If CadenaDesdeOtroForm <> "" Then
-                If CadenaDesdeOtroForm <> cad Then
+                If CadenaDesdeOtroForm <> Cad Then
                     'El usuario con el que envia el mail NO es el usuario que le indico con el datosenvio
                     'Por lo cual lo añado
-                    cad = RecuperaValor(DatosEnvio, 6)
+                    Cad = RecuperaValor(DatosEnvio, 6)
                     email.AddBcc "Aviso tomado", CadenaDesdeOtroForm
                 End If
             End If
@@ -545,40 +545,40 @@ Private Sub Enviar2(ListaArchivos As Collection)
     'imageContentID = email.AddRelatedContent(App.Path & "\minilogo.bmp")
     
     
-    cad = "<!DOCTYPE HTML PUBLIC " & Chr(34) & "-//W3C//DTD HTML 4.0 Transitional//EN" & Chr(34) & ">"
-    cad = cad & "<HTML><HEAD><TITLE>Mensaje</TITLE></HEAD>"
-    cad = cad & "<TABLE BORDER=""0"" CELLSPACING=1 CELLPADDING=0 WIDTH=576>"
+    Cad = "<!DOCTYPE HTML PUBLIC " & Chr(34) & "-//W3C//DTD HTML 4.0 Transitional//EN" & Chr(34) & ">"
+    Cad = Cad & "<HTML><HEAD><TITLE>Mensaje</TITLE></HEAD>"
+    Cad = Cad & "<TABLE BORDER=""0"" CELLSPACING=1 CELLPADDING=0 WIDTH=576>"
     'Cuerpo del mensaje
-    cad = cad & "<TR><TD VALIGN=""TOP""><P>"
+    Cad = Cad & "<TR><TD VALIGN=""TOP""><P>"
     FijarTextoMensaje
-    cad = cad & "</P></TD></TR>"
-    cad = cad & "<TR><TD VALIGN=""TOP""><P><hr></P>"
-    cad = cad & "<FONT SIZE=2>"
-    cad = cad & "<P><P><P><P align=""justify"">Este correo electrónico y sus documentos adjuntos estan dirigidos EXCLUSIVAMENTE a "
-    cad = cad & " los destinatarios especificados. La información contenida puesde ser CONFIDENCIAL"
-    cad = cad & " y/o estar LEGALMENTE PROTEGIDA.</P>"
-    cad = cad & "<P align=""justify"">Si usted recibe este mensaje por ERROR, por favor comuníqueselo inmediatamente al"
+    Cad = Cad & "</P></TD></TR>"
+    Cad = Cad & "<TR><TD VALIGN=""TOP""><P><hr></P>"
+    Cad = Cad & "<FONT SIZE=2>"
+    Cad = Cad & "<P><P><P><P align=""justify"">Este correo electrónico y sus documentos adjuntos estan dirigidos EXCLUSIVAMENTE a "
+    Cad = Cad & " los destinatarios especificados. La información contenida puesde ser CONFIDENCIAL"
+    Cad = Cad & " y/o estar LEGALMENTE PROTEGIDA.</P>"
+    Cad = Cad & "<P align=""justify"">Si usted recibe este mensaje por ERROR, por favor comuníqueselo inmediatamente al"
     
-    cad = cad & " remitente y ELIMINELO ya que usted NO ESTA AUTORIZADO al uso, revelación, distribución"
-    cad = cad & " impresión o copia de toda o alguna parte de la información contenida, Gracias "
-    cad = cad & ".</FONT></P><P><HR ALIGN=""LEFT"" SIZE=1></TD>"
-    cad = cad & "</TR></TABLE></BODY></HTML>"
+    Cad = Cad & " remitente y ELIMINELO ya que usted NO ESTA AUTORIZADO al uso, revelación, distribución"
+    Cad = Cad & " impresión o copia de toda o alguna parte de la información contenida, Gracias "
+    Cad = Cad & ".</FONT></P><P><HR ALIGN=""LEFT"" SIZE=1></TD>"
+    Cad = Cad & "</TR></TABLE></BODY></HTML>"
     
-    email.SetHtmlBody (cad)
+    email.SetHtmlBody (Cad)
     
     'Texto alternativo
-    cad = ""
-    cad = cad & "Este correo electronico y sus documentos adjuntos estan dirigidos EXCLUSIVAMENTE a " & vbCrLf
-    cad = cad & " los destinatarios especificados. La informacion contenida puesde ser CONFIDENCIAL" & vbCrLf
-    cad = cad & " y/o estar LEGALMENTE PROTEGIDA." & vbCrLf & vbCrLf
-    cad = cad & "Si usted recibe este mensaje por ERROR, por favor comuniqueselo inmediatamente al" & vbCrLf
-    cad = cad & " remitente y ELIMINELO ya que usted NO ESTA AUTORIZADO al uso, revelacion, distribucion" & vbCrLf
-    cad = cad & " impresion o copia de toda o alguna parte de la informacion contenida, Gracias " & vbCrLf
+    Cad = ""
+    Cad = Cad & "Este correo electronico y sus documentos adjuntos estan dirigidos EXCLUSIVAMENTE a " & vbCrLf
+    Cad = Cad & " los destinatarios especificados. La informacion contenida puesde ser CONFIDENCIAL" & vbCrLf
+    Cad = Cad & " y/o estar LEGALMENTE PROTEGIDA." & vbCrLf & vbCrLf
+    Cad = Cad & "Si usted recibe este mensaje por ERROR, por favor comuniqueselo inmediatamente al" & vbCrLf
+    Cad = Cad & " remitente y ELIMINELO ya que usted NO ESTA AUTORIZADO al uso, revelacion, distribucion" & vbCrLf
+    Cad = Cad & " impresion o copia de toda o alguna parte de la informacion contenida, Gracias " & vbCrLf
 
     
     'Por si no acepta HTML
-    cad = UCase(cad)
-    email.AddPlainTextAlternativeBody Text1(3).Text & vbCrLf & vbCrLf & vbCrLf & cad
+    Cad = UCase(Cad)
+    email.AddPlainTextAlternativeBody Text1(3).Text & vbCrLf & vbCrLf & vbCrLf & Cad
     email.From = RecuperaValor(Valores, 4) 'vParam.diremail
     
     
@@ -589,7 +589,7 @@ Private Sub Enviar2(ListaArchivos As Collection)
         Else
             
             For J = 1 To ListaArchivos.Count
-                   email.AddFileAttachment ListaArchivos.item(J)
+                   email.AddFileAttachment ListaArchivos.Item(J)
             Next J
         End If
     End If
@@ -609,11 +609,11 @@ Private Sub Enviar2(ListaArchivos As Collection)
     If (success = 1) Then
         If Opcion <> 2 And Opcion <> 4 And Opcion <> 6 Then
             If vParamAplic.EnvioDesdeOutlook Then
-                cad = "Enviado al outlook"
+                Cad = "Enviado al outlook"
             Else
-                cad = "Mensaje enviado correctamente."
+                Cad = "Mensaje enviado correctamente."
             End If
-            MsgBox cad, vbInformation
+            MsgBox Cad, vbInformation
             Command2(0).SetFocus
         End If
         
@@ -624,9 +624,9 @@ Private Sub Enviar2(ListaArchivos As Collection)
         End If
         ' ---
     Else
-        cad = "Han ocurrido errores durante el envio.Compruebe el archivo log.xml para mas informacion"
+        Cad = "Han ocurrido errores durante el envio.Compruebe el archivo log.xml para mas informacion"
         mailman.SaveXmlLog App.Path & "\log.xml"
-        MsgBox cad, vbExclamation
+        MsgBox Cad, vbExclamation
     End If
     
     
@@ -659,10 +659,10 @@ Dim Col As Collection
     
     'Opcion cero. Confirmacion entrega pedido
     If Opcion = 0 Then
-        cad = RecuperaValor(Me.DatosEnvio, 5)
-        If cad <> "" Then
+        Cad = RecuperaValor(Me.DatosEnvio, 5)
+        If Cad <> "" Then
             Set Col = New Collection
-            Col.Add cad
+            Col.Add Cad
         End If
     
     End If
@@ -728,7 +728,7 @@ End Sub
 
 Private Sub Form_Load()
     'Icono del formulario
-    Me.Icon = frmPpal.Icon
+    Me.Icon = frmppal.Icon
 
 
     PrimeraVez = True
@@ -740,17 +740,17 @@ Private Sub Form_Load()
     If Opcion = 1 Then HabilitarText
 
 '    cad = DevuelveDesdeBD("smtpHost", "spara1", "fechaini", Format(vParam.fechaini, FormatoFecha), "F")
-    cad = ""
+    Cad = ""
     If vParamAplic.ExeEnvioMail <> "" Then
-        cad = "OK"
+        Cad = "OK"
     Else
         If vParamAplic.EnvioDesdeOutlook Then
-            cad = "OK"
+            Cad = "OK"
         Else
-            cad = DevuelveDesdeBDNew(conAri, "spara1", "smtphost", "codigo", "1", "N")
+            Cad = DevuelveDesdeBDNew(conAri, "spara1", "smtphost", "codigo", "1", "N")
         End If
     End If
-    Me.Command1.Enabled = (cad <> "")
+    Me.Command1.Enabled = (Cad <> "")
     
     
     Label13(0).Caption = ""
@@ -864,29 +864,31 @@ Private Sub Text1_GotFocus(Index As Integer)
 End Sub
 
 Private Function DatosOk() As Boolean
-Dim i As Integer
+Dim I As Integer
 
     DatosOk = False
     'If Opcion = 0 Or Opcion = 3 Or Opcion = 4 Or Opcion = 5 Then
     If Opcion <> 1 And Opcion <> 2 Then
-                'Pocas cosas a comprobar
-                For i = 0 To 2
-                    Text1(i).Text = Trim(Text1(i).Text)
-                    If Text1(i).Text = "" Then
-                        MsgBox "El campo: " & Label1(i).Caption & " no puede estar vacio.", vbExclamation
-                        Exit Function
-                    End If
-                Next i
-                
-                'EL del mail tiene k tener la arroba @
-                i = InStr(1, Text1(1).Text, "@")
-                If i = 0 Then
-                    MsgBox "Direccion e-mail erronea", vbExclamation
-                    Exit Function
-                End If
+        'Pocas cosas a comprobar
+        For I = 0 To 2
+            Text1(I).Text = Trim(Text1(I).Text)
+            If Text1(I).Text = "" Then
+                MsgBox "El campo: " & Label1(I).Caption & " no puede estar vacio.", vbExclamation
+                Exit Function
+            End If
+        Next I
+        
+        'EL del mail tiene k tener la arroba @
+        I = InStr(1, Text1(1).Text, "@")
+        If I = 0 Then
+            MsgBox "Direccion e-mail erronea", vbExclamation
+            Exit Function
+        End If
     Else
         Text2.Text = Trim(Text2.Text)
         'SOPORTE
+        If Text1(3).Text <> "" Then Text3.Text = Text1(3).Text
+        
         If Trim(Text3.Text) = "" Then
             MsgBox "El mensaje no puede ir en blanco", vbExclamation
             Exit Function
@@ -915,19 +917,19 @@ End Sub
 
 'El procedimiento servira para ir buscando los vbcrlf y cambiarlos por </p><p>
 Private Sub FijarTextoMensaje()
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 
     J = 1
     Do
-        i = InStr(J, Text1(3).Text, vbCrLf)
-        If i > 0 Then
-              cad = cad & Mid(Text1(3).Text, J, i - J) & "</P><P>"
+        I = InStr(J, Text1(3).Text, vbCrLf)
+        If I > 0 Then
+              Cad = Cad & Mid(Text1(3).Text, J, I - J) & "</P><P>"
         Else
-            cad = cad & Mid(Text1(3).Text, J)
+            Cad = Cad & Mid(Text1(3).Text, J)
         End If
-        J = i + 2
-    Loop Until i = 0
+        J = I + 2
+    Loop Until I = 0
 End Sub
 
 Private Sub HabilitarText()
@@ -948,9 +950,9 @@ Dim NF As Integer
     RecuperarDatosEMAILAriadna = False
     NF = FreeFile
     Open App.Path & "\soporte.dat" For Input As #NF
-    Line Input #NF, cad
+    Line Input #NF, Cad
     Close #NF
-    If cad <> "" Then RecuperarDatosEMAILAriadna = True
+    If Cad <> "" Then RecuperarDatosEMAILAriadna = True
     
 End Function
 
@@ -964,36 +966,36 @@ Dim miRsAux As ADODB.Recordset
     
     
     '1 ver si el usuario que esta conectado tiene datos de email
-    cad = "Select * from usuarios.usuarios where login = " & DBSet(vUsu.Login, "T")
-    miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Cad = "Select * from usuarios.usuarios where login = " & DBSet(vUsu.Login, "T")
+    miRsAux.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         If DBLet(miRsAux!Dirfich, "T") <> "" Then
-            cad = RecuperaValor(miRsAux!Dirfich, 2)
-            cad = cad & "|" & RecuperaValor(miRsAux!Dirfich, 3)
-            cad = cad & "|" & RecuperaValor(miRsAux!Dirfich, 4)
-            cad = cad & "|" & RecuperaValor(miRsAux!Dirfich, 1) & "|"
-            ObtenerValoresEnvioMail = cad
+            Cad = RecuperaValor(miRsAux!Dirfich, 2)
+            Cad = Cad & "|" & RecuperaValor(miRsAux!Dirfich, 3)
+            Cad = Cad & "|" & RecuperaValor(miRsAux!Dirfich, 4)
+            Cad = Cad & "|" & RecuperaValor(miRsAux!Dirfich, 1) & "|"
+            ObtenerValoresEnvioMail = Cad
         Else
-            cad = ""
+            Cad = ""
         End If
     Else
-        cad = ""
+        Cad = ""
     End If
     miRsAux.Close
     
-    If cad = "" Then
-        cad = "Select diremail,SmtpHost, SmtpUser, SmtpPass  from spara1 where"
+    If Cad = "" Then
+        Cad = "Select diremail,SmtpHost, SmtpUser, SmtpPass  from spara1 where"
     '####Descomentar
 '    Cad = Cad & " fechaini='" & Format(vParam.fechaini, FormatoFecha) & "';"
-        cad = cad & " codigo=1;"
-        miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = Cad & " codigo=1;"
+        miRsAux.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
         If Not miRsAux.EOF Then
-            cad = DBLet(miRsAux!SMTPhost)
-            cad = cad & "|" & DBLet(miRsAux!SMTPuser)
-            cad = cad & "|" & DBLet(miRsAux!SMTPpass)
-            cad = cad & "|" & DBLet(miRsAux!DireMail) & "|"
-            ObtenerValoresEnvioMail = cad
+            Cad = DBLet(miRsAux!SMTPhost)
+            Cad = Cad & "|" & DBLet(miRsAux!SMTPuser)
+            Cad = Cad & "|" & DBLet(miRsAux!SMTPpass)
+            Cad = Cad & "|" & DBLet(miRsAux!DireMail) & "|"
+            ObtenerValoresEnvioMail = Cad
         End If
         miRsAux.Close
     End If
@@ -1001,9 +1003,9 @@ Dim miRsAux As ADODB.Recordset
 End Function
 
 Private Sub HacerMultiEnvio()
-Dim cad As String
-Dim RS As ADODB.Recordset
-Dim i As Integer, cont As Integer
+Dim Cad As String
+Dim Rs As ADODB.Recordset
+Dim I As Integer, cont As Integer
 
 On Error GoTo EMulti
 
@@ -1014,29 +1016,29 @@ On Error GoTo EMulti
     
     Me.Refresh
     
-    cad = "SELECT * from tmpMail WHERE codusu=" & vUsu.Codigo
-    Set RS = New ADODB.Recordset
-    RS.Open cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
+    Cad = "SELECT * from tmpMail WHERE codusu=" & vUsu.Codigo
+    Set Rs = New ADODB.Recordset
+    Rs.Open Cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
 
     cont = 0
-    While Not RS.EOF
+    While Not Rs.EOF
         cont = cont + 1
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.MoveFirst
+    Rs.MoveFirst
     
     
-    i = 1
+    I = 1
     Me.Refresh
-    While Not RS.EOF
+    While Not Rs.EOF
         Screen.MousePointer = vbHourglass
-        Text1(0).Text = RS!nomprove
-        Text1(1).Text = RS!email
-        Caption = "Enviar E-MAIL (" & i & " de " & cont & ")"
+        Text1(0).Text = Rs!nomprove
+        Text1(1).Text = Rs!email
+        Caption = "Enviar E-MAIL (" & I & " de " & cont & ")"
         Me.Refresh
         
         'De momento volvemos a copiar el archivo como docum.pdf
-        FileCopy App.Path & "\temp\" & RS!codProve & ".pdf", App.Path & "\docum.pdf"
+        FileCopy App.Path & "\temp\" & Rs!codProve & ".pdf", App.Path & "\docum.pdf"
         Me.Refresh
         NumRegElim = 0
         EnvioNuevo Nothing
@@ -1048,10 +1050,10 @@ On Error GoTo EMulti
 '            Conn.Execute cad
 '        End If
         'Siguiente
-        RS.MoveNext
-        i = i + 1
+        Rs.MoveNext
+        I = I + 1
     Wend
-    RS.Close
+    Rs.Close
     
 EMulti:
     
@@ -1064,35 +1066,35 @@ End Sub
 
 
 
-Private Sub MandaBusquedaPrevia(cadB As String, NomTabla As String, NomCampo As String)
+Private Sub MandaBusquedaPrevia(CadB As String, NomTabla As String, NomCampo As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 Dim Conexion As Byte
 
     'Llamamos a al form
     '##A mano
-    cad = ""
+    Cad = ""
     Select Case NomTabla
         Case "sclien"
-            cad = cad & "Código|sclien|codclien|N|000000|9·"
-            cad = cad & "Nombre|sclien|nomclien|T||29·"
-            cad = cad & "Ape./Nom.Comer.|sclien|nomcomer|T||29·"
-            cad = cad & "E-mail|sclien|" & NomCampo & "|T||33·"
+            Cad = Cad & "Código|sclien|codclien|N|000000|9·"
+            Cad = Cad & "Nombre|sclien|nomclien|T||29·"
+            Cad = Cad & "Ape./Nom.Comer.|sclien|nomcomer|T||29·"
+            Cad = Cad & "E-mail|sclien|" & NomCampo & "|T||33·"
 '            Tabla = NomTabla
             Titulo = "Clientes"
         Case "sprove"
-            cad = cad & "Código|sprove|codprove|N|000000|9·"
-            cad = cad & "Nombre|sprove|nomprove|T||29·"
-            cad = cad & "Nom.Comer.|sprove|nomcomer|T||29·"
-            cad = cad & "E-mail|sprove|" & NomCampo & "|T||33·"
+            Cad = Cad & "Código|sprove|codprove|N|000000|9·"
+            Cad = Cad & "Nombre|sprove|nomprove|T||29·"
+            Cad = Cad & "Nom.Comer.|sprove|nomcomer|T||29·"
+            Cad = Cad & "E-mail|sprove|" & NomCampo & "|T||33·"
 '            Tabla = NomTabla
             Titulo = "Proveedores"
         Case "straba"
-            cad = cad & "Código|straba|codtraba|N|0000|9·"
-            cad = cad & "Nombre|straba|nomtraba|T||44·"
-            cad = cad & "E-mail|straba|" & NomCampo & "|T||44·"
+            Cad = Cad & "Código|straba|codtraba|N|0000|9·"
+            Cad = Cad & "Nombre|straba|nomtraba|T||44·"
+            Cad = Cad & "E-mail|straba|" & NomCampo & "|T||44·"
 '            Tabla = NomTabla
             Titulo = "trabajadores"
     End Select
@@ -1117,12 +1119,12 @@ Dim Conexion As Byte
 '            Conexion = conAri    'Conexión a BD: Aritaxi
 '    End Select
            
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
 '        HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|2|3|"
@@ -1150,9 +1152,9 @@ End Sub
 
 'MULTIE ENVIO FACTURACION
 Private Sub HacerMultiEnvioFacturacion()
-Dim cad As String
-Dim RS As ADODB.Recordset
-Dim i As Integer, cont As Integer
+Dim Cad As String
+Dim Rs As ADODB.Recordset
+Dim I As Integer, cont As Integer
 Dim Lis As Collection
 Dim ListaArchivos As Collection
 Dim FormatoHtml As Boolean
@@ -1166,18 +1168,18 @@ On Error GoTo EMulti2
     
     Me.Refresh
     DoEvents
-    cad = RecuperaValor(DatosEnvio, 4)
+    Cad = RecuperaValor(DatosEnvio, 4)
     'AGrupamos en el envio de facturas
-    If Opcion = 4 Then cad = cad & " GROUP by codprove"
-    Set RS = New ADODB.Recordset
-    RS.Open cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
+    If Opcion = 4 Then Cad = Cad & " GROUP by codprove"
+    Set Rs = New ADODB.Recordset
+    Rs.Open Cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
 
     Set Lis = New Collection
-    While Not RS.EOF
-        Lis.Add CStr(RS!codProve)
-        RS.MoveNext
+    While Not Rs.EOF
+        Lis.Add CStr(Rs!codProve)
+        Rs.MoveNext
     Wend
-    RS.Close
+    Rs.Close
     
     FormatoHtml = False
     If vParamAplic.ExeEnvioMail <> "" Then
@@ -1187,36 +1189,36 @@ On Error GoTo EMulti2
     End If
     
     T1 = Timer
-    For i = 1 To Lis.Count
+    For I = 1 To Lis.Count
         
-        Caption = "Enviar E-MAIL (" & i & " de " & Lis.Count & ")"
+        Caption = "Enviar E-MAIL (" & I & " de " & Lis.Count & ")"
         DoEvents
-        cad = RecuperaValor(DatosEnvio, 4)
-        cad = cad & " and codprove =" & Lis.item(i)
-        RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = RecuperaValor(DatosEnvio, 4)
+        Cad = Cad & " and codprove =" & Lis.Item(I)
+        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         Screen.MousePointer = vbHourglass
-        Text1(0).Text = RS!nomclien
-        Text1(1).Text = RS!email
+        Text1(0).Text = Rs!nomclien
+        Text1(1).Text = Rs!email
         'Los meteremos en una tabla
         If FormatoHtml Then
-            cad = "<BR><BR><TABLE BORDER=""1"" CELLSPACING=1 CELLPADDING=0 WIDTH=576>"
+            Cad = "<BR><BR><TABLE BORDER=""1"" CELLSPACING=1 CELLPADDING=0 WIDTH=576>"
             'Cuerpo del mensaje
             If Opcion = 4 Then
-                cad = cad & "<TR><TD width=""274"" bgcolor=""#CCCCCC""><B>Factura</B></TD><TD width=""145"" bgcolor=""#CCCCCC""><B>Fecha</B></TD><TD width=""145"" bgcolor=""#CCCCCC""><B>Importe</B></td></TR>"
+                Cad = Cad & "<TR><TD width=""274"" bgcolor=""#CCCCCC""><B>Factura</B></TD><TD width=""145"" bgcolor=""#CCCCCC""><B>Fecha</B></TD><TD width=""145"" bgcolor=""#CCCCCC""><B>Importe</B></td></TR>"
             Else
-                cad = cad & "<TR><TD width=""640"" bgcolor=""#CCCCCC""><B>Documento</B></TD></TR>"
+                Cad = Cad & "<TR><TD width=""640"" bgcolor=""#CCCCCC""><B>Documento</B></TD></TR>"
             End If
         Else
             If Opcion = 4 Then
-                cad = " Factura             Fecha             Importe "
+                Cad = " Factura             Fecha             Importe "
             Else
-                cad = cad & "Documento "
+                Cad = Cad & "Documento "
             End If
-            cad = vbCrLf & vbCrLf & vbCrLf & cad & vbCrLf & vbCrLf & String(40, "-") & vbCrLf & vbCrLf
+            Cad = vbCrLf & vbCrLf & vbCrLf & Cad & vbCrLf & vbCrLf & String(40, "-") & vbCrLf & vbCrLf
         End If
-        Text1(3).Text = RecuperaValor(Me.DatosEnvio, 2) & cad
+        Text1(3).Text = RecuperaValor(Me.DatosEnvio, 2) & Cad
         Set ListaArchivos = New Collection
-        While Not RS.EOF
+        While Not Rs.EOF
             
 
            
@@ -1225,63 +1227,63 @@ On Error GoTo EMulti2
             'De momento volvemos a copiar el archivo como docum.pdf
             If Opcion = 4 Then
                 'cad = App.Path & "\temp\" & RS!NumAlbar & Format(RS!codProve, "0000000") & Format(RS!codArtic, "0000000") & Format(RS!FechaAlb, "yymmdd") & ".pdf"
-                cad = App.Path & "\temp\" & RS!NumAlbar & Format(RS!codArtic, "0000000") & ".pdf"
+                Cad = App.Path & "\temp\" & Rs!NumAlbar & Format(Rs!codArtic, "0000000") & ".pdf"
             Else
                 'Opcion5: Carta renovacion
-                cad = App.Path & "\temp\" & Format(RS!codProve, "0000000") & ".pdf"
+                Cad = App.Path & "\temp\" & Format(Rs!codProve, "0000000") & ".pdf"
             End If
-            If Dir(cad, vbArchive) = "" Then
+            If Dir(Cad, vbArchive) = "" Then
                 'ERROR. El fichero ha sido eliminado
-                MsgBox "No existe el fichero: " & cad & vbCrLf & "El proceso finalizara", vbExclamation
-                RS.Close
+                MsgBox "No existe el fichero: " & Cad & vbCrLf & "El proceso finalizara", vbExclamation
+                Rs.Close
                 Exit Sub
             Else
-                ListaArchivos.Add cad
+                ListaArchivos.Add Cad
                 'En el asunto pondremos los archivos que enviamos
-                cad = ""
+                Cad = ""
                 If Opcion = 4 Then
                     
                     If FormatoHtml Then
-                        cad = "</div></TD><TD><div align=""right"">" & Format(RS!Cantidad, FormatoImporte) & "</div></TD></TR>"
+                        Cad = "</div></TD><TD><div align=""right"">" & Format(Rs!Cantidad, FormatoImporte) & "</div></TD></TR>"
                     Else
-                        cad = Space(20) & Format(RS!Cantidad, FormatoImporte)
+                        Cad = Space(20) & Format(Rs!Cantidad, FormatoImporte)
                     End If
                     
                     If FormatoHtml Then
-                        cad = "</TD><TD><div align=""center"">" & Format(RS!FechaAlb, "dd/mm/yyyy") & cad
+                        Cad = "</TD><TD><div align=""center"">" & Format(Rs!FechaAlb, "dd/mm/yyyy") & Cad
                     Else
-                        cad = Space(15) & Format(RS!FechaAlb, "dd/mm/yyyy") & cad
+                        Cad = Space(15) & Format(Rs!FechaAlb, "dd/mm/yyyy") & Cad
                     End If
                     
         
-                    cad = RS!NumAlbar & Format(RS!codArtic, "0000000") & cad
+                    Cad = Rs!NumAlbar & Format(Rs!codArtic, "0000000") & Cad
                                 
                     If FormatoHtml Then
-                        cad = "<TR><TD>" & cad
+                        Cad = "<TR><TD>" & Cad
                     Else
-                        cad = cad & vbCrLf
+                        Cad = Cad & vbCrLf
                     End If
                 
                 Else
                     'Opcion:5.  Carta renovacion
-                    If FormatoHtml Then cad = "<TR><TD>"
-                    cad = cad & "Documento" & Format(RS!codProve, "0000000")
+                    If FormatoHtml Then Cad = "<TR><TD>"
+                    Cad = Cad & "Documento" & Format(Rs!codProve, "0000000")
                     If FormatoHtml Then
-                        cad = cad & "</TD></TR>"
+                        Cad = Cad & "</TD></TR>"
                     Else
-                        cad = cad & vbCrLf
+                        Cad = Cad & vbCrLf
                     End If
                 
                 End If
                 
-                Text1(3).Text = Text1(3).Text & "    " & cad
+                Text1(3).Text = Text1(3).Text & "    " & Cad
             End If
             
             'Siguiente
-            RS.MoveNext
+            Rs.MoveNext
             
         Wend
-        RS.Close
+        Rs.Close
         If FormatoHtml Then Text1(3).Text = Text1(3).Text & "</TABLE><BR><BR>"
         
         EnvioNuevo ListaArchivos
@@ -1294,7 +1296,7 @@ On Error GoTo EMulti2
             Espera T1
         End If
         T1 = Timer
-    Next i
+    Next I
     Set Lis = Nothing
     Exit Sub
 EMulti2:
@@ -1306,8 +1308,8 @@ End Sub
 
 Private Sub HacerMultiEnvioConfirPed()
 
-Dim RS As ADODB.Recordset
-Dim i As Integer, cont As Integer
+Dim Rs As ADODB.Recordset
+Dim I As Integer, cont As Integer
 Dim Lis As Collection
 Dim ListaArchivos As Collection
 Dim FormatoHtml As Boolean
@@ -1321,17 +1323,17 @@ On Error GoTo EMulti2
     DoEvents
     
     
-    cad = "select * from tmpnlotes where codusu =" & vUsu.Codigo
-    cad = cad & " GROUP by codprove order by codprove"
-    Set RS = New ADODB.Recordset
-    RS.Open cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
+    Cad = "select * from tmpnlotes where codusu =" & vUsu.Codigo
+    Cad = Cad & " GROUP by codprove order by codprove"
+    Set Rs = New ADODB.Recordset
+    Rs.Open Cad, conn, adOpenKeyset, adLockOptimistic, adCmdText
 
     Set Lis = New Collection
-    While Not RS.EOF
-        Lis.Add CStr(RS!codProve)
-        RS.MoveNext
+    While Not Rs.EOF
+        Lis.Add CStr(Rs!codProve)
+        Rs.MoveNext
     Wend
-    RS.Close
+    Rs.Close
     
     FormatoHtml = False
     If vParamAplic.ExeEnvioMail <> "" Then
@@ -1342,42 +1344,42 @@ On Error GoTo EMulti2
     Text1(2).Text = Text1(4).Text
     T1 = Timer
     
-    For i = 1 To Lis.Count
+    For I = 1 To Lis.Count
         
-        Caption = "Enviar E-MAIL (" & i & " de " & Lis.Count & ")"
+        Caption = "Enviar E-MAIL (" & I & " de " & Lis.Count & ")"
         DoEvents
-        cad = "select * from tmpnlotes where codusu =" & vUsu.Codigo
-        cad = cad & " and codprove =" & Lis.item(i) & " ORDER BY fechaalb"   'Asi nos devolvera la primera entrada para cadprovedor donde tiene el email
-        RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = "select * from tmpnlotes where codusu =" & vUsu.Codigo
+        Cad = Cad & " and codprove =" & Lis.Item(I) & " ORDER BY fechaalb"   'Asi nos devolvera la primera entrada para cadprovedor donde tiene el email
+        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         Screen.MousePointer = vbHourglass
         'El email estara en numalbar+nomartic+numlote
         
-        cad = RS!NumAlbar & DBLet(RS!NomArtic, "T") & DBLet(RS!numlotes, "T")
-        Text1(0).Text = cad
-        Text1(1).Text = cad
+        Cad = Rs!NumAlbar & DBLet(Rs!NomArtic, "T") & DBLet(Rs!numlotes, "T")
+        Text1(0).Text = Cad
+        Text1(1).Text = Cad
         Text1(3).Text = Text1(5).Text  'Body
         If FormatoHtml Then
-            cad = "<P>"
+            Cad = "<P>"
             FijarTextoMensaje
-            cad = cad & "</P>"
-            Text1(3).Text = cad
+            Cad = Cad & "</P>"
+            Text1(3).Text = Cad
         End If
         'Los meteremos en una tabla
         If FormatoHtml Then
-            cad = "<BR><BR><TABLE BORDER=""1"" CELLSPACING=1 CELLPADDING=0 WIDTH=576>"
+            Cad = "<BR><BR><TABLE BORDER=""1"" CELLSPACING=1 CELLPADDING=0 WIDTH=576>"
             'Cuerpo del mensaje
 
-                cad = cad & "<TR><TD width=""640"" bgcolor=""#CCCCCC""><B>Documento adjuntados</B></TD></TR>"
+                Cad = Cad & "<TR><TD width=""640"" bgcolor=""#CCCCCC""><B>Documento adjuntados</B></TD></TR>"
   
         Else
 
-            cad = "Documentos adjuntados "
+            Cad = "Documentos adjuntados "
 
-            cad = vbCrLf & vbCrLf & vbCrLf & cad & vbCrLf & vbCrLf & String(40, "-") & vbCrLf & vbCrLf
+            Cad = vbCrLf & vbCrLf & vbCrLf & Cad & vbCrLf & vbCrLf & String(40, "-") & vbCrLf & vbCrLf
         End If
-        Text1(3).Text = Text1(3) & cad
+        Text1(3).Text = Text1(3) & Cad
         Set ListaArchivos = New Collection
-        While Not RS.EOF
+        While Not Rs.EOF
             
 
            
@@ -1385,37 +1387,35 @@ On Error GoTo EMulti2
             '
             'De momento volvemos a copiar el archivo como docum.pdf
           
-            cad = App.Path & "\temp\" & RS!codArtic
+            Cad = App.Path & "\temp\" & Rs!codArtic
       
-            If Dir(cad, vbArchive) = "" Then
+            If Dir(Cad, vbArchive) = "" Then
                 'ERROR. El fichero ha sido eliminado
-                MsgBox "No existe el fichero: " & cad & vbCrLf & "El proceso finalizara", vbExclamation
-                RS.Close
+                MsgBox "No existe el fichero: " & Cad & vbCrLf & "El proceso finalizara", vbExclamation
+                Rs.Close
                 Exit Sub
             Else
-                ListaArchivos.Add cad
+                ListaArchivos.Add Cad
                 'En el asunto pondremos los archivos que enviamos
-                cad = ""
+                Cad = ""
 
                     'Opcion:5.  Carta renovacion
-                    If FormatoHtml Then cad = "<TR><TD>"
-                    cad = cad & "Documento " & Format(RS!codArtic, "0000000")
+                    If FormatoHtml Then Cad = "<TR><TD>"
+                    Cad = Cad & "Documento " & Format(Rs!codArtic, "0000000")
                     If FormatoHtml Then
-                        cad = cad & "</TD></TR>"
+                        Cad = Cad & "</TD></TR>"
                     Else
-                        cad = cad & vbCrLf
+                        Cad = Cad & vbCrLf
                     End If
                 
- 
-                
-                Text1(3).Text = Text1(3).Text & "    " & cad
+                Text1(3).Text = Text1(3).Text & "    " & Cad
             End If
             
             'Siguiente
-            RS.MoveNext
+            Rs.MoveNext
             
         Wend
-        RS.Close
+        Rs.Close
         If FormatoHtml Then Text1(3).Text = Text1(3).Text & "</TABLE><BR><BR>"
         
         EnvioNuevo ListaArchivos
@@ -1428,27 +1428,12 @@ On Error GoTo EMulti2
             Espera T1
         End If
         T1 = Timer
-    Next i
+    Next I
     Set Lis = Nothing
     Exit Sub
 EMulti2:
     MuestraError Err.Number
 End Sub
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Private Sub EnvioDesdeExeNuestro(ListaArchivos As Collection)
@@ -1478,23 +1463,13 @@ Dim J As Integer
         If ListaArchivos Is Nothing Then
             Lanza = Lanza & App.Path & "\docum.pdf" & "|"
         Else
-            
             For J = 1 To ListaArchivos.Count
-                   Lanza = Lanza & ListaArchivos.item(J) & "|"
+                   Lanza = Lanza & ListaArchivos.Item(J) & "|"
             Next J
         End If
     End If
-    
-
-
-
     
     Lanza = App.Path & "\" & vParamAplic.ExeEnvioMail & " " & Lanza
     Shell Lanza, vbNormalFocus
 
 End Sub
-
-
-
-
-

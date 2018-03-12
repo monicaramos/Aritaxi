@@ -888,7 +888,6 @@ Dim cad1 As String
     conn.BeginTrans
     ConnConta.BeginTrans
     
-    
     'guardo el contador inicial por si falla para volver a guardarlo
     Set miRsAux = New ADODB.Recordset
     If normal Then
@@ -954,7 +953,6 @@ Dim cad1 As String
                 Exit Function
             End If
         End If
-        vC.IncrementarContador (vC.TipoMovimiento)
         
         If normal Then 'calculo los servicios
             '[Monica]08/02/2018: si tiene valor en txtauxdocumento lo concatena con esto
@@ -963,406 +961,221 @@ Dim cad1 As String
             BaseImp = 0
             
             Servicios = 0
-            CalcularServicios BaseImp, base2, NomArtic3, Servicios
-
-            Set RsArt = New ADODB.Recordset
-            RsArt.Open SqlArt, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-            While Not RsArt.EOF
-                '[Monica]05/12/2013: modificado ahora cogemos el importe que pueden modificar, antes cogiamos el precio del articulo
-                BaseImp = BaseImp + DBLet(RsArt!Importes, "N") 'DBLet(RsArt!preciove, "N")
-                RsArt.MoveNext
-            Wend
-            Set RsArt = Nothing
-
+            'servicios
+            If DBLet(Data1.Recordset!generafactu, "N") = 1 Or DBLet(Data1.Recordset!generafactu, "N") = 2 Then CalcularServicios BaseImp, base2, NomArtic3, Servicios
+            'cuotas
+            If DBLet(Data1.Recordset!generafactu, "N") = 1 Or DBLet(Data1.Recordset!generafactu, "N") = 3 Then
+                Set RsArt = New ADODB.Recordset
+                RsArt.Open SqlArt, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                While Not RsArt.EOF
+                    '[Monica]05/12/2013: modificado ahora cogemos el importe que pueden modificar, antes cogiamos el precio del articulo
+                    BaseImp = BaseImp + DBLet(RsArt!Importes, "N") 'DBLet(RsArt!preciove, "N")
+                    RsArt.MoveNext
+                Wend
+                Set RsArt = Nothing
+            End If
         Else
             BaseImp = ImporteFormateado(Text1(4).Text)
+        
         End If
-        DoEvents
-        fac.BaseImp = BaseImp
-        fac.BrutoFac = BaseImp
-        ImpIVA = (BaseImp * porIva) / 100
-        totfactu = BaseImp + ImpIVA
-        fac.TotalFac = totfactu
-        fac.codtipom = codtipom
-        FecFactu = Text1(1).Text
-        fac.FecFactu = FecFactu
-        fac.LetraSerie = LetraSer
-        NumFactu = vC.Contador
-        fac.NumFactu = NumFactu
-'        fac.CuentaPrev = Text1(7).Text
-        fac.ForPago = ForPago
         
-        fac.BancoPr = Text1(7).Text
-        fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+        If BaseImp <> 0 Then
+            vC.IncrementarContador (vC.TipoMovimiento)
         
-        fac.Agente = vParamAplic.PorDefecto_Agente
         
-        'datos del cliente
-        fac.Cliente = Data1.Recordset!CodClien
+            DoEvents
+            fac.BaseImp = BaseImp
+            fac.BrutoFac = BaseImp
+            ImpIVA = (BaseImp * porIva) / 100
+            totfactu = BaseImp + ImpIVA
+            fac.TotalFac = totfactu
+            fac.codtipom = codtipom
+            FecFactu = Text1(1).Text
+            fac.FecFactu = FecFactu
+            fac.LetraSerie = LetraSer
+            NumFactu = vC.Contador
+            fac.NumFactu = NumFactu
+    '        fac.CuentaPrev = Text1(7).Text
+            fac.ForPago = ForPago
+            
+            fac.BancoPr = Text1(7).Text
+            fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
+            
+            fac.Agente = vParamAplic.PorDefecto_Agente
+            
+            'datos del cliente
+            fac.Cliente = Data1.Recordset!CodClien
+            
+    '        If fac.Cliente = 10357 Then Stop
+            
+            cli.Nombre = Data1.Recordset!nomclien
+            fac.NombreClien = Data1.Recordset!nomclien
+            cli.Domicilio = Data1.Recordset!domclien
+            fac.DomicilioClien = Data1.Recordset!domclien
+            cli.CPostal = Data1.Recordset!codpobla
+            fac.CPostal = Data1.Recordset!codpobla
+            cli.Poblacion = Data1.Recordset!pobclien
+            fac.Poblacion = Data1.Recordset!pobclien
+            cli.Provincia = Data1.Recordset!proclien
+            fac.Provincia = Data1.Recordset!proclien
+            cli.NIF = Data1.Recordset!nifClien
+            fac.NIF = Data1.Recordset!nifClien
+            
+            '[Monica]22/11/2013:iban
+            fac.Iban = Data1.Recordset!Iban
+            fac.Banco = DBLet(Data1.Recordset!codbanco, "N")
+            fac.Sucursal = DBLet(Data1.Recordset!codsucur, "N")
+            fac.DigControl = DBLet(Data1.Recordset!digcontr, "T")
+            fac.CuentaBan = DBLet(Data1.Recordset!cuentaba, "T")
         
-'        If fac.Cliente = 10357 Then Stop
-        
-        cli.Nombre = Data1.Recordset!nomclien
-        fac.NombreClien = Data1.Recordset!nomclien
-        cli.Domicilio = Data1.Recordset!domclien
-        fac.DomicilioClien = Data1.Recordset!domclien
-        cli.CPostal = Data1.Recordset!codpobla
-        fac.CPostal = Data1.Recordset!codpobla
-        cli.Poblacion = Data1.Recordset!pobclien
-        fac.Poblacion = Data1.Recordset!pobclien
-        cli.Provincia = Data1.Recordset!proclien
-        fac.Provincia = Data1.Recordset!proclien
-        cli.NIF = Data1.Recordset!nifClien
-        fac.NIF = Data1.Recordset!nifClien
-        
-        '[Monica]22/11/2013:iban
-        fac.Iban = Data1.Recordset!Iban
-        fac.Banco = DBLet(Data1.Recordset!codbanco, "N")
-        fac.Sucursal = DBLet(Data1.Recordset!codsucur, "N")
-        fac.DigControl = DBLet(Data1.Recordset!digcontr, "T")
-        fac.CuentaBan = DBLet(Data1.Recordset!cuentaba, "T")
-    
-        'scafac
-        Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
-        Cad = Cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
-        Cad = Cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
-        Cad = Cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
-        Cad = Cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
-        Cad = Cad & DBSet(Data1.Recordset!codbanco, "N", "S") & "," & DBSet(Data1.Recordset!codsucur, "N", "S") & "," & DBSet(Data1.Recordset!digcontr, "T", "S") & "," & DBSet(Data1.Recordset!cuentaba, "T", "S") & "," & DBSet(Data1.Recordset!Iban, "T") & ")"
-        Sql = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
-        Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-        Sql = Sql & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
-        Sql = Sql & Cad
-        If Not ejecutar(Sql, False) Then
-            vC.DevolverContador vC.TipoMovimiento, vC.Contador
-            Exit Function
-        Else
-            'scafac1
-            If cadFormula = "" Then
-                cadFormula = "{scafac.numfactu}=" & NumFactu
+            'scafac
+            Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & fac.Cliente & ","
+            Cad = Cad & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
+            Cad = Cad & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
+            Cad = Cad & "," & fac.ForPago & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & ",0,0," & TransformaComasPuntos(CStr(BaseImp)) & "," & iva
+            Cad = Cad & "," & TransformaComasPuntos(CStr(porIva)) & "," & TransformaComasPuntos(CStr(ImpIVA)) & "," & TransformaComasPuntos(CStr(totfactu)) & ",0,NULL,"
+            Cad = Cad & DBSet(Data1.Recordset!codbanco, "N", "S") & "," & DBSet(Data1.Recordset!codsucur, "N", "S") & "," & DBSet(Data1.Recordset!digcontr, "T", "S") & "," & DBSet(Data1.Recordset!cuentaba, "T", "S") & "," & DBSet(Data1.Recordset!Iban, "T") & ")"
+            Sql = "INSERT INTO scafac (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
+            Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
+            Sql = Sql & "imporiv1,totalfac,intconta,coddirec, codbanco, codsucur, digcontr, cuentaba, iban) VALUES ("
+            Sql = Sql & Cad
+            If Not ejecutar(Sql, False) Then
+                vC.DevolverContador vC.TipoMovimiento, vC.Contador
+                Exit Function
             Else
-                cadFormula = cadFormula & " or {scafac.numfactu}=" & NumFactu
-            End If
-            Cad = ""
-            Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
-            Cad = Cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
-            Cad = Cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
+                'scafac1
+                If cadFormula = "" Then
+                    cadFormula = "{scafac.numfactu}=" & NumFactu
+                Else
+                    cadFormula = cadFormula & " or {scafac.numfactu}=" & NumFactu
+                End If
+                Cad = ""
+                Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,'"
+                Cad = Cad & Format(FecFactu, FormatoFecha) & "'," & vParamAplic.PorDefecto_Envio & "," & CodTraba
+                Cad = Cad & "," & CodTraba & ",NULL,NULL,NULL,NULL,NULL,NULL"
+        
+                Sql = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
+                Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
+                Sql = Sql & Cad & ")"
+                conn.Execute Sql
+                'slifac
+                Cad = ""
+                If normal Then
+    '[Monica]20/04/2011
+                    I = 1
+                    If base2 <> 0 Then ' si hay servicios
+                        '3º linea seran los servicios
+                        Cad = ""
+                        Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
+                        Cad = Cad & DBSet(vParamAplic.ArtServCuotas, "T") & "," & DBSet(NomArtic3, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorServicio)) & ","
+                        Cad = Cad & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & ","
+                        Cad = Cad & TransformaComasPuntos(CStr(base2)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base2)) & "," & Servicios & ")"
+                        Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
+                        Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
+                        Sql = Sql & Cad
+                        conn.Execute Sql
+                    End If
+                    
+                    If DBLet(Data1.Recordset!generafactu, "N") = 1 Or DBLet(Data1.Recordset!generafactu, "N") = 3 Then
+                        
+                        Set RsArt = New ADODB.Recordset
+                        RsArt.Open SqlArt, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                        
+                        While Not RsArt.EOF
+                            I = I + 1
+                            '[Monica]27/04/2015: para taxivip
+                            If vParamAplic.Cooperativa = 1 Then
+                                If UCase(vParamAplic.ArtServCuotas) = UCase(DBLet(RsArt!codArtic, "T")) Then
+                                    NomArtic = Mid(RsArt!NomArtic, 1, 18)
+                                Else
+                                    NomArtic = Mid(RsArt!NomArtic, 1, 18) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
+                                End If
+                            Else
+                                '[Monica]08/02/2018: solo en el caso de que tenga valor
+                                If DBLet(RsArt!txtauxdocumento, "T") = "" Then
+                                    NomArtic = Trim(Mid(RsArt!NomArtic, 1, 18)) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
+                                Else
+                                    NomArtic = Trim(Mid(RsArt!NomArtic, 1, 24)) & " " & Trim(Mid(UCase(RsArt!txtauxdocumento), 1, 15))
+                                End If
+                            End If
+                            
+                            Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
+                            '[Monica]05/12/2013: antes DBSet(RsArt!preciove, "N") ahora importes
+                            Cad = Cad & DBSet(RsArt!codArtic, "T") & "," & DBSet(NomArtic, "T") & ",1," & DBSet(RsArt!Importes, "N") & ","
+                            Cad = Cad & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & ","
+                            Cad = Cad & DBSet(RsArt!Importes, "N") & ",0,0,'M'," & Prove & "," & DBSet(RsArt!Importes, "N") & ",1)"
+                            
+                            Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
+                            Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
+                            Sql = Sql & Cad
+                            
+                            conn.Execute Sql
+                                        
+                            RsArt.MoveNext
+                        Wend
+                        Set RsArt = Nothing
+                        
+                    End If
+                Else
     
-            Sql = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,"
-            Sql = Sql & "codenvio,codtraba,codtrab2,observa1,observa2,observa3,observa4,observa5,codtrab1) VALUES ("
-            Sql = Sql & Cad & ")"
-            conn.Execute Sql
-            'slifac
-            Cad = ""
-            If normal Then
-'[Monica]20/04/2011
-'                i = 1
-'
-'                '1º linea sera la cuota del mes
-'                cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(i, "N") & "," & almac & ","
-'                cad = cad & DBSet(vParamAplic.ArtCuotaSinChofer, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(base0)) & ","
-'                cad = cad & TransformaComasPuntos(CStr(base0)) & "," & TransformaComasPuntos(CStr(base0)) & "," & TransformaComasPuntos(CStr(base0)) & ","
-'                cad = cad & TransformaComasPuntos(CStr(base0)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base0)) & ",1)"
-'                SQL = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-'                SQL = SQL & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-'                SQL = SQL & cad
-'                conn.Execute SQL
-'
-'                '2º linea es la cuota si hay chofer
-'                If base1 <> 0 Then
-'                    i = 2
-'
-'                    cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(i, "N") & "," & almac & ","
-'                    cad = cad & DBSet(vParamAplic.ArtCuotaConChofer, "T") & "," & DBSet(NomArtic2, "T") & ",1," & TransformaComasPuntos(CStr(base1)) & ","
-'                    cad = cad & TransformaComasPuntos(CStr(base1)) & "," & TransformaComasPuntos(CStr(base1)) & "," & TransformaComasPuntos(CStr(base1)) & ","
-'                    cad = cad & TransformaComasPuntos(CStr(base1)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base1)) & ",1)"
-'                    SQL = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-'                    SQL = SQL & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-'                    SQL = SQL & cad
-'                    conn.Execute SQL
-'                End If
-'
-'                If base2 <> 0 Then ' si hay servicios
-'                    i = 3
-'                    '3º linea seran los servicios
-'                    cad = ""
-'                    cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(i, "N") & "," & almac & ","
-'                    cad = cad & DBSet(vParamAplic.ArtServCuotas, "T") & "," & DBSet(NomArtic3, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorServicio)) & ","
-'                    cad = cad & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & ","
-'                    cad = cad & TransformaComasPuntos(CStr(base2)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base2)) & "," & Servicios & ")"
-'                    SQL = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-'                    SQL = SQL & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-'                    SQL = SQL & cad
-'                    conn.Execute SQL
-'                End If
-'
-'                '4º linea el alquiler de equipos si no es socio
-'                If Data1.Recordset!essocio = 0 Then
-'                    i = 4
-'
-'                    cad = ""
-'                    cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(i, "N") & "," & almac & ","
-'                    cad = cad & DBSet(vParamAplic.ArtAlquiler, "T") & "," & DBSet(NomArtic4, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorAlquiler)) & ","
-'                    cad = cad & TransformaComasPuntos(CStr(vParamAplic.PrecioPorAlquiler)) & "," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorAlquiler)) & "," & TransformaComasPuntos(CStr(base2)) & ","
-'                    cad = cad & TransformaComasPuntos(CStr(vParamAplic.PrecioPorAlquiler)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorAlquiler)) & ",1)"
-'                    SQL = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-'                    SQL = SQL & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-'                    SQL = SQL & cad
-'                    conn.Execute SQL
-'                End If
-'[Monica]20/04/2011
-                I = 1
-                If base2 <> 0 Then ' si hay servicios
-                    '3º linea seran los servicios
-                    Cad = ""
-                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
-                    Cad = Cad & DBSet(vParamAplic.ArtServCuotas, "T") & "," & DBSet(NomArtic3, "T") & ",1," & TransformaComasPuntos(CStr(vParamAplic.PrecioPorServicio)) & ","
-                    Cad = Cad & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & "," & TransformaComasPuntos(CStr(base2)) & ","
-                    Cad = Cad & TransformaComasPuntos(CStr(base2)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(base2)) & "," & Servicios & ")"
+                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
+                    Cad = Cad & DBSet(vParamAplic.ArtCuotaExtraor, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
+                    Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
+                    Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & DBSet(Text1(6).Text, "T") & ",1)"
                     Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-                    Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
+                    Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
                     Sql = Sql & Cad
                     conn.Execute Sql
                 End If
                 
-                Set RsArt = New ADODB.Recordset
-                RsArt.Open SqlArt, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            
                 
-                While Not RsArt.EOF
-                    I = I + 1
-                    '[Monica]27/04/2015: para taxivip
-                    If vParamAplic.Cooperativa = 1 Then
-                        If UCase(vParamAplic.ArtServCuotas) = UCase(DBLet(RsArt!codArtic, "T")) Then
-                            NomArtic = Mid(RsArt!NomArtic, 1, 18)
-                        Else
-                            NomArtic = Mid(RsArt!NomArtic, 1, 18) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
+    '[Monica]08/01/2014: otra vez
+                fac.Text33csb = ""
+                fac.Text41csb = ""
+                       '1234567890123                                  456                                  7890123      4
+                cad1 = "FRA.CUOTA " & Mid(UCase(Combo2.Text), 1, 3) & "-N." & Format(DBLet(NumFactu, "N"), "0000000") & " " & _
+                            Format(DBLet(FecFactu, "N"), "dd/mm/yy") & " "
+                                                        ' 56789012
+                If normal Then                      '3456      7890
+                    cad1 = cad1 & Format(Servicios, "###0") & " SER" '& Format(Text1(0).Text, "dd/mm/yy") & "-" & Format(Text1(2).Text, "dd/mm/yy")
+    '            Else
+    '                cad1 = Trim(Text1(6).Text)
+                End If
+    
+                fac.Text41csb = cad1
+    
+                If normal Then
+                    J = 2
+                    SQL2 = "select codartic, nomartic, importel from slifac where codtipom = 'FCN' and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
+    
+                    Set RsArt = New ADODB.Recordset
+                    RsArt.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+                    cad1 = ""
+    
+                    While Not RsArt.EOF
+                        If RsArt!codArtic <> vParamAplic.ArtServCuotas Then
+                            cad1 = cad1 & Mid(DBLet(RsArt!NomArtic, "T"), 1, 10) & ":" & Format(RsArt!ImporteL, "##0.00") & " "
                         End If
-                    Else
-                        '[Monica]08/02/2018: solo en el caso de que tenga valor
-                        If DBLet(RsArt!txtauxdocumento, "T") = "" Then
-                            NomArtic = Trim(Mid(RsArt!NomArtic, 1, 18)) & " " & Mid(UCase(Combo2.Text), 1, 10) & "-" & Year(CDate(Text1(1).Text))
-                        Else
-                            NomArtic = Trim(Mid(RsArt!NomArtic, 1, 24)) & " " & Trim(Mid(UCase(RsArt!txtauxdocumento), 1, 15))
-                        End If
-                    End If
-                    
-                    Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0," & DBSet(I, "N") & "," & almac & ","
-                    '[Monica]05/12/2013: antes DBSet(RsArt!preciove, "N") ahora importes
-                    Cad = Cad & DBSet(RsArt!codArtic, "T") & "," & DBSet(NomArtic, "T") & ",1," & DBSet(RsArt!Importes, "N") & ","
-                    Cad = Cad & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & "," & DBSet(RsArt!Importes, "N") & ","
-                    Cad = Cad & DBSet(RsArt!Importes, "N") & ",0,0,'M'," & Prove & "," & DBSet(RsArt!Importes, "N") & ",1)"
-                    
-                    Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-                    Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,cantidad) VALUES ("
-                    Sql = Sql & Cad
-                    
-                    conn.Execute Sql
-                                
-                    RsArt.MoveNext
-                Wend
-                Set RsArt = Nothing
-
-            Else
-
-                Cad = DBSet(codtipom, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
-                Cad = Cad & DBSet(vParamAplic.ArtCuotaExtraor, "T") & "," & DBSet(NomArtic, "T") & ",1," & TransformaComasPuntos(CStr(BaseImp)) & ","
-                Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & TransformaComasPuntos(CStr(BaseImp)) & ","
-                Cad = Cad & TransformaComasPuntos(CStr(BaseImp)) & ",0,0,'M'," & Prove & "," & TransformaComasPuntos(CStr(BaseImp)) & "," & DBSet(Text1(6).Text, "T") & ",1)"
-                Sql = "INSERT INTO slifac (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-                Sql = Sql & "numbultos,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci,cantidad) VALUES ("
-                Sql = Sql & Cad
-                conn.Execute Sql
+                        J = J + 1
+                        RsArt.MoveNext
+                    Wend
+    
+                    Set RsArt = Nothing
+                    fac.Text33csb = cad1
+                Else
+                    fac.Text33csb = Text1(6)
+                End If
+    
+                
+                
+                b = fac.InsertarEnTesoreriaCuotasSoc("Error al pasar a tesoreria")
+            
             End If
+            Set vC = Nothing
             
-'[Monica]20/04/2011 antes
-'            'insertar en tesoreria
-'            fac.Text33csb = NomArtic '"CUOTA MES DE " && v_nommes clipped && " DE " && year(f_fecexp) using "&&&&"
-'            fac.Text41csb = "FACTURA: " & Format(DBLet(NumFactu, "N"), "#######") & " DE FECHA " & Format(DBLet(FecFactu, "N"), "dd/mm/yyyy")
-'
-'            fac.Text42csb = ""
-'            If normal Then
-'                fac.Text42csb = "REALIZADOS " & Format(Servicios, "###0") & " SERVICIOS EN EL "
-'            Else
-'                fac.Text42csb = Trim(Text1(6).Text)
-'            End If
-'            fac.Text43csb = "EMITIDA POR: C.V.L. TELE-TAXI"
-'                                '1234567890          1234567890           123456789012                                     34567890
-'
-'            fac.Text51csb = ""
-'            If normal Then
-'                fac.Text51csb = "PERIODO DEL " & Format(Text1(0).Text, "dd/mm/yy") & " AL " & Format(Text1(2).Text, "dd/mm/yy")
-'                                '123456789012345                                     67890123      4567                                     8901234567
-'            End If
-'            fac.Text52csb = "N.I.F. Nro " & vParam.CifEmpresa
-'
-'            fac.Text53csb = ""
-'            If normal Then
-'                fac.Text53csb = "CUOTA:" & Format(base0, "##0.00") & " CHOF:" & Format(base1, "##0.00") & " SERV:" & Format(base2, "##,##0.00")
-'                                '123456                   7890123      45678                   901234      567890                   12345678901234
-'            Else
-'                fac.Text53csb = "CUOTA:" & Format(BaseImp, "##0.00")
-'            End If
-'            fac.Text61csb = "CLIENTE: " & cli.Nombre
-'            fac.Text62csb = ""
-'
-''            If Data1.Recordset!essocio = 0 And normal Then
-'            If base4 Then
-'                fac.Text62csb = "EQUIPOS:" & Format(base4, "##0.00")
-'            End If
-'
-'            fac.Text63csb = ""
-'            fac.Text63csb = "N.I.F.: " & DBLet(cli.NIF, "N")
-'
-'            fac.Text71csb = "B.IMPONIBLE:" & Format(BaseImp, "##0.00") & " I.V.A.    :" & Format(ImpIVA, "##0.00")
-'            fac.Text72csb = "IMPORTE TOTAL FACTURA: " & Format(fac.TotalFac, "##0.00")
-'            fac.Text73csb = ""
-'
-'            fac.Text81csb = ""
-'            fac.Text82csb = "INSCRITA EN EL REG.DE COOP. Nro.CV-240"
-'            fac.Text83csb = "SERVICIOS Y CUOTAS AL 18% I.V.A."
-        
-'Ahora
-'[Monica]22/11/2013: iban
-'insertar en tesoreria
-'            fac.Text41csb = "FACTURA: " & Format(DBLet(NumFactu, "N"), "#######") & " DE FECHA " & Format(DBLet(FecFactu, "N"), "dd/mm/yyyy")
-'            fac.Text43csb = "EMITIDA POR: C.V.L. TELE-TAXI"
-'            fac.Text52csb = "INSCRITA EN EL REG.DE COOP. Nro.CV-240"
-'            fac.Text61csb = "N.I.F. Nro " & vParam.CifEmpresa
-'            fac.Text63csb = "CLIENTE: " & cli.Nombre
-'            fac.Text72csb = "N.I.F.: " & DBLet(cli.NIF, "N")
-'            fac.Text81csb = "B.IMPONIBLE:" & Format(BaseImp, "##0.00") & " I.V.A. " & Format(porIva, "#0.00") & "%:" & Format(ImpIVA, "##0.00")
-'            fac.Text83csb = "IMPORTE TOTAL FACTURA: " & Format(fac.TotalFac, "##0.00")
-'
-'            fac.Text33csb = ""
-'            If normal Then
-'                fac.Text33csb = Format(Servicios, "###0") & " SERVICIOS DE " & Format(Text1(0).Text, "dd/mm/yy") & "-" & Format(Text1(2).Text, "dd/mm/yy")
-'            Else
-'                fac.Text33csb = Trim(Text1(6).Text)
-'            End If
-'
-'            fac.Text42csb = ""
-'            fac.Text51csb = ""
-'            fac.Text53csb = ""
-'            fac.Text62csb = ""
-'            fac.Text71csb = ""
-'            fac.Text73csb = ""
-'            fac.Text82csb = ""
-'
-'            If normal Then
-'                J = 2
-'                SQL2 = "select codartic, nomartic, importel from slifac where codtipom = 'FCN' and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
-'
-'                Set RsArt = New ADODB.Recordset
-'                RsArt.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-'
-'                While Not RsArt.EOF
-'                    If RsArt!codArtic <> vParamAplic.ArtServCuotas Then
-'                        If fac.Text42csb = "" Then
-'                            fac.Text42csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        ElseIf fac.Text51csb = "" Then
-'                            fac.Text51csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        ElseIf fac.Text53csb = "" Then
-'                            fac.Text53csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        ElseIf fac.Text62csb = "" Then
-'                            fac.Text62csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        ElseIf fac.Text71csb = "" Then
-'                            fac.Text71csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        ElseIf fac.Text73csb = "" Then
-'                            fac.Text73csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        ElseIf fac.Text82csb = "" Then
-'                            fac.Text82csb = Mid(DBLet(RsArt!NomArtic, "T"), 1, 33) & ":" & Format(RsArt!ImporteL, "##0.00")
-'                        Else
-'                            ' no se graba, ya no cabe
-'                        End If
-'                    Else
-'                        fac.Text33csb = fac.Text33csb & ":" & Format(RsArt!ImporteL, "##0.00")
-'                    End If
-'                    J = J + 1
-'                    RsArt.MoveNext
-'                Wend
-'
-'                Set RsArt = Nothing
-'          End If
-
-'[Monica]22/11/2013: iban
-'            fac.Text33csb = ""
-'            fac.Text41csb = ""
-'
-'            cad1 = "FRA.CUOTA " & Mid(UCase(Combo2.Text), 1, 3) & "-" & Year(CDate(Text1(1).Text)) & " NRO." & Format(DBLet(NumFactu, "N"), "0000000") & " DE " & _
-'                        Format(DBLet(FecFactu, "N"), "dd/mm/yy") & " de " & Format(fac.TotalFac, "##0.00") & "€ "
-'            If normal Then
-'                cad1 = cad1 & Format(Servicios, "###0") & " SERV." & Format(Text1(0).Text, "dd/mm/yy") & "-" & Format(Text1(2).Text, "dd/mm/yy")
-'            Else
-'                cad1 = Trim(Text1(6).Text)
-'            End If
-'
-'            fac.Text33csb = cad1
-'
-'            If normal Then
-'                J = 2
-'                SQL2 = "select codartic, nomartic, importel from slifac where codtipom = 'FCN' and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
-'
-'                Set RsArt = New ADODB.Recordset
-'                RsArt.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-'
-'                cad1 = ""
-'
-'                While Not RsArt.EOF
-'                    If RsArt!codArtic <> vParamAplic.ArtServCuotas Then
-'                        cad1 = cad1 & Mid(DBLet(RsArt!NomArtic, "T"), 1, 6) & ":" & Format(RsArt!ImporteL, "##0.00") & " "
-'                    End If
-'                    J = J + 1
-'                    RsArt.MoveNext
-'                Wend
-'
-'                Set RsArt = Nothing
-'                fac.Text41csb = Mid(cad1, 1, 40)
-'          End If
-            
-'[Monica]08/01/2014: otra vez
-            fac.Text33csb = ""
-            fac.Text41csb = ""
-                   '1234567890123                                  456                                  7890123      4
-            cad1 = "FRA.CUOTA " & Mid(UCase(Combo2.Text), 1, 3) & "-N." & Format(DBLet(NumFactu, "N"), "0000000") & " " & _
-                        Format(DBLet(FecFactu, "N"), "dd/mm/yy") & " "
-                                                    ' 56789012
-            If normal Then                      '3456      7890
-                cad1 = cad1 & Format(Servicios, "###0") & " SER" '& Format(Text1(0).Text, "dd/mm/yy") & "-" & Format(Text1(2).Text, "dd/mm/yy")
-'            Else
-'                cad1 = Trim(Text1(6).Text)
-            End If
-
-            fac.Text41csb = cad1
-
-            If normal Then
-                J = 2
-                SQL2 = "select codartic, nomartic, importel from slifac where codtipom = 'FCN' and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
-
-                Set RsArt = New ADODB.Recordset
-                RsArt.Open SQL2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-
-                cad1 = ""
-
-                While Not RsArt.EOF
-                    If RsArt!codArtic <> vParamAplic.ArtServCuotas Then
-                        cad1 = cad1 & Mid(DBLet(RsArt!NomArtic, "T"), 1, 10) & ":" & Format(RsArt!ImporteL, "##0.00") & " "
-                    End If
-                    J = J + 1
-                    RsArt.MoveNext
-                Wend
-
-                Set RsArt = Nothing
-                fac.Text33csb = cad1
-            Else
-                fac.Text33csb = Text1(6)
-            End If
-
-            
-            
-            b = fac.InsertarEnTesoreriaCuotasSoc("Error al pasar a tesoreria")
-        
         End If
-        Set vC = Nothing
         Data1.Recordset.MoveNext
     Wend
     Data1.Recordset.Close
@@ -1436,7 +1249,10 @@ Private Function VerSocios(ByRef Sql As String) As Boolean
 '    End If
 
 '[Monica] sustituido por esto seleccionamos los socios que tengan una determinada situacion y tengan asignada una v
-    Sql = "select sclien.* from sclien inner join ssitua on ssitua.codsitua=sclien.codsitua and ssitua.generafactu=1 where sclien.numeruve is not null and sclien.numeruve <> 0 "
+
+                    '[Monica]02/03/2018: hemos cambiado la situacion si generafactu : 0 = no factura / 1 = cuotas + servicios / 2 = solo servicios / 3 = solo cuotas
+                    
+    Sql = "select sclien.*, ssitua.generafactu from sclien inner join ssitua on ssitua.codsitua=sclien.codsitua and ssitua.generafactu>=1 where sclien.numeruve is not null and sclien.numeruve <> 0 "
     If Text1(3).Text <> "" Then Sql = Sql & " and sclien.codclien >= " & DBSet(Text1(3).Text, "N")
     If Text1(5).Text <> "" Then Sql = Sql & " and sclien.codclien <= " & DBSet(Text1(5).Text, "N")
     

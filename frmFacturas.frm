@@ -243,7 +243,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Public Sql As String
+Public sql As String
 Public Socio As Boolean
 Public deExcel As Boolean
 
@@ -263,18 +263,18 @@ End Sub
 
 
 Private Sub Comprobaciones()
-Dim b As Boolean
+Dim B As Boolean
 Dim Contador As Long
-Dim Sql As String
+Dim sql As String
 Dim Rs As ADODB.Recordset
 Dim total As Long
 Dim encontrado As String
 
-     b = True
-     If b Then
+     B = True
+     If B Then
      
-         Sql = "update tmptaxi set error1 = 3 where error1 = 1"
-         conn.Execute Sql
+         sql = "update tmptaxi set error1 = 3 where error1 = 1"
+         conn.Execute sql
      
          ComprobacionDatos
      
@@ -283,8 +283,8 @@ Dim encontrado As String
          Contador = 0
          Label1(0).Caption = ""
          Set Rs = New ADODB.Recordset
-         Sql = "select * from tmptaxi where error1 = 3 group by numeruve"
-         Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+         sql = "select * from tmptaxi where error1 = 3 group by numeruve"
+         Rs.Open sql, conn, adOpenStatic, adLockPessimistic, adCmdText
          total = rsContador("select count(distinct(numeruve)) from tmptaxi where error1=3")
          Label1(2).Caption = "Verificando códigos de socios."
          Label1(2).Refresh
@@ -318,8 +318,8 @@ Dim encontrado As String
 '                If Trim(vParam.CifEmpresa) = "B98877806" Then
                 
                     encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
-                    
-                    b = Updatear(Rs!NumerUve, encontrado, False)
+                    '[Monica]28/02/2018: para el caso de cordoba se marca como erroneo si no existe
+                    B = Updatear(Rs!NumerUve, encontrado, (vParamAplic.Cooperativa = 2)) 'antes false
                 
 '                Else
 '                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", Rs!NumerUve, "T")
@@ -360,7 +360,10 @@ Dim encontrado As String
                 Label1(0).Refresh
                 
                 encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
-                b = Updatear(Rs!NumerUve, encontrado, False)
+                '[Monica]28/02/2018: antes false
+                'B = Updatear(Rs!NumerUve, encontrado, False)
+                B = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2)
+                
                 Rs.MoveNext
             Wend
         
@@ -374,39 +377,39 @@ Dim encontrado As String
          '[Monica]12/12/2017: por el tema de fusion de empresas, SOLO SI VIENE DE EXCEL
          '                    si el fichero es de la otra empresa ponemos que el cliente es el gros
          If deExcel Then
-             If b Then
+             If B Then
                  If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
                      Label1(2).Caption = "Modificando códigos de cliente de otra empresa"
                      Label1(2).Refresh
                      
-                     Sql = "update tmptaxi set codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
-                     Sql = Sql & " where error1 = 3 and empresa <> " & vParamAplic.EmpresaTaxitronic
-                     Sql = Sql & " and not codclien is null "
-                     b = EjecutarSQL(Sql)
+                     sql = "update tmptaxi set codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                     sql = sql & " where error1 = 3 and empresa <> " & vParamAplic.EmpresaTaxitronic
+                     sql = sql & " and not codclien is null "
+                     B = EjecutarSQL(sql)
                  End If
              End If
              '[Monica]12/12/2017: eliminamos todos aquellas llamadas que no son de nuestros clientes ni lo ha hecho un asociado nuestro
-             If b Then
+             If B Then
                  Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
                  Label1(2).Refresh
                  
-                 Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
-                 Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
-                 Sql = Sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
+                 sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                 sql = sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
+                 sql = sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
              
-                 b = EjecutarSQL(Sql)
+                 B = EjecutarSQL(sql)
              End If
          End If
          
          'buscamos en la misma tabla que los registros no esten duplicados
-         If b Then
+         If B Then
              ProgressBar1.Value = 0
              Contador = 0
  
              Set Rs = New ADODB.Recordset
-             Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
-             Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
-             total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+             sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
+             Rs.Open sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+             total = rsContador("select count(*) from (" & sql & ") aaalias ")  'tmptaxi where error1 <> 1")
              Label1(2).Caption = "eliminando(II) duplicidad de registros en el fichero."
              Label1(2).Refresh
              While Not Rs.EOF
@@ -416,16 +419,16 @@ Dim encontrado As String
                  Label1(0).Caption = Round(ProgressBar1.Value, 0) & " %"
                  Label1(0).Refresh
  
-                 Sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
-                 Sql = Sql & " and impventa = 0 and codclien =0 "
+                 sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
+                 sql = sql & " and impventa = 0 and codclien =0 "
                  
                  Dim Ident As Long
                  
-                 Ident = DevuelveValor("select id from tmptaxi where " & Sql)
+                 Ident = DevuelveValor("select id from tmptaxi where " & sql)
                  
                  If Ident <> 0 Then
-                     Sql = "delete from tmptaxi where id = " & DBSet(Ident, "N")
-                     conn.Execute Sql
+                     sql = "delete from tmptaxi where id = " & DBSet(Ident, "N")
+                     conn.Execute sql
                  Else
                      'Stop
                  End If
@@ -437,9 +440,9 @@ Dim encontrado As String
  
              
              '
-             Sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
-             Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
-             total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+             sql = "select numeruve,fecha,hora, count(*) from tmptaxi where error1 = 3 group by 1,2,3 having count(*) > 1"
+             Rs.Open sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+             total = rsContador("select count(*) from (" & sql & ") aaalias ")  'tmptaxi where error1 <> 1")
              Label1(2).Caption = "Verificando duplicidad de registros en el fichero."
              Label1(2).Refresh
              While Not Rs.EOF
@@ -449,29 +452,29 @@ Dim encontrado As String
                  Label1(0).Caption = Contador
                  Label1(0).Refresh
  
-                 Sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
+                 sql = "numeruve=" & Rs!NumerUve & " and fecha=" & DBSet(Rs!Fecha, "F") & " and hora='" & Format(Rs!hora, "hh:mm:ss") & "' "
                  
                  
                  
  '                If SituarDataMULTI(Adodc1, SQL, encontrado) Then
  
                      'esta, entonces es repetido
-                     Sql = "UPDATE tmptaxi set error1=1,error='Registro duplicado' where " & Sql
-                     conn.Execute Sql
+                     sql = "UPDATE tmptaxi set error1=1,error='Registro duplicado' where " & sql
+                     conn.Execute sql
  '                End If
                  Rs.MoveNext
              Wend
              Rs.Close
  
              '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto
-            If Trim(vParam.CifEmpresa) <> "B98877806" And deExcel Then
+            If Trim(vParam.CifEmpresa) <> "B98877806" And deExcel And vParamAplic.Cooperativa <> 2 Then
                 Dim NUve As Long
             
-                Sql = "select codsocio from tmptaxi where error1 = 3 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
+                sql = "select codsocio from tmptaxi where error1 = 3 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
                 
-                Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+                Rs.Open sql, conn, adOpenStatic, adLockPessimistic, adCmdText
                 
-                total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+                total = rsContador("select count(*) from (" & sql & ") aaalias ")  'tmptaxi where error1 <> 1")
                 Label1(2).Caption = "Modificando Vehículo en registros del fichero."
                 Label1(2).Refresh
                 
@@ -482,11 +485,11 @@ Dim encontrado As String
                     Label1(0).Caption = Contador
                     Label1(0).Refresh
                 
-                    Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
-                    NUve = DevuelveValor(Sql)
+                    sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
+                    NUve = DevuelveValor(sql)
                 
-                    Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 3 "
-                    conn.Execute Sql
+                    sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 3 "
+                    conn.Execute sql
                     
                     Rs.MoveNext
                 Wend
@@ -498,8 +501,8 @@ Dim encontrado As String
  
  
              'ahora vamos a buscar en la tabla shilla
-             Sql = "select * from tmptaxi where error1 = 3"
-             Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+             sql = "select * from tmptaxi where error1 = 3"
+             Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
              ProgressBar1.Value = 0
              Contador = 0
              total = rsContador("select count(*) from tmptaxi where error1 = 3")
@@ -522,12 +525,12 @@ Dim encontrado As String
 '                        encontrado = DevuelveDesdeBD(conAri, "codsocio", "shilla", Sql, RS!NumerUve, "N")
 '                        If encontrado <> "" Then
                  
-                 Sql = "select count(*) from shilla where numeruve = " & DBSet(Rs!NumerUve, "N") & " and fecha = " & DBSet(Rs!Fecha, "F") & " and hora = " & DBSet(Rs!hora, "H") & " and  (facturad=1 and abonados=1 and validado=1)"
-                 If TotalRegistros(Sql) <> 0 Then
+                 sql = "select count(*) from shilla where numeruve = " & DBSet(Rs!NumerUve, "N") & " and fecha = " & DBSet(Rs!Fecha, "F") & " and hora = " & DBSet(Rs!hora, "H") & " and  (facturad=1 and abonados=1 and validado=1)"
+                 If TotalRegistros(sql) <> 0 Then
                      '[Monica]31/10/2017: los marco como 2 para no mostrarlos
                      'esta entonces es repetido
-                     Sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & Rs!Id
-                     conn.Execute Sql
+                     sql = "UPDATE tmptaxi set error1=2,error='Registro duplicado' where id=" & Rs!Id
+                     conn.Execute sql
                  End If
                  Rs.MoveNext
              Wend
@@ -536,8 +539,8 @@ Dim encontrado As String
      End If
 
      'los que continuan con 3 es que ya no tienen error
-     Sql = "update tmptaxi set error1 = 0 where error1 = 3"
-     conn.Execute Sql
+     sql = "update tmptaxi set error1 = 0 where error1 = 3"
+     conn.Execute sql
 
 
 
@@ -546,7 +549,7 @@ Dim encontrado As String
      Label1(2).Caption = ""
      Me.ProgressBar1.visible = False
      
-     CargaGrid DataGrid1, adodc1
+     CargaGrid DataGrid1, Adodc1
 
 End Sub
 Private Function rsContador(CADENA As String) As Currency
@@ -613,10 +616,10 @@ End Sub
 
 Private Sub DataGrid1_Click()
 
-    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & adodc1.Recordset!Id
+    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & Adodc1.Recordset!Id
     frmGesHisLlamTMP.Show vbModal
     
-    CargaGrid Me.DataGrid1, Me.adodc1
+    CargaGrid Me.DataGrid1, Me.Adodc1
     
 End Sub
 
@@ -630,12 +633,12 @@ Private Sub Form_Load()
     Me.Icon = frmppal.Icon
 
     Screen.MousePointer = vbDefault
-    adodc1.ConnectionString = conn
-    adodc1.RecordSource = Sql
-    adodc1.Refresh
+    Adodc1.ConnectionString = conn
+    Adodc1.RecordSource = sql
+    Adodc1.Refresh
     
-    If Not adodc1.Recordset.EOF Then
-        CargaGrid DataGrid1, adodc1
+    If Not Adodc1.Recordset.EOF Then
+        CargaGrid DataGrid1, Adodc1
     End If
 
     With Me.Toolbar3(0)
@@ -704,7 +707,7 @@ End Sub
 
 
 Private Function Updatear(Vehiculo, encontrado As String, LicenciaSinV As Boolean) As Boolean
-Dim Sql As String
+Dim sql As String
 
 On Error GoTo EUp
 
@@ -714,15 +717,15 @@ If encontrado = "" Then
 '[Monica]12/12/2017: ahora si no encuentro el socio que lleva ese numero de vehiculo es que es de la otra empresa
 '                    si viene de fichero plano lo marco como error
     If Not deExcel Or LicenciaSinV Then
-        Sql = "UPDATE tmptaxi set error1=1,error='Ningun socio tiene asociado este codigo de vehiculo' where numeruve=" & Vehiculo
+        sql = "UPDATE tmptaxi set error1=1,error='Ningun socio tiene asociado este codigo de vehiculo' where numeruve=" & Vehiculo
     Else
-        Sql = "UPDATE tmptaxi set codsocio=" & vParamAplic.SocioCooperativa & " where numeruve=" & Vehiculo
+        sql = "UPDATE tmptaxi set codsocio=" & vParamAplic.SocioCooperativa & " where numeruve=" & Vehiculo
     End If
 Else
-    Sql = "UPDATE tmptaxi set codsocio=" & CInt(encontrado) & " where numeruve=" & Vehiculo
+    sql = "UPDATE tmptaxi set codsocio=" & CInt(encontrado) & " where numeruve=" & Vehiculo
 End If
 
-conn.Execute Sql
+conn.Execute sql
 
 Updatear = True
 
@@ -757,9 +760,9 @@ Dim total As Long
     Label1(2).Caption = "Comprobación de datos."
     Label1(2).Refresh
 
-    Sql = "select * from tmptaxi where error1 = 3"
+    sql = "select * from tmptaxi where error1 = 3"
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
         Contador = Contador + 1
@@ -1001,8 +1004,8 @@ Dim total As Long
         
         'error1,error
         If Error1 = 1 Then
-            Sql = "update tmptaxi set error1 = 1, error = " & DBSet(Error, "T") & " where id = " & DBSet(Rs!Id, "N")
-            conn.Execute Sql
+            sql = "update tmptaxi set error1 = 1, error = " & DBSet(Error, "T") & " where id = " & DBSet(Rs!Id, "N")
+            conn.Execute sql
         End If
         
         Rs.MoveNext

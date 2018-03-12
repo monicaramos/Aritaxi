@@ -8,13 +8,13 @@ Begin VB.Form frmFacSituaciones
    ClientHeight    =   6015
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   7530
+   ClientWidth     =   8535
    Icon            =   "frmFacSituaciones.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   6015
-   ScaleWidth      =   7530
+   ScaleWidth      =   8535
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
@@ -96,7 +96,7 @@ Begin VB.Form frmFacSituaciones
       List            =   "frmFacSituaciones.frx":000E
       Style           =   2  'Dropdown List
       TabIndex        =   3
-      Tag             =   "Genera|N|N|||ssitua|generafactu||N|"
+      Tag             =   "Genera|N|N|0|3|ssitua|generafactu||N|"
       Top             =   4920
       Width           =   1095
    End
@@ -172,8 +172,8 @@ Begin VB.Form frmFacSituaciones
       TabIndex        =   9
       TabStop         =   0   'False
       Top             =   780
-      Width           =   7135
-      _ExtentX        =   12594
+      Width           =   8135
+      _ExtentX        =   14340
       _ExtentY        =   8017
       _Version        =   393216
       AllowUpdate     =   0   'False
@@ -246,7 +246,7 @@ Begin VB.Form frmFacSituaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6120
+      Left            =   7155
       TabIndex        =   5
       Top             =   5520
       Width           =   1135
@@ -263,7 +263,7 @@ Begin VB.Form frmFacSituaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4890
+      Left            =   5925
       TabIndex        =   4
       Top             =   5520
       Width           =   1135
@@ -280,7 +280,7 @@ Begin VB.Form frmFacSituaciones
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   6120
+      Left            =   7155
       TabIndex        =   8
       Top             =   5520
       Visible         =   0   'False
@@ -469,23 +469,23 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
     End If
@@ -506,12 +506,12 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = b
     'Ber Todos
     Toolbar1.Buttons(6).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Me.mnvertodos.Enabled = b
     
     b = b And Not DeConsulta
     'Añadir
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnNuevo.Enabled = b
+    Me.mnnuevo.Enabled = b
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -534,7 +534,7 @@ Private Sub BotonAnyadir()
 Dim anc As Single
     
     'Situamos el grid al final
-    AnyadirLinea DataGrid1, adodc1
+    AnyadirLinea DataGrid1, Adodc1
     
     'Obtenemos la siguiente numero de codigo de Situaciones
     txtAux(0).Text = SugerirCodigoSiguienteStr("ssitua", "codsitua")
@@ -566,7 +566,7 @@ Private Sub BotonVerTodos()
 On Error Resume Next
 
     CargaGrid ""
-    If adodc1.Recordset.RecordCount <= 0 Then
+    If Adodc1.Recordset.RecordCount <= 0 Then
          MsgBox "No hay ningún registro en la tabla ssitua", vbInformation
          Screen.MousePointer = vbDefault
           Exit Sub
@@ -582,11 +582,11 @@ Private Sub BotonModificar()
 Dim anc As Single
 Dim I As Integer
 
-    If adodc1.Recordset.EOF Then Exit Sub
-    If adodc1.Recordset.RecordCount < 1 Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.RecordCount < 1 Then Exit Sub
     
     'El registro de codigo 0 no se puede Modificar ni Eliminar
-    If EsCodigoCero(CStr(adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
+    If EsCodigoCero(CStr(Adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
 
     Screen.MousePointer = vbHourglass
     
@@ -639,24 +639,24 @@ Private Sub BotonEliminar()
 Dim Sql As String
 On Error GoTo Error2
     'Ciertas comprobaciones
-    If adodc1.Recordset.EOF Then Exit Sub
+    If Adodc1.Recordset.EOF Then Exit Sub
     
     'El registro de codigo 0 no se puede Modificar ni Eliminar
-    If EsCodigoCero(CStr(adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
+    If EsCodigoCero(CStr(Adodc1.Recordset.Fields(0).Value), FormatoCod) Then Exit Sub
 
     '### a mano
     Sql = "¿Seguro que desea eliminar la Situación?" & vbCrLf
-    Sql = Sql & vbCrLf & "Código: " & Format(adodc1.Recordset.Fields(0), FormatoCod)
-    Sql = Sql & vbCrLf & "Denominación: " & adodc1.Recordset.Fields(1)
+    Sql = Sql & vbCrLf & "Código: " & Format(Adodc1.Recordset.Fields(0), FormatoCod)
+    Sql = Sql & vbCrLf & "Denominación: " & Adodc1.Recordset.Fields(1)
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
-        NumRegElim = Me.adodc1.Recordset.AbsolutePosition
-        Sql = "Delete from ssitua where codsitua=" & adodc1.Recordset!codsitua
+        NumRegElim = Me.Adodc1.Recordset.AbsolutePosition
+        Sql = "Delete from ssitua where codsitua=" & Adodc1.Recordset!codsitua
         conn.Execute Sql
-        CancelaADODC Me.adodc1
+        CancelaADODC Me.Adodc1
         CargaGrid ""
-        CancelaADODC Me.adodc1
-        SituarDataPosicion Me.adodc1, NumRegElim, Sql
+        CancelaADODC Me.Adodc1
+        SituarDataPosicion Me.Adodc1, NumRegElim, Sql
     End If
     
 Error2:
@@ -695,11 +695,11 @@ On Error Resume Next
             If DatosOk And BLOQUEADesdeFormulario(Me) Then
                 If ModificaDesdeFormulario(Me, 3) Then
                    TerminaBloquear
-                   I = adodc1.Recordset.Fields(0)
+                   I = Adodc1.Recordset.Fields(0)
                    PonerModo 2
-                   CancelaADODC Me.adodc1
+                   CancelaADODC Me.Adodc1
                    CargaGrid
-                   adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & I)
+                   Adodc1.Recordset.Find (Adodc1.Recordset.Fields(0).Name & " =" & I)
                 End If
                 DataGrid1.SetFocus
             End If
@@ -716,10 +716,10 @@ On Error GoTo ECancelar
         Case 3
             DataGrid1.AllowAddNew = False
             'CargaGrid
-            If Not adodc1.Recordset.EOF Then adodc1.Recordset.MoveFirst
+            If Not Adodc1.Recordset.EOF Then Adodc1.Recordset.MoveFirst
         Case 4 'Modificar
             TerminaBloquear
-            Me.lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+            Me.lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     End Select
     PonerModo 2
     DataGrid1.SetFocus
@@ -729,16 +729,16 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 
-    If adodc1.Recordset.EOF Then
+    If Adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
 
-    cad = adodc1.Recordset.Fields(0) & "|"
-    cad = cad & adodc1.Recordset.Fields(1) & "|"
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Adodc1.Recordset.Fields(0) & "|"
+    Cad = Cad & Adodc1.Recordset.Fields(1) & "|"
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -752,8 +752,8 @@ Private Sub DataGrid1_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not adodc1.Recordset.EOF Then 'And Modo = 0 Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+    If Not Adodc1.Recordset.EOF Then 'And Modo = 0 Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
     End If
 End Sub
 
@@ -793,7 +793,7 @@ Private Sub Form_Load()
     PonerModo 2
     
     'Cadena consulta
-    CadenaConsulta = "Select codsitua,nomsitua,If(tipositu=1,""Si"",""No"") AS tipositu,If(generafactu=1,""Si"",""No"") AS generafactu from ssitua"
+    CadenaConsulta = "Select codsitua,nomsitua,If(tipositu=1,""Si"",""No"") AS tipositu,generafactu, case generafactu when 0 then ""No factura"" when 1 then ""Cuotas+Servicios"" when 2 then ""Solo Servicios"" when 3 then ""Solo Cuotas"" end AS generafactu from ssitua"
     CargaGrid
     CargaCombo
 End Sub
@@ -852,18 +852,18 @@ Dim tots As String
     End If
     Sql = Sql & " ORDER BY codsitua"
     
-    CargaGridGnral DataGrid1, Me.adodc1, Sql, False
+    CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
     
     '### a mano
-    tots = "S|txtAux(0)|T|Situación|1100|;S|txtAux(1)|T|Denominación|3450|;S|CboTipoSitu|C|Bloquea|1000|;S|Combo1|C|Genera|1000|;"
+    tots = "S|txtAux(0)|T|Situación|1100|;S|txtAux(1)|T|Denominación|3450|;S|CboTipoSitu|C|Bloquea|1000|;N||||0|;S|Combo1|C|Factura|2000|;"
     arregla tots, DataGrid1, Me, 350
     
     DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
    
    'Actualizar indicador
-   If Not adodc1.Recordset.EOF And (Modo = 2) Then
-        lblIndicador.Caption = adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
+   If Not Adodc1.Recordset.EOF And (Modo = 2) Then
+        lblIndicador.Caption = Adodc1.Recordset.AbsolutePosition & " de " & Adodc1.Recordset.RecordCount
    Else
         Me.lblIndicador.Caption = ""
    End If
@@ -891,15 +891,16 @@ Private Sub CargaCombo()
     CboTipoSitu.AddItem "Si"
     CboTipoSitu.ItemData(CboTipoSitu.NewIndex) = 1
     
-    
     Combo1.Clear
     
-    Combo1.AddItem "No"
+    Combo1.AddItem "No factura"
     Combo1.ItemData(Combo1.NewIndex) = 0
-    
-    Combo1.AddItem "Si"
+    Combo1.AddItem "Cuotas y Servicios"
     Combo1.ItemData(Combo1.NewIndex) = 1
-    
+    Combo1.AddItem "Sólo Servicios"
+    Combo1.ItemData(Combo1.NewIndex) = 2
+    Combo1.AddItem "Sólo Cuotas"
+    Combo1.ItemData(Combo1.NewIndex) = 3
 End Sub
 
 

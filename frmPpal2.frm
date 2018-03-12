@@ -286,7 +286,7 @@ Begin VB.MDIForm frmPpal2
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "10:45"
+            TextSave        =   "13:16"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -2885,7 +2885,7 @@ End Sub
 
 Private Sub mnHisLlam_Click()
     Select Case vParamAplic.Cooperativa
-        Case 0
+        Case 0, 2
             frmGesHisLlam.Show vbModal
         Case 1
             frmGesHisLlamVIP.Show vbModal
@@ -3355,7 +3355,7 @@ Dim Cad As String
     Me.mnConfParamAplic = True
     Me.mnConfParamGenerales = True
 
-    Me.mnSalir.Enabled = True
+    Me.mnsalir.Enabled = True
     Me.mnCambioEmpresa.Enabled = True
 End Sub
 

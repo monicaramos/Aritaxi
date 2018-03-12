@@ -582,7 +582,7 @@ Dim PrimeraVez As Boolean
 Dim NumFactu As Long
 Dim FecFactu As Date
 Dim Modo As Byte
-Dim cad As String
+Dim Cad As String
 Dim Codigo As String
 Dim CadServicios As String
 Dim Salir As Boolean
@@ -593,7 +593,7 @@ Dim cadParam As String
 Dim numParam As Byte
 Dim codtipom As String
 Dim cadSelect As String
-Dim indCodigo As Long
+Dim IndCodigo As Long
 Dim FacturasaImprimir As String
 
 Dim HayReg As Byte
@@ -1457,16 +1457,16 @@ Dim I As Integer
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-    cad = CadenaDevuelta
+    Cad = CadenaDevuelta
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
-    txtcodigo(1).Text = vFecha
+    txtcodigo(IndCodigo).Text = vFecha
 End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtcodigo(IndCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+    txtnombre(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1522,12 +1522,12 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmFP.Show vbModal
             Set frmFP = Nothing
         Case 4, 5
-            indCodigo = Index - 4
+            IndCodigo = Index - 4
             Set frmCli = New frmFacClientes
             frmCli.DatosADevolverBusqueda = "0|1|"
             frmCli.Show vbModal
             Set frmCli = Nothing
-            PonerFoco txtcodigo(indCodigo)
+            PonerFoco txtcodigo(IndCodigo)
         Case 3
             Set frmMtoBancosPro = New frmFacBancosPropios
             frmMtoBancosPro.DatosADevolverBusqueda = "0|1|"
@@ -1544,16 +1544,25 @@ End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
+
     Screen.MousePointer = vbHourglass
    
     Set frmCal = New frmCal
     frmCal.Fecha = Now
-    PonerFormatoFecha txtcodigo(1)
-    If txtcodigo(1).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(1).Text)
+    Select Case Index
+        Case 23
+            IndCodigo = 85
+        Case 24
+            IndCodigo = 86
+        Case 2
+            IndCodigo = 2
+    End Select
+    PonerFormatoFecha txtcodigo(IndCodigo)
+    If txtcodigo(IndCodigo).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(IndCodigo).Text)
     Screen.MousePointer = vbDefault
     frmCal.Show vbModal
     Set frmCal = Nothing
-    PonerFoco txtcodigo(1)
+    PonerFoco txtcodigo(IndCodigo)
 End Sub
 
 Private Sub KEYpress(KeyAscii As Integer)
@@ -1619,7 +1628,7 @@ End Sub
 
 Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
-Dim cad As String
+Dim Cad As String
 
     PonerDesdeHasta = False
     devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
@@ -1631,8 +1640,8 @@ Dim cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -2809,7 +2818,7 @@ Dim NomLote As String
 
 Dim Nulo2 As String
 Dim Nulo3 As String
-Dim rs2 As ADODB.Recordset
+Dim Rs2 As ADODB.Recordset
 
 
     On Error GoTo EGenFactu

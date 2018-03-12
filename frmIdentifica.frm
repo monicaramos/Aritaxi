@@ -1,15 +1,15 @@
 VERSION 5.00
 Begin VB.Form frmIdentifica 
-   BackColor       =   &H00800000&
+   BackColor       =   &H00FFFFFF&
    BorderStyle     =   0  'None
    Caption         =   "Form1"
    ClientHeight    =   5745
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   7620
+   ClientWidth     =   9750
    LinkTopic       =   "Form1"
    ScaleHeight     =   5745
-   ScaleWidth      =   7620
+   ScaleWidth      =   9750
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Timer Timer1 
@@ -19,9 +19,7 @@ Begin VB.Form frmIdentifica
    End
    Begin VB.TextBox Text1 
       Alignment       =   2  'Center
-      Appearance      =   0  'Flat
       BackColor       =   &H00FFFFFF&
-      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   12
@@ -31,10 +29,10 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   330
+      Height          =   390
       IMEMode         =   3  'DISABLE
       Index           =   1
-      Left            =   2520
+      Left            =   4950
       PasswordChar    =   "*"
       TabIndex        =   1
       Text            =   "Text1"
@@ -43,9 +41,7 @@ Begin VB.Form frmIdentifica
    End
    Begin VB.TextBox Text1 
       Alignment       =   2  'Center
-      Appearance      =   0  'Flat
       BackColor       =   &H00FFFFFF&
-      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   12
@@ -55,16 +51,34 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   330
+      Height          =   390
       Index           =   0
-      Left            =   2520
+      Left            =   4950
       TabIndex        =   0
       Text            =   "Text1"
       Top             =   3960
       Width           =   3015
    End
+   Begin VB.Label Label2 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Versión 6.0.0"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   375
+      Left            =   4365
+      TabIndex        =   6
+      Top             =   2340
+      Width           =   1575
+   End
    Begin VB.Label Label3 
-      Alignment       =   1  'Right Justify
       BackStyle       =   0  'Transparent
       Caption         =   "Label3"
       BeginProperty Font 
@@ -76,31 +90,12 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000000&
+      ForeColor       =   &H00765341&
       Height          =   195
-      Left            =   2070
-      TabIndex        =   6
-      Top             =   5460
-      Width           =   5325
-   End
-   Begin VB.Label Label2 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Label2"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00400000&
-      Height          =   195
-      Left            =   150
+      Left            =   360
       TabIndex        =   5
-      Top             =   5460
-      Width           =   1725
+      Top             =   2850
+      Width           =   5325
    End
    Begin VB.Label Label1 
       BackStyle       =   0  'Transparent
@@ -117,9 +112,9 @@ Begin VB.Form frmIdentifica
       ForeColor       =   &H00FFFFFF&
       Height          =   375
       Index           =   2
-      Left            =   2520
+      Left            =   4950
       TabIndex        =   4
-      Top             =   4920
+      Top             =   4875
       Width           =   2175
    End
    Begin VB.Label Label1 
@@ -134,10 +129,10 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00765341&
       Height          =   375
       Index           =   1
-      Left            =   2520
+      Left            =   4950
       TabIndex        =   3
       Top             =   4560
       Width           =   2175
@@ -154,10 +149,10 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00765341&
       Height          =   375
       Index           =   0
-      Left            =   2520
+      Left            =   4950
       TabIndex        =   2
       Top             =   3600
       Width           =   2175
@@ -166,7 +161,7 @@ Begin VB.Form frmIdentifica
       Height          =   5655
       Left            =   0
       Top             =   0
-      Width           =   7575
+      Width           =   9750
    End
 End
 Attribute VB_Name = "frmIdentifica"
