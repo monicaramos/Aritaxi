@@ -1946,7 +1946,7 @@ Private Sub LoadIcons()
         1, 1, 1, ID_RetenSocios, ID_ContabilFras, ID_HcoInventario, ID_Reparaciones, 1, 1, 1, 1, 1, 1, 1, 1, _
         1, ID_ValStocksInven, ID_Articulos, ID_Socios, ID_Empresa, ID_ParametrosContabilidad, 1, ID_Contadores, 1, ID_ControlRep, 1, 1, 1, 1, 1, _
         ID_ArticulosComponentes, 1, 1, ID_ServSocios, ID_RecepFacturas, ID_Informes, 1, ID_Usuarios, ID_HcoLlamadas, ID_TraspasoTaxitronic, 1, 1, ID_SelImpresora, ID_ConfigurarBalances, 1, _
-        1, ID_ActDiferencias, ID_EtiProveedores, 1, 1, ID_VtasSocios, ID_ReimprFras, ID_HcoFras, ID_Liquidacion, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
+        1, ID_ActDiferencias, ID_EtiProveedores, 1, 1, 1, ID_ReimprFras, ID_HcoFras, ID_Liquidacion, ID_Choferes, 1, 1, ID_HcoFacturas, 1, 1, _
         ID_ProvVarios, 1, ID_FacturacionSocios, ID_HistoricoUves, 1, ID_Clientes, 1, 1, 1, 1, ID_ContabFacturas, 1, 1, ID_Proveedores, 1, _
         ID_Direcciones, ID_CartasProv, 1, ID_InfProveedores, 1, 1, ID_PedidosProv, 1, 1, ID_AlbAnuladosPro, ID_AlbProveedor, ID_HcoAlbxFra, 1, ID_ComprasProveedor, 1, _
         ID_TomaInventario, ID_ValoracionStocks, 1, ID_DtosProv, ID_VtasFamArt, ID_VtasMeses, ID_ContabFras, ID_Albaranes, 1, ID_FacturarClientes, ID_StocksMaxMin, 1, 1, 1, 1, _
@@ -1962,6 +1962,13 @@ Private Sub LoadIcons()
 
     'pequeños
     T = Array(ID_EtiquetasClientes, ID_VentasporCliente, ID_DetalleFacturacion, ID_AgentesCom, ID_Actividades, ID_ServiciosAbonados, ID_FacturacionClientes, ID_FactuVarClientes, ID_ReimprimirFras, ID_EtiquetasSocios)
+    
+    CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
+
+
+
+    'pequeños
+    T = Array(ID_VtasSocios, ID_ServiciosSocios, 1, 1, 1, 1, 1, 1, 1, 1)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
 

@@ -190,8 +190,8 @@ Private Function BorrarTraspaso(EnHistorico As Boolean, cadWHERE As String) As B
 'Si EnHistorico=true borra de las tablas de historico: "schtra" y "slhtra"
 'Si EnHistorico=false borra de las tablas de traspaso: "scatra" y "slitra"
 Dim Sql As String
-Dim RS As ADODB.Recordset
-Dim cad As String, cadAux As String
+Dim Rs As ADODB.Recordset
+Dim Cad As String, cadAux As String
 
     BorrarTraspaso = False
     On Error GoTo EBorrar
@@ -218,23 +218,23 @@ Dim cad As String, cadAux As String
     End Select
     
     If CodTipoMov <> "ALC" And CodTipoMov <> "PEC" Then
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        cad = ""
-        While Not RS.EOF
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = ""
+        While Not Rs.EOF
             If CodTipoMov <> "ALC" Then
-                cad = cad & RS.Fields(0).Value & ","
+                Cad = Cad & Rs.Fields(0).Value & ","
             Else
-                cad = cad & "numalbar="
+                Cad = Cad & "numalbar="
             End If
-            RS.MoveNext
+            Rs.MoveNext
         Wend
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
         'Quitar la ultima coma de la cadena
-        cad = Mid(cad, 1, Len(cad) - 1)
+        Cad = Mid(Cad, 1, Len(Cad) - 1)
         
-        cadAux = cadAux & "(" & cad & ")"
+        cadAux = cadAux & "(" & Cad & ")"
     Else
         cadAux = Replace(cadWHERE, NomTabla, NomTablaLin)
     End If
@@ -261,8 +261,8 @@ Private Function EliminarPreexistente(EnHistorico As Boolean, cadWHERE As String
 'Si EnHistorico=true borra de las tablas de historico: "schtra" y "slhtra"
 'Si EnHistorico=false borra de las tablas de traspaso: "scatra" y "slitra"
 Dim Sql As String
-Dim RS As ADODB.Recordset
-Dim cad As String, cadAux As String
+Dim Rs As ADODB.Recordset
+Dim Cad As String, cadAux As String
 
     EliminarPreexistente = False
     On Error GoTo EBorrar
@@ -290,11 +290,11 @@ Dim cad As String, cadAux As String
     End Select
     
     If CodTipoMov <> "ALC" And CodTipoMov <> "PEC" Then
-        Set RS = New ADODB.Recordset
-        RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-        cad = ""
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Cad = ""
         
-        If Not RS.EOF Then
+        If Not Rs.EOF Then
             Select Case CodTipoMov
               Case "PEV" 'pedidos ventas  a clientes
                     Sql = "DELETE FROM slhped WHERE " & Replace(cadWHERE, "scaped", "slhped")
@@ -336,7 +336,7 @@ Dim cad As String, cadAux As String
             
             End Select
         End If
-        Set RS = Nothing
+        Set Rs = Nothing
     End If
     EliminarPreexistente = True
     

@@ -547,7 +547,7 @@ Private Function ComprobarFechasConta(Ind As Integer) As Boolean
 'comprobar que el periodo de fechas a contabilizar esta dentro del
 'periodo de fechas del ejercicio de la contabilidad
 Dim FechaIni As String, FechaFin As String
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
     
 On Error GoTo EComprobar
@@ -572,10 +572,10 @@ On Error GoTo EComprobar
             Orden2 = FechaFin
         
             If Not EntreFechas(FechaIni, txtcodigo(Ind).Text, FechaFin) Then
-                 cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
-                 cad = cad & "    Desde: " & FechaIni & vbCrLf
-                 cad = cad & "    Hasta: " & FechaFin
-                 MsgBox cad, vbExclamation
+                 Cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
+                 Cad = Cad & "    Desde: " & FechaIni & vbCrLf
+                 Cad = Cad & "    Hasta: " & FechaFin
+                 MsgBox Cad, vbExclamation
                  txtcodigo(Ind).Text = ""
             Else
                 ComprobarFechasConta = True
@@ -989,17 +989,17 @@ Private Sub InicializarVbles()
     pPdfRpt = ""
 End Sub
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
     
      If txtcodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtcodigo(indD).Text
+        Cad = Cad & "desde " & txtcodigo(indD).Text
      End If
     If txtcodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtcodigo(indH).Text
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
     End If
     
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
     If Err.Number <> 0 Then Err.Clear
 End Function
 'Ccoste
@@ -1258,7 +1258,7 @@ Dim Sql As String
 Dim SQLaux As String
 Dim SQL2 As String
 Dim Rs As ADODB.Recordset
-Dim cad As String, Aux As String
+Dim Cad As String, Aux As String
 Dim I As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
@@ -1282,13 +1282,13 @@ Dim cuenta As String
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
-    cad = ""
+    Cad = ""
     I = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
     While Not Rs.EOF
-        SQLaux = cad
+        SQLaux = Cad
         'calculamos la Base Imp del total del importe para cada cta cble ventas
         ImpLinea = Rs!Importe - CCur(CalcularPorcentaje(Rs!Importe, DtoPPago, 2))
         ImpLinea = ImpLinea - CCur(CalcularPorcentaje(Rs!Importe, DtoGnral, 2))
@@ -1318,7 +1318,7 @@ Dim cuenta As String
             
         Sql = Sql & ValorNulo
         
-        cad = cad & "(" & Sql & ")" & ","
+        Cad = Cad & "(" & Sql & ")" & ","
         
         I = I + 1
         Rs.MoveNext
@@ -1335,11 +1335,11 @@ Dim cuenta As String
     Set Rs = Nothing
 
     'Insertar en la contabilidad
-    If cad <> "" Then
-        cad = Mid(cad, 1, Len(cad) - 1) 'quitar la ult. coma
+    If Cad <> "" Then
+        Cad = Mid(Cad, 1, Len(Cad) - 1) 'quitar la ult. coma
         Sql = "INSERT INTO linfactprov (numregis,anofacpr,numlinea,codtbase,impbaspr,codccost) "
 
-        Sql = Sql & " VALUES " & cad
+        Sql = Sql & " VALUES " & Cad
         ConnConta.Execute Sql
     End If
 
@@ -1360,7 +1360,7 @@ Dim Sql As String
 Dim SQLaux As String
 Dim SQL2 As String
 Dim Rs As ADODB.Recordset
-Dim cad As String, Aux As String
+Dim Cad As String, Aux As String
 Dim I As Byte
 Dim TotImp As Currency, ImpLinea As Currency
 Dim cadCampo As String
@@ -1385,13 +1385,13 @@ Dim cuenta As String
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
-    cad = ""
+    Cad = ""
     I = 1
     TotImp = 0
     SQLaux = ""
     Aux = ""
     While Not Rs.EOF
-        SQLaux = cad
+        SQLaux = Cad
         'calculamos la Base Imp del total del importe para cada cta cble ventas
         ImpLinea = Rs!Importe - CCur(CalcularPorcentaje(Rs!Importe, DtoPPago, 2))
         ImpLinea = ImpLinea - CCur(CalcularPorcentaje(Rs!Importe, DtoGnral, 2))
@@ -1424,7 +1424,7 @@ Dim cuenta As String
         Sql = Sql & "," & DBSet(Rs!codiiva1, "N") & "," & DBSet(Rs!porciva1, "N") & "," & ValorNulo & "," & DBSet(Rs!BaseIVA1, "N") & "," & DBSet(Rs!impoiva1, "N")
         Sql = Sql & "," & ValorNulo & "," & 0
         
-        cad = cad & "(" & Sql & ")" & ","
+        Cad = Cad & "(" & Sql & ")" & ","
         
         I = I + 1
         Rs.MoveNext
@@ -1441,12 +1441,12 @@ Dim cuenta As String
     Set Rs = Nothing
 
     'Insertar en la contabilidad
-    If cad <> "" Then
-        cad = Mid(cad, 1, Len(cad) - 1) 'quitar la ult. coma
+    If Cad <> "" Then
+        Cad = Mid(Cad, 1, Len(Cad) - 1) 'quitar la ult. coma
 
         Sql = "INSERT INTO factpro_lineas (numserie,numregis,fecharec,anofactu,numlinea,codmacta,codccost,codigiva,porciva,porcrec,baseimpo,impoiva,imporec,aplicret) "
 
-        Sql = Sql & " VALUES " & cad
+        Sql = Sql & " VALUES " & Cad
         ConnConta.Execute Sql
     End If
 
@@ -1468,7 +1468,7 @@ Dim Sql As String
 Dim SQL2 As String
 
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
 Dim Nulo2 As String
 Dim Nulo3 As String
 Dim Socio As String
@@ -1492,7 +1492,7 @@ Dim ImporAux As Currency
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    cad = ""
+    Cad = ""
     If Not Rs.EOF Then
         Socio = Rs!codSocio
         FormatSocio = String((vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior), "0")
@@ -1547,13 +1547,13 @@ Dim ImporAux As Currency
                     'NULOS
                     Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & ","
                     Sql = Sql & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & DBSet(Rs!FecFactu, "F") & ",0"
-                    cad = cad & "(" & Sql & ")"
+                    Cad = Cad & "(" & Sql & ")"
                     
                     'Insertar en la contabilidad
                     Sql = "INSERT INTO cabfactprov (numregis,fecfacpr,anofacpr,fecrecpr,numfacpr,codmacta,confacpr,ba1facpr,ba2facpr,ba3facpr,"
                     Sql = Sql & "pi1facpr,pi2facpr,pi3facpr,pr1facpr,pr2facpr,pr3facpr,ti1facpr,ti2facpr,ti3facpr,tr1facpr,tr2facpr,tr3facpr,"
                     Sql = Sql & "totfacpr,tp1facpr,tp2facpr,tp3facpr,extranje,retfacpr,trefacpr,cuereten,numdiari,fechaent,numasien,fecliqpr,nodeducible) "
-                    Sql = Sql & " VALUES " & cad
+                    Sql = Sql & " VALUES " & Cad
                     ConnConta.Execute Sql
                 Else
     '**********************
@@ -1616,12 +1616,12 @@ Dim ImporAux As Currency
                     
                     Sql = Sql & DBSet(txtcodigo(0).Text, "F")
                     
-                    cad = cad & "(" & Sql & ")"
+                    Cad = Cad & "(" & Sql & ")"
                 
                     Sql = "INSERT INTO factpro(numserie,numregis,fecfactu,anofactu,fecharec,numfactu,codmacta,observa,nommacta,"
                     Sql = Sql & "dirdatos,codpobla,despobla,desprovi,nifdatos,codpais,codforpa,codopera,codconce340,codintra,"
                     Sql = Sql & "totbases,totbasesret,totivas,totfacpr,retfacpr , trefacpr, cuereten, tiporeten, fecliqpr)"
-                    Sql = Sql & " VALUES " & cad
+                    Sql = Sql & " VALUES " & Cad
                     ConnConta.Execute Sql
                 
                 
@@ -1681,8 +1681,9 @@ Private Sub Form_Load()
     Me.Frame1.visible = (OptSocios.Value = 1)
     Me.Frame1.Enabled = (OptSocios.Value = 1)
     
-    Me.Check1.visible = (Me.OptClientes.Value)
-    Me.Check1.Enabled = (Me.OptClientes.Value)
+'[Monica]23/03/2018: tanto de clientes como de socios puede haber rectificativas
+'    Me.Check1.visible = (Me.OptClientes.Value)
+'    Me.Check1.Enabled = (Me.OptClientes.Value)
     
     
 End Sub
@@ -1720,8 +1721,8 @@ Private Sub OptSocios_Click()
     Me.Frame1.visible = True
     Me.Frame1.Enabled = True
     
-    Me.Check1.Enabled = False
-    Me.Check1.visible = False
+    Me.Check1.Enabled = True
+    Me.Check1.visible = True
     Me.Check1.Value = 0
     
 End Sub

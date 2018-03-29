@@ -12,6 +12,26 @@ Begin VB.Form frmIdentifica
    ScaleWidth      =   9750
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.ComboBox Combo1 
+      Appearance      =   0  'Flat
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   390
+      ItemData        =   "frmIdentifica.frx":0000
+      Left            =   4950
+      List            =   "frmIdentifica.frx":0002
+      Style           =   2  'Dropdown List
+      TabIndex        =   7
+      Top             =   3960
+      Width           =   3000
+   End
    Begin VB.Timer Timer1 
       Interval        =   1000
       Left            =   150
@@ -184,6 +204,14 @@ Public Sub pLabel(Texto As String)
 End Sub
 
 
+Private Sub Combo1_KeyPress(KeyAscii As Integer)
+    KEYpress KeyAscii
+End Sub
+
+Private Sub Combo1_LostFocus()
+    Text1(0).Text = Combo1.Text
+End Sub
+
 Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
@@ -237,6 +265,10 @@ Private Sub Form_Activate()
          'Leemos el ultimo usuario conectado
          NumeroEmpresaMemorizar True
          
+         CargaCombo
+         PosicionarCombo2 Combo1, Text1(0)
+         
+         
          T1 = T1 + 2.5 - Timer
          If T1 > 0 Then Espera T1
 
@@ -259,6 +291,7 @@ Private Sub Form_Load()
     T1 = Timer
     Text1(0).Text = ""
     Text1(1).Text = ""
+    Combo1.ListIndex = -1
     PrimeraVez = True
     CargaImagen
     Label2.Caption = "Ver. " & App.Major & "." & App.Minor & "." & App.Revision
@@ -360,6 +393,7 @@ Private Sub PonerVisible(visible As Boolean)
     Text1(1).visible = visible
     Label1(0).visible = visible
     Label1(1).visible = visible
+    Combo1.visible = visible
 End Sub
 
 
@@ -412,5 +446,45 @@ Private Sub Timer1_Timer()
     vSegundos = vSegundos - 1
     If vSegundos = -1 Then Unload Me
 End Sub
+
+
+Private Sub CargaCombo()
+Dim miRsAux As ADODB.Recordset
+
+    Combo1.Clear
+    'Conceptos
+    Set miRsAux = New ADODB.Recordset
+    
+    miRsAux.Open "Select * from usuarios.usuarios where nivelaritaxi <> -1 order by login", conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+
+    
+    While Not miRsAux.EOF
+        Combo1.AddItem miRsAux!Login
+        Combo1.ItemData(Combo1.NewIndex) = miRsAux!codusu
+        miRsAux.MoveNext
+    Wend
+    miRsAux.Close
+    
+    'Aprovecho aqui para leer unas para el calendario
+    TextosLabelEspanol = "select texto from usuarios.calendaretiquetas order by id"
+    miRsAux.Open TextosLabelEspanol, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    TextosLabelEspanol = ""
+    While Not miRsAux.EOF
+        TextosLabelEspanol = TextosLabelEspanol & miRsAux!Texto & "|"
+        miRsAux.MoveNext
+    Wend
+    miRsAux.Close
+        
+    If TextosLabelEspanol = "" Then
+        TextosLabelEspanol = "Ninguna|Importante|Negocios|Personal|Vacaciones|Atender|Viaje|"
+        TextosLabelEspanol = TextosLabelEspanol & "Preparar|Cumpleaños|Aniversario|Llamada|"
+    End If
+
+    
+    
+    Set miRsAux = Nothing
+    
+End Sub
+
 
 

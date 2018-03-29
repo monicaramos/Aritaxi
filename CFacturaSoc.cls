@@ -496,7 +496,7 @@ End Property
 'Procedimientos del modulo CFacturaSoc
 '------------------------------------------------
 ' Facturas de publicidad
-Public Function LeerDatos3(vCodsocio As String, vNumfactu As String, vFecfactu As String) As Boolean
+Public Function LeerDatos3(vCodsocio As String, vNumfactu As String, vFecfactu As String, vTipom As String) As Boolean
 'Leer los datos de una factura almacenada en la tabla sfactusoc de publicidad
 'Lee de la BD: Aritaxi, Tabla: sfactusoc
 'OUT: True si lee los datos correctamente
@@ -512,7 +512,7 @@ Dim CADENA As String
     Sql = Sql & " WHERE codSocio=" & vCodsocio
     Sql = Sql & " AND numfactu=" & vNumfactu & ""
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
-    Sql = Sql & " AND codtipom ='FPS'"
+    Sql = Sql & " AND codtipom = " & DBSet(vTipom, "T") 'FPS'"
 
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -528,7 +528,7 @@ Dim CADENA As String
         mBrutofac = CStr(Rs!BaseIVA1)
         mTotalfac = CStr(Rs!TotalFac)
         '[Monica]14/11/2017: columan nueva de suplidos
-        mSuplidos = CStr(Rs!Suplidos)
+        mSuplidos = CStr(DBLet(Rs!Suplidos, "N"))
         '[Monica]05/01/2018: numero de uve
         mNumerUve = CStr(Rs!NumerUve)
         

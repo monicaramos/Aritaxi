@@ -940,6 +940,7 @@ Public Const ID_VtasSocios = 424
 Public Const ID_VtasMeses = 425
 Public Const ID_VtasFamArt = 426
 Public Const ID_DetalleFra = 427
+Public Const ID_ServiciosSocios = 428
 
 ' Compras
 Public Const ID_Proveedores = 501

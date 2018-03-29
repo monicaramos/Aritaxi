@@ -36,7 +36,7 @@ Begin VB.Form frmLiqHcoFacSoc
    End
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   3240
+      Left            =   3645
       TabIndex        =   82
       Top             =   30
       Width           =   2415
@@ -79,14 +79,14 @@ Begin VB.Form frmLiqHcoFacSoc
       Left            =   120
       TabIndex        =   80
       Top             =   30
-      Width           =   3045
+      Width           =   3495
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
          TabIndex        =   81
          Top             =   180
-         Width           =   2655
-         _ExtentX        =   4683
+         Width           =   3105
+         _ExtentX        =   5477
          _ExtentY        =   582
          ButtonWidth     =   609
          ButtonHeight    =   582
@@ -96,9 +96,7 @@ Begin VB.Form frmLiqHcoFacSoc
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
             NumButtons      =   10
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Enabled         =   0   'False
-               Object.Visible         =   0   'False
-               Object.ToolTipText     =   "Nuevo"
+               Object.ToolTipText     =   "Rectificativa"
                Object.Tag             =   "2"
             EndProperty
             BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
@@ -4166,8 +4164,8 @@ Dim bAux As Boolean
 
     b = (Modo = 2)
 '    'Insertar
-'    Toolbar1.Buttons(1).Enabled = True
-'    Me.mnRectifica.Enabled = True
+    Toolbar1.Buttons(1).Enabled = True
+    Me.mnRectifica.Enabled = True
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -4190,7 +4188,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
         
     b = (Modo = 2)
     For I = 0 To ToolAux.Count - 1

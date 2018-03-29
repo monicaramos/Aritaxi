@@ -30,6 +30,7 @@ Public FormatoImporte As String 'Decimal(12,2)
 Public FormatoPrecio As String 'Decimal(10,4)
 Public FormatoPrecio2 As String 'Por si podemops parametrizarlo mas adelante
 Public FormatoHora As String
+Public FormatoHora2 As String
 
 Public FormatoCantidad As String 'Decimal(10,2)
 Public FormatoCantidad2 As String 'Decimal(8,2)
@@ -511,6 +512,8 @@ On Error Resume Next
     FormatoFechaHora = "yyyy-mm-dd hh:mm:ss"
     FormatoImporte = "#,###,###,##0.00"  'Decimal(12,2)
     FormatoHora = "hh:mm:ss"
+    FormatoHora2 = "hh:mm"
+    
     
     
     'Por si paraemtrizamos la ampliacion
@@ -939,6 +942,12 @@ Dim ValorNumericoCero As Boolean
                     If vData = "" Then
                     Else
                         DBSet = "'" & Format(vData, "hh:mm:ss") & "'"
+                    End If
+                
+                Case "HH" 'Hora hora
+                    If vData = "" Then
+                    Else
+                        DBSet = "'" & Format(vData, "hh:mm") & "'"
                     End If
                 
                 Case "B"  'Boolean
@@ -1700,19 +1709,19 @@ Dim I As Integer
 Dim C As Integer
 Dim L As Integer
 Dim Cad As String
-Dim B As Boolean
+Dim b As Boolean
     
     EsNumerico = False
-    B = True
+    b = True
     Cad = ""
     If Not IsNumeric(Texto) Then
         Cad = "El campo debe ser numérico"
-        B = False
+        b = False
         '======= Añade Laura
         'formato: (.25)
         I = InStr(1, Texto, ".")
         If I = 1 Then
-            If IsNumeric(Mid(Texto, 2, Len(Texto))) Then B = True
+            If IsNumeric(Mid(Texto, 2, Len(Texto))) Then b = True
         End If
         '======================
     Else
@@ -1728,7 +1737,7 @@ Dim B As Boolean
         Loop Until I = 0
         If C > 1 Then
             Cad = "Numero de puntos incorrecto"
-            B = False
+            b = False
         End If
         
         'Si ha puesto mas de una coma y no tiene puntos
@@ -1743,14 +1752,14 @@ Dim B As Boolean
             Loop Until I = 0
             If C > 1 Then
                 Cad = "Numero incorrecto"
-                B = False
+                b = False
             End If
         End If
     End If
-    If Not B Then
+    If Not b Then
         MsgBox Cad, vbExclamation
     Else
-        EsNumerico = B
+        EsNumerico = b
     End If
 End Function
 
