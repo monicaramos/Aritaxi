@@ -60,6 +60,8 @@ Private mPersonaContacto As String
 
 Private mGastosAdmon As Currency 'gastos de administracion de cliente
 
+Private mNroExpediente As String 'nro de expediente
+
 
 '------------------------------------------------
 'Propiedades del modulo CCliente
@@ -386,6 +388,18 @@ Public Property Get GastosAdmon() As Currency
      GastosAdmon = mGastosAdmon
 End Property
 
+
+'**** Numero de expediente
+
+Public Property Let NroExpediente(ByVal vData As String)
+     mNroExpediente = vData
+End Property
+
+Public Property Get NroExpediente() As String
+     NroExpediente = mNroExpediente
+End Property
+
+
 '------------------------------------------------
 'Procedimientos del modulo CCliente
 '------------------------------------------------
@@ -415,77 +429,78 @@ Public Function LeerDatos(vCodClien As String, Optional Socio As Boolean) As Boo
 'Leer los datos de un cliente dado
 'Lee de la BD: Aritaxi, Tabla: sclien
 'OUT: True si lee los datos correctamente
-Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Rs As ADODB.Recordset
+Dim Sql As String
 
     On Error GoTo ELeer
     
     LeerDatos = False
     
     If Socio Then
-        SQL = "SELECT codclien,nomclien,codpobla,domclien,pobclien,proclien,nifclien,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,codsitua,observac, iban  "
-        SQL = SQL & " FROM sclien "
+        Sql = "SELECT codclien,nomclien,codpobla,domclien,pobclien,proclien,nifclien,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,codsitua,observac, iban  "
+        Sql = Sql & " FROM sclien "
     Else
-        SQL = "SELECT codclien,nomclien,nomcomer,codpobla,domclien,pobclien,proclien,nifclien,wwwclien,codenvio,codagent,codforpa,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,clivario,dtoppago,dtognral,codtarif,codsitua,tipofact,kilometr,fechamov,observac,perclie1, gasadm, iban "
-        SQL = SQL & " FROM scliente "
+        Sql = "SELECT codclien,nomclien,nomcomer,codpobla,domclien,pobclien,proclien,nifclien,wwwclien,codenvio,codagent,codforpa,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,clivario,dtoppago,dtognral,codtarif,codsitua,tipofact,kilometr,fechamov,observac,perclie1, gasadm, iban, nroexpediente "
+        Sql = Sql & " FROM scliente "
     End If
-    SQL = SQL & " WHERE codclien=" & vCodClien
+    Sql = Sql & " WHERE codclien=" & vCodClien
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
-    If RS.EOF Then
+    If Rs.EOF Then
         LeerDatos = False
     Else
-        mCodClien = CStr(RS!CodClien)
+        mCodClien = CStr(Rs!CodClien)
         
-        mNomClien = RS!nomclien
-        mDomClien = DBLet(RS!domclien, "T")
-        mCodpobla = DBLet(RS!codpobla, "T")
-        mPobClien = DBLet(RS!pobclien, "T")
-        mProClien = DBLet(RS!proclien, "T")
-        mNIFClien = DBLet(RS!nifClien, "T")
-        mTfnClien = DBLet(RS!telclie1, "T")
-        mMaiClien = DBLet(RS!maiclie1, "T")
+        mNomClien = Rs!nomclien
+        mDomClien = DBLet(Rs!domclien, "T")
+        mCodpobla = DBLet(Rs!codpobla, "T")
+        mPobClien = DBLet(Rs!pobclien, "T")
+        mProClien = DBLet(Rs!proclien, "T")
+        mNIFClien = DBLet(Rs!nifClien, "T")
+        mTfnClien = DBLet(Rs!telclie1, "T")
+        mMaiClien = DBLet(Rs!maiclie1, "T")
         If Not Socio Then
-            mCodEnvio = CStr(DBLet(RS!CodEnvio, "N"))
-            mCodAgent = CStr(RS!codagent)
-            mCodForpa = CStr(RS!codforpa)
-            mDtoPpago = CStr(RS!DtoPPago)
-            mDtoGnral = CStr(RS!DtoGnral)
-            mTipoFact = RS!TipoFact
-            mCliVario = RS!CliVario
-            Tarifa = RS!codTarif
-            mKilometr = DBLet(RS!kilometr, "N")
-            mNomComer = DBLet(RS!NomComer, "T")
-            mFecUltMovim = DBLet(RS!Fechamov, "F")
-            mWwwClien = DBLet(RS!wwwclien, "T")
-            mPersonaContacto = DBLet(RS!perclie1, "T")
-            mGastosAdmon = DBLet(RS!gasadm, "N")
+            mCodEnvio = CStr(DBLet(Rs!CodEnvio, "N"))
+            mCodAgent = CStr(Rs!codagent)
+            mCodForpa = CStr(Rs!codforpa)
+            mDtoPpago = CStr(Rs!DtoPPago)
+            mDtoGnral = CStr(Rs!DtoGnral)
+            mTipoFact = Rs!TipoFact
+            mCliVario = Rs!CliVario
+            Tarifa = Rs!codTarif
+            mKilometr = DBLet(Rs!kilometr, "N")
+            mNomComer = DBLet(Rs!NomComer, "T")
+            mFecUltMovim = DBLet(Rs!Fechamov, "F")
+            mWwwClien = DBLet(Rs!wwwclien, "T")
+            mPersonaContacto = DBLet(Rs!perclie1, "T")
+            mGastosAdmon = DBLet(Rs!gasadm, "N")
+            mNroExpediente = DBLet(Rs!NroExpediente, "T")
         End If
         '[Monica]22/11/2013: tema iban
-        mIban = CStr(DBLet(RS!Iban, "T"))
+        mIban = CStr(DBLet(Rs!Iban, "T"))
         
-        mCodbanco = CStr(DBLet(RS!codbanco, "N"))
-        mCodsucur = CStr(DBLet(RS!codsucur, "N"))
-        mDigContr = DBLet(RS!digcontr, "T")
-        mCuentaba = DBLet(RS!cuentaba, "T")
+        mCodbanco = CStr(DBLet(Rs!codbanco, "N"))
+        mCodsucur = CStr(DBLet(Rs!codsucur, "N"))
+        mDigContr = DBLet(Rs!digcontr, "T")
+        mCuentaba = DBLet(Rs!cuentaba, "T")
         
-        mObservac = DBLet(RS!observac, "T")
-        Situacion = RS!codsitua
+        mObservac = DBLet(Rs!observac, "T")
+        Situacion = Rs!codsitua
         LeerDatos = True
     End If
 
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Function
 
 ELeer:
-    SQL = "Se ha producido un error. " & "Datos Cliente" & vbCrLf
-    SQL = SQL & "Número: " & Err.Number & vbCrLf
-    SQL = SQL & "Descripción: " & Err.Description
-    MsgBox SQL, vbExclamation
-    Set RS = Nothing
+    Sql = "Se ha producido un error. " & "Datos Cliente" & vbCrLf
+    Sql = Sql & "Número: " & Err.Number & vbCrLf
+    Sql = Sql & "Descripción: " & Err.Description
+    MsgBox Sql, vbExclamation
+    Set Rs = Nothing
     LeerDatos = False
 End Function
 
@@ -494,20 +509,20 @@ End Function
 Public Function LeerDatosCliVario(vNif As String) As Boolean
 'si es cliente de varios recuperamos los datos nombre,direc,etc.
 'de la tabla de varios: sclvar
-Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Rs As ADODB.Recordset
+Dim Sql As String
     
     On Error GoTo ELeer
     LeerDatosCliVario = False
     
-    SQL = "SELECT nifclien,nomclien,domclien,codpobla,pobclien,proclien,telclien "
-    SQL = SQL & " FROM sclvar "
-    SQL = SQL & " WHERE nifclien=" & DBSet(vNif, "T")
+    Sql = "SELECT nifclien,nomclien,domclien,codpobla,pobclien,proclien,telclien "
+    Sql = Sql & " FROM sclvar "
+    Sql = Sql & " WHERE nifclien=" & DBSet(vNif, "T")
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     mPersonaContacto = ""
-    If RS.EOF Then
+    If Rs.EOF Then
         LeerDatosCliVario = False
         
         mNomClien = ""
@@ -519,28 +534,28 @@ Dim SQL As String
         mTfnClien = ""
         MsgBox "No existe el cliente vario: " & vNif, vbInformation
     Else
-        mNIFClien = RS!nifClien
-        mNomClien = RS!nomclien
+        mNIFClien = Rs!nifClien
+        mNomClien = Rs!nomclien
         mNomComer = ""
-        mDomClien = RS!domclien
-        mCodpobla = DBLet(RS!codpobla, "T")
-        mPobClien = DBLet(RS!pobclien, "T")
-        mProClien = DBLet(RS!proclien, "T")
-        mTfnClien = DBLet(RS!telclien, "T")
+        mDomClien = Rs!domclien
+        mCodpobla = DBLet(Rs!codpobla, "T")
+        mPobClien = DBLet(Rs!pobclien, "T")
+        mProClien = DBLet(Rs!proclien, "T")
+        mTfnClien = DBLet(Rs!telclien, "T")
         
         LeerDatosCliVario = True
     End If
 
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Function
 
 ELeer:
-    SQL = "Se ha producido un error. " & "Datos Cliente de Varios." & vbCrLf
-    SQL = SQL & "Número: " & Err.Number & vbCrLf
-    SQL = SQL & "Descripción: " & Err.Description
-    MsgBox SQL, vbExclamation
-    Set RS = Nothing
+    Sql = "Se ha producido un error. " & "Datos Cliente de Varios." & vbCrLf
+    Sql = Sql & "Número: " & Err.Number & vbCrLf
+    Sql = Sql & "Descripción: " & Err.Description
+    MsgBox Sql, vbExclamation
+    Set Rs = Nothing
     LeerDatosCliVario = False
 End Function
 
@@ -548,7 +563,7 @@ End Function
 
 Public Function ActualizarClienteV(vNif As String) As Boolean
 'Actualiza los datos del cliente de varios en la tabla: sclvar
-Dim SQL As String
+Dim Sql As String
 Dim devuelve As String
 
     On Error GoTo EActualizarCliente
@@ -557,16 +572,16 @@ Dim devuelve As String
     devuelve = DevuelveDesdeBDNew(conAri, "sclvar", "nifclien", "nifclien", vNif, "T")
     
     If devuelve <> "" Then 'Existe el cliente de varios y lo actualizamos
-        SQL = "UPDATE sclvar SET nomclien=" & DBSet(Nombre, "T") & ", domclien=" & DBSet(Domicilio, "T") & ", "
-        SQL = SQL & " codpobla=" & DBSet(CPostal, "T") & ", pobclien=" & DBSet(Poblacion, "T") & ", "
-        SQL = SQL & " proclien=" & DBSet(Provincia, "T") & ", telclien=" & DBSet(TfnoClien, "T")
-        SQL = SQL & " WHERE nifclien=" & DBSet(vNif, "T")
+        Sql = "UPDATE sclvar SET nomclien=" & DBSet(Nombre, "T") & ", domclien=" & DBSet(Domicilio, "T") & ", "
+        Sql = Sql & " codpobla=" & DBSet(CPostal, "T") & ", pobclien=" & DBSet(Poblacion, "T") & ", "
+        Sql = Sql & " proclien=" & DBSet(Provincia, "T") & ", telclien=" & DBSet(TfnoClien, "T")
+        Sql = Sql & " WHERE nifclien=" & DBSet(vNif, "T")
     Else 'No existe el cliente y lo añadimos
-        SQL = "INSERT INTO sclvar (nifclien, nomclien, domclien, codpobla, pobclien, proclien, telclien) "
-        SQL = SQL & " VALUES (" & DBSet(vNif, "T") & ", " & DBSet(Nombre, "T") & ", " & DBSet(Domicilio, "T") & ", "
-        SQL = SQL & DBSet(CPostal, "T") & ", " & DBSet(Poblacion, "T") & ", " & DBSet(Provincia, "T") & ", " & DBSet(TfnoClien, "T") & ")"
+        Sql = "INSERT INTO sclvar (nifclien, nomclien, domclien, codpobla, pobclien, proclien, telclien) "
+        Sql = Sql & " VALUES (" & DBSet(vNif, "T") & ", " & DBSet(Nombre, "T") & ", " & DBSet(Domicilio, "T") & ", "
+        Sql = Sql & DBSet(CPostal, "T") & ", " & DBSet(Poblacion, "T") & ", " & DBSet(Provincia, "T") & ", " & DBSet(TfnoClien, "T") & ")"
     End If
-    conn.Execute SQL, , adCmdText
+    conn.Execute Sql, , adCmdText
     
     ActualizarClienteV = True
     
@@ -678,15 +693,15 @@ End Function
 
 Public Function Bonifica() As Boolean
 'Indica si al cliente se le aplican bonificaciones o no
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EBonifica
     Bonifica = False
     
-    cad = DevuelveDesdeBDNew(conAri, "scliente", "codtarif", "codclien", Codigo, "N")
-    If cad <> "" Then
-        cad = DevuelveDesdeBDNew(conAri, "starif", "bonifica", "codlista", cad, "N")
-        If cad <> "" Then Bonifica = CBool(cad)
+    Cad = DevuelveDesdeBDNew(conAri, "scliente", "codtarif", "codclien", Codigo, "N")
+    If Cad <> "" Then
+        Cad = DevuelveDesdeBDNew(conAri, "starif", "bonifica", "codlista", Cad, "N")
+        If Cad <> "" Then Bonifica = CBool(Cad)
     End If
     
 EBonifica:
@@ -699,8 +714,8 @@ End Function
 Public Function ActualizaUltFecMovim(vFecha As String) As Boolean
 'Actualiza la fecha del ultimo movimiento del cliente si la fecha del movimiento
 'que se pasa por parametro es posterior a la que tiene el cliente
-Dim SQL As String
-Dim B As Boolean
+Dim Sql As String
+Dim b As Boolean
 Dim actualiza As Boolean
 
     On Error GoTo EActFecha
@@ -718,15 +733,15 @@ Dim actualiza As Boolean
     End If
     
     If actualiza Then
-        SQL = "UPDATE scliente SET fechamov=" & DBSet(vFecha, "F")
-        SQL = SQL & " WHERE codclien=" & Codigo
-        conn.Execute SQL, , adCmdText
+        Sql = "UPDATE scliente SET fechamov=" & DBSet(vFecha, "F")
+        Sql = Sql & " WHERE codclien=" & Codigo
+        conn.Execute Sql, , adCmdText
     End If
-    B = True
+    b = True
         
 EActFecha:
-    If Err.Number <> 0 Then B = False
-    ActualizaUltFecMovim = B
+    If Err.Number <> 0 Then b = False
+    ActualizaUltFecMovim = b
 End Function
 
 

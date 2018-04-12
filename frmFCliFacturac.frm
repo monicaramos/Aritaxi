@@ -593,7 +593,7 @@ Dim cadParam As String
 Dim numParam As Byte
 Dim codtipom As String
 Dim cadSelect As String
-Dim IndCodigo As Long
+Dim indCodigo As Long
 Dim FacturasaImprimir As String
 
 Dim HayReg As Byte
@@ -1461,12 +1461,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
-    txtcodigo(IndCodigo).Text = vFecha
+    txtcodigo(indCodigo).Text = vFecha
 End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(IndCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
-    txtnombre(IndCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
+    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
@@ -1522,12 +1522,12 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmFP.Show vbModal
             Set frmFP = Nothing
         Case 4, 5
-            IndCodigo = Index - 4
+            indCodigo = Index - 4
             Set frmCli = New frmFacClientes
             frmCli.DatosADevolverBusqueda = "0|1|"
             frmCli.Show vbModal
             Set frmCli = Nothing
-            PonerFoco txtcodigo(IndCodigo)
+            PonerFoco txtcodigo(indCodigo)
         Case 3
             Set frmMtoBancosPro = New frmFacBancosPropios
             frmMtoBancosPro.DatosADevolverBusqueda = "0|1|"
@@ -1551,18 +1551,18 @@ Private Sub imgFecha_Click(Index As Integer)
     frmCal.Fecha = Now
     Select Case Index
         Case 23
-            IndCodigo = 85
+            indCodigo = 85
         Case 24
-            IndCodigo = 86
+            indCodigo = 86
         Case 2
-            IndCodigo = 2
+            indCodigo = 2
     End Select
-    PonerFormatoFecha txtcodigo(IndCodigo)
-    If txtcodigo(IndCodigo).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(IndCodigo).Text)
+    PonerFormatoFecha txtcodigo(indCodigo)
+    If txtcodigo(indCodigo).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(indCodigo).Text)
     Screen.MousePointer = vbDefault
     frmCal.Show vbModal
     Set frmCal = Nothing
-    PonerFoco txtcodigo(IndCodigo)
+    PonerFoco txtcodigo(indCodigo)
 End Sub
 
 Private Sub KEYpress(KeyAscii As Integer)
@@ -3131,7 +3131,7 @@ Dim Rs2 As ADODB.Recordset
                 BaseivaServ2 = Round2(RSLineas!Importe / (1 + (porIvaServ / 100)), 2)
             
                 Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,"
-                Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
+                Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel, nroexpediente) VALUES ("
                 Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",0," & almac & ","
                 If RSLineas!CodClien = Rs!CodClien And chk_agrupados.Value = 0 Then
                     Sql = Sql & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(txtcodigo(4).Text, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
@@ -3143,7 +3143,8 @@ Dim Rs2 As ADODB.Recordset
                     Sql = Sql & DBSet(vParamAplic.ArticServ, "T") & "," & DBSet(NomArtic, "T") & "," & DBSet(Ampliaci, "T") & ",1," & DBSet(RSLineas!Servicios, "N") & " ," & DBSet(BaseivaServ2, "N") & ","
                 End If
                 Sql = Sql & DBSet(BaseivaServ2, "N") & "," & DBSet(BaseivaServ2, "N") & "," & DBSet(BaseivaServ2, "N") & ","
-                Sql = Sql & DBSet(BaseivaServ2, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaServ2, "N") & ")"
+                Sql = Sql & DBSet(BaseivaServ2, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaServ2, "N") & ","
+                Sql = Sql & DBSet(cli.NroExpediente, "T") & ")"
             
                 conn.Execute Sql
             
@@ -3194,11 +3195,12 @@ Dim Rs2 As ADODB.Recordset
                  NomArtic = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", vParamAplic.ArtGastosAdmon, "T")
              
                  Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-                 Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
+                 Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel, nroexpediente) VALUES ("
                  Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",1," & almac & ","
                  Sql = Sql & DBSet(vParamAplic.ArtGastosAdmon, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & DBSet(BaseivaGtos, "N") & ","
                  Sql = Sql & DBSet(BaseivaGtos, "N") & "," & DBSet(BaseivaGtos, "N") & "," & DBSet(BaseivaGtos, "N") & ","
-                 Sql = Sql & DBSet(BaseivaGtos, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaGtos, "N") & ")"
+                 Sql = Sql & DBSet(BaseivaGtos, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaGtos, "N") & ","
+                 Sql = Sql & DBSet(cli.NroExpediente, "T") & ")"
              
                  conn.Execute Sql
             End If
@@ -3209,11 +3211,11 @@ Dim Rs2 As ADODB.Recordset
                  NomArtic = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", vParamAplic.ArtSuplidos, "T")
              
                  Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
-                 Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel) VALUES ("
+                 Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel, nroexpediente) VALUES ("
                  Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV'," & DBSet(NumAlbar, "N") & ",2," & almac & ","
                  Sql = Sql & DBSet(vParamAplic.ArtSuplidos, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & DBSet(Suplidos, "N") & ","
                  Sql = Sql & DBSet(Suplidos, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(Suplidos, "N") & ","
-                 Sql = Sql & DBSet(Suplidos, "N") & ",0,0,'M'," & Prove & "," & DBSet(Suplidos, "N") & ")"
+                 Sql = Sql & DBSet(Suplidos, "N") & ",0,0,'M'," & Prove & "," & DBSet(Suplidos, "N") & "," & DBSet(cli.NroExpediente, "T") & ")"
              
                  conn.Execute Sql
             End If

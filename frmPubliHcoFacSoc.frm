@@ -152,10 +152,10 @@ Begin VB.Form frmPubliHcoFacSoc
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   1290
+         Left            =   1305
          Style           =   2  'Dropdown List
          TabIndex        =   52
-         Top             =   390
+         Top             =   405
          Width           =   1305
       End
       Begin VB.TextBox Text1 
@@ -2330,7 +2330,7 @@ Dim NomTraba As String
 Dim Cad As String
 Dim Rs As ADODB.Recordset
 Dim iva As String
-Dim poriva As Currency
+Dim porIva As Currency
 Dim vDevuelve As String
 
     LimpiarCampos 'Vacía los TextBox
@@ -2348,11 +2348,11 @@ Dim vDevuelve As String
     
     
     vDevuelve = DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(iva), "N")
-    poriva = 0
-    If vDevuelve <> "" Then poriva = CCur(vDevuelve)
+    porIva = 0
+    If vDevuelve <> "" Then porIva = CCur(vDevuelve)
     
     Text1(15).Text = iva
-    Text1(17).Text = Format(poriva, "##0.00")
+    Text1(17).Text = Format(porIva, "##0.00")
     
     
     PonerFoco Text1(2)
@@ -2718,7 +2718,7 @@ Dim b As Boolean
     b = (Modo <> 1)
     'Campos Nº Factura bloqueado y en azul
     BloquearTxt Text1(0), b, True
-    BloquearTxt Text1(3), b And Modo <> 4 'referencia
+    BloquearTxt Text1(3), b And Modo <> 4 And Text1(1).Text = "FRQ"  'referencia
     
     'Importes siempre bloqueados, excepto para busquedas. ivas y aportacion tb bloqueado
     For I = 13 To 19
@@ -2838,7 +2838,7 @@ Dim b As Boolean
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
         Toolbar1.Buttons(6).Enabled = Not b
-        Me.mnVerTodos.Enabled = Not b
+        Me.mnvertodos.Enabled = Not b
 End Sub
 
 Private Sub PonerLongCampos()
