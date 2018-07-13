@@ -392,6 +392,8 @@ Public Opcion As Byte
     '5 -  Multienvio cartas renovacion
     '6 -  Confirmacion de pedido
     
+    '22- envio de servicios
+    
 Public DatosEnvio As String
     'Nombre para|email para|Asunto|Mensaje|    y para envio tipo3 el mail de otro persona mail|nombre|
 
@@ -414,6 +416,7 @@ Private Sub EnvioNuevo(ListaArch As Collection)
     If vParamAplic.ExeEnvioMail <> "" Then
         'Utliza el programa que lanza desde el outlook
         EnvioDesdeExeNuestro ListaArch
+        
         If Opcion = 0 And DatosEnvio <> "" Then Me.DatosEnvio = "OK"
     Else
     
@@ -681,8 +684,8 @@ End Sub
 Private Sub Form_Activate()
      If PrimeraVez Then
         PrimeraVez = False
-        If Opcion = 2 Or Opcion = 4 Or Opcion = 5 Then
-            If Opcion = 2 Then
+        If Opcion = 2 Or Opcion = 4 Or Opcion = 5 Or Opcion = 22 Then
+            If Opcion = 2 Or Opcion = 22 Then
                 HacerMultiEnvio
             Else
                 'Opcion 4 y 5
@@ -1007,7 +1010,11 @@ Dim Cad As String
 Dim Rs As ADODB.Recordset
 Dim I As Integer, cont As Integer
 
+Dim ListaArchivos As Collection
+
 On Error GoTo EMulti
+
+
 
         'Campos comunes
     'ENVIO MASIVO DE EMAILS
@@ -1039,9 +1046,23 @@ On Error GoTo EMulti
         
         'De momento volvemos a copiar el archivo como docum.pdf
         FileCopy App.Path & "\temp\" & Rs!codProve & ".pdf", App.Path & "\docum.pdf"
-        Me.Refresh
-        NumRegElim = 0
-        EnvioNuevo Nothing
+        
+        If Opcion = 22 Then
+            Set ListaArchivos = New Collection
+            ListaArchivos.Add App.Path & "\temp\" & Rs!codProve & ".pdf"
+            
+            Me.Refresh
+            NumRegElim = 0
+            EnvioNuevo ListaArchivos
+        
+            Set ListaArchivos = Nothing
+        
+        Else
+            Me.Refresh
+            NumRegElim = 0
+            EnvioNuevo Nothing
+        
+        End If
         
         
 '        If NumRegElim = 1 Then

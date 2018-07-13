@@ -526,14 +526,14 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmCuotasHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1(25)"
-      Tab(0).Control(1)=   "Label1(26)"
-      Tab(0).Control(2)=   "Text1(23)"
-      Tab(0).Control(3)=   "Text1(24)"
-      Tab(0).Control(4)=   "FrameFactura"
-      Tab(0).Control(5)=   "Text1(16)"
-      Tab(0).Control(6)=   "Text1(17)"
-      Tab(0).Control(7)=   "FrameCliente"
+      Tab(0).Control(0)=   "FrameCliente"
+      Tab(0).Control(1)=   "Text1(17)"
+      Tab(0).Control(2)=   "Text1(16)"
+      Tab(0).Control(3)=   "FrameFactura"
+      Tab(0).Control(4)=   "Text1(24)"
+      Tab(0).Control(5)=   "Text1(23)"
+      Tab(0).Control(6)=   "Label1(26)"
+      Tab(0).Control(7)=   "Label1(25)"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0028
@@ -6146,7 +6146,7 @@ Dim devuelve As String
         
         
         'cODTIPOA
-        devuelve = "{scafac1.codtipoa}=" & DBSet(Data3.Recordset!codTipoa, "T")
+        devuelve = "{scafac1.codtipoa}=" & DBSet(Data3.Recordset!codtipoa, "T")
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
         
         'Numalbar
@@ -6241,18 +6241,30 @@ On Error GoTo EComprobarCobroArimoney
                 If DBLet(vR!recedocu, "N") = 1 Then
                     Cad = "Documento recibido"
                 Else
-                    If DBLet(vR!Estacaja, "N") = 1 Then
-                        Cad = "Cobrado por caja"
-                    Else
-                        If DBLet(vR!transfer, "N") = 1 Then
-                            Cad = "Esta en una transferencia"
-                        Else
-                           If DBLet(vR!impcobro, "N") > 0 Then Cad = "Esta parcialmente cobrado: " & vR!impcobro
-                        
+                    If vParamAplic.ContabilidadNueva Then
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                Cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then Cad = "Esta parcialmente cobrado: " & vR!impcobro
                             
-                                    'Si hubeira que poner mas coas iria aqui
-                        End If 'transfer
-                    End If 'estacaja
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                    
+                    Else
+                        If DBLet(vR!Estacaja, "N") = 1 Then
+                            Cad = "Cobrado por caja"
+                        Else
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                Cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then Cad = "Esta parcialmente cobrado: " & vR!impcobro
+                            
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                        End If 'estacaja
+                    End If
                 End If 'recdedocu
             End If 'remesado
             If Cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & Cad & vbCrLf

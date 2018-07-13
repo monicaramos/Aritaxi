@@ -3656,21 +3656,21 @@ End Sub
 
 
 Private Sub imgCheck_Click(Index As Integer)
-Dim B As Boolean
+Dim b As Boolean
     If Index < 2 Then
         'En el listview3
-        B = Index = 1
+        b = Index = 1
         For TotalArray = 1 To ListView3.ListItems.Count
-            ListView3.ListItems(TotalArray).Checked = B
+            ListView3.ListItems(TotalArray).Checked = b
             If (TotalArray Mod 50) = 0 Then DoEvents
         Next TotalArray
         
     Else
         'En el listview4
-        B = Index = 3
+        b = Index = 3
         For TotalArray = 1 To ListView4.ListItems.Count
             If ListView4.ListItems(TotalArray).Tag <> "" Then
-                ListView4.ListItems(TotalArray).Checked = B
+                ListView4.ListItems(TotalArray).Checked = b
             Else
                 ListView4.ListItems(TotalArray).Checked = False
             End If
@@ -4233,7 +4233,7 @@ Dim It As ListItem
     ListView22.ColumnHeaders.Add , , "Tipo Factura", 3000 '2600
     ListView22.ColumnHeaders.Add , , "Fecha", 1400
     ListView22.ColumnHeaders.Add , , "Factura", 1500, 0
-    ListView22.ColumnHeaders.Add , , "Nombre", 4900, 0 '3400, 0
+    ListView22.ColumnHeaders.Add , , "Nombre", 4850, 0 '3400, 0
     ListView22.ColumnHeaders.Add , , "Importe", 2000, 1 '1800, 1
     
     ListView22.ListItems.Clear
@@ -4267,7 +4267,7 @@ Dim It As ListItem
                 It.SmallIcon = 36
         End Select
         
-        ListView22.Refresh
+'        ListView22.Refresh
         
         Rs.MoveNext
         TotalArray = TotalArray + 1

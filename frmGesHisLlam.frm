@@ -2648,7 +2648,7 @@ Dim I As Integer
         'Cambio sugerido por Msoler
         'mariela 01/07/2010
         'If Not publicidad Then
-        CadenaConsulta = CadenaConsulta & " WHERE fecha is null  "
+        CadenaConsulta = CadenaConsulta & " WHERE false " 'fecha is null  "
     End If
     
     '## A mano
@@ -2687,7 +2687,7 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim I As Byte, NumReg As Byte
-Dim B As Boolean
+Dim b As Boolean
 On Error GoTo EPonerModo
 
     For I = 0 To Text1.Count - 1
@@ -2713,14 +2713,14 @@ On Error GoTo EPonerModo
     End If
     
     '=======================================
-    B = (Modo = 2)
+    b = (Modo = 2)
     'Poner Flechas de desplazamiento visibles
     NumReg = 1
     If Not Adodc1.Recordset.EOF Then
         If Adodc1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
-    DesplazamientoVisible B And Me.Adodc1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Me.Adodc1.Recordset.RecordCount > 1 ' Me.Toolbar1, btnPrimero, b, NumReg
     
     
     
@@ -2732,22 +2732,22 @@ On Error GoTo EPonerModo
     BloquearCmb Combo1, (Modo = 0 Or Modo = 2)
     
     '---------------------------------------------
-    B = Modo <> 0 And Modo <> 2 And Modo <> 5
-    cmdCancelar.visible = B
-    cmdAceptar.visible = B
-    Combo1.Enabled = B
+    b = Modo <> 0 And Modo <> 2 And Modo <> 5
+    cmdCancelar.visible = b
+    cmdAceptar.visible = b
+    Combo1.Enabled = b
     For I = 0 To 2
-        Check1(I).Enabled = B
+        Check1(I).Enabled = b
     Next I
     
 '[Monica]04/02/2015: dejamos modificar liquidado y facturado, antes solo podian consultar
     For I = 3 To 4
-        Check1(I).Enabled = B '(Modo = 1)
+        Check1(I).Enabled = b '(Modo = 1)
     Next I
     
     
     For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = B
+        Me.imgBuscar(I).Enabled = b
     Next I
     
     ' No hay icono para las observaciones de 60 de longitud maxima
@@ -2762,7 +2762,7 @@ On Error GoTo EPonerModo
     
     
     For I = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(I).Enabled = B
+        Me.imgFecha(I).Enabled = b
     Next I
     
     chkVistaPrevia.Enabled = (Modo <= 2)
@@ -2826,27 +2826,27 @@ Private Sub PonerOpcionesMenu()
 End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
-Dim B As Boolean
+Dim b As Boolean
 Dim I As Byte
 
-    B = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
+    b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
-    Toolbar1.Buttons(1).Enabled = B
+    Toolbar1.Buttons(1).Enabled = b
     
-    B = (Modo = 2 Or Modo = 5)
+    b = (Modo = 2 Or Modo = 5)
     'Modificar
-    Toolbar1.Buttons(2).Enabled = B
+    Toolbar1.Buttons(2).Enabled = b
     'eliminar
-    Toolbar1.Buttons(3).Enabled = B
+    Toolbar1.Buttons(3).Enabled = b
     'imprimir
-    Toolbar1.Buttons(8).Enabled = B
+    Toolbar1.Buttons(8).Enabled = b
     '------------------------------------------
     
-    B = (Modo >= 3)
+    b = (Modo >= 3)
     'Buscar
-    Toolbar1.Buttons(5).Enabled = Not B
+    Toolbar1.Buttons(5).Enabled = Not b
     'Ver Todos
-    Toolbar1.Buttons(6).Enabled = Not B
+    Toolbar1.Buttons(6).Enabled = Not b
 End Sub
 
 Private Sub LimpiarCampos()
@@ -3418,25 +3418,35 @@ End Function
 
 
 Private Sub printNou()
-    With frmImprimir2
-        .cadTabla2 = "shilla"
-        .Informe2 = "rGesHisLlam.rpt"
-        If cadB1 <> "" Then
-            .cadRegSelec = cadB1 'SQL2SF(cadB1)
-        Else
-            .cadRegSelec = ""
-        End If
-        .cadRegActua = POS2SF(Adodc1, Me)
-        .cadTodosReg = ""
-        '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
-        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"
-        .NumeroParametros2 = 1
-        .MostrarTree2 = False
-        .InfConta2 = False
-        .ConSubInforme2 = False
-        .SubInformeConta = ""
-        .Show vbModal
-    End With
+    
+Dim indRPT As Byte
+Dim cadParam As String
+Dim Cad As String
+Dim numParam As Byte
+Dim nomDocu As String
+
+    indRPT = 56 'Historico de llamadas
+    If PonerParamRPT(indRPT, cadParam, numParam, nomDocu, pImprimeDirecto, pPdfRpt) Then
+        With frmImprimir2
+            .cadTabla2 = "shilla"
+            .Informe2 = nomDocu '"rGesHisLlam.rpt"
+            If cadB1 <> "" Then
+                .cadRegSelec = cadB1 'SQL2SF(cadB1)
+            Else
+                .cadRegSelec = ""
+            End If
+            .cadRegActua = POS2SF(Adodc1, Me)
+            .cadTodosReg = ""
+            '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|pOrden={tarjbanc.nomtarje}|"
+            .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|"
+            .NumeroParametros2 = 1
+            .MostrarTree2 = False
+            .InfConta2 = False
+            .ConSubInforme2 = False
+            .SubInformeConta = ""
+            .Show vbModal
+        End With
+    End If
 End Sub
 
 
@@ -3505,7 +3515,7 @@ Private Sub MarcarValidados()
 Dim Sql As String
 Dim NRegs As Long
 Dim vMens As String
-Dim B As Boolean
+Dim b As Boolean
 Dim Rs As ADODB.Recordset
 Dim frmMens As frmMensajes
     On Error GoTo eMarcarValidados
@@ -3532,7 +3542,7 @@ Dim frmMens As frmMensajes
         frmMens.Show vbModal
         Set frmMens = Nothing
 
-        B = False
+        b = False
         
         If ContinuarValidar Then
             NRegs = Adodc1.Recordset.RecordCount
@@ -3540,7 +3550,7 @@ Dim frmMens As frmMensajes
             If MsgBox(vMens, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
                 conn.BeginTrans
                 
-                B = True
+                b = True
                 Adodc1.Recordset.MoveFirst
                 I = 1
                 Label1(38).visible = True
@@ -3582,7 +3592,7 @@ Dim frmMens As frmMensajes
 eMarcarValidados:
     MuestraError Err.Number, "Marcar Validados", Err.Description
     Label1(38).visible = False
-    If B Then conn.RollbackTrans
+    If b Then conn.RollbackTrans
 End Sub
 
 

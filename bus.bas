@@ -119,6 +119,8 @@ Dim T1 As Single
        frmIdentifica.Show vbModal
                
                
+               
+               
        If CadenaDesdeOtroForm = "" Then
             'NO se ha identificado
             Set conn = Nothing
@@ -173,6 +175,8 @@ Dim T1 As Single
 
 '        'Gestionar el nombre del PC para la asignacion de PC en el entorno de red
         GestionaPC
+        
+               
         
         'Otras acciones
         OtrasAcciones
@@ -279,6 +283,10 @@ Dim frmMens As frmMensajes
 '    End If
 
 
+    '[Monica]18/06/2018: solo en el caso de que sean radio y tele sale el mensaje. En el caso de cordoba no tienen facuras
+    If vParamAplic.Cooperativa <> 0 Then Exit Sub
+
+
     Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
     conn.Execute Sql
 
@@ -383,7 +391,7 @@ Dim frmMens As frmMensajes
     
     conn.Execute SQLinsert & Sql
 
-    
+
     
     Sql = "select codusu,nombre1,codigo1,nombre2,nombre3,fecha1,importe1 from tmpinformes where codusu = " & vUsu.Codigo '& " order by 6,5 "
     
@@ -502,6 +510,7 @@ If CadenaDesdeOtroForm <> "" Then
         conn.Execute FormatoFecha
     End If
 End If
+
 End Sub
 
 

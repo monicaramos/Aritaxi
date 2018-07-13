@@ -2,14 +2,92 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmLiqLiquidaSoc 
    Caption         =   "Informes"
-   ClientHeight    =   7410
+   ClientHeight    =   8940
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   6435
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7410
+   ScaleHeight     =   8940
    ScaleWidth      =   6435
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtcodigo 
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   7
+      Left            =   1395
+      MaxLength       =   6
+      TabIndex        =   5
+      Tag             =   "Num vehiculo|N|N|||shilla|numeruve|00000|S|"
+      Top             =   3585
+      Width           =   855
+   End
+   Begin VB.TextBox txtnombre 
+      BackColor       =   &H80000018&
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   7
+      Left            =   2295
+      Locked          =   -1  'True
+      TabIndex        =   35
+      Top             =   3585
+      Width           =   3765
+   End
+   Begin VB.TextBox txtcodigo 
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   6
+      Left            =   1395
+      MaxLength       =   6
+      TabIndex        =   4
+      Tag             =   "Cliente|N|N|||shilla|codclien|00000|S|"
+      Top             =   3180
+      Width           =   855
+   End
+   Begin VB.TextBox txtnombre 
+      BackColor       =   &H80000018&
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   6
+      Left            =   2295
+      Locked          =   -1  'True
+      TabIndex        =   34
+      Top             =   3180
+      Width           =   3765
+   End
    Begin VB.CheckBox chk_FactHco 
       Caption         =   "Facturación sobre Hco de llamadas"
       BeginProperty Font 
@@ -23,8 +101,8 @@ Begin VB.Form frmLiqLiquidaSoc
       EndProperty
       Height          =   375
       Left            =   270
-      TabIndex        =   31
-      Top             =   6000
+      TabIndex        =   33
+      Top             =   7305
       Width           =   4035
    End
    Begin VB.TextBox txtcodigo 
@@ -40,8 +118,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   360
       Index           =   5
       Left            =   1410
-      TabIndex        =   7
-      Top             =   4920
+      TabIndex        =   9
+      Top             =   6135
       Width           =   795
    End
    Begin VB.TextBox txtnombre 
@@ -59,8 +137,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   360
       Index           =   5
       Left            =   2280
-      TabIndex        =   28
-      Top             =   4920
+      TabIndex        =   30
+      Top             =   6135
       Width           =   3705
    End
    Begin VB.CheckBox Check1 
@@ -78,8 +156,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   0
       Left            =   270
-      TabIndex        =   27
-      Top             =   5760
+      TabIndex        =   29
+      Top             =   7065
       Visible         =   0   'False
       Width           =   2475
    End
@@ -98,22 +176,22 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   255
       Index           =   1
       Left            =   270
-      TabIndex        =   26
-      Top             =   5460
+      TabIndex        =   28
+      Top             =   6765
       Visible         =   0   'False
       Width           =   2805
    End
    Begin VB.Frame FrameProgress 
       Height          =   915
       Left            =   210
-      TabIndex        =   22
-      Top             =   6420
+      TabIndex        =   24
+      Top             =   7725
       Visible         =   0   'False
       Width           =   5835
       Begin MSComctlLib.ProgressBar Pb1 
          Height          =   255
          Left            =   120
-         TabIndex        =   23
+         TabIndex        =   25
          Top             =   600
          Width           =   5625
          _ExtentX        =   9922
@@ -126,7 +204,7 @@ Begin VB.Form frmLiqLiquidaSoc
          Height          =   195
          Index           =   0
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   27
          Top             =   135
          Width           =   4215
       End
@@ -135,7 +213,7 @@ Begin VB.Form frmLiqLiquidaSoc
          Height          =   195
          Index           =   1
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   26
          Top             =   350
          Width           =   4335
       End
@@ -153,8 +231,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   360
       Index           =   3
       Left            =   1410
-      TabIndex        =   4
-      Top             =   3150
+      TabIndex        =   6
+      Top             =   4365
       Width           =   1245
    End
    Begin VB.TextBox txtcodigo 
@@ -170,8 +248,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   360
       Index           =   2
       Left            =   1410
-      TabIndex        =   5
-      Top             =   3570
+      TabIndex        =   7
+      Top             =   4785
       Width           =   735
    End
    Begin VB.TextBox txtnombre 
@@ -189,8 +267,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   360
       Index           =   2
       Left            =   2190
-      TabIndex        =   19
-      Top             =   3570
+      TabIndex        =   21
+      Top             =   4785
       Width           =   3825
    End
    Begin VB.TextBox txtnombre 
@@ -208,7 +286,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Index           =   0
       Left            =   2310
       Locked          =   -1  'True
-      TabIndex        =   15
+      TabIndex        =   17
       Top             =   1275
       Width           =   3765
    End
@@ -247,7 +325,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Index           =   1
       Left            =   2310
       Locked          =   -1  'True
-      TabIndex        =   14
+      TabIndex        =   16
       Top             =   1680
       Width           =   3765
    End
@@ -322,8 +400,8 @@ Begin VB.Form frmLiqLiquidaSoc
       EndProperty
       Height          =   375
       Left            =   3630
-      TabIndex        =   8
-      Top             =   5460
+      TabIndex        =   10
+      Top             =   6765
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -339,8 +417,8 @@ Begin VB.Form frmLiqLiquidaSoc
       EndProperty
       Height          =   375
       Left            =   4860
-      TabIndex        =   9
-      Top             =   5460
+      TabIndex        =   11
+      Top             =   6765
       Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
@@ -356,9 +434,81 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   360
       Index           =   4
       Left            =   1410
-      TabIndex        =   6
-      Top             =   4230
+      TabIndex        =   8
+      Top             =   5445
       Width           =   4605
+   End
+   Begin VB.Label Label9 
+      AutoSize        =   -1  'True
+      Caption         =   "Hasta"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   6
+      Left            =   465
+      TabIndex        =   38
+      Top             =   3585
+      Width           =   570
+   End
+   Begin VB.Image imgBuscarOfer 
+      Height          =   240
+      Index           =   6
+      Left            =   1140
+      Top             =   3585
+      Width           =   240
+   End
+   Begin VB.Label Label9 
+      AutoSize        =   -1  'True
+      Caption         =   "Desde"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   5
+      Left            =   465
+      TabIndex        =   37
+      Top             =   3180
+      Width           =   600
+   End
+   Begin VB.Label Label9 
+      AutoSize        =   -1  'True
+      Caption         =   "Cliente"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   240
+      Index           =   1
+      Left            =   225
+      TabIndex        =   36
+      Top             =   2835
+      Width           =   765
+   End
+   Begin VB.Image imgBuscarOfer 
+      Height          =   240
+      Index           =   5
+      Left            =   1140
+      Top             =   3180
+      Width           =   240
    End
    Begin VB.Label Label9 
       Caption         =   "Cuenta Pago"
@@ -375,8 +525,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   255
       Index           =   0
       Left            =   240
-      TabIndex        =   29
-      Top             =   4650
+      TabIndex        =   31
+      Top             =   5865
       Width           =   1815
    End
    Begin VB.Image imgBuscarOfer 
@@ -385,7 +535,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Left            =   1140
       Tag             =   "-1"
       ToolTipText     =   "Buscar cuenta"
-      Top             =   4980
+      Top             =   6195
       Width           =   240
    End
    Begin VB.Label Label3 
@@ -402,8 +552,8 @@ Begin VB.Form frmLiqLiquidaSoc
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   240
-      TabIndex        =   21
-      Top             =   2850
+      TabIndex        =   23
+      Top             =   4065
       Width           =   1725
    End
    Begin VB.Label Label4 
@@ -421,8 +571,8 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   255
       Index           =   0
       Left            =   240
-      TabIndex        =   20
-      Top             =   3600
+      TabIndex        =   22
+      Top             =   4815
       Width           =   735
    End
    Begin VB.Image imgFecha 
@@ -430,7 +580,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Index           =   0
       Left            =   1140
       ToolTipText     =   "Buscar fecha"
-      Top             =   3150
+      Top             =   4365
       Width           =   240
    End
    Begin VB.Image imgBuscarOfer 
@@ -439,13 +589,13 @@ Begin VB.Form frmLiqLiquidaSoc
       Left            =   1140
       Tag             =   "-1"
       ToolTipText     =   "Buscar forma de pago"
-      Top             =   3600
+      Top             =   4815
       Width           =   240
    End
    Begin VB.Image imgBuscarOfer 
       Height          =   240
       Index           =   0
-      Left            =   1170
+      Left            =   1140
       Top             =   1275
       Width           =   240
    End
@@ -465,7 +615,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   2
       Left            =   240
-      TabIndex        =   18
+      TabIndex        =   20
       Top             =   930
       Width           =   750
    End
@@ -484,14 +634,14 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   3
       Left            =   480
-      TabIndex        =   17
+      TabIndex        =   19
       Top             =   1275
       Width           =   600
    End
    Begin VB.Image imgBuscarOfer 
       Height          =   240
       Index           =   1
-      Left            =   1170
+      Left            =   1140
       Top             =   1680
       Width           =   240
    End
@@ -510,7 +660,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   4
       Left            =   480
-      TabIndex        =   16
+      TabIndex        =   18
       Top             =   1680
       Width           =   570
    End
@@ -537,7 +687,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   7
       Left            =   240
-      TabIndex        =   13
+      TabIndex        =   15
       Top             =   2070
       Width           =   630
    End
@@ -556,7 +706,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   7
       Left            =   450
-      TabIndex        =   12
+      TabIndex        =   14
       Top             =   2460
       Width           =   600
    End
@@ -575,7 +725,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   240
       Index           =   8
       Left            =   3000
-      TabIndex        =   11
+      TabIndex        =   13
       Top             =   2490
       Width           =   570
    End
@@ -601,7 +751,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Height          =   345
       Index           =   0
       Left            =   240
-      TabIndex        =   10
+      TabIndex        =   12
       Top             =   300
       Width           =   5655
    End
@@ -619,8 +769,8 @@ Begin VB.Form frmLiqLiquidaSoc
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   240
-      TabIndex        =   30
-      Top             =   3960
+      TabIndex        =   32
+      Top             =   5175
       Width           =   1065
    End
    Begin VB.Image imgBuscarOfer 
@@ -629,7 +779,7 @@ Begin VB.Form frmLiqLiquidaSoc
       Left            =   1140
       Tag             =   "-1"
       ToolTipText     =   "Ver observaciones"
-      Top             =   4260
+      Top             =   5475
       Width           =   240
    End
 End
@@ -659,6 +809,8 @@ Private WithEvents frmF As frmCal 'Calendario de Fechas
 Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmMtoV As frmGesVSocio ' V socios
 Attribute frmMtoV.VB_VarHelpID = -1
+Private WithEvents frmCli As frmFacClientes ' clientes
+Attribute frmCli.VB_VarHelpID = -1
 Private WithEvents frmFP As frmFacFormasPago ' formas de pago
 Attribute frmFP.VB_VarHelpID = -1
 Private WithEvents frmMtoBancosPro As frmFacBancosPropios
@@ -720,20 +872,20 @@ Dim SqlUve As String
    
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
+    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".numeruve}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
     End If
     
     '[Monica]25/10/2012: seleccionamos que socios han de ser en efectivo
     SqlUve = ""
-    If CLng(ComprobarCero(txtcodigo(0).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve >= " & DBSet(txtcodigo(0).Text, "N")
-    If CLng(ComprobarCero(txtcodigo(1).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve <= " & DBSet(txtcodigo(1).Text, "N")
+    If CLng(ComprobarCero(txtCodigo(0).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve >= " & DBSet(txtCodigo(0).Text, "N")
+    If CLng(ComprobarCero(txtCodigo(1).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve <= " & DBSet(txtCodigo(1).Text, "N")
     
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
+    If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
         If Tabla = "shilla" Then
             Codigo = "{" & Tabla & ".fecha}"
         Else
@@ -747,6 +899,13 @@ Dim SqlUve As String
     If Tabla = "shilla" Then
         If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".liquidadosocio} = 0") Then Exit Sub
         If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".liquidadosocio} = 0") Then Exit Sub
+        
+        '[Monica]06/07/2018: para el caso de cordoba quieren poder seleccionar los servicios de un solo cliente
+        If txtCodigo(6).Text <> "" Or txtCodigo(7).Text <> "" Then
+            Codigo = "{" & Tabla & ".codclien}"
+            If Not PonerDesdeHasta(Codigo, "N", 6, 7, "pDHCliente=""") Then Exit Sub
+        End If
+        
     Else
         If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".facturado} = 0") Then Exit Sub
         If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".facturado} = 0") Then Exit Sub
@@ -824,7 +983,7 @@ Dim SqlUve As String
 
     ' proceso de liquidacion a socios
     If Tabla = "shilla" Then
-        If ProcesoLiquidacionSocioNew(cadSelect, txtcodigo(3).Text) Then
+        If ProcesoLiquidacionSocioNew(cadSelect, txtCodigo(3).Text) Then
             MsgBox "Proceso realizado correctamente.", vbExclamation
                            
             'IMPRESION DEL RESUMEN DE LA FACTURACION DE ANTICIPOS/LIQUIDACIONES
@@ -834,12 +993,12 @@ Dim SqlUve As String
                 cadTitulo = "Resumen de Facturas de Liquidación"
             
                 cadFormula = ""
-                cadParam = cadParam & "pFecFac= """ & txtcodigo(3).Text & """|"
+                cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
                 numParam = numParam + 1
                 cadParam = cadParam & "pTitulo= ""Resumen Liquidaciones Socio""|"
                 numParam = numParam + 1
                 
-                FecFac = CDate(txtcodigo(3).Text)
+                FecFac = CDate(txtCodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 If Not AnyadirAFormula(cadFormula, "{tmpinformes.codusu} = " & vUsu.Codigo) Then Exit Sub
@@ -861,19 +1020,19 @@ Dim SqlUve As String
                 If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 
                 'Nº Socio
-                If txtcodigo(0).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} >= " & txtcodigo(0).Text
+                If txtCodigo(0).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} >= " & txtCodigo(0).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
-                If txtcodigo(1).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} <= " & txtcodigo(1).Text
+                If txtCodigo(1).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} <= " & txtCodigo(1).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
                  
                 'Fecha de Factura
-                FecFac = CDate(txtcodigo(3).Text)
+                FecFac = CDate(txtCodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 cadAux = "{sfactusoc.fecfactu}='" & Format(FecFac, FormatoFecha) & "'"
@@ -913,7 +1072,7 @@ Dim SqlUve As String
             
         End If
     Else
-        If ProcesoLiquidacionSocio(cadSelect, txtcodigo(3).Text) Then
+        If ProcesoLiquidacionSocio(cadSelect, txtCodigo(3).Text) Then
             MsgBox "Proceso realizado correctamente.", vbExclamation
                            
             'IMPRESION DEL RESUMEN DE LA FACTURACION DE ANTICIPOS/LIQUIDACIONES
@@ -923,12 +1082,12 @@ Dim SqlUve As String
                 cadTitulo = "Resumen de Facturas de Liquidación"
             
                 cadFormula = ""
-                cadParam = cadParam & "pFecFac= """ & txtcodigo(3).Text & """|"
+                cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
                 numParam = numParam + 1
                 cadParam = cadParam & "pTitulo= ""Resumen Liquidaciones Socio""|"
                 numParam = numParam + 1
                 
-                FecFac = CDate(txtcodigo(3).Text)
+                FecFac = CDate(txtCodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 If Not AnyadirAFormula(cadFormula, "{tmpinformes.codusu} = " & vUsu.Codigo) Then Exit Sub
@@ -945,19 +1104,19 @@ Dim SqlUve As String
                 If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 
                 'Nº Socio
-                If txtcodigo(0).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} >= " & txtcodigo(0).Text
+                If txtCodigo(0).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} >= " & txtCodigo(0).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
-                If txtcodigo(1).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} <= " & txtcodigo(1).Text
+                If txtCodigo(1).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} <= " & txtCodigo(1).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
                  
                 'Fecha de Factura
-                FecFac = CDate(txtcodigo(3).Text)
+                FecFac = CDate(txtCodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 cadAux = "{sfactusoc.fecfactu}='" & Format(FecFac, FormatoFecha) & "'"
@@ -1029,7 +1188,7 @@ Private Sub Form_Activate()
     cadParam = ""
 
 
-    PonerFoco txtcodigo(0)
+    PonerFoco txtCodigo(0)
 
 End Sub
 
@@ -1072,31 +1231,31 @@ Dim encontrado As String
 Dim Codigo As String
 
     DatosOk = True
-    If txtcodigo(2).Text = "" Then
+    If txtCodigo(2).Text = "" Then
         MsgBox "Debe introducir obligatoriamente la forma de pago.", vbExclamation
         DatosOk = False
         Exit Function
     End If
-    If txtcodigo(3).Text = "" Then
+    If txtCodigo(3).Text = "" Then
         MsgBox "Debe introducir obligatoriamente la fecha de liquidación.", vbExclamation
         DatosOk = False
         Exit Function
     End If
     'concepto
-    If txtcodigo(4).Text = "" Then
+    If txtCodigo(4).Text = "" Then
         MsgBox "Es necesario introducir el concepto de la factura.", vbExclamation
-        PonerFoco txtcodigo(4)
+        PonerFoco txtCodigo(4)
         DatosOk = False
         Exit Function
     End If
     'banco
-    If txtcodigo(5).Text = "" Then
+    If txtCodigo(5).Text = "" Then
         MsgBox "Es necesario introducir la cuenta de banco.", vbExclamation
-        PonerFoco txtcodigo(5)
+        PonerFoco txtCodigo(5)
         DatosOk = False
         Exit Function
     Else
-        encontrado = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+        encontrado = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
         'comprobar que la cuenta prevista de cobro tiene valor
         If encontrado = "" Then
             MsgBox "La cta. prevista de cobro debe tener valor.", vbExclamation
@@ -1114,7 +1273,7 @@ Dim devuelve As String
 Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -1123,7 +1282,7 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
@@ -1138,13 +1297,18 @@ Dim Cad As String
 End Function
 
 
+Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
+End Sub
+
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(2).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtCodigo(2).Text = RecuperaValor(CadenaSeleccion, 1)
     txtnombre(2).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -1161,12 +1325,12 @@ End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
-    txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtCodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
@@ -1188,13 +1352,13 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             Set frmFP = Nothing
     
         Case 3 ' concepto
-            CadenaDesdeOtroForm = txtcodigo(4).Text
+            CadenaDesdeOtroForm = txtCodigo(4).Text
             frmFacClienteObser.Modificar = True
             frmFacClienteObser.Text1 = CadenaDesdeOtroForm
             frmFacClienteObser.Show vbModal
-            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtcodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
+            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtCodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
             CadenaDesdeOtroForm = ""
-            PonerFoco txtcodigo(4)
+            PonerFoco txtCodigo(4)
         
         
         Case 4 ' banco propio
@@ -1203,8 +1367,19 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             frmMtoBancosPro.Show vbModal
             Set frmMtoBancosPro = Nothing
     
+    
+        Case 5, 6 ' codigo de socio
+            indCodigo = Index - 1
+            
+            Set frmCli = New frmFacClientes
+            frmCli.DeConsulta = True
+            frmCli.DatosADevolverBusqueda = "0|1|2|"
+            frmCli.Show vbModal
+            Set frmCli = Nothing
+    
+    
     End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 
 End Sub
 
@@ -1220,23 +1395,23 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = 3
    End Select
    
-   PonerFormatoFecha txtcodigo(indCodigo)
-   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtcodigo(indCodigo)
+   PonerFoco txtCodigo(indCodigo)
 End Sub
 
 Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
-    If txtcodigo(indD).Text <> "" Then
-        Cad = Cad & "desde " & txtcodigo(indD).Text
+    If txtCodigo(indD).Text <> "" Then
+        Cad = Cad & "desde " & txtCodigo(indD).Text
         If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
     End If
-    If txtcodigo(indH).Text <> "" Then
-        Cad = Cad & "  hasta " & txtcodigo(indH).Text
+    If txtCodigo(indH).Text <> "" Then
+        Cad = Cad & "  hasta " & txtCodigo(indH).Text
         If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
     End If
     AnyadirParametroDH = Cad
@@ -1244,7 +1419,7 @@ On Error Resume Next
 End Function
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -1271,7 +1446,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1280,24 +1455,26 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 85, 86  'FECHA Desde Hasta
-            PonerFormatoFecha txtcodigo(Index)
+            PonerFormatoFecha txtCodigo(Index)
             
         Case 0, 1 'V Socio
-            PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' forma de pago
-            PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
             
         Case 3 ' fecha de liquidacion
-            PonerFormatoFecha txtcodigo(Index)
+            PonerFormatoFecha txtCodigo(Index)
             
         Case 5 ' banco propio
-            PonerFormatoEntero txtcodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
             
-        
+        Case 6, 7 'codigo de cliente
+            PonerFormatoEntero txtCodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
         
     End Select
 End Sub
@@ -1468,10 +1645,10 @@ Dim BancoContado As String
                             vFacSoc.ForPago = CInt(FPagContado)
                         End If
                     Else
-                        vFacSoc.ForPago = txtcodigo(2).Text
+                        vFacSoc.ForPago = txtCodigo(2).Text
                     End If
                 Else
-                    vFacSoc.ForPago = txtcodigo(2).Text
+                    vFacSoc.ForPago = txtCodigo(2).Text
                 End If
                 
                 vFacSoc.NumFactu = NumFactu
@@ -1494,11 +1671,11 @@ Dim BancoContado As String
                             vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", BancoContado, "N")
                         End If
                     Else
-                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
                     End If
                 
                 Else
-                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
                 End If
                 
                 If b Then b = InsertarRetencion(RSalb!NumerUve, vFacSoc)
@@ -1560,7 +1737,7 @@ Dim FPagContado As String
     Sql = "insert into sfactusoc (codtipom,codsocio,numfactu,fecfactu,concepto,importel,baseiva1,impoiva1, "
     Sql = Sql & "codiiva1,porciva1,basereten,porcreten,totalfac,impreten,intconta,codforpa,numeruve, numserv, suplidos) values ("
     Sql = Sql & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
-    Sql = Sql & DBSet(txtcodigo(4).Text, "T") & "," & DBSet(TotalFac, "N") & "," & DBSet(BaseImpo, "N") & "," & DBSet(ImpoIva, "N") & ","
+    Sql = Sql & DBSet(txtCodigo(4).Text, "T") & "," & DBSet(TotalFac, "N") & "," & DBSet(BaseImpo, "N") & "," & DBSet(ImpoIva, "N") & ","
     Sql = Sql & vParamAplic.IVA_REA & "," & DBSet(PorceIVA, "N") & "," & DBSet(BaseReten, "N") & "," & DBSet(vParamAplic.PorReten, "N") & ","
     
     '[Monica]19/02/2018: Entra Cordoba
@@ -1570,10 +1747,10 @@ Dim FPagContado As String
             If FPagContado = "" Then FPagContado = "0"
             Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(FPagContado, "N") & "," & DBSet(Uve, "N") & ","
         Else
-            Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtcodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
+            Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtCodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
         End If
     Else
-        Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtcodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
+        Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtCodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
     End If
     Sql = Sql & DBSet(Serv, "N")
     
@@ -1708,7 +1885,7 @@ Dim Cad As String
     Cad = ""
     While Not rs1.EOF
         Cad = Cad & "(" & DBSet(rs1.Fields(0).Value, "T") & "," & DBLet(rs1.Fields(2).Value, "N") & ","
-        Cad = Cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "),"
+        Cad = Cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtCodigo(3).Text, "F") & "),"
     
         rs1.MoveNext
     Wend
@@ -1937,7 +2114,7 @@ Dim I As Byte
                         End If
                   End If
                   
-                  CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+                  CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
                   
                   
                   CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CuentaPrev, "T") & ","
@@ -2269,12 +2446,10 @@ Dim BancoContado As String
             Exit Function
         End If
     End If
-'[Monica]10/09/2014: partimos en ambos casos de la shilla
-'    If vParamAplic.Cooperativa = 0 Then
-'        SQL = "select numeruve, sum(if(importe is null,0,importe)) from sfactsoctr where " & cadwhere & " group by numeruve having sum(if(importe is null,0,importe)) <> 0 "
-'    Else
-        Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) + sum(if(imppeaje is null,0,imppeaje)) importe from shilla where " & cadWHERE & " group by numeruve having importe <> 0 "
-'    End If
+        
+    Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) + sum(if(imppeaje is null,0,imppeaje)) importe from shilla where " & cadWHERE & " group by numeruve having importe <> 0 "
+    
+    
     nTotal = TotalRegistrosConsulta(Sql)
     PB1.Max = nTotal
     
@@ -2332,9 +2507,7 @@ Dim BancoContado As String
             '[Monica]14/11/2017: aparecen los suplidos
             Suplidos = DBLet(RSalb.Fields(3).Value, "N")
             
-            
             TotalLiq = TotalFac - ImpoReten + Suplidos
-            
             
 '            txtcodigo(4).Text = RSalb!Concepto
             
@@ -2349,7 +2522,6 @@ Dim BancoContado As String
             MensError = ""
             If b Then
                 Set vFacSoc = New CFacturaSoc
-                
                 '[Monica]05/01/2018: numero de vehiculo
                 vFacSoc.NumerUve = RSalb!NumerUve
                 
@@ -2370,10 +2542,10 @@ Dim BancoContado As String
                             vFacSoc.ForPago = CInt(FPagContado)
                         End If
                     Else
-                        vFacSoc.ForPago = txtcodigo(2).Text
+                        vFacSoc.ForPago = txtCodigo(2).Text
                     End If
                 Else
-                    vFacSoc.ForPago = txtcodigo(2).Text
+                    vFacSoc.ForPago = txtCodigo(2).Text
                 End If
                 
                 vFacSoc.NumFactu = NumFactu
@@ -2407,11 +2579,10 @@ Dim BancoContado As String
                             vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", BancoContado, "N")
                         End If
                     Else
-                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
                     End If
-                
                 Else
-                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
+                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
                 End If
                 
                 If b Then b = InsertarRetencion(RSalb!NumerUve, vFacSoc)
@@ -2434,7 +2605,6 @@ Dim BancoContado As String
             If b Then b = InsertResumen(tipoMov, CStr(NumFactu), vSocio.Codigo, FecFac)
             
             If b Then b = vSocio.IncrementarContador(tipoMov)
-            
         Else
             b = False
             MsgBox "No existe el código de socio para la Uve " & RSalb!NumerUve, vbExclamation

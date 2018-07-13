@@ -537,6 +537,10 @@ Dim CADENA As String
         CADENA = String(vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior, "0")
         CtaSocio = vParamAplic.Raiz_Cta_Soc_publi & Format(mCodSocio, CADENA)
         
+        '[Monica]27/06/2018: falta el tipo de movimiento
+        Dim vLetra As String
+        vLetra = DevuelveDesdeBDNew(conAri, "stipom", "letraser", "codtipom", vTipom, "T")
+        mTipoMov = vTipom
         
         'si venimos de proceso de insertar tenemos la cuenta prevista de pago que
         'se introdujo en el formulario de pasar albaranes a factura
@@ -547,7 +551,7 @@ Dim CADENA As String
             If vParamAplic.ContabilidadNueva Then
                 Sql = DevuelveDesdeBDNew(conConta, "pagos", "ctabanc1", "codmacta", CtaSocio, "T", , "numfactu", vNumfactu, "N", "fecfactu", vFecfactu, "F")
             Else
-                Sql = DevuelveDesdeBDNew(conConta, "spagop", "ctabanc1", "ctaprove", CtaSocio, "T", , "numfactu", vNumfactu, "N", "fecfactu", vFecfactu, "F")
+                Sql = DevuelveDesdeBDNew(conConta, "spagop", "ctabanc1", "ctaprove", CtaSocio, "T", , "numfactu", vLetra & vNumfactu, "N", "fecfactu", vFecfactu, "F")
             End If
             If Sql <> "" Then
                 CuentaPrev = Sql

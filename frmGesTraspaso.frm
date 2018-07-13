@@ -609,8 +609,9 @@ Dim cadTabla As String
 '                        ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
 '                        If Trim(vParam.CifEmpresa) = "B98877806" Then
                         
-                            encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
-                            
+'[Monica]18/06/2018: obtenemos el codigo de socio pero comparando la fecha de servicio con la de alta y baja de socio
+'                            encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                            encontrado = EncontradoSocio(DBLet(Rs!NumerUve, "N"), Rs!Fecha)
                             
                             '[Monica]28/02/2018: para el caso de cordoba si no lo encuentra lo marco como error
                             'B = Updatear(Rs!NumerUve, encontrado, False)
@@ -664,7 +665,10 @@ Dim cadTabla As String
                         Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
                         Label1(0).Refresh
                         
-                        encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+'[Monica]18/06/2018: obtenemos el codigo de socio pero comparando la fecha de servicio con la de alta y baja de socio
+'                       encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                        encontrado = EncontradoSocio(DBLet(Rs!NumerUve, "N"), Rs!Fecha)
+                        
                         '[Monica]28/02/2018
                         'B = Updatear(Rs!NumerUve, encontrado, False)
                         b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2)
@@ -769,36 +773,38 @@ Dim cadTabla As String
                     Wend
                     Rs.Close
         
-                    '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto y que no sea cordoba
-                    If Trim(vParam.CifEmpresa) <> "B98877806" And Check1(0).Value = 1 And vParamAplic.Cooperativa <> 2 Then
-                        Dim NUve As Long
-                    
-                        Sql = "select codsocio from tmptaxi where error1 = 0 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
-                        
-                        Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
-                        
-                        total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
-                        Label1(2).Caption = "Modificando Vehículo en registros del fichero."
-                        Label1(2).Refresh
-                        
-                        While Not Rs.EOF
-                            Contador = Contador + 1
-                           ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
-                            DoEvents
-                            Label1(0).Caption = Contador
-                            Label1(0).Refresh
-                        
-                            Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
-                            NUve = DevuelveValor(Sql)
-                        
-                            Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 0 "
-                            conn.Execute Sql
-                            
-                            Rs.MoveNext
-                        Wend
-                        Rs.Close
-                    
-                    End If
+        
+'[Monica]18/06/2018: quito esto ya van todos por licencia
+'                    '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto y que no sea cordoba
+'                    If Trim(vParam.CifEmpresa) <> "B98877806" And Check1(0).Value = 1 And vParamAplic.Cooperativa <> 2 Then
+'                        Dim nUve As Long
+'
+'                        Sql = "select codsocio from tmptaxi where error1 = 0 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
+'
+'                        Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+'
+'                        total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+'                        Label1(2).Caption = "Modificando Vehículo en registros del fichero."
+'                        Label1(2).Refresh
+'
+'                        While Not Rs.EOF
+'                            Contador = Contador + 1
+'                           ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
+'                            DoEvents
+'                            Label1(0).Caption = Contador
+'                            Label1(0).Refresh
+'
+'                            Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
+'                            nUve = DevuelveValor(Sql)
+'
+'                            Sql = "UPDATE tmptaxi set numeruve = " & DBSet(nUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 0 "
+'                            conn.Execute Sql
+'
+'                            Rs.MoveNext
+'                        Wend
+'                        Rs.Close
+'
+'                    End If
                     
         
                     'ahora vamos a buscar en la tabla shilla
@@ -861,6 +867,30 @@ Dim cadTabla As String
             cmdCancel.Caption = "&Cancelar"
      End If
 End Sub
+
+Private Function EncontradoSocio(nUve As Long, FechaServ As String) As String
+Dim Sql As String
+Dim Rs As ADODB.Recordset
+
+    On Error GoTo eEncontradoSocio
+    
+    EncontradoSocio = ""
+
+    Sql = "select codclien from sclien where numeruve = " & DBSet(nUve, "N") & " and fechaalt <= " & DBSet(FechaServ, "F")
+    Sql = Sql & " and (fechabaj is null or fechabaj >=" & DBSet(FechaServ, "F") & ")"
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Not Rs.EOF Then
+        EncontradoSocio = DBLet(Rs!CodClien, "N")
+    End If
+    Set Rs = Nothing
+    Exit Function
+    
+eEncontradoSocio:
+    MuestraError Err.Number, "Encontrado Socio", Err.Description
+End Function
+
 
 Private Function Updatear(Vehiculo, encontrado As String, LicenciaSinV As Boolean) As Boolean
 Dim Sql As String
@@ -928,6 +958,10 @@ Dim total As Currency
 Dim SqlUpdate As String
 Dim cWhere As String
 
+Dim ImporteCompra As Currency
+Dim Suplemento As Currency
+Dim DtoCli As String
+
     On Error GoTo EActua
     
     Screen.MousePointer = vbHourglass
@@ -983,8 +1017,10 @@ Dim cWhere As String
 '            If EsdeCredito(cWhere) Then
 '                linea = " fecha = " & DBSet(Rs!Fecha, "F")
 '                linea = linea & ",hora = " & DBSet(Rs!hora, "H")
-                linea = "codsocio = " & DBSet(Rs!codSocio, "N")
-                linea = linea & ",numeruve = " & DBSet(Rs!NumerUve, "N")
+
+'[Monica]18/06/2018: no modificamos el codigo de socio si es una actualizacion (update pq el registro ya estaba en la shilla)
+'                linea = "codsocio = " & DBSet(Rs!codSocio, "N") & ","
+                linea = "numeruve = " & DBSet(Rs!NumerUve, "N")
                 linea = linea & ",codclien = " & DBSet(Rs!CodClien, "N")
                 linea = linea & ",codusuar = " & DBSet(Rs!codusuar, "T")
                 linea = linea & ",nomclien = " & DBSet(Rs!nomclien, "T")
@@ -1028,12 +1064,22 @@ Dim cWhere As String
                 linea = linea & ",fecfinal = " & DBSet(Rs!fecfinal, "F")
                 linea = linea & ",horfinal = " & DBSet(Rs!horfinal, "H")
                 linea = linea & ",importtx = " & DBSet(Rs!importtx, "N")
-                linea = linea & ",impcompr = " & DBSet(Rs!impcompr, "N")
+                
+                '[Monica]28/05/2018: para el caso de que el cliente tenga descuento se le descuenta al socio
+'                linea = linea & ",impcompr = " & DBSet(Rs!impcompr, "N")
+                DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
+                ImporteCompra = Round2(DBLet(Rs!impcompr, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
+                linea = linea & ",impcompr = " & DBSet(ImporteCompra, "N")
+                
                 linea = linea & ",extcompr = " & DBSet(Rs!extcompr, "N")
                 linea = linea & ",impventa = " & DBSet(Rs!impventa, "N")
                 linea = linea & ",extventa = " & DBSet(Rs!extventa, "N")
                 linea = linea & ",distanci = " & DBSet(Rs!distanci, "N")
-                linea = linea & ",suplemen = " & DBSet(Rs!suplemen, "N")
+                
+                '[Monica]06/07/2018: el descuento en cordoba tambien se aplica en el suplemento
+                Suplemento = Round2(DBLet(Rs!suplemen, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
+                linea = linea & ",suplemen = " & DBSet(Suplemento, "N")
+                
                 linea = linea & ",imppeaje = " & DBSet(Rs!imppeaje, "N")
                 linea = linea & ",imppropi = " & DBSet(Rs!imppropi, "N")
                 linea = linea & ",facturad = " & DBSet(Rs!facturad, "N")
@@ -1257,11 +1303,22 @@ Dim cWhere As String
             Else
                 linea = linea & DBSet(Rs!importtx, "N") & ","
             End If
+            
+            
+            
+            
             If IsNull(Rs!impcompr) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(Rs!impcompr, "N") & ","
+                '[Monica]28/05/2018: para el caso de que el cliente tenga descuento se le descuenta al socio
+'                linea = linea & DBSet(Rs!impcompr, "N") & ","
+                DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
+                ImporteCompra = Round2(DBLet(Rs!impcompr, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
+                linea = linea & DBSet(ImporteCompra, "N") & ","
             End If
+            
+            
+            
             If IsNull(Rs!extcompr) Then
                 linea = linea & "NULL,"
             Else
@@ -1285,7 +1342,12 @@ Dim cWhere As String
             If IsNull(Rs!suplemen) Then
                 linea = linea & "NULL,"
             Else
-                linea = linea & DBSet(Rs!suplemen, "N") & ","
+                '[Monica]06/07/2018: para el caso de que el cliente tenga descuento se le descuenta al socio
+'                linea = linea & DBSet(Rs!suplemen, "N") & ","
+                DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
+                Suplemento = Round2(DBLet(Rs!suplemen, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
+                linea = linea & DBSet(Suplemento, "N") & ","
+
             End If
             If IsNull(Rs!imppeaje) Then
                 linea = linea & "NULL,"

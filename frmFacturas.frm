@@ -317,7 +317,12 @@ Dim encontrado As String
 '                ' me viene la licencia (caso de Radio Taxi en la V llevo la licencia)
 '                If Trim(vParam.CifEmpresa) = "B98877806" Then
                 
-                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                    
+'[Monica]18/06/2018: obtenemos el codigo de socio pero comparando la fecha de servicio con la de alta y baja de socio
+'                   encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                    encontrado = EncontradoSocio(DBLet(Rs!NumerUve, "N"), Rs!Fecha)
+                    
+                    
                     '[Monica]28/02/2018: para el caso de cordoba se marca como erroneo si no existe
                     b = Updatear(Rs!NumerUve, encontrado, (vParamAplic.Cooperativa = 2)) 'antes false
                 
@@ -359,7 +364,12 @@ Dim encontrado As String
                 Label1(0).Caption = Round2(ProgressBar1.Value, 0) & " %"
                 Label1(0).Refresh
                 
-                encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                
+'[Monica]18/06/2018: obtenemos el codigo de socio pero comparando la fecha de servicio con la de alta y baja de socio
+'               encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "numeruve", Rs!NumerUve, "T")
+                encontrado = EncontradoSocio(DBLet(Rs!NumerUve, "N"), Rs!Fecha)
+                
+                
                 '[Monica]28/02/2018: antes false
                 'B = Updatear(Rs!NumerUve, encontrado, False)
                 b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2)
@@ -467,36 +477,37 @@ Dim encontrado As String
              Wend
              Rs.Close
  
-             '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto
-            If Trim(vParam.CifEmpresa) <> "B98877806" And deExcel And vParamAplic.Cooperativa <> 2 Then
-                Dim NUve As Long
-            
-                Sql = "select codsocio from tmptaxi where error1 = 3 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
-                
-                Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
-                
-                total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
-                Label1(2).Caption = "Modificando Vehículo en registros del fichero."
-                Label1(2).Refresh
-                
-                While Not Rs.EOF
-                    Contador = Contador + 1
-                   ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
-                    DoEvents
-                    Label1(0).Caption = Contador
-                    Label1(0).Refresh
-                
-                    Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
-                    NUve = DevuelveValor(Sql)
-                
-                    Sql = "UPDATE tmptaxi set numeruve = " & DBSet(NUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 3 "
-                    conn.Execute Sql
-                    
-                    Rs.MoveNext
-                Wend
-                
-                Rs.Close
-            End If
+'[Monica]18/06/2018: he quitado este trozo
+'             '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto
+'            If Trim(vParam.CifEmpresa) <> "B98877806" And deExcel And vParamAplic.Cooperativa <> 2 Then
+'                Dim nUve As Long
+'
+'                Sql = "select codsocio from tmptaxi where error1 = 3 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
+'
+'                Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+'
+'                total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
+'                Label1(2).Caption = "Modificando Vehículo en registros del fichero."
+'                Label1(2).Refresh
+'
+'                While Not Rs.EOF
+'                    Contador = Contador + 1
+'                   ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
+'                    DoEvents
+'                    Label1(0).Caption = Contador
+'                    Label1(0).Refresh
+'
+'                    Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
+'                    nUve = DevuelveValor(Sql)
+'
+'                    Sql = "UPDATE tmptaxi set numeruve = " & DBSet(nUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 3 "
+'                    conn.Execute Sql
+'
+'                    Rs.MoveNext
+'                Wend
+'
+'                Rs.Close
+'            End If
 
 
  
@@ -554,6 +565,31 @@ Dim encontrado As String
      CargaGrid DataGrid1, Adodc1
 
 End Sub
+
+Private Function EncontradoSocio(nUve As Long, FechaServ As String) As String
+Dim Sql As String
+Dim Rs As ADODB.Recordset
+
+    On Error GoTo eEncontradoSocio
+    
+    EncontradoSocio = ""
+
+    Sql = "select codclien from sclien where numeruve = " & DBSet(nUve, "N") & " and fechaalt <= " & DBSet(FechaServ, "F")
+    Sql = Sql & " and (fechabaj is null or fechabaj >=" & DBSet(FechaServ, "F") & ")"
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Not Rs.EOF Then
+        EncontradoSocio = DBLet(Rs!CodClien, "N")
+    End If
+    Set Rs = Nothing
+    Exit Function
+    
+eEncontradoSocio:
+    MuestraError Err.Number, "Encontrado Socio", Err.Description
+End Function
+
+
 Private Function rsContador(CADENA As String) As Currency
     
     rsContador = 0

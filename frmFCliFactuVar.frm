@@ -1,14 +1,33 @@
 VERSION 5.00
 Begin VB.Form frmFCliFactuVar 
    Caption         =   "Informes"
-   ClientHeight    =   6120
+   ClientHeight    =   6390
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   6555
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6120
+   ScaleHeight     =   6390
    ScaleWidth      =   6555
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtcodigo 
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   6
+      Left            =   5235
+      MaxLength       =   14
+      TabIndex        =   5
+      Top             =   3510
+      Width           =   1140
+   End
    Begin VB.TextBox txtnombre 
       BackColor       =   &H80000018&
       BeginProperty Font 
@@ -24,7 +43,7 @@ Begin VB.Form frmFCliFactuVar
       Index           =   3
       Left            =   2490
       Locked          =   -1  'True
-      TabIndex        =   20
+      TabIndex        =   21
       Top             =   2220
       Width           =   3825
    End
@@ -102,7 +121,7 @@ Begin VB.Form frmFCliFactuVar
       Index           =   1
       Left            =   3060
       Locked          =   -1  'True
-      TabIndex        =   17
+      TabIndex        =   18
       Top             =   2865
       Width           =   3255
    End
@@ -141,7 +160,7 @@ Begin VB.Form frmFCliFactuVar
       Index           =   0
       Left            =   2520
       Locked          =   -1  'True
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   1020
       Width           =   3795
    End
@@ -160,7 +179,7 @@ Begin VB.Form frmFCliFactuVar
       Height          =   360
       Index           =   5
       Left            =   2400
-      TabIndex        =   15
+      TabIndex        =   16
       Top             =   5040
       Width           =   3915
    End
@@ -178,7 +197,7 @@ Begin VB.Form frmFCliFactuVar
       Index           =   5
       Left            =   1620
       MaxLength       =   4
-      TabIndex        =   6
+      TabIndex        =   7
       Tag             =   "Código de Banco Propio|N|N|0|9999|sbanpr|codbanpr|0000|S|"
       Top             =   5040
       Width           =   765
@@ -197,8 +216,8 @@ Begin VB.Form frmFCliFactuVar
       EndProperty
       Height          =   375
       Left            =   5160
-      TabIndex        =   8
-      Top             =   5520
+      TabIndex        =   9
+      Top             =   5700
       Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
@@ -214,8 +233,8 @@ Begin VB.Form frmFCliFactuVar
       EndProperty
       Height          =   375
       Left            =   3900
-      TabIndex        =   7
-      Top             =   5520
+      TabIndex        =   8
+      Top             =   5700
       Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
@@ -232,7 +251,7 @@ Begin VB.Form frmFCliFactuVar
       Index           =   4
       Left            =   1620
       MaxLength       =   255
-      TabIndex        =   5
+      TabIndex        =   6
       Top             =   4230
       Width           =   4695
    End
@@ -268,10 +287,30 @@ Begin VB.Form frmFCliFactuVar
       EndProperty
       Height          =   375
       Left            =   5250
-      TabIndex        =   13
-      Top             =   5520
+      TabIndex        =   14
+      Top             =   5700
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1065
+   End
+   Begin VB.Label Label17 
+      AutoSize        =   -1  'True
+      Caption         =   "% Retención"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   240
+      Index           =   0
+      Left            =   3735
+      TabIndex        =   23
+      Top             =   3555
+      Width           =   1395
    End
    Begin VB.Image imgBuscar 
       Height          =   240
@@ -294,7 +333,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   210
-      TabIndex        =   21
+      TabIndex        =   22
       Top             =   2880
       Width           =   1035
    End
@@ -312,7 +351,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   180
-      TabIndex        =   19
+      TabIndex        =   20
       Top             =   1980
       Width           =   1335
    End
@@ -332,7 +371,7 @@ Begin VB.Form frmFCliFactuVar
       Height          =   240
       Index           =   7
       Left            =   210
-      TabIndex        =   18
+      TabIndex        =   19
       Top             =   3510
       Width           =   1695
    End
@@ -373,7 +412,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   375
       Left            =   210
-      TabIndex        =   14
+      TabIndex        =   15
       Top             =   4650
       Width           =   1665
    End
@@ -408,7 +447,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   210
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   3930
       Width           =   1905
    End
@@ -426,7 +465,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   210
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   1380
       Width           =   1995
    End
@@ -444,7 +483,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   210
-      TabIndex        =   10
+      TabIndex        =   11
       Top             =   1020
       Width           =   1065
    End
@@ -462,7 +501,7 @@ Begin VB.Form frmFCliFactuVar
       ForeColor       =   &H00800000&
       Height          =   375
       Left            =   240
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   240
       Width           =   5325
    End
@@ -565,45 +604,45 @@ Dim Sql As String
 
     DatosOk = False
     'fecha factu
-    If txtCodigo(2).Text = "" Then
+    If txtcodigo(2).Text = "" Then
         MsgBox "Es necesario introducir fecha de factura.", vbExclamation
-        PonerFoco txtCodigo(2)
+        PonerFoco txtcodigo(2)
         Exit Function
     End If
     'concepto
-    If txtCodigo(4).Text = "" Then
+    If txtcodigo(4).Text = "" Then
         MsgBox "Es necesario introducir el concepto de la factura.", vbExclamation
-        PonerFoco txtCodigo(4)
+        PonerFoco txtcodigo(4)
         Exit Function
     End If
     
     'banco
-    If txtCodigo(5).Text = "" Then
+    If txtcodigo(5).Text = "" Then
         MsgBox "Es necesario introducir el banco de cobro.", vbExclamation
-        PonerFoco txtCodigo(5)
+        PonerFoco txtcodigo(5)
         Exit Function
     Else
-        Sql = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+        Sql = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
         If Sql = "" Then
             MsgBox "La Cta.Contable prevista de cobro del banco debe tener valor.", vbExclamation
             Exit Function
         End If
     End If
-    If txtCodigo(1).Text = "" Then
+    If txtcodigo(1).Text = "" Then
         MsgBox "Es necesario introducir el artículo a facturar.", vbExclamation
-        PonerFoco txtCodigo(1)
+        PonerFoco txtcodigo(1)
         Exit Function
     Else
-        txtnombre(1).Text = PonerNombreDeCod(txtCodigo(1), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
+        txtnombre(1).Text = PonerNombreDeCod(txtcodigo(1), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
         If txtnombre(1).Text = "" Then
             MsgBox "El artículo debe de existir. Revise.", vbExclamation
-            PonerFoco txtCodigo(1)
+            PonerFoco txtcodigo(1)
             Exit Function
         End If
     End If
-    If ComprobarCero(txtCodigo(85).Text) = 0 Then
+    If ComprobarCero(txtcodigo(85).Text) = 0 Then
         MsgBox "El importe de factura debe ser distinto de 0. Revise.", vbExclamation
-        PonerFoco txtCodigo(85)
+        PonerFoco txtcodigo(85)
         Exit Function
     End If
     DatosOk = True
@@ -674,7 +713,7 @@ Dim DtoGnral As Currency
     conn.BeginTrans
     ConnConta.BeginTrans
 
-    FecFactu = txtCodigo(2).Text
+    FecFactu = txtcodigo(2).Text
     
     cTabla = QuitarCaracterACadena(cTabla, "{")
     cTabla = QuitarCaracterACadena(cTabla, "}")
@@ -709,7 +748,7 @@ Dim DtoGnral As Currency
     Set cli = New CCliente
     Set fac = New CFactura
     
-    If cli.LeerDatos(txtCodigo(0).Text, False) Then
+    If cli.LeerDatos(txtcodigo(0).Text, False) Then
         
         Set vTipoMov = New CTiposMov
         If vTipoMov.Leer(TipoMovimiento) Then
@@ -731,12 +770,12 @@ Dim DtoGnral As Currency
         End If
     
         ' calculo de base iva de GASTOS ADMON
-        iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", txtCodigo(1).Text, "T")
+        iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", txtcodigo(1).Text, "T")
         vDevuelve = DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(iva), "T")
         porIvaGtos = 0
         If vDevuelve <> "" Then porIvaGtos = CCur(vDevuelve)
         
-        BaseivaGtos = ImporteSinFormato(txtCodigo(85).Text)
+        BaseivaGtos = ImporteSinFormato(txtcodigo(85).Text)
         ImpivaGtos = Round2(BaseivaGtos * porIvaGtos / 100, 2)
         
         ' Asignamos los importes a la factura
@@ -750,7 +789,16 @@ Dim DtoGnral As Currency
         fac.DtoGnral = cli.DtoGnral
         fac.BrutoFac = fac.BaseImp
         fac.Suplidos = 0
-        fac.TotalFac = BaseivaGtos + ImpivaGtos
+        
+        '[Monica]28/06/2018: porcentaje de retencion
+        fac.PorRet = ComprobarCero(txtcodigo(6).Text)
+        If fac.PorRet <> 0 Then
+            fac.ImpReten = Round2(fac.BrutoFac * fac.PorRet / 100, 2)
+        Else
+            fac.ImpReten = 0
+        End If
+        
+        fac.TotalFac = BaseivaGtos + ImpivaGtos - fac.ImpReten
         
         fac.codtipom = TipoMovimiento
         
@@ -761,7 +809,7 @@ Dim DtoGnral As Currency
         FacturasaImprimir = FacturasaImprimir & NumFactu & ","
         
         'Cuenta Prevista de Cobro de las Facturas
-        fac.BancoPr = txtCodigo(5).Text
+        fac.BancoPr = txtcodigo(5).Text
         fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
     
         fac.Cliente = cli.Codigo
@@ -772,7 +820,7 @@ Dim DtoGnral As Currency
         fac.Provincia = cli.Provincia
         fac.NIF = cli.NIF
         '[Monica]10/10/2012: la forma de pago la cogemos del frame
-        fac.ForPago = txtCodigo(3).Text 'cli.ForPago
+        fac.ForPago = txtcodigo(3).Text 'cli.ForPago
     
         '[Monica]22/11/2013: iban
         fac.Iban = cli.Iban
@@ -781,22 +829,29 @@ Dim DtoGnral As Currency
         fac.DigControl = cli.DigControl
         fac.CuentaBan = cli.CuentaBan
         
+        
+        
         Mens = "Insertando en cabecera factura"
         'scafaccli
         Sql = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
         Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-        Sql = Sql & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban ) VALUES ("
+        Sql = Sql & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban,"
+        
+        '[Monica]28/06/2018: insertamos el porcentaje de retencion y el importe de retencion
+        Sql = Sql & "porcret, impreten) VALUES ("
+        
         Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & DBSet(fac.Cliente, "N") & ","
         Sql = Sql & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
         Sql = Sql & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
         'cli.ForPago
-        Sql = Sql & "," & DBSet(txtCodigo(3).Text, "N") & ",0," & DBSet(fac.DtoGnral, "N") & "," & DBSet(fac.BrutoFac, "N") & ",0," & DBSet(fac.ImpGnral, "N") & ","
+        Sql = Sql & "," & DBSet(txtcodigo(3).Text, "N") & ",0," & DBSet(fac.DtoGnral, "N") & "," & DBSet(fac.BrutoFac, "N") & ",0," & DBSet(fac.ImpGnral, "N") & ","
         Sql = Sql & DBSet(fac.BaseIVA1, "N") & "," & DBSet(fac.TipoIVA1, "N")
         Sql = Sql & "," & DBSet(fac.PorceIVA1, "N") & "," & DBSet(fac.ImpIVA1, "N") & ","
         Sql = Sql & DBSet(fac.BaseIVA2, "N", "S") & "," & DBSet(fac.TipoIVA2, "N", "S") & "," & DBSet(fac.PorceIVA2, "N", "S") & ","
         Sql = Sql & DBSet(fac.ImpIVA2, "N", "S") & "," & DBSet(fac.TotalFac, "N") & ",0,NULL,"
         Sql = Sql & DBSet(fac.Banco, "N") & "," & DBSet(fac.Sucursal, "N") & "," & DBSet(fac.DigControl, "T") & "," & DBSet(fac.CuentaBan, "T") & ","
-        Sql = Sql & DBSet(1, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T") & ")"
+        Sql = Sql & DBSet(1, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T") & ","
+        Sql = Sql & DBSet(fac.PorRet, "N", "S") & "," & DBSet(fac.ImpReten, "N", "S") & ")"
     
     
         conn.Execute Sql
@@ -821,14 +876,14 @@ Dim DtoGnral As Currency
         
         Mens = "Insertando linea de articulo"
         
-        NomArtic = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", txtCodigo(1).Text, "T")
+        NomArtic = DevuelveDesdeBD(conAri, "nomartic", "sartic", "codartic", txtcodigo(1).Text, "T")
         
         Sql = "INSERT INTO slifacCli (codtipom,numfactu,fecfactu,codtipoa,numalbar,numlinea,codalmac,codartic,nomartic,"
         Sql = Sql & "numbultos,cantidad,precioar,precioiv,preciomp,preciost,preciouc,dtoline1,dtoline2,origpre,codprovex,importel,ampliaci ) VALUES ("
         Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "','ALV',0,1," & almac & ","
-        Sql = Sql & DBSet(txtCodigo(1).Text, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & DBSet(BaseivaGtos, "N") & ","
+        Sql = Sql & DBSet(txtcodigo(1).Text, "T") & "," & DBSet(NomArtic, "T") & ",1,1," & DBSet(BaseivaGtos, "N") & ","
         Sql = Sql & DBSet(BaseivaGtos, "N") & "," & DBSet(BaseivaGtos, "N") & "," & DBSet(BaseivaGtos, "N") & ","
-        Sql = Sql & DBSet(BaseivaGtos, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaGtos, "N") & "," & DBSet(txtCodigo(4).Text, "T") & ")"
+        Sql = Sql & DBSet(BaseivaGtos, "N") & ",0,0,'M'," & Prove & "," & DBSet(BaseivaGtos, "N") & "," & DBSet(txtcodigo(4).Text, "T") & ")"
         
         conn.Execute Sql
         
@@ -905,7 +960,7 @@ Private Sub Form_Load()
     'Icono del form
     Me.Icon = frmppal.Icon
 
-    txtCodigo(2).Text = Date
+    txtcodigo(2).Text = Date
 '    Text1(4).Text = vParamAplic.ConFactuPubli
     Modo = 0
     '[Monica]19/02/2018: Entra Cordoba
@@ -922,10 +977,17 @@ Private Sub Form_Load()
     Next kCampo
     Me.imgFecha(2).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     
+    
+    '[Monica]28/06/2018: la retencion solo la tiene cordoba (pq  son facturas de alquiler)
+    Label17(0).visible = (vParamAplic.Cooperativa = 2)
+    Label17(0).Enabled = (vParamAplic.Cooperativa = 2)
+    txtcodigo(6).visible = (vParamAplic.Cooperativa = 2)
+    txtcodigo(6).Enabled = (vParamAplic.Cooperativa = 2)
+    
 End Sub
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -934,17 +996,17 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
 End Sub
 
 Private Sub frmCal_Selec(vFecha As Date)
-    txtCodigo(1).Text = vFecha
+    txtcodigo(1).Text = vFecha
 End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
+    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -969,13 +1031,13 @@ Private Sub imgBuscar_Click(Index As Integer)
 
     Select Case Index
         Case 0
-            CadenaDesdeOtroForm = txtCodigo(4).Text
+            CadenaDesdeOtroForm = txtcodigo(4).Text
             frmFacClienteObser.Modificar = True
             frmFacClienteObser.Text1 = CadenaDesdeOtroForm
             frmFacClienteObser.Show vbModal
-            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtCodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
+            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtcodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
             CadenaDesdeOtroForm = ""
-            PonerFoco txtCodigo(4)
+            PonerFoco txtcodigo(4)
         Case 1
             indCodigo = Index + 2
             Set frmFP = New frmFacFormasPago
@@ -989,7 +1051,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmCli.DatosADevolverBusqueda = "0|1|"
             frmCli.Show vbModal
             Set frmCli = Nothing
-            PonerFoco txtCodigo(indCodigo)
+            PonerFoco txtcodigo(indCodigo)
             
         Case 5 ' articulo a facturar
             indCodigo = 1
@@ -1009,7 +1071,7 @@ End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
-    txtCodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -1019,12 +1081,12 @@ Private Sub imgFecha_Click(Index As Integer)
    
     Set frmCal = New frmCal
     frmCal.Fecha = Now
-    PonerFormatoFecha txtCodigo(1)
-    If txtCodigo(1).Text <> "" Then frmCal.Fecha = CDate(txtCodigo(1).Text)
+    PonerFormatoFecha txtcodigo(1)
+    If txtcodigo(1).Text <> "" Then frmCal.Fecha = CDate(txtcodigo(1).Text)
     Screen.MousePointer = vbDefault
     frmCal.Show vbModal
     Set frmCal = Nothing
-    PonerFoco txtCodigo(1)
+    PonerFoco txtcodigo(1)
 End Sub
 
 Private Sub KEYpress(KeyAscii As Integer)
@@ -1035,7 +1097,7 @@ Dim cerrar As Boolean
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -1055,7 +1117,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1065,32 +1127,32 @@ Dim EsNomCod As Boolean
     Select Case Index
             
         Case 0 'cliente
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "Cliente", "N")
             If txtnombre(Index).Text <> "" Then
-                txtCodigo(3).Text = DevuelveDesdeBDNew(conAri, "scliente", "codforpa", "codclien", txtCodigo(0).Text, "N")
-                If txtCodigo(3).Text <> "" Then
-                    txtnombre(3).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", txtCodigo(3).Text, "N")
+                txtcodigo(3).Text = DevuelveDesdeBDNew(conAri, "scliente", "codforpa", "codclien", txtcodigo(0).Text, "N")
+                If txtcodigo(3).Text <> "" Then
+                    txtnombre(3).Text = DevuelveDesdeBDNew(conAri, "sforpa", "nomforpa", "codforpa", txtcodigo(3).Text, "N")
                 End If
             End If
             
         Case 1 'articulo
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sartic", "nomartic", "codartic", "Artículo", "T")
             
         Case 3 ' forma de pago
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "Forma de Pago", "N")
             
         Case 2 ' fecha de factura
-            PonerFormatoFecha txtCodigo(Index)
+            PonerFormatoFecha txtcodigo(Index)
              
         Case 5 'banco propio
-            If PonerFormatoEntero(txtCodigo(5)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
+            If PonerFormatoEntero(txtcodigo(5)) Then
+                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", , "N")
             End If
            
         Case 85  'Importe
-            PonerFormatoDecimal txtCodigo(Index), 3
+            PonerFormatoDecimal txtcodigo(Index), 3
            
            
     End Select
@@ -1101,7 +1163,7 @@ Dim devuelve As String
 Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -1110,7 +1172,7 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     

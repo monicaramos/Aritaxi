@@ -1451,7 +1451,7 @@ On Error GoTo EModFact
                         Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                         ConnConta.Execute "Delete from pagos WHERE " & Sql
                     Else
-                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu=" & Data1.Recordset.Fields!NumFactu & ""
+                        Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu=" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(Text1(0).Text, "0000000"), "T") 'Data1.Recordset.Fields!NumFactu & ""
                         Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
                         ConnConta.Execute "Delete from spagop WHERE " & Sql
                     End If
@@ -2225,7 +2225,7 @@ Private Sub BotonModificar()
 Dim DeVarios As Boolean
 Dim EnTesoreria  As String
     'solo se puede modificar la factura si no esta contabilizada
-    If FactContabilizada3(EnTesoreria) Then
+    If FactContabilizada(EnTesoreria) Then
         TerminaBloquear
         Exit Sub
     End If
@@ -2248,37 +2248,205 @@ Dim EnTesoreria  As String
     
 End Sub
 
+'Private Function FactContabilizada(ByRef EstaEnTesoreria As String) As Boolean
+'Dim cta As String, numasien As String
+'
+'    On Error GoTo EContab
+'
+'    'comprabar que se puede modificar/eliminar la factura
+'    If Me.Check1.Value = 1 Then 'si esta contabilizada
+'        'comprobar en la contabilidad si esta contabilizada
+'
+'        cta = vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(4).Text, "0000")
+''        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
+'        If cta <> "" Then
+'            numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", cta, "T", , "numfacpr", Text1(0).Text, "T", "fecfacpr", Text1(1).Text, "F")
+'            If numasien <> "" Then
+'                FactContabilizada = True
+'                MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
+'                Exit Function
+'            Else
+'                FactContabilizada = False
+'            End If
+'        Else
+'            FactContabilizada = True
+'            Exit Function
+'        End If
+'    Else
+'        FactContabilizada = False
+'    End If
+'
+'EContab:
+'    If Err.Number <> 0 Then MuestraError Err.Number, "Comprobar Factura contabilizada", Err.Description
+'End Function
+
 Private Function FactContabilizada(ByRef EstaEnTesoreria As String) As Boolean
 Dim cta As String, numasien As String
-    
+Dim vSocio As CSocio
+Dim LEtra As String
+Dim NumFac As String
+
+
     On Error GoTo EContab
     
-    'comprabar que se puede modificar/eliminar la factura
-    If Me.Check1.Value = 1 Then 'si esta contabilizada
-        'comprobar en la contabilidad si esta contabilizada
-        
-        cta = vParamAplic.Raiz_Cta_Soc_publi & Format(Text1(4).Text, "0000")
-'        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
-        If cta <> "" Then
-            numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", cta, "T", , "numfacpr", Text1(0).Text, "T", "fecfacpr", Text1(1).Text, "F")
-            If numasien <> "" Then
+    FactContabilizada = False
+    
+    Set vSocio = New CSocio
+    If vSocio.LeerDatos(Text1(4).Text) Then
+        cta = vSocio.CtaSocioPub
+    
+    
+        'Primero comprobaremos que esta el pago en contabilidad
+        EstaEnTesoreria = ""
+
+'[Monica]10/07/2012: tanto liquidaciones como rectificativas han de estar en la spago
+'        If Text1(1).Text = "FLI" Then
+            If Not ComprobarPagoArimoney(EstaEnTesoreria, vSocio.CtaSocioPub, CLng(Text1(0).Text), CDate(Text1(2).Text)) Then
                 FactContabilizada = True
-                MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
                 Exit Function
-            Else
-                FactContabilizada = False
             End If
-        Else
-            FactContabilizada = True
-            Exit Function
+'        Else
+'            If Not ComprobarCobroArimoney(EstaEnTesoreria, ObtenerLetraSerie(Text1(1).Text), vSocio.CtaSocioLiq, CLng(Text1(0).Text), CDate(Text1(2).Text)) Then
+'                FactContabilizada = True
+'                Exit Function
+'            End If
+'        End If
+        'comprabar que se puede modificar/eliminar la factura
+        If Me.Check1.Value = 1 Then 'si esta contabilizada
+            'comprobar en la contabilidad si esta contabilizada
+        
+    '        Cta = vParamAplic.Raiz_Cta_Soc_Liqui & Format(Text1(4).Text, "0000")
+    '        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
+            If vSocio.CtaSocioPub <> "" Then
+                LEtra = DevuelveDesdeBDNew(conAri, "stipom", "letraser", "codtipom", Text1(1).Text, "T")
+                NumFac = LEtra & Text1(0).Text
+                If vParamAplic.ContabilidadNueva Then
+                    numasien = DevuelveDesdeBDNew(conConta, "factpro", "numasien", "codmacta", vSocio.CtaSocioPub, "T", , "numfactu", NumFac, "T", "fecfactu", Text1(2).Text, "F")
+                Else
+                    numasien = DevuelveDesdeBDNew(conConta, "cabfactprov", "numasien", "codmacta", vSocio.CtaSocioPub, "T", , "numfacpr", NumFac, "T", "fecfacpr", Text1(2).Text, "F")
+                End If
+                If numasien <> "" Then
+'                    FactContabilizada = True
+'                    MsgBox "La factura esta contabilizada y no se puede modificar ni eliminar.", vbInformation
+'                    Exit Function
+                Else
+'                    FactContabilizada = False
+                End If
+                
+                LEtra = "La factura esta en la contabilidad"
+                If numasien <> "" Then LEtra = LEtra & vbCrLf & "Nº asiento: " & numasien
+                LEtra = LEtra & vbCrLf & vbCrLf & "¿Continuar?"
+                
+                numasien = String(50, "*") & vbCrLf
+                numasien = numasien & numasien & vbCrLf & vbCrLf
+                LEtra = numasien & LEtra & vbCrLf & vbCrLf & numasien
+                If MsgBox(LEtra, vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
+                    FactContabilizada = False
+                Else
+                    FactContabilizada = True
+                End If
+                
+            Else
+                FactContabilizada = True
+                Exit Function
+            End If
         End If
     Else
         FactContabilizada = False
     End If
-    
+    Set vSocio = Nothing
 EContab:
     If Err.Number <> 0 Then MuestraError Err.Number, "Comprobar Factura contabilizada", Err.Description
 End Function
+
+
+'En vTesoreria pondremos como estaba el recibo
+'Es decir. El  msgbox que pondra al final lo guardo en esta variable
+Private Function ComprobarPagoArimoney(vTesoreria As String, vCta As String, Codfaccl As Long, Fecha As Date) As Boolean
+Dim vR As ADODB.Recordset
+Dim Cad As String
+
+On Error GoTo EComprobarPagoArimoney
+    
+    ComprobarPagoArimoney = False
+    
+    Set vR = New ADODB.Recordset
+    
+    
+    If Not vParamAplic.ContabilidadNueva Then
+        Cad = "Select * from spagop where ctaprove='" & vCta & "'"
+        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
+        Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    Else
+        Cad = "Select * from pagos where codmacta='" & vCta & "'"
+        Cad = Cad & " AND numfactu =" & DBSet(ObtenerLetraSerie(Text1(1).Text) & Format(CLng(Codfaccl), "0000000"), "T")
+        Cad = Cad & " AND fecfactu =" & DBSet(Fecha, "F")
+    End If
+    
+    '
+    vTesoreria = ""
+    vR.Open Cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Cad = ""
+    If vR.EOF Then
+        vTesoreria = "NO se ha encotrado ningun pago en la tesoreria"
+    Else
+        While Not vR.EOF
+            Cad = ""
+            If Not vParamAplic.ContabilidadNueva Then
+                If DBLet(vR!Estacaja, "N") = 1 Then
+                    Cad = "Pagado por caja"
+                Else
+                    If DBLet(vR!transfer, "N") <> 0 Then
+                        Cad = "Esta en una transferencia"
+                    Else
+                       If DBLet(vR!imppagad, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!impcobro
+                        
+                                'Si hubeira que poner mas coas iria aqui
+                    End If 'transfer
+                End If 'estacaja
+                If Cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & Cad & vbCrLf
+            
+            Else
+                If DBLet(vR!nrodocum, "N") <> 0 Then
+                    Cad = "Esta en una transferencia"
+                Else
+                   If DBLet(vR!imppagad, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!imppagad
+                    
+                            'Si hubeira que poner mas coas iria aqui
+                End If 'transfer
+                If Cad <> "" Then vTesoreria = vTesoreria & "Pago: " & vR!numorden & "      " & Cad & vbCrLf
+            
+            End If
+            vR.MoveNext
+        Wend
+    End If
+    vR.Close
+    
+    
+    
+    If vTesoreria <> "" Then
+        Cad = vTesoreria & vbCrLf & vbCrLf
+        If vUsu.Nivel > 1 Then
+            MsgBox Cad, vbExclamation
+        Else
+            Cad = Cad & "¿Continuar?"
+            If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then ComprobarPagoArimoney = True
+        End If
+    Else
+        ComprobarPagoArimoney = True
+    End If
+            
+EComprobarPagoArimoney:
+    If Err.Number <> 0 Then MuestraError Err.Number
+    Set vR = Nothing
+End Function
+
+
+
+
+
+
+
 
 Private Function FactContabilizada3(ByRef EstaEnTesoreria As String) As Boolean
 Dim cta As String, numasien As String
@@ -2594,7 +2762,8 @@ Dim EstaEnTesoreria As String
     If Data1.Recordset.EOF Then Exit Sub
     
     'solo se puede modificar la factura si no esta contabilizada
-    If FactContabilizada3(EstaEnTesoreria) Then Exit Sub
+'    If FactContabilizada3(EstaEnTesoreria) Then Exit Sub
+    If FactContabilizada(EstaEnTesoreria) Then Exit Sub
     
     Cad = "Cabecera de Facturas." & vbCrLf
     Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
@@ -3057,6 +3226,8 @@ Private Function Eliminar() As Boolean
 Dim Sql As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
+Dim vSocio As CSocio
+
 Dim vFactu As CFacturaSoc
 Dim bol As Boolean
 
@@ -3121,45 +3292,51 @@ Dim bol As Boolean
         '------------------------------------------------
 '        Cta = DevuelveDesdeBDNew(conAri, "sprove", "codmacta", "codprove", Text1(2).Text, "N")
         
-        'antes de Eliminar en las tablas de la Contabilidad
-        Set vFactu = New CFacturaSoc
-        bol = vFactu.LeerDatos3(Text1(4).Text, Text1(0).Text, Text1(2).Text, Text1(1).Text)
-        If bol Then
+        Set vSocio = New CSocio
+        If vSocio.LeerDatos(Text1(4).Text) Then
             
-            If vParamAplic.ContabilidadNueva Then
-                Sql = " codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
-                Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                ConnConta.Execute "Delete from pagos WHERE " & Sql
             
-            Else
-                Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
-                Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
-                ConnConta.Execute "Delete from spagop WHERE " & Sql
+            'antes de Eliminar en las tablas de la Contabilidad
+            Set vFactu = New CFacturaSoc
+            bol = vFactu.LeerDatos3(Text1(4).Text, Text1(0).Text, Text1(2).Text, Text1(1).Text)
+            If bol Then
+                
+                If vParamAplic.ContabilidadNueva Then
+                    Sql = " codmacta='" & vFactu.CtaSocio & "' AND numfactu='" & Data1.Recordset.Fields!NumFactu & "'"
+                    Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                    ConnConta.Execute "Delete from pagos WHERE " & Sql
+                
+                Else
+                    Sql = " ctaprove='" & vFactu.CtaSocio & "' AND numfactu='" & ObtenerLetraSerie(Text1(1).Text) & Format(Data1.Recordset.Fields!NumFactu, "0000000") & "'"
+                    Sql = Sql & " AND fecfactu='" & Format(Data1.Recordset.Fields!FecFactu, FormatoFecha) & "'"
+                    ConnConta.Execute "Delete from spagop WHERE " & Sql
+                End If
+                b = True
+                
+                
+                'Eliminar en tablas de factura de Aritaxi: scafpc, scafpa, slifpc
+                '---------------------------------------------------------------
+                If b Then
+                    Sql = " " & ObtenerWhereCP(True)
+                
+                    'Cabecera de facturas (sfactusoc)
+                    conn.Execute "Delete from " & NombreTabla & Sql
+                End If
+                
+                'Eliminar los movimientos generados por el albaran que genero la factura
+                '-----------------------------------------------------------------------
+                If b Then
+                
+                End If
+                
+        '        b = True
+        
             End If
-            b = True
-            
-            
-            'Eliminar en tablas de factura de Aritaxi: scafpc, scafpa, slifpc
-            '---------------------------------------------------------------
-            If b Then
-                Sql = " " & ObtenerWhereCP(True)
-            
-                'Cabecera de facturas (sfactusoc)
-                conn.Execute "Delete from " & NombreTabla & Sql
-            End If
-            
-            'Eliminar los movimientos generados por el albaran que genero la factura
-            '-----------------------------------------------------------------------
-            If b Then
-            
-            End If
-            
-    '        b = True
-    
+        
+            Set vFactu = Nothing
+        
         End If
-    
-        Set vFactu = Nothing
-    
+        
 FinEliminar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar Factura", Err.Description
@@ -3172,6 +3349,10 @@ FinEliminar:
     Else
         conn.CommitTrans
         ConnConta.CommitTrans
+        
+        vSocio.DevolverContador Text1(4).Text, Text1(0).Text, Text1(1).Text  ' "FLI"
+        
+        
         Eliminar = True
     End If
 End Function

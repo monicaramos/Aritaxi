@@ -1,14 +1,31 @@
 VERSION 5.00
 Begin VB.Form frmFCliFacturac 
    Caption         =   "Informes"
-   ClientHeight    =   6075
+   ClientHeight    =   7050
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   6555
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6075
+   ScaleHeight     =   7050
    ScaleWidth      =   6555
    StartUpPosition =   2  'CenterScreen
+   Begin VB.ComboBox Combo1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   1575
+      Style           =   2  'Dropdown List
+      TabIndex        =   7
+      Top             =   4950
+      Width           =   2745
+   End
    Begin VB.CheckBox ChkAplicarFiltro 
       Caption         =   "Aplicar Filtro Banco Propio"
       BeginProperty Font 
@@ -21,9 +38,9 @@ Begin VB.Form frmFCliFacturac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3210
-      TabIndex        =   26
-      Top             =   4560
+      Left            =   3165
+      TabIndex        =   27
+      Top             =   5550
       Width           =   2955
    End
    Begin VB.CheckBox chk_FactHco 
@@ -38,9 +55,9 @@ Begin VB.Form frmFCliFacturac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   150
-      TabIndex        =   24
-      Top             =   4980
+      Left            =   105
+      TabIndex        =   25
+      Top             =   5970
       Width           =   4005
    End
    Begin VB.CheckBox chk_agrupados 
@@ -55,9 +72,9 @@ Begin VB.Form frmFCliFacturac
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   150
-      TabIndex        =   23
-      Top             =   4530
+      Left            =   105
+      TabIndex        =   24
+      Top             =   5520
       Width           =   2625
    End
    Begin VB.TextBox txtcodigo 
@@ -133,7 +150,7 @@ Begin VB.Form frmFCliFacturac
       Index           =   1
       Left            =   2700
       Locked          =   -1  'True
-      TabIndex        =   17
+      TabIndex        =   18
       Top             =   1725
       Width           =   3765
    End
@@ -172,7 +189,7 @@ Begin VB.Form frmFCliFacturac
       Index           =   0
       Left            =   2700
       Locked          =   -1  'True
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   1320
       Width           =   3765
    End
@@ -191,7 +208,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   360
       Index           =   5
       Left            =   2370
-      TabIndex        =   15
+      TabIndex        =   16
       Top             =   4170
       Width           =   4125
    End
@@ -228,8 +245,8 @@ Begin VB.Form frmFCliFacturac
       EndProperty
       Height          =   375
       Left            =   5310
-      TabIndex        =   8
-      Top             =   5520
+      TabIndex        =   9
+      Top             =   6465
       Width           =   1135
    End
    Begin VB.CommandButton cmdAceptar 
@@ -245,8 +262,8 @@ Begin VB.Form frmFCliFacturac
       EndProperty
       Height          =   375
       Left            =   4020
-      TabIndex        =   7
-      Top             =   5520
+      TabIndex        =   8
+      Top             =   6465
       Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
@@ -288,18 +305,55 @@ Begin VB.Form frmFCliFacturac
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   5310
-      TabIndex        =   13
-      Top             =   5520
+      TabIndex        =   14
+      Top             =   6480
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1110
+   End
+   Begin VB.Image imgAyuda 
+      Height          =   240
+      Index           =   1
+      Left            =   1800
+      MousePointer    =   4  'Icon
+      Tag             =   "-1"
+      ToolTipText     =   "Ayuda"
+      Top             =   4635
+      Width           =   240
+   End
+   Begin VB.Label Label5 
+      Caption         =   "Observaciones"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   255
+      Left            =   135
+      TabIndex        =   28
+      Top             =   4635
+      Width           =   1605
    End
    Begin VB.Label Label4 
       Height          =   195
       Left            =   180
-      TabIndex        =   25
-      Top             =   5640
+      TabIndex        =   26
+      Top             =   6585
       Width           =   3705
    End
    Begin VB.Image imgAyuda 
@@ -334,7 +388,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   240
       Index           =   8
       Left            =   3240
-      TabIndex        =   22
+      TabIndex        =   23
       Top             =   2505
       Width           =   570
    End
@@ -353,7 +407,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   240
       Index           =   7
       Left            =   690
-      TabIndex        =   21
+      TabIndex        =   22
       Top             =   2475
       Width           =   600
    End
@@ -373,7 +427,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   240
       Index           =   7
       Left            =   180
-      TabIndex        =   20
+      TabIndex        =   21
       Top             =   2190
       Width           =   2100
    End
@@ -399,7 +453,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   240
       Index           =   4
       Left            =   690
-      TabIndex        =   19
+      TabIndex        =   20
       Top             =   1755
       Width           =   570
    End
@@ -425,7 +479,7 @@ Begin VB.Form frmFCliFacturac
       Height          =   240
       Index           =   3
       Left            =   690
-      TabIndex        =   18
+      TabIndex        =   19
       Top             =   1350
       Width           =   600
    End
@@ -459,7 +513,7 @@ Begin VB.Form frmFCliFacturac
       ForeColor       =   &H00800000&
       Height          =   375
       Left            =   180
-      TabIndex        =   14
+      TabIndex        =   15
       Top             =   3900
       Width           =   1785
    End
@@ -494,7 +548,7 @@ Begin VB.Form frmFCliFacturac
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   180
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   3540
       Width           =   1275
    End
@@ -512,7 +566,7 @@ Begin VB.Form frmFCliFacturac
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   180
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   2850
       Width           =   1635
    End
@@ -530,7 +584,7 @@ Begin VB.Form frmFCliFacturac
       ForeColor       =   &H00800000&
       Height          =   255
       Left            =   210
-      TabIndex        =   10
+      TabIndex        =   11
       Top             =   1020
       Width           =   1065
    End
@@ -548,7 +602,7 @@ Begin VB.Form frmFCliFacturac
       ForeColor       =   &H00800000&
       Height          =   375
       Left            =   240
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   240
       Width           =   5325
    End
@@ -1454,6 +1508,11 @@ Dim I As Integer
     Me.ChkAplicarFiltro.Enabled = (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)
     Me.ChkAplicarFiltro.visible = (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)
     
+    '[Monica]28/05/2018: indicamos en la facturacion que observaciones se van a llevar a la factura
+    '                    por defecto era la observa2 que es la que habia
+    CargarCombo
+    Combo1.ListIndex = 2
+    
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -1498,6 +1557,12 @@ Dim vCadena As String
                       "factura ni en el albarán." & vbCrLf & _
                       vbCrLf
                       
+        Case 1
+           ' "____________________________________________________________"
+            vCadena = "Podemos seleccionar las observaciones de la llamada que queremos " & vbCrLf & _
+                      "que se impriman en la factura. Por defecto las Observaciones II, " & vbCrLf & _
+                      "que son las que cogía antes de poder seleccionarlo." & vbCrLf & _
+                      vbCrLf
                       
                       
     End Select
@@ -2818,7 +2883,7 @@ Dim NomLote As String
 
 Dim Nulo2 As String
 Dim Nulo3 As String
-Dim Rs2 As ADODB.Recordset
+Dim rs2 As ADODB.Recordset
 
 
     On Error GoTo EGenFactu
@@ -2829,8 +2894,14 @@ Dim Rs2 As ADODB.Recordset
     
     FecFactu = txtcodigo(2).Text
     
-    '[Monica]14/11/2017: se añade el suplemento al importe de venta
-    Sql = "Select shilla.codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) + sum(if(suplemen is null,0,suplemen)) importe,  sum(if(imppeaje is null,0,imppeaje)) suplidos FROM " & QuitarCaracterACadena(cTabla, "_1")
+    
+    If vParamAplic.Cooperativa = 2 Then
+        '[Monica]14/11/2017: se añade el suplemento al importe de venta
+        Sql = "Select shilla.codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) + sum(if(extventa is null,0,extventa)) importe,  sum(if(imppeaje is null,0,imppeaje)) suplidos FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Else
+        '[Monica]14/11/2017: se añade el suplemento al importe de venta
+        Sql = "Select shilla.codclien, count(*) servicios, sum(if(impventa is null,0,impventa)) + sum(if(suplemen is null,0,suplemen)) importe,  sum(if(imppeaje is null,0,imppeaje)) suplidos FROM " & QuitarCaracterACadena(cTabla, "_1")
+    End If
     If cWhere <> "" Then
         Sql = Sql & " WHERE " & cWhere
     End If
@@ -3158,7 +3229,27 @@ Dim Rs2 As ADODB.Recordset
                 Sql4 = Sql4 & "dirllama,observa1,impventa,idservic,observac2,codclien, destino, codautor, licencia, fecfinal, horfinal, codusuar) " '[Monica]03/10/2014: insertamos el destino
                                                                                                                                                     '[Monica]12/12/2014: faltaba insertar el codusuar
                 SqlLin = "select " & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "', @rownum:=@rownum+1 AS rownum, fecha, hora, shilla.codsocio, shilla.numeruve, "
-                SqlLin = SqlLin & " concat(coalesce(shilla.dirllama,''),' ',coalesce(shilla.numllama,'')), observa2, shilla.impventa + coalesce(shilla.suplemen,0), shilla.idservic,  shilla.matricul, shilla.codclien, shilla.destino, shilla.codautor, shilla.licencia, shilla.fecfinal, shilla.horfinal, shilla.codusuar from shilla,(SELECT @rownum:=0) r, scliente "  '[Monica]03/10/2014: insertamos el destino
+                SqlLin = SqlLin & " concat(coalesce(shilla.dirllama,''),' ',coalesce(shilla.numllama,'')), "
+                
+                '[Monica]28/05/2018: para poder seleccionar que observaciones vamos a insertar en los servicios de la factura
+                '                    antes estaba observa2
+                Select Case Combo1.ListIndex
+                    Case 0 ' Observaciones
+                        SqlLin = SqlLin & "shilla.observac2, "
+                    
+                    Case 1 ' Observaciones cliente
+                        SqlLin = SqlLin & "shilla.observa1, "
+                    
+                    Case 2 ' Observaciones II
+                        SqlLin = SqlLin & "shilla.observa2, "
+                End Select
+                '[Monica]06/07/2018: para el caso de Cordoba tenemos que  meter importe de venta + ext de venta
+                If vParamAplic.Cooperativa = 2 Then
+                    SqlLin = SqlLin & "shilla.impventa + coalesce(shilla.extventa,0), shilla.idservic,  shilla.matricul, shilla.codclien, shilla.destino, shilla.codautor, shilla.licencia, shilla.fecfinal, shilla.horfinal, shilla.codusuar from shilla,(SELECT @rownum:=0) r, scliente "  '[Monica]03/10/2014: insertamos el destino
+                Else
+                    SqlLin = SqlLin & "shilla.impventa + coalesce(shilla.suplemen,0), shilla.idservic,  shilla.matricul, shilla.codclien, shilla.destino, shilla.codautor, shilla.licencia, shilla.fecfinal, shilla.horfinal, shilla.codusuar from shilla,(SELECT @rownum:=0) r, scliente "  '[Monica]03/10/2014: insertamos el destino
+                End If
+                
                 SqlLin = SqlLin & " where " & cWhere
                 '?????????
                 SqlLin = SqlLin & " and shilla.codclien = " & DBSet(RSLineas!CodClien, "N") & " and facturadocliente = 0 " 'and validado = 1 "
@@ -3270,4 +3361,27 @@ EGenFactu:
 '    TerminaBloquear
 'End If
 End Function
+
+
+
+Private Sub CargarCombo()
+'### Combo Valorar Albaran con
+'Cargaremos el combo, o bien desde una tabla o con valores fijos o como
+'se quiera, la cuestion es cargarlo
+' El estilo del combo debe de ser 2 - Dropdown List
+' Si queremos que este ordenado, o lo ordenamos por la sentencia sql
+' o marcamos la opcion sorted del combo
+'0-Todo, 1-Cantidad y Precio, 2-Cantidad
+
+    Combo1.Clear
+    Combo1.AddItem "Observaciones"
+    Combo1.ItemData(Combo1.NewIndex) = 0
+
+    Combo1.AddItem "Observaciones Cliente"
+    Combo1.ItemData(Combo1.NewIndex) = 1
+
+    Combo1.AddItem "Observaciones II"
+    Combo1.ItemData(Combo1.NewIndex) = 2
+
+End Sub
 

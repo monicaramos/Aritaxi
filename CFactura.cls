@@ -101,6 +101,8 @@ Private mNumventa As Long 'Nº de venta del TPV
 'Si no tiene valor seguira como estaba
 Private mObservacion As String
 
+
+
 ' VBLES para los Mantenimientos -------------------------------------------
 Dim TipCoMan As String 'tipo de contrato para Facturas de Manteniminetos
 Dim OpeFactu As String 'Operador conectado o el que pasamos como parametro
@@ -145,6 +147,10 @@ Private NumAlbTicket As String '01/09/06 laura
 Private mAportacion As Currency   'Viene de Radival, pero se podria utilizar en mas
                                  ' Es la aportacion que hace Telefonica, en los moviles
                                  
+
+Private mPorRet As Currency
+Private mImpReten As Currency
+
 
 '# Laura 14/11/2006 recuperar facturas Alzira
 Private EstaRecuFac As Boolean
@@ -772,6 +778,31 @@ Public Property Get Aportacion() As Currency
      Aportacion = mAportacion
 End Property
 
+'**** % de retencion
+
+Public Property Let PorRet(ByVal vData As Currency)
+     mPorRet = vData
+End Property
+
+Public Property Get PorRet() As Currency
+     PorRet = mPorRet
+End Property
+
+
+'**** Importe de retencion
+
+Public Property Let ImpReten(ByVal vData As Currency)
+     mImpReten = vData
+End Property
+
+Public Property Get ImpReten() As Currency
+     ImpReten = mImpReten
+End Property
+
+
+
+
+
 
 
 '**** TEXTOS CSB DE CARTERA DE COBROS
@@ -1023,7 +1054,7 @@ Dim Sql As String
     
     
     LeerDatosFACcli = False
-    Sql = "SELECT codtipom,numfactu,fecfactu,codclien,codforpa,codbanco,codsucur,digcontr,cuentaba,brutofac, totalfac FROM scafaccli "
+    Sql = "SELECT codtipom,numfactu,fecfactu,codclien,codforpa,codbanco,codsucur,digcontr,cuentaba,brutofac, totalfac, iban, porcret, impreten FROM scafaccli "
     Sql = Sql & " WHERE codtipom='" & vCodtipom & "'"
     Sql = Sql & " AND numfactu=" & vNumfactu
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
@@ -1047,7 +1078,11 @@ Dim Sql As String
         mDigContr = DBLet(Rs!digcontr, "T")
         mCuentaba = DBLet(Rs!cuentaba, "T")
         mBrutofac = CStr(Rs!BrutoFac)
+        mIban = CStr(DBLet(Rs!Iban, "T"))
         mTotalfac = CStr(Rs!TotalFac)
+        
+        mPorRet = DBLet(Rs!PorcRet, "N")
+        mImpReten = DBLet(Rs!ImpReten, "N")
 
         mLetraSer = ObtenerLetraSerie(mCodTipoM)
         
@@ -2237,7 +2272,7 @@ Dim NueroIvas As Integer
         If exento_IVA < 2 Then     'Con IVA normal o RE
             'comprobar que si hay km de DESPLAZAMIENTO se añadan al tipo de IVA correspondiente
             If TotalKm > 0 Then
-                If despIVA = Rs!Codigiva Then
+                If despIVA = Rs!codigiva Then
                     vBruto = vBruto + ImporteL
                     TotBruto = TotBruto + ImporteL
                     conDesplaz = True
@@ -2245,14 +2280,14 @@ Dim NueroIvas As Integer
             End If
         
             'comprobar si hay BONIFICACIONES que aplicar a la Factura
-            If IVABonif1 = Rs!Codigiva Then
+            If IVABonif1 = Rs!codigiva Then
                 vBruto = vBruto - TotBonif1
                 TotBruto = TotBruto - TotBonif1
-            ElseIf IVABonif2 = Rs!Codigiva Then
+            ElseIf IVABonif2 = Rs!codigiva Then
                 vBruto = vBruto - TotBonif2
                 TotBruto = TotBruto - TotBonif2
                 
-            ElseIf IVABonif3 = Rs!Codigiva Then
+            ElseIf IVABonif3 = Rs!codigiva Then
                 vBruto = vBruto - TotBonif3
                 TotBruto = TotBruto - TotBonif3
             End If
@@ -2286,8 +2321,8 @@ Dim NueroIvas As Integer
             End If
             
             'Obtener el % de IVA
-            cadAux = Rs!Codigiva    'Por si no tiene  RE o si teniendo RE no tiene el correspondiente
-            If exento_IVA = 1 Then cadAux = CStr(vParamAplic.DevuleveTipoIVA_RE(Rs!Codigiva))
+            cadAux = Rs!codigiva    'Por si no tiene  RE o si teniendo RE no tiene el correspondiente
+            If exento_IVA = 1 Then cadAux = CStr(vParamAplic.DevuleveTipoIVA_RE(Rs!codigiva))
             TipoIVAAplicable = CInt(cadAux)
             
             '[Monica]
@@ -2298,7 +2333,7 @@ Dim NueroIvas As Integer
                     'Debido al cambio de IVA, los albaranes rectificativos podran ir en el IVA que llevaran en su momento
                     'Es decir, que aunque ahora sea al 18(a partir de Julio), para un albr rectifi podria ser
                     'con iva 16
-                    cadAux = CStr(vParamAplic.DevuleveTipoIVA_Ant(exento_IVA = 1, Rs!Codigiva))
+                    cadAux = CStr(vParamAplic.DevuleveTipoIVA_Ant(exento_IVA = 1, Rs!codigiva))
                     TipoIVAAplicable = CInt(cadAux)
             End If
             
@@ -2465,7 +2500,7 @@ Dim NueroIvas As Integer
                 ImpIVA2 = ImpIVA
                 
             Case 3 'IVA 3
-                TipoIVA3 = Rs!Codigiva
+                TipoIVA3 = Rs!codigiva
                 
                 BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
                 
@@ -3751,7 +3786,7 @@ Dim ImpDif As Currency
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     I = 1
     While Not Rs.EOF And I <= 3
-        Sql = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", CStr(Rs!Codigiva), "N")
+        Sql = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", CStr(Rs!codigiva), "N")
         Select Case I
             Case 1
                 TipoIVA1 = Rs.Fields(0).Value

@@ -381,7 +381,7 @@ Begin VB.Form frmGesHcoUves
       _Version        =   393216
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmGesHcoUves.frx":000C
+      Bindings        =   "frmGesHcoUves.frx":10CA
       Height          =   4545
       Left            =   210
       TabIndex        =   7
@@ -910,15 +910,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
@@ -942,7 +942,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnNuevo.Enabled = (b Or (Modo = 0))
+    Me.mnnuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -961,7 +961,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
 End Sub
 
 
@@ -1220,6 +1220,9 @@ Dim NueDesFec As Date
         'SQL = SQL & " and fecha >= '2015-01-01'"
         Sql = Sql & " and fecha >= " & DBSet(NueDesFec, "F")
         
+        '[Monica]18/06/2018: sean ademas servicios de fecha inferior a la fecha de baja
+        Sql = Sql & " and fecha <= " & DBSet(txtAux(3).Text, "F")
+        
         If TotalRegistros(Sql) <> 0 Then
             MsgBox "Este Socio tiene servicios por liquidar. Revise.", vbExclamation
             PonerFoco txtAux(0)
@@ -1275,23 +1278,23 @@ End Function
 
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
+Dim Cad As String
 Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
-    cad = ""
+    Cad = ""
     'Estamos en Modo de Cabeceras
     'Registro de la tabla de cabeceras: slista
-    cad = cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
-    cad = cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
+    Cad = Cad & ParaGrid(txtAux(0), 40, "Cod. Clien.")
+    Cad = Cad & ParaGrid(txtAux(1), 20, "Cod. Artic")
     Tabla = NombreTabla
     Titulo = "Precios Especiales"
 
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vTabla = Tabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False
