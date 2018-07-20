@@ -236,7 +236,7 @@ Begin VB.Form frmGesSocios
       _ExtentY        =   9551
       _Version        =   393216
       Tabs            =   7
-      Tab             =   5
+      Tab             =   4
       TabsPerRow      =   7
       TabHeight       =   520
       BackColor       =   -2147483624
@@ -252,103 +252,111 @@ Begin VB.Form frmGesSocios
       TabCaption(0)   =   "Datos"
       TabPicture(0)   =   "frmGesSocios.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Check1(2)"
-      Tab(0).Control(1)=   "Text1(28)"
-      Tab(0).Control(2)=   "Check1(1)"
-      Tab(0).Control(3)=   "Text1(27)"
-      Tab(0).Control(4)=   "Text1(25)"
-      Tab(0).Control(5)=   "Text1(19)"
-      Tab(0).Control(6)=   "Text1(20)"
-      Tab(0).Control(7)=   "Text1(21)"
-      Tab(0).Control(8)=   "Text1(22)"
-      Tab(0).Control(9)=   "Text1(7)"
-      Tab(0).Control(10)=   "Text1(3)"
-      Tab(0).Control(11)=   "Text1(4)"
-      Tab(0).Control(12)=   "Text1(5)"
-      Tab(0).Control(13)=   "Text1(6)"
-      Tab(0).Control(14)=   "Text1(8)"
-      Tab(0).Control(15)=   "Text1(9)"
-      Tab(0).Control(16)=   "Text1(10)"
-      Tab(0).Control(17)=   "Text1(12)"
-      Tab(0).Control(18)=   "Text1(13)"
-      Tab(0).Control(19)=   "Text1(17)"
-      Tab(0).Control(20)=   "Check1(0)"
-      Tab(0).Control(21)=   "Frame3(1)"
-      Tab(0).Control(22)=   "Text1(23)"
-      Tab(0).Control(23)=   "Label1(21)"
-      Tab(0).Control(24)=   "Label2"
-      Tab(0).Control(25)=   "imgDoc(0)"
-      Tab(0).Control(26)=   "imgDoc(1)"
-      Tab(0).Control(27)=   "Label14"
-      Tab(0).Control(28)=   "Label1(20)"
-      Tab(0).Control(29)=   "Label1(19)"
-      Tab(0).Control(30)=   "Label1(3)"
-      Tab(0).Control(31)=   "Label1(5)"
-      Tab(0).Control(32)=   "imgBuscar(0)"
-      Tab(0).Control(33)=   "Label1(6)"
-      Tab(0).Control(34)=   "Label1(7)"
-      Tab(0).Control(35)=   "Label1(8)"
-      Tab(0).Control(36)=   "Label1(9)"
-      Tab(0).Control(37)=   "Label1(10)"
-      Tab(0).Control(38)=   "Label1(11)"
-      Tab(0).Control(39)=   "imgBuscar(2)"
-      Tab(0).Control(40)=   "ImgMail(1)"
-      Tab(0).Control(41)=   "Label1(4)"
-      Tab(0).Control(42)=   "Label1(13)"
-      Tab(0).Control(43)=   "imgFecha(0)"
-      Tab(0).Control(44)=   "Label1(14)"
-      Tab(0).Control(45)=   "imgFecha(1)"
+      Tab(0).Control(0)=   "imgFecha(1)"
+      Tab(0).Control(1)=   "Label1(14)"
+      Tab(0).Control(2)=   "imgFecha(0)"
+      Tab(0).Control(3)=   "Label1(13)"
+      Tab(0).Control(4)=   "Label1(4)"
+      Tab(0).Control(5)=   "ImgMail(1)"
+      Tab(0).Control(6)=   "imgBuscar(2)"
+      Tab(0).Control(7)=   "Label1(11)"
+      Tab(0).Control(8)=   "Label1(10)"
+      Tab(0).Control(9)=   "Label1(9)"
+      Tab(0).Control(10)=   "Label1(8)"
+      Tab(0).Control(11)=   "Label1(7)"
+      Tab(0).Control(12)=   "Label1(6)"
+      Tab(0).Control(13)=   "imgBuscar(0)"
+      Tab(0).Control(14)=   "Label1(5)"
+      Tab(0).Control(15)=   "Label1(3)"
+      Tab(0).Control(16)=   "Label1(19)"
+      Tab(0).Control(17)=   "Label1(20)"
+      Tab(0).Control(18)=   "Label14"
+      Tab(0).Control(19)=   "imgDoc(1)"
+      Tab(0).Control(20)=   "imgDoc(0)"
+      Tab(0).Control(21)=   "Label2"
+      Tab(0).Control(22)=   "Label1(21)"
+      Tab(0).Control(23)=   "Text1(23)"
+      Tab(0).Control(24)=   "Frame3(1)"
+      Tab(0).Control(25)=   "Check1(0)"
+      Tab(0).Control(26)=   "Text1(17)"
+      Tab(0).Control(27)=   "Text1(13)"
+      Tab(0).Control(28)=   "Text1(12)"
+      Tab(0).Control(29)=   "Text1(10)"
+      Tab(0).Control(30)=   "Text1(9)"
+      Tab(0).Control(31)=   "Text1(8)"
+      Tab(0).Control(32)=   "Text1(6)"
+      Tab(0).Control(33)=   "Text1(5)"
+      Tab(0).Control(34)=   "Text1(4)"
+      Tab(0).Control(35)=   "Text1(3)"
+      Tab(0).Control(36)=   "Text1(7)"
+      Tab(0).Control(37)=   "Text1(22)"
+      Tab(0).Control(38)=   "Text1(21)"
+      Tab(0).Control(39)=   "Text1(20)"
+      Tab(0).Control(40)=   "Text1(19)"
+      Tab(0).Control(41)=   "Text1(25)"
+      Tab(0).Control(42)=   "Text1(27)"
+      Tab(0).Control(43)=   "Check1(1)"
+      Tab(0).Control(44)=   "Text1(28)"
+      Tab(0).Control(45)=   "Check1(2)"
       Tab(0).ControlCount=   46
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "LabelCRM"
-      Tab(1).Control(1)=   "lwCRM"
-      Tab(1).Control(2)=   "cmdAccCRM(2)"
-      Tab(1).Control(3)=   "cmdAccCRM(1)"
-      Tab(1).Control(4)=   "cmdAccCRM(0)"
-      Tab(1).Control(5)=   "Frame3(2)"
+      Tab(1).Control(0)=   "Frame3(2)"
+      Tab(1).Control(1)=   "cmdAccCRM(0)"
+      Tab(1).Control(2)=   "cmdAccCRM(1)"
+      Tab(1).Control(3)=   "cmdAccCRM(2)"
+      Tab(1).Control(4)=   "lwCRM"
+      Tab(1).Control(5)=   "LabelCRM"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "DataGrid1"
-      Tab(2).Control(1)=   "txtAux1(0)"
-      Tab(2).Control(2)=   "txtAux1(1)"
-      Tab(2).Control(3)=   "txtAux1(2)"
-      Tab(2).Control(4)=   "txtAux1(3)"
-      Tab(2).Control(5)=   "txtAux1(4)"
-      Tab(2).Control(6)=   "cmdAux(0)"
-      Tab(2).Control(7)=   "FrameToolAux0"
+      Tab(2).Control(0)=   "FrameToolAux0"
+      Tab(2).Control(1)=   "cmdAux(0)"
+      Tab(2).Control(2)=   "txtAux1(4)"
+      Tab(2).Control(3)=   "txtAux1(3)"
+      Tab(2).Control(4)=   "txtAux1(2)"
+      Tab(2).Control(5)=   "txtAux1(1)"
+      Tab(2).Control(6)=   "txtAux1(0)"
+      Tab(2).Control(7)=   "DataGrid1"
       Tab(2).ControlCount=   8
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "DataGrid2"
-      Tab(3).Control(1)=   "txtAux2(0)"
-      Tab(3).Control(2)=   "txtAux2(1)"
-      Tab(3).Control(3)=   "txtAux2(2)"
+      Tab(3).Control(0)=   "FrameToolAux1"
+      Tab(3).Control(1)=   "cmdAux(1)"
+      Tab(3).Control(2)=   "txtAux2(4)"
+      Tab(3).Control(3)=   "cmdAux1"
       Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "cmdAux1"
-      Tab(3).Control(6)=   "txtAux2(4)"
-      Tab(3).Control(7)=   "cmdAux(1)"
-      Tab(3).Control(8)=   "FrameToolAux1"
+      Tab(3).Control(5)=   "txtAux2(2)"
+      Tab(3).Control(6)=   "txtAux2(1)"
+      Tab(3).Control(7)=   "txtAux2(0)"
+      Tab(3).Control(8)=   "DataGrid2"
       Tab(3).ControlCount=   9
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
-      Tab(4).ControlEnabled=   0   'False
+      Tab(4).ControlEnabled=   -1  'True
       Tab(4).Control(0)=   "Label4"
+      Tab(4).Control(0).Enabled=   0   'False
       Tab(4).Control(1)=   "DataGrid4"
+      Tab(4).Control(1).Enabled=   0   'False
       Tab(4).Control(2)=   "Text3"
+      Tab(4).Control(2).Enabled=   0   'False
       Tab(4).Control(3)=   "txtAux3(0)"
+      Tab(4).Control(3).Enabled=   0   'False
       Tab(4).Control(4)=   "txtAux3(1)"
+      Tab(4).Control(4).Enabled=   0   'False
       Tab(4).Control(5)=   "txtAux3(2)"
+      Tab(4).Control(5).Enabled=   0   'False
       Tab(4).Control(6)=   "cmdAux(2)"
+      Tab(4).Control(6).Enabled=   0   'False
       Tab(4).Control(7)=   "FrameToolAux2"
+      Tab(4).Control(7).Enabled=   0   'False
       Tab(4).ControlCount=   8
       TabCaption(5)   =   "Documentos"
       TabPicture(5)   =   "frmGesSocios.frx":008C
-      Tab(5).ControlEnabled=   -1  'True
+      Tab(5).ControlEnabled=   0   'False
       Tab(5).Control(0)=   "LabelDoc"
       Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "imgFecha(3)"
@@ -367,11 +375,11 @@ Begin VB.Form frmGesSocios
       TabCaption(6)   =   "Contadores"
       TabPicture(6)   =   "frmGesSocios.frx":00A8
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "DataGrid3"
-      Tab(6).Control(1)=   "txtAux4(2)"
+      Tab(6).Control(0)=   "FrameToolAux3"
+      Tab(6).Control(1)=   "txtAux4(0)"
       Tab(6).Control(2)=   "txtAux4(1)"
-      Tab(6).Control(3)=   "txtAux4(0)"
-      Tab(6).Control(4)=   "FrameToolAux3"
+      Tab(6).Control(3)=   "txtAux4(2)"
+      Tab(6).Control(4)=   "DataGrid3"
       Tab(6).ControlCount=   5
       Begin VB.Frame FrameToolAux3 
          Height          =   555
@@ -408,7 +416,7 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Frame FrameToolAux2 
          Height          =   555
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   115
          Top             =   330
          Width           =   1605
@@ -659,7 +667,7 @@ Begin VB.Form frmGesSocios
          Caption         =   "+"
          Height          =   315
          Index           =   2
-         Left            =   -72570
+         Left            =   2430
          TabIndex        =   97
          ToolTipText     =   "Buscar artículo"
          Top             =   3570
@@ -682,7 +690,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -70230
+         Left            =   4770
          MaxLength       =   10
          TabIndex        =   96
          Text            =   "Importe"
@@ -705,7 +713,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -72330
+         Left            =   2670
          TabIndex        =   95
          Text            =   "nomartic"
          Top             =   3570
@@ -727,7 +735,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74220
+         Left            =   780
          MaxLength       =   16
          TabIndex        =   94
          Tag             =   "Artículo|T|N|||sclien_cuotas|codartic|||"
@@ -751,7 +759,7 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   -65960
+         Left            =   9040
          Locked          =   -1  'True
          TabIndex        =   93
          Top             =   4860
@@ -770,7 +778,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   26
-         Left            =   9450
+         Left            =   -65550
          TabIndex        =   89
          Text            =   "Text4"
          Top             =   1410
@@ -2039,7 +2047,7 @@ Begin VB.Form frmGesSocios
       End
       Begin MSComctlLib.Toolbar Toolbar2 
          Height          =   1710
-         Left            =   60
+         Left            =   -74940
          TabIndex        =   88
          Top             =   420
          Width           =   615
@@ -2077,7 +2085,7 @@ Begin VB.Form frmGesSocios
       End
       Begin MSComctlLib.ListView lw1 
          Height          =   4545
-         Left            =   690
+         Left            =   -74310
          TabIndex        =   90
          Top             =   390
          Width           =   8295
@@ -2108,7 +2116,7 @@ Begin VB.Form frmGesSocios
       Begin MSDataGridLib.DataGrid DataGrid4 
          Bindings        =   "frmGesSocios.frx":1B18
          Height          =   3840
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   98
          Top             =   930
          Width           =   11185
@@ -2179,7 +2187,7 @@ Begin VB.Form frmGesSocios
          Caption         =   "Frame3"
          Height          =   3855
          Index           =   0
-         Left            =   60
+         Left            =   -74940
          TabIndex        =   100
          Top             =   360
          Width           =   615
@@ -2278,7 +2286,7 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   195
-         Left            =   -68000
+         Left            =   7000
          TabIndex        =   99
          Top             =   4890
          Width           =   1875
@@ -2295,7 +2303,7 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9570
+         Left            =   -65430
          TabIndex        =   92
          Top             =   930
          Width           =   735
@@ -2303,7 +2311,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   3
-         Left            =   10410
+         Left            =   -64590
          Picture         =   "frmGesSocios.frx":1B2D
          ToolTipText     =   "Buscar fecha"
          Top             =   930
@@ -2322,7 +2330,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          ForeColor       =   &H00000080&
          Height          =   300
-         Left            =   9090
+         Left            =   -65910
          TabIndex        =   91
          Top             =   450
          Width           =   1905
@@ -3213,7 +3221,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim I As Integer
 Dim CadB As String
-Dim Cad As String
+Dim cad As String
 Dim aaa As String
 
 
@@ -4128,7 +4136,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -4146,9 +4154,9 @@ Dim Cad As String
             Exit Sub
         End If
         
-        Cad = Adodc1.Recordset.Fields(0) & "|"
-        Cad = Cad & Adodc1.Recordset.Fields(2) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Adodc1.Recordset.Fields(0) & "|"
+        cad = cad & Adodc1.Recordset.Fields(2) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -4410,15 +4418,15 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim Cad As String
+Dim cad As String
     
     On Error Resume Next
 
-    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
@@ -4471,7 +4479,7 @@ Dim bAux As Boolean
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     'Insertar
     Toolbar1.Buttons(1).Enabled = b
-    Me.mnnuevo.Enabled = b
+    Me.mnNuevo.Enabled = b
     
     b = (Modo = 2)
     'Modificar                                  '[Monica]05/12/2013: en cuotas dejamos modificar el importe
@@ -4714,14 +4722,14 @@ End Sub
 Private Sub CalculoCuotas()
 Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim Cad As String
+Dim cad As String
 Dim base0 As Single
 Dim base1 As Single
 Dim BaseImp As Single
 Dim iva As String
 Dim porciva As Currency
         
-        Cad = "CALCULO DE IMPORTE DE CUOTAS SOCIO: " & vbCrLf & vbCrLf
+        cad = "CALCULO DE IMPORTE DE CUOTAS SOCIO: " & vbCrLf & vbCrLf
         
         'busco el iva del articulo
         iva = DevuelveDesdeBD(conAri, "codigiva", "sartic", "codartic", vParamAplic.ArtCuotaSinChofer, "T")
@@ -4731,7 +4739,7 @@ Dim porciva As Currency
         
         base0 = vParamAplic.PrecioCuotaSinChofe
         
-            Cad = Cad & "Cuota sin Chofer:      " & Format(base0, "###,##0.00") & vbCrLf
+            cad = cad & "Cuota sin Chofer:      " & Format(base0, "###,##0.00") & vbCrLf
         
         
         '[Monica]10/02/2011: si el socio tiene suplemento se le añade
@@ -4739,7 +4747,7 @@ Dim porciva As Currency
         '[Monica]10/02/2011:end
         
         If DBLet(Adodc1.Recordset!suplecuota, "N") <> 0 Then
-            Cad = Cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
+            cad = cad & "Suplemento:               " & Format(Adodc1.Recordset!suplecuota, "##,###,##0.00") & vbCrLf
         End If
         
         BaseImp = base0
@@ -4748,19 +4756,19 @@ Dim porciva As Currency
         If TieneChofer(CStr(Adodc1.Recordset!CodClien)) Then
             base1 = vParamAplic.PrecioCuotaConChofe
             BaseImp = BaseImp + base1
-            Cad = Cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
+            cad = cad & "Cuota Chofer:             " & Format(base1, "#,###,##0.00") & vbCrLf
         End If
         
         If Adodc1.Recordset!essocio = 0 Then
             BaseImp = BaseImp + vParamAplic.PrecioPorAlquiler
-            Cad = Cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
+            cad = cad & "Cuota Alquiler:           " & Format(vParamAplic.PrecioPorAlquiler, "#,###,##0.00") & vbCrLf
         End If
     
-            Cad = Cad & vbCrLf
-            Cad = Cad & "--------------------------------" & vbCrLf
-            Cad = Cad & "TOTAL BRUTO:         " & Format(BaseImp, "###,##0.00")
+            cad = cad & vbCrLf
+            cad = cad & "--------------------------------" & vbCrLf
+            cad = cad & "TOTAL BRUTO:         " & Format(BaseImp, "###,##0.00")
 
-        MsgBox Cad, vbInformation, "Cálculo de Cuotas"
+        MsgBox cad, vbInformation, "Cálculo de Cuotas"
 
 
 End Sub
@@ -5273,8 +5281,8 @@ End Sub
 
 
 
-Private Sub BotonMtoLineas(Cad As String)
-        Select Case Cad
+Private Sub BotonMtoLineas(cad As String)
+        Select Case cad
             Case "Choferes"
                 SSTab1.Tab = 2
             Case "Publicidad"
@@ -6225,10 +6233,10 @@ Dim dirMail As String
 End Sub
 
 Private Sub PosicionarData()
-Dim Cad As String, Indicador As String
+Dim cad As String, Indicador As String
 
-    Cad = "(codclien=" & Text1(0).Text & ")"
-    If SituarData(Adodc1, Cad, Indicador) Then
+    cad = "(codclien=" & Text1(0).Text & ")"
+    If SituarData(Adodc1, cad, Indicador) Then
        PonerModo 2
        lblIndicador(0).Caption = Indicador
         'data4 para el grid contadores
@@ -6564,7 +6572,7 @@ Dim bs As Byte
 End Sub
 
 Private Sub CargaDatosLWDoc2()
-Dim Cad As String
+Dim cad As String
 Dim Rs As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -6590,22 +6598,22 @@ Dim EsDTOFam As Boolean
     Select Case CByte(RecuperaValor(lw1.Tag, 1))
     Case 2
         'LLAMADAS
-        Cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
-        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
+        cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
+        cad = cad & " codsocio=" & Adodc1.Recordset!CodClien
         GroupBy = "1,2,3"
         BuscaChekc = "fecha"
         
     Case 3
         'FACTURAS como cliente
-        Cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
-        Cad = Cad & " codclien=" & Adodc1.Recordset!CodClien
+        cad = "select codtipom,numfactu,fecfactu,totalfac from scafac WHERE "
+        cad = cad & " codclien=" & Adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
     Case 4
         'FACTURAS COMO PROVEEDOR
-        Cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
-        Cad = Cad & " codsocio=" & Adodc1.Recordset!CodClien
+        cad = "select codtipom,numfactu,fecfactu,totalfac from sfactusoc WHERE "
+        cad = cad & " codsocio=" & Adodc1.Recordset!CodClien
         BuscaChekc = "fecfactu"
         GroupBy = "1,2,3"
         
@@ -6613,20 +6621,20 @@ Dim EsDTOFam As Boolean
     
     
     'La fecha
-    If BuscaChekc <> "" Then Cad = Cad & " and " & BuscaChekc & " >='" & Format(imgFecha(3).Tag, FormatoFecha) & "'"
+    If BuscaChekc <> "" Then cad = cad & " and " & BuscaChekc & " >='" & Format(imgFecha(3).Tag, FormatoFecha) & "'"
     
     'El group by
-    If GroupBy <> "" Then Cad = Cad & " GROUP BY " & GroupBy
+    If GroupBy <> "" Then cad = cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    Cad = Cad & " ORDER BY " & BuscaChekc & " DESC"
+    cad = cad & " ORDER BY " & BuscaChekc & " DESC"
     
     BuscaChekc = ""
     
     lw1.ListItems.Clear
-    If Cad <> "" Then
+    If cad <> "" Then
         Set Rs = New ADODB.Recordset
-        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not Rs.EOF
             Set It = lw1.ListItems.Add()
             If lw1.ColumnHeaders(1).Tag <> "" Then
@@ -6832,7 +6840,7 @@ Dim bs As Byte
 End Sub
 
 Private Sub CargaDatosLWcrm2()
-Dim Cad As String
+Dim cad As String
 Dim Rs As ADODB.Recordset
 Dim It As ListItem
 Dim ElIcono As Integer
@@ -6859,18 +6867,18 @@ Dim MeteIT As Boolean
     Select Case Kopc
     Case 0
         'Nros de serie
-        Cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
-        Cad = Cad & " and sserie.codtipar = stipar.codtipar  "
-        Cad = Cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
+        cad = "select nomtipar, sserie.codartic, nomartic, numserie from sartic, sserie, stipar WHERE sserie.codartic= sartic.codartic "
+        cad = cad & " and sserie.codtipar = stipar.codtipar  "
+        cad = cad & " and sserie.codclien=" & Adodc1.Recordset!CodClien
         GroupBy = ""
         BuscaChekc = "nomtipar, sserie.codartic, numserie "
     End Select
     
     'El group by
-    If GroupBy <> "" Then Cad = Cad & " GROUP BY " & GroupBy
+    If GroupBy <> "" Then cad = cad & " GROUP BY " & GroupBy
     
     'El ORDER BY
-    Cad = Cad & " ORDER BY " & BuscaChekc
+    cad = cad & " ORDER BY " & BuscaChekc
 '     If Kopc <> 4 Then cad = cad & " DESC"
 
     BuscaChekc = ""
@@ -6879,10 +6887,10 @@ Dim MeteIT As Boolean
    
     Set Rs = New ADODB.Recordset
     If Kopc <> 3 Then
-        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     Else
         'Va contra la contabilidad
-        Rs.Open Cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     End If
     While Not Rs.EOF
         If Kopc <> 3 Then
@@ -6914,15 +6922,15 @@ Dim MeteIT As Boolean
                         Else
                         
                             
-                            Cad = Rs.Fields(NumRegElim - 1)
+                            cad = Rs.Fields(NumRegElim - 1)
                             'no TIENE FORMATO. sEGUN LO QUE SEA puedo hacer unas cosas u otras
-                            If NumRegElim = 4 And Kopc = 1 Then Cad = Replace(Cad, vbCrLf, " ")
+                            If NumRegElim = 4 And Kopc = 1 Then cad = Replace(cad, vbCrLf, " ")
                             'Medio
                             If NumRegElim = 3 And Kopc = 0 Then 'DevuelveMedio cad
                             End If
-                            If NumRegElim = 3 And Kopc = 4 Then Cad = Replace(Cad, vbCrLf, " ")
+                            If NumRegElim = 3 And Kopc = 4 Then cad = Replace(cad, vbCrLf, " ")
                             
-                            It.SubItems(NumRegElim - 1) = Cad
+                            It.SubItems(NumRegElim - 1) = cad
                         
                             
                             
@@ -6959,14 +6967,14 @@ ECargaDatosLW:
     Set Rs = Nothing
 End Sub
 
-Private Sub DevuelveMedio(ByRef Cad As String)
+Private Sub DevuelveMedio(ByRef cad As String)
     'pendiente,en curso finalizada
-    If Cad = "0" Then
-        Cad = "Pendiente"
-    ElseIf Cad = "1" Then
-        Cad = "En curso"
+    If cad = "0" Then
+        cad = "Pendiente"
+    ElseIf cad = "1" Then
+        cad = "En curso"
     Else
-        Cad = "Finalizada"
+        cad = "Finalizada"
     End If
 End Sub
 
