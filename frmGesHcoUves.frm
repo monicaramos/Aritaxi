@@ -942,7 +942,7 @@ Dim b As Boolean
     b = (Modo = 2)
     'Insertar
     Toolbar1.Buttons(1).Enabled = (b Or (Modo = 0))
-    Me.mnnuevo.Enabled = (b Or (Modo = 0))
+    Me.mnNuevo.Enabled = (b Or (Modo = 0))
     'Modificar
     Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
@@ -961,7 +961,7 @@ Dim b As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
 End Sub
 
 
