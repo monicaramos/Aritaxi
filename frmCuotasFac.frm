@@ -1657,7 +1657,7 @@ Dim indice As String
     Screen.MousePointer = vbDefault
     frmCal.Show vbModal
     Set frmCal = Nothing
-    If Fecha <> "" Then Text1(indice).Text = Fecha
+    If CStr(Fecha) <> "" Then Text1(indice).Text = Fecha
     PonerFoco Text1(indice)
 End Sub
 

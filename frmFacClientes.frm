@@ -149,7 +149,7 @@ Begin VB.Form frmFacClientes
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   1
+      Tab             =   5
       TabsPerRow      =   7
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -255,7 +255,7 @@ Begin VB.Form frmFacClientes
       Tab(0).ControlCount=   44
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmFacClientes.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "frameDptoDirec"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "frameDptoAdmon"
@@ -309,7 +309,7 @@ Begin VB.Form frmFacClientes
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Subclientes"
       TabPicture(5)   =   "frmFacClientes.frx":0098
-      Tab(5).ControlEnabled=   0   'False
+      Tab(5).ControlEnabled=   -1  'True
       Tab(5).Control(0)=   "Adodc2"
       Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "DataGrid1"
@@ -336,7 +336,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1875
-         Left            =   135
+         Left            =   -74865
          TabIndex        =   196
          Top             =   4560
          Width           =   5475
@@ -565,7 +565,7 @@ Begin VB.Form frmFacClientes
       End
       Begin VB.Frame FrameToolAux 
          Height          =   555
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   185
          Top             =   555
          Width           =   1605
@@ -611,7 +611,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74670
+         Left            =   330
          MaxLength       =   6
          TabIndex        =   179
          Tag             =   "Cliente de Albaran|N|N|||scliente_albaran|codclienalb|000000||"
@@ -635,7 +635,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73500
+         Left            =   1500
          TabIndex        =   178
          Text            =   "nomclien"
          Top             =   2070
@@ -646,7 +646,7 @@ Begin VB.Form frmFacClientes
          Caption         =   "+"
          Height          =   315
          Index           =   0
-         Left            =   -73710
+         Left            =   1290
          TabIndex        =   177
          ToolTipText     =   "Buscar cliente"
          Top             =   2070
@@ -1590,7 +1590,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   3735
-         Left            =   5670
+         Left            =   -69330
          TabIndex        =   105
          Top             =   450
          Width           =   6615
@@ -2016,7 +2016,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   4095
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   92
          Top             =   450
          Width           =   5475
@@ -3395,7 +3395,7 @@ Begin VB.Form frmFacClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1875
-         Left            =   5670
+         Left            =   -69330
          TabIndex        =   114
          Top             =   4545
          Width           =   6615
@@ -3671,7 +3671,7 @@ Begin VB.Form frmFacClientes
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmFacClientes.frx":1A46
          Height          =   4125
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   180
          Top             =   1155
          Width           =   10185
@@ -3739,7 +3739,7 @@ Begin VB.Form frmFacClientes
       End
       Begin MSAdodcLib.Adodc Adodc2 
          Height          =   330
-         Left            =   -67110
+         Left            =   7890
          Top             =   4410
          Visible         =   0   'False
          Width           =   1455
@@ -5962,8 +5962,8 @@ End Sub
 Private Sub lw1_DblClick()
 Dim Seleccionado As Long
     If Modo <> 2 Then Exit Sub
-    If lw1.ListItems.Count = 0 Then Exit Sub
-    If lw1.SelectedItem Is Nothing Then Exit Sub
+    If Lw1.ListItems.Count = 0 Then Exit Sub
+    If Lw1.SelectedItem Is Nothing Then Exit Sub
 
 
     If Me.DatosADevolverBusqueda <> "" Then
@@ -5975,14 +5975,14 @@ Dim Seleccionado As Long
     Screen.MousePointer = vbHourglass
     
     'Llegados aqui
-    Select Case CByte(RecuperaValor(lw1.Tag, 1))
+    Select Case CByte(RecuperaValor(Lw1.Tag, 1))
     Case 2
         '[Monica] no son albaranes son llamadas
         'LLAMADAS
         Set frmLLam = New frmGesHisLlam
-        frmLLam.HoraServ = lw1.SelectedItem.SubItems(1)
-        frmLLam.FechaServ = lw1.SelectedItem.Text
-        frmLLam.NumerUve = lw1.SelectedItem.SubItems(2)
+        frmLLam.HoraServ = Lw1.SelectedItem.SubItems(1)
+        frmLLam.FechaServ = Lw1.SelectedItem.Text
+        frmLLam.NumerUve = Lw1.SelectedItem.SubItems(2)
         frmLLam.Show vbModal
         Set frmLLam = Nothing
 
@@ -6007,14 +6007,14 @@ Dim Seleccionado As Long
     End Select
         
     'Pase lo que pase, por si acaso, cargamos el lw
-    lw1.SetFocus
-    Seleccionado = lw1.SelectedItem.Index
+    Lw1.SetFocus
+    Seleccionado = Lw1.SelectedItem.Index
     CargaDatosLWDoc
-    lw1.SelectedItem.Selected = False
-    Set lw1.SelectedItem = Nothing
-    If lw1.ListItems.Count >= Seleccionado Then
-            lw1.ListItems(Seleccionado).Selected = True
-            lw1.ListItems(Seleccionado).EnsureVisible
+    Lw1.SelectedItem.Selected = False
+    Set Lw1.SelectedItem = Nothing
+    If Lw1.ListItems.Count >= Seleccionado Then
+            Lw1.ListItems(Seleccionado).Selected = True
+            Lw1.ListItems(Seleccionado).EnsureVisible
     End If
     Screen.MousePointer = vbDefault
 End Sub
@@ -6635,7 +6635,7 @@ Dim b As Boolean
     
     'El listview
     If Modo <> 2 Then
-        lw1.ListItems.Clear
+        Lw1.ListItems.Clear
         If vParamAplic.TieneCRM Then lwCRM.ListItems.Clear
     End If
 
@@ -6682,7 +6682,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
     
     
     'BARRA DE DIRECCIONES
@@ -7430,7 +7430,7 @@ Private Sub ImagenesNavegacion()
         
     End With
     
-    Set lw1.SmallIcons = frmppal.ImgListPpal
+    Set Lw1.SmallIcons = frmppal.ImgListPpal
     
     SSTab1.TabVisible(4) = vParamAplic.TieneCRM
     If vParamAplic.TieneCRM Then
@@ -7506,12 +7506,12 @@ Dim C As ColumnHeader
     'Fecha incio busquedas
     Text1(46).Text = Format(imgFecha(3).Tag, "dd/mm/yyyy")
     'Guardo la opcion en el tag
-    lw1.Tag = OpcionList & "|" & Ncol & "|"
+    Lw1.Tag = OpcionList & "|" & Ncol & "|"
     
-    lw1.ColumnHeaders.Clear
+    Lw1.ColumnHeaders.Clear
     
     For NumRegElim = 1 To Ncol
-         Set C = lw1.ColumnHeaders.Add()
+         Set C = Lw1.ColumnHeaders.Add()
          C.Text = RecuperaValor(Columnas, CInt(NumRegElim))
          C.Width = RecuperaValor(Ancho, CInt(NumRegElim))
          C.Alignment = Val(RecuperaValor(Alinea, CInt(NumRegElim)))
@@ -7555,7 +7555,7 @@ Dim EsDTOFam As Boolean
     Text1(46).Text = Format(imgFecha(3).Tag, "dd/mm/yyyy")
     EsDTOFam = False
     
-    Select Case CByte(RecuperaValor(lw1.Tag, 1))
+    Select Case CByte(RecuperaValor(Lw1.Tag, 1))
     Case 2
         'LLAMADAS
         Cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE 1=1"
@@ -7597,24 +7597,24 @@ Dim EsDTOFam As Boolean
     End If
     BuscaChekc = ""
     
-    lw1.ListItems.Clear
+    Lw1.ListItems.Clear
     If Cad <> "" Then
         Set Rs = New ADODB.Recordset
         Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not Rs.EOF
-            Set It = lw1.ListItems.Add()
-            If lw1.ColumnHeaders(1).Tag <> "" Then
-            It.Text = Format(Rs.Fields(0), lw1.ColumnHeaders(1).Tag)
+            Set It = Lw1.ListItems.Add()
+            If Lw1.ColumnHeaders(1).Tag <> "" Then
+            It.Text = Format(Rs.Fields(0), Lw1.ColumnHeaders(1).Tag)
             Else
                 It.Text = Rs.Fields(0)
             End If
             'El resto de cmpos
-            For NumRegElim = 2 To CInt(RecuperaValor(lw1.Tag, 2))
+            For NumRegElim = 2 To CInt(RecuperaValor(Lw1.Tag, 2))
                 If IsNull(Rs.Fields(NumRegElim - 1)) Then
                     It.SubItems(NumRegElim - 1) = " "
                 Else
-                    If lw1.ColumnHeaders(NumRegElim).Tag <> "" Then
-                        It.SubItems(NumRegElim - 1) = Format(Rs.Fields(NumRegElim - 1), lw1.ColumnHeaders(NumRegElim).Tag)
+                    If Lw1.ColumnHeaders(NumRegElim).Tag <> "" Then
+                        It.SubItems(NumRegElim - 1) = Format(Rs.Fields(NumRegElim - 1), Lw1.ColumnHeaders(NumRegElim).Tag)
                     Else
                         It.SubItems(NumRegElim - 1) = Rs.Fields(NumRegElim - 1)
                     End If
@@ -7650,7 +7650,7 @@ Dim s As String
 '
 '    If lw1.SelectedItem.Text = "FAM" Then
         'Van directas
-        s = lw1.SelectedItem.Text & "|" & lw1.SelectedItem.SubItems(1) & "|" & lw1.SelectedItem.SubItems(2) & "|"
+        s = Lw1.SelectedItem.Text & "|" & Lw1.SelectedItem.SubItems(1) & "|" & Lw1.SelectedItem.SubItems(2) & "|"
 '    Else
 '        s = "select codtipoa,numalbar,fechaalb from scafac1 where codtipom='"
 '        s = s & lw1.SelectedItem.Text & "' and numfactu=" & lw1.SelectedItem.SubItems(1)
@@ -8282,7 +8282,7 @@ Dim I As Byte
             txtAux1(I).top = 290
             txtAux1(I).visible = visible
         Next I
-        Me.cmdAux(0).visible = visible
+        Me.cmdaux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
@@ -8300,7 +8300,7 @@ Dim I As Byte
                     txtAux1(I).Locked = True
                 End If
             Next I
-            cmdAux(0).Enabled = False
+            cmdaux(0).Enabled = False
         End If
         
         'Fijamos altura(Height) y posición Top
@@ -8318,12 +8318,12 @@ Dim I As Byte
         'cliente
         txtAux1(0).Left = DataGrid1.Left + 330
         txtAux1(0).Width = DataGrid1.Columns(2).Width - 160
-        cmdAux(0).Left = txtAux1(0).Left + txtAux1(0).Width - 50
+        cmdaux(0).Left = txtAux1(0).Left + txtAux1(0).Width - 50
 '        txtAux1(0).Left = DataGrid1.Left + 330
 '        txtAux1(0).Width = DataGrid1.Columns(2).Width - 100
         
         'nombre
-        txtAux1(1).Left = cmdAux(0).Left + cmdAux(0).Width + 10
+        txtAux1(1).Left = cmdaux(0).Left + cmdaux(0).Width + 10
         txtAux1(1).Width = DataGrid1.Columns(3).Width - 50
 '        txtAux1(1).Width = DataGrid1.Columns(3).Width - 100
 '        txtAux1(1).Left = txtAux1(0).Left + (txtAux1(0).Width + 100)
@@ -8334,9 +8334,9 @@ Dim I As Byte
         For I = 0 To txtAux1.Count - 1
             txtAux1(I).visible = visible
         Next I
-        Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
-        Me.cmdAux(0).top = alto
-        Me.cmdAux(0).visible = visible
+        Me.cmdaux(0).Height = Me.DataGrid1.RowHeight
+        Me.cmdaux(0).top = alto
+        Me.cmdaux(0).visible = visible
 '        cmdAux1.Top = alto
 '        cmdAux1.visible = visible
     End If

@@ -3140,7 +3140,9 @@ Dim rs2 As ADODB.Recordset
             'scafaccli
             Sql = "INSERT INTO scafaccli (codtipom,numfactu,fecfactu,codclien,nomclien,domclien,codpobla,pobclien,proclien,"
             Sql = Sql & "nifclien,codagent,codforpa,dtoppago,dtognral,brutofac,impdtopp,impdtogr,baseimp1,codigiv1,porciva1,"
-            Sql = Sql & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,baseimp3,codigiv3,porciva3,imporiv3,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban, codbanpr) VALUES ("
+            Sql = Sql & "imporiv1,baseimp2,codigiv2,porciva2,imporiv2,baseimp3,codigiv3,porciva3,imporiv3,totalfac,intconta,coddirec,codbanco,codsucur,digcontr,cuentaba, numservi, suplidos, iban, codbanpr,"
+            '[Monica]18/10/2018: añdimos la fecha desde y la fecha hasta
+            Sql = Sql & "fecdesde, fechasta) VALUES ("
             Sql = Sql & DBSet(TipoMovimiento, "T") & "," & NumFactu & ",'" & Format(FecFactu, FormatoFecha) & "'," & DBSet(fac.Cliente, "N") & ","
             Sql = Sql & DBSet(cli.Nombre, "T") & "," & DBSet(cli.Domicilio, "T") & "," & DBSet(cli.CPostal, "T") & ","
             Sql = Sql & DBSet(cli.Poblacion, "T") & "," & DBSet(cli.Provincia, "T") & "," & DBSet(cli.NIF, "T") & "," & vParamAplic.PorDefecto_Agente
@@ -3163,6 +3165,9 @@ Dim rs2 As ADODB.Recordset
             Sql = Sql & DBSet(Rs!Servicios, "N") & "," & DBSet(Suplidos, "N") & "," & DBSet(fac.Iban, "T")
             '[Monica]30/01/2017: banco propio
             Sql = Sql & "," & DBSet(fac.BancoPr, "N")
+            
+            '[Monica]18/10/2018: añadimos la fecha desde y al fecha hasta
+            Sql = Sql & "," & DBSet(txtcodigo(85), "F", "S") & "," & DBSet(txtcodigo(86), "F", "S")
             Sql = Sql & ")"
         
             conn.Execute Sql
