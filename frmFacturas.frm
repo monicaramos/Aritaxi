@@ -324,7 +324,8 @@ Dim encontrado As String
                     
                     
                     '[Monica]28/02/2018: para el caso de cordoba se marca como erroneo si no existe
-                    b = Updatear(Rs!NumerUve, encontrado, (vParamAplic.Cooperativa = 2)) 'antes false
+                        '[Monica]19/11/2018: Entra Sevilla
+                    b = Updatear(Rs!NumerUve, encontrado, (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)) 'antes false
                 
 '                Else
 '                    encontrado = DevuelveDesdeBD(conAri, "codclien", "sclien", "licencia", Rs!NumerUve, "T")
@@ -372,7 +373,8 @@ Dim encontrado As String
                 
                 '[Monica]28/02/2018: antes false
                 'B = Updatear(Rs!NumerUve, encontrado, False)
-                b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2)
+                    '[Monica]19/11/2018: Entra Sevilla
+                b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
                 
                 Rs.MoveNext
             Wend
@@ -562,7 +564,7 @@ Dim encontrado As String
      Label1(2).Caption = ""
      Me.ProgressBar1.visible = False
      
-     CargaGrid DataGrid1, Adodc1
+     CargaGrid DataGrid1, adodc1
 
 End Sub
 
@@ -654,10 +656,10 @@ End Sub
 
 Private Sub DataGrid1_Click()
 
-    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & Adodc1.Recordset!Id
+    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & adodc1.Recordset!Id
     frmGesHisLlamTMP.Show vbModal
     
-    CargaGrid Me.DataGrid1, Me.Adodc1
+    CargaGrid Me.DataGrid1, Me.adodc1
     
 End Sub
 
@@ -671,12 +673,12 @@ Private Sub Form_Load()
     Me.Icon = frmppal.Icon
 
     Screen.MousePointer = vbDefault
-    Adodc1.ConnectionString = conn
-    Adodc1.RecordSource = Sql
-    Adodc1.Refresh
+    adodc1.ConnectionString = conn
+    adodc1.RecordSource = Sql
+    adodc1.Refresh
     
-    If Not Adodc1.Recordset.EOF Then
-        CargaGrid DataGrid1, Adodc1
+    If Not adodc1.Recordset.EOF Then
+        CargaGrid DataGrid1, adodc1
     End If
 
     With Me.Toolbar3(0)

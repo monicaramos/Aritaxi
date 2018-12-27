@@ -1469,7 +1469,8 @@ Dim devuelve As String
     InicializarVbles
     
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
     
         cadNombreRPT = "rRecRetenciones.rpt"
         cadTitulo = "Reimpresion Recibos Retenciones"
@@ -1481,7 +1482,7 @@ Dim devuelve As String
         
         Sql = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values ("
         Sql = Sql & vUsu.Codigo & "," & DBSet(Me.Data1.Recordset!codSocio, "N") & "," & DBSet(Data1.Recordset!NumerUve, "N") & ","
-        Sql = Sql & DBSet(Data1.Recordset!impreten * (-1), "N") & "," & DBSet(Data1.Recordset!hastafec, "F") & ")"
+        Sql = Sql & DBSet(Data1.Recordset!ImpReten * (-1), "N") & "," & DBSet(Data1.Recordset!hastafec, "F") & ")"
         
         conn.Execute Sql
         

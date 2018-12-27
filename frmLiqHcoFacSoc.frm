@@ -3845,7 +3845,8 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
         
     '[Monica]31/03/2014
     '[Monica]19/02/2018: Entra Cordoba
-    If (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) And Text1(1).Text = "FLI" Then
+        '[Monica]19/02/2018: Entra Sevilla
+    If (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) And Text1(1).Text = "FLI" Then
         'preguntamos si quiere imprimirlo o no con los servicios
         If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
             cadParam = cadParam & "pDetalle=0|"
@@ -4054,11 +4055,12 @@ Dim b As Boolean
     'Importes siempre bloqueados, excepto para busquedas. ivas y aportacion tb bloqueado
     '[Monica]19/02/2018: Entra Cordoba
     For I = 13 To 16                            '[Monica]02/03/2012: dejamos modificar totales de la factura si es Teletaxi
-        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)) And Modo <> 3
+            '[Monica]19/11/2018: Entra Sevilla
+        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)) And Modo <> 3
     Next I
-    BloquearTxt Text1(18), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)) And Modo <> 3
+    BloquearTxt Text1(18), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)) And Modo <> 3
     For I = 20 To 21                            '[Monica]02/03/2012: dejamos modificar totales de la factura si es Teletaxi
-        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)) And Modo <> 3
+        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)) And Modo <> 3
     Next I
     'Campo B.Imp y Imp. IVA siempre en azul
     BloquearTxt Text1(14), True
@@ -4188,7 +4190,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
         
     b = (Modo = 2)
     For I = 0 To ToolAux.Count - 1

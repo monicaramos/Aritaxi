@@ -62,6 +62,9 @@ Private mGastosAdmon As Currency 'gastos de administracion de cliente
 
 Private mNroExpediente As String 'nro de expediente
 
+Private mGrabaFechas As Boolean
+Private mFacturaxServicio As Boolean
+
 
 '------------------------------------------------
 'Propiedades del modulo CCliente
@@ -400,6 +403,28 @@ Public Property Get NroExpediente() As String
 End Property
 
 
+'**** Grabar Fechas
+
+Public Property Let GrabaFechas(ByVal vData As Boolean)
+     mGrabaFechas = vData
+End Property
+
+Public Property Get GrabaFechas() As Boolean
+     GrabaFechas = mGrabaFechas
+End Property
+
+
+'**** Factura por Servicio
+
+Public Property Let FacturaxServicio(ByVal vData As Boolean)
+     mFacturaxServicio = vData
+End Property
+
+Public Property Get FacturaxServicio() As Boolean
+     FacturaxServicio = mFacturaxServicio
+End Property
+
+
 '------------------------------------------------
 'Procedimientos del modulo CCliente
 '------------------------------------------------
@@ -440,7 +465,7 @@ Dim Sql As String
         Sql = "SELECT codclien,nomclien,codpobla,domclien,pobclien,proclien,nifclien,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,codsitua,observac, iban  "
         Sql = Sql & " FROM sclien "
     Else
-        Sql = "SELECT codclien,nomclien,nomcomer,codpobla,domclien,pobclien,proclien,nifclien,wwwclien,codenvio,codagent,codforpa,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,clivario,dtoppago,dtognral,codtarif,codsitua,tipofact,kilometr,fechamov,observac,perclie1, gasadm, iban, nroexpediente "
+        Sql = "SELECT codclien,nomclien,nomcomer,codpobla,domclien,pobclien,proclien,nifclien,wwwclien,codenvio,codagent,codforpa,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,clivario,dtoppago,dtognral,codtarif,codsitua,tipofact,kilometr,fechamov,observac,perclie1, gasadm, iban, nroexpediente, grabafechas, facturaxservicio "
         Sql = Sql & " FROM scliente "
     End If
     Sql = Sql & " WHERE codclien=" & vCodClien
@@ -477,6 +502,9 @@ Dim Sql As String
             mPersonaContacto = DBLet(Rs!perclie1, "T")
             mGastosAdmon = DBLet(Rs!gasadm, "N")
             mNroExpediente = DBLet(Rs!NroExpediente, "T")
+            '[Monica]19/12/2018: nuevos campos de grabar fechas en factura y factura por servicio
+            mGrabaFechas = Rs!GrabaFechas
+            mFacturaxServicio = Rs!FacturaxServicio
         End If
         '[Monica]22/11/2013: tema iban
         mIban = CStr(DBLet(Rs!Iban, "T"))

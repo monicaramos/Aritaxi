@@ -286,7 +286,7 @@ Begin VB.MDIForm frmPpal2
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "13:51"
+            TextSave        =   "14:10"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -2076,7 +2076,8 @@ End Function
 Private Sub CargaImagen()
     On Error Resume Next
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         Me.Picture = LoadPicture(App.Path & "\arifon2.dat")
     Else
         Me.Picture = LoadPicture(App.Path & "\arifon3.dat")
@@ -2885,7 +2886,7 @@ End Sub
 
 Private Sub mnHisLlam_Click()
     Select Case vParamAplic.Cooperativa
-        Case 0, 2
+        Case 0, 2, 3
             frmGesHisLlam.Show vbModal
         Case 1
             frmGesHisLlamVIP.Show vbModal
@@ -3355,7 +3356,7 @@ Dim Cad As String
     Me.mnConfParamAplic = True
     Me.mnConfParamGenerales = True
 
-    Me.mnsalir.Enabled = True
+    Me.mnSalir.Enabled = True
     Me.mnCambioEmpresa.Enabled = True
 End Sub
 

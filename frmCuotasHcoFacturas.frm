@@ -526,14 +526,14 @@ Begin VB.Form frmCuotasHcoFacturas
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmCuotasHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameCliente"
-      Tab(0).Control(1)=   "Text1(17)"
-      Tab(0).Control(2)=   "Text1(16)"
-      Tab(0).Control(3)=   "FrameFactura"
-      Tab(0).Control(4)=   "Text1(24)"
-      Tab(0).Control(5)=   "Text1(23)"
-      Tab(0).Control(6)=   "Label1(26)"
-      Tab(0).Control(7)=   "Label1(25)"
+      Tab(0).Control(0)=   "Label1(25)"
+      Tab(0).Control(1)=   "Label1(26)"
+      Tab(0).Control(2)=   "Text1(23)"
+      Tab(0).Control(3)=   "Text1(24)"
+      Tab(0).Control(4)=   "FrameFactura"
+      Tab(0).Control(5)=   "Text1(16)"
+      Tab(0).Control(6)=   "Text1(17)"
+      Tab(0).Control(7)=   "FrameCliente"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "frmCuotasHcoFacturas.frx":0028
@@ -4532,7 +4532,8 @@ Dim b As Boolean
     '[Monica]18/10/2012: dejo modificar el iva
     For I = 26 To 37                            '[Monica]02/03/2012: dejamos modificar totales de la factura si es Teletaxi
                                                                         '[Monica]19/02/2018: Entra Cordoba
-        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2))
+                                                                            '[Monica]19/11/2019: Entra Sevilla
+        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3))
     Next I
     
     For I = 29 To 34
@@ -4543,7 +4544,8 @@ Dim b As Boolean
     Next I
     
     '[Monica]19/02/2018: Entra Cordoba
-    If Modo <> 1 And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)) Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If Modo <> 1 And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)) Then
         Text1(35).BackColor = &HFFFFC0
         Text1(36).BackColor = &HFFFFC0
         Text1(37).BackColor = &HFFFFC0
@@ -5283,7 +5285,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
         
         
     b = (Modo = 2)
@@ -6146,7 +6148,7 @@ Dim devuelve As String
         
         
         'cODTIPOA
-        devuelve = "{scafac1.codtipoa}=" & DBSet(Data3.Recordset!codtipoa, "T")
+        devuelve = "{scafac1.codtipoa}=" & DBSet(Data3.Recordset!codTipoa, "T")
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
         
         'Numalbar

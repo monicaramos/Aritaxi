@@ -365,7 +365,8 @@ Private Sub cmdAceptar_Click()
     Select Case Combo1(1).ListIndex
         Case 0 ' facturas liquidacion socio
             '[Monica]19/02/2018: Entra Cordoba
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
                     ConDetalle = 0
                 Else
@@ -378,7 +379,8 @@ Private Sub cmdAceptar_Click()
         Case 1 ' facturas de cliente
             '[Monica]19/02/2018: Entra Cordoba
             '[Monica]31/03/2014: en el caso de teletaxi pedimos si imprime o no detalle
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
                     ConDetalle = 0
                 Else
@@ -413,8 +415,8 @@ Private Function DatosOk() As Boolean
 Dim Codigo As String
 
     'Comprobacion de fechas
-    DesdeFecha = CDate(txtCodigo(0).Text)
-    Hastafecha = CDate(txtCodigo(1).Text)
+    DesdeFecha = CDate(txtcodigo(0).Text)
+    Hastafecha = CDate(txtcodigo(1).Text)
     If DesdeFecha > Hastafecha Then
         MsgBox "La fecha desde debe ser menor que la fecha hasta", vbInformation
         Exit Function
@@ -444,8 +446,8 @@ Dim I As Integer
     'Icono del formulario
     Me.Icon = frmppal.Icon
 
-    txtCodigo(0).Text = Date
-    txtCodigo(1).Text = Date
+    txtcodigo(0).Text = Date
+    txtcodigo(1).Text = Date
     
     CargaCombo
     
@@ -490,23 +492,23 @@ Private Sub imgFec_Click(Index As Integer)
     ' ***canviar l'index de imgFec pel 1r index de les imagens de buscar data***
     imgFec(0).Tag = Index 'independentment de les dates que tinga, sempre pose l'index en la 27
     
-    PonerFormatoFecha txtCodigo(Index)
-    If txtCodigo(Index).Text <> "" Then frmC.Fecha = CDate(txtCodigo(Index).Text)
+    PonerFormatoFecha txtcodigo(Index)
+    If txtcodigo(Index).Text <> "" Then frmC.Fecha = CDate(txtcodigo(Index).Text)
 
     frmC.Show vbModal
     Set frmC = Nothing
-    PonerFoco txtCodigo(CByte(imgFec(0).Tag))
+    PonerFoco txtcodigo(CByte(imgFec(0).Tag))
     ' ***************************
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
  'Fecha
-    txtCodigo(CByte(imgFec(0).Tag)).Text = Format(vFecha, "dd/MM/yyyy")
+    txtcodigo(CByte(imgFec(0).Tag)).Text = Format(vFecha, "dd/MM/yyyy")
 End Sub
 
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -553,7 +555,7 @@ Dim Cad As String, cadTipo As String 'tipo cliente
     
     Select Case Index
         Case 0, 1 'FECHAS
-            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
             
     End Select
 End Sub
@@ -562,7 +564,7 @@ End Sub
 Private Sub CargaFacturasLiq(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim Rs2 As ADODB.Recordset
+    Dim rs2 As ADODB.Recordset
     Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
@@ -591,8 +593,8 @@ Dim cadParam As String
     conn.Execute Sql
 
     Sql = "select sfactusoc.*, stipom.letraser " & _
-            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and sfactusoc.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and sfactusoc.codtipom = stipom.codtipom " & _
             " and sfactusoc.codtipom in ('FLI','FRL') "
     
@@ -603,8 +605,8 @@ Dim cadParam As String
     If Check2.Value = 0 Then Sql = Sql & " and sfactusoc.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtcodigo(3).Text, "N")
             
             
     Set Rs = New ADODB.Recordset
@@ -612,8 +614,8 @@ Dim cadParam As String
     
     If Not Rs.EOF Then
         Sql = "insert into tmpinformes (codusu, nombre1, importe1, codigo1, fecha1) "
-        Sql = Sql & " select " & vUsu.Codigo & ", sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.codsocio, sfactusoc.fecfactu from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-                " and sfactusoc.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+        Sql = Sql & " select " & vUsu.Codigo & ", sfactusoc.codtipom, sfactusoc.numfactu, sfactusoc.codsocio, sfactusoc.fecfactu from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+                " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
                 " and sfactusoc.codtipom = stipom.codtipom " & _
                 " and sfactusoc.codtipom in ('FLI','FRL') "
                 
@@ -640,7 +642,8 @@ Dim cadParam As String
             
             '[Monica]31/04/2014: si se detallan los servicios en las facturas o no
             '[Monica]19/02/2018: Entra Cordoba
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 cadParam = cadParam & "pDetalle=" & ConDetalle & "|"
                 numParam = numParam + 1
             End If
@@ -699,7 +702,7 @@ End Sub
 Private Sub CargaFacturasCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim Rs2 As ADODB.Recordset
+    Dim rs2 As ADODB.Recordset
     Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
@@ -724,8 +727,8 @@ Dim numParam As Byte
 Dim cadParam As String
     
     Sql = "select scafaccli.*, stipom.letraser " & _
-            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafaccli.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafaccli.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafaccli.codtipom in ('FAC','FVC','FRN') " & _
             " and scafaccli.codtipom = stipom.codtipom "
     '[Monica]12/11/2014: faltaba la condicion de solo los clientes que tienen facturae
@@ -735,8 +738,8 @@ Dim cadParam As String
     If Check2.Value = 0 Then Sql = Sql & " and scafaccli.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then Sql = Sql & " and scafaccli.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafaccli.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtcodigo(3).Text, "N")
     
     
     Set Rs = New ADODB.Recordset
@@ -761,7 +764,8 @@ Dim cadParam As String
             
             '[Monica]31/04/2014: si se detallan los servicios en las facturas o no
             '[Monica]19/02/2018: Entra Cordoba
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 cadParam = cadParam & "pDetalle=" & ConDetalle & "|"
                 numParam = numParam + 1
             End If
@@ -816,7 +820,7 @@ End Sub
 Private Sub CargaFacturasCuotasSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim Rs2 As ADODB.Recordset
+    Dim rs2 As ADODB.Recordset
     Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
@@ -841,8 +845,8 @@ Dim numParam As Byte
 Dim cadParam As String
 
     Sql = "select scafac.*, stipom.letraser " & _
-            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafac.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafac.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafac.codtipom = stipom.codtipom " & _
             " and scafac.codtipom  in ('FCN','FCE','FRC') "
             
@@ -854,8 +858,8 @@ Dim cadParam As String
     If Check2.Value = 0 Then Sql = Sql & " and scafac.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -924,7 +928,7 @@ End Sub
 Private Sub CargaFacturasPublicidadSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim Rs2 As ADODB.Recordset
+    Dim rs2 As ADODB.Recordset
     Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
@@ -949,8 +953,8 @@ Dim numParam As Byte
 Dim cadParam As String
 
     Sql = "select sfactusoc.*, stipom.letraser " & _
-            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and sfactusoc.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+            " from sfactusoc, stipom, sclien where sfactusoc.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and sfactusoc.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and sfactusoc.codtipom = stipom.codtipom " & _
             " and sfactusoc.codtipom = 'FPS' "
             
@@ -962,8 +966,8 @@ Dim cadParam As String
     If Check2.Value = 0 Then Sql = Sql & " and sfactusoc.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and sfactusoc.codsocio <= " & DBSet(txtcodigo(3).Text, "N")
             
             
     Set Rs = New ADODB.Recordset
@@ -1035,7 +1039,7 @@ End Sub
 Private Sub CargaFacturasPublicidadCliente(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim Rs2 As ADODB.Recordset
+    Dim rs2 As ADODB.Recordset
     Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
@@ -1060,8 +1064,8 @@ Dim numParam As Byte
 Dim cadParam As String
     
     Sql = "select scafaccli.*, stipom.letraser " & _
-            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafaccli.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+            " from scafaccli, stipom, scliente where scafaccli.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafaccli.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafaccli.codtipom in ('FPC','FRP') " & _
             " and scafaccli.codtipom = stipom.codtipom "
     
@@ -1073,8 +1077,8 @@ Dim cadParam As String
     If Check2.Value = 0 Then Sql = Sql & " and scafaccli.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then Sql = Sql & " and scafaccli.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafaccli.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafaccli.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
             
     Set Rs = New ADODB.Recordset
@@ -1145,7 +1149,7 @@ End Sub
 Private Sub CargaFacturasVentaSocio(DFecha As Date, HFecha As Date)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim Rs2 As ADODB.Recordset
+    Dim rs2 As ADODB.Recordset
     Dim I As Long
     Dim FicheroPDF As String
     Dim C1 As String
@@ -1170,8 +1174,8 @@ Dim numParam As Byte
 Dim cadParam As String
 
     Sql = "select scafac.*, stipom.letraser " & _
-            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtCodigo(0).Text, "F") & _
-            " and scafac.fecfactu <= " & DBSet(txtCodigo(1).Text, "F") & _
+            " from scafac, stipom, sclien where scafac.fecfactu >= " & DBSet(txtcodigo(0).Text, "F") & _
+            " and scafac.fecfactu <= " & DBSet(txtcodigo(1).Text, "F") & _
             " and scafac.codtipom = stipom.codtipom " & _
             " and scafac.codtipom  in ('FAV','FRT') "
             
@@ -1182,8 +1186,8 @@ Dim cadParam As String
     If Check2.Value = 0 Then Sql = Sql & " and scafac.exportada = 0"
             
     '[Monica]02/05/2016: añadimos desde/hasta cliente
-    If txtCodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtcodigo(2).Text <> "" Then Sql = Sql & " and scafac.codclien >= " & DBSet(txtcodigo(2).Text, "N")
+    If txtcodigo(3).Text <> "" Then Sql = Sql & " and scafac.codclien <= " & DBSet(txtcodigo(3).Text, "N")
             
             
             

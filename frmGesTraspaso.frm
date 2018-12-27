@@ -615,7 +615,8 @@ Dim cadTabla As String
                             
                             '[Monica]28/02/2018: para el caso de cordoba si no lo encuentra lo marco como error
                             'B = Updatear(Rs!NumerUve, encontrado, False)
-                            b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2)
+                            '[Monica]19/11/2018: Entra Sevilla
+                            b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
                         
 '                        Else
 '
@@ -671,7 +672,8 @@ Dim cadTabla As String
                         
                         '[Monica]28/02/2018
                         'B = Updatear(Rs!NumerUve, encontrado, False)
-                        b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2)
+                        '[Monicax]19/11/2018: Entra Sevilla
+                        b = Updatear(Rs!NumerUve, encontrado, vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
                         Rs.MoveNext
                     Wend
                 

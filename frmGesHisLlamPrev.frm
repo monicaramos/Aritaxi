@@ -817,7 +817,8 @@ Private Sub CargaGrid(Optional vSQL As String)
     tots = "S|txtAux(0)|T|Fecha|1405|;S|txtAux(1)|T|Hora|1005|;"
     tots = tots & "S|txtAux(2)|T|Socio|1105|;"
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         tots = tots & "S|txtAux2(2)|T|Nombre|3895|;S|txtAux(3)|T|Vehículo|1100|;"
     Else
         tots = tots & "S|txtAux2(2)|T|Nombre|4995|;N|txtAux(3)|T|Vehículo|1100|;"

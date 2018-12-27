@@ -1121,14 +1121,14 @@ Dim devuelve As String
    
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
+    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".codsocio}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHSocio=""") Then Exit Sub
     End If
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
+    If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
         Codigo = "{" & Tabla & ".fecfactu}"
         If Not PonerDesdeHasta(Codigo, "F", 85, 86, "pDHFecha=""") Then Exit Sub
     End If
@@ -1144,11 +1144,11 @@ Dim devuelve As String
     
     cadTitulo = "Retenciones Servicios de Crédito"
 
-    cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
+    cadParam = cadParam & "pFecFac= """ & txtcodigo(3).Text & """|"
     numParam = numParam + 1
     cadParam = cadParam & "pTitulo= ""Retenciones Servicios de Crédito""|"
     numParam = numParam + 1
-    cadParam = cadParam & "pBase=" & TransformaComasPuntos(ImporteSinFormato(txtCodigo(2).Text)) & "|"
+    cadParam = cadParam & "pBase=" & TransformaComasPuntos(ImporteSinFormato(txtcodigo(2).Text)) & "|"
     numParam = numParam + 1
     
     ConSubInforme = False
@@ -1203,14 +1203,14 @@ Dim devuelve As String
    
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtCodigo(82).Text <> "" Or txtCodigo(83).Text <> "" Then
+    If txtcodigo(82).Text <> "" Or txtcodigo(83).Text <> "" Then
         Codigo = "{" & Tabla & ".codsocio}"
         If Not PonerDesdeHasta(Codigo, "N", 82, 83, "pDHSocio=""") Then Exit Sub
     End If
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtCodigo(102).Text <> "" Or txtCodigo(103).Text <> "" Then
+    If txtcodigo(102).Text <> "" Or txtcodigo(103).Text <> "" Then
         Codigo = "{" & Tabla & ".fecfactu}"
         If Not PonerDesdeHasta(Codigo, "F", 102, 103, "pDHFecha=""") Then Exit Sub
     End If
@@ -1224,16 +1224,17 @@ Dim devuelve As String
         If Not HayRegParaInforme("tmpinformes", "codusu= " & vUsu.Codigo) Then Exit Sub
 
         '[Monica]19/02/2018: Entra Cordoba
-        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+            '[Monica]19/11/2018: entra Sevilla
+        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
 
             cadNombreRPT = "rRecRetenciones.rpt"
             cadTitulo = "Recibos Retenciones Servicios de Crédito"
         
-            cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
+            cadParam = cadParam & "pFecFac= """ & txtcodigo(3).Text & """|"
             numParam = numParam + 1
             cadParam = cadParam & "pTitulo= ""Retenciones Servicios de Crédito""|"
             numParam = numParam + 1
-            cadParam = cadParam & "pBase=" & TransformaComasPuntos(ImporteSinFormato(txtCodigo(2).Text)) & "|"
+            cadParam = cadParam & "pBase=" & TransformaComasPuntos(ImporteSinFormato(txtcodigo(2).Text)) & "|"
             numParam = numParam + 1
             
             ConSubInforme = False
@@ -1276,7 +1277,7 @@ Dim devuelve As String
     
     
         cadFormula = "{scafac.codtipom} = 'FAV'  and "
-        cadFormula = cadFormula & "{scafac.fecfactu}= Date(" & Year(CDate(txtCodigo(4))) & "," & Month(CDate(txtCodigo(4).Text)) & "," & Day(CDate(txtCodigo(4).Text)) & ")"
+        cadFormula = cadFormula & "{scafac.fecfactu}= Date(" & Year(CDate(txtcodigo(4))) & "," & Month(CDate(txtcodigo(4).Text)) & "," & Day(CDate(txtcodigo(4).Text)) & ")"
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
     
     
@@ -1349,9 +1350,9 @@ Dim Mens As String
     SQL2 = "insert into sreten (codsocio, numeruve, fecfactu, numfactu, impreten, tiporeten, desdefec, hastafec) values "
     b = True
     While Not Rs.EOF And b
-        Sql2Values = "(" & DBSet(Rs!Codigo1, "N") & "," & DBSet(Rs!Importe1, "N") & "," & DBSet(txtCodigo(4).Text, "F") & ","
-        Sql2Values = Sql2Values & "0," & DBSet(Rs!importe2 * (-1), "N") & ",1," & DBSet(txtCodigo(102).Text, "F") & ","
-        Sql2Values = Sql2Values & DBSet(txtCodigo(103).Text, "F") & ")"
+        Sql2Values = "(" & DBSet(Rs!Codigo1, "N") & "," & DBSet(Rs!Importe1, "N") & "," & DBSet(txtcodigo(4).Text, "F") & ","
+        Sql2Values = Sql2Values & "0," & DBSet(Rs!importe2 * (-1), "N") & ",1," & DBSet(txtcodigo(102).Text, "F") & ","
+        Sql2Values = Sql2Values & DBSet(txtcodigo(103).Text, "F") & ")"
         
         conn.Execute SQL2 & Sql2Values
 
@@ -1359,7 +1360,7 @@ Dim Mens As String
         Set fac = New CFacturaCom
     
         fac.TotalFac = DBLet(Rs!importe2, "N")
-        fac.FecFactu = txtCodigo(4).Text
+        fac.FecFactu = txtcodigo(4).Text
         fac.NumFactu = "R-" & Format(Rs!Codigo1, "00000") & Format(Rs!Importe1, "00000")
         
         fac.Proveedor = DBLet(Rs!Codigo1, "N")
@@ -1369,10 +1370,10 @@ Dim Mens As String
         fac.PoblacionProv = DevuelveDesdeBD(conAri, "pobclien", "sclien", "codclien", Rs!Codigo1, "T")
         fac.ProvinciaProv = DevuelveDesdeBD(conAri, "proclien", "sclien", "codclien", Rs!Codigo1, "T")
         fac.NIFProv = DevuelveDesdeBD(conAri, "nifclien", "sclien", "codclien", Rs!Codigo1, "T")
-        fac.ForPago = txtCodigo(61).Text
+        fac.ForPago = txtcodigo(61).Text
         
         'Cuenta Prevista de Cobro de las Facturas
-        fac.BancoPr = txtCodigo(6).Text
+        fac.BancoPr = txtcodigo(6).Text
         fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
         'cuenta contable de proveedor
         'comprobamos q la cuenta contable exista en contabilidad
@@ -1406,7 +1407,7 @@ Dim Mens As String
       
         MenError = "Error al pasar a tesoreria"
         '[Monica]26/01/2012: cambiamos el parametro opcional para que imprima en texto de csb otra cosa
-        fac.Proveedor = Year(CDate(txtCodigo(103).Text))
+        fac.Proveedor = Year(CDate(txtcodigo(103).Text))
         b = fac.InsertarEnTesoreria(MenError, True) ' true = indicamos que venimos de pago de retenciones
         
         Set fac = Nothing
@@ -1471,10 +1472,10 @@ Dim Importe As Currency
     
     SqlValues = ""
     While Not Rs.EOF
-        Importe = DBLet(Rs!Importe, "N") - ComprobarCero(txtCodigo(96).Text)
+        Importe = DBLet(Rs!Importe, "N") - ComprobarCero(txtcodigo(96).Text)
         
         If Importe > 0 Then
-            SqlValues = SqlValues & "(" & vUsu.Codigo & "," & DBLet(Rs!codSocio, "N") & "," & DBLet(Rs!NumerUve, "N") & "," & DBSet(Importe, "N") & "," & DBSet(txtCodigo(103).Text, "F") & "),"
+            SqlValues = SqlValues & "(" & vUsu.Codigo & "," & DBLet(Rs!codSocio, "N") & "," & DBLet(Rs!NumerUve, "N") & "," & DBSet(Importe, "N") & "," & DBSet(txtcodigo(103).Text, "F") & "),"
         End If
     
         Rs.MoveNext
@@ -1513,7 +1514,7 @@ Private Sub Form_Activate()
     cadParam = ""
 
 
-    PonerFoco txtCodigo(0)
+    PonerFoco txtcodigo(0)
 
 End Sub
 
@@ -1550,8 +1551,8 @@ Dim H As Integer, W As Integer
 
             Tabla = "sreten"
         
-            txtCodigo(3).Text = Format(Now, "dd/mm/yyyy")
-            txtCodigo(2).Text = "0,00"
+            txtcodigo(3).Text = Format(Now, "dd/mm/yyyy")
+            txtcodigo(2).Text = "0,00"
             
         Case 1
             PonerFrameRecibosRetenVisible True, H, W
@@ -1566,8 +1567,8 @@ Dim H As Integer, W As Integer
                 'no metemos el importe
                 Me.Label4(47).Enabled = False
                 Me.Label4(47).visible = False
-                Me.txtCodigo(96).Enabled = False
-                Me.txtCodigo(96).visible = False
+                Me.txtcodigo(96).Enabled = False
+                Me.txtcodigo(96).visible = False
                 
             End If
         
@@ -1604,12 +1605,12 @@ Dim Codigo As String
     
     Select Case OpcionListado
         Case 0 ' listado de retenciones
-                If txtCodigo(2).Text = "" Then
+                If txtcodigo(2).Text = "" Then
                     MsgBox "Debe introducir obligatoriamente un Importe Base.", vbExclamation
                     DatosOk = False
                     Exit Function
                 End If
-                If txtCodigo(3).Text = "" Then
+                If txtcodigo(3).Text = "" Then
                     MsgBox "Debe introducir obligatoriamente la fecha de listado.", vbExclamation
                     DatosOk = False
                     Exit Function
@@ -1618,16 +1619,17 @@ Dim Codigo As String
             
         Case 1 ' Impresion de recibos de retenciones
             '[Monica]19/02/2018: Entra Cordoba
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 'fecha de recibo
-                If txtCodigo(4).Text = "" Then
+                If txtcodigo(4).Text = "" Then
                     MsgBox "Debe introducir obligatoriamente la Fecha de Recibo.", vbExclamation
-                    PonerFoco txtCodigo(4)
+                    PonerFoco txtcodigo(4)
                     DatosOk = False
                     Exit Function
                 End If
             Else
-                If txtCodigo(4).Text = "" Then
+                If txtcodigo(4).Text = "" Then
                     MsgBox "Debe introducir obligatoriamente la fecha de factura.", vbExclamation
                     DatosOk = False
                     Exit Function
@@ -1652,24 +1654,24 @@ Dim Codigo As String
             
             End If
             'forma de pago
-            If txtCodigo(61).Text = "" Then
+            If txtcodigo(61).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Forma de Pago.", vbExclamation
-                PonerFoco txtCodigo(61)
+                PonerFoco txtcodigo(61)
                 DatosOk = False
                 Exit Function
             End If
             'cuenta de pago
-            If txtCodigo(6).Text = "" Then
+            If txtcodigo(6).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Cuenta de Pago.", vbExclamation
-                PonerFoco txtCodigo(6)
+                PonerFoco txtcodigo(6)
                 DatosOk = False
                 Exit Function
             End If
             
             '[Monica]01/10/2012: obligamos a meter el desde/hasta fecha
-            If txtCodigo(102).Text = "" Or txtCodigo(103).Text = "" Then
+            If txtcodigo(102).Text = "" Or txtcodigo(103).Text = "" Then
                 MsgBox "Debe introducir obligatoriamente la Fecha Desde / Hasta.", vbExclamation
-                PonerFoco txtCodigo(102)
+                PonerFoco txtcodigo(102)
                 DatosOk = False
                 Exit Function
             End If
@@ -1685,7 +1687,7 @@ Dim devuelve As String
 Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -1694,7 +1696,7 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
@@ -1711,22 +1713,22 @@ End Function
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -1765,7 +1767,7 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
         
         
     End Select
-    PonerFoco txtCodigo(indCodigo)
+    PonerFoco txtcodigo(indCodigo)
 
 End Sub
 
@@ -1781,23 +1783,23 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = 3
    End Select
    
-   PonerFormatoFecha txtCodigo(indCodigo)
-   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
+   PonerFormatoFecha txtcodigo(indCodigo)
+   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtCodigo(indCodigo)
+   PonerFoco txtcodigo(indCodigo)
 End Sub
 
 Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
-    If txtCodigo(indD).Text <> "" Then
-        Cad = Cad & "desde " & txtCodigo(indD).Text
+    If txtcodigo(indD).Text <> "" Then
+        Cad = Cad & "desde " & txtcodigo(indD).Text
         If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
     End If
-    If txtCodigo(indH).Text <> "" Then
-        Cad = Cad & "  hasta " & txtCodigo(indH).Text
+    If txtcodigo(indH).Text <> "" Then
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
         If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
     End If
     AnyadirParametroDH = Cad
@@ -1805,7 +1807,7 @@ On Error Resume Next
 End Function
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -1838,7 +1840,7 @@ Dim encontrado As String
 
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1847,49 +1849,49 @@ Dim encontrado As String
     
     Select Case Index
         Case 85, 86, 102, 103 'FECHA Desde Hasta
-            PonerFormatoFecha txtCodigo(Index)
+            PonerFormatoFecha txtcodigo(Index)
             
         Case 0, 1 'V Socio
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
             
         Case 82, 83 'Socio
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "codclien", "N")
             
             
         Case 2 ' importe base
-            PonerFormatoDecimal txtCodigo(Index), 3
+            PonerFormatoDecimal txtcodigo(Index), 3
             
         Case 3, 4 ' fecha de listado
-            PonerFormatoFecha txtCodigo(Index)
+            PonerFormatoFecha txtcodigo(Index)
             
         Case 96 ' importe
-            PonerFormatoDecimal txtCodigo(Index), 3
+            PonerFormatoDecimal txtcodigo(Index), 3
             
         Case 6 ' cta de banco
-            If txtCodigo(Index).Text <> "" Then
-                encontrado = DevuelveDesdeBD(conAri, "nombanpr", "sbanpr", "codbanpr", txtCodigo(Index).Text, "T")
+            If txtcodigo(Index).Text <> "" Then
+                encontrado = DevuelveDesdeBD(conAri, "nombanpr", "sbanpr", "codbanpr", txtcodigo(Index).Text, "T")
                 If encontrado = "" Then
                     MsgBox "El banco introducido no existe", vbExclamation
-                    PonerFoco txtCodigo(Index)
+                    PonerFoco txtcodigo(Index)
                 Else
                     txtnombre(Index).Text = encontrado
                 End If
             End If
         
         Case 61 ' forma de pago
-            If txtCodigo(Index).Text <> "" Then
-                If Not IsNumeric(txtCodigo(Index).Text) Then
+            If txtcodigo(Index).Text <> "" Then
+                If Not IsNumeric(txtcodigo(Index).Text) Then
                     MsgBox "La forma de pago debe ser numérica.", vbExclamation
-                    PonerFoco txtCodigo(Index)
+                    PonerFoco txtcodigo(Index)
                     Exit Sub
                 End If
-                txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000")
-                encontrado = DevuelveDesdeBD(conAri, "nomforpa", "sforpa", "codforpa", txtCodigo(Index).Text, "T")
+                txtcodigo(Index).Text = Format(txtcodigo(Index).Text, "000")
+                encontrado = DevuelveDesdeBD(conAri, "nomforpa", "sforpa", "codforpa", txtcodigo(Index).Text, "T")
                 If encontrado = "" Then
                     MsgBox "La forma de pago introducida no existe.", vbExclamation
-                    PonerFoco txtCodigo(Index)
+                    PonerFoco txtcodigo(Index)
                 Else
                     txtnombre(Index).Text = encontrado
                 End If
@@ -1950,7 +1952,7 @@ Dim vSQL As String
     'valores grales para todos los socios
     porIva = CCur(DevuelveDesdeBD(conConta, "porceiva", "tiposiva", "codigiva", CStr(iva), "T"))
     LetraSer = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", codtipom, "T")
-    ForPago = txtCodigo(61).Text
+    ForPago = txtcodigo(61).Text
     CodTraba = DevuelveDesdeBD(conAri, "codtraba", "straba", "login", vUsu.Login, "T")
     If CodTraba = "" Then CodTraba = DevuelveValor("select min(codtraba) from straba")
     'busco el minimo almacen y el minimo proveedor
@@ -2010,9 +2012,9 @@ Dim vSQL As String
         
         ' insertamos en la tabla de retenciones
         SQL2 = "insert into sreten (codsocio, numeruve, fecfactu, numfactu, impreten, tiporeten, desdefec, hastafec) values "
-        Sql2Values = "(" & DBSet(Rs!Codigo1, "N") & "," & DBSet(Rs!Importe1, "N") & "," & DBSet(txtCodigo(4).Text, "F") & ","
-        Sql2Values = Sql2Values & DBSet(vC.Contador, "N") & "," & DBSet(Rs!importe2 * (-1), "N") & ",1," & DBSet(txtCodigo(102).Text, "F") & ","
-        Sql2Values = Sql2Values & DBSet(txtCodigo(103).Text, "F") & ")"
+        Sql2Values = "(" & DBSet(Rs!Codigo1, "N") & "," & DBSet(Rs!Importe1, "N") & "," & DBSet(txtcodigo(4).Text, "F") & ","
+        Sql2Values = Sql2Values & DBSet(vC.Contador, "N") & "," & DBSet(Rs!importe2 * (-1), "N") & ",1," & DBSet(txtcodigo(102).Text, "F") & ","
+        Sql2Values = Sql2Values & DBSet(txtcodigo(103).Text, "F") & ")"
         
         conn.Execute SQL2 & Sql2Values
             
@@ -2023,7 +2025,7 @@ Dim vSQL As String
         ImpIVA = totfactu - BaseImp
         fac.TotalFac = totfactu
         fac.codtipom = codtipom
-        FecFactu = txtCodigo(4).Text
+        FecFactu = txtcodigo(4).Text
         fac.FecFactu = FecFactu
         fac.LetraSerie = LetraSer
         NumFactu = vC.Contador
@@ -2031,7 +2033,7 @@ Dim vSQL As String
 '        fac.CuentaPrev = Text1(7).Text
         fac.ForPago = ForPago
         
-        fac.BancoPr = txtCodigo(6)
+        fac.BancoPr = txtcodigo(6)
         fac.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", fac.BancoPr, "N")
         
         fac.Agente = vParamAplic.PorDefecto_Agente

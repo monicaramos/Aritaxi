@@ -872,20 +872,20 @@ Dim SqlUve As String
    
     'Desde/Hasta numero de V
     '---------------------------------------------
-    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
+    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".numeruve}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHUve=""") Then Exit Sub
     End If
     
     '[Monica]25/10/2012: seleccionamos que socios han de ser en efectivo
     SqlUve = ""
-    If CLng(ComprobarCero(txtCodigo(0).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve >= " & DBSet(txtCodigo(0).Text, "N")
-    If CLng(ComprobarCero(txtCodigo(1).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve <= " & DBSet(txtCodigo(1).Text, "N")
+    If CLng(ComprobarCero(txtcodigo(0).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve >= " & DBSet(txtcodigo(0).Text, "N")
+    If CLng(ComprobarCero(txtcodigo(1).Text)) <> 0 Then SqlUve = SqlUve & " and numeruve <= " & DBSet(txtcodigo(1).Text, "N")
     
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
+    If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
         If Tabla = "shilla" Then
             Codigo = "{" & Tabla & ".fecha}"
         Else
@@ -901,7 +901,7 @@ Dim SqlUve As String
         If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".liquidadosocio} = 0") Then Exit Sub
         
         '[Monica]06/07/2018: para el caso de cordoba quieren poder seleccionar los servicios de un solo cliente
-        If txtCodigo(6).Text <> "" Or txtCodigo(7).Text <> "" Then
+        If txtcodigo(6).Text <> "" Or txtcodigo(7).Text <> "" Then
             Codigo = "{" & Tabla & ".codclien}"
             If Not PonerDesdeHasta(Codigo, "N", 6, 7, "pDHCliente=""") Then Exit Sub
         End If
@@ -927,7 +927,8 @@ Dim SqlUve As String
     
         '[Monica]13/11/2014: añadida la condicion de solo los servicios que esten validados para Teletaxi
         '[Monica]19/02/2018: Entra Cordoba
-        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+            '[Monica]19/11/2018: Entra Sevilla
+        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
             ' solo servicios validados
             If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".validado} = 1") Then Exit Sub
             If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".validado} = 1") Then Exit Sub
@@ -936,7 +937,8 @@ Dim SqlUve As String
         '[Monica]12/12/2017: añado la condicion de que se trata de un socio de la cooperativa
         '                    ya liquidará la otra cooperativa a sus coches
         '[Monica]19/02/2018: Entra Cordoba
-        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+            '[Monica]19/11/2018: Entra Sevilla
+        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
             If Not AnyadirAFormula(cadFormula, "{" & Tabla & ".codsocio} <> " & vParamAplic.SocioCooperativa) Then Exit Sub
             If Not AnyadirAFormula(cadSelect, "{" & Tabla & ".codsocio} <> " & vParamAplic.SocioCooperativa) Then Exit Sub
         End If
@@ -946,7 +948,8 @@ Dim SqlUve As String
     
     '[Monica]25/10/2012: cuando es teletaxi vemos que socios deben ser facturados en efectivo
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
     
         '[Monica]31/03/2014: si no hay socios de contado no sacar ventana, añadida la condicion
         Dim SqlVer As String
@@ -983,7 +986,7 @@ Dim SqlUve As String
 
     ' proceso de liquidacion a socios
     If Tabla = "shilla" Then
-        If ProcesoLiquidacionSocioNew(cadSelect, txtCodigo(3).Text) Then
+        If ProcesoLiquidacionSocioNew(cadSelect, txtcodigo(3).Text) Then
             MsgBox "Proceso realizado correctamente.", vbExclamation
                            
             'IMPRESION DEL RESUMEN DE LA FACTURACION DE ANTICIPOS/LIQUIDACIONES
@@ -993,12 +996,12 @@ Dim SqlUve As String
                 cadTitulo = "Resumen de Facturas de Liquidación"
             
                 cadFormula = ""
-                cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
+                cadParam = cadParam & "pFecFac= """ & txtcodigo(3).Text & """|"
                 numParam = numParam + 1
                 cadParam = cadParam & "pTitulo= ""Resumen Liquidaciones Socio""|"
                 numParam = numParam + 1
                 
-                FecFac = CDate(txtCodigo(3).Text)
+                FecFac = CDate(txtcodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 If Not AnyadirAFormula(cadFormula, "{tmpinformes.codusu} = " & vUsu.Codigo) Then Exit Sub
@@ -1020,19 +1023,19 @@ Dim SqlUve As String
                 If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 
                 'Nº Socio
-                If txtCodigo(0).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} >= " & txtCodigo(0).Text
+                If txtcodigo(0).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} >= " & txtcodigo(0).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
-                If txtCodigo(1).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} <= " & txtCodigo(1).Text
+                If txtcodigo(1).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} <= " & txtcodigo(1).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
                  
                 'Fecha de Factura
-                FecFac = CDate(txtCodigo(3).Text)
+                FecFac = CDate(txtcodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 cadAux = "{sfactusoc.fecfactu}='" & Format(FecFac, FormatoFecha) & "'"
@@ -1053,7 +1056,8 @@ Dim SqlUve As String
                 
                 '[Monica]31/03/2014: en el caso de teletaxi solo imprimimos las facturas de los socios que no tengan facturacion electronica
                 '[Monica]19/02/2018: Entra Cordoba
-                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                    '[Monica]19/11/2018: Entra Sevilla
+                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                     'preguntamos si quiere imprimirlo o no con los servicios
                     If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
                         cadParam = cadParam & "pDetalle=0|"
@@ -1072,7 +1076,7 @@ Dim SqlUve As String
             
         End If
     Else
-        If ProcesoLiquidacionSocio(cadSelect, txtCodigo(3).Text) Then
+        If ProcesoLiquidacionSocio(cadSelect, txtcodigo(3).Text) Then
             MsgBox "Proceso realizado correctamente.", vbExclamation
                            
             'IMPRESION DEL RESUMEN DE LA FACTURACION DE ANTICIPOS/LIQUIDACIONES
@@ -1082,12 +1086,12 @@ Dim SqlUve As String
                 cadTitulo = "Resumen de Facturas de Liquidación"
             
                 cadFormula = ""
-                cadParam = cadParam & "pFecFac= """ & txtCodigo(3).Text & """|"
+                cadParam = cadParam & "pFecFac= """ & txtcodigo(3).Text & """|"
                 numParam = numParam + 1
                 cadParam = cadParam & "pTitulo= ""Resumen Liquidaciones Socio""|"
                 numParam = numParam + 1
                 
-                FecFac = CDate(txtCodigo(3).Text)
+                FecFac = CDate(txtcodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 If Not AnyadirAFormula(cadFormula, "{tmpinformes.codusu} = " & vUsu.Codigo) Then Exit Sub
@@ -1104,19 +1108,19 @@ Dim SqlUve As String
                 If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 
                 'Nº Socio
-                If txtCodigo(0).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} >= " & txtCodigo(0).Text
+                If txtcodigo(0).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} >= " & txtcodigo(0).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
-                If txtCodigo(1).Text <> "" Then
-                    cadAux = "{sfactusoc.numeruve} <= " & txtCodigo(1).Text
+                If txtcodigo(1).Text <> "" Then
+                    cadAux = "{sfactusoc.numeruve} <= " & txtcodigo(1).Text
                     If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                     If Not AnyadirAFormula(cadSelect, cadAux) Then Exit Sub
                 End If
                  
                 'Fecha de Factura
-                FecFac = CDate(txtCodigo(3).Text)
+                FecFac = CDate(txtcodigo(3).Text)
                 cadAux = "{sfactusoc.fecfactu}= Date(" & Year(FecFac) & "," & Month(FecFac) & "," & Day(FecFac) & ")"
                 If Not AnyadirAFormula(cadFormula, cadAux) Then Exit Sub
                 cadAux = "{sfactusoc.fecfactu}='" & Format(FecFac, FormatoFecha) & "'"
@@ -1137,7 +1141,8 @@ Dim SqlUve As String
                 
                 '[Monica]31/03/2014: en el caso de teletaxi solo imprimimos las facturas de los socios que no tengan facturacion electronica
                 '[Monica]19/02/2018: Entra Cordoba
-                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                    '[Monica]19/11/2018: Entra Sevilla
+                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                     'preguntamos si quiere imprimirlo o no con los servicios
                     If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
                         cadParam = cadParam & "pDetalle=0|"
@@ -1188,7 +1193,7 @@ Private Sub Form_Activate()
     cadParam = ""
 
 
-    PonerFoco txtCodigo(0)
+    PonerFoco txtcodigo(0)
 
 End Sub
 
@@ -1209,7 +1214,8 @@ Private Sub Form_Load()
     Me.imgFecha(0).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         If Me.chk_FactHco.Value = 1 Then
             '[Monica]10/09/2014
             Tabla = "shilla"
@@ -1231,31 +1237,31 @@ Dim encontrado As String
 Dim Codigo As String
 
     DatosOk = True
-    If txtCodigo(2).Text = "" Then
+    If txtcodigo(2).Text = "" Then
         MsgBox "Debe introducir obligatoriamente la forma de pago.", vbExclamation
         DatosOk = False
         Exit Function
     End If
-    If txtCodigo(3).Text = "" Then
+    If txtcodigo(3).Text = "" Then
         MsgBox "Debe introducir obligatoriamente la fecha de liquidación.", vbExclamation
         DatosOk = False
         Exit Function
     End If
     'concepto
-    If txtCodigo(4).Text = "" Then
+    If txtcodigo(4).Text = "" Then
         MsgBox "Es necesario introducir el concepto de la factura.", vbExclamation
-        PonerFoco txtCodigo(4)
+        PonerFoco txtcodigo(4)
         DatosOk = False
         Exit Function
     End If
     'banco
-    If txtCodigo(5).Text = "" Then
+    If txtcodigo(5).Text = "" Then
         MsgBox "Es necesario introducir la cuenta de banco.", vbExclamation
-        PonerFoco txtCodigo(5)
+        PonerFoco txtcodigo(5)
         DatosOk = False
         Exit Function
     Else
-        encontrado = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+        encontrado = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
         'comprobar que la cuenta prevista de cobro tiene valor
         If encontrado = "" Then
             MsgBox "La cta. prevista de cobro debe tener valor.", vbExclamation
@@ -1273,7 +1279,7 @@ Dim devuelve As String
 Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -1282,7 +1288,7 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
@@ -1298,17 +1304,17 @@ End Function
 
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmFP_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(2).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtcodigo(2).Text = RecuperaValor(CadenaSeleccion, 1)
     txtnombre(2).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -1325,12 +1331,12 @@ End Sub
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
-    txtCodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtcodigo(5).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(5).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmMtoV_DatoSeleccionado(CadenaSeleccion As String)
-    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
+    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
 
@@ -1352,13 +1358,13 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             Set frmFP = Nothing
     
         Case 3 ' concepto
-            CadenaDesdeOtroForm = txtCodigo(4).Text
+            CadenaDesdeOtroForm = txtcodigo(4).Text
             frmFacClienteObser.Modificar = True
             frmFacClienteObser.Text1 = CadenaDesdeOtroForm
             frmFacClienteObser.Show vbModal
-            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtCodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
+            If RecuperaValor(CadenaDesdeOtroForm, 1) = "1" Then txtcodigo(4).Text = Mid(CadenaDesdeOtroForm, 3)
             CadenaDesdeOtroForm = ""
-            PonerFoco txtCodigo(4)
+            PonerFoco txtcodigo(4)
         
         
         Case 4 ' banco propio
@@ -1379,7 +1385,7 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
     
     
     End Select
-    PonerFoco txtCodigo(indCodigo)
+    PonerFoco txtcodigo(indCodigo)
 
 End Sub
 
@@ -1395,23 +1401,23 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = 3
    End Select
    
-   PonerFormatoFecha txtCodigo(indCodigo)
-   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
+   PonerFormatoFecha txtcodigo(indCodigo)
+   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtCodigo(indCodigo)
+   PonerFoco txtcodigo(indCodigo)
 End Sub
 
 Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
-    If txtCodigo(indD).Text <> "" Then
-        Cad = Cad & "desde " & txtCodigo(indD).Text
+    If txtcodigo(indD).Text <> "" Then
+        Cad = Cad & "desde " & txtcodigo(indD).Text
         If txtnombre(indD).Text <> "" Then Cad = Cad & " - " & txtnombre(indD).Text
     End If
-    If txtCodigo(indH).Text <> "" Then
-        Cad = Cad & "  hasta " & txtCodigo(indH).Text
+    If txtcodigo(indH).Text <> "" Then
+        Cad = Cad & "  hasta " & txtcodigo(indH).Text
         If txtnombre(indH).Text <> "" Then Cad = Cad & " - " & txtnombre(indH).Text
     End If
     AnyadirParametroDH = Cad
@@ -1419,7 +1425,7 @@ On Error Resume Next
 End Function
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -1446,7 +1452,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1455,26 +1461,26 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 85, 86  'FECHA Desde Hasta
-            PonerFormatoFecha txtCodigo(Index)
+            PonerFormatoFecha txtcodigo(Index)
             
         Case 0, 1 'V Socio
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sclien", "nomclien", "numeruve", "N")
             
         Case 2 ' forma de pago
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sforpa", "nomforpa", "codforpa", "N")
             
         Case 3 ' fecha de liquidacion
-            PonerFormatoFecha txtCodigo(Index)
+            PonerFormatoFecha txtcodigo(Index)
             
         Case 5 ' banco propio
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "sbanpr", "nombanpr", "codbanpr", "N")
             
         Case 6, 7 'codigo de cliente
-            PonerFormatoEntero txtCodigo(Index)
-            txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
+            PonerFormatoEntero txtcodigo(Index)
+            txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
         
     End Select
 End Sub
@@ -1540,7 +1546,8 @@ Dim BancoContado As String
     'Bloqueamos todos los registros de llamadas que vamos a facturar (cabeceras y lineas)
     'Nota: esta bloqueando tambien los registros de la tabla clientes: sclien correspondientes
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         If Not BloqueaRegistro("sfactsoctr", cadWHERE) Then
             Screen.MousePointer = vbDefault
             'comprobamos que no haya nadie facturando
@@ -1557,7 +1564,8 @@ Dim BancoContado As String
     End If
     
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         Sql = "select numeruve, sum(if(importe is null,0,importe)) from sfactsoctr where " & cadWHERE & " group by numeruve having sum(if(importe is null,0,importe)) <> 0 "
     Else
         Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) from shilla where " & cadWHERE & " group by numeruve having sum(if(impcompr is null,0,impcompr)) <> 0 "
@@ -1570,7 +1578,8 @@ Dim BancoContado As String
     
     'EMPEZAMOS LA FACTURA
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         Sql = "select numeruve, sum(numserv) servicios, sum(if(importe is null,0,importe)) importe from sfactsoctr where " & cadWHERE & " group by numeruve, concepto having sum(if(importe is null,0,importe)) <> 0 "
         Sql = Sql & " ORDER BY sfactsoctr.numeruve"
     Else
@@ -1623,7 +1632,8 @@ Dim BancoContado As String
             
             '[Monica]31/03/2014: en el caso de teletaxi insertamos los servicios
             '[Monica]19/02/2018: Entra Cordoba
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 If b Then InsertServiciosFactSocio tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, cadWHERE
             End If
             MensError = ""
@@ -1636,7 +1646,8 @@ Dim BancoContado As String
                 vFacSoc.CCC_CC = vSocio.DigControl
                 vFacSoc.CCC_CTa = vSocio.CuentaBan
                 '[Monica]19/02/2018: Entra Cordoba
-                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                    '[Monica]19/11/2018: Entra Sevilla
+                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                     If EsSocioContado(codSocio, SociosContado) Then
                         FPagContado = DevuelveDesdeBDNew(conAri, "sforpa", "codforpa", "nomforpa", "EFECTIVO", "T")
                         If FPagContado = "" Then
@@ -1645,10 +1656,10 @@ Dim BancoContado As String
                             vFacSoc.ForPago = CInt(FPagContado)
                         End If
                     Else
-                        vFacSoc.ForPago = txtCodigo(2).Text
+                        vFacSoc.ForPago = txtcodigo(2).Text
                     End If
                 Else
-                    vFacSoc.ForPago = txtCodigo(2).Text
+                    vFacSoc.ForPago = txtcodigo(2).Text
                 End If
                 
                 vFacSoc.NumFactu = NumFactu
@@ -1662,7 +1673,8 @@ Dim BancoContado As String
                 
                 '[Monica]25/10/2012: socios contado ponemos la cuenta prevista como la de caja
                 '[Monica]19/02/2018: Entra Cordoba
-                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                    '[Monica]19/11/2018: Entra Sevilla
+                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                     If EsSocioContado(codSocio, SociosContado) Then
                         BancoContado = DevuelveDesdeBDNew(conAri, "sbanpr", "codbanpr", "nombanpr", "CAJA", "T")
                         If BancoContado = "" Then
@@ -1671,11 +1683,11 @@ Dim BancoContado As String
                             vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", BancoContado, "N")
                         End If
                     Else
-                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
                     End If
                 
                 Else
-                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
                 End If
                 
                 If b Then b = InsertarRetencion(RSalb!NumerUve, vFacSoc)
@@ -1685,14 +1697,15 @@ Dim BancoContado As String
                 Set vFacSoc = Nothing
             End If
             '[Monica]19/02/2018: Entra Cordoba
-            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2) Then b = InsertLineasFactSocio(tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, cadWHERE)
+                '[Monica]19/11/2018: Entra Sevilla
+            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2 And vParamAplic.Cooperativa <> 3) Then b = InsertLineasFactSocio(tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, cadWHERE)
             
-            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2) Then b = ActualizarLlamadas(RSalb!NumerUve, cadWHERE)
+            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2 And vParamAplic.Cooperativa <> 3) Then b = ActualizarLlamadas(RSalb!NumerUve, cadWHERE)
 
-            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) Then b = ActualizarLlamadas2(RSalb!NumerUve, cadWHERE)
+            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) Then b = ActualizarLlamadas2(RSalb!NumerUve, cadWHERE)
 
             '[Monica]25/10/2012: socio contado los desmarcados como contado
-            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) Then b = ActualizarSociosContado(codSocio)
+            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) Then b = ActualizarSociosContado(codSocio)
             
             If b Then b = InsertResumen(tipoMov, CStr(NumFactu), vSocio.Codigo, FecFac)
             
@@ -1737,20 +1750,21 @@ Dim FPagContado As String
     Sql = "insert into sfactusoc (codtipom,codsocio,numfactu,fecfactu,concepto,importel,baseiva1,impoiva1, "
     Sql = Sql & "codiiva1,porciva1,basereten,porcreten,totalfac,impreten,intconta,codforpa,numeruve, numserv, suplidos) values ("
     Sql = Sql & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
-    Sql = Sql & DBSet(txtCodigo(4).Text, "T") & "," & DBSet(TotalFac, "N") & "," & DBSet(BaseImpo, "N") & "," & DBSet(ImpoIva, "N") & ","
+    Sql = Sql & DBSet(txtcodigo(4).Text, "T") & "," & DBSet(TotalFac, "N") & "," & DBSet(BaseImpo, "N") & "," & DBSet(ImpoIva, "N") & ","
     Sql = Sql & vParamAplic.IVA_REA & "," & DBSet(PorceIVA, "N") & "," & DBSet(BaseReten, "N") & "," & DBSet(vParamAplic.PorReten, "N") & ","
     
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         If EsSocioContado(Socio, SociosContado) <> 0 Then
             FPagContado = DevuelveDesdeBDNew(conAri, "sforpa", "codforpa", "nomforpa", "EFECTIVO", "T")
             If FPagContado = "" Then FPagContado = "0"
             Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(FPagContado, "N") & "," & DBSet(Uve, "N") & ","
         Else
-            Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtCodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
+            Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtcodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
         End If
     Else
-        Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtCodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
+        Sql = Sql & DBSet(TotalLiq, "N") & "," & DBSet(ImpoReten, "N") & ",0," & DBSet(txtcodigo(2).Text, "N") & "," & DBSet(Uve, "N") & ","
     End If
     Sql = Sql & DBSet(Serv, "N")
     
@@ -1885,7 +1899,7 @@ Dim Cad As String
     Cad = ""
     While Not rs1.EOF
         Cad = Cad & "(" & DBSet(rs1.Fields(0).Value, "T") & "," & DBLet(rs1.Fields(2).Value, "N") & ","
-        Cad = Cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtCodigo(3).Text, "F") & "),"
+        Cad = Cad & DBLet(rs1.Fields(1).Value, "N") & "," & DBSet(txtcodigo(3).Text, "F") & "),"
     
         rs1.MoveNext
     Wend
@@ -1920,7 +1934,8 @@ Dim MensError As String
     
     Sql = "update shilla set liquidadosocio = 1 "
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
           Sql = Sql & ", abonados = 1 "
     End If
     Sql = Sql & " where " & cadWHERE & " and numeruve = " & DBSet(Uve, "N")
@@ -2114,7 +2129,7 @@ Dim I As Byte
                         End If
                   End If
                   
-                  CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+                  CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
                   
                   
                   CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CuentaPrev, "T") & ","
@@ -2431,7 +2446,8 @@ Dim BancoContado As String
     'Bloqueamos todos los registros de llamadas que vamos a facturar (cabeceras y lineas)
     'Nota: esta bloqueando tambien los registros de la tabla clientes: sclien correspondientes
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         If Not BloqueaRegistro("shilla", cadWHERE) Then
             Screen.MousePointer = vbDefault
             'comprobamos que no haya nadie facturando
@@ -2516,7 +2532,8 @@ Dim BancoContado As String
             
             '[Monica]31/03/2014: en el caso de teletaxi insertamos los servicios
             '[Monica]19/02/2018: Entra Cordoba
-            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                '[Monica]19/11/2018: Entra Sevilla
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                 If b Then InsertServiciosFactSocio tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, cadWHERE
             End If
             MensError = ""
@@ -2533,7 +2550,8 @@ Dim BancoContado As String
                 vFacSoc.CCC_CTa = vSocio.CuentaBan
                 
                 '[Monica]19/02/2018: Entra Cordoba
-                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                    '[Monica]19/11/2018: Entra Sevilla
+                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                     If EsSocioContado(codSocio, SociosContado) Then
                         FPagContado = DevuelveDesdeBDNew(conAri, "sforpa", "codforpa", "nomforpa", "EFECTIVO", "T")
                         If FPagContado = "" Then
@@ -2542,10 +2560,10 @@ Dim BancoContado As String
                             vFacSoc.ForPago = CInt(FPagContado)
                         End If
                     Else
-                        vFacSoc.ForPago = txtCodigo(2).Text
+                        vFacSoc.ForPago = txtcodigo(2).Text
                     End If
                 Else
-                    vFacSoc.ForPago = txtCodigo(2).Text
+                    vFacSoc.ForPago = txtcodigo(2).Text
                 End If
                 
                 vFacSoc.NumFactu = NumFactu
@@ -2570,7 +2588,8 @@ Dim BancoContado As String
                 
                 '[Monica]25/10/2012: socios contado ponemos la cuenta prevista como la de caja
                 '[Monica]19/02/2018: Entra Cordoba
-                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+                    '[Monica]19/11/2018: Entra Sevilla
+                If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
                     If EsSocioContado(codSocio, SociosContado) Then
                         BancoContado = DevuelveDesdeBDNew(conAri, "sbanpr", "codbanpr", "nombanpr", "CAJA", "T")
                         If BancoContado = "" Then
@@ -2579,10 +2598,10 @@ Dim BancoContado As String
                             vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", BancoContado, "N")
                         End If
                     Else
-                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+                        vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
                     End If
                 Else
-                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtCodigo(5).Text, "N")
+                    vFacSoc.CuentaPrev = DevuelveDesdeBDNew(conAri, "sbanpr", "codmacta", "codbanpr", txtcodigo(5).Text, "N")
                 End If
                 
                 If b Then b = InsertarRetencion(RSalb!NumerUve, vFacSoc)
@@ -2592,15 +2611,16 @@ Dim BancoContado As String
                 Set vFacSoc = Nothing
             End If
             '[Monica]19/02/2018: Entra Cordoba
-            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2) Then b = InsertLineasFactSocio(tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, cadWHERE)
+                '[Monica]19/11/2018: Entra Sevilla
+            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2 And vParamAplic.Cooperativa <> 3) Then b = InsertLineasFactSocio(tipoMov, CStr(NumFactu), FecFac, vSocio.Codigo, RSalb!NumerUve, cadWHERE)
             
-            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2) Then b = ActualizarLlamadas(RSalb!NumerUve, cadWHERE)
+            If b And (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2 And vParamAplic.Cooperativa <> 3) Then b = ActualizarLlamadas(RSalb!NumerUve, cadWHERE)
     
             '[Monica]10/09/2014: en ambos casos se actualiza la shilla
-            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) Then b = ActualizarLlamadas(RSalb!NumerUve, cadWHERE)
+            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) Then b = ActualizarLlamadas(RSalb!NumerUve, cadWHERE)
 
             '[Monica]25/10/2012: socio contado los desmarcados como contado
-            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) Then b = ActualizarSociosContado(codSocio)
+            If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) Then b = ActualizarSociosContado(codSocio)
             
             If b Then b = InsertResumen(tipoMov, CStr(NumFactu), vSocio.Codigo, FecFac)
             

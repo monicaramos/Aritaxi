@@ -348,11 +348,17 @@ Begin VB.Form frmGesSocios
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "LabelCRM"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "lwCRM"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "cmdAccCRM(2)"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "cmdAccCRM(1)"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "cmdAccCRM(0)"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Frame3(2)"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
@@ -3433,7 +3439,8 @@ Dim b As Boolean
          
          '[Monica]13/03/2012: cuando inserten un socio que inserten en la contabilidad todas las cuentas contables
          '[Monica]19/02/2018: Entra Cordoba
-         If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) Then
+            '[Monica]19/11/2018: Entera Sevilla
+         If b And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) Then
                ' Cuenta de retencion para liquidacion
                If vParamAplic.Raiz_Cta_Reten_Soc <> "" Then
                     If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
@@ -3557,7 +3564,8 @@ Dim b As Boolean
         
         '[Monica]13/03/2012: en teletaxi si me modifican miro si existen sus cuentas y las modifico
         '[Monica]19/02/2018: Entra Cordoba
-        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+            '[Monica]19/11/2018: Entra Sevilla
+        If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
             ' Cuenta de retencion para liquidacion
             If vParamAplic.Raiz_Cta_Reten_Soc <> "" Then
                 If DevuelveDesdeBDNew(conConta, "cuentas", "nommacta", "codmacta", vParamAplic.Raiz_Cta_Reten_Soc & Format(Text1(0).Text, LCad), "T") = "" Then
@@ -4407,7 +4415,7 @@ On Error GoTo EPonerModo
                         
     'El listview
     If Modo <> 2 Then
-        Lw1.ListItems.Clear
+        lw1.ListItems.Clear
     End If
                         
      ' solo si tenemos registro cargado podemos imprimir documentos
@@ -4875,8 +4883,8 @@ Private Sub lw1_DblClick()
 Dim Seleccionado As Long
     
     If Modo <> 2 Then Exit Sub
-    If Lw1.ListItems.Count = 0 Then Exit Sub
-    If Lw1.SelectedItem Is Nothing Then Exit Sub
+    If lw1.ListItems.Count = 0 Then Exit Sub
+    If lw1.SelectedItem Is Nothing Then Exit Sub
 
 
     If Me.DatosADevolverBusqueda <> "" Then
@@ -4888,14 +4896,14 @@ Dim Seleccionado As Long
     Screen.MousePointer = vbHourglass
     
     'Llegados aqui
-    Select Case CByte(RecuperaValor(Lw1.Tag, 1))
+    Select Case CByte(RecuperaValor(lw1.Tag, 1))
     Case 2
         '[Monica] no son albaranes son llamadas
         'LLAMADAS
         Set frmLLam = New frmGesHisLlam
-        frmLLam.HoraServ = Lw1.SelectedItem.SubItems(1)
-        frmLLam.FechaServ = Lw1.SelectedItem.Text
-        frmLLam.NumerUve = Lw1.SelectedItem.SubItems(2)
+        frmLLam.HoraServ = lw1.SelectedItem.SubItems(1)
+        frmLLam.FechaServ = lw1.SelectedItem.Text
+        frmLLam.NumerUve = lw1.SelectedItem.SubItems(2)
         frmLLam.Show vbModal
         Set frmLLam = Nothing
 
@@ -4911,15 +4919,15 @@ Dim Seleccionado As Long
     End Select
         
     'Pase lo que pase, por si acaso, cargamos el lw
-    Lw1.SetFocus
+    lw1.SetFocus
     '[Monica]07/02/2018: en el caso de que quedara uno daba error, ponemos condicion de que el count > 0
-    If Lw1.ListItems.Count > 0 Then Seleccionado = Lw1.SelectedItem.Index
+    If lw1.ListItems.Count > 0 Then Seleccionado = lw1.SelectedItem.Index
     CargaDatosLWDoc
-    If Lw1.ListItems.Count > 0 Then Lw1.SelectedItem.Selected = False
-    Set Lw1.SelectedItem = Nothing
-    If Lw1.ListItems.Count >= Seleccionado Then
-            Lw1.ListItems(Seleccionado).Selected = True
-            Lw1.ListItems(Seleccionado).EnsureVisible
+    If lw1.ListItems.Count > 0 Then lw1.SelectedItem.Selected = False
+    Set lw1.SelectedItem = Nothing
+    If lw1.ListItems.Count >= Seleccionado Then
+            lw1.ListItems(Seleccionado).Selected = True
+            lw1.ListItems(Seleccionado).EnsureVisible
     End If
     Screen.MousePointer = vbDefault
 End Sub
@@ -5442,7 +5450,7 @@ Dim I As Byte
             txtAux1(I).top = 290
             txtAux1(I).visible = visible
         Next I
-        Me.cmdaux(0).visible = visible
+        Me.cmdAux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
@@ -5460,7 +5468,7 @@ Dim I As Byte
                     txtAux1(I).Locked = True
                 End If
             Next I
-            cmdaux(0).Enabled = False
+            cmdAux(0).Enabled = False
         End If
         
         'Fijamos altura(Height) y posición Top
@@ -5478,12 +5486,12 @@ Dim I As Byte
         'chofer
         txtAux1(0).Left = DataGrid1.Left + 330
         txtAux1(0).Width = DataGrid1.Columns(2).Width - 160
-        cmdaux(0).Left = txtAux1(0).Left + txtAux1(0).Width - 50
+        cmdAux(0).Left = txtAux1(0).Left + txtAux1(0).Width - 50
 '        txtAux1(0).Left = DataGrid1.Left + 330
 '        txtAux1(0).Width = DataGrid1.Columns(2).Width - 100
         
         'nombre
-        txtAux1(1).Left = cmdaux(0).Left + cmdaux(0).Width + 10
+        txtAux1(1).Left = cmdAux(0).Left + cmdAux(0).Width + 10
         txtAux1(1).Width = DataGrid1.Columns(3).Width - 50
 '        txtAux1(1).Width = DataGrid1.Columns(3).Width - 100
 '        txtAux1(1).Left = txtAux1(0).Left + (txtAux1(0).Width + 100)
@@ -5512,9 +5520,9 @@ Dim I As Byte
         For I = 0 To txtAux1.Count - 1
             txtAux1(I).visible = visible
         Next I
-        Me.cmdaux(0).Height = Me.DataGrid1.RowHeight
-        Me.cmdaux(0).top = alto
-        Me.cmdaux(0).visible = visible
+        Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
+        Me.cmdAux(0).top = alto
+        Me.cmdAux(0).visible = visible
         cmdAux1.top = alto
         cmdAux1.visible = visible
     End If
@@ -5594,9 +5602,9 @@ Dim I As Byte
             txtAux2(I).visible = visible
         Next I
     End If
-    Me.cmdaux(1).Height = Me.DataGrid2.RowHeight
-    Me.cmdaux(1).top = alto
-    Me.cmdaux(1).visible = visible
+    Me.cmdAux(1).Height = Me.DataGrid2.RowHeight
+    Me.cmdAux(1).top = alto
+    Me.cmdAux(1).visible = visible
     cmdAux1.top = alto
     cmdAux1.visible = visible
 End Sub
@@ -5615,8 +5623,8 @@ Dim I As Byte
             txtAux3(I).top = 290
             txtAux3(I).visible = visible
         Next I
-        cmdaux(2).top = 290
-        cmdaux(2).visible = visible
+        cmdAux(2).top = 290
+        cmdAux(2).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid4
@@ -5651,11 +5659,11 @@ Dim I As Byte
         txtAux3(0).Left = DataGrid4.Left + 330
         txtAux3(0).Width = DataGrid4.Columns(2).Width - 100
         
-        cmdaux(2).Left = txtAux3(0).Left + txtAux3(0).Width - 50
+        cmdAux(2).Left = txtAux3(0).Left + txtAux3(0).Width - 50
         
         'nombre
         txtAux3(1).Width = DataGrid4.Columns(3).Width - 100
-        txtAux3(1).Left = cmdaux(2).Left + cmdaux(2).Width + 10
+        txtAux3(1).Left = cmdAux(2).Left + cmdAux(2).Width + 10
         
         'importe
         txtAux3(2).Width = DataGrid4.Columns(4).Width - 100
@@ -5668,8 +5676,8 @@ Dim I As Byte
             txtAux3(I).visible = visible
         Next I
     End If
-    cmdaux(2).top = alto
-    cmdaux(2).visible = visible
+    cmdAux(2).top = alto
+    cmdAux(2).visible = visible
 End Sub
 
 
@@ -6522,7 +6530,7 @@ Private Sub ImagenesNavegacion()
         
     End With
     
-    Set Lw1.SmallIcons = frmppal.ImgListPpal
+    Set lw1.SmallIcons = frmppal.ImgListPpal
 
     With Me.Toolbar3
         .ImageList = frmppal.ImgListPpal
@@ -6591,12 +6599,12 @@ Dim C As ColumnHeader
     'Fecha incio busquedas
     Text1(26).Text = Format(imgFecha(3).Tag, "dd/mm/yyyy")
     'Guardo la opcion en el tag
-    Lw1.Tag = OpcionList & "|" & Ncol & "|"
+    lw1.Tag = OpcionList & "|" & Ncol & "|"
     
-    Lw1.ColumnHeaders.Clear
+    lw1.ColumnHeaders.Clear
     
     For NumRegElim = 1 To Ncol
-         Set C = Lw1.ColumnHeaders.Add()
+         Set C = lw1.ColumnHeaders.Add()
          C.Text = RecuperaValor(Columnas, CInt(NumRegElim))
          C.Width = RecuperaValor(Ancho, CInt(NumRegElim))
          C.Alignment = Val(RecuperaValor(Alinea, CInt(NumRegElim)))
@@ -6640,7 +6648,7 @@ Dim EsDTOFam As Boolean
     Text1(26).Text = Format(imgFecha(3).Tag, "dd/mm/yyyy")
     EsDTOFam = False
     
-    Select Case CByte(RecuperaValor(Lw1.Tag, 1))
+    Select Case CByte(RecuperaValor(lw1.Tag, 1))
     Case 2
         'LLAMADAS
         Cad = "select fecha,hora,numeruve,tipservi,dirllama,impventa from shilla WHERE "
@@ -6676,24 +6684,24 @@ Dim EsDTOFam As Boolean
     
     BuscaChekc = ""
     
-    Lw1.ListItems.Clear
+    lw1.ListItems.Clear
     If Cad <> "" Then
         Set Rs = New ADODB.Recordset
         Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not Rs.EOF
-            Set It = Lw1.ListItems.Add()
-            If Lw1.ColumnHeaders(1).Tag <> "" Then
-            It.Text = Format(Rs.Fields(0), Lw1.ColumnHeaders(1).Tag)
+            Set It = lw1.ListItems.Add()
+            If lw1.ColumnHeaders(1).Tag <> "" Then
+            It.Text = Format(Rs.Fields(0), lw1.ColumnHeaders(1).Tag)
             Else
                 It.Text = Rs.Fields(0)
             End If
             'El resto de cmpos
-            For NumRegElim = 2 To CInt(RecuperaValor(Lw1.Tag, 2))
+            For NumRegElim = 2 To CInt(RecuperaValor(lw1.Tag, 2))
                 If IsNull(Rs.Fields(NumRegElim - 1)) Then
                     It.SubItems(NumRegElim - 1) = " "
                 Else
-                    If Lw1.ColumnHeaders(NumRegElim).Tag <> "" Then
-                        It.SubItems(NumRegElim - 1) = Format(Rs.Fields(NumRegElim - 1), Lw1.ColumnHeaders(NumRegElim).Tag)
+                    If lw1.ColumnHeaders(NumRegElim).Tag <> "" Then
+                        It.SubItems(NumRegElim - 1) = Format(Rs.Fields(NumRegElim - 1), lw1.ColumnHeaders(NumRegElim).Tag)
                     Else
                         It.SubItems(NumRegElim - 1) = Rs.Fields(NumRegElim - 1)
                     End If
@@ -6729,7 +6737,7 @@ Dim s As String
 '
 '    If lw1.SelectedItem.Text = "FAM" Then
         'Van directas
-        s = Lw1.SelectedItem.Text & "|" & Lw1.SelectedItem.SubItems(1) & "|" & Lw1.SelectedItem.SubItems(2) & "|"
+        s = lw1.SelectedItem.Text & "|" & lw1.SelectedItem.SubItems(1) & "|" & lw1.SelectedItem.SubItems(2) & "|"
 '    Else
 '        s = "select codtipoa,numalbar,fechaalb from scafac1 where codtipom='"
 '        s = s & lw1.SelectedItem.Text & "' and numfactu=" & lw1.SelectedItem.SubItems(1)

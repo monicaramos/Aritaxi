@@ -964,7 +964,8 @@ Private Sub Form_Load()
 '    Text1(4).Text = vParamAplic.ConFactuPubli
     Modo = 0
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
         Tabla = "sfactclitr"
     Else
         Tabla = "shilla"
@@ -979,10 +980,11 @@ Private Sub Form_Load()
     
     
     '[Monica]28/06/2018: la retencion solo la tiene cordoba (pq  son facturas de alquiler)
-    Label17(0).visible = (vParamAplic.Cooperativa = 2)
-    Label17(0).Enabled = (vParamAplic.Cooperativa = 2)
-    txtcodigo(6).visible = (vParamAplic.Cooperativa = 2)
-    txtcodigo(6).Enabled = (vParamAplic.Cooperativa = 2)
+        '[Monica]19/11/2018: Entra Sevilla
+    Label17(0).visible = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
+    Label17(0).Enabled = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
+    txtcodigo(6).visible = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
+    txtcodigo(6).Enabled = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
     
 End Sub
 

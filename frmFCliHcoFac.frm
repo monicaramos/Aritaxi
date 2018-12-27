@@ -575,56 +575,56 @@ Begin VB.Form frmFCliHcoFac
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmFCliHcoFac.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "txtAux(12)"
-      Tab(1).Control(1)=   "FrameToolAux"
-      Tab(1).Control(2)=   "FrameObserva"
-      Tab(1).Control(3)=   "cmdaux"
-      Tab(1).Control(4)=   "txtAux3(2)"
-      Tab(1).Control(5)=   "txtAux3(1)"
-      Tab(1).Control(6)=   "txtAux3(0)"
-      Tab(1).Control(7)=   "cmdObserva"
-      Tab(1).Control(8)=   "Text2(0)"
-      Tab(1).Control(9)=   "Text3(0)"
-      Tab(1).Control(10)=   "DataGrid2"
-      Tab(1).Control(11)=   "txtAux(11)"
-      Tab(1).Control(12)=   "txtAux(10)"
-      Tab(1).Control(13)=   "txtAux(9)"
-      Tab(1).Control(14)=   "txtAux(5)"
-      Tab(1).Control(15)=   "txtAux(3)"
-      Tab(1).Control(16)=   "txtAux(1)"
-      Tab(1).Control(17)=   "txtAux(0)"
-      Tab(1).Control(18)=   "txtAux(4)"
-      Tab(1).Control(19)=   "txtAux(6)"
-      Tab(1).Control(20)=   "txtAux(7)"
-      Tab(1).Control(21)=   "txtAux(8)"
-      Tab(1).Control(22)=   "txtAux(2)"
-      Tab(1).Control(23)=   "DataGrid1"
-      Tab(1).Control(24)=   "Text3(6)"
-      Tab(1).Control(25)=   "Text3(1)"
-      Tab(1).Control(26)=   "Text2(3)"
-      Tab(1).Control(27)=   "Text3(3)"
-      Tab(1).Control(28)=   "Text2(1)"
-      Tab(1).Control(29)=   "Text2(2)"
-      Tab(1).Control(30)=   "Text3(2)"
-      Tab(1).Control(31)=   "Text3(8)"
-      Tab(1).Control(32)=   "Text3(7)"
-      Tab(1).Control(33)=   "Text3(5)"
-      Tab(1).Control(34)=   "Text3(4)"
-      Tab(1).Control(35)=   "Text3(14)"
-      Tab(1).Control(36)=   "Text3(15)"
-      Tab(1).Control(37)=   "imgBuscar(6)"
-      Tab(1).Control(38)=   "imgBuscar(9)"
-      Tab(1).Control(39)=   "imgBuscar(8)"
-      Tab(1).Control(40)=   "Label1(40)"
-      Tab(1).Control(41)=   "Label1(22)"
-      Tab(1).Control(42)=   "Label1(18)"
-      Tab(1).Control(43)=   "Label1(6)"
-      Tab(1).Control(44)=   "Label1(2)"
-      Tab(1).Control(45)=   "Label1(21)"
-      Tab(1).Control(46)=   "Label1(24)"
-      Tab(1).Control(47)=   "Label1(23)"
-      Tab(1).Control(48)=   "Label1(9)"
-      Tab(1).Control(49)=   "imgBuscar(7)"
+      Tab(1).Control(0)=   "imgBuscar(7)"
+      Tab(1).Control(1)=   "Label1(9)"
+      Tab(1).Control(2)=   "Label1(23)"
+      Tab(1).Control(3)=   "Label1(24)"
+      Tab(1).Control(4)=   "Label1(21)"
+      Tab(1).Control(5)=   "Label1(2)"
+      Tab(1).Control(6)=   "Label1(6)"
+      Tab(1).Control(7)=   "Label1(18)"
+      Tab(1).Control(8)=   "Label1(22)"
+      Tab(1).Control(9)=   "Label1(40)"
+      Tab(1).Control(10)=   "imgBuscar(8)"
+      Tab(1).Control(11)=   "imgBuscar(9)"
+      Tab(1).Control(12)=   "imgBuscar(6)"
+      Tab(1).Control(13)=   "Text3(15)"
+      Tab(1).Control(14)=   "Text3(14)"
+      Tab(1).Control(15)=   "Text3(4)"
+      Tab(1).Control(16)=   "Text3(5)"
+      Tab(1).Control(17)=   "Text3(7)"
+      Tab(1).Control(18)=   "Text3(8)"
+      Tab(1).Control(19)=   "Text3(2)"
+      Tab(1).Control(20)=   "Text2(2)"
+      Tab(1).Control(21)=   "Text2(1)"
+      Tab(1).Control(22)=   "Text3(3)"
+      Tab(1).Control(23)=   "Text2(3)"
+      Tab(1).Control(24)=   "Text3(1)"
+      Tab(1).Control(25)=   "Text3(6)"
+      Tab(1).Control(26)=   "DataGrid1"
+      Tab(1).Control(27)=   "txtAux(2)"
+      Tab(1).Control(28)=   "txtAux(8)"
+      Tab(1).Control(29)=   "txtAux(7)"
+      Tab(1).Control(30)=   "txtAux(6)"
+      Tab(1).Control(31)=   "txtAux(4)"
+      Tab(1).Control(32)=   "txtAux(0)"
+      Tab(1).Control(33)=   "txtAux(1)"
+      Tab(1).Control(34)=   "txtAux(3)"
+      Tab(1).Control(35)=   "txtAux(5)"
+      Tab(1).Control(36)=   "txtAux(9)"
+      Tab(1).Control(37)=   "txtAux(10)"
+      Tab(1).Control(38)=   "txtAux(11)"
+      Tab(1).Control(39)=   "DataGrid2"
+      Tab(1).Control(40)=   "Text3(0)"
+      Tab(1).Control(41)=   "Text2(0)"
+      Tab(1).Control(42)=   "cmdObserva"
+      Tab(1).Control(43)=   "txtAux3(0)"
+      Tab(1).Control(44)=   "txtAux3(1)"
+      Tab(1).Control(45)=   "txtAux3(2)"
+      Tab(1).Control(46)=   "cmdaux"
+      Tab(1).Control(47)=   "FrameObserva"
+      Tab(1).Control(48)=   "FrameToolAux"
+      Tab(1).Control(49)=   "txtAux(12)"
       Tab(1).ControlCount=   50
       TabCaption(2)   =   "Servicios"
       TabPicture(2)   =   "frmFCliHcoFac.frx":0044
@@ -4015,7 +4015,7 @@ Begin VB.Form frmFCliHcoFac
          Index           =   40
          Left            =   -64080
          TabIndex        =   106
-         Top             =   3720
+         Top             =   3855
          Width           =   975
       End
       Begin VB.Label Label1 
@@ -4590,7 +4590,7 @@ Dim cad1 As String
                 
                      '[Monica]06/03/2012: guardo en el slog los campos que me han cambiado
                     cad1 = ""
-                    If CCur(ImporteSinFormato(ComprobarCero(Text1(15).Text))) <> FPago Then cad1 = cad1 & "FPago: " & FPago & " a " & Text1(12).Text & ";"
+                    If CCur(ImporteSinFormato(ComprobarCero(Text1(15).Text))) <> FPago Then cad1 = cad1 & "FPago: " & FPago & " a " & Text1(15).Text & ";"
                     If CCur(ImporteSinFormato(ComprobarCero(Text1(46).Text))) <> Serv Then cad1 = cad1 & "Serv.: " & Serv & " a " & Text1(22).Text & ";"
                     If CCur(ImporteSinFormato(ComprobarCero(Text1(49).Text))) <> BPr Then cad1 = cad1 & "BPr.: " & BPr & " a " & Text1(49).Text & ";"
                     
@@ -5033,10 +5033,10 @@ Dim b As Boolean
         Case "DataGrid2"
             DeseleccionaGrid Me.DataGrid2
             b = (xModo = 1)
-             For jj = 0 To txtaux3.Count - 1
-                txtaux3(jj).Height = DataGrid2.RowHeight
-                txtaux3(jj).top = alto
-                txtaux3(jj).visible = b
+             For jj = 0 To txtAux3.Count - 1
+                txtAux3(jj).Height = DataGrid2.RowHeight
+                txtAux3(jj).top = alto
+                txtAux3(jj).visible = b
             Next jj
             
         Case "DataGrid3"
@@ -5479,11 +5479,12 @@ Private Sub Form_Load()
     End With
     
     '[Monica]19/02/2018: Entra Cordoba
-    FrameToolAux.visible = (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)
-    FrameToolAux.Enabled = (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)
+        '[Monica]19/11/2018: Entra Sevilla
+    FrameToolAux.visible = (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
+    FrameToolAux.Enabled = (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
     
-    FrameToolAux1.visible = (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2)
-    FrameToolAux1.Enabled = (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2)
+    FrameToolAux1.visible = (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2 And vParamAplic.Cooperativa <> 3)
+    FrameToolAux1.Enabled = (vParamAplic.Cooperativa <> 0 And vParamAplic.Cooperativa <> 2 And vParamAplic.Cooperativa <> 3)
     
     Me.SSTab1.Tab = 0
     
@@ -5935,13 +5936,26 @@ Private Sub BotonImprimirRectificativa()
 Dim cadFormula As String
 Dim cadParam As String
 Dim numParam As Byte
+Dim devuelve As String
+
         cadFormula = "({scafaccli.codtipom}= '" & Data1.Recordset!codtipom & "' and {scafaccli.numfactu}= "
         cadFormula = cadFormula & Data1.Recordset!NumFactu & " and {scafaccli.fecfactu}= Date(" & Year(Data1.Recordset!FecFactu) & "," & Month(Data1.Recordset!FecFactu) & "," & Day(Data1.Recordset!FecFactu) & "))"
         cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
         cadParam = cadParam & "pDuplicado= 1|"
         numParam = 2
         
+        
+        devuelve = DevuelveDesdeBD(conAri, "letraser", "stipom", "codtipom", Text1(1).Text, "T")
+
+        
         With frmImprimir
+        
+                'Nuevo. Febrero 2010
+                .outClaveNombreArchiv = devuelve & Format(Text1(0).Text, "000")
+                .outCodigoCliProv = Text1(4).Text
+                .outTipoDocumento = 2
+        
+        
         .Titulo = "Impresión de Facturas Rectificativa"
         .FormulaSeleccion = cadFormula
         .OtrosParametros = cadParam
@@ -6663,7 +6677,8 @@ Dim b As Boolean
     'Importes siempre bloqueados, excepto para busquedas. ivas y aportacion tb bloqueado
     For I = 26 To 37                            '[Monica]02/03/2012: dejamos modificar totales de la factura si es Teletaxi
                                                                 '[Monica]19/02/2018: Entra Cordoba
-        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2))
+                                                                    '[Monica]19/11/2018: Entra Sevilla
+        BloquearTxt Text1(I), (Modo <> 1) And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3))
     Next I
     
 '    BloquearTxt Text1(47), (Modo <> 1) And Not (Modo = 4 And vParamAplic.Cooperativa = 0)
@@ -6688,7 +6703,8 @@ Dim b As Boolean
     Text1(47).BackColor = &HFFFFC0
     
     '[Monica]19/02/2018: Entra Cordoba
-    If Modo <> 1 And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)) Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If Modo <> 1 And Not (Modo = 4 And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)) Then
         Text1(35).BackColor = &HFFFFC0
         Text1(36).BackColor = &HFFFFC0
         Text1(37).BackColor = &HFFFFC0
@@ -6705,12 +6721,13 @@ Dim b As Boolean
     
     'Si no es modo lineas Boquear los TxtAux
     For I = 3 To 4 '[Monica]19/02/2018: Entra Cordoba
-         BloquearTxt txtAux(I), (Modo <> 5) And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2)
+                        '[Monica]19/11/2018: Entra Sevilla
+         BloquearTxt txtAux(I), (Modo <> 5) And (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3)
     Next I
     
     'Si no es modo Busqueda Bloquear los TxtAux3 (son los txtaux de los albaranes de factura)
-    For I = 0 To txtaux3.Count - 1
-        BloquearTxt txtaux3(I), True '(Modo <> 1)
+    For I = 0 To txtAux3.Count - 1
+        BloquearTxt txtAux3(I), True '(Modo <> 1)
     Next I
     
     'ampliacion linea
@@ -7545,7 +7562,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnvertodos.Enabled = Not b
+    Me.mnVerTodos.Enabled = Not b
         
     b = (Modo = 2)
     For I = 0 To ToolAux.Count - 1
@@ -7754,7 +7771,8 @@ Dim ImprimeDirecto As Boolean
      
         '[Monica]31/03/2014: en el caso de teletaxi pedimos si imprime o no detalle
         '[Monica]19/02/2018: Entra Cordoba
-        If (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2) And Text1(1).Text = "FAC" Then
+            '[Monica]19/11/2018: Entra Sevilla
+        If (vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3) And Text1(1).Text = "FAC" Then
             If MsgBox("¿ Desea imprimir el detalle de servicios ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
                 cadParam = cadParam & "pDetalle=0|"
             Else
@@ -8000,7 +8018,18 @@ Dim Sql4 As String
                     'antes de Eliminar en las tablas de la Contabilidad
                 Set vFactura = New CFactura
                 If vFactura.LeerDatosFACcli(Text1(1).Text, Text1(0).Text, Text1(2).Text) Then
-                
+                    '[Monica]16/11/2018: añadido si esta cobrado no hago nada
+                    bol = ComprobarCobroArimoney("", vFactura.LetraSerie, CLng(Text1(0).Text), CDate(Text1(2).Text), True)
+                    If bol Then
+                        Set vFactura = Nothing
+                        conn.CommitTrans
+                        ConnConta.CommitTrans
+                        ModificarFactura = True
+                        Exit Function
+                    Else
+                        bol = True
+                    End If
+                    
                 Else
                   bol = False
                 End If
@@ -8131,7 +8160,8 @@ Dim Sql As String
     fac.ImpReten = CCur(ComprobarCero(Text1(51).Text))
     
     '[Monica]19/02/2018: Entra Cordoba
-    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Then
+        '[Monica]19/11/2018: Entra Sevilla
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 3 Then
     
         Sql = "scafaccli.codtipom = " & DBSet(Text1(1).Text, "T")
         Sql = Sql & " and scafaccli.numfactu = " & DBSet(Text1(0).Text, "N")
@@ -8379,7 +8409,7 @@ End Function
 
 
 Private Sub TxtAux3_GotFocus(Index As Integer)
-    ConseguirFoco txtaux3(Index), Modo
+    ConseguirFoco txtAux3(Index), Modo
 End Sub
 
 Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -8391,7 +8421,7 @@ Private Sub TxtAux3_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub TxtAux3_LostFocus(Index As Integer)
-    If Not PerderFocoGnral(txtaux3(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(txtAux3(Index), Modo) Then Exit Sub
 End Sub
 
 
@@ -8630,7 +8660,7 @@ End Sub
 
 'En vTesoreria pondremos como estaba el recibo
 'Es decir. El  msgbox que pondra al final lo guardo en esta variable
-Private Function ComprobarCobroArimoney(vTesoreria As String, LEtra As String, Codfaccl As Long, Fecha As Date) As Boolean
+Private Function ComprobarCobroArimoney(vTesoreria As String, LEtra As String, Codfaccl As Long, Fecha As Date, Optional OcultarMensaje As Boolean) As Boolean
 Dim vR As ADODB.Recordset
 Dim Cad As String
 
@@ -8696,7 +8726,15 @@ On Error GoTo EComprobarCobroArimoney
     End If
     vR.Close
     
-    
+    '[Monica]16/11/2018: añadido no hay que tocar el cobro
+    If OcultarMensaje Then
+        If vTesoreria <> "" Then
+            ComprobarCobroArimoney = True ' cobro realizado
+        Else
+            ComprobarCobroArimoney = False
+        End If
+        Exit Function
+    End If
     
     If vTesoreria <> "" Then
         Cad = vTesoreria & vbCrLf & vbCrLf

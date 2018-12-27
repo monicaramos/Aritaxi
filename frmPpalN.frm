@@ -1320,13 +1320,9 @@ Dim AbiertoFormulario  As Boolean
         Case ID_CALENDAREVENT_5:
             frmInbox.mnuTimeScale 5
             
-            
-            
-     
         Case Else
             AbiertoFormulario = True
             AbrirFormularios Control.Id
-            
             
     End Select
     
@@ -3067,7 +3063,7 @@ Private Sub AbrirFormularios(Accion As Long)
             frmGesTraspaso.Show vbModal
         Case 317 ' Histórico de llamadas
             Select Case vParamAplic.Cooperativa
-                Case 0, 2
+                Case 0, 2, 3
                     frmGesHisLlam.Show vbModal
                 Case 1
                     frmGesHisLlamVIP.Show vbModal
@@ -3355,6 +3351,10 @@ Private Sub AbrirFormularios(Accion As Long)
             Screen.MousePointer = vbHourglass
             frmUtilidades.Opcion = 5
             frmUtilidades.Show vbModal
+
+'            frmPrueba.Show vbModal
+            
+
         Case 1011 ' Fras Pdtes Contabilizar Clientes
             'Facturas pendientes de contabilizar (CLIENTES)
             Screen.MousePointer = vbHourglass
@@ -3395,6 +3395,8 @@ Private Sub AbrirFormularios(Accion As Long)
              
                 
                 MostrarCadenasConexion
+                
+                
         Case Else
   
     End Select
