@@ -5,24 +5,24 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmGesSocios 
    Caption         =   "Socios."
-   ClientHeight    =   8100
+   ClientHeight    =   8550
    ClientLeft      =   60
    ClientTop       =   450
-   ClientWidth     =   11865
+   ClientWidth     =   12705
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8100
-   ScaleWidth      =   11865
+   ScaleHeight     =   8550
+   ScaleWidth      =   12705
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   109
+      TabIndex        =   110
       Top             =   90
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   110
+         TabIndex        =   111
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -78,13 +78,13 @@ Begin VB.Form frmGesSocios
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   3750
-      TabIndex        =   107
+      TabIndex        =   108
       Top             =   90
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   108
+         TabIndex        =   109
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -128,14 +128,14 @@ Begin VB.Form frmGesSocios
       EndProperty
       Height          =   300
       Left            =   9630
-      TabIndex        =   106
+      TabIndex        =   107
       Top             =   300
       Width           =   1605
    End
    Begin MSAdodcLib.Adodc Adodc4 
       Height          =   330
-      Left            =   4200
-      Top             =   6510
+      Left            =   4140
+      Top             =   7290
       Visible         =   0   'False
       Width           =   1455
       _ExtentX        =   2566
@@ -181,8 +181,8 @@ Begin VB.Form frmGesSocios
    End
    Begin MSAdodcLib.Adodc Adodc3 
       Height          =   330
-      Left            =   5490
-      Top             =   6510
+      Left            =   5670
+      Top             =   7290
       Visible         =   0   'False
       Width           =   1455
       _ExtentX        =   2566
@@ -227,13 +227,13 @@ Begin VB.Form frmGesSocios
       _Version        =   393216
    End
    Begin TabDlg.SSTab SSTab1 
-      Height          =   5415
+      Height          =   5775
       Left            =   90
-      TabIndex        =   40
+      TabIndex        =   41
       Top             =   1830
-      Width           =   11685
-      _ExtentX        =   20611
-      _ExtentY        =   9551
+      Width           =   12360
+      _ExtentX        =   21802
+      _ExtentY        =   10186
       _Version        =   393216
       Tabs            =   7
       TabsPerRow      =   7
@@ -347,102 +347,81 @@ Begin VB.Form frmGesSocios
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "LabelCRM"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "lwCRM"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "cmdAccCRM(2)"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "cmdAccCRM(1)"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "cmdAccCRM(0)"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "Frame3(2)"
-      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(0)=   "Frame3(2)"
+      Tab(1).Control(1)=   "cmdAccCRM(0)"
+      Tab(1).Control(2)=   "cmdAccCRM(1)"
+      Tab(1).Control(3)=   "cmdAccCRM(2)"
+      Tab(1).Control(4)=   "lwCRM"
+      Tab(1).Control(5)=   "LabelCRM"
       Tab(1).ControlCount=   6
       TabCaption(2)   =   "Choferes"
       TabPicture(2)   =   "frmGesSocios.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "DataGrid1"
-      Tab(2).Control(1)=   "txtAux1(0)"
-      Tab(2).Control(2)=   "txtAux1(1)"
-      Tab(2).Control(3)=   "txtAux1(2)"
-      Tab(2).Control(4)=   "txtAux1(3)"
-      Tab(2).Control(5)=   "txtAux1(4)"
-      Tab(2).Control(6)=   "cmdAux(0)"
-      Tab(2).Control(7)=   "FrameToolAux0"
+      Tab(2).Control(0)=   "FrameToolAux0"
+      Tab(2).Control(1)=   "cmdAux(0)"
+      Tab(2).Control(2)=   "txtAux1(4)"
+      Tab(2).Control(3)=   "txtAux1(3)"
+      Tab(2).Control(4)=   "txtAux1(2)"
+      Tab(2).Control(5)=   "txtAux1(1)"
+      Tab(2).Control(6)=   "txtAux1(0)"
+      Tab(2).Control(7)=   "DataGrid1"
       Tab(2).ControlCount=   8
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "DataGrid2"
-      Tab(3).Control(1)=   "txtAux2(0)"
-      Tab(3).Control(2)=   "txtAux2(1)"
-      Tab(3).Control(3)=   "txtAux2(2)"
+      Tab(3).Control(0)=   "FrameToolAux1"
+      Tab(3).Control(1)=   "cmdAux(1)"
+      Tab(3).Control(2)=   "txtAux2(4)"
+      Tab(3).Control(3)=   "cmdAux1"
       Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "cmdAux1"
-      Tab(3).Control(6)=   "txtAux2(4)"
-      Tab(3).Control(7)=   "cmdAux(1)"
-      Tab(3).Control(8)=   "FrameToolAux1"
+      Tab(3).Control(5)=   "txtAux2(2)"
+      Tab(3).Control(6)=   "txtAux2(1)"
+      Tab(3).Control(7)=   "txtAux2(0)"
+      Tab(3).Control(8)=   "DataGrid2"
       Tab(3).ControlCount=   9
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Label4"
-      Tab(4).Control(0).Enabled=   0   'False
-      Tab(4).Control(1)=   "DataGrid4"
-      Tab(4).Control(1).Enabled=   0   'False
-      Tab(4).Control(2)=   "Text3"
-      Tab(4).Control(2).Enabled=   0   'False
-      Tab(4).Control(3)=   "txtAux3(0)"
-      Tab(4).Control(3).Enabled=   0   'False
-      Tab(4).Control(4)=   "txtAux3(1)"
-      Tab(4).Control(4).Enabled=   0   'False
-      Tab(4).Control(5)=   "txtAux3(2)"
-      Tab(4).Control(5).Enabled=   0   'False
-      Tab(4).Control(6)=   "cmdAux(2)"
-      Tab(4).Control(6).Enabled=   0   'False
-      Tab(4).Control(7)=   "FrameToolAux2"
-      Tab(4).Control(7).Enabled=   0   'False
+      Tab(4).Control(0)=   "FrameToolAux2"
+      Tab(4).Control(1)=   "cmdAux(2)"
+      Tab(4).Control(2)=   "txtAux3(2)"
+      Tab(4).Control(3)=   "txtAux3(1)"
+      Tab(4).Control(4)=   "txtAux3(0)"
+      Tab(4).Control(5)=   "Text3"
+      Tab(4).Control(6)=   "DataGrid4"
+      Tab(4).Control(7)=   "Label4"
       Tab(4).ControlCount=   8
       TabCaption(5)   =   "Documentos"
       TabPicture(5)   =   "frmGesSocios.frx":008C
       Tab(5).ControlEnabled=   0   'False
       Tab(5).Control(0)=   "Text1(26)"
-      Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "Toolbar2"
-      Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "lw1"
-      Tab(5).Control(2).Enabled=   0   'False
       Tab(5).Control(3)=   "Frame3(0)"
-      Tab(5).Control(3).Enabled=   0   'False
       Tab(5).Control(4)=   "Label3"
-      Tab(5).Control(4).Enabled=   0   'False
       Tab(5).Control(5)=   "imgFecha(3)"
-      Tab(5).Control(5).Enabled=   0   'False
       Tab(5).Control(6)=   "LabelDoc"
-      Tab(5).Control(6).Enabled=   0   'False
       Tab(5).ControlCount=   7
       TabCaption(6)   =   "Contadores"
       TabPicture(6)   =   "frmGesSocios.frx":00A8
       Tab(6).ControlEnabled=   0   'False
-      Tab(6).Control(0)=   "DataGrid3"
-      Tab(6).Control(1)=   "txtAux4(2)"
+      Tab(6).Control(0)=   "FrameToolAux3"
+      Tab(6).Control(1)=   "txtAux4(0)"
       Tab(6).Control(2)=   "txtAux4(1)"
-      Tab(6).Control(3)=   "txtAux4(0)"
-      Tab(6).Control(4)=   "FrameToolAux3"
+      Tab(6).Control(3)=   "txtAux4(2)"
+      Tab(6).Control(4)=   "DataGrid3"
       Tab(6).ControlCount=   5
       Begin VB.Frame FrameToolAux3 
          Height          =   555
          Left            =   -74760
-         TabIndex        =   117
+         TabIndex        =   118
          Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
             Index           =   3
             Left            =   210
-            TabIndex        =   118
+            TabIndex        =   119
             Top             =   120
             Width           =   1095
             _ExtentX        =   1931
@@ -468,14 +447,14 @@ Begin VB.Form frmGesSocios
       Begin VB.Frame FrameToolAux2 
          Height          =   555
          Left            =   -74760
-         TabIndex        =   115
+         TabIndex        =   116
          Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
             Index           =   2
             Left            =   210
-            TabIndex        =   116
+            TabIndex        =   117
             Top             =   120
             Width           =   1095
             _ExtentX        =   1931
@@ -501,14 +480,14 @@ Begin VB.Form frmGesSocios
       Begin VB.Frame FrameToolAux1 
          Height          =   555
          Left            =   -74760
-         TabIndex        =   113
+         TabIndex        =   114
          Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
             Index           =   1
             Left            =   210
-            TabIndex        =   114
+            TabIndex        =   115
             Top             =   120
             Width           =   1095
             _ExtentX        =   1931
@@ -534,14 +513,14 @@ Begin VB.Form frmGesSocios
       Begin VB.Frame FrameToolAux0 
          Height          =   555
          Left            =   -74760
-         TabIndex        =   111
+         TabIndex        =   112
          Top             =   330
          Width           =   1605
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   330
             Index           =   0
             Left            =   210
-            TabIndex        =   112
+            TabIndex        =   113
             Top             =   120
             Width           =   1095
             _ExtentX        =   1931
@@ -577,7 +556,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   375
          Index           =   2
-         Left            =   9480
+         Left            =   9975
          TabIndex        =   17
          Tag             =   "Facturacion Electrónica|N|N|0|1|sclien|facturae|||"
          Top             =   2100
@@ -596,7 +575,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   28
-         Left            =   8070
+         Left            =   8565
          MaxLength       =   4
          TabIndex        =   18
          Tag             =   "IBAN|T|S|||sclien|iban|||"
@@ -617,7 +596,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   375
          Index           =   1
-         Left            =   9480
+         Left            =   9975
          TabIndex        =   16
          Tag             =   "Facturado|N|N|0|1|sclien|escontado|||"
          Top             =   1740
@@ -636,7 +615,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   27
-         Left            =   8070
+         Left            =   8565
          MaxLength       =   10
          TabIndex        =   14
          Tag             =   "Importe a Cuenta|N|S|||sclien|impacuenta|###,##0.00||"
@@ -660,7 +639,7 @@ Begin VB.Form frmGesSocios
          Index           =   0
          Left            =   -74100
          MaxLength       =   16
-         TabIndex        =   102
+         TabIndex        =   103
          Tag             =   "Tipom Mov.|T|N|||sclien_contadores|codtipom|||"
          Text            =   "tipo"
          Top             =   4320
@@ -683,7 +662,7 @@ Begin VB.Form frmGesSocios
          Height          =   315
          Index           =   1
          Left            =   -73020
-         TabIndex        =   103
+         TabIndex        =   104
          Text            =   "nomtipom"
          Top             =   4320
          Visible         =   0   'False
@@ -707,7 +686,7 @@ Begin VB.Form frmGesSocios
          Index           =   2
          Left            =   -70950
          MaxLength       =   10
-         TabIndex        =   104
+         TabIndex        =   105
          Tag             =   "Contador|N|N|||sclien_contadores|contador|0000000||"
          Text            =   "Contador"
          Top             =   4320
@@ -719,7 +698,7 @@ Begin VB.Form frmGesSocios
          Height          =   315
          Index           =   2
          Left            =   -72570
-         TabIndex        =   97
+         TabIndex        =   98
          ToolTipText     =   "Buscar artículo"
          Top             =   3570
          Visible         =   0   'False
@@ -743,7 +722,7 @@ Begin VB.Form frmGesSocios
          Index           =   2
          Left            =   -70230
          MaxLength       =   10
-         TabIndex        =   96
+         TabIndex        =   97
          Text            =   "Importe"
          Top             =   3570
          Visible         =   0   'False
@@ -765,7 +744,7 @@ Begin VB.Form frmGesSocios
          Height          =   315
          Index           =   1
          Left            =   -72330
-         TabIndex        =   95
+         TabIndex        =   96
          Text            =   "nomartic"
          Top             =   3570
          Visible         =   0   'False
@@ -788,7 +767,7 @@ Begin VB.Form frmGesSocios
          Index           =   0
          Left            =   -74220
          MaxLength       =   16
-         TabIndex        =   94
+         TabIndex        =   95
          Tag             =   "Artículo|T|N|||sclien_cuotas|codartic|||"
          Text            =   "artic"
          Top             =   3570
@@ -812,7 +791,7 @@ Begin VB.Form frmGesSocios
          Height          =   285
          Left            =   -65960
          Locked          =   -1  'True
-         TabIndex        =   93
+         TabIndex        =   94
          Top             =   4860
          Width           =   2100
       End
@@ -830,7 +809,7 @@ Begin VB.Form frmGesSocios
          Height          =   360
          Index           =   26
          Left            =   -65550
-         TabIndex        =   89
+         TabIndex        =   90
          Text            =   "Text4"
          Top             =   1410
          Width           =   1455
@@ -841,13 +820,13 @@ Begin VB.Form frmGesSocios
          Height          =   4215
          Index           =   2
          Left            =   -74850
-         TabIndex        =   82
+         TabIndex        =   83
          Top             =   390
          Width           =   615
          Begin MSComctlLib.Toolbar Toolbar3 
             Height          =   390
             Left            =   30
-            TabIndex        =   83
+            TabIndex        =   84
             Top             =   300
             Width           =   615
             _ExtentX        =   1085
@@ -929,7 +908,7 @@ Begin VB.Form frmGesSocios
          Left            =   -65520
          Picture         =   "frmGesSocios.frx":00C4
          Style           =   1  'Graphical
-         TabIndex        =   81
+         TabIndex        =   82
          ToolTipText     =   "Acciones CRM"
          Top             =   330
          Visible         =   0   'False
@@ -941,7 +920,7 @@ Begin VB.Form frmGesSocios
          Left            =   -64470
          Picture         =   "frmGesSocios.frx":0AC6
          Style           =   1  'Graphical
-         TabIndex        =   80
+         TabIndex        =   81
          ToolTipText     =   "Impresion CRM"
          Top             =   330
          Visible         =   0   'False
@@ -953,7 +932,7 @@ Begin VB.Form frmGesSocios
          Left            =   -65040
          Picture         =   "frmGesSocios.frx":1050
          Style           =   1  'Graphical
-         TabIndex        =   79
+         TabIndex        =   80
          ToolTipText     =   "Eliminar"
          Top             =   330
          Visible         =   0   'False
@@ -972,7 +951,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   25
-         Left            =   8070
+         Left            =   8565
          MaxLength       =   10
          TabIndex        =   13
          Tag             =   "Sumplemento Cuota|N|S|||sclien|suplecuota|###,##0.00||"
@@ -992,7 +971,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   19
-         Left            =   8670
+         Left            =   9165
          MaxLength       =   4
          TabIndex        =   19
          Tag             =   "Codigo Banco|N|S|||sclien|codbanco|0000||"
@@ -1013,7 +992,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   20
-         Left            =   9270
+         Left            =   9765
          MaxLength       =   4
          TabIndex        =   20
          Tag             =   "Codigo Sucursal|N|S|||sclien|codsucur|0000||"
@@ -1034,7 +1013,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   21
-         Left            =   9870
+         Left            =   10365
          MaxLength       =   2
          TabIndex        =   21
          Tag             =   "Digito Control|T|S|||sclien|digcontr|00||"
@@ -1055,7 +1034,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   22
-         Left            =   10200
+         Left            =   10695
          MaxLength       =   10
          TabIndex        =   22
          Tag             =   "Cuenta Banco|T|S|||sclien|cuentaba|0000000000||"
@@ -1075,7 +1054,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   8070
+         Left            =   8565
          MaxLength       =   9
          TabIndex        =   10
          Tag             =   "CIF|T|N|||sclien|nifclien|||"
@@ -1101,7 +1080,7 @@ Begin VB.Form frmGesSocios
          Tag             =   "Domicilio|T|N|||sclien|domclien|||"
          Text            =   "Text"
          Top             =   540
-         Width           =   4905
+         Width           =   5400
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1141,7 +1120,7 @@ Begin VB.Form frmGesSocios
          Tag             =   "Población|T|N|||sclien|pobclien|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   960
-         Width           =   2985
+         Width           =   3480
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1161,7 +1140,7 @@ Begin VB.Form frmGesSocios
          Tag             =   "Provincia|T|N|||sclien|proclien|||"
          Text            =   "Text"
          Top             =   1380
-         Width           =   4905
+         Width           =   5400
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1195,7 +1174,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   5010
+         Left            =   5505
          MaxLength       =   10
          TabIndex        =   8
          Tag             =   "Movil|T|S|||sclien|movclien|||"
@@ -1221,7 +1200,7 @@ Begin VB.Form frmGesSocios
          Tag             =   "Mail|T|S|||sclien|maiclie1|||"
          Text            =   "Text"
          Top             =   2220
-         Width           =   4905
+         Width           =   5400
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1235,7 +1214,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   8070
+         Left            =   8565
          MaxLength       =   10
          TabIndex        =   11
          Tag             =   "Fecha Alta|F|N|||sclien|fechaalt||dd/mm/yyyy|"
@@ -1255,7 +1234,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   8070
+         Left            =   8565
          MaxLength       =   10
          TabIndex        =   12
          Tag             =   "Fecha Baja|F|S|||sclien|fechabaj||dd/mm/yyyy|"
@@ -1275,10 +1254,10 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   1890
          Index           =   17
-         Left            =   6690
+         Left            =   7185
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
-         TabIndex        =   30
+         TabIndex        =   31
          Tag             =   "Observaciones|T|S|||sclien|observac|||"
          Text            =   "frmGesSocios.frx":1A52
          Top             =   3300
@@ -1297,7 +1276,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   375
          Index           =   0
-         Left            =   9480
+         Left            =   9975
          TabIndex        =   15
          Tag             =   "Facturado|N|N|0|1|sclien|essocio|||"
          Top             =   1410
@@ -1314,12 +1293,32 @@ Begin VB.Form frmGesSocios
             Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2505
+         Height          =   2910
          Index           =   1
          Left            =   270
-         TabIndex        =   55
+         TabIndex        =   56
          Top             =   2700
-         Width           =   6315
+         Width           =   6810
+         Begin VB.TextBox Text1 
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   30
+            Left            =   135
+            MaxLength       =   14
+            TabIndex        =   29
+            Tag             =   "Autorizacion VT|T|S|||sclien|codautor|||"
+            Text            =   "00000000000000"
+            Top             =   2385
+            Width           =   1890
+         End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
             BeginProperty Font 
@@ -1333,12 +1332,12 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   360
             Index           =   29
-            Left            =   1320
+            Left            =   3375
             MaxLength       =   9
-            TabIndex        =   29
+            TabIndex        =   30
             Tag             =   "Licencia Anterior|N|S|||sclien|licenciaant|00000000||"
             Text            =   "Text"
-            Top             =   2025
+            Top             =   2385
             Width           =   1440
          End
          Begin VB.TextBox Text1 
@@ -1353,7 +1352,7 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   360
             Index           =   24
-            Left            =   4890
+            Left            =   5385
             MaxLength       =   9
             TabIndex        =   25
             Tag             =   "Poliza|T|S|||sclien|numpoliza|||"
@@ -1375,11 +1374,11 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   360
             Index           =   1
-            Left            =   2280
-            TabIndex        =   62
+            Left            =   2235
+            TabIndex        =   63
             Text            =   "Text2"
             Top             =   360
-            Width           =   3915
+            Width           =   4455
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1437,11 +1436,11 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   360
             Index           =   0
-            Left            =   2040
-            TabIndex        =   59
+            Left            =   1995
+            TabIndex        =   60
             Text            =   "Text2"
             Top             =   1620
-            Width           =   4155
+            Width           =   4695
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1455,7 +1454,7 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   360
             Index           =   18
-            Left            =   4890
+            Left            =   5385
             MaxLength       =   10
             TabIndex        =   27
             Tag             =   "Fecha Situación|F|S|||sclien|fechasit||dd/mm/yyyy|"
@@ -1505,7 +1504,25 @@ Begin VB.Form frmGesSocios
             Width           =   870
          End
          Begin VB.Label Label1 
-            Caption         =   "Licen Ant."
+            Caption         =   "Autorización VT"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Index           =   24
+            Left            =   135
+            TabIndex        =   121
+            Top             =   2070
+            Width           =   1665
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Licencia Ant."
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   9.75
@@ -1517,10 +1534,10 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   255
             Index           =   22
-            Left            =   135
-            TabIndex        =   119
-            Top             =   2055
-            Width           =   1125
+            Left            =   3375
+            TabIndex        =   120
+            Top             =   2070
+            Width           =   1665
          End
          Begin VB.Label Label1 
             Caption         =   "Número Póliza"
@@ -1535,15 +1552,15 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   255
             Index           =   23
-            Left            =   2940
-            TabIndex        =   63
+            Left            =   3435
+            TabIndex        =   64
             Top             =   810
             Width           =   1725
          End
          Begin VB.Image imgBuscar 
             Height          =   240
             Index           =   3
-            Left            =   1050
+            Left            =   1005
             Tag             =   "-1"
             ToolTipText     =   "Buscar vehiculo"
             Top             =   390
@@ -1572,7 +1589,7 @@ Begin VB.Form frmGesSocios
             Height          =   255
             Index           =   12
             Left            =   120
-            TabIndex        =   61
+            TabIndex        =   62
             Top             =   1620
             Width           =   945
          End
@@ -1590,14 +1607,14 @@ Begin VB.Form frmGesSocios
             Height          =   255
             Index           =   17
             Left            =   120
-            TabIndex        =   60
+            TabIndex        =   61
             Top             =   1230
             Width           =   1455
          End
          Begin VB.Image imgFecha 
             Height          =   240
             Index           =   2
-            Left            =   4620
+            Left            =   5115
             Picture         =   "frmGesSocios.frx":1A57
             ToolTipText     =   "Buscar fecha"
             Top             =   1200
@@ -1616,8 +1633,8 @@ Begin VB.Form frmGesSocios
             EndProperty
             Height          =   255
             Index           =   18
-            Left            =   2940
-            TabIndex        =   58
+            Left            =   3435
+            TabIndex        =   59
             Top             =   1200
             Width           =   1725
          End
@@ -1635,7 +1652,7 @@ Begin VB.Form frmGesSocios
             Height          =   255
             Index           =   16
             Left            =   120
-            TabIndex        =   57
+            TabIndex        =   58
             Top             =   810
             Width           =   1095
          End
@@ -1653,7 +1670,7 @@ Begin VB.Form frmGesSocios
             Height          =   255
             Index           =   15
             Left            =   120
-            TabIndex        =   56
+            TabIndex        =   57
             Top             =   360
             Width           =   885
          End
@@ -1663,7 +1680,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   1
          Left            =   -73440
-         TabIndex        =   47
+         TabIndex        =   48
          ToolTipText     =   "Buscar cliente"
          Top             =   2520
          Visible         =   0   'False
@@ -1684,7 +1701,7 @@ Begin VB.Form frmGesSocios
          Height          =   285
          Index           =   4
          Left            =   -70560
-         TabIndex        =   51
+         TabIndex        =   52
          Text            =   "hasta"
          Top             =   2520
          Visible         =   0   'False
@@ -1696,7 +1713,7 @@ Begin VB.Form frmGesSocios
          Left            =   -67320
          List            =   "frmGesSocios.frx":1AEC
          Style           =   2  'Dropdown List
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   2520
          Visible         =   0   'False
          Width           =   990
@@ -1717,7 +1734,7 @@ Begin VB.Form frmGesSocios
          Index           =   3
          Left            =   -71520
          MaxLength       =   10
-         TabIndex        =   50
+         TabIndex        =   51
          Text            =   "desde"
          Top             =   2520
          Visible         =   0   'False
@@ -1739,7 +1756,7 @@ Begin VB.Form frmGesSocios
          Index           =   2
          Left            =   -72480
          MaxLength       =   10
-         TabIndex        =   49
+         TabIndex        =   50
          Tag             =   "Importe|N|N|||sclien_publicidad|importes|||"
          Text            =   "importe"
          Top             =   2520
@@ -1761,7 +1778,7 @@ Begin VB.Form frmGesSocios
          Height          =   285
          Index           =   1
          Left            =   -73440
-         TabIndex        =   54
+         TabIndex        =   55
          Text            =   "nomcliente"
          Top             =   2520
          Visible         =   0   'False
@@ -1783,7 +1800,7 @@ Begin VB.Form frmGesSocios
          Index           =   0
          Left            =   -74640
          MaxLength       =   6
-         TabIndex        =   48
+         TabIndex        =   49
          Tag             =   "Cliente|N|N|||sclien_publicidad|codclien|||"
          Text            =   "Codclien"
          Top             =   2520
@@ -1795,7 +1812,7 @@ Begin VB.Form frmGesSocios
          Height          =   315
          Index           =   0
          Left            =   -73800
-         TabIndex        =   42
+         TabIndex        =   43
          ToolTipText     =   "Buscar chofer"
          Top             =   2460
          Visible         =   0   'False
@@ -1818,7 +1835,7 @@ Begin VB.Form frmGesSocios
          Index           =   4
          Left            =   -69240
          MaxLength       =   40
-         TabIndex        =   46
+         TabIndex        =   47
          Tag             =   "Observaciones|T|S|||ssocio_chofer|observac|||"
          Text            =   "Observaciones"
          Top             =   2460
@@ -1842,7 +1859,7 @@ Begin VB.Form frmGesSocios
          Index           =   3
          Left            =   -70320
          MaxLength       =   10
-         TabIndex        =   45
+         TabIndex        =   46
          Tag             =   "Fecha Baja|F|S|||ssocio_chofer|fechabaj|||"
          Text            =   "FEcBaja"
          Top             =   2460
@@ -1866,7 +1883,7 @@ Begin VB.Form frmGesSocios
          Index           =   2
          Left            =   -71640
          MaxLength       =   10
-         TabIndex        =   44
+         TabIndex        =   45
          Tag             =   "Fecha Alta|F|S|||ssocio_chofer|fechaalt|||"
          Text            =   "FecAlta"
          Top             =   2460
@@ -1889,7 +1906,7 @@ Begin VB.Form frmGesSocios
          Height          =   315
          Index           =   1
          Left            =   -73590
-         TabIndex        =   41
+         TabIndex        =   42
          Text            =   "nomchofe"
          Top             =   2460
          Visible         =   0   'False
@@ -1912,7 +1929,7 @@ Begin VB.Form frmGesSocios
          Index           =   0
          Left            =   -74760
          MaxLength       =   5
-         TabIndex        =   43
+         TabIndex        =   44
          Tag             =   "Chofer|N|N|||sclien_chofer|codchofe|||"
          Text            =   "chofe"
          Top             =   2460
@@ -1922,7 +1939,7 @@ Begin VB.Form frmGesSocios
       Begin MSDataGridLib.DataGrid DataGrid2 
          Height          =   3845
          Left            =   -74760
-         TabIndex        =   53
+         TabIndex        =   54
          Top             =   960
          Width           =   11185
          _ExtentX        =   19738
@@ -1988,7 +2005,7 @@ Begin VB.Form frmGesSocios
          Bindings        =   "frmGesSocios.frx":1B03
          Height          =   3845
          Left            =   -74760
-         TabIndex        =   64
+         TabIndex        =   65
          Top             =   960
          Width           =   11185
          _ExtentX        =   19738
@@ -2060,7 +2077,7 @@ Begin VB.Form frmGesSocios
          Index           =   23
          Left            =   1680
          MaxLength       =   5
-         TabIndex        =   76
+         TabIndex        =   77
          Tag             =   "Codigo Socio|N|N|||sclien|codtarif|||"
          Text            =   "Text"
          Top             =   570
@@ -2069,7 +2086,7 @@ Begin VB.Form frmGesSocios
       Begin MSComctlLib.ListView lwCRM 
          Height          =   4305
          Left            =   -74160
-         TabIndex        =   84
+         TabIndex        =   85
          Top             =   690
          Width           =   10095
          _ExtentX        =   17806
@@ -2099,7 +2116,7 @@ Begin VB.Form frmGesSocios
       Begin MSComctlLib.Toolbar Toolbar2 
          Height          =   1710
          Left            =   -74940
-         TabIndex        =   88
+         TabIndex        =   89
          Top             =   420
          Width           =   615
          _ExtentX        =   1085
@@ -2137,7 +2154,7 @@ Begin VB.Form frmGesSocios
       Begin MSComctlLib.ListView lw1 
          Height          =   4545
          Left            =   -74310
-         TabIndex        =   90
+         TabIndex        =   91
          Top             =   390
          Width           =   8295
          _ExtentX        =   14631
@@ -2168,7 +2185,7 @@ Begin VB.Form frmGesSocios
          Bindings        =   "frmGesSocios.frx":1B18
          Height          =   3840
          Left            =   -74760
-         TabIndex        =   98
+         TabIndex        =   99
          Top             =   930
          Width           =   11185
          _ExtentX        =   19738
@@ -2239,14 +2256,14 @@ Begin VB.Form frmGesSocios
          Height          =   3855
          Index           =   0
          Left            =   -74940
-         TabIndex        =   100
+         TabIndex        =   101
          Top             =   360
          Width           =   615
       End
       Begin MSDataGridLib.DataGrid DataGrid3 
          Height          =   3845
          Left            =   -74760
-         TabIndex        =   101
+         TabIndex        =   102
          Top             =   960
          Width           =   11215
          _ExtentX        =   19791
@@ -2320,8 +2337,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   21
-         Left            =   6690
-         TabIndex        =   105
+         Left            =   7185
+         TabIndex        =   106
          Top             =   2190
          Width           =   1365
       End
@@ -2338,7 +2355,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   195
          Left            =   -68000
-         TabIndex        =   99
+         TabIndex        =   100
          Top             =   4890
          Width           =   1875
       End
@@ -2355,7 +2372,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Left            =   -65430
-         TabIndex        =   92
+         TabIndex        =   93
          Top             =   930
          Width           =   735
       End
@@ -2382,7 +2399,7 @@ Begin VB.Form frmGesSocios
          ForeColor       =   &H00000080&
          Height          =   300
          Left            =   -65910
-         TabIndex        =   91
+         TabIndex        =   92
          Top             =   450
          Width           =   1905
       End
@@ -2398,15 +2415,15 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9510
-         TabIndex        =   87
+         Left            =   10005
+         TabIndex        =   88
          Top             =   960
          Width           =   1500
       End
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   0
-         Left            =   11190
+         Left            =   11685
          ToolTipText     =   "Cálculo Importe Cuotas "
          Top             =   930
          Width           =   390
@@ -2414,7 +2431,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   1
-         Left            =   11190
+         Left            =   11685
          ToolTipText     =   "Impresión Documento Alta"
          Top             =   540
          Width           =   390
@@ -2431,8 +2448,8 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9510
-         TabIndex        =   86
+         Left            =   10005
+         TabIndex        =   87
          Top             =   570
          Width           =   1740
       End
@@ -2450,7 +2467,7 @@ Begin VB.Form frmGesSocios
          ForeColor       =   &H00000080&
          Height          =   300
          Left            =   -74160
-         TabIndex        =   85
+         TabIndex        =   86
          Top             =   390
          Width           =   5745
       End
@@ -2467,8 +2484,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   20
-         Left            =   6690
-         TabIndex        =   78
+         Left            =   7185
+         TabIndex        =   79
          Top             =   1800
          Width           =   1365
       End
@@ -2485,8 +2502,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   19
-         Left            =   6690
-         TabIndex        =   77
+         Left            =   7185
+         TabIndex        =   78
          Top             =   2580
          Width           =   1155
       End
@@ -2503,8 +2520,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   6690
-         TabIndex        =   75
+         Left            =   7185
+         TabIndex        =   76
          Top             =   2940
          Width           =   1515
       End
@@ -2522,7 +2539,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   5
          Left            =   360
-         TabIndex        =   74
+         TabIndex        =   75
          Top             =   960
          Width           =   735
       End
@@ -2549,7 +2566,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   6
          Left            =   2580
-         TabIndex        =   73
+         TabIndex        =   74
          Top             =   960
          Width           =   915
       End
@@ -2567,7 +2584,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   7
          Left            =   360
-         TabIndex        =   72
+         TabIndex        =   73
          Top             =   1380
          Width           =   1005
       End
@@ -2584,8 +2601,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   8
-         Left            =   6690
-         TabIndex        =   71
+         Left            =   7185
+         TabIndex        =   72
          Top             =   600
          Width           =   735
       End
@@ -2603,7 +2620,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   9
          Left            =   360
-         TabIndex        =   70
+         TabIndex        =   71
          Top             =   1830
          Width           =   1035
       End
@@ -2620,8 +2637,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   10
-         Left            =   3510
-         TabIndex        =   69
+         Left            =   4050
+         TabIndex        =   70
          Top             =   1800
          Width           =   735
       End
@@ -2639,14 +2656,14 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   11
          Left            =   390
-         TabIndex        =   68
+         TabIndex        =   69
          Top             =   2250
          Width           =   855
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   8280
+         Left            =   8775
          Tag             =   "-1"
          ToolTipText     =   "Ver observaciones"
          Top             =   2940
@@ -2675,7 +2692,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   4
          Left            =   360
-         TabIndex        =   67
+         TabIndex        =   68
          Top             =   540
          Width           =   1335
       End
@@ -2692,15 +2709,15 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   13
-         Left            =   6690
-         TabIndex        =   66
+         Left            =   7185
+         TabIndex        =   67
          Top             =   990
          Width           =   1095
       End
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   7800
+         Left            =   8295
          ToolTipText     =   "Buscar fecha"
          Top             =   960
          Width           =   240
@@ -2718,15 +2735,15 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   6690
-         TabIndex        =   65
+         Left            =   7185
+         TabIndex        =   66
          Top             =   1380
          Width           =   1125
       End
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   1
-         Left            =   7830
+         Left            =   8325
          ToolTipText     =   "Buscar fecha"
          Top             =   1380
          Width           =   240
@@ -2838,9 +2855,9 @@ Begin VB.Form frmGesSocios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9330
-      TabIndex        =   31
-      Top             =   7530
+      Left            =   10005
+      TabIndex        =   32
+      Top             =   7890
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -2856,9 +2873,9 @@ Begin VB.Form frmGesSocios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10650
-      TabIndex        =   32
-      Top             =   7530
+      Left            =   11325
+      TabIndex        =   33
+      Top             =   7890
       Width           =   1135
    End
    Begin VB.CommandButton cmdRegresar 
@@ -2873,18 +2890,18 @@ Begin VB.Form frmGesSocios
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10650
-      TabIndex        =   33
-      Top             =   7530
+      Left            =   11325
+      TabIndex        =   34
+      Top             =   7890
       Visible         =   0   'False
       Width           =   1135
    End
    Begin VB.Frame Frame1 
       Height          =   825
       Left            =   90
-      TabIndex        =   34
+      TabIndex        =   35
       Top             =   900
-      Width           =   11655
+      Width           =   12375
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -2897,13 +2914,13 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   2790
+         Left            =   2925
          MaxLength       =   40
          TabIndex        =   1
          Tag             =   "Nombre|T|N|||sclien|nomclien|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   300
-         Width           =   3825
+         Width           =   4050
       End
       Begin VB.TextBox Text1 
          BackColor       =   &H00FFFFC0&
@@ -2918,7 +2935,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   8820
+         Left            =   9180
          MaxLength       =   6
          TabIndex        =   2
          Tag             =   "Num.Vehiculo|N|S|||sclien|numeruve|000000||"
@@ -2960,8 +2977,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   0
-         Left            =   2040
-         TabIndex        =   39
+         Left            =   2175
+         TabIndex        =   40
          Top             =   330
          Width           =   735
       End
@@ -2979,7 +2996,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   1
          Left            =   240
-         TabIndex        =   37
+         TabIndex        =   38
          Top             =   330
          Width           =   735
       End
@@ -2996,8 +3013,8 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   6840
-         TabIndex        =   36
+         Left            =   7200
+         TabIndex        =   37
          Top             =   330
          Width           =   2295
       End
@@ -3005,8 +3022,8 @@ Begin VB.Form frmGesSocios
    Begin VB.Frame Frame2 
       Height          =   645
       Left            =   120
-      TabIndex        =   35
-      Top             =   7350
+      TabIndex        =   36
+      Top             =   7710
       Width           =   3975
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -3023,7 +3040,7 @@ Begin VB.Form frmGesSocios
          Height          =   255
          Index           =   0
          Left            =   120
-         TabIndex        =   38
+         TabIndex        =   39
          Top             =   240
          Width           =   3615
       End
@@ -4876,6 +4893,8 @@ Dim indice As Byte
     
     
 End Sub
+
+
 
 
 
