@@ -928,7 +928,7 @@ Dim cad1 As String
     
     Set miRsAux = Nothing
     
-    PB1.visible = True
+    Pb1.visible = True
     
     Cantidad = 0
     Data1.RecordSource = Sql
@@ -941,7 +941,7 @@ Dim cad1 As String
     Cad = ""
     While Not Data1.Recordset.EOF
         Cantidad = Cantidad + 1
-        PB1.Value = Cantidad * 100 / total
+        Pb1.Value = Cantidad * 100 / total
         Set vC = New CTiposMov
         Set cli = New CCliente
         Set fac = New CFactura
@@ -983,6 +983,7 @@ Dim cad1 As String
             vC.IncrementarContador (vC.TipoMovimiento)
         
         
+            
             DoEvents
             fac.BaseImp = BaseImp
             fac.BrutoFac = BaseImp
@@ -1022,7 +1023,7 @@ Dim cad1 As String
             fac.NIF = Data1.Recordset!nifClien
             
             '[Monica]22/11/2013:iban
-            fac.Iban = Data1.Recordset!Iban
+            fac.Iban = DBLet(Data1.Recordset!Iban, "T") '[Monica]03/01/2019: hay socios sin iban correcto
             fac.Banco = DBLet(Data1.Recordset!codbanco, "N")
             fac.Sucursal = DBLet(Data1.Recordset!codsucur, "N")
             fac.DigControl = DBLet(Data1.Recordset!digcontr, "T")
@@ -1179,7 +1180,7 @@ Dim cad1 As String
         Data1.Recordset.MoveNext
     Wend
     Data1.Recordset.Close
-    PB1.visible = False
+    Pb1.visible = False
 
 EGenerarFacturas:
     If Err.Number <> 0 Or Not b Then

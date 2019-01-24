@@ -2344,7 +2344,15 @@ Dim FPagContado As String
         Sql = "insert into sfactusoc_serv (codtipom,codsocio,numfactu,fecfactu,numlinea,fecha,hora,numeruve,codclien,nomclien,dirllama,"
         Sql = Sql & " impventa,idservic,observac2,matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal, suplidos) "  '[Monica]03/10/2014: insertamos el destino
         Sql = Sql & " select " & DBSet(tipoMov, "T") & "," & DBSet(Socio, "N") & "," & DBSet(NumFactu, "N") & "," & DBSet(FecFac, "F") & ","
-        Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(coalesce(dirllama,''),' ',coalesce(numllama,'')) , impcompr + coalesce(suplemen,0), idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
+        Sql = Sql & " @rownum:=@rownum+1 AS rownum, fecha, hora, numeruve, shilla.codclien, scliente.nomclien, concat(coalesce(dirllama,''),' ',coalesce(numllama,'')) , "
+        
+        '[Monica]02/01/2019: incluimos el importe propina para el caso de sevilla
+        If vParamAplic.Cooperativa = 3 Then
+            Sql = Sql & " impcompr + coalesce(suplemen,0) + coalesce(imppropi,0), idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
+        Else
+            Sql = Sql & " impcompr + coalesce(suplemen,0), idservic, '', matricul, codusuar, destino, codautor, licencia, fecfinal, horfinal " '[Monica]03/10/2014: insertamos el destino
+        
+        End If
         Sql = Sql & " , imppeaje "
         Sql = Sql & " from shilla left join scliente on shilla.codclien = scliente.codclien, (SELECT @rownum:=0) r "
     '[Monica]10/09/2014: cambiamos ahora los servicios son de la shilla
@@ -2463,7 +2471,12 @@ Dim BancoContado As String
         End If
     End If
         
-    Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) + sum(if(imppeaje is null,0,imppeaje)) importe from shilla where " & cadWHERE & " group by numeruve having importe <> 0 "
+    '[Monica]02/01/2019: en el caso de sevilla quieren incluir el imppropi
+    If vParamAplic.Cooperativa = 3 Then
+        Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(imppropi is null,0,imppropi)) + sum(if(suplemen is null,0,suplemen)) + sum(if(imppeaje is null,0,imppeaje)) importe from shilla where " & cadWHERE & " group by numeruve having importe <> 0 "
+    Else
+        Sql = "select numeruve, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) + sum(if(imppeaje is null,0,imppeaje)) importe from shilla where " & cadWHERE & " group by numeruve having importe <> 0 "
+    End If
     
     
     nTotal = TotalRegistrosConsulta(Sql)
@@ -2477,7 +2490,13 @@ Dim BancoContado As String
 '        SQL = "select numeruve, sum(numserv) servicios, sum(if(importe is null,0,importe)) importe from sfactsoctr where " & cadwhere & " group by numeruve, concepto having sum(if(importe is null,0,importe)) <> 0 "
 '        SQL = SQL & " ORDER BY sfactsoctr.numeruve"
 '    Else
+
+    '[Monica]02/01/2019: añadimos el imppropi en lugar del extra de compra
+    If vParamAplic.Cooperativa = 3 Then
+        Sql = "select numeruve, count(*) servicios, sum(if(impcompr is null,0,impcompr)) + sum(if(imppropi is null,0,imppropi)) + sum(if(suplemen is null,0,suplemen)) importe, sum(if(imppeaje is null,0,imppeaje)) suplidos from shilla where " & cadWHERE
+    Else
         Sql = "select numeruve, count(*) servicios, sum(if(impcompr is null,0,impcompr)) + sum(if(suplemen is null,0,suplemen)) importe, sum(if(imppeaje is null,0,imppeaje)) suplidos from shilla where " & cadWHERE
+    End If
         '[Monica]07/02/2018: añado or  en el having
         Sql = Sql & " group by numeruve having importe + suplidos <> 0 "
         Sql = Sql & " ORDER BY shilla.numeruve"

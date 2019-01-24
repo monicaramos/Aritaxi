@@ -63,7 +63,9 @@ Private mGastosAdmon As Currency 'gastos de administracion de cliente
 Private mNroExpediente As String 'nro de expediente
 
 Private mGrabaFechas As Boolean
+
 Private mFacturaxServicio As Boolean
+Private mFacturaxUsuario As Boolean
 
 
 '------------------------------------------------
@@ -425,6 +427,19 @@ Public Property Get FacturaxServicio() As Boolean
 End Property
 
 
+'**** Factura por Usuario
+
+Public Property Let FacturaxUsuario(ByVal vData As Boolean)
+     mFacturaxUsuario = vData
+End Property
+
+Public Property Get FacturaxUsuario() As Boolean
+     FacturaxUsuario = mFacturaxUsuario
+End Property
+
+
+
+
 '------------------------------------------------
 'Procedimientos del modulo CCliente
 '------------------------------------------------
@@ -465,7 +480,7 @@ Dim Sql As String
         Sql = "SELECT codclien,nomclien,codpobla,domclien,pobclien,proclien,nifclien,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,codsitua,observac, iban  "
         Sql = Sql & " FROM sclien "
     Else
-        Sql = "SELECT codclien,nomclien,nomcomer,codpobla,domclien,pobclien,proclien,nifclien,wwwclien,codenvio,codagent,codforpa,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,clivario,dtoppago,dtognral,codtarif,codsitua,tipofact,kilometr,fechamov,observac,perclie1, gasadm, iban, nroexpediente, grabafechas, facturaxservicio "
+        Sql = "SELECT codclien,nomclien,nomcomer,codpobla,domclien,pobclien,proclien,nifclien,wwwclien,codenvio,codagent,codforpa,codbanco,codsucur,digcontr,cuentaba,telclie1,maiclie1,clivario,dtoppago,dtognral,codtarif,codsitua,tipofact,kilometr,fechamov,observac,perclie1, gasadm, iban, nroexpediente, grabafechas, facturaxservicio, facturaxusuario "
         Sql = Sql & " FROM scliente "
     End If
     Sql = Sql & " WHERE codclien=" & vCodClien
@@ -505,6 +520,7 @@ Dim Sql As String
             '[Monica]19/12/2018: nuevos campos de grabar fechas en factura y factura por servicio
             mGrabaFechas = Rs!GrabaFechas
             mFacturaxServicio = Rs!FacturaxServicio
+            mFacturaxUsuario = Rs!FacturaxUsuario
         End If
         '[Monica]22/11/2013: tema iban
         mIban = CStr(DBLet(Rs!Iban, "T"))
