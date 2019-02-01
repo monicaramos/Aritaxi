@@ -1516,7 +1516,7 @@ Dim RB As RibbonBar
 
     CadenaDesdeOtroForm = vUsu.Login & "|" & vEmpresa.codempre & "|"
         
-    Set vUsu = New Usuario
+    Set vUsu = New USUARIO
     vUsu.Leer RecuperaValor(CadenaDesdeOtroForm, 1)
     
     If QueEmpresa = 0 Then
@@ -1607,14 +1607,14 @@ Private Sub Form_Load()
     Set frmShortBar = New frmShortcutBar2
     Set frmInbox = New frmInbox
         
-    Dim A As Pane, b As Pane, C As Pane, d As Pane
+    Dim a As Pane, b As Pane, c As Pane, D As Pane
     
     frmIdentifica.pLabel "Creando paneles"
-    Set A = DockingPaneManager.CreatePane(PANE_SHORTCUTBAR, 170, 120, DockLeftOf, Nothing)
-    A.Tag = PANE_SHORTCUTBAR
-    A.MinTrackSize.Width = MinimizedShortcutBarWidth
+    Set a = DockingPaneManager.CreatePane(PANE_SHORTCUTBAR, 170, 120, DockLeftOf, Nothing)
+    a.Tag = PANE_SHORTCUTBAR
+    a.MinTrackSize.Width = MinimizedShortcutBarWidth
     
-    Set b = DockingPaneManager.CreatePane(PANE_REPORT_CONTROL, 700, 400, DockRightOf, A)
+    Set b = DockingPaneManager.CreatePane(PANE_REPORT_CONTROL, 700, 400, DockRightOf, a)
     b.Tag = PANE_REPORT_CONTROL
    
     DockingPaneManager.Options.HideClient = True
@@ -1761,8 +1761,8 @@ Public Sub ExpandButtonClicked()
    
     
     
-    Dim A As Pane
-    Set A = DockingPaneManager.FindPane(PANE_SHORTCUTBAR)
+    Dim a As Pane
+    Set a = DockingPaneManager.FindPane(PANE_SHORTCUTBAR)
     
     Dim ShortcutBarMinimized As Boolean
     ShortcutBarMinimized = frmShortBar.ScaleWidth <= MinimizedShortcutBarWidth
@@ -1777,16 +1777,16 @@ Public Sub ExpandButtonClicked()
         
     
     ' Set Size of Pane
-    A.MinTrackSize.Width = NewWidth
-    A.MaxTrackSize.Width = NewWidth
+    a.MinTrackSize.Width = NewWidth
+    a.MaxTrackSize.Width = NewWidth
         
     DockingPaneManager.RecalcLayout
     DockingPaneManager.NormalizeSplitters
     DockingPaneManager.RedrawPanes
     
     ' Restore Constraints
-    A.MinTrackSize.Width = MinimizedShortcutBarWidth
-    A.MaxTrackSize.Width = 32000
+    a.MinTrackSize.Width = MinimizedShortcutBarWidth
+    a.MaxTrackSize.Width = 32000
         
 End Sub
 
@@ -2935,8 +2935,16 @@ Private Sub CargaMenuUtilidades(IdMenu As Integer)
                 End If
            
            
-                    
-                Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                If DBLet(Rn2!Codigo, "N") = 1009 Then
+                    '[Monica]01/02/2019: para el caso de sevilla no se llama facturacion electronica como en el resto
+                    If vParamAplic.Cooperativa = 3 Then
+                        Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, "Exportar Datos/Facturas")
+                    Else
+                        Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                    End If
+                Else
+                    Set Control = GroupNew.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                End If
                 Control.Enabled = Habilitado
              
             End If
@@ -3345,7 +3353,11 @@ Private Sub AbrirFormularios(Accion As Long)
             frmVarios.Opcion = 1
             frmVarios.Show vbModal
         Case 1009 ' Facturacion Electrónica
-            frmExportarFacturas.Show vbModal
+            If vParamAplic.Cooperativa = 3 Then
+                frmExportarFacturasSev.Show vbModal
+            Else
+                frmExportarFacturas.Show vbModal
+            End If
         Case 1010 ' Errores en NºFactura Cliente
             'Buscar errores en nº de factura (solo en facturas de clientes)
             Screen.MousePointer = vbHourglass
@@ -3479,7 +3491,7 @@ End Function
 
 
 Private Sub PonerCaption()
-        Caption = "AriTAXI 6    V-" & App.Major & "." & App.Minor & "." & App.Revision & "    usuario: " & vUsu.Nombre
+        Caption = "AriTAXI 6    V-" & App.Major & "." & App.Minor & "." & App.Revision & "    usuario: " & vUsu.NOMBRE
         'Label33.Caption = "   " & vEmpresa.nomempre
 End Sub
 

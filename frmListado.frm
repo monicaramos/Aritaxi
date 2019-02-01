@@ -16,905 +16,6 @@ Begin VB.Form frmListado
    ScaleWidth      =   11175
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Frame FrameMailChimp 
-      Height          =   5985
-      Left            =   135
-      TabIndex        =   564
-      Top             =   135
-      Width           =   7425
-      Begin VB.ComboBox cboSeparador 
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   360
-         Left            =   2025
-         Style           =   2  'Dropdown List
-         TabIndex        =   610
-         Tag             =   "Valorar albaran con|N|N|||scliente|albarcon||N|"
-         Top             =   4905
-         Width           =   2190
-      End
-      Begin VB.Frame FrameTipoEmail 
-         Caption         =   "Tipo email"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   825
-         Left            =   3465
-         TabIndex        =   606
-         Top             =   990
-         Width           =   3480
-         Begin VB.OptionButton Option1 
-            Caption         =   "Administración"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   285
-            Index           =   5
-            Left            =   225
-            TabIndex        =   608
-            Top             =   315
-            Width           =   1785
-         End
-         Begin VB.OptionButton Option1 
-            Caption         =   "Comercial"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   285
-            Index           =   4
-            Left            =   2115
-            TabIndex        =   607
-            Top             =   315
-            Width           =   1260
-         End
-      End
-      Begin VB.CommandButton cmdCancel 
-         Caption         =   "&Cancelar"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Index           =   14
-         Left            =   5820
-         TabIndex        =   569
-         Top             =   5220
-         Width           =   1135
-      End
-      Begin VB.CommandButton CmdAcepExportar 
-         Caption         =   "&Aceptar"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   4620
-         TabIndex        =   568
-         Top             =   5220
-         Width           =   1135
-      End
-      Begin VB.Frame Frame10 
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   825
-         Left            =   585
-         TabIndex        =   565
-         Top             =   990
-         Width           =   2805
-         Begin VB.OptionButton Option1 
-            Caption         =   "Socios "
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   285
-            Index           =   3
-            Left            =   1485
-            TabIndex        =   567
-            Top             =   315
-            Width           =   1260
-         End
-         Begin VB.OptionButton Option1 
-            Caption         =   "Cliente"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   285
-            Index           =   2
-            Left            =   315
-            TabIndex        =   566
-            Top             =   315
-            Width           =   1425
-         End
-      End
-      Begin VB.Frame FrameSoc 
-         BorderStyle     =   0  'None
-         Height          =   2895
-         Left            =   585
-         TabIndex        =   571
-         Top             =   1935
-         Width           =   6360
-         Begin VB.CheckBox Check3 
-            Caption         =   "Salen Socios de Baja"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   375
-            Left            =   135
-            TabIndex        =   577
-            Top             =   2025
-            Width           =   2400
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   134
-            Left            =   1425
-            TabIndex        =   575
-            Top             =   1590
-            Width           =   1350
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   135
-            Left            =   3720
-            TabIndex        =   576
-            Top             =   1590
-            Width           =   1350
-         End
-         Begin VB.TextBox txtNombre 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   133
-            Left            =   2505
-            Locked          =   -1  'True
-            TabIndex        =   578
-            Text            =   "Text5"
-            Top             =   795
-            Width           =   3885
-         End
-         Begin VB.TextBox txtNombre 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   132
-            Left            =   2505
-            Locked          =   -1  'True
-            TabIndex        =   573
-            Text            =   "Text5"
-            Top             =   435
-            Width           =   3885
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   132
-            Left            =   1425
-            MaxLength       =   6
-            TabIndex        =   572
-            Top             =   435
-            Width           =   1035
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   133
-            Left            =   1425
-            MaxLength       =   6
-            TabIndex        =   574
-            Top             =   795
-            Width           =   1035
-         End
-         Begin VB.Image imgFecha 
-            Height          =   240
-            Index           =   14
-            Left            =   3465
-            Top             =   1590
-            Width           =   240
-         End
-         Begin VB.Image imgFecha 
-            Height          =   240
-            Index           =   13
-            Left            =   1170
-            Top             =   1575
-            Width           =   240
-         End
-         Begin VB.Label Label3 
-            AutoSize        =   -1  'True
-            Caption         =   "Fecha Alta"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   -1  'True
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00800000&
-            Height          =   240
-            Index           =   87
-            Left            =   90
-            TabIndex        =   584
-            Top             =   1305
-            Width           =   1110
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Hasta"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   86
-            Left            =   2850
-            TabIndex        =   583
-            Top             =   1590
-            Width           =   570
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Desde"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   85
-            Left            =   390
-            TabIndex        =   582
-            Top             =   1590
-            Width           =   675
-         End
-         Begin VB.Image imgBuscarG 
-            Height          =   240
-            Index           =   81
-            Left            =   1170
-            ToolTipText     =   "Buscar socio"
-            Top             =   810
-            Width           =   240
-         End
-         Begin VB.Image imgBuscarG 
-            Height          =   240
-            Index           =   80
-            Left            =   1170
-            ToolTipText     =   "Buscar socio"
-            Top             =   450
-            Width           =   240
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Hasta"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   90
-            Left            =   405
-            TabIndex        =   581
-            Top             =   795
-            Width           =   630
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Desde"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   89
-            Left            =   405
-            TabIndex        =   580
-            Top             =   435
-            Width           =   675
-         End
-         Begin VB.Label Label4 
-            AutoSize        =   -1  'True
-            Caption         =   "Socio"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   -1  'True
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00800000&
-            Height          =   270
-            Index           =   17
-            Left            =   135
-            TabIndex        =   579
-            Top             =   180
-            Width           =   555
-         End
-      End
-      Begin VB.Frame FrameCli 
-         BorderStyle     =   0  'None
-         Height          =   2895
-         Left            =   585
-         TabIndex        =   585
-         Top             =   1935
-         Width           =   6360
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   104
-            Left            =   3510
-            TabIndex        =   593
-            Top             =   2430
-            Width           =   1170
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   103
-            Left            =   1440
-            TabIndex        =   592
-            Top             =   2430
-            Width           =   1170
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   139
-            Left            =   1440
-            MaxLength       =   6
-            TabIndex        =   591
-            Top             =   1830
-            Width           =   1035
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   138
-            Left            =   1440
-            MaxLength       =   6
-            TabIndex        =   590
-            Top             =   1470
-            Width           =   1035
-         End
-         Begin VB.TextBox txtNombre 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   138
-            Left            =   2505
-            Locked          =   -1  'True
-            TabIndex        =   598
-            Text            =   "Text5"
-            Top             =   1470
-            Width           =   3930
-         End
-         Begin VB.TextBox txtNombre 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   139
-            Left            =   2505
-            Locked          =   -1  'True
-            TabIndex        =   597
-            Text            =   "Text5"
-            Top             =   1830
-            Width           =   3930
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   137
-            Left            =   1440
-            MaxLength       =   6
-            TabIndex        =   589
-            Top             =   795
-            Width           =   1035
-         End
-         Begin VB.TextBox txtCodigo 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   136
-            Left            =   1440
-            MaxLength       =   6
-            TabIndex        =   588
-            Top             =   435
-            Width           =   1035
-         End
-         Begin VB.TextBox txtNombre 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   136
-            Left            =   2505
-            Locked          =   -1  'True
-            TabIndex        =   587
-            Text            =   "Text5"
-            Top             =   435
-            Width           =   3930
-         End
-         Begin VB.TextBox txtNombre 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   137
-            Left            =   2505
-            Locked          =   -1  'True
-            TabIndex        =   586
-            Text            =   "Text5"
-            Top             =   795
-            Width           =   3930
-         End
-         Begin VB.Label Label3 
-            AutoSize        =   -1  'True
-            Caption         =   "Código Postal"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   -1  'True
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00800000&
-            Height          =   240
-            Index           =   105
-            Left            =   135
-            TabIndex        =   604
-            Top             =   2160
-            Width           =   1485
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Hasta"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   104
-            Left            =   2850
-            TabIndex        =   603
-            Top             =   2445
-            Width           =   570
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Desde"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   101
-            Left            =   390
-            TabIndex        =   602
-            Top             =   2445
-            Width           =   675
-         End
-         Begin VB.Label Label4 
-            AutoSize        =   -1  'True
-            Caption         =   "Actividad"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   -1  'True
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00800000&
-            Height          =   240
-            Index           =   47
-            Left            =   135
-            TabIndex        =   601
-            Top             =   1215
-            Width           =   990
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Desde"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   91
-            Left            =   405
-            TabIndex        =   600
-            Top             =   1470
-            Width           =   675
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Hasta"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   88
-            Left            =   405
-            TabIndex        =   599
-            Top             =   1830
-            Width           =   630
-         End
-         Begin VB.Image imgBuscarG 
-            Height          =   240
-            Index           =   83
-            Left            =   1155
-            ToolTipText     =   "Buscar actividad"
-            Top             =   1830
-            Width           =   240
-         End
-         Begin VB.Image imgBuscarG 
-            Height          =   240
-            Index           =   82
-            Left            =   1155
-            ToolTipText     =   "Buscar actividad"
-            Top             =   1470
-            Width           =   240
-         End
-         Begin VB.Label Label4 
-            AutoSize        =   -1  'True
-            Caption         =   "Cliente"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   -1  'True
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00800000&
-            Height          =   240
-            Index           =   34
-            Left            =   135
-            TabIndex        =   596
-            Top             =   180
-            Width           =   765
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Desde"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   103
-            Left            =   405
-            TabIndex        =   595
-            Top             =   435
-            Width           =   675
-         End
-         Begin VB.Label Label3 
-            Caption         =   "Hasta"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Index           =   102
-            Left            =   405
-            TabIndex        =   594
-            Top             =   795
-            Width           =   630
-         End
-         Begin VB.Image imgBuscarG 
-            Height          =   240
-            Index           =   38
-            Left            =   1155
-            ToolTipText     =   "Buscar cliente"
-            Top             =   795
-            Width           =   240
-         End
-         Begin VB.Image imgBuscarG 
-            Height          =   240
-            Index           =   37
-            Left            =   1155
-            ToolTipText     =   "Buscar cliente"
-            Top             =   435
-            Width           =   240
-         End
-      End
-      Begin VB.Label Label3 
-         AutoSize        =   -1  'True
-         Caption         =   "Separador"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   -1  'True
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00800000&
-         Height          =   240
-         Index           =   106
-         Left            =   675
-         TabIndex        =   609
-         Top             =   4950
-         Width           =   1110
-      End
-      Begin VB.Label Label2 
-         Height          =   195
-         Index           =   9
-         Left            =   630
-         TabIndex        =   605
-         Top             =   5310
-         Visible         =   0   'False
-         Width           =   3525
-      End
-      Begin VB.Label Label13 
-         Caption         =   "Exportar datos Clientes/Socios "
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   14.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00800000&
-         Height          =   345
-         Left            =   600
-         TabIndex        =   570
-         Top             =   360
-         Width           =   4815
-      End
-   End
    Begin MSComDlg.CommonDialog cd1 
       Left            =   10680
       Top             =   4800
@@ -1128,12 +229,12 @@ Begin VB.Form frmListado
          EndProperty
          Height          =   360
          Index           =   19
-         Left            =   2720
+         Left            =   3075
          Locked          =   -1  'True
          TabIndex        =   84
          Text            =   "Text5"
          Top             =   3960
-         Width           =   4575
+         Width           =   4215
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -1148,12 +249,12 @@ Begin VB.Form frmListado
          EndProperty
          Height          =   360
          Index           =   18
-         Left            =   2720
+         Left            =   3075
          Locked          =   -1  'True
          TabIndex        =   83
          Text            =   "Text5"
          Top             =   3600
-         Width           =   4575
+         Width           =   4215
       End
       Begin VB.TextBox txtCodigo 
          BeginProperty Font 
@@ -1170,7 +271,7 @@ Begin VB.Form frmListado
          Left            =   1920
          TabIndex        =   50
          Top             =   3960
-         Width           =   735
+         Width           =   1140
       End
       Begin VB.TextBox txtCodigo 
          BeginProperty Font 
@@ -1187,7 +288,7 @@ Begin VB.Form frmListado
          Left            =   1920
          TabIndex        =   49
          Top             =   3600
-         Width           =   735
+         Width           =   1140
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
@@ -2284,44 +1385,6 @@ Begin VB.Form frmListado
          Width           =   5775
       End
    End
-   Begin VB.Frame FrameEnvioMail 
-      Height          =   1215
-      Left            =   120
-      TabIndex        =   451
-      Top             =   0
-      Visible         =   0   'False
-      Width           =   6615
-      Begin MSComctlLib.ProgressBar PBMail 
-         Height          =   375
-         Left            =   360
-         TabIndex        =   452
-         Top             =   360
-         Width           =   5895
-         _ExtentX        =   10398
-         _ExtentY        =   661
-         _Version        =   393216
-         Appearance      =   1
-      End
-      Begin VB.Label Label14 
-         AutoSize        =   -1  'True
-         Caption         =   "Preparando datos envio"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   195
-         Index           =   22
-         Left            =   360
-         TabIndex        =   453
-         Top             =   840
-         Width           =   5805
-      End
-   End
    Begin VB.Frame FrameServicios 
       Height          =   4995
       Left            =   0
@@ -2842,6 +1905,44 @@ Begin VB.Form frmListado
          ToolTipText     =   "Buscar tipo artículo"
          Top             =   2280
          Width           =   240
+      End
+   End
+   Begin VB.Frame FrameEnvioMail 
+      Height          =   1215
+      Left            =   120
+      TabIndex        =   451
+      Top             =   0
+      Visible         =   0   'False
+      Width           =   6615
+      Begin MSComctlLib.ProgressBar PBMail 
+         Height          =   375
+         Left            =   360
+         TabIndex        =   452
+         Top             =   360
+         Width           =   5895
+         _ExtentX        =   10398
+         _ExtentY        =   661
+         _Version        =   393216
+         Appearance      =   1
+      End
+      Begin VB.Label Label14 
+         AutoSize        =   -1  'True
+         Caption         =   "Preparando datos envio"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   22
+         Left            =   360
+         TabIndex        =   453
+         Top             =   840
+         Width           =   5805
       End
    End
    Begin VB.Frame FrameRepxDia 
@@ -4390,9 +3491,9 @@ Begin VB.Form frmListado
    End
    Begin VB.Frame FrameDtosFM 
       Height          =   5415
-      Left            =   510
+      Left            =   0
       TabIndex        =   276
-      Top             =   600
+      Top             =   45
       Width           =   6915
       Begin VB.OptionButton optFrDto 
          Caption         =   "Marca"
@@ -5180,7 +4281,7 @@ Begin VB.Form frmListado
          Left            =   4140
          TabIndex        =   372
          Top             =   3480
-         Width           =   1095
+         Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
          BeginProperty Font 
@@ -5197,7 +4298,7 @@ Begin VB.Form frmListado
          Left            =   1800
          TabIndex        =   371
          Top             =   3480
-         Width           =   1095
+         Width           =   1350
       End
       Begin VB.ComboBox cboDecimal 
          BeginProperty Font 
@@ -6908,9 +6009,9 @@ Begin VB.Form frmListado
    End
    Begin VB.Frame FrameTarifas 
       Height          =   6375
-      Left            =   480
+      Left            =   45
       TabIndex        =   97
-      Top             =   120
+      Top             =   45
       Width           =   7635
       Begin VB.ComboBox cboDecimales 
          BeginProperty Font 
@@ -9079,7 +8180,7 @@ Begin VB.Form frmListado
          Left            =   1830
          TabIndex        =   457
          Top             =   960
-         Width           =   1215
+         Width           =   1350
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
@@ -10140,7 +9241,7 @@ Begin VB.Form frmListado
          ForeColor       =   &H00800000&
          Height          =   345
          Index           =   0
-         Left            =   720
+         Left            =   495
          TabIndex        =   343
          Top             =   240
          Width           =   5895
@@ -10148,9 +9249,9 @@ Begin VB.Form frmListado
    End
    Begin VB.Frame FrameInvArtComp 
       Height          =   4335
-      Left            =   360
+      Left            =   0
       TabIndex        =   501
-      Top             =   1320
+      Top             =   0
       Width           =   7935
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
@@ -11778,6 +10879,905 @@ Begin VB.Form frmListado
          ToolTipText     =   "Buscar socio"
          Top             =   1680
          Width           =   240
+      End
+   End
+   Begin VB.Frame FrameMailChimp 
+      Height          =   5985
+      Left            =   135
+      TabIndex        =   564
+      Top             =   135
+      Width           =   7425
+      Begin VB.ComboBox cboSeparador 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   2025
+         Style           =   2  'Dropdown List
+         TabIndex        =   610
+         Tag             =   "Valorar albaran con|N|N|||scliente|albarcon||N|"
+         Top             =   4905
+         Width           =   2190
+      End
+      Begin VB.Frame FrameTipoEmail 
+         Caption         =   "Tipo email"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   825
+         Left            =   3465
+         TabIndex        =   606
+         Top             =   990
+         Width           =   3480
+         Begin VB.OptionButton Option1 
+            Caption         =   "Administración"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   5
+            Left            =   225
+            TabIndex        =   608
+            Top             =   315
+            Width           =   1785
+         End
+         Begin VB.OptionButton Option1 
+            Caption         =   "Comercial"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   4
+            Left            =   2115
+            TabIndex        =   607
+            Top             =   315
+            Width           =   1260
+         End
+      End
+      Begin VB.CommandButton cmdCancel 
+         Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   14
+         Left            =   5820
+         TabIndex        =   569
+         Top             =   5220
+         Width           =   1135
+      End
+      Begin VB.CommandButton CmdAcepExportar 
+         Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   4620
+         TabIndex        =   568
+         Top             =   5220
+         Width           =   1135
+      End
+      Begin VB.Frame Frame10 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   825
+         Left            =   585
+         TabIndex        =   565
+         Top             =   990
+         Width           =   2805
+         Begin VB.OptionButton Option1 
+            Caption         =   "Socios "
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   3
+            Left            =   1485
+            TabIndex        =   567
+            Top             =   315
+            Width           =   1260
+         End
+         Begin VB.OptionButton Option1 
+            Caption         =   "Cliente"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   2
+            Left            =   315
+            TabIndex        =   566
+            Top             =   315
+            Width           =   1425
+         End
+      End
+      Begin VB.Frame FrameSoc 
+         BorderStyle     =   0  'None
+         Height          =   2895
+         Left            =   585
+         TabIndex        =   571
+         Top             =   1935
+         Width           =   6360
+         Begin VB.CheckBox Check3 
+            Caption         =   "Salen Socios de Baja"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   135
+            TabIndex        =   577
+            Top             =   2025
+            Width           =   2400
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   134
+            Left            =   1425
+            TabIndex        =   575
+            Top             =   1590
+            Width           =   1350
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   135
+            Left            =   3720
+            TabIndex        =   576
+            Top             =   1590
+            Width           =   1350
+         End
+         Begin VB.TextBox txtNombre 
+            BackColor       =   &H80000018&
+            Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   133
+            Left            =   2505
+            Locked          =   -1  'True
+            TabIndex        =   578
+            Text            =   "Text5"
+            Top             =   795
+            Width           =   3885
+         End
+         Begin VB.TextBox txtNombre 
+            BackColor       =   &H80000018&
+            Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   132
+            Left            =   2505
+            Locked          =   -1  'True
+            TabIndex        =   573
+            Text            =   "Text5"
+            Top             =   435
+            Width           =   3885
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   132
+            Left            =   1425
+            MaxLength       =   6
+            TabIndex        =   572
+            Top             =   435
+            Width           =   1035
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   133
+            Left            =   1425
+            MaxLength       =   6
+            TabIndex        =   574
+            Top             =   795
+            Width           =   1035
+         End
+         Begin VB.Image imgFecha 
+            Height          =   240
+            Index           =   14
+            Left            =   3465
+            Top             =   1590
+            Width           =   240
+         End
+         Begin VB.Image imgFecha 
+            Height          =   240
+            Index           =   13
+            Left            =   1170
+            Top             =   1575
+            Width           =   240
+         End
+         Begin VB.Label Label3 
+            AutoSize        =   -1  'True
+            Caption         =   "Fecha Alta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   240
+            Index           =   87
+            Left            =   90
+            TabIndex        =   584
+            Top             =   1305
+            Width           =   1110
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Hasta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   86
+            Left            =   2850
+            TabIndex        =   583
+            Top             =   1590
+            Width           =   570
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Desde"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   85
+            Left            =   390
+            TabIndex        =   582
+            Top             =   1590
+            Width           =   675
+         End
+         Begin VB.Image imgBuscarG 
+            Height          =   240
+            Index           =   81
+            Left            =   1170
+            ToolTipText     =   "Buscar socio"
+            Top             =   810
+            Width           =   240
+         End
+         Begin VB.Image imgBuscarG 
+            Height          =   240
+            Index           =   80
+            Left            =   1170
+            ToolTipText     =   "Buscar socio"
+            Top             =   450
+            Width           =   240
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Hasta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   90
+            Left            =   405
+            TabIndex        =   581
+            Top             =   795
+            Width           =   630
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Desde"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   89
+            Left            =   405
+            TabIndex        =   580
+            Top             =   435
+            Width           =   675
+         End
+         Begin VB.Label Label4 
+            AutoSize        =   -1  'True
+            Caption         =   "Socio"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   270
+            Index           =   17
+            Left            =   135
+            TabIndex        =   579
+            Top             =   180
+            Width           =   555
+         End
+      End
+      Begin VB.Frame FrameCli 
+         BorderStyle     =   0  'None
+         Height          =   2895
+         Left            =   585
+         TabIndex        =   585
+         Top             =   1935
+         Width           =   6360
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   104
+            Left            =   3510
+            TabIndex        =   593
+            Top             =   2430
+            Width           =   1170
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   103
+            Left            =   1440
+            TabIndex        =   592
+            Top             =   2430
+            Width           =   1170
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   139
+            Left            =   1440
+            MaxLength       =   6
+            TabIndex        =   591
+            Top             =   1830
+            Width           =   1035
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   138
+            Left            =   1440
+            MaxLength       =   6
+            TabIndex        =   590
+            Top             =   1470
+            Width           =   1035
+         End
+         Begin VB.TextBox txtNombre 
+            BackColor       =   &H80000018&
+            Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   138
+            Left            =   2505
+            Locked          =   -1  'True
+            TabIndex        =   598
+            Text            =   "Text5"
+            Top             =   1470
+            Width           =   3930
+         End
+         Begin VB.TextBox txtNombre 
+            BackColor       =   &H80000018&
+            Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   139
+            Left            =   2505
+            Locked          =   -1  'True
+            TabIndex        =   597
+            Text            =   "Text5"
+            Top             =   1830
+            Width           =   3930
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   137
+            Left            =   1440
+            MaxLength       =   6
+            TabIndex        =   589
+            Top             =   795
+            Width           =   1035
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   136
+            Left            =   1440
+            MaxLength       =   6
+            TabIndex        =   588
+            Top             =   435
+            Width           =   1035
+         End
+         Begin VB.TextBox txtNombre 
+            BackColor       =   &H80000018&
+            Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   136
+            Left            =   2505
+            Locked          =   -1  'True
+            TabIndex        =   587
+            Text            =   "Text5"
+            Top             =   435
+            Width           =   3930
+         End
+         Begin VB.TextBox txtNombre 
+            BackColor       =   &H80000018&
+            Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   137
+            Left            =   2505
+            Locked          =   -1  'True
+            TabIndex        =   586
+            Text            =   "Text5"
+            Top             =   795
+            Width           =   3930
+         End
+         Begin VB.Label Label3 
+            AutoSize        =   -1  'True
+            Caption         =   "Código Postal"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   240
+            Index           =   105
+            Left            =   135
+            TabIndex        =   604
+            Top             =   2160
+            Width           =   1485
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Hasta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   104
+            Left            =   2850
+            TabIndex        =   603
+            Top             =   2445
+            Width           =   570
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Desde"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   101
+            Left            =   390
+            TabIndex        =   602
+            Top             =   2445
+            Width           =   675
+         End
+         Begin VB.Label Label4 
+            AutoSize        =   -1  'True
+            Caption         =   "Actividad"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   240
+            Index           =   47
+            Left            =   135
+            TabIndex        =   601
+            Top             =   1215
+            Width           =   990
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Desde"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   91
+            Left            =   405
+            TabIndex        =   600
+            Top             =   1470
+            Width           =   675
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Hasta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   88
+            Left            =   405
+            TabIndex        =   599
+            Top             =   1830
+            Width           =   630
+         End
+         Begin VB.Image imgBuscarG 
+            Height          =   240
+            Index           =   83
+            Left            =   1155
+            ToolTipText     =   "Buscar actividad"
+            Top             =   1830
+            Width           =   240
+         End
+         Begin VB.Image imgBuscarG 
+            Height          =   240
+            Index           =   82
+            Left            =   1155
+            ToolTipText     =   "Buscar actividad"
+            Top             =   1470
+            Width           =   240
+         End
+         Begin VB.Label Label4 
+            AutoSize        =   -1  'True
+            Caption         =   "Cliente"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800000&
+            Height          =   240
+            Index           =   34
+            Left            =   135
+            TabIndex        =   596
+            Top             =   180
+            Width           =   765
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Desde"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   103
+            Left            =   405
+            TabIndex        =   595
+            Top             =   435
+            Width           =   675
+         End
+         Begin VB.Label Label3 
+            Caption         =   "Hasta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   102
+            Left            =   405
+            TabIndex        =   594
+            Top             =   795
+            Width           =   630
+         End
+         Begin VB.Image imgBuscarG 
+            Height          =   240
+            Index           =   38
+            Left            =   1155
+            ToolTipText     =   "Buscar cliente"
+            Top             =   795
+            Width           =   240
+         End
+         Begin VB.Image imgBuscarG 
+            Height          =   240
+            Index           =   37
+            Left            =   1155
+            ToolTipText     =   "Buscar cliente"
+            Top             =   435
+            Width           =   240
+         End
+      End
+      Begin VB.Label Label3 
+         AutoSize        =   -1  'True
+         Caption         =   "Separador"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   240
+         Index           =   106
+         Left            =   675
+         TabIndex        =   609
+         Top             =   4950
+         Width           =   1110
+      End
+      Begin VB.Label Label2 
+         Height          =   195
+         Index           =   9
+         Left            =   630
+         TabIndex        =   605
+         Top             =   5310
+         Visible         =   0   'False
+         Width           =   3525
+      End
+      Begin VB.Label Label13 
+         Caption         =   "Exportar datos Clientes/Socios "
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   345
+         Left            =   600
+         TabIndex        =   570
+         Top             =   360
+         Width           =   4815
       End
    End
 End
@@ -14348,7 +14348,7 @@ Dim Codfamia As Integer
             Exit Sub
         Else
             Tabla = "UPDATE tmpinformes SET porcen1 =" & TransformaComasPuntos(CStr(Rs!PorceIVA))
-            Tabla = Tabla & " WHERE codusu =" & vUsu.Codigo & " AND codigo1 = " & Rs!codigiva
+            Tabla = Tabla & " WHERE codusu =" & vUsu.Codigo & " AND codigo1 = " & Rs!Codigiva
             conn.Execute Tabla
         End If
     Next I

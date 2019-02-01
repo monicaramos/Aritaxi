@@ -625,7 +625,12 @@ Dim I As Byte
                            smrpt.Database.Tables(I).Location = vEmpresa.BDAritaxi & "." & smrpt.Database.Tables(I).Name
 '                        End If
                     ElseIf smrpt.Database.Tables(I).ConnectionProperties.Item("DSN") = "vConta" Then
-                        smrpt.Database.Tables(I).SetLogOnInfo "vConta", "conta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
+                        '[Monica]31/01/2019: para no cambiar odbcs de reports
+                        If vParamAplic.ContabilidadNueva Then
+                            smrpt.Database.Tables(I).SetLogOnInfo "vConta", "ariconta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
+                        Else
+                            smrpt.Database.Tables(I).SetLogOnInfo "vConta", "conta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
+                        End If
                         If (InStr(1, smrpt.Database.Tables(I).Name, "_") = 0) Then
                            smrpt.Database.Tables(I).Location = "conta" & vParamAplic.NumeroConta & "." & smrpt.Database.Tables(I).Name
                         End If

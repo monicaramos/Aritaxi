@@ -89,9 +89,9 @@ Begin VB.Form frmConfTipoMov
       Height          =   290
       Index           =   4
       Left            =   6000
-      MaxLength       =   1
+      MaxLength       =   2
       TabIndex        =   6
-      Tag             =   "Tipo de Documento|N|S|0|9|stipom|tipodocu|0|N|"
+      Tag             =   "Tipo de Documento|N|S|0|99|stipom|tipodocu|0|N|"
       Text            =   "C"
       Top             =   4440
       Width           =   555
@@ -854,23 +854,23 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
     End If
@@ -995,13 +995,13 @@ End Sub
 
 Private Function SepuedeBorrar() As Boolean
 Dim Sql As String
-Dim cad As String
+Dim Cad As String
 
     SepuedeBorrar = False
     Sql = DevuelveDesdeBD(1, "detamovi", "smoval", "detamovi", Data1.Recordset!codtipom, "T")
     If Sql <> "" Then
-        cad = "No se puede eliminar la fila. " & vbCrLf
-        MsgBox cad & "Esta vinculada con Movimientos de Artículos", vbExclamation
+        Cad = "No se puede eliminar la fila. " & vbCrLf
+        MsgBox Cad & "Esta vinculada con Movimientos de Artículos", vbExclamation
         Exit Function
     End If
     SepuedeBorrar = True

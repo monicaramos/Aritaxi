@@ -462,6 +462,7 @@ Begin VB.Form frmLiqHcoFacSoc
       _Version        =   393216
       Style           =   1
       Tabs            =   2
+      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -475,39 +476,54 @@ Begin VB.Form frmLiqHcoFacSoc
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmLiqHcoFacSoc.frx":0000
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "FrameCliente"
-      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "Frame3"
       Tab(0).Control(1)=   "FrameFactura"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Frame3"
-      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(2)=   "FrameCliente"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Llamadas"
       TabPicture(1)   =   "frmLiqHcoFacSoc.frx":001C
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "Label1(48)"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Data2"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "DataGrid1"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "txtAux3(2)"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "txtAux3(1)"
+      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "txtAux3(0)"
+      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "txtAux3(3)"
+      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).Control(7)=   "txtAux3(4)"
+      Tab(1).Control(7).Enabled=   0   'False
       Tab(1).Control(8)=   "txtAux3(5)"
+      Tab(1).Control(8).Enabled=   0   'False
       Tab(1).Control(9)=   "txtAux3(6)"
+      Tab(1).Control(9).Enabled=   0   'False
       Tab(1).Control(10)=   "txtAux3(7)"
+      Tab(1).Control(10).Enabled=   0   'False
       Tab(1).Control(11)=   "txtAux3(8)"
+      Tab(1).Control(11).Enabled=   0   'False
       Tab(1).Control(12)=   "txtAux3(9)"
+      Tab(1).Control(12).Enabled=   0   'False
       Tab(1).Control(13)=   "txtAux3(10)"
+      Tab(1).Control(13).Enabled=   0   'False
       Tab(1).Control(14)=   "txtAux3(11)"
+      Tab(1).Control(14).Enabled=   0   'False
       Tab(1).Control(15)=   "txtAux3(12)"
+      Tab(1).Control(15).Enabled=   0   'False
       Tab(1).Control(16)=   "txtAux2(0)"
+      Tab(1).Control(16).Enabled=   0   'False
       Tab(1).Control(17)=   "FrameToolAux"
+      Tab(1).Control(17).Enabled=   0   'False
       Tab(1).ControlCount=   18
       Begin VB.Frame FrameToolAux 
          Height          =   555
-         Left            =   -74700
+         Left            =   300
          TabIndex        =   85
          Top             =   360
          Width           =   1500
@@ -555,7 +571,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   -73560
+         Left            =   1440
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   76
@@ -565,7 +581,7 @@ Begin VB.Form frmLiqHcoFacSoc
       End
       Begin VB.Frame Frame3 
          Height          =   675
-         Left            =   180
+         Left            =   -74820
          TabIndex        =   73
          Top             =   1860
          Width           =   12645
@@ -664,7 +680,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   12
-         Left            =   -63840
+         Left            =   11160
          MaxLength       =   15
          TabIndex        =   68
          Tag             =   "Importe |N|N|||sfactusoc_serv|impventa|###,##0.00|S|"
@@ -688,7 +704,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   11
-         Left            =   -64590
+         Left            =   10410
          MaxLength       =   10
          TabIndex        =   67
          Tag             =   "Telfono |T|N|||sfactusoc_serv|telefono|||"
@@ -712,7 +728,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   10
-         Left            =   -65310
+         Left            =   9690
          MaxLength       =   30
          TabIndex        =   66
          Tag             =   "Ciudad|T|N|||sfactusoc_serv|ciudadre|||"
@@ -736,7 +752,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   9
-         Left            =   -66240
+         Left            =   8760
          MaxLength       =   10
          TabIndex        =   65
          Tag             =   "Puerllama|T|N|||sfactusoc_serv|puerllama|||"
@@ -760,7 +776,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   8
-         Left            =   -67140
+         Left            =   7860
          MaxLength       =   10
          TabIndex        =   64
          Tag             =   "Numllama|T|N|||sfactusoc_serv|numllama|||"
@@ -784,7 +800,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   -68100
+         Left            =   6900
          MaxLength       =   30
          TabIndex        =   63
          Tag             =   "Direccion|T|N|||sfactusoc_serv|dirllama|||"
@@ -808,7 +824,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   -69030
+         Left            =   5970
          MaxLength       =   30
          TabIndex        =   62
          Tag             =   "Nombre|T|N|||sfactusoc_serv|nomclien||S|"
@@ -832,7 +848,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   -69990
+         Left            =   5010
          MaxLength       =   6
          TabIndex        =   61
          Tag             =   "Cliente |N|N|||sfactusoc_serv|codclien|000000||"
@@ -856,7 +872,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   -70950
+         Left            =   4050
          MaxLength       =   8
          TabIndex        =   60
          Tag             =   "Hora |H|N|||sfactusoc_serv|hora|hh:mm:ss||"
@@ -880,7 +896,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   -72180
+         Left            =   2820
          MaxLength       =   10
          TabIndex        =   59
          Tag             =   "Fecha|F|N|||sfactusoc_serv|fecha|dd/mm/yyyy|N|"
@@ -905,7 +921,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -74520
+         Left            =   480
          MaxLength       =   7
          TabIndex        =   69
          Tag             =   "Tipo Movimiento|T|N|||sfactusoc_serv|codtipom||S|"
@@ -930,7 +946,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   -73800
+         Left            =   1200
          MaxLength       =   15
          TabIndex        =   57
          Tag             =   "NºFactura |N|N|||sfactusoc_serv|numfactu|0000000|S|"
@@ -955,7 +971,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   30
          TabIndex        =   56
          Tag             =   "Fecha Factura|F|N|||sfactusoc_serv|fecfactu|dd/mm/yyyy|S|"
@@ -966,7 +982,7 @@ Begin VB.Form frmLiqHcoFacSoc
       End
       Begin VB.Frame FrameFactura 
          Height          =   1560
-         Left            =   180
+         Left            =   -74820
          TabIndex        =   40
          Top             =   2520
          Width           =   12645
@@ -1453,7 +1469,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1455
-         Left            =   180
+         Left            =   -74820
          TabIndex        =   32
          Top             =   360
          Width           =   12645
@@ -1754,7 +1770,7 @@ Begin VB.Form frmLiqHcoFacSoc
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmLiqHcoFacSoc.frx":003E
          Height          =   3030
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   58
          Top             =   960
          Width           =   12255
@@ -1823,7 +1839,7 @@ Begin VB.Form frmLiqHcoFacSoc
       End
       Begin MSAdodcLib.Adodc Data2 
          Height          =   330
-         Left            =   -65880
+         Left            =   9120
          Top             =   780
          Visible         =   0   'False
          Width           =   1335
@@ -1881,7 +1897,7 @@ Begin VB.Form frmLiqHcoFacSoc
          EndProperty
          Height          =   255
          Index           =   48
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   77
          Top             =   4050
          Visible         =   0   'False
@@ -4190,7 +4206,7 @@ Dim bAux As Boolean
     Me.mnBuscar.Enabled = Not b
     'Ver Todos
     Toolbar1.Buttons(6).Enabled = Not b
-    Me.mnVerTodos.Enabled = Not b
+    Me.mnvertodos.Enabled = Not b
         
     b = (Modo = 2)
     For I = 0 To ToolAux.Count - 1

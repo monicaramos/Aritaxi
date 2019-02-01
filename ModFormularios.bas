@@ -12,7 +12,7 @@ Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (B
 'El SQL es propio de cada tabla
 Public Function SugerirCodigoSiguienteStr(NomTabla As String, NomCodigo As String, Optional CondLineas As String) As String
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 On Error GoTo ESugerirCodigo
 
     'SQL = "Select Max(codtipar) from stipar"
@@ -21,22 +21,22 @@ On Error GoTo ESugerirCodigo
         Sql = Sql & " WHERE " & CondLineas
     End If
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, , , adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, , , adCmdText
     Sql = "1"
-    If Not RS.EOF Then
-        If Not IsNull(RS.Fields(0)) Then
-            If IsNumeric(RS.Fields(0)) Then
-                Sql = CStr(RS.Fields(0) + 1)
+    If Not Rs.EOF Then
+        If Not IsNull(Rs.Fields(0)) Then
+            If IsNumeric(Rs.Fields(0)) Then
+                Sql = CStr(Rs.Fields(0) + 1)
             Else
-                If Asc(Left(RS.Fields(0), 1)) <> 122 Then 'Z
-                Sql = Left(RS.Fields(0), 1) & CStr(Asc(Right(RS.Fields(0), 1)) + 1)
+                If Asc(Left(Rs.Fields(0), 1)) <> 122 Then 'Z
+                Sql = Left(Rs.Fields(0), 1) & CStr(Asc(Right(Rs.Fields(0), 1)) + 1)
                 End If
             End If
         End If
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     SugerirCodigoSiguienteStr = Sql
 ESugerirCodigo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -731,7 +731,7 @@ Public Sub CargarCombo_Tabla(ByRef Cbo As ComboBox, NomTabla As String, NomCodig
 '(IN) strWhere: para filtrar los registros de la tabla q queremos cargar
 '(IN) ItemNulo: si es true se añade el primer item con linea en blanco
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim I As Integer
 
     On Error GoTo ErrCombo
@@ -743,42 +743,42 @@ Dim I As Integer
     Sql = Sql & " ORDER BY " & nomDescrip
     
 '    If AbrirRecordset(SQL, RS) Then
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     '- si valor del parametro ItemNulo=true hay que añadir linea en blanco
-    If Not RS.EOF And ItemNulo Then
+    If Not Rs.EOF And ItemNulo Then
         Cbo.AddItem "  "
         Cbo.ItemData(Cbo.NewIndex) = 0
     End If
     
-    If Not RS.EOF Then
-        If IsNumeric(RS.Fields(0).Value) Then
+    If Not Rs.EOF Then
+        If IsNumeric(Rs.Fields(0).Value) Then
             '- si el codigo NomCodigo es numerico en el ItemData se carga el campo clave primaria
             '- y en List la descripcion NomDescrip
-            While Not RS.EOF
-              Cbo.AddItem RS.Fields(1).Value 'descrip
-              Cbo.ItemData(Cbo.NewIndex) = RS.Fields(0).Value 'codigo
-              RS.MoveNext
+            While Not Rs.EOF
+              Cbo.AddItem Rs.Fields(1).Value 'descrip
+              Cbo.ItemData(Cbo.NewIndex) = Rs.Fields(0).Value 'codigo
+              Rs.MoveNext
             Wend
         Else
             '- si el codigo NomCodigo en alfanumerico no se puede cargar
             '- el codigo en ItemData y cargamos un indice ficticio
             '- y en el List el campo codigo NomCodigo
             I = 1
-            While Not RS.EOF
-              Cbo.AddItem RS.Fields(0).Value 'campo del codigo
+            While Not Rs.EOF
+              Cbo.AddItem Rs.Fields(0).Value 'campo del codigo
               Cbo.ItemData(Cbo.NewIndex) = I
               I = I + 1
-              RS.MoveNext
+              Rs.MoveNext
             Wend
         End If
     End If
 '    End If
     
 '    CerrarRecordset RS
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Sub
     
 ErrCombo:
@@ -797,7 +797,7 @@ Public Sub CargarCombo_TipMov(ByRef Cbo As ComboBox, NomTabla As String, NomCodi
 '(IN) strWhere: para filtrar los registros de la tabla q queremos cargar
 '(IN) ItemNulo: si es true se añade el primer item con linea en blanco
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim I As Integer
 
     On Error GoTo ErrCombo
@@ -808,27 +808,27 @@ Dim I As Integer
     If strWhere <> "" Then Sql = Sql & " WHERE " & strWhere
     Sql = Sql & " ORDER BY " & NomCodigo
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     '- si valor del parametro ItemNulo=true hay que añadir linea en blanco
-    If Not RS.EOF And ItemNulo Then
+    If Not Rs.EOF And ItemNulo Then
         Cbo.AddItem "  "
         Cbo.ItemData(Cbo.NewIndex) = 0
     End If
        
     I = 1
-    While Not RS.EOF
-        Sql = Replace(RS.Fields(1).Value, "Factura", "Fac.")
-        Sql = RS.Fields(0).Value & " - " & Sql
+    While Not Rs.EOF
+        Sql = Replace(Rs.Fields(1).Value, "Factura", "Fac.")
+        Sql = Rs.Fields(0).Value & " - " & Sql
         Cbo.AddItem Sql 'campo del codigo
         Cbo.ItemData(Cbo.NewIndex) = I
         I = I + 1
-        RS.MoveNext
+        Rs.MoveNext
     Wend
 
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Sub
     
 ErrCombo:
@@ -1021,9 +1021,9 @@ Public Function ObtenerAlto(ByRef vDataGrid As DataGrid, Optional alto As Intege
 Dim anc As Single
     anc = vDataGrid.top + alto
     If vDataGrid.Row < 0 Then
-        anc = anc + 250 '230
+        anc = anc + 240 '250 '230
     Else
-        anc = anc + vDataGrid.RowTop(vDataGrid.Row)
+        anc = anc + vDataGrid.RowTop(vDataGrid.Row) + 10
     End If
     ObtenerAlto = anc
 End Function
@@ -1556,6 +1556,20 @@ Dim I As Byte
     If I = Cbo.ListCount Then Cbo.ListIndex = -1
     
 End Sub
+
+Public Sub PosicionarComboTipom(ByRef Cbo As ComboBox, Valor As String)
+Dim I As Byte
+
+    For I = 0 To Cbo.ListCount - 1
+        If Trim(Mid(Cbo.List(I), 1, 3)) = Trim(Valor) Then
+            Cbo.ListIndex = I
+            Exit For
+        End If
+    Next I
+    If I = Cbo.ListCount Then Cbo.ListIndex = -1
+    
+End Sub
+
 
 
 

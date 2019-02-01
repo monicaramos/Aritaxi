@@ -162,13 +162,13 @@ Begin VB.Form frmGesHisLlam
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   5550
+         Left            =   5640
          MaxLength       =   6
          TabIndex        =   5
          Tag             =   "Codigo cliente|N|S|||shilla|codclien|000000||"
          Text            =   "999999"
          Top             =   1350
-         Width           =   915
+         Width           =   825
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -961,7 +961,7 @@ Begin VB.Form frmGesHisLlam
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   4500
+         Left            =   4635
          TabIndex        =   115
          Top             =   1380
          Width           =   705
@@ -1023,7 +1023,7 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   5250
+         Left            =   5385
          Tag             =   "-1"
          ToolTipText     =   "Buscar cliente"
          Top             =   1380
@@ -3568,10 +3568,13 @@ Select Case Index
         If Text1(Index).Text <> "" Then PonerFormatoHora Text1(Index)
     Case 1, 11, 18 To 21
         If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index)
+        
     Case 43
         PonerFormatoEntero Text1(Index)
 End Select
 End Sub
+
+
 Private Sub cmdCancelar_Click()
     Select Case Modo
         Case 1, 3 'Busqueda, Insertar
@@ -3644,7 +3647,7 @@ End Sub
 Private Sub BotonModificar()
 'Prepara el Form para Modificar
 Dim DeVarios As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo EModificar
 
     'Añadiremos el boton de aceptar y demas objetos para insertar
@@ -3699,16 +3702,16 @@ Private Sub mnSalir_Click()
 End Sub
 Private Sub BotonEliminar()
 Dim msg As String
-Dim SQL As String
+Dim Sql As String
 
 On Error GoTo EEliminar
 
 msg = "Esta seguro que desea eliminar la llamada del día:" & Text1(1).Text & "?"
 If MsgBox(msg, vbYesNo) = vbYes Then
     NumRegElim = Adodc1.Recordset.AbsolutePosition
-    SQL = "Delete from shilla where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
-    SQL = SQL & "' and codsocio=" & Text1(0).Text & " and numeruve=" & Text1(8).Text
-    conn.Execute SQL
+    Sql = "Delete from shilla where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
+    Sql = Sql & "' and codsocio=" & Text1(0).Text & " and numeruve=" & Text1(8).Text
+    conn.Execute Sql
 End If
 
 If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
@@ -3903,15 +3906,15 @@ Dim vWhere As String
 End Sub
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = "(fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
-    SQL = SQL & "' and numeruve=" & Text1(8).Text & ")"
+    Sql = "(fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
+    Sql = Sql & "' and numeruve=" & Text1(8).Text & ")"
     
-    If conWhere Then SQL = " WHERE " & SQL
-    ObtenerWhereCP = SQL
+    If conWhere Then Sql = " WHERE " & Sql
+    ObtenerWhereCP = Sql
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
@@ -4015,7 +4018,7 @@ Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub MarcarValidados()
-Dim SQL As String
+Dim Sql As String
 Dim NRegs As Long
 Dim vMens As String
 Dim b As Boolean
@@ -4617,7 +4620,7 @@ End Sub
 
 
 Private Sub EliminarImagen()
-Dim SQL As String
+Dim Sql As String
 Dim Mens As String
     
     On Error GoTo eEliminarImagen
@@ -4625,8 +4628,8 @@ Dim Mens As String
     Mens = "Va a proceder a eliminar de la lista correspondiente a la llamada. " & vbCrLf & vbCrLf & "¿ Desea continuar ?" & vbCrLf & vbCrLf
     
     If MsgBox(Mens, vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
-        SQL = "delete from shilla_fichdocs where fecha = " & DBSet(Text1(1).Text, "F") & " and hora = " & DBSet(Text1(7).Text, "H") & " and numeruve = " & DBSet(Text1(8).Text, "N") & " and codigo = " & Me.lw1.SelectedItem.SubItems(3)
-        conn.Execute SQL
+        Sql = "delete from shilla_fichdocs where fecha = " & DBSet(Text1(1).Text, "F") & " and hora = " & DBSet(Text1(7).Text, "H") & " and numeruve = " & DBSet(Text1(8).Text, "N") & " and codigo = " & Me.lw1.SelectedItem.SubItems(3)
+        conn.Execute Sql
         FicheroAEliminar = lw1.SelectedItem.SubItems(2)
         CargaDatosLW
         

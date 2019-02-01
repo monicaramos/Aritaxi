@@ -62,7 +62,7 @@ On Error Resume Next
         Sql = Sql & "coddirec,nomdirec,referenc,codtraba,codagent,codforpa,dtoppago,dtognral,"
         Sql = Sql & "tipofact,observa01,observa02,observa03,observa04,observa05,servcomp,restoped,numofert,fecofert,observap1,observap2,recogecl"
         
-      Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC"  '[1.3.1] 'Albaran de venta a clientes
+      Case "ALV", "ALT", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'Albaran de venta a clientes
         NomTabla = "scaalb"
         NomTablaH = "schalb"
         Sql = " SELECT codtipom,numalbar,fechaalb," & vUsu.Codigo Mod 1000 & " as codigusu," & cadL & ","
@@ -134,7 +134,7 @@ On Error Resume Next
         Sql = Sql & " FROM scaped INNER JOIN sliped on scaped.numpedcl=sliped.numpedcl "
         Sql = Sql & " WHERE " & cadWHERE
         
-      Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'Albaranes ventas a clientes, Mantenimientos y Reparaciones
+      Case "ALV", "ALT", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'Albaranes ventas a clientes, Mantenimientos y Reparaciones
         NomTablaLin = "slialb"
         NomTablaLinH = "slhalb"
         Sql = " SELECT scaalb.codtipom,scaalb.numalbar,scaalb.fechaalb,slialb.numlinea,slialb.codalmac,slialb.codartic,slialb.nomartic,slialb.ampliaci,slialb.cantidad,numbultos,precioar,dtoline1,dtoline2,importel,origpre ,codproveX,numlote,codccost"
@@ -202,7 +202,7 @@ Dim Cad As String, cadAux As String
       Case "PEV" 'pedidos ventas  a clientes
         Sql = "Select numpedcl from scaped WHERE " & cadWHERE
         cadAux = " numpedcl IN "
-      Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'albaranes ventas a clientes,Mantenimientos y Reparaciones
+      Case "ALV", "ALT", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'albaranes ventas a clientes,Mantenimientos y Reparaciones
         Sql = "Select numalbar from scaalb WHERE " & cadWHERE
         cadAux = "codtipom=" & DBSet(CodTipoMov, "T") & " AND numalbar IN "
       Case "OFE" 'Ofertas a clientes
@@ -273,7 +273,7 @@ Dim Cad As String, cadAux As String
       Case "PEV" 'pedidos ventas  a clientes
         Sql = "Select numpedcl from schped WHERE " & Replace(cadWHERE, "scaped", "schped")
         cadAux = " numpedcl IN "
-      Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'albaranes ventas a clientes,Mantenimientos y Reparaciones
+      Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC", "ALT" '[1.3.1] 'albaranes ventas a clientes,Mantenimientos y Reparaciones
         Sql = "Select numalbar from schalb WHERE " & Replace(cadWHERE, "scaalb", "schalb")
         cadAux = "codtipom=" & DBSet(CodTipoMov, "T") & " AND numalbar IN "
       Case "OFE" 'Ofertas a clientes
@@ -304,7 +304,7 @@ Dim Cad As String, cadAux As String
                     Sql = "Delete from schped WHERE " & Replace(cadWHERE, "scaped", "schped")
                     conn.Execute Sql
         
-              Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC" '[1.3.1] 'albaranes ventas a clientes,Mantenimientos y Reparaciones
+              Case "ALV", "ALM", "ALR", "ALS", "ART", "ARC", "ALT" '[1.3.1] 'albaranes ventas a clientes,Mantenimientos y Reparaciones
                     Sql = "DELETE FROM slhalb WHERE " & Replace(cadWHERE, "scaalb", "slhalb")
                     conn.Execute Sql
     

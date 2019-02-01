@@ -2272,7 +2272,7 @@ Dim NueroIvas As Integer
         If exento_IVA < 2 Then     'Con IVA normal o RE
             'comprobar que si hay km de DESPLAZAMIENTO se añadan al tipo de IVA correspondiente
             If TotalKm > 0 Then
-                If despIVA = Rs!codigiva Then
+                If despIVA = Rs!Codigiva Then
                     vBruto = vBruto + ImporteL
                     TotBruto = TotBruto + ImporteL
                     conDesplaz = True
@@ -2280,14 +2280,14 @@ Dim NueroIvas As Integer
             End If
         
             'comprobar si hay BONIFICACIONES que aplicar a la Factura
-            If IVABonif1 = Rs!codigiva Then
+            If IVABonif1 = Rs!Codigiva Then
                 vBruto = vBruto - TotBonif1
                 TotBruto = TotBruto - TotBonif1
-            ElseIf IVABonif2 = Rs!codigiva Then
+            ElseIf IVABonif2 = Rs!Codigiva Then
                 vBruto = vBruto - TotBonif2
                 TotBruto = TotBruto - TotBonif2
                 
-            ElseIf IVABonif3 = Rs!codigiva Then
+            ElseIf IVABonif3 = Rs!Codigiva Then
                 vBruto = vBruto - TotBonif3
                 TotBruto = TotBruto - TotBonif3
             End If
@@ -2321,8 +2321,8 @@ Dim NueroIvas As Integer
             End If
             
             'Obtener el % de IVA
-            cadAux = Rs!codigiva    'Por si no tiene  RE o si teniendo RE no tiene el correspondiente
-            If exento_IVA = 1 Then cadAux = CStr(vParamAplic.DevuleveTipoIVA_RE(Rs!codigiva))
+            cadAux = Rs!Codigiva    'Por si no tiene  RE o si teniendo RE no tiene el correspondiente
+            If exento_IVA = 1 Then cadAux = CStr(vParamAplic.DevuleveTipoIVA_RE(Rs!Codigiva))
             TipoIVAAplicable = CInt(cadAux)
             
             '[Monica]
@@ -2333,7 +2333,7 @@ Dim NueroIvas As Integer
                     'Debido al cambio de IVA, los albaranes rectificativos podran ir en el IVA que llevaran en su momento
                     'Es decir, que aunque ahora sea al 18(a partir de Julio), para un albr rectifi podria ser
                     'con iva 16
-                    cadAux = CStr(vParamAplic.DevuleveTipoIVA_Ant(exento_IVA = 1, Rs!codigiva))
+                    cadAux = CStr(vParamAplic.DevuleveTipoIVA_Ant(exento_IVA = 1, Rs!Codigiva))
                     TipoIVAAplicable = CInt(cadAux)
             End If
             
@@ -2500,7 +2500,7 @@ Dim NueroIvas As Integer
                 ImpIVA2 = ImpIVA
                 
             Case 3 'IVA 3
-                TipoIVA3 = Rs!codigiva
+                TipoIVA3 = Rs!Codigiva
                 
                 BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
                 
@@ -2578,6 +2578,8 @@ Dim MenError As String
             codtipom = "FCN"
         Case "ALZ"  'Albaranes "presupuestos". Es decir, el "B"
             codtipom = "FAZ"
+        Case "ALT"
+            codtipom = "FAT"
     End Select
       
      
@@ -3019,7 +3021,7 @@ Dim Cad As String, cad2 As String
     Sql = Sql & DBSet(NIF, "T", "N") & "," & DBSet(Telefono, "T") & "," & DBSet(DirDpto, "N", "S") & "," & DBSet(NombreDirDpto, "T") & "," & DBSet(Agente, "N") & ","
     Sql = Sql & ForPago & "," & DBSet(DtoPPago, "N") & "," & DBSet(DtoGnral, "N") & ","
     
-    If codtipom = "FAV" Or codtipom = "FRT" Or codtipom = "FRC" Or codtipom = "FAR" Or codtipom = "FAS" Or codtipom = "FCN" Or codtipom = "FRQ" Then '[Monica]05/03/2013: añadido FCN
+    If codtipom = "FAV" Or codtipom = "FAT" Or codtipom = "FRT" Or codtipom = "FRC" Or codtipom = "FAR" Or codtipom = "FAS" Or codtipom = "FCN" Or codtipom = "FRQ" Then '[Monica]05/03/2013: añadido FCN
         'si son facturas de VENTA o Factura Rectificativa
         'Cargar los datos del banco del cliente
         'si se trabaja con departamentos y la factura va a un departamento
@@ -3125,7 +3127,7 @@ Dim MantenimientoObservacion As String
     
     Sql = "INSERT INTO scafac1 (codtipom,numfactu,fecfactu,codtipoa,numalbar,fechaalb,numpedcl,fecpedcl,sementre,numofert,fecofert,referenc,codenvio,codtraba,codtrab1,codtrab2,observa1,observa2,observa3,observa4,observa5,numtermi,numventa)"
     
-    If (codtipom = "FAV" And NumTicket <> "") Then
+    If ((codtipom = "FAV" Or codtipom = "FAT") And NumTicket <> "") Then
         'Facturas generadas desde una venta de tickets: en numalbar guardamos numticket
 '        SQL = SQL & " VALUES('" & codTipoM & "', " & NumFactu & ", '" & Format(FecFactu, FormatoFecha) & "','FTI'," & NumTicket & ","
         '01/09/06 laura
@@ -3786,7 +3788,7 @@ Dim ImpDif As Currency
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     I = 1
     While Not Rs.EOF And I <= 3
-        Sql = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", CStr(Rs!codigiva), "N")
+        Sql = DevuelveDesdeBDNew(conConta, "tiposiva", "porceiva", "codigiva", CStr(Rs!Codigiva), "N")
         Select Case I
             Case 1
                 TipoIVA1 = Rs.Fields(0).Value

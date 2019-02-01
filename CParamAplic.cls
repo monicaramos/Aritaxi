@@ -120,15 +120,15 @@ Private mvarEmpresaTaxitronic As String 'Codigo de empresa taxitronicliente Coop
 
 
 
-    'aVISOS  al entrar
-    Private mvaravipedcli  As Integer
-    Private mvaravipedpro As Integer
-    Private mvaravialbcli As Integer
-    Private mvaravialbpro As Integer
-    Private mvaravimanteni As Integer
-    Private mvaravirepara As Integer
-    Private mvaraviavisos As Integer
-    Private mvarTieneAvisos As Boolean 'De este no hay valor en BD. Simplememnte si alguno de ellos tiene valor, el tendra valor
+'aVISOS  al entrar
+Private mvaravipedcli  As Integer
+Private mvaravipedpro As Integer
+Private mvaravialbcli As Integer
+Private mvaravialbpro As Integer
+Private mvaravimanteni As Integer
+Private mvaravirepara As Integer
+Private mvaraviavisos As Integer
+Private mvarTieneAvisos As Boolean 'De este no hay valor en BD. Simplememnte si alguno de ellos tiene valor, el tendra valor
 
 
 'Si LLEVA REcargo de equivalencia
@@ -224,6 +224,11 @@ Private mvarPathFacturaE As String  'FacturaE
 
 '[Monica]28/09/2012: Impresora de tarjetas
 Private mvarImpresoraTarjetas As String  'impresora de tarjetas
+
+
+
+
+
 
 Private Sql As String  'Para la sentencia
 Private Mens As String    'Para los mensajes
@@ -1231,6 +1236,8 @@ Public Property Get ImpresoraTarjetas() As String
      ImpresoraTarjetas = mvarImpresoraTarjetas
 End Property
 
+
+
 Public Property Let ArtRetenciones(ByVal vData As String)
      mvarArtRetenciones = vData
 End Property
@@ -1495,6 +1502,7 @@ On Error GoTo Err3
         mvarImpresoraTarjetas = DBLet(Rs!impretarjeta, "T")
         
         
+        
         mvarArtRetenciones = DBLet(Rs!ArtRetenciones, "T") 'articulo de retenciones
         
         '[Monica]02/05/2017: nueva contabilidad
@@ -1720,6 +1728,7 @@ On Error GoTo EModificar
     
     'Impresora de Tarjetas
     Sql = Sql & ", impretarjeta = " & DBSet(mvarImpresoraTarjetas, "T")
+    
     
     ' Articulo de retenciones
     Sql = Sql & ", artretenciones= " & DBSet(mvarArtRetenciones, "T")

@@ -766,27 +766,27 @@ Begin VB.Form frmComEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":00B3
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
+      Tab(1).Control(0)=   "Label1(45)"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Text2(21)"
+      Tab(1).Control(1)=   "Label1(1)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Text1(21)"
+      Tab(1).Control(2)=   "imgBuscar(4)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Text1(19)"
+      Tab(1).Control(3)=   "Text1(15)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "Text1(18)"
+      Tab(1).Control(4)=   "Text1(16)"
       Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Text1(17)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "Text1(16)"
+      Tab(1).Control(6)=   "Text1(18)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "Text1(15)"
+      Tab(1).Control(7)=   "Text1(19)"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "imgBuscar(4)"
+      Tab(1).Control(8)=   "Text1(21)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "Label1(1)"
+      Tab(1).Control(9)=   "Text2(21)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Label1(45)"
+      Tab(1).Control(10)=   "FrameHco"
       Tab(1).Control(10).Enabled=   0   'False
       Tab(1).ControlCount=   11
       TabCaption(2)   =   "Totales"
@@ -3340,22 +3340,22 @@ Private Sub BotonEliminar()
 ' - eliminar los movimientos que inserto el albaran en (smoval)
 ' - actualizar el ultprecio compra y ultima fecha compra en funcion del ult. movimiento ALC en smoval
 ' - reestablecer el precio medio ponderado
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    cad = "Cabecera de Albaranes Compras" & vbCrLf
-    cad = cad & "-------------------------------------------------" & vbCrLf & vbCrLf
-    cad = cad & "Va a eliminar el Albaran:            "
-    cad = cad & vbCrLf & "Nº:  " & Text1(0).Text
-    cad = cad & vbCrLf & "Fecha: " & Text1(1).Text
-    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    Cad = "Cabecera de Albaranes Compras" & vbCrLf
+    Cad = Cad & "-------------------------------------------------" & vbCrLf & vbCrLf
+    Cad = Cad & "Va a eliminar el Albaran:            "
+    Cad = Cad & vbCrLf & "Nº:  " & Text1(0).Text
+    Cad = Cad & vbCrLf & "Fecha: " & Text1(1).Text
+    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
     
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         Screen.MousePointer = vbHourglass
     
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -3427,7 +3427,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -3444,9 +3444,9 @@ Dim cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Data1.Recordset.Fields(0) & "|"
-        cad = cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Data1.Recordset.Fields(0) & "|"
+        Cad = Cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
 End Sub
@@ -4432,23 +4432,23 @@ End Sub
 
 Private Sub PonerModoUsuarioGnral(Modo As Byte, Aplicacion As String)
 Dim Rs As ADODB.Recordset
-Dim cad As String
+Dim Cad As String
     
     On Error Resume Next
 
-    cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
-    cad = cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
+    Cad = "select ver, creareliminar, modificar, imprimir, especial from menus_usuarios where aplicacion = " & DBSet(Aplicacion, "T")
+    Cad = Cad & " and codigo = " & DBSet(IdPrograma, "N") & " and codusu = " & DBSet(vUsu.Id, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         Toolbar1.Buttons(1).Enabled = Toolbar1.Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
         Toolbar1.Buttons(2).Enabled = Toolbar1.Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
         Toolbar1.Buttons(3).Enabled = Toolbar1.Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
         
-        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!Ver, "N")
-        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!Ver, "N")
+        Toolbar1.Buttons(5).Enabled = Toolbar1.Buttons(5).Enabled And DBLet(Rs!ver, "N")
+        Toolbar1.Buttons(6).Enabled = Toolbar1.Buttons(6).Enabled And DBLet(Rs!ver, "N")
         
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
         
@@ -5102,7 +5102,14 @@ Dim I As Byte
 
         'Fijamos altura(Height) y posición Top
         '-------------------------------
-        alto = ObtenerAlto(DataGrid1, 20)
+'        alto = ObtenerAlto(DataGrid1, 0)
+        
+        If DataGrid1.Row < 0 Then
+            alto = DataGrid1.top + 270  '250 '230
+        Else
+            alto = DataGrid1.top + DataGrid1.RowTop(DataGrid1.Row) + 10
+        End If
+        
         
         For I = 0 To txtAux.Count - 1
             txtAux(I).top = alto
@@ -5357,7 +5364,7 @@ End Sub
 
 Private Sub ObtenerPrecioCompra()
 Dim vPrecio As CPreciosCom
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EPrecios
     
@@ -5373,9 +5380,9 @@ Dim cad As String
         End If
     Else
         'Obtener el ult. precio de compra de ese articulo (sartic)
-        cad = DevuelveDesdeBDNew(conAri, "sartic", "preciouc", "codartic", txtAux(1).Text, "T")
-        If cad <> "" Then
-            txtAux(4).Text = cad
+        Cad = DevuelveDesdeBDNew(conAri, "sartic", "preciouc", "codartic", txtAux(1).Text, "T")
+        If Cad <> "" Then
+            txtAux(4).Text = Cad
             txtAux(5).Text = "0"
             txtAux(6).Text = "0"
         End If
@@ -5391,9 +5398,9 @@ EPrecios:
 End Sub
 
 
-Private Sub BotonMtoLineas(numTab As Integer, cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
         Me.SSTab1.Tab = numTab
-        TituloLinea = cad
+        TituloLinea = Cad
         ModificaLineas = 0
         If Data2.Recordset.EOF Then Text2(16).Text = ""
         PonerModo 5

@@ -6,10 +6,10 @@ Begin VB.Form frmGesHisLlamTMP
    ClientHeight    =   10830
    ClientLeft      =   165
    ClientTop       =   255
-   ClientWidth     =   11070
+   ClientWidth     =   12075
    LinkTopic       =   "Form1"
    ScaleHeight     =   10830
-   ScaleWidth      =   11070
+   ScaleWidth      =   12075
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox Text1 
       BeginProperty Font 
@@ -48,7 +48,7 @@ Begin VB.Form frmGesHisLlamTMP
       TabIndex        =   1
       Tag             =   "Error|T|S|||tmptaxi|error|||"
       Top             =   855
-      Width           =   6990
+      Width           =   8250
    End
    Begin VB.CheckBox chkVistaPrevia 
       Caption         =   "Vista previa"
@@ -63,7 +63,7 @@ Begin VB.Form frmGesHisLlamTMP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   9000
+      Left            =   10305
       TabIndex        =   103
       Top             =   315
       Visible         =   0   'False
@@ -181,7 +181,7 @@ Begin VB.Form frmGesHisLlamTMP
       Left            =   240
       TabIndex        =   89
       Top             =   8745
-      Width           =   10545
+      Width           =   11715
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -200,7 +200,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Observaciones 2|T|S|||tmptaxi|observa2|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1020
-         Width           =   7695
+         Width           =   8910
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -220,7 +220,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Observaciones Cliente|T|S|||tmptaxi|observa1|||"
          Text            =   $"frmGesHisLlamTMP.frx":0000
          Top             =   630
-         Width           =   7695
+         Width           =   8910
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -240,7 +240,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Observaciones|T|S|||tmptaxi|observac2|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   240
-         Width           =   7695
+         Width           =   8910
       End
       Begin VB.Image imgBuscar 
          Height          =   240
@@ -337,10 +337,10 @@ Begin VB.Form frmGesHisLlamTMP
       EndProperty
       ForeColor       =   &H00972E0B&
       Height          =   3165
-      Left            =   5400
+      Left            =   6615
       TabIndex        =   72
       Top             =   5535
-      Width           =   5385
+      Width           =   5295
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -727,7 +727,7 @@ Begin VB.Form frmGesHisLlamTMP
       Left            =   240
       TabIndex        =   71
       Top             =   5565
-      Width           =   5145
+      Width           =   6315
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -746,7 +746,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Operador Despa.|T|S|||tmptaxi|opedespa|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2640
-         Width           =   3855
+         Width           =   4935
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -766,7 +766,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Operador Reserva|T|S|||tmptaxi|opereser|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2280
-         Width           =   3855
+         Width           =   4935
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1199,7 +1199,7 @@ Begin VB.Form frmGesHisLlamTMP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8430
+      Left            =   9600
       TabIndex        =   46
       Top             =   10395
       Width           =   1135
@@ -1217,7 +1217,7 @@ Begin VB.Form frmGesHisLlamTMP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9660
+      Left            =   10830
       TabIndex        =   47
       Top             =   10395
       Width           =   1135
@@ -1234,7 +1234,7 @@ Begin VB.Form frmGesHisLlamTMP
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9660
+      Left            =   10830
       TabIndex        =   48
       Top             =   10395
       Visible         =   0   'False
@@ -1256,7 +1256,7 @@ Begin VB.Form frmGesHisLlamTMP
       Left            =   240
       TabIndex        =   49
       Top             =   1275
-      Width           =   10545
+      Width           =   11715
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -1275,7 +1275,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Destino|T|S|||tmptaxi|destino|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   3810
-         Width           =   3795
+         Width           =   5055
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1335,7 +1335,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Nombre|T|S|||tmptaxi|nomclien|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1860
-         Width           =   3825
+         Width           =   5040
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1349,7 +1349,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   15
-         Left            =   7080
+         Left            =   8295
          MaxLength       =   14
          TabIndex        =   17
          Tag             =   "Autorización|T|S|||tmptaxi|codautor|||"
@@ -1375,7 +1375,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Usuario|T|S|||tmptaxi|codusuar|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1470
-         Width           =   3825
+         Width           =   5040
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1390,7 +1390,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   4290
+         Left            =   5505
          MaxLength       =   6
          TabIndex        =   7
          Tag             =   "Codigo cliente|N|S|||tmptaxi|codclien|000000||"
@@ -1431,7 +1431,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   645
-         Left            =   5310
+         Left            =   6525
          TabIndex        =   65
          Top             =   3330
          Width           =   5025
@@ -1504,7 +1504,7 @@ Begin VB.Form frmGesHisLlamTMP
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   7080
+         Left            =   8295
          Style           =   2  'Dropdown List
          TabIndex        =   18
          Tag             =   "Tipo servicio|N|S|0|1|tmptaxi|tipservi|0||"
@@ -1525,7 +1525,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   5340
+         Left            =   6555
          TabIndex        =   62
          Text            =   "Text2"
          Top             =   510
@@ -1543,7 +1543,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   7080
+         Left            =   8295
          MaxLength       =   10
          TabIndex        =   20
          Tag             =   "Matricula|T|S|||tmptaxi|matricul|||"
@@ -1563,7 +1563,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   7080
+         Left            =   8295
          MaxLength       =   15
          TabIndex        =   16
          Tag             =   "Identificacion|T|S|||tmptaxi|idservic|||"
@@ -1622,7 +1622,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   7080
+         Left            =   8295
          MaxLength       =   10
          TabIndex        =   19
          Tag             =   "Licencia|T|S|||tmptaxi|licencia|||"
@@ -1647,7 +1647,7 @@ Begin VB.Form frmGesHisLlamTMP
          TabIndex        =   15
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   3420
-         Width           =   3825
+         Width           =   5040
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1667,7 +1667,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Población|T|S|||tmptaxi|ciudadre|||"
          Text            =   "ABCDEFGHIJKLMNÑOPQRSTUVWXYZABC"
          Top             =   3030
-         Width           =   3825
+         Width           =   5040
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1682,7 +1682,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   4320
+         Left            =   5580
          MaxLength       =   6
          TabIndex        =   13
          Text            =   "HHHHHH"
@@ -1707,7 +1707,7 @@ Begin VB.Form frmGesHisLlamTMP
          Tag             =   "Domicilio|T|S|||tmptaxi|dirllama|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2250
-         Width           =   3825
+         Width           =   5040
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1742,7 +1742,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   4290
+         Left            =   5505
          MaxLength       =   6
          TabIndex        =   5
          Tag             =   "Codigo socio|N|N|||tmptaxi|codsocio|00000||"
@@ -1817,7 +1817,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   16
-         Left            =   5400
+         Left            =   6615
          TabIndex        =   69
          Top             =   1530
          Width           =   1485
@@ -1851,7 +1851,7 @@ Begin VB.Form frmGesHisLlamTMP
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   3
-         Left            =   4980
+         Left            =   6195
          Tag             =   "-1"
          ToolTipText     =   "Buscar Socio"
          Top             =   270
@@ -1870,7 +1870,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   3240
+         Left            =   4455
          TabIndex        =   67
          Top             =   1110
          Width           =   705
@@ -1932,7 +1932,7 @@ Begin VB.Form frmGesHisLlamTMP
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   3990
+         Left            =   5205
          Tag             =   "-1"
          ToolTipText     =   "Buscar cliente"
          Top             =   1110
@@ -1951,7 +1951,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   12
-         Left            =   5400
+         Left            =   6615
          TabIndex        =   61
          Top             =   2790
          Width           =   1245
@@ -1969,7 +1969,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   11
-         Left            =   5400
+         Left            =   6615
          TabIndex        =   60
          Top             =   1110
          Width           =   1485
@@ -2005,7 +2005,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   9
-         Left            =   5400
+         Left            =   6615
          TabIndex        =   58
          Top             =   1950
          Width           =   1725
@@ -2023,7 +2023,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   8
-         Left            =   5400
+         Left            =   6615
          TabIndex        =   57
          Top             =   2370
          Width           =   1245
@@ -2067,7 +2067,7 @@ Begin VB.Form frmGesHisLlamTMP
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   4050
+         Left            =   5310
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   2670
@@ -2086,7 +2086,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   5
-         Left            =   3690
+         Left            =   4950
          TabIndex        =   54
          Top             =   2640
          Width           =   255
@@ -2122,7 +2122,7 @@ Begin VB.Form frmGesHisLlamTMP
          EndProperty
          Height          =   255
          Index           =   1
-         Left            =   4290
+         Left            =   5505
          TabIndex        =   51
          Top             =   285
          Width           =   645
@@ -2943,6 +2943,8 @@ Dim indice As Byte
     PonerFoco Text1(indice)
 End Sub
 
+
+
 Private Sub mnVerTodos_Click()
     BotonVerTodos
 End Sub
@@ -2997,10 +2999,12 @@ Select Case Index
         If Text1(Index).Text <> "" Then PonerFormatoHora Text1(Index)
     Case 1, 11, 18 To 21
         If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index)
+        
     Case 45
         PonerFormatoEntero Text1(Index)
 End Select
 End Sub
+
 Private Sub cmdCancelar_Click()
     Select Case Modo
         Case 1, 3 'Busqueda, Insertar
@@ -3019,6 +3023,7 @@ Private Sub cmdCancelar_Click()
             
     End Select
 End Sub
+
 Private Sub Text1_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Avanzar/Retroceder los campos con las flechas de desplazamiento del teclado.
     If Index = 0 And KeyCode = 38 Then Exit Sub

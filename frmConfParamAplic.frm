@@ -199,7 +199,7 @@ Begin VB.Form frmConfParamAplic
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   5
+      Tab             =   2
       TabsPerRow      =   6
       TabHeight       =   520
       ForeColor       =   9907723
@@ -246,27 +246,24 @@ Begin VB.Form frmConfParamAplic
       TabPicture(1)   =   "frmConfParamAplic.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Frame15"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame10"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Frame3"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Frame2"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Frame9"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).Control(5)=   "Frame4"
-      Tab(1).Control(5).Enabled=   0   'False
       Tab(1).Control(6)=   "Frame12"
-      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).ControlCount=   7
       TabCaption(2)   =   "Internet"
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "Label1(80)"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "FrameEMail"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "FrameSoporte"
+      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Text1(81)"
+      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).ControlCount=   4
       TabCaption(3)   =   "Datos Contabilidad "
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
@@ -334,7 +331,7 @@ Begin VB.Form frmConfParamAplic
       Tab(4).ControlCount=   32
       TabCaption(5)   =   "Varios"
       TabPicture(5)   =   "frmConfParamAplic.frx":0098
-      Tab(5).ControlEnabled=   -1  'True
+      Tab(5).ControlEnabled=   0   'False
       Tab(5).Control(0)=   "Label1(81)"
       Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "Frame14"
@@ -358,7 +355,7 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   330
-         Left            =   315
+         Left            =   -74685
          TabIndex        =   291
          Tag             =   "Marcar validados|N|S|||spara1|marcarvalidados|||"
          Top             =   6615
@@ -377,9 +374,9 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2175
-         Left            =   180
+         Left            =   -74820
          TabIndex        =   285
-         Top             =   4320
+         Top             =   4185
          Width           =   10725
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -590,13 +587,13 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   82
-         Left            =   3000
+         Left            =   -72000
          MaxLength       =   100
          TabIndex        =   245
          Tag             =   "Impresora Tarjetas|T|S|||spara1|impretarjeta|||"
-         Top             =   3690
+         Top             =   3600
          Visible         =   0   'False
-         Width           =   4590
+         Width           =   7335
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -610,7 +607,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   81
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   255
          TabIndex        =   51
          Tag             =   "Path FacturaE|T|S|||spara1|pathfacturae|||"
@@ -651,7 +648,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   825
-         Left            =   -74880
+         Left            =   -74865
          TabIndex        =   257
          Top             =   6045
          Width           =   10635
@@ -726,7 +723,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2715
-         Left            =   150
+         Left            =   -74850
          TabIndex        =   255
          Top             =   650
          Width           =   10695
@@ -3712,7 +3709,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Frame FrameSoporte 
          ForeColor       =   &H00972E0B&
          Height          =   1635
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   110
          Top             =   3840
          Width           =   8355
@@ -3852,7 +3849,7 @@ Begin VB.Form frmConfParamAplic
       End
       Begin VB.Frame FrameEMail 
          Height          =   2895
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   104
          Top             =   720
          Width           =   10635
@@ -5290,9 +5287,9 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   81
-         Left            =   330
+         Left            =   -74670
          TabIndex        =   266
-         Top             =   3735
+         Top             =   3645
          Visible         =   0   'False
          Width           =   2070
       End
@@ -5309,7 +5306,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   80
-         Left            =   -74460
+         Left            =   540
          TabIndex        =   265
          Top             =   5745
          Width           =   2070
@@ -6325,6 +6322,10 @@ Dim Im
     Me.Text1(78).visible = (vUsu.Login = "root")
     Me.Text1(78).Enabled = (vUsu.Login = "root")
     
+    '[Monica]01/02/2019: cambiamos el label de path facturae por lo de URL para sevilla
+    If vParamAplic.Cooperativa = 3 Then
+        Label1(0).Caption = "Direccion URL"
+    End If
     
     
     NombreTabla = "spara1"
@@ -6995,10 +6996,10 @@ End Function
 
 
 Private Sub KEYpress(KeyAscii As Integer)
-Dim cerrar As Boolean
+Dim Cerrar As Boolean
 
-    KEYpressGnral KeyAscii, Modo, cerrar
-    If cerrar Then Unload Me
+    KEYpressGnral KeyAscii, Modo, Cerrar
+    If Cerrar Then Unload Me
 End Sub
 
 
