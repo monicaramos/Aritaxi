@@ -1069,7 +1069,7 @@ Dim N_Skin As Integer
 End Sub
 
 Public Sub SetBackstageTheme()
-Dim I As Integer
+Dim i As Integer
     Dim nTheme As XtremeCommandBars.XTPBackstageButtonControlAppearanceStyle
     nTheme = xtpAppearanceResource
 
@@ -1081,8 +1081,8 @@ Dim I As Integer
    ' End If
     
     If Not (pageBackstageHelp Is Nothing) Then
-        For I = 0 To 4
-            pageBackstageHelp.btnAcciones(I).Appearance = nTheme
+        For i = 0 To 4
+            pageBackstageHelp.btnAcciones(i).Appearance = nTheme
         Next
         
     End If
@@ -1406,8 +1406,6 @@ Private Sub CommandBars_Update(ByVal Control As XtremeCommandBars.ICommandBarCon
     Select Case Control.Id
         Case ID_VIEW_STATUSBAR:
             'Control.Checked = CommandBars.StatusBar.Visible
-        
-        
             
         Case ID_GROUP_ARRANGE_WORK_WEEK:
             'Control.Checked = IIf(frmInbox.CalendarControl.ViewType = xtpCalendarWorkWeekView, True, False)
@@ -1494,11 +1492,6 @@ Dim AntiguoTab As Integer
     CreateCalendarTabOriginal
     RibbonSeHaCreado = True
 End Sub
-
-
-
-
-
 
 Public Sub CambiarEmpresa(QueEmpresa As Integer)
 Dim cur As Integer
@@ -1607,14 +1600,14 @@ Private Sub Form_Load()
     Set frmShortBar = New frmShortcutBar2
     Set frmInbox = New frmInbox
         
-    Dim a As Pane, b As Pane, c As Pane, D As Pane
+    Dim A As Pane, b As Pane, C As Pane, D As Pane
     
     frmIdentifica.pLabel "Creando paneles"
-    Set a = DockingPaneManager.CreatePane(PANE_SHORTCUTBAR, 170, 120, DockLeftOf, Nothing)
-    a.Tag = PANE_SHORTCUTBAR
-    a.MinTrackSize.Width = MinimizedShortcutBarWidth
+    Set A = DockingPaneManager.CreatePane(PANE_SHORTCUTBAR, 170, 120, DockLeftOf, Nothing)
+    A.Tag = PANE_SHORTCUTBAR
+    A.MinTrackSize.Width = MinimizedShortcutBarWidth
     
-    Set b = DockingPaneManager.CreatePane(PANE_REPORT_CONTROL, 700, 400, DockRightOf, a)
+    Set b = DockingPaneManager.CreatePane(PANE_REPORT_CONTROL, 700, 400, DockRightOf, A)
     b.Tag = PANE_REPORT_CONTROL
    
     DockingPaneManager.Options.HideClient = True
@@ -1701,14 +1694,14 @@ Dim TamanyoImgComun As Integer
 
 
 '????
-    imgListComun1.ListImages.Clear
+    ImgListComun1.ListImages.Clear
     imgListComun_BN.ListImages.Clear
     imgListComun_OM.ListImages.Clear
     
     TamanyoImgComun = 24
     
-    imgListComun1.ImageHeight = TamanyoImgComun
-    imgListComun1.ImageWidth = TamanyoImgComun
+    ImgListComun1.ImageHeight = TamanyoImgComun
+    ImgListComun1.ImageWidth = TamanyoImgComun
     GetIconsFromLibrary App.Path & "\styles\iconos.dll", 2, TamanyoImgComun  'antes icolistcon
 
     
@@ -1735,7 +1728,7 @@ Dim TamanyoImgComun As Integer
 End Sub
 
 Public Sub GetIconsFromLibrary(ByVal sLibraryFilePath As String, ByVal Op As Integer, ByVal tam As Integer)
-    Dim I As Integer
+    Dim i As Integer
     Dim tRes As ResType, iCount As Integer
         
     opcio = Op
@@ -1761,8 +1754,8 @@ Public Sub ExpandButtonClicked()
    
     
     
-    Dim a As Pane
-    Set a = DockingPaneManager.FindPane(PANE_SHORTCUTBAR)
+    Dim A As Pane
+    Set A = DockingPaneManager.FindPane(PANE_SHORTCUTBAR)
     
     Dim ShortcutBarMinimized As Boolean
     ShortcutBarMinimized = frmShortBar.ScaleWidth <= MinimizedShortcutBarWidth
@@ -1777,16 +1770,16 @@ Public Sub ExpandButtonClicked()
         
     
     ' Set Size of Pane
-    a.MinTrackSize.Width = NewWidth
-    a.MaxTrackSize.Width = NewWidth
+    A.MinTrackSize.Width = NewWidth
+    A.MaxTrackSize.Width = NewWidth
         
     DockingPaneManager.RecalcLayout
     DockingPaneManager.NormalizeSplitters
     DockingPaneManager.RedrawPanes
     
     ' Restore Constraints
-    a.MinTrackSize.Width = MinimizedShortcutBarWidth
-    a.MaxTrackSize.Width = 32000
+    A.MinTrackSize.Width = MinimizedShortcutBarWidth
+    A.MaxTrackSize.Width = 32000
         
 End Sub
 
@@ -1797,9 +1790,9 @@ Private Sub Form_Unload(Cancel As Integer)
     
     'close all sub forms
     On Error Resume Next
-    Dim I As Long
-    For I = Forms.Count - 1 To 1 Step -1
-        Unload Forms(I)
+    Dim i As Long
+    For i = Forms.Count - 1 To 1 Step -1
+        Unload Forms(i)
     Next
     
     GuardarDatosUltimaTab
@@ -1810,10 +1803,10 @@ End Sub
 
 
 Private Sub GuardarDatosUltimaTab()
-    I = RibbonBar.SelectedTab.Id
-    If I = ID_TAB_CALENDAR_HOME Then Exit Sub 'no guardo este tab
-    If I <> vUsu.TabPorDefecto Then
-        vUsu.TabPorDefecto = I
+    i = RibbonBar.SelectedTab.Id
+    If i = ID_TAB_CALENDAR_HOME Then Exit Sub 'no guardo este tab
+    If i <> vUsu.TabPorDefecto Then
+        vUsu.TabPorDefecto = i
         vUsu.GuardarTabPorDefecto
     End If
 End Sub
@@ -1964,7 +1957,7 @@ Private Sub LoadIcons()
 
 
     'pequeños
-    T = Array(ID_VtasSocios, ID_ServiciosSocios, 1, 1, 1, 1, 1, 1, 1, 1)
+    T = Array(ID_VtasSocios, ID_ServiciosSocios, ID_LiquidacionesSocios, 1, 1, 1, 1, 1, 1, 1)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
 
@@ -2080,10 +2073,10 @@ Private Sub LoadIcons()
         CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\car_compact_grey.bmp", ID_Vehiculos, xtpImageNormal
             
             
-        Dim I As Integer
-        For I = 1 To 17
-            SuiteControlsGlobalSettings.Icons.LoadIcon App.Path & "\styles\TreeView\icon" & I & ".ico", I, xtpImageNormal
-        Next I
+        Dim i As Integer
+        For i = 1 To 17
+            SuiteControlsGlobalSettings.Icons.LoadIcon App.Path & "\styles\TreeView\icon" & i & ".ico", i, xtpImageNormal
+        Next i
 End Sub
 
 Private Sub SaveRibbonBarToXML()
@@ -2447,14 +2440,14 @@ Dim Anterior As Integer
     End If
     
     Cad = ""
-    For I = 0 To RibbonBar.TabCount - 1
-        J = RibbonBar.Tab(I).Id
+    For i = 0 To RibbonBar.TabCount - 1
+        J = RibbonBar.Tab(i).Id
         'Debug.Print J & " " & RibbonBar.Tab(i).Caption
         If J = Anterior Then
             
-            RibbonBar.Tab(I).visible = True
-            RibbonBar.Tab(I).Selected = True
-            Set RibbonBar.SelectedTab = RibbonBar.Tab(I)
+            RibbonBar.Tab(i).visible = True
+            RibbonBar.Tab(i).Selected = True
+            Set RibbonBar.SelectedTab = RibbonBar.Tab(i)
             Cad = "OK"
             Exit For
         End If
@@ -2676,8 +2669,10 @@ Dim GrupLiqu As RibbonGroup
                         Set Control = GrupAlba.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
                     Case 418 To 423
                         Set Control = GrupLiqu.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
-                    Case 424 To 428
+                    Case 424 To 429
                         Set Control = GrupEsta.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
+                    Case Else
+                        MsgBox "No se ha encontrado el código " & Rn2!Codigo & " " & Rn2!Descripcion, vbExclamation
                 End Select
                 
                 
@@ -3174,6 +3169,8 @@ Private Sub AbrirFormularios(Accion As Long)
             AbrirListadoOfer (231)
         Case 428 ' Informe de servicios por socios
              AbrirListadoOfer (92)
+        Case 429 ' Listado de liquidaciones Socios
+             AbrirListadoOfer (241)
         Case 501 ' Proveedores
             frmComProveedores.Show vbModal
         Case 502 ' Proveedores Varios
@@ -3382,16 +3379,16 @@ Private Sub AbrirFormularios(Accion As Long)
         Case 1013 ' Usuarios activos
             'Muestra si hay otros usuarios conectados a la Gestion
             Dim Sql As String
-            Dim I As Integer
+            Dim i As Integer
             
                 CadenaDesdeOtroForm = OtrosPCsContraContabiliad
                 If CadenaDesdeOtroForm <> "" Then
-                    I = 1
+                    i = 1
                     Me.Tag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
                     Do
-                        Sql = RecuperaValor(CadenaDesdeOtroForm, I)
+                        Sql = RecuperaValor(CadenaDesdeOtroForm, i)
                         If Sql <> "" Then Me.Tag = Me.Tag & "    - " & Sql & vbCrLf
-                        I = I + 1
+                        i = i + 1
                     Loop Until Sql = ""
                     MsgBox Me.Tag, vbExclamation
                 Else

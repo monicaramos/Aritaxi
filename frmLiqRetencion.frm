@@ -697,12 +697,12 @@ On Error GoTo Error1
         If DatosOk And BLOQUEADesdeFormulario(Me) Then
              If ModificaDesdeFormulario(Me, 3) Then
                  TerminaBloquear
-                 NumReg = Data1.Recordset.AbsolutePosition
+                 NumReg = data1.Recordset.AbsolutePosition
                  PonerModo 2
-                 CancelaADODC Me.Data1
+                 CancelaADODC Me.data1
                  CargaGrid True
                  LLamaLineas 10
-                 SituarDataPosicion Data1, NumReg, Indicador
+                 SituarDataPosicion data1, NumReg, Indicador
              End If
              lblIndicador.Caption = Indicador
              DataGrid1.SetFocus
@@ -747,10 +747,10 @@ Private Sub cmdCancelar_Click()
         Case 3 'INSERTAR
             DataGrid1.AllowAddNew = False
             
-            If Not Data1.Recordset.EOF Then
+            If Not data1.Recordset.EOF Then
                 PonerModo 2
-                Data1.Recordset.MoveFirst
-                lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+                data1.Recordset.MoveFirst
+                lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
             Else 'No hay Registros en la Tabla
                 PonerModo 0
             End If
@@ -764,12 +764,12 @@ Private Sub cmdCancelar_Click()
 '            CargaTxtAux False, False
             PonerModo 2
             LLamaLineas 10
-            If Not Data1.Recordset.EOF Then Data1.Recordset.MoveFirst
-            lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+            If Not data1.Recordset.EOF Then data1.Recordset.MoveFirst
+            lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
             
     End Select
     
-    CalcularTotales Data1.RecordSource
+    CalcularTotales data1.RecordSource
 
 
 ECancelar:
@@ -789,9 +789,9 @@ End Sub
 
 Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 
-    If Not Data1.Recordset.EOF And (Modo <> 3 And Modo <> 4) Then
+    If Not data1.Recordset.EOF And (Modo <> 3 And Modo <> 4) Then
         
-        lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+        lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
         
         PonerModoOpcionesMenu
     End If
@@ -878,9 +878,9 @@ Private Sub Form_Load()
     CadenaConsulta = CadenaConsulta & " from " & NombreTabla & " INNER JOIN sclien ON sreten.codsocio = sclien.codclien "
     CadenaConsulta = CadenaConsulta & " WHERE sreten.codsocio is null " 'No recupera datos
     
-    Data1.ConnectionString = conn
-    Data1.RecordSource = CadenaConsulta
-    Data1.Refresh
+    data1.ConnectionString = conn
+    data1.RecordSource = CadenaConsulta
+    data1.Refresh
     
     CargaGrid (Modo = 2)
     Screen.MousePointer = vbDefault
@@ -896,7 +896,7 @@ On Error GoTo ECarga
     b = DataGrid1.Enabled
     
     Sql = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, Sql, False
+    CargaGridGnral DataGrid1, Me.data1, Sql, False
 
     CargaGrid2
 
@@ -928,6 +928,8 @@ On Error GoTo ECarga2
 ECarga2:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid: " & DataGrid1.Tag, Err.Description
 End Sub
+
+
 
 
 
@@ -1041,14 +1043,14 @@ End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim I As Integer
+Dim i As Integer
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Kmodo
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).BackColor = vbWhite
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
       
     Select Case Kmodo
         Case 1 'Modo Buscar
@@ -1138,9 +1140,9 @@ Dim b As Boolean
     Toolbar2.Buttons(1).Enabled = True 'And (Data1.Recordset!tiporeten = 1)
     Toolbar2.Buttons(2).Enabled = False
     If Modo = 2 Then
-        If Not Data1.Recordset Is Nothing Then
-            Toolbar2.Buttons(2).Enabled = Data1.Recordset!tiporeten
-            Me.mnReimprimir.Enabled = Data1.Recordset!tiporeten
+        If Not data1.Recordset Is Nothing Then
+            Toolbar2.Buttons(2).Enabled = data1.Recordset!tiporeten
+            Me.mnReimprimir.Enabled = data1.Recordset!tiporeten
         End If
     End If
     
@@ -1173,7 +1175,7 @@ End Sub
 
 Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
-    DesplazamientoData Data1, Index
+    DesplazamientoData data1, Index
     PonerCampos
 End Sub
 
@@ -1222,7 +1224,7 @@ Dim anc As Single
         PonerFoco txtAux(0)
     Else
         HacerBusqueda
-        If Data1.Recordset.EOF Then
+        If data1.Recordset.EOF Then
             txtAux(kCampo).Text = ""
             txtAux(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco txtAux(kCampo)
@@ -1257,7 +1259,7 @@ Dim anc As Single
     PonerModo 3
        
     'Situamos el grid al final
-    AnyadirLinea DataGrid1, Data1
+    AnyadirLinea DataGrid1, data1
     
 '    CargaTxtAux True, True
     anc = ObtenerAlto(Me.DataGrid1)
@@ -1273,7 +1275,7 @@ End Sub
 
 
 Private Sub BotonModificar()
-Dim I As Integer
+Dim i As Integer
 Dim anc As Single
 
     'Escondemos el navegador y ponemos Modo Modificar
@@ -1281,8 +1283,8 @@ Dim anc As Single
     
     'Como el campo1, campo2 y campo3 es clave primaria, NO se puede modificar
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -1294,7 +1296,7 @@ Dim anc As Single
     '---- poner valores grabados
     'codsocio
     txtAux(0).Text = DBLet(DataGrid1.Columns(0).Value, "N")
-    FormateaCampo txtAux(I)
+    FormateaCampo txtAux(i)
     
     'nomsocio
     Text2(0).Text = DBLet(DataGrid1.Columns(1).Value, "T")
@@ -1312,9 +1314,9 @@ Dim anc As Single
     FormateaCampo txtAux(2)
     
     ' ***** canviar-ho pel nom del camp del combo *********
-    I = Me.Data1.Recordset!tiporeten
+    i = Me.data1.Recordset!tiporeten
     ' *****************************************************
-    PosicionarCombo Me.Combo1(0), I
+    PosicionarCombo Me.Combo1(0), i
     
     'Importe
     txtAux(1).Text = DBLet(DataGrid1.Columns(7).Value, "N")
@@ -1336,23 +1338,23 @@ Dim Sql As String
 On Error GoTo FinEliminar
         
         'Ciertas comprobaciones
-        If Data1.Recordset.EOF Then Exit Function
+        If data1.Recordset.EOF Then Exit Function
         
         Sql = "¿Seguro que desea eliminar la Retención para?" & vbCrLf
-        Sql = Sql & vbCrLf & "Socio: " & Format(Data1.Recordset.Fields(0).Value, "000000") & " - " & Data1.Recordset!nomclien
-        Sql = Sql & vbCrLf & "Fecha: " & Data1.Recordset.Fields(3).Value
-        Sql = Sql & vbCrLf & "Factura : " & Format(Data1.Recordset.Fields(4).Value, "0000000")
+        Sql = Sql & vbCrLf & "Socio: " & Format(data1.Recordset.Fields(0).Value, "000000") & " - " & data1.Recordset!nomclien
+        Sql = Sql & vbCrLf & "Fecha: " & data1.Recordset.Fields(3).Value
+        Sql = Sql & vbCrLf & "Factura : " & Format(data1.Recordset.Fields(4).Value, "0000000")
         
         If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
             'Hay que eliminar
-            NumRegElim = Me.Data1.Recordset.AbsolutePosition
-            Sql = "Delete from " & NombreTabla & " where codsocio=" & Val(Data1.Recordset!codSocio)
-            Sql = Sql & " and fecfactu=" & DBSet(Data1.Recordset!FecFactu, "F") & " and numfactu=" & Val(Data1.Recordset!NumFactu)
+            NumRegElim = Me.data1.Recordset.AbsolutePosition
+            Sql = "Delete from " & NombreTabla & " where codsocio=" & Val(data1.Recordset!codSocio)
+            Sql = Sql & " and fecfactu=" & DBSet(data1.Recordset!FecFactu, "F") & " and numfactu=" & Val(data1.Recordset!NumFactu)
             conn.Execute Sql
-            CancelaADODC Me.Data1
+            CancelaADODC Me.data1
             CargaGrid True
-            CancelaADODC Me.Data1
-            SituarDataPosicion Me.Data1, NumRegElim, Sql
+            CancelaADODC Me.data1
+            SituarDataPosicion Me.data1, NumRegElim, Sql
         End If
         
 FinEliminar:
@@ -1401,9 +1403,9 @@ Private Sub PonerCadenaBusqueda()
 Screen.MousePointer = vbHourglass
 On Error GoTo EEPonerBusq
 
-    Data1.RecordSource = CadenaConsulta
-    Data1.Refresh
-    If Data1.Recordset.RecordCount <= 0 Then
+    data1.RecordSource = CadenaConsulta
+    data1.Refresh
+    If data1.Recordset.RecordCount <= 0 Then
         PonerModo Modo
         CargaGrid False
         MsgBox "No hay ningún registro en la tabla " & NombreTabla & " para ese criterio de Búsqueda.", vbInformation
@@ -1428,12 +1430,12 @@ End Sub
 Private Sub PonerCampos()
 On Error GoTo EPonerCampos
 
-    If Data1.Recordset.EOF Then Exit Sub
-    PonerCamposForma Me, Data1
+    If data1.Recordset.EOF Then Exit Sub
+    PonerCamposForma Me, data1
     CargaGrid True
     
     '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+    lblIndicador.Caption = data1.Recordset.AbsolutePosition & " de " & data1.Recordset.RecordCount
     
 EPonerCampos:
     If Err.Number <> 0 Then MuestraError Err.Number, "Poniendo Campos", Err.Description
@@ -1481,8 +1483,8 @@ Dim devuelve As String
         conn.Execute Sql
         
         Sql = "insert into tmpinformes (codusu, codigo1, importe1, importe2, fecha1) values ("
-        Sql = Sql & vUsu.Codigo & "," & DBSet(Me.Data1.Recordset!codSocio, "N") & "," & DBSet(Data1.Recordset!NumerUve, "N") & ","
-        Sql = Sql & DBSet(Data1.Recordset!ImpReten * (-1), "N") & "," & DBSet(Data1.Recordset!hastafec, "F") & ")"
+        Sql = Sql & vUsu.Codigo & "," & DBSet(Me.data1.Recordset!codSocio, "N") & "," & DBSet(data1.Recordset!NumerUve, "N") & ","
+        Sql = Sql & DBSet(data1.Recordset!ImpReten * (-1), "N") & "," & DBSet(data1.Recordset!hastafec, "F") & ")"
         
         conn.Execute Sql
         
@@ -1496,8 +1498,8 @@ Dim devuelve As String
         If Not PonerParamRPT(indRPT, cadParam, numParam, nomDocu, False, pPdfRpt) Then Exit Sub
     
     
-        cadFormula = "{scafac.codtipom} = 'FAV' and {scafac.numfactu}= " & Me.Data1.Recordset!NumFactu & " and "
-        cadFormula = cadFormula & "{scafac.fecfactu}= Date(" & Year(DBLet(Data1.Recordset!FecFactu, "F")) & "," & Month(DBLet(Data1.Recordset!FecFactu, "F")) & "," & Day(DBLet(Data1.Recordset!FecFactu, "F")) & ")"
+        cadFormula = "{scafac.codtipom} = 'FAV' and {scafac.numfactu}= " & Me.data1.Recordset!NumFactu & " and "
+        cadFormula = cadFormula & "{scafac.fecfactu}= Date(" & Year(DBLet(data1.Recordset!FecFactu, "F")) & "," & Month(DBLet(data1.Recordset!FecFactu, "F")) & "," & Day(DBLet(data1.Recordset!FecFactu, "F")) & ")"
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
     
     
@@ -1506,8 +1508,8 @@ Dim devuelve As String
      
         With frmImprimir
                 'Nuevo. Febrero 2010
-                .outClaveNombreArchiv = devuelve & Format(Me.Data1.Recordset!NumFactu, "000")
-                .outCodigoCliProv = Me.Data1.Recordset!codSocio
+                .outClaveNombreArchiv = devuelve & Format(Me.data1.Recordset!NumFactu, "000")
+                .outCodigoCliProv = Me.data1.Recordset!codSocio
                 .outTipoDocumento = 100
                 
                 .FormulaSeleccion = cadFormula
@@ -1577,12 +1579,12 @@ Private Sub BloquearClavesP(bol As Boolean)
 'Si BloquearClavesPrimarias=true deshablilita los textbox de codigos y lo pone amarillo
 'y habilita el resto de campos para introducir nuevos valores
 'Si BloquearClavesPrimarias=false habilita los textbox de codigos para introducir
-Dim I As Byte
+Dim i As Byte
 
-    For I = 0 To 0 'Codigo socio
-        BloquearTxt txtAux(I), bol
-        Me.cmdaux(I).Enabled = Not bol
-    Next I
+    For i = 0 To 0 'Codigo socio
+        BloquearTxt txtAux(i), bol
+        Me.cmdAux(i).Enabled = Not bol
+    Next i
     BloquearTxt txtAux(2), bol
     BloquearTxt txtAux(3), bol
     
@@ -1645,10 +1647,10 @@ Dim b As Boolean
             Text2(jj).visible = b
         Next jj
         
-        For jj = 0 To Me.cmdaux.Count - 1
-            Me.cmdaux(jj).Height = Me.DataGrid1.RowHeight
-            Me.cmdaux(jj).top = alto
-            Me.cmdaux(jj).visible = b
+        For jj = 0 To Me.cmdAux.Count - 1
+            Me.cmdAux(jj).Height = Me.DataGrid1.RowHeight
+            Me.cmdAux(jj).top = alto
+            Me.cmdAux(jj).visible = b
         Next jj
         
         For jj = 0 To Combo1.Count - 1

@@ -417,7 +417,7 @@ End Function
 
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del formulario
     Me.Icon = frmppal.Icon
@@ -430,8 +430,8 @@ Dim I As Integer
     Combo1(1).ListIndex = 0
     
     
-    For I = 0 To Me.imgFec.Count - 1
-        imgFec(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFec.Count - 1
+        imgFec(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
     
     
@@ -542,7 +542,7 @@ Private Sub CargaSociosClientes(Tipo As Byte)
 '       1 = clientes
 Dim Sql As String
 Dim Rs As ADODB.Recordset
-Dim rs2 As ADODB.Recordset
+Dim Rs2 As ADODB.Recordset
 Dim v_cadena As String
     
 Dim Tabla As String
@@ -597,8 +597,8 @@ End Sub
 Private Sub CargaFacturas(Tipo As Byte)
     Dim Sql As String
     Dim Rs As ADODB.Recordset
-    Dim rs2 As ADODB.Recordset
-    Dim I As Long
+    Dim Rs2 As ADODB.Recordset
+    Dim i As Long
     Dim FicheroPDF As String
     Dim C1 As String
     Dim C2 As String
@@ -696,7 +696,7 @@ Dim v_cadena As String
             Case 2
                 v_cadena = v_cadena & "/faccli/facturas/"
             Case 3
-                v_cadena = v_cadena & "/cuota/facturas/"
+                v_cadena = v_cadena & "/cuotas/facturas/"
             Case 4
                 v_cadena = v_cadena & "/pubsoc/facturas/"
             Case 5
@@ -733,71 +733,90 @@ Dim v_cadena As String
             v_cadena = v_cadena & "ALL"
         End If
         
-        If Jason_GET(v_cadena) <> "" Then
-            ' tenemos que marcarlos todos como que han sido transpasados a la app de rafa
-            Select Case Tipo
-                Case 1
-                    'actualizamos el pasaridoc de facturas socios
-                    Sql = "update sfactusoc set exportada = 1 where codtipom in ('FLI','FRL')"
-                    If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
-                    If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
-                    If txtCodigo(2) <> "" Then Sql = Sql & " and codsocio >= " & DBSet(txtCodigo(2), "N")
-                    If txtCodigo(3) <> "" Then Sql = Sql & " and codsocio <= " & DBSet(txtCodigo(3), "N")
+        v_cadena = Jason_GET(v_cadena)
+        
+        If v_cadena <> "" Then
+            Dim Resp As String
+            Dim Mens As String
+            
+            v_cadena = v_cadena & ","
+            Resp = RecuperaValor(v_cadena, 1, ",")
+            Resp = Replace(Mid(Resp, InStr(1, Resp, ":") + 1), "{", "")
+            Resp = Replace(Resp, """", "")
+            Mens = RecuperaValor(v_cadena, 2, ",")
+            Mens = Replace(Mid(Mens, InStr(1, Mens, ":") + 1), "}", "")
+            Mens = Replace(Mens, """", "")
+            If Resp = "OK" Then
+                ' tenemos que marcarlos todos como que han sido transpasados a la app de rafa
+                Select Case Tipo
+                    Case 1
+                        'actualizamos el pasaridoc de facturas socios
+                        Sql = "update sfactusoc set exportada = 1 where codtipom in ('FLI','FRL')"
+                        If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
+                        If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
+                        If txtCodigo(2) <> "" Then Sql = Sql & " and codsocio >= " & DBSet(txtCodigo(2), "N")
+                        If txtCodigo(3) <> "" Then Sql = Sql & " and codsocio <= " & DBSet(txtCodigo(3), "N")
+                        
+                        conn.Execute Sql
+                        
+                    Case 2
+                        'actualizamos el pasaridoc de facturas clientes
+                        Sql = "update scafaccli set exportada = 1 where codtipom in ('FAC','FVC','FRN')"
+                        If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
+                        If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
+                        If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
+                        If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
+                        
+                        conn.Execute Sql
                     
-                    conn.Execute Sql
+                    Case 3
+                        'actualizamos el pasaridoc de facturas socios
+                        Sql = "update scafac set exportada = 1 where codtipom in ('FCN','FCE','FRC')"
+                        If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
+                        If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
+                        If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
+                        If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
+                        
+                        conn.Execute Sql
                     
-                Case 2
-                    'actualizamos el pasaridoc de facturas clientes
-                    Sql = "update scafaccli set exportada = 1 where codtipom in ('FAC','FVC','FRN')"
-                    If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
-                    If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
-                    If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
-                    If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
+                    Case 4
+                        'actualizamos el pasaridoc de facturas socios
+                        Sql = "update sfactusoc set exportada = 1 where codtipom in ('FPS')"
+                        If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
+                        If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
+                        If txtCodigo(2) <> "" Then Sql = Sql & " and codsocio >= " & DBSet(txtCodigo(2), "N")
+                        If txtCodigo(3) <> "" Then Sql = Sql & " and codsocio <= " & DBSet(txtCodigo(3), "N")
+                        
+                        conn.Execute Sql
                     
-                    conn.Execute Sql
-                
-                Case 3
-                    'actualizamos el pasaridoc de facturas socios
-                    Sql = "update scafac set exportada = 1 where codtipom in ('FCN','FCE','FRC')"
-                    If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
-                    If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
-                    If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
-                    If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
+                    Case 5
+                        'actualizamos el pasaridoc de facturas clientes
+                        Sql = "update scafaccli set exportada = 1 where codtipom in ('FPC','FRP')"
+                        If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
+                        If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
+                        If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
+                        If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
+                        
+                        conn.Execute Sql
                     
-                    conn.Execute Sql
+                    Case 6
+                        'actualizamos el pasaridoc de facturas socios
+                        Sql = "update scafac set exportada = 1 where codtipom in ('FAV','FAT','FAR')"
+                        If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
+                        If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
+                        If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
+                        If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
+                        conn.Execute Sql
+                End Select
                 
-                Case 4
-                    'actualizamos el pasaridoc de facturas socios
-                    Sql = "update sfactusoc set exportada = 1 where codtipom in ('FPS')"
-                    If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
-                    If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
-                    If txtCodigo(2) <> "" Then Sql = Sql & " and codsocio >= " & DBSet(txtCodigo(2), "N")
-                    If txtCodigo(3) <> "" Then Sql = Sql & " and codsocio <= " & DBSet(txtCodigo(3), "N")
-                    
-                    conn.Execute Sql
                 
-                Case 5
-                    'actualizamos el pasaridoc de facturas clientes
-                    Sql = "update scafaccli set exportada = 1 where codtipom in ('FPC','FRP')"
-                    If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
-                    If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
-                    If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
-                    If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
-                    
-                    conn.Execute Sql
+                MsgBox "Proceso realizado correctamente." & vbCrLf & vbCrLf & Mens, vbExclamation
                 
-                Case 6
-                    'actualizamos el pasaridoc de facturas socios
-                    Sql = "update scafac set exportada = 1 where codtipom in ('FAV','FAT','FAR')"
-                    If txtCodigo(0) <> "" Then Sql = Sql & " and fecfactu >= " & DBSet(txtCodigo(0), "F")
-                    If txtCodigo(1) <> "" Then Sql = Sql & " and fecfactu <= " & DBSet(txtCodigo(1), "F")
-                    If txtCodigo(2) <> "" Then Sql = Sql & " and codclien >= " & DBSet(txtCodigo(2), "N")
-                    If txtCodigo(3) <> "" Then Sql = Sql & " and codclien <= " & DBSet(txtCodigo(3), "N")
-                    conn.Execute Sql
-                
-            End Select
-                
-            MsgBox "Proceso realizado correctamente.", vbExclamation
+            Else
+                MsgBox "No se ha realizado el proceso." & vbCrLf & vbCrLf & Mens, vbExclamation
+            
+            End If
+            
         End If
     Else
         MsgBox "No hay datos entre esos límites.", vbExclamation
@@ -818,7 +837,7 @@ End Sub
 Private Sub CargaCombo()
 Dim ini As Integer
 Dim Fin As Integer
-Dim I As Integer
+Dim i As Integer
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
 '    For I = 0 To Combo1.Count - 1
@@ -853,26 +872,26 @@ End Sub
 
 
 Private Function IntentaMatar(FicheroPDF As String) As Boolean
-Dim I As Integer
+Dim i As Integer
 
     On Error Resume Next
-    I = 1
+    i = 1
     IntentaMatar = False
     Do
         If Dir(FicheroPDF, vbArchive) <> "" Then
             Kill FicheroPDF
             If Err.Number <> 0 Then
                 Err.Clear
-                I = I + 1
+                i = i + 1
             Else
                 IntentaMatar = True
-                I = 6
+                i = 6
             End If
         Else
             IntentaMatar = True
-            I = 6
+            i = 6
         End If
-    Loop Until I < 5 Or IntentaMatar = True
+    Loop Until i < 5 Or IntentaMatar = True
     
     
 End Function

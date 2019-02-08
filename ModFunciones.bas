@@ -66,7 +66,7 @@ End Sub
 Public Function ValorParaSQL(Valor, ByRef vtag As CTag) As String
 Dim Dev As String
 Dim D As Single
-Dim I As Integer
+Dim i As Integer
 Dim V
     Dev = ""
     If Valor <> "" Then
@@ -298,7 +298,7 @@ Dim mTag As CTag
 Dim Cad As String
 Dim Valor As Variant
 Dim campo As String  'Campo en la base de datos
-Dim I As Integer
+Dim i As Integer
 
 
     On Error GoTo EPonerCamposForma
@@ -380,14 +380,14 @@ Dim I As Integer
                 If mTag.Cargado Then
                     campo = mTag.columna
                     Valor = DBLet(vData.Recordset.Fields(campo))
-                    I = 0
-                    For I = 0 To Control.ListCount - 1
-                        If Control.ItemData(I) = Val(Valor) Then
-                            Control.ListIndex = I
+                    i = 0
+                    For i = 0 To Control.ListCount - 1
+                        If Control.ItemData(i) = Val(Valor) Then
+                            Control.ListIndex = i
                             Exit For
                         End If
-                    Next I
-                    If I = Control.ListCount Then Control.ListIndex = -1
+                    Next i
+                    If i = Control.ListCount Then Control.ListIndex = -1
                 End If 'de cargado
             End If 'de <>""
         End If
@@ -410,7 +410,7 @@ Dim mTag As CTag
 Dim Cad As String
 Dim Valor As Variant
 Dim campo As String  'Campo en la base de datos
-Dim I As Integer
+Dim i As Integer
 
     Set mTag = New CTag
     PonerCamposFormaFrame = False
@@ -470,14 +470,14 @@ Dim I As Integer
                 If mTag.Cargado Then
                     campo = mTag.columna
                     Valor = vData.Recordset.Fields(campo)
-                    I = 0
-                    For I = 0 To Control.ListCount - 1
-                        If Control.ItemData(I) = Val(Valor) Then
-                            Control.ListIndex = I
+                    i = 0
+                    For i = 0 To Control.ListCount - 1
+                        If Control.ItemData(i) = Val(Valor) Then
+                            Control.ListIndex = i
                             Exit For
                         End If
-                    Next I
-                    If I = Control.ListCount Then Control.ListIndex = -1
+                    Next i
+                    If i = Control.ListCount Then Control.ListIndex = -1
                 End If 'de cargado
             End If 'de <>""
         End If
@@ -1142,30 +1142,31 @@ End Function
 
 'recupera valor desde una cadena con pipes(acabada en pipes)
 'Para ello le decimos el orden  y ya ta
-Public Function RecuperaValor(ByRef Cadena As String, Orden As Integer) As String
-Dim I As Integer
+Public Function RecuperaValor(ByRef CADENA As String, Orden As Integer, Optional Separador As String) As String
+Dim i As Integer
 Dim J As Integer
 Dim cont As Integer
 Dim Cad As String
 
-    I = 0
+    If Separador = "" Then Separador = "|"
+
+    i = 0
     cont = 1
     Cad = ""
     Do
-        J = I + 1
-        I = InStr(J, Cadena, "|")
-        If I > 0 Then
+        J = i + 1
+        i = InStr(J, CADENA, Separador)
+        If i > 0 Then
             If cont = Orden Then
-                Cad = Mid(Cadena, J, I - J)
-                I = Len(Cadena) 'Para salir del bucle
+                Cad = Mid(CADENA, J, i - J)
+                i = Len(CADENA) 'Para salir del bucle
                 Else
                     cont = cont + 1
             End If
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     RecuperaValor = Cad
 End Function
-
 
 
 
@@ -1177,7 +1178,7 @@ End Function
 'Para ello en el tag del button tendremos k poner un numero k nos diara hasta k nivel esta permitido
 
 Public Sub PonerOpcionesMenuGeneral(ByRef formulario As Form)
-Dim I As Integer
+Dim i As Integer
 Dim J As Integer
 
 On Error GoTo EPonerOpcionesMenuGeneral
@@ -1186,14 +1187,14 @@ On Error GoTo EPonerOpcionesMenuGeneral
 With formulario
 
     'LA TOOLBAR  .--> Requisito, k se llame toolbar1
-    For I = 1 To .Toolbar1.Buttons.Count
-        If .Toolbar1.Buttons(I).Tag <> "" Then
-            J = Val(.Toolbar1.Buttons(I).Tag)
+    For i = 1 To .Toolbar1.Buttons.Count
+        If .Toolbar1.Buttons(i).Tag <> "" Then
+            J = Val(.Toolbar1.Buttons(i).Tag)
             If J < vUsu.Nivel Then
-                .Toolbar1.Buttons(I).Enabled = False
+                .Toolbar1.Buttons(i).Enabled = False
             End If
         End If
-    Next I
+    Next i
 
     'Esto es un poco salvaje. Por si acaso , no existe en este trozo pondremos los errores on resume next
 
@@ -1364,17 +1365,17 @@ End Function
 
 Private Function ComprobarComillas(Cad As String) As String
 Dim J As Integer
-Dim I As Integer
+Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        I = InStr(J, Cad, """")
-        If I > 0 Then
-            Aux = Mid(Cad, 1, I - 1) & "\"
-            Cad = Aux & Mid(Cad, I)
-            J = I + 2
+        i = InStr(J, Cad, """")
+        If i > 0 Then
+            Aux = Mid(Cad, 1, i - 1) & "\"
+            Cad = Aux & Mid(Cad, i)
+            J = i + 2
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     ComprobarComillas = Cad
 End Function
 
@@ -1764,36 +1765,36 @@ Public Function ObtenerNSerieSiguiente(cadNSerie As String) As String
 'OUT -> RETURN: cadena con el sig. NºSerie : "0000-12-0012"
 Dim NumAux As String, numAnt As String
 Dim NumAux2 As String
-Dim I As Integer
+Dim i As Integer
 
     On Error Resume Next
     
     NumAux = cadNSerie
     numAnt = ""
     'Quitar los cararacter '-' y quedarse con la parte dcha
-    I = InStr(1, NumAux, "-")
-    While Not I = 0
-        numAnt = numAnt & Mid(NumAux, 1, I)
-        NumAux = Mid(NumAux, I + 1, Len(NumAux) - I)
-        I = InStr(1, NumAux, "-")
+    i = InStr(1, NumAux, "-")
+    While Not i = 0
+        numAnt = numAnt & Mid(NumAux, 1, i)
+        NumAux = Mid(NumAux, i + 1, Len(NumAux) - i)
+        i = InStr(1, NumAux, "-")
     Wend
     
     If NumAux <> "" Then 'Hay q coger la parte derecha del - : 0011
-        I = Len(NumAux)
+        i = Len(NumAux)
         If IsNumeric(NumAux) Then
             NumAux = CStr(NumAux + 1)
-            While Len(NumAux) < I
+            While Len(NumAux) < i
                 NumAux = "0" & NumAux
             Wend
         Else
         'Coger el nº mas a la derecha, incrementarlo y concatenarlo con el principio
-            NumAux2 = Mid(NumAux, I, Len(NumAux))
+            NumAux2 = Mid(NumAux, i, Len(NumAux))
             While IsNumeric(NumAux2)
-                I = I - 1
-                NumAux2 = Mid(NumAux, I, Len(NumAux))
+                i = i - 1
+                NumAux2 = Mid(NumAux, i, Len(NumAux))
             Wend
             NumAux2 = Right(NumAux2, Len(NumAux2) - 1)
-            numAnt = numAnt & Mid(NumAux, 1, I)
+            numAnt = numAnt & Mid(NumAux, 1, i)
             NumAux = CStr(NumAux2 + 1)
             While Len(NumAux) < Len(NumAux2)
                 NumAux = "0" & NumAux
@@ -2111,21 +2112,21 @@ Public Function CApos(Texto As String) As String
 '-- (RAFA/ALZIRA) 07092006
 '-- Esta función procesa caracteres extraños y de control para sentencias SQL
 
-    Dim I As Integer
+    Dim i As Integer
     Dim i2 As Integer
     i2 = 1
-    I = InStr(i2, Texto, "'")
-    While I <> 0
-        Texto = Mid(Texto, 1, I) & "'" & Mid(Texto, I + 1, Len(Texto) - I)
-        i2 = I + 2
-        I = InStr(i2, Texto, "'")
+    i = InStr(i2, Texto, "'")
+    While i <> 0
+        Texto = Mid(Texto, 1, i) & "'" & Mid(Texto, i + 1, Len(Texto) - i)
+        i2 = i + 2
+        i = InStr(i2, Texto, "'")
     Wend
     i2 = 1
-    I = InStr(i2, Texto, "\")
-    While I <> 0
-        Texto = Mid(Texto, 1, I) & "\" & Mid(Texto, I + 1, Len(Texto) - I)
-        i2 = I + 2
-        I = InStr(i2, Texto, "\")
+    i = InStr(i2, Texto, "\")
+    While i <> 0
+        Texto = Mid(Texto, 1, i) & "\" & Mid(Texto, i + 1, Len(Texto) - i)
+        i2 = i + 2
+        i = InStr(i2, Texto, "\")
     Wend
 
 End Function
@@ -2417,13 +2418,13 @@ End Function
 
 
 Public Function DevuelveUltimoAlmacen(Tabla As String, Where As String) As Integer
-Dim c As String
+Dim C As String
 Dim Rs As ADODB.Recordset
 
     DevuelveUltimoAlmacen = -1
-    c = "Select codalmac FROM " & Tabla & Where & " ORDER BY numlinea DESC"
+    C = "Select codalmac FROM " & Tabla & Where & " ORDER BY numlinea DESC"
     Set Rs = New ADODB.Recordset
-    Rs.Open c, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open C, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         If Not IsNull(Rs.Fields(0)) Then DevuelveUltimoAlmacen = CInt(Rs.Fields(0))
     End If
@@ -3388,7 +3389,7 @@ Dim Sql As String
 End Function
 
 
-Public Function Jason_GET(Cadena As String) As String
+Public Function Jason_GET(CADENA As String) As String
 Dim httpURL As WinHttp.WinHttpRequest
 Dim vJson As String
 
@@ -3396,7 +3397,7 @@ Dim vJson As String
  
     Set httpURL = New WinHttp.WinHttpRequest
     vJson = ""
-    httpURL.Open "GET", Cadena
+    httpURL.Open "GET", CADENA
     httpURL.send vJson
     Jason_GET = httpURL.responseText
     
@@ -3404,7 +3405,7 @@ End Function
 
 
 
-Public Function Jason_POST(Cadena As String) As String
+Public Function Jason_POST(CADENA As String) As String
 
 Dim httpURL As WinHttp.WinHttpRequest
 Dim vJson As String
@@ -3414,7 +3415,7 @@ Dim vJson As String
     Set httpURL = New WinHttp.WinHttpRequest
     
     vJson = ""
-    httpURL.Open "POST", Cadena, False
+    httpURL.Open "POST", CADENA, False
     'vJson = Text3.Text
     httpURL.setRequestHeader "Content-Type", "application/json"
     httpURL.send vJson

@@ -5,16 +5,16 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmLog 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "LOG de acciones"
-   ClientHeight    =   5985
+   ClientHeight    =   9780
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   11115
+   ClientWidth     =   13110
    Icon            =   "frmLog.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5985
-   ScaleWidth      =   11115
+   ScaleHeight     =   9780
+   ScaleWidth      =   13110
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
@@ -155,14 +155,14 @@ Begin VB.Form frmLog
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmLog.frx":0010
-      Height          =   4545
-      Left            =   120
+      Height          =   8175
+      Left            =   135
       TabIndex        =   10
       TabStop         =   0   'False
-      Top             =   780
-      Width           =   10735
-      _ExtentX        =   18944
-      _ExtentY        =   8017
+      Top             =   855
+      Width           =   12735
+      _ExtentX        =   22463
+      _ExtentY        =   14420
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
@@ -234,10 +234,10 @@ Begin VB.Form frmLog
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9840
+      Left            =   11820
       TabIndex        =   6
-      Top             =   5490
-      Width           =   1035
+      Top             =   9270
+      Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
@@ -251,10 +251,10 @@ Begin VB.Form frmLog
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8640
+      Left            =   10620
       TabIndex        =   5
-      Top             =   5490
-      Width           =   1035
+      Top             =   9270
+      Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -268,17 +268,17 @@ Begin VB.Form frmLog
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9840
+      Left            =   11790
       TabIndex        =   9
-      Top             =   5490
+      Top             =   9270
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.Frame Frame1 
       Height          =   555
-      Left            =   90
+      Left            =   135
       TabIndex        =   7
-      Top             =   5355
+      Top             =   9090
       Width           =   2115
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -422,15 +422,15 @@ Dim Modo As Byte
 
 Private Sub PonerModo(vModo As Byte)
 Dim b As Boolean
-Dim I As Integer
+Dim i As Integer
 
     Modo = vModo
     b = (Modo = 2)
     PonerIndicador Me.lblIndicador, Modo
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).BackColor = vbWhite
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).BackColor = vbWhite
+    Next i
     
     
     
@@ -605,7 +605,7 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     CboTipoSitu.Left = txtAux(0).Left + txtAux(0).Width + 45
     txtAux(1).Left = CboTipoSitu.Left + CboTipoSitu.Width + 45
     txtAux(2).Left = txtAux(1).Left + txtAux(1).Width + 45
-    txtAux(3).Left = txtAux(2).Left + txtAux(2).Width + 45
+    txtAux(3).Left = txtAux(2).Left + txtAux(2).Width + 55 '45
     
 End Sub
 
@@ -742,7 +742,7 @@ Private Sub DataGrid1_DblClick()
         If Not (Adodc1.Recordset Is Nothing) Then
             If Not Adodc1.Recordset.EOF Then
                 CadenaDesdeOtroForm = "Fecha: " & Adodc1.Recordset!Fecha & vbCrLf
-                CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Usuario / PC : " & Adodc1.Recordset!Usuario & " - " & Adodc1.Recordset!PC & vbCrLf
+                CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Usuario / PC : " & Adodc1.Recordset!USUARIO & " - " & Adodc1.Recordset!PC & vbCrLf
                 CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Accion: " & DBLet(Adodc1.Recordset!NomArtic, "T") & vbCrLf & vbCrLf
                 CadenaDesdeOtroForm = CadenaDesdeOtroForm & Replace(Space(80), " ", "-") & vbCrLf
                 CadenaDesdeOtroForm = CadenaDesdeOtroForm & "Descripción:" & vbCrLf & Adodc1.Recordset!Descripcion
@@ -847,8 +847,8 @@ Dim tots As String
     CargaGridGnral DataGrid1, Me.Adodc1, Sql, False
     
     '### a mano
-    tots = "S|txtAux(0)|T|Fecha|2000|;S|CboTipoSitu|C|Accion|2200|;S|txtAux(1)|T|Usuario|1300|;"
-    tots = tots & "S|txtAux(2)|T|PC|1400|;S|txtAux(3)|T|Descripcion|3250|;"
+    tots = "S|txtAux(0)|T|Fecha|2000|;S|CboTipoSitu|C|Accion|2700|;S|txtAux(1)|T|Usuario|1300|;"
+    tots = tots & "S|txtAux(2)|T|PC|1400|;S|txtAux(3)|T|Descripcion|4785|;"
     
     arregla tots, DataGrid1, Me, 350
     

@@ -973,10 +973,10 @@ Dim DtoCli As String
     Set Rs = New ADODB.Recordset
     Sql = "select fecha,hora,codsocio,numeruve,codclien,codusuar,nomclien,dirllama,"
     Sql = Sql & "numllama,puerllama,ciudadre,tipservi,telefono,observac2,codautor,observa1,licencia,"
-    Sql = Sql & "matricul,idservic,opereser,opedespa,estado,observa2,fecreser,horreser,fecaviso,"
+    Sql = Sql & "matricul,idservic,opereser,opedespa,estado,observa2,fecreser,horreser,fecaviso,"           '[Monica]08/02/2019: añadimos el codigo de usuario para Sevilla
     Sql = Sql & "horaviso,fecllega,horllega,fecocupa,horocupa,fecfinal,horfinal,importtx,impcompr,"         '[Monica]03/10/2014: añadimos el destino
     '[Monica]28/12/2017: al añadir la situacion 2, ésta tambien es erronea, luego no debe entrar, solo entran situacion = 0
-    Sql = Sql & "extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,abonados,validado, destino, empresa from tmpTaxi where error1=0"
+    Sql = Sql & "extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,abonados,validado, destino, empresa, codigousu from tmpTaxi where error1=0"
     
     Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
     total = rsContador("select count(*) from tmpTaxi where error1=0")
@@ -999,7 +999,7 @@ Dim DtoCli As String
     Sql = Sql & "numllama,puerllama,ciudadre,tipservi,telefono,observac2,codautor,observa1,licencia,"
     Sql = Sql & "matricul,idservic,opereser,opedespa,estado,observa2,fecreser,horreser,fecaviso,"
     Sql = Sql & "horaviso,fecllega,horllega,fecocupa,horocupa,fecfinal,horfinal,importtx,impcompr,"
-    Sql = Sql & "extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,abonados,validado, destino, empresa) values "
+    Sql = Sql & "extcompr,impventa,extventa,distanci,suplemen,imppeaje,imppropi,facturad,abonados,validado, destino, empresa, codigousu) values "
     
     '[Monica]11/11/2014: dejamos actualizar si no esta liquidada ni facturada
     SqlUpdate = "update shilla set "
@@ -1069,9 +1069,14 @@ Dim DtoCli As String
                 
                 '[Monica]28/05/2018: para el caso de que el cliente tenga descuento se le descuenta al socio
 '                linea = linea & ",impcompr = " & DBSet(Rs!impcompr, "N")
-                DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
-                ImporteCompra = Round2(DBLet(Rs!impcompr, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
-                linea = linea & ",impcompr = " & DBSet(ImporteCompra, "N")
+                '[Monica]04/02/2019: todos menos Sevilla
+                If vParamAplic.Cooperativa <> 3 Then
+                    DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
+                    ImporteCompra = Round2(DBLet(Rs!impcompr, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
+                    linea = linea & ",impcompr = " & DBSet(ImporteCompra, "N")
+                Else
+                    linea = linea & ",impcompr = " & DBSet(Rs!impcompr, "N")
+                End If
                 
                 linea = linea & ",extcompr = " & DBSet(Rs!extcompr, "N")
                 linea = linea & ",impventa = " & DBSet(Rs!impventa, "N")
@@ -1104,6 +1109,10 @@ Dim DtoCli As String
                 
                 linea = linea & ",destino = " & DBSet(Rs!Destino, "T")
                 linea = linea & ",empresa = " & DBSet(Rs!Empresa, "N")
+                '[Monica]08/02/2019:
+                linea = linea & ",codigousu = " & DBSet(Rs!codigousu, "N")
+                
+                
                 linea = linea & " where " & cWhere
                 
                 conn.Execute SqlUpdate & linea
@@ -1314,9 +1323,15 @@ Dim DtoCli As String
             Else
                 '[Monica]28/05/2018: para el caso de que el cliente tenga descuento se le descuenta al socio
 '                linea = linea & DBSet(Rs!impcompr, "N") & ","
-                DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
-                ImporteCompra = Round2(DBLet(Rs!impcompr, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
-                linea = linea & DBSet(ImporteCompra, "N") & ","
+                '[Monica]04/02/2019: todos menos Sevilla
+                If vParamAplic.Cooperativa <> 3 Then
+                    DtoCli = DevuelveDesdeBDNew(conAri, "scliente", "dtognral", "codclien", DBLet(Rs!CodClien, "N"), "N")
+                    ImporteCompra = Round2(DBLet(Rs!impcompr, "N") * (100 - ImporteSinFormato(ComprobarCero(DtoCli))) / 100, 2)
+                    linea = linea & DBSet(ImporteCompra, "N") & ","
+                Else
+                    linea = linea & DBSet(Rs!impcompr, "N") & ","
+                End If
+                
             End If
             
             
@@ -1403,10 +1418,18 @@ Dim DtoCli As String
                 linea = linea & DBSet(Rs!Destino, "T") & ","
             End If
             If IsNull(Rs!Empresa) Then
+                linea = linea & "NULL,"
+            Else
+                linea = linea & DBSet(Rs!Empresa, "N") & ","
+            End If
+            
+            If IsNull(Rs!codigousu) Then
                 linea = linea & "NULL)"
             Else
-                linea = linea & DBSet(Rs!Empresa, "N") & ")"
+                linea = linea & DBSet(Rs!codigousu, "N") & ")"
             End If
+            
+            
             values = values & linea & ","
             'If Len(values) > 100000 Then
                 'quitamos la ultima coma
@@ -2907,7 +2930,7 @@ End Function
 Private Function ComprobarFichero(Escliente As Boolean) As Boolean
 Dim NF As Long
 Dim Cad As String
-Dim I As Integer
+Dim i As Integer
 Dim longitud As Long
 Dim Rs As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -2928,7 +2951,7 @@ Dim b As Boolean
     Open Text1.Text For Input As #NF
     
     Line Input #NF, Cad
-    I = 0
+    i = 0
     
     conn.Execute "delete from tmpinformes where codusu = " & vUsu.Codigo
     
@@ -2945,10 +2968,10 @@ Dim b As Boolean
     b = True
 
     While Not EOF(NF) And b
-        I = I + 1
+        i = i + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & I
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
         b = ComprobarRegistro(Cad, Escliente)
@@ -2958,10 +2981,10 @@ Dim b As Boolean
     Close #NF
     
     If Cad <> "" Then
-        I = I + 1
+        i = i + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & I
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
         b = ComprobarRegistro(Cad, Escliente)
@@ -3148,7 +3171,7 @@ End Function
 Private Function TraspasoFichero(EsClien As Boolean) As Boolean
 Dim NF As Long
 Dim Cad As String
-Dim I As Integer
+Dim i As Integer
 Dim longitud As Long
 Dim Rs As ADODB.Recordset
 Dim rs1 As ADODB.Recordset
@@ -3181,7 +3204,7 @@ Dim SqlServ As String
     Open Text1.Text For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
     
     Line Input #NF, Cad
-    I = 0
+    i = 0
     
     Label1(0).Caption = "Procesando Fichero: " & Text1.Text
     
@@ -3202,10 +3225,10 @@ Dim SqlServ As String
         
     b = True
     While Not EOF(NF)
-        I = I + 1
+        i = i + 1
         
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & I
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes
@@ -3263,7 +3286,7 @@ Dim SqlServ As String
     
     If Cad <> "" Then
         Me.ProgressBar1.Value = Me.ProgressBar1.Value + Len(Cad)
-        Label1(2).Caption = "Linea " & I
+        Label1(2).Caption = "Linea " & i
         Me.Refresh
         
         If EsClien Then ' facturacion a clientes

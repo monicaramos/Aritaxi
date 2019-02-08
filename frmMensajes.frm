@@ -144,6 +144,7 @@ Begin VB.Form frmMensajes
          _ExtentX        =   23072
          _ExtentY        =   8017
          View            =   3
+         LabelEdit       =   1
          LabelWrap       =   -1  'True
          HideSelection   =   -1  'True
          FullRowSelect   =   -1  'True
@@ -1699,7 +1700,7 @@ Dim Cantidad() As Integer
 
 Public Parametros As String
 
-Dim I As Integer
+Dim i As Integer
 Dim Sql As String
 Dim Rs As Recordset
 Dim ItmX As ListItem
@@ -1757,7 +1758,7 @@ End Sub
 
 
 Private Sub cmdAceptarNSeries_Click()
-Dim I As Integer, J As Byte
+Dim i As Integer, J As Byte
 Dim Seleccionados As Integer
 Dim Cad As String, Sql As String
 Dim Articulo As String
@@ -1776,17 +1777,17 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
         For J = 0 To TotalArray
             Articulo = codArtic(J)
             Cad = Cad & Articulo & "|"
-            For I = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(I).Checked Then
-                    If Articulo = ListView2.ListItems(I).ListSubItems(1).Text Then
+            For i = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(i).Checked Then
+                    If Articulo = ListView2.ListItems(i).ListSubItems(1).Text Then
                         If Seleccionados < Abs(Cantidad(J)) Then
                             Seleccionados = Seleccionados + 1
-                            Cad = Cad & ListView2.ListItems(I).Text & "|"
+                            Cad = Cad & ListView2.ListItems(i).Text & "|"
                         End If
                    'cad = cad & Data1.Recordset.Fields(1) & "|"
                     End If
                 End If
-            Next I
+            Next i
             If Seleccionados < Abs(Cantidad(J)) Then
                 'Comprobar que si tiene Nºs de serie de ese articulos cargados seleccione los
                 'que corresponden
@@ -1823,15 +1824,15 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
             Cad = Cad & vUsu.Codigo & ",1,'2005-04-12',"
             
             
-            For I = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(I).Checked Then
+            For i = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(i).Checked Then
                     ' ---- [30/10/2009] (LAURA) : agrupar por cliente y departamento
 '                    conn.Execute cad & (ListView2.ListItems(I).Text) & ")"
-                    conn.Execute Cad & DBSet(ListView2.ListItems(I).ListSubItems(3).Text, "N", "S") & "," & (ListView2.ListItems(I).Text) & ")"
+                    conn.Execute Cad & DBSet(ListView2.ListItems(i).ListSubItems(3).Text, "N", "S") & "," & (ListView2.ListItems(i).Text) & ")"
                     
                     NumRegElim = NumRegElim + 1
                 End If
-            Next I
+            Next i
             
             
             '----------------------------------------------------------------
@@ -1839,13 +1840,13 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
         Else
             Cad = ""
             NumRegElim = 0
-            For I = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(I).Checked Then
+            For i = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(i).Checked Then
                     NumRegElim = NumRegElim + 1
-                    Cad = Cad & Val(ListView2.ListItems(I).Text) & ","
+                    Cad = Cad & Val(ListView2.ListItems(i).Text) & ","
                      'cad = cad & Data1.Recordset.Fields(1) & "|"
                 End If
-            Next I
+            Next i
             If NumRegElim > 1000 Then
                 MsgBox "Maximo número de etiquetas: 1000 (" & NumRegElim & ")", vbExclamation
                 NumRegElim = 0
@@ -1863,25 +1864,25 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
         C2 = ""
         c3 = ""
         Sql = ""
-        For I = 1 To ListView2.ListItems.Count
-            If ListView2.ListItems(I).Checked Then
+        For i = 1 To ListView2.ListItems.Count
+            If ListView2.ListItems(i).Checked Then
                 If Sql = "" Then
-                    C1 = DBSet(ListView2.ListItems(I), "T", "N")
-                    C2 = ListView2.ListItems(I).ListSubItems(1)
+                    C1 = DBSet(ListView2.ListItems(i), "T", "N")
+                    C2 = ListView2.ListItems(i).ListSubItems(1)
 '                    c3 = ListView2.ListItems(i).ListSubItems(2)
-                    Cad = "(codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(I).ListSubItems(2)
+                    Cad = "(codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(i).ListSubItems(2)
 
                 Else
-                    If Trim(DBSet(ListView2.ListItems(I), "T", "N")) = Trim(C1) And Trim(ListView2.ListItems(I).ListSubItems(1)) = Trim(C2) Then
+                    If Trim(DBSet(ListView2.ListItems(i), "T", "N")) = Trim(C1) And Trim(ListView2.ListItems(i).ListSubItems(1)) = Trim(C2) Then
                     'es el mismo albaran y concatenamos lineas
-                        Cad = "," & ListView2.ListItems(I).ListSubItems(2)
+                        Cad = "," & ListView2.ListItems(i).ListSubItems(2)
 
                     Else
                         If Cad <> "" Then Sql = Sql & ")) "
-                        C1 = DBSet(ListView2.ListItems(I), "T", "N")
-                        C2 = ListView2.ListItems(I).ListSubItems(1)
+                        C1 = DBSet(ListView2.ListItems(i), "T", "N")
+                        C2 = ListView2.ListItems(i).ListSubItems(1)
 '                    c3 = ListView2.ListItems(i).ListSubItems(2)
-                        Cad = " or (codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(I).ListSubItems(2)
+                        Cad = " or (codtipoa=" & Trim(C1) & " and numalbar=" & Val(C2) & " and numlinea IN (" & ListView2.ListItems(i).ListSubItems(2)
                         
 '                       cad=cad &
                     End If
@@ -1892,7 +1893,7 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
             Else
 '                cad = ""
             End If
-        Next I
+        Next i
         If Cad <> "" Then
             Sql = Sql & "))"
             Cad = "(" & cadWHERE & ") AND (" & Sql & ")"
@@ -1903,13 +1904,13 @@ Dim C1 As String * 10, C2 As String * 10, c3 As String * 10
     ElseIf OpcionMensaje = 25 Then
             Cad = ""
             NumRegElim = 0
-            For I = 1 To ListView2.ListItems.Count
-                If ListView2.ListItems(I).Checked Then
+            For i = 1 To ListView2.ListItems.Count
+                If ListView2.ListItems(i).Checked Then
                     NumRegElim = NumRegElim + 1
-                    Cad = Cad & Val(ListView2.ListItems(I).Text) & ","
+                    Cad = Cad & Val(ListView2.ListItems(i).Text) & ","
                      'cad = cad & Data1.Recordset.Fields(1) & "|"
                 End If
-            Next I
+            Next i
             If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
     End If
     
@@ -1938,8 +1939,8 @@ Private Sub cmdBlEmp_Click(Index As Integer)
         'Index Me dira que listview
         For Ok = ListView6(Index).ListItems.Count To 1 Step -1
             If ListView6(Index).ListItems(Ok).Selected Then
-                I = ListView6(Index).ListItems(Ok).Index
-                PasarUnaEmpresaBloqueada Index = 0, I
+                i = ListView6(Index).ListItems(Ok).Index
+                PasarUnaEmpresaBloqueada Index = 0, i
             End If
         Next Ok
     Case Else
@@ -1969,7 +1970,7 @@ Dim It
         NE = 1 'icono
     End If
     
-    Sql = ListView6(Origen).ListItems(indice).Key
+    Sql = ListView6(Origen).ListItems(indice).key
     Set It = ListView6(Destino).ListItems.Add(, Sql)
     It.SmallIcon = NE
     It.Text = ListView6(Origen).ListItems(indice).Text
@@ -1984,9 +1985,9 @@ Private Sub cmdBloqEmpre_Click(Index As Integer)
         Sql = "DELETE FROM usuarios.usuarioempresasaritaxi WHERE codusu =" & Parametros
         conn.Execute Sql
         Sql = ""
-        For I = 1 To ListView6(1).ListItems.Count
-            Sql = Sql & ", (" & Parametros & "," & Val(Mid(ListView6(1).ListItems(I).Key, 2)) & ")"
-        Next I
+        For i = 1 To ListView6(1).ListItems.Count
+            Sql = Sql & ", (" & Parametros & "," & Val(Mid(ListView6(1).ListItems(i).key, 2)) & ")"
+        Next i
         If Sql <> "" Then
             'Quitmos la primera coma
             Sql = Mid(Sql, 2)
@@ -2200,11 +2201,11 @@ End Function
 
 
 Private Sub cmdDeselTodos_Click()
-Dim I As Integer
+Dim i As Integer
 
-    For I = 1 To ListView2.ListItems.Count
-        ListView2.ListItems(I).Checked = False
-    Next I
+    For i = 1 To ListView2.ListItems.Count
+        ListView2.ListItems(i).Checked = False
+    Next i
 End Sub
 
 Private Sub cmdEmail_Click()
@@ -2245,11 +2246,11 @@ Private Sub GenerarEtiquetasEstanterias()
 End Sub
 
 Private Sub cmdSelTodos_Click()
-    Dim I As Integer
+    Dim i As Integer
 
-    For I = 1 To ListView2.ListItems.Count
-        ListView2.ListItems(I).Checked = True
-    Next I
+    For i = 1 To ListView2.ListItems.Count
+        ListView2.ListItems(i).Checked = True
+    Next i
 End Sub
 
 
@@ -3490,7 +3491,7 @@ Private Sub CargarListaEmpresas()
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
 Dim Sql As String
-Dim I As Integer
+Dim i As Integer
 
 Dim Prohibidas As String
 
@@ -3508,7 +3509,7 @@ Dim Prohibidas As String
     ListView2.ListItems.Clear
     
     Set Rs = New ADODB.Recordset
-    I = -1
+    i = -1
     Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     While Not Rs.EOF
         Sql = "|" & Rs!codempre & "|"
@@ -3517,14 +3518,14 @@ Dim Prohibidas As String
             ItmX.Tag = Rs!codempre
             If ItmX.Tag = vEmpresa.codempre Then
                 ItmX.Checked = True
-                I = ItmX.Index
+                i = ItmX.Index
             End If
             ItmX.ToolTipText = Rs!AriTaxi
         End If
         Rs.MoveNext
     Wend
     Rs.Close
-    If I > 0 Then Set ListView2.SelectedItem = ListView2.ListItems(I)
+    If i > 0 Then Set ListView2.SelectedItem = ListView2.ListItems(i)
 
     
 ECargarLista:
@@ -3577,15 +3578,15 @@ Private Function ObtenerTamanyosArray() As Boolean
 'Para el frame de los Nº de Serie de los Articulos
 'En cada indice pone en CodArtic(i) el codigo del articulo
 'y en Cantidad(i) la cantidad solicitada de cada codartic
-Dim I As Integer, J As Integer
+Dim i As Integer, J As Integer
 
     ObtenerTamanyosArray = False
     'Primero a los campos de la tabla
     TotalArray = -1
     J = 0
     Do
-        I = J + 1
-        J = InStr(I, vCampos, "·")
+        i = J + 1
+        J = InStr(i, vCampos, "·")
         If J > 0 Then TotalArray = TotalArray + 1
     Loop Until J = 0
     
@@ -3602,23 +3603,23 @@ End Function
 Private Function SeparaCampos() As Boolean
 'Para el frame de los Nº de Serie de los Articulos
 Dim Grupo As String
-Dim I As Integer
+Dim i As Integer
 Dim J As Integer
 Dim C As Integer 'Contador dentro del array
 
     SeparaCampos = False
-    I = 0
+    i = 0
     C = 0
     Do
-        J = I + 1
-        I = InStr(J, vCampos, "·")
-        If I > 0 Then
-            Grupo = Mid(vCampos, J, I - J)
+        J = i + 1
+        i = InStr(J, vCampos, "·")
+        If i > 0 Then
+            Grupo = Mid(vCampos, J, i - J)
             'Y en la martriz
             InsertaGrupo Grupo, C
             C = C + 1
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     SeparaCampos = True
 End Function
 
@@ -3723,26 +3724,26 @@ End Sub
 Private Function RegresarCargaEmpresas() As String
 Dim Sql As String
 Dim Parametros As String
-Dim I As Integer
+Dim i As Integer
 
     CadenaDesdeOtroForm = ""
     
         Sql = ""
         Parametros = ""
-        For I = 1 To ListView2.ListItems.Count
-            If Me.ListView2.ListItems(I).Checked Then
-                Sql = Sql & Me.ListView2.ListItems(I).Text & "|"
+        For i = 1 To ListView2.ListItems.Count
+            If Me.ListView2.ListItems(i).Checked Then
+                Sql = Sql & Me.ListView2.ListItems(i).Text & "|"
                 Parametros = Parametros & "1" 'Contador
             End If
-        Next I
+        Next i
         CadenaDesdeOtroForm = Len(Parametros) & "|" & Sql
         'Vemos las conta
         Sql = ""
-        For I = 1 To ListView2.ListItems.Count
-            If Me.ListView2.ListItems(I).Checked Then
-                Sql = Sql & Me.ListView2.ListItems(I).Tag & "|"
+        For i = 1 To ListView2.ListItems.Count
+            If Me.ListView2.ListItems(i).Checked Then
+                Sql = Sql & Me.ListView2.ListItems(i).Tag & "|"
             End If
-        Next I
+        Next i
         CadenaDesdeOtroForm = CadenaDesdeOtroForm & Sql
     
     

@@ -27,22 +27,23 @@ Option Explicit
 '       7.- Eliminar articulo
 '       8.- Modificar FACTURA
 '       9.- Modificacion de llamada de SHILLA
+'       10.- Eliminacion de llamada de SHILLA
 '
-Public Function Insertar(Accion As Byte, ByRef ElUsuario As Usuario, Descripcion As String) As Boolean
-Dim SQL As String
+Public Function Insertar(Accion As Byte, ByRef ElUsuario As USUARIO, Descripcion As String) As Boolean
+Dim Sql As String
 
     On Error GoTo EI
     Insertar = False
     
-    SQL = "insert into `slog` (`fecha`,`accion`,`usuario`,`pc`,`descripcion`) values ( "
-    SQL = SQL & " now()," & Accion & " ,'" & DevNombreSQL(ElUsuario.Login) & "','"
-    SQL = SQL & DevNombreSQL(ElUsuario.PC) & "',"
+    Sql = "insert into `slog` (`fecha`,`accion`,`usuario`,`pc`,`descripcion`) values ( "
+    Sql = Sql & " now()," & Accion & " ,'" & DevNombreSQL(ElUsuario.Login) & "','"
+    Sql = Sql & DevNombreSQL(ElUsuario.PC) & "',"
     If Descripcion = "" Then
-        SQL = SQL & "NULL)"
+        Sql = Sql & "NULL)"
     Else
-        SQL = SQL & "'" & DevNombreSQL(Descripcion) & "')"
+        Sql = Sql & "'" & DevNombreSQL(Descripcion) & "')"
     End If
-    conn.Execute SQL
+    conn.Execute Sql
     
     
     Insertar = True
@@ -66,6 +67,7 @@ Public Function DevuelveAcciones(ByRef ListaAcciones As Collection) As Boolean
     ListaAcciones.Add "7|Eliminar articulo|"
     ListaAcciones.Add "8|Modificar Factura|"
     ListaAcciones.Add "9|Modifica SHILLA|"
+    ListaAcciones.Add "10|Eliminar SHILLA|"
     DevuelveAcciones = True
     Exit Function
 EDevuelveAcciones:

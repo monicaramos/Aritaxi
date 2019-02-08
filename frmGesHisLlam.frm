@@ -26,9 +26,30 @@ Begin VB.Form frmGesHisLlam
       ForeColor       =   &H00972E0B&
       Height          =   4920
       Left            =   225
-      TabIndex        =   86
+      TabIndex        =   87
       Top             =   855
       Width           =   13515
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   44
+         Left            =   3735
+         MaxLength       =   6
+         TabIndex        =   5
+         Tag             =   "Codigo Usuario|N|S|||shilla|codigousu|000000||"
+         Text            =   "999999"
+         Top             =   1350
+         Width           =   825
+      End
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -43,7 +64,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   42
          Left            =   1410
          MaxLength       =   80
-         TabIndex        =   14
+         TabIndex        =   15
          Tag             =   "Destino|T|S|||shilla|destino|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   4350
@@ -63,7 +84,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   41
          Left            =   2550
          MaxLength       =   10
-         TabIndex        =   10
+         TabIndex        =   11
          Tag             =   "Puerta|T|S|||shilla|puerllama|||"
          Text            =   "ABCDEFGHIJ"
          Top             =   3045
@@ -83,7 +104,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   40
          Left            =   1410
          MaxLength       =   10
-         TabIndex        =   9
+         TabIndex        =   10
          Tag             =   "Numero|T|S|||shilla|numllama|||"
          Text            =   "ABCDEFGHIJ"
          Top             =   3045
@@ -103,7 +124,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   16
          Left            =   1410
          MaxLength       =   30
-         TabIndex        =   7
+         TabIndex        =   8
          Tag             =   "Nombre|T|S|||shilla|nomclien|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2175
@@ -123,7 +144,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   15
          Left            =   7920
          MaxLength       =   14
-         TabIndex        =   16
+         TabIndex        =   17
          Tag             =   "Autorización|T|S|||shilla|codautor|||"
          Text            =   "Text"
          Top             =   3195
@@ -143,7 +164,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   14
          Left            =   1410
          MaxLength       =   30
-         TabIndex        =   6
+         TabIndex        =   7
          Tag             =   "Usuario|T|S|||shilla|codusuar|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1740
@@ -164,7 +185,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   13
          Left            =   5640
          MaxLength       =   6
-         TabIndex        =   5
+         TabIndex        =   6
          Tag             =   "Codigo cliente|N|S|||shilla|codclien|000000||"
          Text            =   "999999"
          Top             =   1350
@@ -204,7 +225,7 @@ Begin VB.Form frmGesHisLlam
          ForeColor       =   &H00972E0B&
          Height          =   645
          Left            =   6660
-         TabIndex        =   101
+         TabIndex        =   102
          Top             =   4095
          Width           =   6735
          Begin VB.CheckBox Check1 
@@ -221,7 +242,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   375
             Index           =   0
             Left            =   660
-            TabIndex        =   20
+            TabIndex        =   21
             Tag             =   "Facturado|N|S|||shilla|facturad|||"
             Top             =   210
             Width           =   1395
@@ -240,7 +261,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   375
             Index           =   1
             Left            =   2910
-            TabIndex        =   21
+            TabIndex        =   22
             Tag             =   "Abonado|N|S|||shilla|abonados|||"
             Top             =   210
             Width           =   1305
@@ -259,7 +280,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   375
             Index           =   2
             Left            =   5025
-            TabIndex        =   22
+            TabIndex        =   23
             Tag             =   "Validado|N|S|||shilla|validado|||"
             Top             =   210
             Width           =   1305
@@ -278,7 +299,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Left            =   11535
          Style           =   2  'Dropdown List
-         TabIndex        =   19
+         TabIndex        =   20
          Tag             =   "Tipo servicio|N|S|0|1|shilla|tipservi|0||"
          Top             =   3165
          Width           =   1905
@@ -298,7 +319,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   1
          Left            =   2385
-         TabIndex        =   100
+         TabIndex        =   101
          Text            =   "Text2"
          Top             =   945
          Width           =   4080
@@ -317,7 +338,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   10
          Left            =   7920
          MaxLength       =   10
-         TabIndex        =   17
+         TabIndex        =   18
          Tag             =   "Matricula|T|S|||shilla|matricul|||"
          Text            =   "Text"
          Top             =   3645
@@ -337,7 +358,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   9
          Left            =   11535
          MaxLength       =   15
-         TabIndex        =   18
+         TabIndex        =   19
          Tag             =   "Identificacion|T|S|||shilla|idservic|||"
          Top             =   2730
          Width           =   1905
@@ -396,7 +417,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   6
          Left            =   7920
          MaxLength       =   10
-         TabIndex        =   15
+         TabIndex        =   16
          Tag             =   "Licencia|T|S|||shilla|licencia|||"
          Text            =   "Text"
          Top             =   2730
@@ -416,7 +437,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   5
          Left            =   1410
          MaxLength       =   35
-         TabIndex        =   13
+         TabIndex        =   14
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   3915
          Width           =   5040
@@ -435,7 +456,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   4
          Left            =   1410
          MaxLength       =   30
-         TabIndex        =   12
+         TabIndex        =   13
          Tag             =   "Población|T|S|||shilla|ciudadre|||"
          Text            =   "ABCDEFGHIJKLMNÑOPQRSTUVWXYZABC"
          Top             =   3480
@@ -456,7 +477,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   3
          Left            =   5535
          MaxLength       =   6
-         TabIndex        =   11
+         TabIndex        =   12
          Text            =   "HHHHHH"
          Top             =   3045
          Width           =   915
@@ -475,7 +496,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   2
          Left            =   1410
          MaxLength       =   30
-         TabIndex        =   8
+         TabIndex        =   9
          Tag             =   "Domicilio|T|S|||shilla|dirllama|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2610
@@ -525,7 +546,7 @@ Begin VB.Form frmGesHisLlam
       Begin VB.Frame FrameAux2 
          Height          =   2415
          Left            =   6570
-         TabIndex        =   87
+         TabIndex        =   88
          Top             =   180
          Width           =   6885
          Begin VB.TextBox txtaux3 
@@ -543,7 +564,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   7
             Left            =   5550
-            TabIndex        =   97
+            TabIndex        =   98
             Tag             =   "Documento|T|N|||shilla_fichdocs|docum|||"
             Text            =   "docum"
             Top             =   810
@@ -565,7 +586,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   6
             Left            =   4800
-            TabIndex        =   96
+            TabIndex        =   97
             Tag             =   "Campo|T|N|||shilla_fichdocs|campo||S|"
             Text            =   "campo"
             Top             =   810
@@ -587,7 +608,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   5
             Left            =   4080
-            TabIndex        =   95
+            TabIndex        =   96
             Tag             =   "Descripcion|T|N|||shilla_fichdocs|descripfich||N|"
             Text            =   "descripcion"
             Top             =   810
@@ -609,7 +630,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   4
             Left            =   3330
-            TabIndex        =   94
+            TabIndex        =   95
             Tag             =   "Orden|N|N|0||shilla_fichdocs|orden||S|"
             Text            =   "Orden"
             Top             =   810
@@ -631,7 +652,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   3
             Left            =   2580
-            TabIndex        =   93
+            TabIndex        =   94
             Tag             =   "vehiculo|N|N|0||shilla_fichdocs|numeruve||S|"
             Text            =   "Codigo"
             Top             =   810
@@ -653,7 +674,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   2
             Left            =   1800
-            TabIndex        =   92
+            TabIndex        =   93
             Tag             =   "Vehiculo|N|N|0||shilla_fichdocs|numeruve||S|"
             Text            =   "Vehiculo"
             Top             =   810
@@ -675,7 +696,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   1
             Left            =   1110
-            TabIndex        =   91
+            TabIndex        =   92
             Tag             =   "Hora|H|N|||shilla_fichdocs|hora|hh:mm|S|"
             Text            =   "Hora"
             Top             =   810
@@ -697,7 +718,7 @@ Begin VB.Form frmGesHisLlam
             Height          =   350
             Index           =   0
             Left            =   330
-            TabIndex        =   90
+            TabIndex        =   91
             Tag             =   "Fecha|F|S|||shilla_fichdocs|fecha|dd/mm/yyyy|S|"
             Text            =   "Fecha"
             Top             =   810
@@ -708,13 +729,13 @@ Begin VB.Form frmGesHisLlam
             BorderStyle     =   0  'None
             Height          =   345
             Left            =   90
-            TabIndex        =   88
+            TabIndex        =   89
             Top             =   120
             Width           =   2625
             Begin MSComctlLib.Toolbar ToolbarAux0 
                Height          =   330
                Left            =   165
-               TabIndex        =   89
+               TabIndex        =   90
                Top             =   45
                Width           =   2235
                _ExtentX        =   3942
@@ -789,7 +810,7 @@ Begin VB.Form frmGesHisLlam
          Begin MSComctlLib.ListView Lw1 
             Height          =   1635
             Left            =   90
-            TabIndex        =   98
+            TabIndex        =   99
             Top             =   600
             Width           =   6645
             _ExtentX        =   11721
@@ -836,10 +857,28 @@ Begin VB.Form frmGesHisLlam
             EndProperty
             Height          =   255
             Left            =   3120
-            TabIndex        =   99
+            TabIndex        =   100
             Top             =   210
             Width           =   3480
          End
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Cód.Usu"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   39
+         Left            =   2790
+         TabIndex        =   122
+         Top             =   1380
+         Width           =   1020
       End
       Begin VB.Label Label1 
          Caption         =   "Destino"
@@ -855,7 +894,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   37
          Left            =   210
-         TabIndex        =   120
+         TabIndex        =   121
          Top             =   4350
          Width           =   1425
       End
@@ -873,7 +912,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   36
          Left            =   210
-         TabIndex        =   119
+         TabIndex        =   120
          Top             =   3045
          Width           =   1545
       End
@@ -891,7 +930,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   17
          Left            =   210
-         TabIndex        =   118
+         TabIndex        =   119
          Top             =   2175
          Width           =   1305
       End
@@ -909,7 +948,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   16
          Left            =   6660
-         TabIndex        =   117
+         TabIndex        =   118
          Top             =   3195
          Width           =   1485
       End
@@ -927,7 +966,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   15
          Left            =   210
-         TabIndex        =   116
+         TabIndex        =   117
          Top             =   1740
          Width           =   1305
       End
@@ -962,7 +1001,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   14
          Left            =   4635
-         TabIndex        =   115
+         TabIndex        =   116
          Top             =   1380
          Width           =   705
       End
@@ -980,7 +1019,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   13
          Left            =   210
-         TabIndex        =   114
+         TabIndex        =   115
          Top             =   1380
          Width           =   1425
       End
@@ -998,7 +1037,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   4
          Left            =   1650
-         TabIndex        =   113
+         TabIndex        =   114
          Top             =   285
          Width           =   495
       End
@@ -1016,7 +1055,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   2
          Left            =   240
-         TabIndex        =   112
+         TabIndex        =   113
          Top             =   285
          Width           =   825
       End
@@ -1043,7 +1082,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   12
          Left            =   6660
-         TabIndex        =   111
+         TabIndex        =   112
          Top             =   3690
          Width           =   1245
       End
@@ -1061,7 +1100,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   11
          Left            =   9945
-         TabIndex        =   110
+         TabIndex        =   111
          Top             =   2730
          Width           =   1485
       End
@@ -1079,7 +1118,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   10
          Left            =   2700
-         TabIndex        =   109
+         TabIndex        =   110
          Top             =   285
          Width           =   1275
       End
@@ -1097,7 +1136,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   9
          Left            =   9900
-         TabIndex        =   108
+         TabIndex        =   109
          Top             =   3165
          Width           =   1725
       End
@@ -1115,7 +1154,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   8
          Left            =   6660
-         TabIndex        =   107
+         TabIndex        =   108
          Top             =   2730
          Width           =   1245
       End
@@ -1133,7 +1172,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   7
          Left            =   210
-         TabIndex        =   106
+         TabIndex        =   107
          Top             =   3915
          Width           =   1425
       End
@@ -1151,7 +1190,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   6
          Left            =   210
-         TabIndex        =   105
+         TabIndex        =   106
          Top             =   3480
          Width           =   1545
       End
@@ -1178,7 +1217,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   5
          Left            =   4905
-         TabIndex        =   104
+         TabIndex        =   105
          Top             =   3045
          Width           =   255
       End
@@ -1196,7 +1235,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   0
          Left            =   210
-         TabIndex        =   103
+         TabIndex        =   104
          Top             =   2610
          Width           =   1425
       End
@@ -1214,7 +1253,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   1
          Left            =   195
-         TabIndex        =   102
+         TabIndex        =   103
          Top             =   1005
          Width           =   645
       End
@@ -1222,7 +1261,7 @@ Begin VB.Form frmGesHisLlam
    Begin VB.Frame Frame6 
       Height          =   1515
       Left            =   225
-      TabIndex        =   82
+      TabIndex        =   83
       Top             =   8790
       Width           =   13515
       Begin VB.TextBox Text1 
@@ -1239,7 +1278,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   39
          Left            =   2670
          MaxLength       =   200
-         TabIndex        =   49
+         TabIndex        =   50
          Tag             =   "Observaciones 2|T|S|||shilla|observa2|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   1020
@@ -1259,7 +1298,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   38
          Left            =   2670
          MaxLength       =   200
-         TabIndex        =   48
+         TabIndex        =   49
          Tag             =   "Observaciones Cliente|T|S|||shilla|observa1|||"
          Text            =   $"frmGesHisLlam.frx":0000
          Top             =   630
@@ -1279,7 +1318,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   37
          Left            =   2670
          MaxLength       =   60
-         TabIndex        =   47
+         TabIndex        =   48
          Tag             =   "Observaciones|T|S|||shilla|observac2|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   240
@@ -1326,7 +1365,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   35
          Left            =   120
-         TabIndex        =   85
+         TabIndex        =   86
          Top             =   1020
          Width           =   1875
       End
@@ -1344,7 +1383,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   34
          Left            =   120
-         TabIndex        =   84
+         TabIndex        =   85
          Top             =   630
          Width           =   2325
       End
@@ -1362,7 +1401,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   33
          Left            =   120
-         TabIndex        =   83
+         TabIndex        =   84
          Top             =   240
          Width           =   1785
       End
@@ -1381,7 +1420,7 @@ Begin VB.Form frmGesHisLlam
       ForeColor       =   &H00972E0B&
       Height          =   2940
       Left            =   6780
-      TabIndex        =   71
+      TabIndex        =   72
       Top             =   5760
       Width           =   6960
       Begin VB.TextBox Text1 
@@ -1398,7 +1437,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   43
          Left            =   2025
-         TabIndex        =   39
+         TabIndex        =   40
          Tag             =   "Empresa alfa|N|S|||shilla|empresa|####0||"
          Text            =   "Text"
          Top             =   1770
@@ -1418,7 +1457,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   36
          Left            =   5400
-         TabIndex        =   44
+         TabIndex        =   45
          Tag             =   "Imp.Propina|N|S|||shilla|imppropi|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   1770
@@ -1438,7 +1477,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   375
          Index           =   4
          Left            =   3840
-         TabIndex        =   46
+         TabIndex        =   47
          Tag             =   "Facturado Cliente|N|N|0|1|shilla|facturadocliente|||"
          Top             =   2310
          Width           =   2145
@@ -1457,7 +1496,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   375
          Index           =   3
          Left            =   1080
-         TabIndex        =   45
+         TabIndex        =   46
          Tag             =   "Liquidado Socio|N|N|0|1|shilla|liquidadosocio|||"
          Top             =   2310
          Width           =   1905
@@ -1476,7 +1515,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   35
          Left            =   5400
-         TabIndex        =   43
+         TabIndex        =   44
          Tag             =   "Imp.Peaje|N|S|||shilla|imppeaje|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   1410
@@ -1496,7 +1535,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   34
          Left            =   5400
-         TabIndex        =   42
+         TabIndex        =   43
          Tag             =   "Suplemento|N|S|||shilla|suplemen|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   1050
@@ -1516,7 +1555,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   33
          Left            =   5400
-         TabIndex        =   41
+         TabIndex        =   42
          Tag             =   "Distancia|N|S|||shilla|distanci|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   690
@@ -1536,7 +1575,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   32
          Left            =   5400
-         TabIndex        =   40
+         TabIndex        =   41
          Tag             =   "Ext.Venta|N|S|||shilla|extventa|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   330
@@ -1556,7 +1595,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   31
          Left            =   2040
-         TabIndex        =   38
+         TabIndex        =   39
          Tag             =   "Ext.Compra|N|S|||shilla|extcompr|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   1410
@@ -1576,7 +1615,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   30
          Left            =   2040
-         TabIndex        =   37
+         TabIndex        =   38
          Tag             =   "Imp.Venta|N|S|||shilla|impventa|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   1050
@@ -1596,7 +1635,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   29
          Left            =   2040
-         TabIndex        =   36
+         TabIndex        =   37
          Tag             =   "Imp.Compra|N|S|||shilla|impcompr|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   690
@@ -1616,7 +1655,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   360
          Index           =   28
          Left            =   2040
-         TabIndex        =   35
+         TabIndex        =   36
          Tag             =   "Imp.TX|N|S|||shilla|importtx|#,###,###,##0.00||"
          Text            =   "Text"
          Top             =   330
@@ -1636,7 +1675,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   40
          Left            =   225
-         TabIndex        =   81
+         TabIndex        =   82
          Top             =   1770
          Width           =   1335
       End
@@ -1654,7 +1693,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   32
          Left            =   3840
-         TabIndex        =   80
+         TabIndex        =   81
          Top             =   1770
          Width           =   1155
       End
@@ -1672,7 +1711,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   31
          Left            =   3840
-         TabIndex        =   79
+         TabIndex        =   80
          Top             =   1410
          Width           =   1155
       End
@@ -1690,7 +1729,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   30
          Left            =   3840
-         TabIndex        =   78
+         TabIndex        =   79
          Top             =   1050
          Width           =   1275
       End
@@ -1708,7 +1747,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   29
          Left            =   3840
-         TabIndex        =   77
+         TabIndex        =   78
          Top             =   690
          Width           =   1155
       End
@@ -1726,7 +1765,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   26
          Left            =   3840
-         TabIndex        =   76
+         TabIndex        =   77
          Top             =   330
          Width           =   1335
       End
@@ -1744,7 +1783,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   25
          Left            =   240
-         TabIndex        =   75
+         TabIndex        =   76
          Top             =   1410
          Width           =   1725
       End
@@ -1762,7 +1801,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   24
          Left            =   240
-         TabIndex        =   74
+         TabIndex        =   75
          Top             =   1050
          Width           =   1725
       End
@@ -1780,7 +1819,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   23
          Left            =   240
-         TabIndex        =   73
+         TabIndex        =   74
          Top             =   690
          Width           =   1845
       End
@@ -1798,7 +1837,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   22
          Left            =   240
-         TabIndex        =   72
+         TabIndex        =   73
          Top             =   330
          Width           =   1605
       End
@@ -1806,7 +1845,7 @@ Begin VB.Form frmGesHisLlam
    Begin VB.Frame Frame4 
       Height          =   2910
       Left            =   225
-      TabIndex        =   63
+      TabIndex        =   64
       Top             =   5790
       Width           =   6495
       Begin VB.TextBox Text1 
@@ -1823,7 +1862,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   27
          Left            =   1200
          MaxLength       =   30
-         TabIndex        =   34
+         TabIndex        =   35
          Tag             =   "Operador Despa.|T|S|||shilla|opedespa|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2460
@@ -1843,7 +1882,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   26
          Left            =   1200
          MaxLength       =   30
-         TabIndex        =   33
+         TabIndex        =   34
          Tag             =   "Operador Reserva|T|S|||shilla|opereser|||"
          Text            =   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
          Top             =   2055
@@ -1863,7 +1902,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   25
          Left            =   3060
          MaxLength       =   8
-         TabIndex        =   32
+         TabIndex        =   33
          Tag             =   "Hora Final|H|S|||shilla|horfinal|hh:mm:ss||"
          Text            =   "99:99:99"
          Top             =   1635
@@ -1883,7 +1922,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   24
          Left            =   3060
          MaxLength       =   8
-         TabIndex        =   30
+         TabIndex        =   31
          Tag             =   "Hora Ocupado|H|S|||shilla|horocupa|hh:mm:ss||"
          Text            =   "99:99:99"
          Top             =   1275
@@ -1903,7 +1942,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   23
          Left            =   3060
          MaxLength       =   8
-         TabIndex        =   28
+         TabIndex        =   29
          Tag             =   "Hora Llegada|H|S|||shilla|horllega|hh:mm:ss||"
          Text            =   "99:99:99"
          Top             =   915
@@ -1923,7 +1962,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   22
          Left            =   3060
          MaxLength       =   8
-         TabIndex        =   26
+         TabIndex        =   27
          Tag             =   "Hora Aviso|H|S|||shilla|horaviso|hh:mm:ss||"
          Text            =   "99:99:99"
          Top             =   555
@@ -1943,7 +1982,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   21
          Left            =   1650
          MaxLength       =   10
-         TabIndex        =   31
+         TabIndex        =   32
          Tag             =   "Fecha Final|F|S|||shilla|fecfinal|dd/mm/yyyy||"
          Text            =   "99/99/9999"
          Top             =   1635
@@ -1963,7 +2002,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   20
          Left            =   1650
          MaxLength       =   10
-         TabIndex        =   29
+         TabIndex        =   30
          Tag             =   "Fecha ocupado|F|S|||shilla|fecocupa|dd/mm/yyyy||"
          Text            =   "99/99/9999"
          Top             =   1275
@@ -1983,7 +2022,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   19
          Left            =   1650
          MaxLength       =   10
-         TabIndex        =   27
+         TabIndex        =   28
          Tag             =   "Fecha Llegada|F|S|||shilla|fecllega|dd/mm/yyyy||"
          Text            =   "99/99/9999"
          Top             =   915
@@ -2003,7 +2042,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   18
          Left            =   1650
          MaxLength       =   10
-         TabIndex        =   25
+         TabIndex        =   26
          Tag             =   "Fecha Aviso|F|S|||shilla|fecaviso|dd/mm/yyyy||"
          Text            =   "99/99/9999"
          Top             =   555
@@ -2023,7 +2062,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   17
          Left            =   3060
          MaxLength       =   8
-         TabIndex        =   24
+         TabIndex        =   25
          Tag             =   "Hora Reserva|H|S|||shilla|horreser|hh:mm:ss||"
          Text            =   "99:99:99"
          Top             =   195
@@ -2043,7 +2082,7 @@ Begin VB.Form frmGesHisLlam
          Index           =   11
          Left            =   1650
          MaxLength       =   10
-         TabIndex        =   23
+         TabIndex        =   24
          Tag             =   "Fecha Reserva|F|S|||shilla|fecreser|dd/mm/yyyy||"
          Text            =   "99/99/9999"
          Top             =   195
@@ -2063,7 +2102,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   28
          Left            =   240
-         TabIndex        =   70
+         TabIndex        =   71
          Top             =   2460
          Width           =   1095
       End
@@ -2081,7 +2120,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   27
          Left            =   240
-         TabIndex        =   69
+         TabIndex        =   70
          Top             =   2055
          Width           =   1095
       End
@@ -2135,7 +2174,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   21
          Left            =   240
-         TabIndex        =   68
+         TabIndex        =   69
          Top             =   1635
          Width           =   1065
       End
@@ -2153,7 +2192,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   20
          Left            =   240
-         TabIndex        =   67
+         TabIndex        =   68
          Top             =   1275
          Width           =   1065
       End
@@ -2171,7 +2210,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   19
          Left            =   240
-         TabIndex        =   66
+         TabIndex        =   67
          Top             =   915
          Width           =   1065
       End
@@ -2189,7 +2228,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   18
          Left            =   240
-         TabIndex        =   65
+         TabIndex        =   66
          Top             =   555
          Width           =   1065
       End
@@ -2207,7 +2246,7 @@ Begin VB.Form frmGesHisLlam
          Height          =   255
          Index           =   3
          Left            =   240
-         TabIndex        =   64
+         TabIndex        =   65
          Top             =   195
          Width           =   1065
       End
@@ -2224,13 +2263,13 @@ Begin VB.Form frmGesHisLlam
    Begin VB.Frame FrameBotonGnral2 
       Height          =   705
       Left            =   3915
-      TabIndex        =   60
+      TabIndex        =   61
       Top             =   60
       Width           =   750
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
-         TabIndex        =   61
+         TabIndex        =   62
          Top             =   180
          Width           =   420
          _ExtentX        =   741
@@ -2251,13 +2290,13 @@ Begin VB.Form frmGesHisLlam
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   4725
-      TabIndex        =   58
+      TabIndex        =   59
       Top             =   60
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   210
-         TabIndex        =   59
+         TabIndex        =   60
          Top             =   210
          Width           =   1965
          _ExtentX        =   3466
@@ -2291,13 +2330,13 @@ Begin VB.Form frmGesHisLlam
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   240
-      TabIndex        =   56
+      TabIndex        =   57
       Top             =   60
       Width           =   3615
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   240
-         TabIndex        =   57
+         TabIndex        =   58
          Top             =   180
          Width           =   3195
          _ExtentX        =   5636
@@ -2366,7 +2405,7 @@ Begin VB.Form frmGesHisLlam
       EndProperty
       Height          =   300
       Left            =   8460
-      TabIndex        =   55
+      TabIndex        =   56
       Top             =   210
       Width           =   1605
    End
@@ -2430,7 +2469,7 @@ Begin VB.Form frmGesHisLlam
       EndProperty
       Height          =   375
       Left            =   11400
-      TabIndex        =   50
+      TabIndex        =   51
       Top             =   10530
       Width           =   1135
    End
@@ -2448,7 +2487,7 @@ Begin VB.Form frmGesHisLlam
       EndProperty
       Height          =   375
       Left            =   12630
-      TabIndex        =   51
+      TabIndex        =   52
       Top             =   10530
       Width           =   1135
    End
@@ -2465,7 +2504,7 @@ Begin VB.Form frmGesHisLlam
       EndProperty
       Height          =   375
       Left            =   12630
-      TabIndex        =   52
+      TabIndex        =   53
       Top             =   10530
       Visible         =   0   'False
       Width           =   1135
@@ -2473,7 +2512,7 @@ Begin VB.Form frmGesHisLlam
    Begin VB.Frame Frame2 
       Height          =   585
       Left            =   240
-      TabIndex        =   53
+      TabIndex        =   54
       Top             =   10320
       Width           =   3975
       Begin VB.Label lblIndicador 
@@ -2490,7 +2529,7 @@ Begin VB.Form frmGesHisLlam
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   54
+         TabIndex        =   55
          Top             =   210
          Width           =   3615
       End
@@ -2555,7 +2594,7 @@ Begin VB.Form frmGesHisLlam
       Height          =   210
       Index           =   38
       Left            =   4320
-      TabIndex        =   62
+      TabIndex        =   63
       Top             =   10530
       Visible         =   0   'False
       Width           =   2955
@@ -2655,8 +2694,8 @@ Dim ImpCompra As Currency
 Dim ImpVta As Currency
 Dim LiqSoc As Byte
 Dim FacCli As Byte
-Dim Usuario As String
-Dim Nombre As String
+Dim USUARIO As String
+Dim NOMBRE As String
 Dim Domicilio As String
 Dim Destino As String
 Dim numero As String
@@ -2770,7 +2809,7 @@ End Sub
 '
 
 Private Sub cmdAceptar_Click()
-Dim I As Long
+Dim i As Long
 Dim CadB As String
 Dim Cad As String
 Dim Indicador As String
@@ -2810,7 +2849,7 @@ Dim cad1 As String
                     'Codclien
                     If Text1(13).Text <> clien Then cad1 = cad1 & "Cli: " & clien & " a " & Text1(13).Text & ";"
                     'Usuario
-                    If Trim(Text1(14).Text) <> Trim(Usuario) Then cad1 = cad1 & "Usu: " & Trim(Usuario) & " a " & Trim(Text1(14).Text) & ";"
+                    If Trim(Text1(14).Text) <> Trim(USUARIO) Then cad1 = cad1 & "Usu: " & Trim(USUARIO) & " a " & Trim(Text1(14).Text) & ";"
                     'Identificacion
                     If Trim(Text1(9).Text) <> Trim(Ident) Then cad1 = cad1 & "Iden: " & Trim(Ident) & " a " & Trim(Text1(9).Text) & ";"
                     'Autorizacion
@@ -2826,7 +2865,7 @@ Dim cad1 As String
                     'Importe de Venta
                     If CCur(ImporteSinFormato(ComprobarCero(Text1(30).Text))) <> ImpVta Then cad1 = cad1 & "ImpVta: " & ImpVta & " a " & Text1(30).Text & ";"
                     'Nombre
-                    If Trim(Text1(16).Text) <> Trim(Nombre) Then cad1 = cad1 & "Nombre: " & Trim(Nombre) & " a " & Trim(Text1(16).Text) & ";"
+                    If Trim(Text1(16).Text) <> Trim(NOMBRE) Then cad1 = cad1 & "Nombre: " & Trim(NOMBRE) & " a " & Trim(Text1(16).Text) & ";"
                     'Domicilio
                     If Trim(Text1(2).Text) <> Trim(Domicilio) Then cad1 = cad1 & "Dom: " & Trim(Domicilio) & " a " & Trim(Text1(2).Text) & ";"
                     'Numero
@@ -2997,7 +3036,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del form
     Me.Icon = frmppal.Icon
@@ -3071,11 +3110,11 @@ Dim I As Integer
 '    End With
     
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        imgBuscar(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    For i = 0 To Me.imgBuscar.Count - 1
+        imgBuscar(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
     Next
-    For I = 0 To Me.imgFecha.Count - 1
-        imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
+    For i = 0 To Me.imgFecha.Count - 1
+        imgFecha(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
     Next
 
 
@@ -3142,13 +3181,13 @@ Private Sub CargarCombo()
 End Sub
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
     ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -3192,19 +3231,19 @@ On Error GoTo EPonerModo
     cmdCancelar.visible = b
     cmdAceptar.visible = b
     Combo1.Enabled = b
-    For I = 0 To 2
-        Check1(I).Enabled = b
-    Next I
+    For i = 0 To 2
+        Check1(i).Enabled = b
+    Next i
     
 '[Monica]04/02/2015: dejamos modificar liquidado y facturado, antes solo podian consultar
-    For I = 3 To 4
-        Check1(I).Enabled = b '(Modo = 1)
-    Next I
+    For i = 3 To 4
+        Check1(i).Enabled = b '(Modo = 1)
+    Next i
     
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Enabled = b
+    Next i
     
     ' No hay icono para las observaciones de 60 de longitud maxima
     Me.imgBuscar(2).Enabled = False
@@ -3217,21 +3256,21 @@ On Error GoTo EPonerModo
     
     'lineas de documentos
     b = (Modo = 5) 'And (NumTabMto = 0) And (ModoLineas <> 3)
-    For I = 0 To txtAux3.Count - 1
-        If (I >= 0 And I <= 3) Or (I >= 6 And I <= 7) Then
-            txtAux3(I).Enabled = False
-            txtAux3(I).visible = False
+    For i = 0 To txtAux3.Count - 1
+        If (i >= 0 And i <= 3) Or (i >= 6 And i <= 7) Then
+            txtAux3(i).Enabled = False
+            txtAux3(i).visible = False
         Else
-            txtAux3(I).Enabled = b
-            txtAux3(I).visible = b
+            txtAux3(i).Enabled = b
+            txtAux3(i).visible = b
         End If
-    Next I
+    Next i
     
     
     
-    For I = 0 To Me.imgFecha.Count - 1
-        Me.imgFecha(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgFecha.Count - 1
+        Me.imgFecha(i).Enabled = b
+    Next i
     
     chkVistaPrevia.Enabled = (Modo <= 2)
     
@@ -3303,7 +3342,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 
     b = (Modo = 2 Or Modo = 5 Or Modo = 0 Or Modo = 1)
     'Insertar
@@ -3326,7 +3365,7 @@ Dim I As Byte
 End Sub
 
 Private Sub LimpiarCampos()
-Dim I As Integer
+Dim i As Integer
 
 On Error Resume Next
     
@@ -3335,9 +3374,9 @@ On Error Resume Next
     'Aqui va el especifico de cada form es
     Me.Combo1.ListIndex = -1
     
-    For I = 0 To Check1.Count - 1
-        Check1(I).Value = 0
-    Next I
+    For i = 0 To Check1.Count - 1
+        Check1(i).Value = 0
+    Next i
     
     '### a mano
     If Err.Number <> 0 Then Err.Clear
@@ -3501,6 +3540,7 @@ Dim indice As Byte
     PonerFoco Text1(indice)
 End Sub
 
+
 Private Sub lw1_DblClick()
     ImprimirImagen
 End Sub
@@ -3569,7 +3609,8 @@ Select Case Index
     Case 1, 11, 18 To 21
         If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index)
         
-    Case 43
+    '[Monica]08/02/2019: añadimos el codigo de usuario para Sevilla
+    Case 43, 44
         PonerFormatoEntero Text1(Index)
 End Select
 End Sub
@@ -3669,8 +3710,8 @@ On Error GoTo EModificar
     ImpVta = Text1(30).Text
     LiqSoc = Check1(3).Value
     FacCli = Check1(4).Value
-    Usuario = Text1(14).Text
-    Nombre = Text1(16).Text
+    USUARIO = Text1(14).Text
+    NOMBRE = Text1(16).Text
     Domicilio = Text1(2).Text
     Destino = Text1(42).Text
     numero = Text1(40).Text
@@ -3712,6 +3753,12 @@ If MsgBox(msg, vbYesNo) = vbYes Then
     Sql = "Delete from shilla where fecha='" & Format(Text1(1).Text, FormatoFecha) & "' and hora='" & Format(Text1(7).Text, FormatoHora)
     Sql = Sql & "' and codsocio=" & Text1(0).Text & " and numeruve=" & Text1(8).Text
     conn.Execute Sql
+    
+    '[Monica]07/02/2019: Nos guardamos que la llamada ha sido eliminada
+    Set LOG = New cLOG
+    LOG.Insertar 10, vUsu, "Llamada eliminada: " & Text1(1).Text & " " & Text1(7).Text & " " & Text1(8).Text & " LiqSoc:" & Check1(3).Value & " FacCli:" & Check1(4).Value & vbCrLf
+    Set LOG = Nothing
+    
 End If
 
 If SituarDataTrasEliminar(Adodc1, NumRegElim) Then
@@ -4047,10 +4094,10 @@ Dim frmMens As frmMensajes
                 
                 b = True
                 Adodc1.Recordset.MoveFirst
-                I = 1
+                i = 1
                 Label1(38).visible = True
                 While Not Adodc1.Recordset.EOF
-                    Label1(38).Caption = "Servicio " & I & " de " & NRegs
+                    Label1(38).Caption = "Servicio " & i & " de " & NRegs
                     DoEvents
                     
                     If ComoValidados Then
@@ -4062,7 +4109,7 @@ Dim frmMens As frmMensajes
                     End If
                 
                     Adodc1.Recordset.MoveNext
-                    I = I + 1
+                    i = i + 1
                 Wend
                 Label1(38).visible = False
             
