@@ -236,6 +236,7 @@ Begin VB.Form frmGesSocios
       _ExtentY        =   10186
       _Version        =   393216
       Tabs            =   7
+      Tab             =   3
       TabsPerRow      =   7
       TabHeight       =   520
       BackColor       =   -2147483624
@@ -250,99 +251,53 @@ Begin VB.Form frmGesSocios
       EndProperty
       TabCaption(0)   =   "Datos"
       TabPicture(0)   =   "frmGesSocios.frx":0000
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "imgFecha(1)"
-      Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "Label1(14)"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "imgFecha(0)"
-      Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "Label1(13)"
-      Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "Label1(4)"
-      Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "ImgMail(1)"
-      Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "imgBuscar(2)"
-      Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "Label1(11)"
-      Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).Control(8)=   "Label1(10)"
-      Tab(0).Control(8).Enabled=   0   'False
-      Tab(0).Control(9)=   "Label1(9)"
-      Tab(0).Control(9).Enabled=   0   'False
-      Tab(0).Control(10)=   "Label1(8)"
-      Tab(0).Control(10).Enabled=   0   'False
-      Tab(0).Control(11)=   "Label1(7)"
-      Tab(0).Control(11).Enabled=   0   'False
-      Tab(0).Control(12)=   "Label1(6)"
-      Tab(0).Control(12).Enabled=   0   'False
-      Tab(0).Control(13)=   "imgBuscar(0)"
-      Tab(0).Control(13).Enabled=   0   'False
-      Tab(0).Control(14)=   "Label1(5)"
-      Tab(0).Control(14).Enabled=   0   'False
-      Tab(0).Control(15)=   "Label1(3)"
-      Tab(0).Control(15).Enabled=   0   'False
-      Tab(0).Control(16)=   "Label1(19)"
-      Tab(0).Control(16).Enabled=   0   'False
-      Tab(0).Control(17)=   "Label1(20)"
-      Tab(0).Control(17).Enabled=   0   'False
-      Tab(0).Control(18)=   "Label14"
-      Tab(0).Control(18).Enabled=   0   'False
-      Tab(0).Control(19)=   "imgDoc(1)"
-      Tab(0).Control(19).Enabled=   0   'False
-      Tab(0).Control(20)=   "imgDoc(0)"
-      Tab(0).Control(20).Enabled=   0   'False
-      Tab(0).Control(21)=   "Label2"
-      Tab(0).Control(21).Enabled=   0   'False
-      Tab(0).Control(22)=   "Label1(21)"
-      Tab(0).Control(22).Enabled=   0   'False
-      Tab(0).Control(23)=   "Text1(23)"
-      Tab(0).Control(23).Enabled=   0   'False
-      Tab(0).Control(24)=   "Frame3(1)"
-      Tab(0).Control(24).Enabled=   0   'False
-      Tab(0).Control(25)=   "Check1(0)"
-      Tab(0).Control(25).Enabled=   0   'False
-      Tab(0).Control(26)=   "Text1(17)"
-      Tab(0).Control(26).Enabled=   0   'False
-      Tab(0).Control(27)=   "Text1(13)"
-      Tab(0).Control(27).Enabled=   0   'False
-      Tab(0).Control(28)=   "Text1(12)"
-      Tab(0).Control(28).Enabled=   0   'False
-      Tab(0).Control(29)=   "Text1(10)"
-      Tab(0).Control(29).Enabled=   0   'False
-      Tab(0).Control(30)=   "Text1(9)"
-      Tab(0).Control(30).Enabled=   0   'False
-      Tab(0).Control(31)=   "Text1(8)"
-      Tab(0).Control(31).Enabled=   0   'False
-      Tab(0).Control(32)=   "Text1(6)"
-      Tab(0).Control(32).Enabled=   0   'False
-      Tab(0).Control(33)=   "Text1(5)"
-      Tab(0).Control(33).Enabled=   0   'False
-      Tab(0).Control(34)=   "Text1(4)"
-      Tab(0).Control(34).Enabled=   0   'False
-      Tab(0).Control(35)=   "Text1(3)"
-      Tab(0).Control(35).Enabled=   0   'False
-      Tab(0).Control(36)=   "Text1(7)"
-      Tab(0).Control(36).Enabled=   0   'False
-      Tab(0).Control(37)=   "Text1(22)"
-      Tab(0).Control(37).Enabled=   0   'False
-      Tab(0).Control(38)=   "Text1(21)"
-      Tab(0).Control(38).Enabled=   0   'False
-      Tab(0).Control(39)=   "Text1(20)"
-      Tab(0).Control(39).Enabled=   0   'False
-      Tab(0).Control(40)=   "Text1(19)"
-      Tab(0).Control(40).Enabled=   0   'False
-      Tab(0).Control(41)=   "Text1(25)"
-      Tab(0).Control(41).Enabled=   0   'False
-      Tab(0).Control(42)=   "Text1(27)"
-      Tab(0).Control(42).Enabled=   0   'False
-      Tab(0).Control(43)=   "Check1(1)"
-      Tab(0).Control(43).Enabled=   0   'False
-      Tab(0).Control(44)=   "Text1(28)"
-      Tab(0).Control(44).Enabled=   0   'False
-      Tab(0).Control(45)=   "Check1(2)"
-      Tab(0).Control(45).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "Check1(2)"
+      Tab(0).Control(1)=   "Text1(28)"
+      Tab(0).Control(2)=   "Check1(1)"
+      Tab(0).Control(3)=   "Text1(27)"
+      Tab(0).Control(4)=   "Text1(25)"
+      Tab(0).Control(5)=   "Text1(19)"
+      Tab(0).Control(6)=   "Text1(20)"
+      Tab(0).Control(7)=   "Text1(21)"
+      Tab(0).Control(8)=   "Text1(22)"
+      Tab(0).Control(9)=   "Text1(7)"
+      Tab(0).Control(10)=   "Text1(3)"
+      Tab(0).Control(11)=   "Text1(4)"
+      Tab(0).Control(12)=   "Text1(5)"
+      Tab(0).Control(13)=   "Text1(6)"
+      Tab(0).Control(14)=   "Text1(8)"
+      Tab(0).Control(15)=   "Text1(9)"
+      Tab(0).Control(16)=   "Text1(10)"
+      Tab(0).Control(17)=   "Text1(12)"
+      Tab(0).Control(18)=   "Text1(13)"
+      Tab(0).Control(19)=   "Text1(17)"
+      Tab(0).Control(20)=   "Check1(0)"
+      Tab(0).Control(21)=   "Frame3(1)"
+      Tab(0).Control(22)=   "Text1(23)"
+      Tab(0).Control(23)=   "Label1(21)"
+      Tab(0).Control(24)=   "Label2"
+      Tab(0).Control(25)=   "imgDoc(0)"
+      Tab(0).Control(26)=   "imgDoc(1)"
+      Tab(0).Control(27)=   "Label14"
+      Tab(0).Control(28)=   "Label1(20)"
+      Tab(0).Control(29)=   "Label1(19)"
+      Tab(0).Control(30)=   "Label1(3)"
+      Tab(0).Control(31)=   "Label1(5)"
+      Tab(0).Control(32)=   "imgBuscar(0)"
+      Tab(0).Control(33)=   "Label1(6)"
+      Tab(0).Control(34)=   "Label1(7)"
+      Tab(0).Control(35)=   "Label1(8)"
+      Tab(0).Control(36)=   "Label1(9)"
+      Tab(0).Control(37)=   "Label1(10)"
+      Tab(0).Control(38)=   "Label1(11)"
+      Tab(0).Control(39)=   "imgBuscar(2)"
+      Tab(0).Control(40)=   "ImgMail(1)"
+      Tab(0).Control(41)=   "Label1(4)"
+      Tab(0).Control(42)=   "Label1(13)"
+      Tab(0).Control(43)=   "imgFecha(0)"
+      Tab(0).Control(44)=   "Label1(14)"
+      Tab(0).Control(45)=   "imgFecha(1)"
       Tab(0).ControlCount=   46
       TabCaption(1)   =   "Equipamiento"
       TabPicture(1)   =   "frmGesSocios.frx":001C
@@ -368,16 +323,25 @@ Begin VB.Form frmGesSocios
       Tab(2).ControlCount=   8
       TabCaption(3)   =   "Publicidad"
       TabPicture(3)   =   "frmGesSocios.frx":0054
-      Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "FrameToolAux1"
-      Tab(3).Control(1)=   "cmdAux(1)"
-      Tab(3).Control(2)=   "txtAux2(4)"
-      Tab(3).Control(3)=   "cmdAux1"
+      Tab(3).ControlEnabled=   -1  'True
+      Tab(3).Control(0)=   "DataGrid2"
+      Tab(3).Control(0).Enabled=   0   'False
+      Tab(3).Control(1)=   "txtAux2(0)"
+      Tab(3).Control(1).Enabled=   0   'False
+      Tab(3).Control(2)=   "txtAux2(1)"
+      Tab(3).Control(2).Enabled=   0   'False
+      Tab(3).Control(3)=   "txtAux2(2)"
+      Tab(3).Control(3).Enabled=   0   'False
       Tab(3).Control(4)=   "txtAux2(3)"
-      Tab(3).Control(5)=   "txtAux2(2)"
-      Tab(3).Control(6)=   "txtAux2(1)"
-      Tab(3).Control(7)=   "txtAux2(0)"
-      Tab(3).Control(8)=   "DataGrid2"
+      Tab(3).Control(4).Enabled=   0   'False
+      Tab(3).Control(5)=   "cmdAux1"
+      Tab(3).Control(5).Enabled=   0   'False
+      Tab(3).Control(6)=   "txtAux2(4)"
+      Tab(3).Control(6).Enabled=   0   'False
+      Tab(3).Control(7)=   "cmdAux(1)"
+      Tab(3).Control(7).Enabled=   0   'False
+      Tab(3).Control(8)=   "FrameToolAux1"
+      Tab(3).Control(8).Enabled=   0   'False
       Tab(3).ControlCount=   9
       TabCaption(4)   =   "Cuotas"
       TabPicture(4)   =   "frmGesSocios.frx":0070
@@ -479,7 +443,7 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.Frame FrameToolAux1 
          Height          =   555
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   114
          Top             =   330
          Width           =   1605
@@ -556,7 +520,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   375
          Index           =   2
-         Left            =   9975
+         Left            =   -65025
          TabIndex        =   17
          Tag             =   "Facturacion Electrónica|N|N|0|1|sclien|facturae|||"
          Top             =   2100
@@ -575,7 +539,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   28
-         Left            =   8565
+         Left            =   -66435
          MaxLength       =   4
          TabIndex        =   18
          Tag             =   "IBAN|T|S|||sclien|iban|||"
@@ -596,7 +560,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   375
          Index           =   1
-         Left            =   9975
+         Left            =   -65025
          TabIndex        =   16
          Tag             =   "Facturado|N|N|0|1|sclien|escontado|||"
          Top             =   1740
@@ -615,7 +579,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   27
-         Left            =   8565
+         Left            =   -66435
          MaxLength       =   10
          TabIndex        =   14
          Tag             =   "Importe a Cuenta|N|S|||sclien|impacuenta|###,##0.00||"
@@ -951,7 +915,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   25
-         Left            =   8565
+         Left            =   -66435
          MaxLength       =   10
          TabIndex        =   13
          Tag             =   "Sumplemento Cuota|N|S|||sclien|suplecuota|###,##0.00||"
@@ -971,7 +935,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   19
-         Left            =   9165
+         Left            =   -65835
          MaxLength       =   4
          TabIndex        =   19
          Tag             =   "Codigo Banco|N|S|||sclien|codbanco|0000||"
@@ -992,7 +956,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   20
-         Left            =   9765
+         Left            =   -65235
          MaxLength       =   4
          TabIndex        =   20
          Tag             =   "Codigo Sucursal|N|S|||sclien|codsucur|0000||"
@@ -1013,7 +977,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   21
-         Left            =   10365
+         Left            =   -64635
          MaxLength       =   2
          TabIndex        =   21
          Tag             =   "Digito Control|T|S|||sclien|digcontr|00||"
@@ -1034,7 +998,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   22
-         Left            =   10695
+         Left            =   -64305
          MaxLength       =   10
          TabIndex        =   22
          Tag             =   "Cuenta Banco|T|S|||sclien|cuentaba|0000000000||"
@@ -1054,7 +1018,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   8565
+         Left            =   -66435
          MaxLength       =   9
          TabIndex        =   10
          Tag             =   "CIF|T|N|||sclien|nifclien|||"
@@ -1074,7 +1038,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   35
          TabIndex        =   3
          Tag             =   "Domicilio|T|N|||sclien|domclien|||"
@@ -1094,7 +1058,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   6
          TabIndex        =   4
          Tag             =   "CP|T|N|||sclien|codpobla|||"
@@ -1114,7 +1078,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   3510
+         Left            =   -71490
          MaxLength       =   35
          TabIndex        =   5
          Tag             =   "Población|T|N|||sclien|pobclien|||"
@@ -1134,7 +1098,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   35
          TabIndex        =   6
          Tag             =   "Provincia|T|N|||sclien|proclien|||"
@@ -1154,7 +1118,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   10
          TabIndex        =   7
          Tag             =   "Telefono|T|S|||sclien|telclie1|||"
@@ -1174,7 +1138,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   5505
+         Left            =   -69495
          MaxLength       =   10
          TabIndex        =   8
          Tag             =   "Movil|T|S|||sclien|movclien|||"
@@ -1194,7 +1158,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   1590
+         Left            =   -73410
          MaxLength       =   50
          TabIndex        =   9
          Tag             =   "Mail|T|S|||sclien|maiclie1|||"
@@ -1214,7 +1178,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   8565
+         Left            =   -66435
          MaxLength       =   10
          TabIndex        =   11
          Tag             =   "Fecha Alta|F|N|||sclien|fechaalt||dd/mm/yyyy|"
@@ -1234,7 +1198,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   8565
+         Left            =   -66435
          MaxLength       =   10
          TabIndex        =   12
          Tag             =   "Fecha Baja|F|S|||sclien|fechabaj||dd/mm/yyyy|"
@@ -1254,7 +1218,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   1890
          Index           =   17
-         Left            =   7185
+         Left            =   -67815
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   31
@@ -1276,7 +1240,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   375
          Index           =   0
-         Left            =   9975
+         Left            =   -65025
          TabIndex        =   15
          Tag             =   "Facturado|N|N|0|1|sclien|essocio|||"
          Top             =   1410
@@ -1295,7 +1259,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   2910
          Index           =   1
-         Left            =   270
+         Left            =   -74730
          TabIndex        =   56
          Top             =   2700
          Width           =   6810
@@ -1677,14 +1641,23 @@ Begin VB.Form frmGesSocios
       End
       Begin VB.CommandButton cmdAux 
          Caption         =   "+"
-         Height          =   255
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
          Index           =   1
-         Left            =   -73440
+         Left            =   1290
          TabIndex        =   48
          ToolTipText     =   "Buscar cliente"
          Top             =   2520
          Visible         =   0   'False
-         Width           =   135
+         Width           =   180
       End
       Begin VB.TextBox txtAux2 
          BackColor       =   &H80000018&
@@ -1700,7 +1673,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   285
          Index           =   4
-         Left            =   -70560
+         Left            =   4440
          TabIndex        =   52
          Text            =   "hasta"
          Top             =   2520
@@ -1708,9 +1681,18 @@ Begin VB.Form frmGesSocios
          Width           =   1095
       End
       Begin VB.ComboBox cmdAux1 
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          ItemData        =   "frmGesSocios.frx":1AE2
-         Left            =   -67320
+         Left            =   7680
          List            =   "frmGesSocios.frx":1AEC
          Style           =   2  'Dropdown List
          TabIndex        =   53
@@ -1732,7 +1714,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   285
          Index           =   3
-         Left            =   -71520
+         Left            =   3480
          MaxLength       =   10
          TabIndex        =   51
          Text            =   "desde"
@@ -1754,7 +1736,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   285
          Index           =   2
-         Left            =   -72480
+         Left            =   2520
          MaxLength       =   10
          TabIndex        =   50
          Tag             =   "Importe|N|N|||sclien_publicidad|importes|||"
@@ -1777,7 +1759,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   285
          Index           =   1
-         Left            =   -73440
+         Left            =   1560
          TabIndex        =   55
          Text            =   "nomcliente"
          Top             =   2520
@@ -1798,7 +1780,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   285
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   6
          TabIndex        =   49
          Tag             =   "Cliente|N|N|||sclien_publicidad|codclien|||"
@@ -1938,7 +1920,7 @@ Begin VB.Form frmGesSocios
       End
       Begin MSDataGridLib.DataGrid DataGrid2 
          Height          =   3845
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   54
          Top             =   960
          Width           =   11185
@@ -2075,7 +2057,7 @@ Begin VB.Form frmGesSocios
          Enabled         =   0   'False
          Height          =   315
          Index           =   23
-         Left            =   1680
+         Left            =   -73320
          MaxLength       =   5
          TabIndex        =   77
          Tag             =   "Codigo Socio|N|N|||sclien|codtarif|||"
@@ -2337,7 +2319,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   21
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   106
          Top             =   2190
          Width           =   1365
@@ -2415,7 +2397,7 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   10005
+         Left            =   -64995
          TabIndex        =   88
          Top             =   960
          Width           =   1500
@@ -2423,7 +2405,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   0
-         Left            =   11685
+         Left            =   -63315
          ToolTipText     =   "Cálculo Importe Cuotas "
          Top             =   930
          Width           =   390
@@ -2431,7 +2413,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   1
-         Left            =   11685
+         Left            =   -63315
          ToolTipText     =   "Impresión Documento Alta"
          Top             =   540
          Width           =   390
@@ -2448,7 +2430,7 @@ Begin VB.Form frmGesSocios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   10005
+         Left            =   -64995
          TabIndex        =   87
          Top             =   570
          Width           =   1740
@@ -2484,7 +2466,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   20
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   79
          Top             =   1800
          Width           =   1365
@@ -2502,7 +2484,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   19
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   78
          Top             =   2580
          Width           =   1155
@@ -2520,7 +2502,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   76
          Top             =   2940
          Width           =   1515
@@ -2538,7 +2520,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   5
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   75
          Top             =   960
          Width           =   735
@@ -2546,7 +2528,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   1290
+         Left            =   -73710
          Tag             =   "-1"
          ToolTipText     =   "Buscar población"
          Top             =   960
@@ -2565,7 +2547,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   6
-         Left            =   2580
+         Left            =   -72420
          TabIndex        =   74
          Top             =   960
          Width           =   915
@@ -2583,7 +2565,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   7
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   73
          Top             =   1380
          Width           =   1005
@@ -2601,7 +2583,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   8
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   72
          Top             =   600
          Width           =   735
@@ -2619,7 +2601,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   9
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   71
          Top             =   1830
          Width           =   1035
@@ -2637,7 +2619,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   10
-         Left            =   4050
+         Left            =   -70950
          TabIndex        =   70
          Top             =   1800
          Width           =   735
@@ -2655,7 +2637,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   11
-         Left            =   390
+         Left            =   -74610
          TabIndex        =   69
          Top             =   2250
          Width           =   855
@@ -2663,7 +2645,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   8775
+         Left            =   -66225
          Tag             =   "-1"
          ToolTipText     =   "Ver observaciones"
          Top             =   2940
@@ -2672,7 +2654,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image ImgMail 
          Height          =   240
          Index           =   1
-         Left            =   1290
+         Left            =   -73710
          Tag             =   "-1"
          ToolTipText     =   "Enviar e-mail"
          Top             =   2295
@@ -2691,7 +2673,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   4
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   68
          Top             =   540
          Width           =   1335
@@ -2709,7 +2691,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   13
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   67
          Top             =   990
          Width           =   1095
@@ -2717,7 +2699,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
-         Left            =   8295
+         Left            =   -66705
          ToolTipText     =   "Buscar fecha"
          Top             =   960
          Width           =   240
@@ -2735,7 +2717,7 @@ Begin VB.Form frmGesSocios
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   7185
+         Left            =   -67815
          TabIndex        =   66
          Top             =   1380
          Width           =   1125
@@ -2743,7 +2725,7 @@ Begin VB.Form frmGesSocios
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   1
-         Left            =   8325
+         Left            =   -66675
          ToolTipText     =   "Buscar fecha"
          Top             =   1380
          Width           =   240
@@ -3287,7 +3269,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim I As Integer
+Dim i As Integer
 Dim CadB As String
 Dim Cad As String
 Dim aaa As String
@@ -4201,7 +4183,7 @@ End Sub
 
 
 Private Sub cmdAux1_LostFocus()
-    cmdAceptar.SetFocus
+    PonerFocoBtn cmdAceptar '.SetFocus
 End Sub
 
 Private Sub cmdRegresar_Click()
@@ -4237,7 +4219,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del form
     Me.Icon = frmppal.Icon
@@ -4295,8 +4277,8 @@ Dim I As Integer
     End With
     
     'ICONITOS DE LAS BARRAS EN LOS TABS DE LINEA
-    For I = 0 To ToolAux.Count - 1
-        With Me.ToolAux(I)
+    For i = 0 To ToolAux.Count - 1
+        With Me.ToolAux(i)
             '.ImageList = frmPpal.imgListComun_VELL
             '  ### [Monica] 02/10/2006 acabo de comentarlo
             .HotImageList = frmppal.imgListComun_OM16
@@ -4306,7 +4288,7 @@ Dim I As Integer
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
         End With
-    Next I
+    Next i
 
 
     
@@ -4359,14 +4341,14 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
 
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
 
     'Actualiza Iconos Insertar,Modificar,Eliminar
 '    ActualizarToolbarGnral Me.Toolbar1, Modo, Kmodo, btnAnyadir
@@ -4405,15 +4387,15 @@ On Error GoTo EPonerModo
     cmdAceptar.visible = b
     
     
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = b
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Enabled = b
+    Next i
     Me.imgBuscar(2).Enabled = (Modo <= 4 And Modo > 1)
     chkVistaPrevia.Enabled = (Modo <= 2)
     
-    For I = 0 To Check1.Count - 1
-        Me.Check1(I).Enabled = Not (Modo = 0 Or Modo = 2)
-    Next I
+    For i = 0 To Check1.Count - 1
+        Me.Check1(i).Enabled = Not (Modo = 0 Or Modo = 2)
+    Next i
     
     'CRM
     cmdAccCRM(0).visible = Modo = 2
@@ -4449,28 +4431,28 @@ On Error GoTo EPonerModo
                        
     ' Para poder buscar por el codigo de articulo
     CargaTxtAux3 (Modo = 1 Or (Modo = 5 And ModificaLineas = 1)), True
-    For I = 1 To 2
-        txtAux3(I).visible = False
-        txtAux3(I).Locked = False
-    Next I
+    For i = 1 To 2
+        txtAux3(i).visible = False
+        txtAux3(i).Locked = False
+    Next i
                        
     '[Monica]04/02/2015
     ' Para poder buscar por el codigo de conductor
      CargaTxtAux (Modo = 1 Or (Modo = 5 And ModificaLineas = 1)), True
-    For I = 1 To 4
-        txtAux1(I).visible = False
-        txtAux1(I).Locked = False
-    Next I
+    For i = 1 To 4
+        txtAux1(i).visible = False
+        txtAux1(i).Locked = False
+    Next i
     
     '[Monica]04/02/2015
     ' Para poder buscar por el codigo de cliente y por importe
     CargaTxtAux2 (Modo = 1 Or (Modo = 5 And ModificaLineas = 1)), True
-    For I = 1 To 4
-        If I <> 2 Then
-            txtAux2(I).visible = False
-            txtAux2(I).Locked = False
+    For i = 1 To 4
+        If i <> 2 Then
+            txtAux2(i).visible = False
+            txtAux2(i).Locked = False
         End If
-    Next I
+    Next i
     If Modo = 1 Then
         cmdAux1.Locked = False
         cmdAux1.visible = False
@@ -4509,11 +4491,11 @@ Dim Cad As String
         Toolbar1.Buttons(8).Enabled = Toolbar1.Buttons(8).Enabled And DBLet(Rs!Imprimir, "N")
         
         'lineas
-        For I = 0 To ToolAux.Count - 1
-            ToolAux(I).Buttons(1).Enabled = ToolAux(I).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
-            ToolAux(I).Buttons(2).Enabled = ToolAux(I).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
-            ToolAux(I).Buttons(3).Enabled = ToolAux(I).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
-        Next I
+        For i = 0 To ToolAux.Count - 1
+            ToolAux(i).Buttons(1).Enabled = ToolAux(i).Buttons(1).Enabled And DBLet(Rs!creareliminar, "N")
+            ToolAux(i).Buttons(2).Enabled = ToolAux(i).Buttons(2).Enabled And DBLet(Rs!Modificar, "N")
+            ToolAux(i).Buttons(3).Enabled = ToolAux(i).Buttons(3).Enabled And DBLet(Rs!creareliminar, "N")
+        Next i
     End If
     
     Rs.Close
@@ -4543,7 +4525,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 Dim bAux As Boolean
 
     b = (Modo = 2 Or Modo = 0 Or Modo = 1)
@@ -4582,9 +4564,9 @@ Dim bAux As Boolean
     
     b = (Modo = 2 Or Modo = 3 Or Modo = 4)
     
-    For I = 0 To Me.ToolAux.Count - 1
-        ToolAux(I).Buttons(1).Enabled = b
-        Select Case I
+    For i = 0 To Me.ToolAux.Count - 1
+        ToolAux(i).Buttons(1).Enabled = b
+        Select Case i
             Case 0 'choferes
                 If b Then bAux = (b And Me.Adodc2.Recordset.RecordCount > 0)
             Case 1 'publicidad
@@ -4594,21 +4576,21 @@ Dim bAux As Boolean
             Case 3 'contadores
                 If b Then bAux = (b And Me.Adodc4.Recordset.RecordCount > 0)
         End Select
-        ToolAux(I).Buttons(2).Enabled = bAux
-        ToolAux(I).Buttons(3).Enabled = bAux
-    Next I
+        ToolAux(i).Buttons(2).Enabled = bAux
+        ToolAux(i).Buttons(3).Enabled = bAux
+    Next i
     
 End Sub
 
 Private Sub LimpiarCampos()
-Dim I As Integer
+Dim i As Integer
 
 On Error Resume Next
     limpiar Me   'Metodo general: Limpia los controles TextBox
     lblIndicador(0).Caption = ""
-    For I = 0 To Check1.Count - 1
-        Check1(I).Value = 0
-    Next I
+    For i = 0 To Check1.Count - 1
+        Check1(i).Value = 0
+    Next i
     
     'Aqui va el especifico de cada form es
     '### a mano
@@ -5461,32 +5443,32 @@ Private Sub CargaTxtAux(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim I As Byte
+Dim i As Byte
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For I = 0 To txtAux1.Count - 1 'TextBox
-            txtAux1(I).top = 290
-            txtAux1(I).visible = visible
-        Next I
+        For i = 0 To txtAux1.Count - 1 'TextBox
+            txtAux1(i).top = 290
+            txtAux1(i).visible = visible
+        Next i
         Me.cmdAux(0).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid1
-            For I = 0 To txtAux1.Count - 1
-                txtAux1(I).Text = ""
-                BloquearTxt txtAux1(I), False
-            Next I
+            For i = 0 To txtAux1.Count - 1
+                txtAux1(i).Text = ""
+                BloquearTxt txtAux1(i), False
+            Next i
         Else 'Vamos a modificar
-            For I = 0 To txtAux1.Count - 1
-                txtAux1(I).Text = DataGrid1.Columns(I + 2).Text
-                If I >= 2 Then
-                    txtAux1(I).Locked = False
-                    txtAux1(I).BackColor = &H80000005
+            For i = 0 To txtAux1.Count - 1
+                txtAux1(i).Text = DataGrid1.Columns(i + 2).Text
+                If i >= 2 Then
+                    txtAux1(i).Locked = False
+                    txtAux1(i).BackColor = &H80000005
                 Else
-                    txtAux1(I).Locked = True
+                    txtAux1(i).Locked = True
                 End If
-            Next I
+            Next i
             cmdAux(0).Enabled = False
         End If
         
@@ -5494,10 +5476,10 @@ Dim I As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid1, 20)
         
-        For I = 0 To txtAux1.Count - 1
-            txtAux1(I).top = alto
-            txtAux1(I).Height = DataGrid1.RowHeight
-        Next I
+        For i = 0 To txtAux1.Count - 1
+            txtAux1(i).top = alto
+            txtAux1(i).Height = DataGrid1.RowHeight
+        Next i
         
         
         'Fijamos anchura y posicion Left
@@ -5536,9 +5518,9 @@ Dim I As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For I = 0 To txtAux1.Count - 1
-            txtAux1(I).visible = visible
-        Next I
+        For i = 0 To txtAux1.Count - 1
+            txtAux1(i).visible = visible
+        Next i
         Me.cmdAux(0).Height = Me.DataGrid1.RowHeight
         Me.cmdAux(0).top = alto
         Me.cmdAux(0).visible = visible
@@ -5551,30 +5533,30 @@ Private Sub CargaTxtAux2(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim I As Byte
+Dim i As Byte
 
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For I = 0 To txtAux2.Count - 1 'TextBox
-            txtAux2(I).top = 290
-            txtAux2(I).visible = visible
-        Next I
+        For i = 0 To txtAux2.Count - 1 'TextBox
+            txtAux2(i).top = 290
+            txtAux2(i).visible = visible
+        Next i
 '        cmdAux1.Top = 290
 '        cmdAux1.visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid2
-            For I = 0 To txtAux2.Count - 1
-                txtAux2(I).Text = ""
-                BloquearTxt txtAux2(I), False
-            Next I
+            For i = 0 To txtAux2.Count - 1
+                txtAux2(i).Text = ""
+                BloquearTxt txtAux2(i), False
+            Next i
             cmdAux1.ListIndex = 0
         Else 'Vamos a modificar
-            For I = 0 To txtAux2.Count - 1
-                txtAux2(I).Text = DataGrid2.Columns(I + 2).Text
-                txtAux2(I).Locked = False
-            Next I
+            For i = 0 To txtAux2.Count - 1
+                txtAux2(i).Text = DataGrid2.Columns(i + 2).Text
+                txtAux2(i).Locked = False
+            Next i
         End If
             If Not Adodc3.Recordset.EOF Then
                 If Adodc3.Recordset.Fields(7) = "Activo" Then
@@ -5588,42 +5570,43 @@ Dim I As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid2, 20)
         
-        For I = 0 To txtAux2.Count - 1
-            txtAux2(I).top = alto
-            txtAux2(I).Height = DataGrid2.RowHeight
-        Next I
+        For i = 0 To txtAux2.Count - 1
+            txtAux2(i).top = alto
+            txtAux2(i).Height = DataGrid2.RowHeight
+        Next i
         
         
         'Fijamos anchura y posicion Left
         '--------------------------------
         'cliente
         txtAux2(0).Left = DataGrid2.Left + 330
-        txtAux2(0).Width = DataGrid2.Columns(2).Width - 100
+        txtAux2(0).Width = DataGrid2.Columns(2).Width - 10 '100
         'nombre
-        txtAux2(1).Width = DataGrid2.Columns(3).Width - 100
-        txtAux2(1).Left = txtAux2(0).Left + (txtAux2(0).Width + 100)
+        txtAux2(1).Width = DataGrid2.Columns(3).Width - 10 '100
+        txtAux2(1).Left = txtAux2(0).Left + (txtAux2(0).Width + 10) '100)
         'importe
-        txtAux2(2).Width = DataGrid2.Columns(4).Width - 100
-        txtAux2(2).Left = txtAux2(1).Left + (txtAux2(1).Width + 100)
+        txtAux2(2).Width = DataGrid2.Columns(4).Width - 10 '100
+        txtAux2(2).Left = txtAux2(1).Left + (txtAux2(1).Width + 10) '100)
         'desde
-        txtAux2(3).Width = DataGrid2.Columns(5).Width - 100
-        txtAux2(3).Left = txtAux2(2).Left + (txtAux2(2).Width + 100)
+        txtAux2(3).Width = DataGrid2.Columns(5).Width - 10 '100
+        txtAux2(3).Left = txtAux2(2).Left + (txtAux2(2).Width + 10) '100)
         'hasta
-        txtAux2(4).Width = DataGrid2.Columns(6).Width - 100
-        txtAux2(4).Left = txtAux2(3).Left + (txtAux2(3).Width + 100)
+        txtAux2(4).Width = DataGrid2.Columns(6).Width - 10 '100
+        txtAux2(4).Left = txtAux2(3).Left + (txtAux2(3).Width + 10) '100)
         
-        cmdAux1.Width = DataGrid2.Columns(7).Width - 100
-        cmdAux1.Left = txtAux2(4).Left + (txtAux2(4).Width + 100)
+        cmdAux1.Width = DataGrid2.Columns(7).Width - 10 '100
+        cmdAux1.Left = txtAux2(4).Left + (txtAux2(4).Width - 10) ' 100)
         
         'Los ponemos Visibles o No
         '--------------------------
-        For I = 0 To txtAux2.Count - 1
-            txtAux2(I).visible = visible
-        Next I
+        For i = 0 To txtAux2.Count - 1
+            txtAux2(i).visible = visible
+        Next i
     End If
     Me.cmdAux(1).Height = Me.DataGrid2.RowHeight
     Me.cmdAux(1).top = alto
     Me.cmdAux(1).visible = visible
+    Me.cmdAux(1).Left = txtAux2(0).Left + txtAux2(0).Width - Me.cmdAux(1).Width
     cmdAux1.top = alto
     cmdAux1.visible = visible
 End Sub
@@ -5633,30 +5616,30 @@ Private Sub CargaTxtAux3(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim I As Byte
+Dim i As Byte
 
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For I = 0 To txtAux3.Count - 1 'TextBox
-            txtAux3(I).top = 290
-            txtAux3(I).visible = visible
-        Next I
+        For i = 0 To txtAux3.Count - 1 'TextBox
+            txtAux3(i).top = 290
+            txtAux3(i).visible = visible
+        Next i
         cmdAux(2).top = 290
         cmdAux(2).visible = visible
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid4
-            For I = 0 To txtAux3.Count - 1
-                txtAux3(I).Text = ""
-                BloquearTxt txtAux3(I), False
-            Next I
+            For i = 0 To txtAux3.Count - 1
+                txtAux3(i).Text = ""
+                BloquearTxt txtAux3(i), False
+            Next i
         Else 'Vamos a modificar
             '[Monica]05/12/2013: solo dejamos modificar el importe
-            For I = 0 To txtAux3.Count - 1
-                txtAux3(I).Text = DataGrid4.Columns(I + 2).Text
+            For i = 0 To txtAux3.Count - 1
+                txtAux3(i).Text = DataGrid4.Columns(i + 2).Text
                 txtAux3(2).Locked = False
-            Next I
+            Next i
             '[Monica]05/12/2013: dejamos modificar el importe
             BloquearTxt txtAux3(2), False
         End If
@@ -5666,10 +5649,10 @@ Dim I As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid4, 20)
         
-        For I = 0 To txtAux3.Count - 1
-            txtAux3(I).top = alto
-            txtAux3(I).Height = DataGrid4.RowHeight
-        Next I
+        For i = 0 To txtAux3.Count - 1
+            txtAux3(i).top = alto
+            txtAux3(i).Height = DataGrid4.RowHeight
+        Next i
         
         
         'Fijamos anchura y posicion Left
@@ -5691,9 +5674,9 @@ Dim I As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For I = 0 To txtAux3.Count - 1
-            txtAux3(I).visible = visible
-        Next I
+        For i = 0 To txtAux3.Count - 1
+            txtAux3(i).visible = visible
+        Next i
     End If
     cmdAux(2).top = alto
     cmdAux(2).visible = visible
@@ -5704,32 +5687,32 @@ Private Sub CargaTxtAux4(visible As Boolean, limpiar As Boolean)
 'IN: visible: si es true ponerlos visibles en la posición adecuada
 '    limpiar: si es true vaciar los txtAux
 Dim alto As Single
-Dim I As Byte
+Dim i As Byte
 
 
     If Not visible Then
         'Fijamos el alto (ponerlo en la parte inferior del form)
-        For I = 0 To txtAux4.Count - 1 'TextBox
-            txtAux4(I).top = 290
-            txtAux4(I).visible = visible
-        Next I
+        For i = 0 To txtAux4.Count - 1 'TextBox
+            txtAux4(i).top = 290
+            txtAux4(i).visible = visible
+        Next i
     Else
         If limpiar Then 'Vaciar los textBox (Vamos a Insertar)
             DeseleccionaGrid DataGrid3
-            For I = 0 To txtAux4.Count - 1
-                txtAux4(I).Text = ""
-                BloquearTxt txtAux4(I), False
-            Next I
+            For i = 0 To txtAux4.Count - 1
+                txtAux4(i).Text = ""
+                BloquearTxt txtAux4(i), False
+            Next i
         Else 'Vamos a modificar
-            For I = 0 To txtAux4.Count - 1
-                txtAux4(I).Text = DataGrid3.Columns(I + 1).Text
-                If I = 2 Then
-                    txtAux4(I).Locked = False
-                    txtAux4(I).BackColor = &H80000005
+            For i = 0 To txtAux4.Count - 1
+                txtAux4(i).Text = DataGrid3.Columns(i + 1).Text
+                If i = 2 Then
+                    txtAux4(i).Locked = False
+                    txtAux4(i).BackColor = &H80000005
                 Else
-                    txtAux4(I).Locked = True
+                    txtAux4(i).Locked = True
                 End If
-            Next I
+            Next i
         End If
         
 
@@ -5737,10 +5720,10 @@ Dim I As Byte
         '-------------------------------
         alto = ObtenerAlto(DataGrid3, 20)
         
-        For I = 0 To txtAux4.Count - 1
-            txtAux4(I).top = alto
-            txtAux4(I).Height = DataGrid3.RowHeight
-        Next I
+        For i = 0 To txtAux4.Count - 1
+            txtAux4(i).top = alto
+            txtAux4(i).Height = DataGrid3.RowHeight
+        Next i
         
         
         'Fijamos anchura y posicion Left
@@ -5762,9 +5745,9 @@ Dim I As Byte
         
         'Los ponemos Visibles o No
         '--------------------------
-        For I = 0 To txtAux4.Count - 1
-            txtAux4(I).visible = visible
-        Next I
+        For i = 0 To txtAux4.Count - 1
+            txtAux4(i).visible = visible
+        Next i
     End If
 End Sub
 
@@ -6146,7 +6129,7 @@ On Error Resume Next
 End Sub
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)   ', enlaza As Boolean)
-Dim I As Integer
+Dim i As Integer
 Dim Sql As String
 
 On Error GoTo ECargaGrid
@@ -6221,10 +6204,10 @@ On Error GoTo ECargaGrid
 
 
     vDataGrid.Enabled = (Modo = 0) Or (Modo = 2) Or (Modo = 1) Or (Modo = 5 And ModificaLineas = 0)
-    For I = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(I).Locked = True
-        vDataGrid.Columns(I).AllowSizing = False
-    Next I
+    For i = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(i).Locked = True
+        vDataGrid.Columns(i).AllowSizing = False
+    Next i
     vDataGrid.ScrollBars = dbgAutomatic
 
     Exit Sub
@@ -6510,7 +6493,7 @@ End Sub
 
 
 Private Sub printNou()
-Dim Nombre As String
+Dim NOMBRE As String
 '    If MsgBox("¿Desea imprimir los datos para envio a socio?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
 '        Nombre = "rGesSociosEtiq.rpt"
 '    Else

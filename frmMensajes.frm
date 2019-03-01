@@ -15,88 +15,13 @@ Begin VB.Form frmMensajes
    ScaleWidth      =   14160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Frame FrameServiciosValidados 
-      Height          =   2355
+   Begin VB.Frame FrameSocios 
+      Height          =   6615
       Left            =   0
-      TabIndex        =   77
-      Top             =   45
-      Width           =   4425
-      Begin VB.CommandButton cmdCancel 
-         Caption         =   "Cancelar"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   2700
-         TabIndex        =   81
-         Top             =   1575
-         Width           =   1335
-      End
-      Begin VB.CommandButton cmdAcepVal 
-         Caption         =   "Aceptar"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   1260
-         TabIndex        =   80
-         Top             =   1575
-         Width           =   1335
-      End
-      Begin VB.OptionButton Option2 
-         Caption         =   "No Validados"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   690
-         Left            =   2205
-         TabIndex        =   79
-         Top             =   360
-         Width           =   1770
-      End
-      Begin VB.OptionButton Option1 
-         Caption         =   "Validados"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   690
-         Left            =   585
-         TabIndex        =   78
-         Top             =   360
-         Width           =   1500
-      End
-   End
-   Begin VB.Frame FrameFrasPteContabilizar 
-      Height          =   5790
-      Left            =   0
-      TabIndex        =   72
+      TabIndex        =   82
       Top             =   0
-      Width           =   13660
-      Begin VB.CommandButton cmdCerrarFras 
+      Width           =   10395
+      Begin VB.CommandButton cmdAcepServ 
          Caption         =   "Continuar"
          BeginProperty Font 
             Name            =   "Verdana"
@@ -108,13 +33,14 @@ Begin VB.Form frmMensajes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Index           =   5
-         Left            =   12060
-         TabIndex        =   74
-         Top             =   5280
+         Index           =   1
+         Left            =   7470
+         TabIndex        =   85
+         Top             =   5700
          Width           =   1215
       End
-      Begin VB.ComboBox Combo1 
+      Begin VB.CommandButton cmdCanServ 
+         Caption         =   "Cancelar"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -124,29 +50,26 @@ Begin VB.Form frmMensajes
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   360
-         Index           =   0
-         ItemData        =   "frmMensajes.frx":000C
-         Left            =   240
-         List            =   "frmMensajes.frx":0016
-         Style           =   2  'Dropdown List
-         TabIndex        =   73
-         Tag             =   "Tipo de cliente|N|N|0|2|ssocio|tipsocio|||"
-         Top             =   240
-         Width           =   3180
+         Height          =   375
+         Index           =   1
+         Left            =   8910
+         TabIndex        =   84
+         Top             =   5700
+         Width           =   1215
       End
-      Begin MSComctlLib.ListView ListView22 
-         Height          =   4545
-         Left            =   240
-         TabIndex        =   75
-         Top             =   630
-         Width           =   13085
-         _ExtentX        =   23072
-         _ExtentY        =   8017
+      Begin MSComctlLib.ListView ListView7 
+         Height          =   4665
+         Left            =   90
+         TabIndex        =   83
+         Top             =   810
+         Width           =   10035
+         _ExtentX        =   17701
+         _ExtentY        =   8229
          View            =   3
          LabelEdit       =   1
          LabelWrap       =   -1  'True
          HideSelection   =   -1  'True
+         Checkboxes      =   -1  'True
          FullRowSelect   =   -1  'True
          _Version        =   393217
          ForeColor       =   -2147483640
@@ -162,45 +85,56 @@ Begin VB.Form frmMensajes
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         NumItems        =   4
+         NumItems        =   3
          BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            Text            =   "Código"
-            Object.Width           =   1764
+            Text            =   "Descripcion"
+            Object.Width           =   6703
          EndProperty
          BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Alignment       =   1
             SubItemIndex    =   1
-            Text            =   "Variedad"
-            Object.Width           =   3881
+            Text            =   "Precio"
+            Object.Width           =   2117
          EndProperty
          BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
             SubItemIndex    =   2
-            Text            =   "Clase "
-            Object.Width           =   1411
-         EndProperty
-         BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            SubItemIndex    =   3
-            Text            =   "Descripcion"
-            Object.Width           =   3706
+            Text            =   "Familia"
+            Object.Width           =   4410
          EndProperty
       End
-      Begin VB.Label Label24 
-         Alignment       =   1  'Right Justify
-         Caption         =   "Facturas Pendientes de Contabilizar"
+      Begin VB.Label Label3 
+         Caption         =   "Socios"
          BeginProperty Font 
             Name            =   "Verdana"
-            Size            =   11.25
+            Size            =   12
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00972E0B&
-         Height          =   375
-         Left            =   4920
-         TabIndex        =   76
-         Top             =   300
-         Width           =   8355
+         ForeColor       =   &H00800000&
+         Height          =   420
+         Left            =   135
+         TabIndex        =   86
+         Top             =   315
+         Width           =   4020
+      End
+      Begin VB.Image imgSelSoc 
+         Height          =   240
+         Index           =   1
+         Left            =   540
+         Picture         =   "frmMensajes.frx":000C
+         Top             =   5550
+         Width           =   240
+      End
+      Begin VB.Image imgSelSoc 
+         Height          =   240
+         Index           =   0
+         Left            =   180
+         Picture         =   "frmMensajes.frx":0156
+         Top             =   5550
+         Width           =   240
       End
    End
    Begin VB.Frame FrameNSeries 
@@ -336,362 +270,6 @@ Begin VB.Form frmMensajes
          Width           =   5295
       End
    End
-   Begin VB.Frame FrameEmail 
-      Height          =   6975
-      Left            =   3600
-      TabIndex        =   43
-      Top             =   0
-      Width           =   8055
-      Begin VB.TextBox txmemail 
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   315
-         Index           =   4
-         Left            =   5280
-         Locked          =   -1  'True
-         TabIndex        =   54
-         Text            =   "Text2"
-         Top             =   2160
-         Width           =   2535
-      End
-      Begin VB.CommandButton cmdEmail 
-         Caption         =   "Salir"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   405
-         Left            =   6720
-         TabIndex        =   53
-         Top             =   6480
-         Width           =   975
-      End
-      Begin VB.TextBox txmemail 
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   3585
-         Index           =   3
-         Left            =   360
-         Locked          =   -1  'True
-         MultiLine       =   -1  'True
-         ScrollBars      =   2  'Vertical
-         TabIndex        =   51
-         Text            =   "frmMensajes.frx":002C
-         Top             =   2760
-         Width           =   7335
-      End
-      Begin VB.TextBox txmemail 
-         Enabled         =   0   'False
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   315
-         Index           =   2
-         Left            =   360
-         Locked          =   -1  'True
-         TabIndex        =   49
-         Text            =   "Text2"
-         Top             =   2160
-         Width           =   4815
-      End
-      Begin VB.TextBox txmemail 
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   315
-         Index           =   1
-         Left            =   360
-         Locked          =   -1  'True
-         TabIndex        =   45
-         Text            =   "Text2"
-         Top             =   1560
-         Width           =   7335
-      End
-      Begin VB.TextBox txmemail 
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   360
-         Index           =   0
-         Left            =   360
-         Locked          =   -1  'True
-         TabIndex        =   44
-         Text            =   "Text2"
-         Top             =   960
-         Width           =   7335
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Fecha"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Index           =   4
-         Left            =   5280
-         TabIndex        =   55
-         Top             =   1920
-         Width           =   2535
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Mensaje"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Index           =   3
-         Left            =   360
-         TabIndex        =   52
-         Top             =   2520
-         Width           =   2535
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Adjuntos"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Index           =   2
-         Left            =   360
-         TabIndex        =   50
-         Top             =   1920
-         Width           =   2535
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Asunto"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Index           =   1
-         Left            =   360
-         TabIndex        =   48
-         Top             =   1320
-         Width           =   2535
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Label5"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Index           =   0
-         Left            =   360
-         TabIndex        =   47
-         Top             =   720
-         Width           =   2535
-      End
-      Begin VB.Label lblTitulo 
-         Alignment       =   2  'Center
-         Caption         =   "Email CRM"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00800000&
-         Height          =   375
-         Index           =   15
-         Left            =   960
-         TabIndex        =   46
-         Top             =   240
-         Width           =   5415
-      End
-   End
-   Begin VB.Frame FrameCobrosPtes 
-      Height          =   4935
-      Left            =   0
-      TabIndex        =   0
-      Top             =   0
-      Width           =   8655
-      Begin VB.CommandButton cmdCancelarCobros 
-         Caption         =   "&Cancelar"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   7080
-         TabIndex        =   25
-         Top             =   4440
-         Width           =   975
-      End
-      Begin VB.TextBox txtParam 
-         Appearance      =   0  'Flat
-         BackColor       =   &H8000000F&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   1095
-         Left            =   240
-         MultiLine       =   -1  'True
-         TabIndex        =   23
-         Text            =   "frmMensajes.frx":0032
-         Top             =   120
-         Width           =   6615
-      End
-      Begin VB.CommandButton cmdAceptarCobros 
-         Caption         =   "&Aceptar"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   5400
-         TabIndex        =   1
-         Top             =   4440
-         Width           =   975
-      End
-      Begin MSComctlLib.ListView ListView1 
-         Height          =   3135
-         Left            =   120
-         TabIndex        =   2
-         Top             =   1200
-         Width           =   8100
-         _ExtentX        =   14288
-         _ExtentY        =   5530
-         View            =   3
-         LabelEdit       =   1
-         LabelWrap       =   -1  'True
-         HideSelection   =   -1  'True
-         GridLines       =   -1  'True
-         _Version        =   393217
-         ForeColor       =   -2147483640
-         BackColor       =   -2147483643
-         Appearance      =   1
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         NumItems        =   2
-         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            Object.Width           =   2540
-         EndProperty
-         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            SubItemIndex    =   1
-            Object.Width           =   2540
-         EndProperty
-      End
-      Begin VB.Label Label1 
-         Caption         =   "¿Desea continuar?"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Index           =   1
-         Left            =   480
-         TabIndex        =   26
-         Top             =   4440
-         Width           =   7215
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Departamento:"
-         Height          =   375
-         Index           =   0
-         Left            =   240
-         TabIndex        =   24
-         Top             =   240
-         Width           =   7215
-      End
-   End
    Begin VB.Frame FrameServicios 
       Height          =   6615
       Left            =   0
@@ -783,7 +361,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   5
          Left            =   180
-         Picture         =   "frmMensajes.frx":0038
+         Picture         =   "frmMensajes.frx":02A0
          Top             =   5550
          Width           =   240
       End
@@ -791,36 +369,18 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   4
          Left            =   540
-         Picture         =   "frmMensajes.frx":0182
+         Picture         =   "frmMensajes.frx":03EA
          Top             =   5550
          Width           =   240
       End
    End
-   Begin VB.Frame FrameEtiqEstant 
-      Height          =   7455
+   Begin VB.Frame FrameServiciosValidados 
+      Height          =   2355
       Left            =   0
-      TabIndex        =   31
-      Top             =   -120
-      Width           =   8535
-      Begin VB.CommandButton cmdEtiqEstan 
-         Caption         =   "Imprimir"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Index           =   1
-         Left            =   5520
-         TabIndex        =   34
-         Top             =   6960
-         Width           =   1215
-      End
-      Begin VB.CommandButton cmdEtiqEstan 
+      TabIndex        =   77
+      Top             =   45
+      Width           =   4425
+      Begin VB.CommandButton cmdCancel 
          Caption         =   "Cancelar"
          BeginProperty Font 
             Name            =   "Verdana"
@@ -832,30 +392,140 @@ Begin VB.Form frmMensajes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Index           =   0
-         Left            =   6960
-         TabIndex        =   33
-         Top             =   6960
-         Width           =   1215
+         Left            =   2700
+         TabIndex        =   81
+         Top             =   1575
+         Width           =   1335
       End
-      Begin MSComctlLib.ListView ListView3 
-         Height          =   6495
-         Left            =   240
-         TabIndex        =   32
+      Begin VB.CommandButton cmdAcepVal 
+         Caption         =   "Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   1260
+         TabIndex        =   80
+         Top             =   1575
+         Width           =   1335
+      End
+      Begin VB.OptionButton Option2 
+         Caption         =   "No Validados"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   690
+         Left            =   2205
+         TabIndex        =   79
          Top             =   360
-         Width           =   8055
-         _ExtentX        =   14208
-         _ExtentY        =   11456
+         Width           =   1770
+      End
+      Begin VB.OptionButton Option1 
+         Caption         =   "Validados"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   690
+         Left            =   585
+         TabIndex        =   78
+         Top             =   360
+         Width           =   1500
+      End
+   End
+   Begin VB.Frame FrameCobrosPtes 
+      Height          =   4935
+      Left            =   0
+      TabIndex        =   0
+      Top             =   0
+      Width           =   8655
+      Begin VB.CommandButton cmdCancelarCobros 
+         Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   7080
+         TabIndex        =   25
+         Top             =   4440
+         Width           =   975
+      End
+      Begin VB.TextBox txtParam 
+         Appearance      =   0  'Flat
+         BackColor       =   &H8000000F&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1095
+         Left            =   240
+         MultiLine       =   -1  'True
+         TabIndex        =   23
+         Text            =   "frmMensajes.frx":0534
+         Top             =   120
+         Width           =   6615
+      End
+      Begin VB.CommandButton cmdAceptarCobros 
+         Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   5400
+         TabIndex        =   1
+         Top             =   4440
+         Width           =   975
+      End
+      Begin MSComctlLib.ListView ListView1 
+         Height          =   3135
+         Left            =   120
+         TabIndex        =   2
+         Top             =   1200
+         Width           =   8100
+         _ExtentX        =   14288
+         _ExtentY        =   5530
          View            =   3
          LabelEdit       =   1
          LabelWrap       =   -1  'True
          HideSelection   =   -1  'True
-         Checkboxes      =   -1  'True
-         FullRowSelect   =   -1  'True
+         GridLines       =   -1  'True
          _Version        =   393217
          ForeColor       =   -2147483640
          BackColor       =   -2147483643
-         BorderStyle     =   1
          Appearance      =   1
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
@@ -866,38 +536,41 @@ Begin VB.Form frmMensajes
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         NumItems        =   3
+         NumItems        =   2
          BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            Text            =   "Descripcion"
-            Object.Width           =   6703
+            Object.Width           =   2540
          EndProperty
          BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            Alignment       =   1
             SubItemIndex    =   1
-            Text            =   "Precio"
-            Object.Width           =   2117
-         EndProperty
-         BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            SubItemIndex    =   2
-            Text            =   "Familia"
-            Object.Width           =   4410
+            Object.Width           =   2540
          EndProperty
       End
-      Begin VB.Image imgCheck 
-         Height          =   240
+      Begin VB.Label Label1 
+         Caption         =   "¿Desea continuar?"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
          Index           =   1
-         Left            =   600
-         Picture         =   "frmMensajes.frx":02CC
-         Top             =   6960
-         Width           =   240
+         Left            =   480
+         TabIndex        =   26
+         Top             =   4440
+         Width           =   7215
       End
-      Begin VB.Image imgCheck 
-         Height          =   240
+      Begin VB.Label Label1 
+         Caption         =   "Departamento:"
+         Height          =   375
          Index           =   0
          Left            =   240
-         Picture         =   "frmMensajes.frx":0416
-         Top             =   6960
-         Width           =   240
+         TabIndex        =   24
+         Top             =   240
+         Width           =   7215
       End
    End
    Begin VB.Frame FrameCorreccionPrecios 
@@ -917,9 +590,9 @@ Begin VB.Form frmMensajes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         ItemData        =   "frmMensajes.frx":0560
+         ItemData        =   "frmMensajes.frx":053A
          Left            =   7800
-         List            =   "frmMensajes.frx":0562
+         List            =   "frmMensajes.frx":053C
          Style           =   2  'Dropdown List
          TabIndex        =   41
          Top             =   5960
@@ -1064,7 +737,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   2
          Left            =   11760
-         Picture         =   "frmMensajes.frx":0564
+         Picture         =   "frmMensajes.frx":053E
          Top             =   240
          Width           =   240
       End
@@ -1072,7 +745,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   3
          Left            =   12360
-         Picture         =   "frmMensajes.frx":06AE
+         Picture         =   "frmMensajes.frx":0688
          Top             =   240
          Width           =   240
       End
@@ -1150,7 +823,7 @@ Begin VB.Form frmMensajes
          MultiLine       =   -1  'True
          ScrollBars      =   3  'Both
          TabIndex        =   28
-         Text            =   "frmMensajes.frx":07F8
+         Text            =   "frmMensajes.frx":07D2
          Top             =   360
          Width           =   7695
       End
@@ -1620,6 +1293,455 @@ Begin VB.Form frmMensajes
          Width           =   1125
       End
    End
+   Begin VB.Frame FrameEtiqEstant 
+      Height          =   7455
+      Left            =   0
+      TabIndex        =   31
+      Top             =   -120
+      Width           =   8535
+      Begin VB.CommandButton cmdEtiqEstan 
+         Caption         =   "Imprimir"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   1
+         Left            =   5520
+         TabIndex        =   34
+         Top             =   6960
+         Width           =   1215
+      End
+      Begin VB.CommandButton cmdEtiqEstan 
+         Caption         =   "Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   0
+         Left            =   6960
+         TabIndex        =   33
+         Top             =   6960
+         Width           =   1215
+      End
+      Begin MSComctlLib.ListView ListView3 
+         Height          =   6495
+         Left            =   240
+         TabIndex        =   32
+         Top             =   360
+         Width           =   8055
+         _ExtentX        =   14208
+         _ExtentY        =   11456
+         View            =   3
+         LabelEdit       =   1
+         LabelWrap       =   -1  'True
+         HideSelection   =   -1  'True
+         Checkboxes      =   -1  'True
+         FullRowSelect   =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         BorderStyle     =   1
+         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   3
+         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Text            =   "Descripcion"
+            Object.Width           =   6703
+         EndProperty
+         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Alignment       =   1
+            SubItemIndex    =   1
+            Text            =   "Precio"
+            Object.Width           =   2117
+         EndProperty
+         BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   2
+            Text            =   "Familia"
+            Object.Width           =   4410
+         EndProperty
+      End
+      Begin VB.Image imgCheck 
+         Height          =   240
+         Index           =   1
+         Left            =   600
+         Picture         =   "frmMensajes.frx":07D8
+         Top             =   6960
+         Width           =   240
+      End
+      Begin VB.Image imgCheck 
+         Height          =   240
+         Index           =   0
+         Left            =   240
+         Picture         =   "frmMensajes.frx":0922
+         Top             =   6960
+         Width           =   240
+      End
+   End
+   Begin VB.Frame FrameFrasPteContabilizar 
+      Height          =   5790
+      Left            =   0
+      TabIndex        =   72
+      Top             =   0
+      Width           =   13660
+      Begin VB.CommandButton cmdCerrarFras 
+         Caption         =   "Continuar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   5
+         Left            =   12060
+         TabIndex        =   74
+         Top             =   5280
+         Width           =   1215
+      End
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   0
+         ItemData        =   "frmMensajes.frx":0A6C
+         Left            =   240
+         List            =   "frmMensajes.frx":0A76
+         Style           =   2  'Dropdown List
+         TabIndex        =   73
+         Tag             =   "Tipo de cliente|N|N|0|2|ssocio|tipsocio|||"
+         Top             =   240
+         Width           =   3180
+      End
+      Begin MSComctlLib.ListView ListView22 
+         Height          =   4545
+         Left            =   240
+         TabIndex        =   75
+         Top             =   630
+         Width           =   13085
+         _ExtentX        =   23072
+         _ExtentY        =   8017
+         View            =   3
+         LabelEdit       =   1
+         LabelWrap       =   -1  'True
+         HideSelection   =   -1  'True
+         FullRowSelect   =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         BorderStyle     =   1
+         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   4
+         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Text            =   "Código"
+            Object.Width           =   1764
+         EndProperty
+         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   1
+            Text            =   "Variedad"
+            Object.Width           =   3881
+         EndProperty
+         BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   2
+            Text            =   "Clase "
+            Object.Width           =   1411
+         EndProperty
+         BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   3
+            Text            =   "Descripcion"
+            Object.Width           =   3706
+         EndProperty
+      End
+      Begin VB.Label Label24 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Facturas Pendientes de Contabilizar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   375
+         Left            =   4920
+         TabIndex        =   76
+         Top             =   300
+         Width           =   8355
+      End
+   End
+   Begin VB.Frame FrameEmail 
+      Height          =   6975
+      Left            =   3600
+      TabIndex        =   43
+      Top             =   0
+      Width           =   8055
+      Begin VB.TextBox txmemail 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   4
+         Left            =   5280
+         Locked          =   -1  'True
+         TabIndex        =   54
+         Text            =   "Text2"
+         Top             =   2160
+         Width           =   2535
+      End
+      Begin VB.CommandButton cmdEmail 
+         Caption         =   "Salir"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   405
+         Left            =   6720
+         TabIndex        =   53
+         Top             =   6480
+         Width           =   975
+      End
+      Begin VB.TextBox txmemail 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   3585
+         Index           =   3
+         Left            =   360
+         Locked          =   -1  'True
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   51
+         Text            =   "frmMensajes.frx":0A8C
+         Top             =   2760
+         Width           =   7335
+      End
+      Begin VB.TextBox txmemail 
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   2
+         Left            =   360
+         Locked          =   -1  'True
+         TabIndex        =   49
+         Text            =   "Text2"
+         Top             =   2160
+         Width           =   4815
+      End
+      Begin VB.TextBox txmemail 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   1
+         Left            =   360
+         Locked          =   -1  'True
+         TabIndex        =   45
+         Text            =   "Text2"
+         Top             =   1560
+         Width           =   7335
+      End
+      Begin VB.TextBox txmemail 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   0
+         Left            =   360
+         Locked          =   -1  'True
+         TabIndex        =   44
+         Text            =   "Text2"
+         Top             =   960
+         Width           =   7335
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Fecha"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   4
+         Left            =   5280
+         TabIndex        =   55
+         Top             =   1920
+         Width           =   2535
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Mensaje"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   3
+         Left            =   360
+         TabIndex        =   52
+         Top             =   2520
+         Width           =   2535
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Adjuntos"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   2
+         Left            =   360
+         TabIndex        =   50
+         Top             =   1920
+         Width           =   2535
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Asunto"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   1
+         Left            =   360
+         TabIndex        =   48
+         Top             =   1320
+         Width           =   2535
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Label5"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   0
+         Left            =   360
+         TabIndex        =   47
+         Top             =   720
+         Width           =   2535
+      End
+      Begin VB.Label lblTitulo 
+         Alignment       =   2  'Center
+         Caption         =   "Email CRM"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   375
+         Index           =   15
+         Left            =   960
+         TabIndex        =   46
+         Top             =   240
+         Width           =   5415
+      End
+   End
 End
 Attribute VB_Name = "frmMensajes"
 Attribute VB_GlobalNameSpace = False
@@ -1676,6 +1798,9 @@ Public OpcionMensaje As Byte
 
 '32 .- servicios validados
 
+'33 .- socios a liquidar
+
+
 Public cadWHERE As String 'Cadena para pasarle la WHERE de la SELECT de los cobros pendientes o de Pedido(para comp. stock)
                           'o CodArtic para seleccionar los Nº Series
                           'para cargar el ListView
@@ -1713,11 +1838,21 @@ Private Sub cmdAcepServ_Click(Index As Integer)
 Dim Cad As String
 
     Cad = ""
-    For TotalArray = 1 To ListView5.ListItems.Count
-        If ListView5.ListItems(TotalArray).Checked Then
-            Cad = Cad & "(" & DBSet(ListView5.ListItems(TotalArray).Text, "F") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(1), "H") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(2), "N") & "),"
-        End If
-    Next TotalArray
+
+    If Index = 1 Then
+        For TotalArray = 1 To ListView7.ListItems.Count
+            If ListView7.ListItems(TotalArray).Checked Then
+                Cad = Cad & DBSet(ListView7.ListItems(TotalArray).SubItems(1), "N") & ","
+            End If
+        Next TotalArray
+    Else
+        For TotalArray = 1 To ListView5.ListItems.Count
+            If ListView5.ListItems(TotalArray).Checked Then
+                Cad = Cad & "(" & DBSet(ListView5.ListItems(TotalArray).Text, "F") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(1), "H") & "," & DBSet(ListView5.ListItems(TotalArray).SubItems(2), "N") & "),"
+            End If
+        Next TotalArray
+    End If
+        
     If Len(Cad) > 0 Then Cad = Mid(Cad, 1, Len(Cad) - 1) ' quitamos la ultima coma
     RaiseEvent DatoSeleccionado(Cad)
     PulsadoSalir = True
@@ -2335,7 +2470,9 @@ Dim Ok As Boolean
             
             Combo1(0).ListIndex = 0
         
-        
+        Case 33 ' socios a liquidar
+            CargarSocios
+            
     End Select
     
     Screen.MousePointer = vbDefault
@@ -2366,6 +2503,7 @@ On Error Resume Next
     FrameFrasPteContabilizar.visible = False
     
     FrameServiciosValidados.visible = False
+    FrameSocios.visible = False
     
     PulsadoSalir = True
     PrimeraVez = True
@@ -2574,6 +2712,10 @@ On Error Resume Next
             W = FrameServiciosValidados.Width
             PonerFrameVisible FrameServiciosValidados, True, H, W
         
+        Case 33 ' 33-socios a liquidar
+            H = Me.FrameSocios.Height
+            W = FrameSocios.Width
+            PonerFrameVisible FrameSocios, True, H, W
             
     End Select
     'Me.cmdCancel(indFrame).Cancel = True
@@ -3681,7 +3823,6 @@ Dim b As Boolean
 End Sub
 
 
-
 Private Sub imgSelServ_Click(Index As Integer)
     If Index = 4 Then
         For TotalArray = 1 To ListView5.ListItems.Count
@@ -3693,11 +3834,24 @@ Private Sub imgSelServ_Click(Index As Integer)
             ListView5.ListItems(TotalArray).Checked = False
             If (TotalArray Mod 50) = 0 Then DoEvents
         Next TotalArray
-    
-    
     End If
-    
 End Sub
+
+Private Sub imgSelSoc_Click(Index As Integer)
+    If Index = 1 Then
+        For TotalArray = 1 To ListView7.ListItems.Count
+            ListView7.ListItems(TotalArray).Checked = True
+            If (TotalArray Mod 50) = 0 Then DoEvents
+        Next TotalArray
+    Else
+        For TotalArray = 1 To ListView7.ListItems.Count
+            ListView7.ListItems(TotalArray).Checked = False
+            If (TotalArray Mod 50) = 0 Then DoEvents
+        Next TotalArray
+    End If
+End Sub
+
+
 
 Private Sub OptCompXClien_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
@@ -4321,3 +4475,57 @@ Private Sub cmdCerrarFras_Click(Index As Integer)
     Unload Me
 End Sub
 
+
+Private Sub CargarSocios()
+'Muestra la lista Detallada de Facturas que dieron error al contabilizar
+'en un ListView
+Dim Rs As ADODB.Recordset
+Dim ItmX As ListItem
+Dim Sql As String
+
+    On Error GoTo ECargarList
+
+    If cadWHERE2 = "shilla" Then
+        Sql = "SELECT distinct sclien.codclien,sclien.numeruve,sclien.nomclien,sclien.nifclien "
+        Sql = Sql & "FROM sclien INNER JOIN shilla on sclien.codclien = shilla.codsocio and sclien.numeruve = shilla.numeruve "
+    Else
+        Sql = "SELECT sclien.codclien,sclien.numeruve,nomclien,nifclien "
+        Sql = Sql & "FROM sclien inner join sfactsoctr on sclien.codclien = sfactsoctr.codsocio and sclien.numeruve = sfactsoctr.numeruve "
+    End If
+    
+    If cadWHERE <> "" Then Sql = Sql & " WHERE " & cadWHERE
+    Sql = Sql & " ORDER BY sclien.codclien "
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+        'Los encabezados
+        ListView7.ColumnHeaders.Clear
+
+        ListView7.ColumnHeaders.Add , , "Socio", 1000
+        ListView7.ColumnHeaders.Add , , "NºVehiculo", 1500, 1
+        ListView7.ColumnHeaders.Add , , "Nombre", 4500, 0
+        ListView7.ColumnHeaders.Add , , "Nif", 1500, 0
+    
+        While Not Rs.EOF
+            Set ItmX = ListView7.ListItems.Add
+            ItmX.Checked = True
+            ItmX.Text = Format(Rs.Fields(0).Value, "0000")
+            ItmX.SubItems(1) = Format(Rs!NumerUve, "0000")
+            ItmX.SubItems(2) = DBLet(Rs!nomclien, "T")
+            ItmX.SubItems(3) = DBLet(Rs!nifClien, "T")
+            Rs.MoveNext
+        Wend
+    End If
+    Rs.Close
+    Set Rs = Nothing
+    Exit Sub
+    
+ECargarList:
+    If Err.Number <> 0 Then
+        MuestraError Err.Number, "Cargar Socios", Err.Description
+        PulsadoSalir = True
+        Unload Me
+    End If
+End Sub

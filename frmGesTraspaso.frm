@@ -1022,6 +1022,29 @@ Dim DtoCli As String
 
 '[Monica]18/06/2018: no modificamos el codigo de socio si es una actualizacion (update pq el registro ya estaba en la shilla)
 '                linea = "codsocio = " & DBSet(Rs!codSocio, "N") & ","
+
+            '[Monica]18/02/2019: en el caso de que esté facturado y sea teletaxi then
+            If EsTeletaxi And EstaFacturadoCliente(cWhere) Then
+                '[Monica]28/02/2018: si esta marcado que se marcan como validados, independientemente de lo que venga
+                linea = ""
+                If vParamAplic.MarcarValidados Then
+                    linea = linea & " validado = 1 "
+                Else
+                    If Not IsNull(Rs!CodClien) Then
+                        If MarcarValidadosEnCliente(Rs!CodClien) Then
+                            linea = linea & " validado = 1 "
+                        Else
+                            linea = linea & " validado = " & DBSet(Rs!validado, "N")
+                        End If
+                    Else
+                        linea = linea & " validado = " & DBSet(Rs!validado, "N")
+                    End If
+                End If
+                linea = linea & " where " & cWhere
+                
+                conn.Execute SqlUpdate & linea
+                
+            Else
                 linea = "numeruve = " & DBSet(Rs!NumerUve, "N")
                 linea = linea & ",codclien = " & DBSet(Rs!CodClien, "N")
                 linea = linea & ",codusuar = " & DBSet(Rs!codusuar, "T")
@@ -1116,7 +1139,7 @@ Dim DtoCli As String
                 linea = linea & " where " & cWhere
                 
                 conn.Execute SqlUpdate & linea
-'            End If
+            End If
         Else
             
             If IsNull(Rs!Fecha) Then
@@ -1486,6 +1509,30 @@ Dim Sql As String
 
 
 End Function
+
+Private Function EstaFacturadoCliente(vWhere As String) As Boolean
+Dim Sql As String
+Dim Rs As ADODB.Recordset
+
+    On Error Resume Next
+    
+    EstaFacturadoCliente = False
+    
+    
+    Sql = "select facturadocliente from shilla where " & vWhere
+    Set Rs = New ADODB.Recordset
+    
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Not Rs.EOF Then
+        EstaFacturadoCliente = (DBLet(Rs!facturadocliente, "N") = 1)
+    End If
+    Set Rs = Nothing
+    
+
+End Function
+
+
+
 
 Private Function EsdeCredito(vWhere As String) As Boolean
 Dim Sql As String

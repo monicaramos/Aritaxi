@@ -4037,6 +4037,7 @@ Dim Rs As ADODB.Recordset
 '    Text1(30).visible = False
     Combo1.visible = True
     Combo1.ListIndex = 0
+    
     'Si es Albaran para factura RECTIFICATIVA pedir la Factura que se va
     'a Rectificar y si existe en el historico, tabla "scafac", entonces dejamos
     'que inserte el Albaran Rectificativo, si no salimos
@@ -4140,7 +4141,7 @@ Dim Rs As ADODB.Recordset
     Text2(28).Text = Text2(3).Text
 
     Text1(1).Text = Format(Now, "dd/mm/yyyy") 'Fecha Albaran
-    Text1(30).Text = CodTipoMov
+    Text1(30).Text = Mid(Combo1.Text, 1, 3)
     PonerFoco Text1(1)
 End Sub
 

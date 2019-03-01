@@ -1,14 +1,31 @@
 VERSION 5.00
 Begin VB.Form frmFCliReImp 
    Caption         =   "Informes"
-   ClientHeight    =   5400
+   ClientHeight    =   6210
    ClientLeft      =   60
    ClientTop       =   450
    ClientWidth     =   6165
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5400
+   ScaleHeight     =   6210
    ScaleWidth      =   6165
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox Check2 
+      Caption         =   "Clientes sin Facturacion Electrónica"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Left            =   330
+      TabIndex        =   22
+      Top             =   5040
+      Width           =   4635
+   End
    Begin VB.CheckBox Check1 
       Caption         =   "Rectificativas"
       BeginProperty Font 
@@ -173,7 +190,7 @@ Begin VB.Form frmFCliReImp
       Height          =   375
       Left            =   3360
       TabIndex        =   7
-      Top             =   4680
+      Top             =   5625
       Width           =   1135
    End
    Begin VB.CommandButton cmdCancelar 
@@ -190,7 +207,7 @@ Begin VB.Form frmFCliReImp
       Height          =   375
       Left            =   4650
       TabIndex        =   8
-      Top             =   4680
+      Top             =   5625
       Width           =   1135
    End
    Begin VB.TextBox txtcodigo 
@@ -512,21 +529,21 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
     
     'Desde/Hasta cliente
     '---------------------------------------------
-    If txtcodigo(0).Text <> "" Or txtcodigo(1).Text <> "" Then
+    If txtCodigo(0).Text <> "" Or txtCodigo(1).Text <> "" Then
         Codigo = "{" & Tabla & ".codclien}"
         If Not PonerDesdeHasta(Codigo, "N", 0, 1, "pDHCliente=""") Then Exit Sub
     End If
     
     'Desde/Hasta numero de FACTURA
     '---------------------------------------------
-    If txtcodigo(36).Text <> "" Or txtcodigo(37).Text <> "" Then
+    If txtCodigo(36).Text <> "" Or txtCodigo(37).Text <> "" Then
         Codigo = "{" & Tabla & ".numfactu}"
         If Not PonerDesdeHasta(Codigo, "N", 36, 37, "") Then Exit Sub
     End If
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
-    If txtcodigo(85).Text <> "" Or txtcodigo(86).Text <> "" Then
+    If txtCodigo(85).Text <> "" Or txtCodigo(86).Text <> "" Then
         Codigo = "{" & Tabla & ".fecfactu}"
         If Not PonerDesdeHasta(Codigo, "F", 85, 86, "") Then Exit Sub
     End If
@@ -540,6 +557,14 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
         cadParam = cadParam & "pDuplicado=0|"
     End If
     numParam = numParam + 1
+    
+    '[Monica]15/02/2019: solo los clientes que no tengan facturacion electronica
+    If Check2.Value = 1 Then
+        If Not AnyadirAFormula(cadFormula, "{scliente.tasareciclado} = 0") Then Exit Sub
+        If Not AnyadirAFormula(cadSelect, "{scliente.tasareciclado} = 0") Then Exit Sub
+    End If
+    
+    Tabla = Tabla & " inner join scliente on scafaccli.codclien = scliente.codclien"
     
     If Not HayRegParaInforme(Tabla, cadSelect) Then Exit Sub
 
@@ -607,12 +632,12 @@ Private Sub Form_Activate()
     numParam = 0
     cadParam = ""
 
-    PonerFoco txtcodigo(0)
+    PonerFoco txtCodigo(0)
 
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
     'Icono del form
     Me.Icon = frmppal.Icon
     
@@ -620,13 +645,13 @@ Dim I As Integer
 '    CargarComboAnyo
 '    Combo2.Text = Year(Date)
 '    CalcularFacturas True
-    For I = 0 To Me.imgBuscarOfer.Count - 1
-        Me.imgBuscarOfer(I).Picture = frmppal.imgIcoForms.ListImages(1).Picture
-    Next I
+    For i = 0 To Me.imgBuscarOfer.Count - 1
+        Me.imgBuscarOfer(i).Picture = frmppal.imgIcoForms.ListImages(1).Picture
+    Next i
     
-    For I = 23 To 24
-        Me.imgFecha(I).Picture = frmppal.imgIcoForms.ListImages(2).Picture
-    Next I
+    For i = 23 To 24
+        Me.imgFecha(i).Picture = frmppal.imgIcoForms.ListImages(2).Picture
+    Next i
     
 End Sub
 
@@ -711,7 +736,7 @@ Dim devuelve As String
 Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
@@ -720,7 +745,7 @@ Dim Cad As String
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtcodigo(indD).Text, txtcodigo(indH).Text, campo, Tipo)
+        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
         If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
     End If
     
@@ -736,13 +761,13 @@ End Function
 
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    txtcodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000")
     txtnombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub frmF_Selec(vFecha As Date)
 'Calendario de Fecha
-    txtcodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
+    txtCodigo(indCodigo).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 
@@ -758,7 +783,7 @@ Private Sub imgBuscarOfer_Click(Index As Integer)
             Set frmCli = Nothing
         
         End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 
 
 End Sub
@@ -773,13 +798,13 @@ Private Sub imgFecha_Click(Index As Integer)
             indCodigo = Index + 62
    End Select
    
-   PonerFormatoFecha txtcodigo(indCodigo)
-   If txtcodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtcodigo(indCodigo).Text)
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.Fecha = CDate(txtCodigo(indCodigo).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco txtcodigo(indCodigo)
+   PonerFoco txtCodigo(indCodigo)
 End Sub
 
 'Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
@@ -816,7 +841,7 @@ Dim EsNomCod As Boolean
 
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -827,17 +852,17 @@ Dim EsNomCod As Boolean
     
     Select Case Index
         Case 0, 1 'clientes
-            If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtnombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
+            If PonerFormatoEntero(txtCodigo(Index)) Then
+                txtnombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), conAri, "scliente", "nomclien", "codclien", "N")
             End If
         
         Case 85, 86  'FECHA Desde Hasta
-            If txtcodigo(Index).Text = "" Then Exit Sub
-            PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text = "" Then Exit Sub
+            PonerFormatoFecha txtCodigo(Index)
             
         Case 36, 37 'Nº de FACTURA
-            If PonerFormatoEntero(txtcodigo(Index)) Then
-                txtcodigo(Index).Text = Format(txtcodigo(Index).Text, "0000000")
+            If PonerFormatoEntero(txtCodigo(Index)) Then
+                txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "0000000")
             End If
     End Select
     

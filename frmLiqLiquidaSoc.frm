@@ -817,6 +817,8 @@ Private WithEvents frmMtoBancosPro As frmFacBancosPropios
 Attribute frmMtoBancosPro.VB_VarHelpID = -1
 Private WithEvents frmMens As frmMensajes ' socios con liquidacion en efectivo
 Attribute frmMens.VB_VarHelpID = -1
+Private WithEvents frmMens2 As frmMensajes ' socios con liquidacion en efectivo
+Attribute frmMens2.VB_VarHelpID = -1
 
 
 ' Importes para la Grabacion de Cabecera de Facturas de Socio
@@ -833,6 +835,7 @@ Dim Suplidos As Currency
 Dim tipoMov As String
 Dim codSocio As String
 Dim SociosContado As String
+Dim SociosSeleccionados As String
 
 Dim kCampo As Integer
 
@@ -979,10 +982,36 @@ Dim SqlUve As String
                 Unload Me
                 Exit Sub
             End If
+        End If
+    End If
+
+
+    '[Monica]13/02/2019: solo para el caso de Sevilla voy a poder quitar aquellos socios que no hayan traido los vales
+    If vParamAplic.Cooperativa = 3 Then
+        Set frmMens2 = New frmMensajes
         
+        frmMens2.OpcionMensaje = 33
+        '[Monica]10/09/2014: antes era sobre rfactsoctr, ahora sobre la shilla
+        frmMens2.cadWHERE2 = Tabla
+        
+
+        If Tabla = "shilla" Then
+            frmMens2.cadWHERE = cadSelect
+        Else
+            frmMens2.cadWHERE = cadSelect
+        End If
+        frmMens2.Show vbModal
+    
+        Set frmMens2 = Nothing
+        
+        If SociosSeleccionados = "Cancelado" Then
+            Unload Me
+            Exit Sub
         End If
         
+        cadSelect = cadSelect & " and " & SociosSeleccionados
     End If
+
 
     ' proceso de liquidacion a socios
     If Tabla = "shilla" Then
@@ -1328,6 +1357,25 @@ Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
         End If
     End If
 End Sub
+
+
+Private Sub frmMens2_DatoSeleccionado(CadenaSeleccion As String)
+    SociosSeleccionados = ""
+    If CadenaSeleccion <> "" Then
+        If CadenaSeleccion = "Cancelado" Then
+            SociosSeleccionados = "Cancelado"
+        Else
+            SociosSeleccionados = "shilla.numeruve in (" & CadenaSeleccion & ")"
+        End If
+    Else
+        If CadenaSeleccion = "" Then
+            SociosSeleccionados = "Cancelado"
+        End If
+    End If
+End Sub
+
+
+
 
 Private Sub frmMtoBancosPro_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de Bancos Propios
@@ -2043,7 +2091,7 @@ Dim mCCC_CTa As String
 
 Dim vSocio As CSocio
 
-Dim I As Byte
+Dim i As Byte
 
     On Error GoTo EInsertarTesoreria
 
@@ -2099,7 +2147,7 @@ Dim I As Byte
                   
                   'Primer Vencimiento
                   '------------------------------------------------------------
-                  I = 1
+                  i = 1
                   'FECHA VTO
                   FecVenci = CDate(RsFact!FecFactu)
                   '=== Modificado: Laura 23/01/2007
@@ -2115,7 +2163,7 @@ Dim I As Byte
                       FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                   End If
                  
-                  CadValues2 = CadValuesAux2 & I
+                  CadValues2 = CadValuesAux2 & i
                   CadValues2 = CadValues2 & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                     
                   'IMPORTE del Vencimiento
@@ -2148,7 +2196,7 @@ Dim I As Byte
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"
                   
                   If vParamAplic.ContabilidadNueva Then
-                        CadValues2 = CadValues2 & "," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T") & ","
+                        CadValues2 = CadValues2 & "," & DBSet(vSocio.NOMBRE, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T") & ","
                         CadValues2 = CadValues2 & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & ",'ES',"
                         CadValues2 = CadValues2 & DBSet(vSocio.Iban, "T") & ")"
                   Else
@@ -2162,7 +2210,7 @@ Dim I As Byte
      
                   'Resto Vencimientos
                   '--------------------------------------------------------------------
-                  For I = 2 To rsVenci!numerove
+                  For i = 2 To rsVenci!numerove
                      'FECHA Resto Vencimientos
                       '==== Modificado: Laura 23/01/2007
                       'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -2177,7 +2225,7 @@ Dim I As Byte
                             FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                       End If
     
-                      CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                      CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
     
                       'IMPORTE Resto de Vendimientos
                       ImpVenci = Round(Rs!TotalFac / rsVenci!numerove, 2)
@@ -2197,7 +2245,7 @@ Dim I As Byte
                       CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'" ')"
                       
                       If vParamAplic.ContabilidadNueva Then
-                            CadValues2 = CadValues2 & "," & DBSet(vSocio.Nombre, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T") & ","
+                            CadValues2 = CadValues2 & "," & DBSet(vSocio.NOMBRE, "T") & "," & DBSet(vSocio.Domicilio, "T") & "," & DBSet(vSocio.Poblacion, "T") & ","
                             CadValues2 = CadValues2 & DBSet(vSocio.CPostal, "T") & "," & DBSet(vSocio.Provincia, "T") & "," & DBSet(vSocio.NIF, "T") & ",'ES',"
                             CadValues2 = CadValues2 & DBSet(vSocio.Iban, "T") & ")"
                       Else
@@ -2208,7 +2256,7 @@ Dim I As Byte
                                 CadValues2 = CadValues2 & ")"
                             End If
                       End If
-                  Next I
+                  Next i
                 End If
                 
                 Set vSocio = Nothing
@@ -2501,6 +2549,8 @@ Dim BancoContado As String
         Sql = Sql & " group by numeruve having importe + suplidos <> 0 "
         Sql = Sql & " ORDER BY shilla.numeruve"
 '    End If
+    
+    
     Set RSalb = New ADODB.Recordset
     RSalb.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
@@ -2595,7 +2645,7 @@ Dim BancoContado As String
                 vFacSoc.CtaSocio = vSocio.CtaSocioLiq
                 
                 '[Monica]11/05/2017
-                vFacSoc.NombreSocio = vSocio.Nombre
+                vFacSoc.NombreSocio = vSocio.NOMBRE
                 vFacSoc.DomicilioSocio = vSocio.Domicilio
                 vFacSoc.CPostalSocio = vSocio.CPostal
                 vFacSoc.PoblacionSocio = vSocio.Poblacion
