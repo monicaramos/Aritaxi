@@ -688,6 +688,13 @@ Dim v_cadena As String
     
     If Not Rs.EOF Then
         
+        '[Monica]14/05/2019: hay un control de Rafa que dice que si la factura no tiene servicios da error y no la inserta
+        '           insertamos un registro para que no dé error en las rectificativas de cliente y de socios.
+        Dim B As Boolean
+        B = True
+        If Tipo = 1 Or Tipo = 2 Then B = InsertarServiciosRectificativas(Tipo, Sql)
+        If Not B Then Exit Sub
+        
         v_cadena = vParamAplic.PathFacturaE
         
         Select Case Tipo
@@ -897,7 +904,56 @@ Dim i As Integer
 End Function
 
 
+Private Function InsertarServiciosRectificativas(Tipo As Byte, Sql1 As String) As Boolean
+Dim Rs As ADODB.Recordset
+Dim SqlInsert As String
+Dim SqlValues As String
+Dim MinSocio As Long
 
+    On Error GoTo eInsertarServiciosRectificativas
+
+    InsertarServiciosRectificativas = False
+
+    Set Rs = New ADODB.Recordset
+    
+    If Tipo = 1 Then ' liquidacion, vemos si hay rectificativas
+        Sql1 = Sql1 & " and sfactusoc.codtipom = 'FRL'"
+        
+        SqlInsert = "insert ignore into sfactusoc_serv (codtipom,codsocio,numfactu,fecfactu,numlinea,fecha,hora,numeruve,impventa) values "
+        SqlValues = ""
+    Else
+        Sql1 = Sql1 & " and scafaccli.codtipom = 'FRN'"
+        
+        MinSocio = DevuelveValor("select min(codclien) from sclien")
+        
+        SqlInsert = "insert ignore into scafaccli_serv (codtipom,numfactu,fecfactu,numlinea,fecha,hora,codsocio,numeruve,codclien,impventa) values "
+        SqlValues = ""
+    End If
+    
+    Rs.Open Sql1, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        If Tipo = 1 Then
+            SqlValues = SqlValues & ",(" & DBSet(Rs!codtipom, "T") & "," & DBSet(Rs!codSocio, "N") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F") & ",1," & DBSet(Rs!FecFactu, "F") & ","
+            SqlValues = SqlValues & "'00:00:00'," & DBSet(Rs!NumerUve, "N") & "," & DBSet(Rs!TotalFac, "N") & ")"
+        Else
+            SqlValues = SqlValues & ",(" & DBSet(Rs!codtipom, "T") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F") & ",1," & DBSet(Rs!FecFactu, "F") & ",'00:00:00',"
+            SqlValues = SqlValues & DBSet(MinSocio, "N") & ",0,0," & DBSet(Rs!TotalFac, "N") & ")"
+        End If
+    
+        Rs.MoveNext
+    Wend
+    Set Rs = Nothing
+    
+    If SqlValues <> "" Then
+        conn.Execute SqlInsert & Mid(SqlValues, 2)
+    End If
+    
+    InsertarServiciosRectificativas = True
+    Exit Function
+    
+eInsertarServiciosRectificativas:
+    MuestraError Err.Number, "Insertar Servicio Rectificativa", Err.Description
+End Function
 
 
 

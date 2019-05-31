@@ -1694,14 +1694,14 @@ Dim TamanyoImgComun As Integer
 
 
 '????
-    ImgListComun1.ListImages.Clear
+    imgListComun1.ListImages.Clear
     imgListComun_BN.ListImages.Clear
     imgListComun_OM.ListImages.Clear
     
     TamanyoImgComun = 24
     
-    ImgListComun1.ImageHeight = TamanyoImgComun
-    ImgListComun1.ImageWidth = TamanyoImgComun
+    imgListComun1.ImageHeight = TamanyoImgComun
+    imgListComun1.ImageWidth = TamanyoImgComun
     GetIconsFromLibrary App.Path & "\styles\iconos.dll", 2, TamanyoImgComun  'antes icolistcon
 
     
@@ -1957,7 +1957,7 @@ Private Sub LoadIcons()
 
 
     'pequeños
-    T = Array(ID_VtasSocios, ID_ServiciosSocios, ID_LiquidacionesSocios, 1, 1, 1, 1, 1, 1, 1)
+    T = Array(ID_VtasSocios, ID_ServiciosSocios, ID_LiquidacionesSocios, ID_Aportaciones, 1, 1, 1, 1, 1, 1)
     
     CommandBarsGlobalSettings.Icons.LoadBitmap App.Path & "\styles\mail_16x16.bmp", T, xtpImageNormal
 
@@ -2663,7 +2663,7 @@ Dim GrupLiqu As RibbonGroup
                 Select Case Rn2!Codigo
                     Case 401 To 405
                         Set Control = GrupGral.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
-                    Case 406, 408
+                    Case 406, 407, 408
                         Set Control = GrupVari.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
                     Case 409 To 417
                         Set Control = GrupAlba.Add(xtpControlButton, Rn2!Codigo, Rn2!Descripcion)
@@ -3107,6 +3107,8 @@ Private Sub AbrirFormularios(Accion As Long)
             frmGesHcoUves.Show vbModal
         Case 406 ' Etiquetas de Socios
             AbrirListadoOfer 190
+        Case 407 ' Certificados
+            AbrirListadoOfer 242
         Case 408 ' Cartas a Socios
             AbrirListadoOfer 191
         Case 409 ' Mantenimiento Albaranes

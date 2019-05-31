@@ -20,14 +20,14 @@ Begin VB.Form frmConfParamAplic
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   120
-      TabIndex        =   278
+      TabIndex        =   283
       Top             =   30
       Width           =   945
       Begin VB.CheckBox chkVistaPrevia 
          Caption         =   "Vista previa"
          Height          =   195
          Left            =   3750
-         TabIndex        =   279
+         TabIndex        =   284
          Top             =   270
          Visible         =   0   'False
          Width           =   1215
@@ -35,7 +35,7 @@ Begin VB.Form frmConfParamAplic
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   150
-         TabIndex        =   280
+         TabIndex        =   285
          Top             =   150
          Width           =   600
          _ExtentX        =   1058
@@ -77,14 +77,14 @@ Begin VB.Form frmConfParamAplic
       EndProperty
       Height          =   375
       Left            =   10350
-      TabIndex        =   86
+      TabIndex        =   87
       Top             =   7995
       Width           =   1035
    End
    Begin VB.Frame Frame1 
       Height          =   540
       Left            =   150
-      TabIndex        =   88
+      TabIndex        =   89
       Top             =   7920
       Width           =   3000
       Begin VB.Label lblIndicador 
@@ -101,7 +101,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   89
+         TabIndex        =   90
          Top             =   180
          Width           =   2280
       End
@@ -119,7 +119,7 @@ Begin VB.Form frmConfParamAplic
       EndProperty
       Height          =   375
       Left            =   9150
-      TabIndex        =   85
+      TabIndex        =   86
       Top             =   7995
       Visible         =   0   'False
       Width           =   1035
@@ -137,14 +137,14 @@ Begin VB.Form frmConfParamAplic
       EndProperty
       Height          =   375
       Left            =   10350
-      TabIndex        =   87
+      TabIndex        =   88
       Top             =   8010
       Width           =   1035
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
       Left            =   3600
-      Top             =   7920
+      Top             =   8010
       Visible         =   0   'False
       Width           =   2055
       _ExtentX        =   3625
@@ -191,7 +191,7 @@ Begin VB.Form frmConfParamAplic
    Begin TabDlg.SSTab SSTab1 
       Height          =   7095
       Left            =   150
-      TabIndex        =   90
+      TabIndex        =   91
       Top             =   810
       Width           =   11235
       _ExtentX        =   19817
@@ -199,7 +199,7 @@ Begin VB.Form frmConfParamAplic
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   2
+      Tab             =   4
       TabsPerRow      =   6
       TabHeight       =   520
       ForeColor       =   9907723
@@ -255,15 +255,11 @@ Begin VB.Form frmConfParamAplic
       Tab(1).ControlCount=   7
       TabCaption(2)   =   "Internet"
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
-      Tab(2).ControlEnabled=   -1  'True
-      Tab(2).Control(0)=   "Label1(80)"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "FrameEMail"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "FrameSoporte"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "Text1(81)"
-      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).ControlEnabled=   0   'False
+      Tab(2).Control(0)=   "Text1(81)"
+      Tab(2).Control(1)=   "FrameSoporte"
+      Tab(2).Control(2)=   "FrameEMail"
+      Tab(2).Control(3)=   "Label1(80)"
       Tab(2).ControlCount=   4
       TabCaption(3)   =   "Datos Contabilidad "
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
@@ -295,53 +291,80 @@ Begin VB.Form frmConfParamAplic
       Tab(3).ControlCount=   24
       TabCaption(4)   =   "Publicidad / Cuotas"
       TabPicture(4)   =   "frmConfParamAplic.frx":007C
-      Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Frame6"
-      Tab(4).Control(1)=   "Frame11"
-      Tab(4).Control(2)=   "Text2(25)"
-      Tab(4).Control(3)=   "Text1(25)"
-      Tab(4).Control(4)=   "Text2(26)"
-      Tab(4).Control(5)=   "Text1(26)"
-      Tab(4).Control(6)=   "Text2(27)"
-      Tab(4).Control(7)=   "Text1(27)"
-      Tab(4).Control(8)=   "Text2(29)"
-      Tab(4).Control(9)=   "Text1(29)"
-      Tab(4).Control(10)=   "Text2(30)"
-      Tab(4).Control(11)=   "Text1(30)"
-      Tab(4).Control(12)=   "Text2(31)"
-      Tab(4).Control(13)=   "Text1(31)"
-      Tab(4).Control(14)=   "Frame5"
-      Tab(4).Control(15)=   "Frame7"
-      Tab(4).Control(16)=   "Text1(62)"
-      Tab(4).Control(17)=   "Text1(63)"
-      Tab(4).Control(18)=   "Text1(64)"
-      Tab(4).Control(19)=   "Text1(68)"
-      Tab(4).Control(20)=   "Label1(31)"
-      Tab(4).Control(21)=   "Label1(29)"
-      Tab(4).Control(22)=   "imgBuscar(29)"
-      Tab(4).Control(23)=   "imgBuscar(31)"
-      Tab(4).Control(24)=   "Label1(25)"
-      Tab(4).Control(25)=   "Label1(26)"
-      Tab(4).Control(26)=   "Label1(27)"
-      Tab(4).Control(27)=   "Label1(30)"
-      Tab(4).Control(28)=   "imgBuscar(26)"
-      Tab(4).Control(29)=   "imgBuscar(27)"
-      Tab(4).Control(30)=   "imgBuscar(25)"
-      Tab(4).Control(31)=   "imgBuscar(30)"
+      Tab(4).ControlEnabled=   -1  'True
+      Tab(4).Control(0)=   "imgBuscar(30)"
+      Tab(4).Control(0).Enabled=   0   'False
+      Tab(4).Control(1)=   "imgBuscar(25)"
+      Tab(4).Control(1).Enabled=   0   'False
+      Tab(4).Control(2)=   "imgBuscar(27)"
+      Tab(4).Control(2).Enabled=   0   'False
+      Tab(4).Control(3)=   "imgBuscar(26)"
+      Tab(4).Control(3).Enabled=   0   'False
+      Tab(4).Control(4)=   "Label1(30)"
+      Tab(4).Control(4).Enabled=   0   'False
+      Tab(4).Control(5)=   "Label1(27)"
+      Tab(4).Control(5).Enabled=   0   'False
+      Tab(4).Control(6)=   "Label1(26)"
+      Tab(4).Control(6).Enabled=   0   'False
+      Tab(4).Control(7)=   "Label1(25)"
+      Tab(4).Control(7).Enabled=   0   'False
+      Tab(4).Control(8)=   "imgBuscar(31)"
+      Tab(4).Control(8).Enabled=   0   'False
+      Tab(4).Control(9)=   "imgBuscar(29)"
+      Tab(4).Control(9).Enabled=   0   'False
+      Tab(4).Control(10)=   "Label1(29)"
+      Tab(4).Control(10).Enabled=   0   'False
+      Tab(4).Control(11)=   "Label1(31)"
+      Tab(4).Control(11).Enabled=   0   'False
+      Tab(4).Control(12)=   "Text1(68)"
+      Tab(4).Control(12).Enabled=   0   'False
+      Tab(4).Control(13)=   "Text1(64)"
+      Tab(4).Control(13).Enabled=   0   'False
+      Tab(4).Control(14)=   "Text1(63)"
+      Tab(4).Control(14).Enabled=   0   'False
+      Tab(4).Control(15)=   "Text1(62)"
+      Tab(4).Control(15).Enabled=   0   'False
+      Tab(4).Control(16)=   "Frame7"
+      Tab(4).Control(16).Enabled=   0   'False
+      Tab(4).Control(17)=   "Frame5"
+      Tab(4).Control(17).Enabled=   0   'False
+      Tab(4).Control(18)=   "Text1(31)"
+      Tab(4).Control(18).Enabled=   0   'False
+      Tab(4).Control(19)=   "Text2(31)"
+      Tab(4).Control(19).Enabled=   0   'False
+      Tab(4).Control(20)=   "Text1(30)"
+      Tab(4).Control(20).Enabled=   0   'False
+      Tab(4).Control(21)=   "Text2(30)"
+      Tab(4).Control(21).Enabled=   0   'False
+      Tab(4).Control(22)=   "Text1(29)"
+      Tab(4).Control(22).Enabled=   0   'False
+      Tab(4).Control(23)=   "Text2(29)"
+      Tab(4).Control(23).Enabled=   0   'False
+      Tab(4).Control(24)=   "Text1(27)"
+      Tab(4).Control(24).Enabled=   0   'False
+      Tab(4).Control(25)=   "Text2(27)"
+      Tab(4).Control(25).Enabled=   0   'False
+      Tab(4).Control(26)=   "Text1(26)"
+      Tab(4).Control(26).Enabled=   0   'False
+      Tab(4).Control(27)=   "Text2(26)"
+      Tab(4).Control(27).Enabled=   0   'False
+      Tab(4).Control(28)=   "Text1(25)"
+      Tab(4).Control(28).Enabled=   0   'False
+      Tab(4).Control(29)=   "Text2(25)"
+      Tab(4).Control(29).Enabled=   0   'False
+      Tab(4).Control(30)=   "Frame11"
+      Tab(4).Control(30).Enabled=   0   'False
+      Tab(4).Control(31)=   "Frame6"
+      Tab(4).Control(31).Enabled=   0   'False
       Tab(4).ControlCount=   32
       TabCaption(5)   =   "Varios"
       TabPicture(5)   =   "frmConfParamAplic.frx":0098
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "Label1(81)"
-      Tab(5).Control(0).Enabled=   0   'False
-      Tab(5).Control(1)=   "Frame14"
-      Tab(5).Control(1).Enabled=   0   'False
+      Tab(5).Control(0)=   "ChkMarcarValidados"
+      Tab(5).Control(1)=   "Frame17"
       Tab(5).Control(2)=   "Text1(82)"
-      Tab(5).Control(2).Enabled=   0   'False
-      Tab(5).Control(3)=   "Frame17"
-      Tab(5).Control(3).Enabled=   0   'False
-      Tab(5).Control(4)=   "ChkMarcarValidados"
-      Tab(5).Control(4).Enabled=   0   'False
+      Tab(5).Control(3)=   "Frame14"
+      Tab(5).Control(4)=   "Label1(81)"
       Tab(5).ControlCount=   5
       Begin VB.CheckBox ChkMarcarValidados 
          Caption         =   "Marcar en traspaso como validados"
@@ -356,7 +379,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   330
          Left            =   -74685
-         TabIndex        =   291
+         TabIndex        =   296
          Tag             =   "Marcar validados|N|S|||spara1|marcarvalidados|||"
          Top             =   6615
          Width           =   5010
@@ -375,8 +398,8 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   2175
          Left            =   -74820
-         TabIndex        =   285
-         Top             =   4185
+         TabIndex        =   290
+         Top             =   4365
          Width           =   10725
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -393,7 +416,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   91
             Left            =   3870
             MaxLength       =   6
-            TabIndex        =   248
+            TabIndex        =   253
             Tag             =   "Codigo empresa Taxitronic|N|S|||spara1|empresataxitronic|||"
             Text            =   "3"
             Top             =   1440
@@ -414,7 +437,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   90
             Left            =   3870
             MaxLength       =   6
-            TabIndex        =   247
+            TabIndex        =   252
             Tag             =   "Cliente otra empresa|N|S|||spara1|codclicooperativa|||"
             Text            =   "3"
             Top             =   945
@@ -436,7 +459,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   5175
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   289
+            TabIndex        =   294
             Text            =   "Text2"
             Top             =   945
             Width           =   5025
@@ -456,7 +479,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   89
             Left            =   3855
             MaxLength       =   6
-            TabIndex        =   246
+            TabIndex        =   251
             Tag             =   "Socio otra empresa|N|S|||spara1|codsoccooperativa|||"
             Text            =   "3"
             Top             =   495
@@ -478,7 +501,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   5175
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   286
+            TabIndex        =   291
             Text            =   "Text2"
             Top             =   495
             Width           =   5025
@@ -497,7 +520,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   18
             Left            =   180
-            TabIndex        =   290
+            TabIndex        =   295
             Top             =   1485
             Width           =   3435
          End
@@ -524,7 +547,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   17
             Left            =   180
-            TabIndex        =   288
+            TabIndex        =   293
             Top             =   990
             Width           =   3435
          End
@@ -551,7 +574,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   16
             Left            =   180
-            TabIndex        =   287
+            TabIndex        =   292
             Top             =   495
             Width           =   2625
          End
@@ -569,7 +592,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   375
          Left            =   -69780
-         TabIndex        =   277
+         TabIndex        =   282
          Tag             =   "Hay Nº Serie en Compras|N|N|||spara1|haynserie|||"
          Top             =   2160
          Width           =   4785
@@ -589,11 +612,11 @@ Begin VB.Form frmConfParamAplic
          Index           =   82
          Left            =   -72000
          MaxLength       =   100
-         TabIndex        =   245
+         TabIndex        =   250
          Tag             =   "Impresora Tarjetas|T|S|||spara1|impretarjeta|||"
-         Top             =   3600
+         Top             =   3870
          Visible         =   0   'False
-         Width           =   7335
+         Width           =   7380
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -607,9 +630,9 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   360
          Index           =   81
-         Left            =   2130
+         Left            =   -72870
          MaxLength       =   255
-         TabIndex        =   51
+         TabIndex        =   52
          Tag             =   "Path FacturaE|T|S|||spara1|pathfacturae|||"
          Top             =   5700
          Width           =   6030
@@ -649,7 +672,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   825
          Left            =   -74865
-         TabIndex        =   257
+         TabIndex        =   262
          Top             =   6045
          Width           =   10635
          Begin VB.TextBox Text1 
@@ -667,7 +690,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   77
             Left            =   2550
             MaxLength       =   10
-            TabIndex        =   258
+            TabIndex        =   263
             Tag             =   "Raiz Cta Socio Publi|T|S|||spara1|raiz_cta_soc_equip|||"
             Text            =   "3"
             Top             =   330
@@ -687,7 +710,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   72
             Left            =   150
-            TabIndex        =   259
+            TabIndex        =   264
             Top             =   360
             Width           =   2775
          End
@@ -722,11 +745,92 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   2715
+         Height          =   3255
          Left            =   -74850
-         TabIndex        =   255
-         Top             =   650
+         TabIndex        =   260
+         Top             =   555
          Width           =   10695
+         Begin VB.TextBox Text1 
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   95
+            Left            =   3915
+            MaxLength       =   255
+            TabIndex        =   249
+            Tag             =   "Secretario Aportación|T|S|||spara1|aporsecretario|||"
+            Text            =   "3"
+            Top             =   2745
+            Width           =   6330
+         End
+         Begin VB.TextBox Text1 
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   94
+            Left            =   3915
+            MaxLength       =   255
+            TabIndex        =   248
+            Tag             =   "Presidente Aportación|T|S|||spara1|aporpresidente|||"
+            Text            =   "3"
+            Top             =   2340
+            Width           =   6330
+         End
+         Begin VB.TextBox Text1 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   93
+            Left            =   8955
+            MaxLength       =   10
+            TabIndex        =   247
+            Tag             =   "Nro Titulo Aportacion|N|S|||spara1|apornumero|||"
+            Text            =   "3"
+            Top             =   1935
+            Width           =   1290
+         End
+         Begin VB.TextBox Text1 
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   92
+            Left            =   9495
+            MaxLength       =   10
+            TabIndex        =   246
+            Tag             =   "Serie de aportaciones|T|S|||spara1|aporserie|||"
+            Text            =   "3"
+            Top             =   1530
+            Width           =   750
+         End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
             BeginProperty Font 
@@ -742,10 +846,10 @@ Begin VB.Form frmConfParamAplic
             Index           =   76
             Left            =   3900
             MaxLength       =   10
-            TabIndex        =   244
+            TabIndex        =   245
             Tag             =   "Raiz Cta Socio Altasi|T|S|||spara1|raiz_ctaaltasoc|||"
             Text            =   "3"
-            Top             =   2160
+            Top             =   1935
             Width           =   1290
          End
          Begin VB.TextBox Text1 
@@ -763,7 +867,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   75
             Left            =   3900
             MaxLength       =   10
-            TabIndex        =   243
+            TabIndex        =   244
             Tag             =   "Importe Gastos Alta|N|S|||spara1|impgastoalta|###,###,##0.00||"
             Text            =   "3"
             Top             =   1530
@@ -784,7 +888,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   74
             Left            =   3900
             MaxLength       =   10
-            TabIndex        =   242
+            TabIndex        =   243
             Tag             =   "Importe Titulo Alta|N|S|||spara1|imptituloalta|###,###,##0.00||"
             Text            =   "3"
             Top             =   1140
@@ -806,7 +910,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   5220
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   251
+            TabIndex        =   256
             Text            =   "Text2"
             Top             =   750
             Width           =   5025
@@ -826,7 +930,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   73
             Left            =   3900
             MaxLength       =   10
-            TabIndex        =   241
+            TabIndex        =   242
             Tag             =   "Cta Gastos|N|S|||spara1|ctagastoalta|||"
             Text            =   "3"
             Top             =   750
@@ -848,7 +952,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   5220
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   249
+            TabIndex        =   254
             Text            =   "Text2"
             Top             =   360
             Width           =   5025
@@ -868,11 +972,83 @@ Begin VB.Form frmConfParamAplic
             Index           =   72
             Left            =   3900
             MaxLength       =   10
-            TabIndex        =   240
+            TabIndex        =   241
             Tag             =   "Cta Título|N|S|||spara1|ctatituloalta|||"
             Text            =   "3"
             Top             =   360
             Width           =   1260
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Secretario Título Aportaciones"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   88
+            Left            =   180
+            TabIndex        =   300
+            Top             =   2790
+            Width           =   3705
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Presidente Título Aportaciones"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   87
+            Left            =   180
+            TabIndex        =   299
+            Top             =   2385
+            Width           =   3705
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Número Título"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   86
+            Left            =   7470
+            TabIndex        =   298
+            Top             =   1935
+            Width           =   2535
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Serie Título"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Index           =   85
+            Left            =   7470
+            TabIndex        =   297
+            Top             =   1575
+            Width           =   2535
          End
          Begin VB.Label Label1 
             Caption         =   "Raiz Cuenta Socios"
@@ -888,8 +1064,8 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   67
             Left            =   180
-            TabIndex        =   256
-            Top             =   2160
+            TabIndex        =   261
+            Top             =   1980
             Width           =   2535
          End
          Begin VB.Label Label1 
@@ -906,7 +1082,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   285
             Index           =   66
             Left            =   180
-            TabIndex        =   254
+            TabIndex        =   259
             Top             =   1590
             Width           =   3945
          End
@@ -924,7 +1100,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   65
             Left            =   180
-            TabIndex        =   253
+            TabIndex        =   258
             Top             =   1180
             Width           =   4035
          End
@@ -942,7 +1118,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   10
             Left            =   180
-            TabIndex        =   252
+            TabIndex        =   257
             Top             =   770
             Width           =   3375
          End
@@ -969,7 +1145,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   9
             Left            =   180
-            TabIndex        =   250
+            TabIndex        =   255
             Top             =   360
             Width           =   2625
          End
@@ -997,9 +1173,30 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   2760
          Left            =   -74850
-         TabIndex        =   214
+         TabIndex        =   215
          Top             =   3210
          Width           =   10665
+         Begin VB.TextBox Text1 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   96
+            Left            =   8670
+            MaxLength       =   5
+            TabIndex        =   35
+            Tag             =   "%Dto Centralizacion|N|S|||spara1|pordtocentra|##0.00||"
+            Text            =   "3"
+            Top             =   1080
+            Width           =   1350
+         End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
             BeginProperty Font 
@@ -1015,11 +1212,11 @@ Begin VB.Form frmConfParamAplic
             Index           =   88
             Left            =   2535
             MaxLength       =   10
-            TabIndex        =   37
+            TabIndex        =   38
             Tag             =   "Cta liquidacion Suplidos|N|S|||spara1|ctaliqsuplidos|||"
             Text            =   "3"
             Top             =   2250
-            Width           =   1200
+            Width           =   1350
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -1034,13 +1231,13 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   360
             Index           =   88
-            Left            =   3795
+            Left            =   3930
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   283
+            TabIndex        =   288
             Text            =   "Text2"
             Top             =   2250
-            Width           =   6345
+            Width           =   6120
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -1055,13 +1252,13 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   360
             Index           =   71
-            Left            =   3810
+            Left            =   3945
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   238
+            TabIndex        =   239
             Text            =   "Text2"
             Top             =   1875
-            Width           =   6345
+            Width           =   6120
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1078,11 +1275,11 @@ Begin VB.Form frmConfParamAplic
             Index           =   71
             Left            =   2550
             MaxLength       =   10
-            TabIndex        =   36
+            TabIndex        =   37
             Tag             =   "Cta liquidacion|N|S|||spara1|ctaliquidacion|||"
             Text            =   "3"
             Top             =   1875
-            Width           =   1200
+            Width           =   1350
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1103,7 +1300,7 @@ Begin VB.Form frmConfParamAplic
             Tag             =   "Raiz Cta Socio Publi|T|S|||spara1|raiz_cta_soc_liqui|||"
             Text            =   "3"
             Top             =   270
-            Width           =   1185
+            Width           =   1350
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1124,7 +1321,7 @@ Begin VB.Form frmConfParamAplic
             Tag             =   "Nº Contabilidad|N|S|||spara1|porreten|||"
             Text            =   "3"
             Top             =   1110
-            Width           =   1185
+            Width           =   1350
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1145,7 +1342,7 @@ Begin VB.Form frmConfParamAplic
             Tag             =   "Raíz Cta retencion|N|S|||spara1|raiz_ctareten|||"
             Text            =   "3"
             Top             =   690
-            Width           =   1185
+            Width           =   1350
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1162,11 +1359,11 @@ Begin VB.Form frmConfParamAplic
             Index           =   46
             Left            =   2550
             MaxLength       =   2
-            TabIndex        =   35
+            TabIndex        =   36
             Tag             =   "REA|N|S|0||spara1|iva_rea|||"
             Text            =   "Text1"
             Top             =   1500
-            Width           =   1185
+            Width           =   1350
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -1181,13 +1378,31 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   360
             Index           =   46
-            Left            =   3810
+            Left            =   3945
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   215
+            TabIndex        =   216
             Text            =   "Text2"
             Top             =   1500
-            Width           =   6345
+            Width           =   6120
+         End
+         Begin VB.Label Label2 
+            Caption         =   "% Dto Centralizacion"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Index           =   19
+            Left            =   6255
+            TabIndex        =   301
+            Top             =   1110
+            Width           =   2655
          End
          Begin VB.Image imgBuscar 
             Height          =   240
@@ -1212,7 +1427,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   15
             Left            =   135
-            TabIndex        =   284
+            TabIndex        =   289
             Top             =   2250
             Width           =   2130
          End
@@ -1230,7 +1445,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   7
             Left            =   135
-            TabIndex        =   239
+            TabIndex        =   240
             Top             =   1875
             Width           =   1455
          End
@@ -1257,7 +1472,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   68
             Left            =   135
-            TabIndex        =   219
+            TabIndex        =   220
             Top             =   300
             Width           =   2145
          End
@@ -1275,7 +1490,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   6
             Left            =   135
-            TabIndex        =   218
+            TabIndex        =   219
             Top             =   1140
             Width           =   2655
          End
@@ -1293,7 +1508,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   48
             Left            =   135
-            TabIndex        =   217
+            TabIndex        =   218
             Top             =   720
             Width           =   2535
          End
@@ -1312,7 +1527,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   52
             Left            =   135
-            TabIndex        =   216
+            TabIndex        =   217
             Top             =   1530
             Width           =   1605
          End
@@ -1339,8 +1554,8 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2475
-         Left            =   -74880
-         TabIndex        =   209
+         Left            =   120
+         TabIndex        =   210
          Top             =   4350
          Width           =   10755
          Begin VB.TextBox Text1 
@@ -1358,7 +1573,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   60
             Left            =   2400
             MaxLength       =   10
-            TabIndex        =   77
+            TabIndex        =   78
             Tag             =   "Raiz Cta Socio Publi|T|S|||spara1|raiz_cta_soc_publi|||"
             Text            =   "3"
             Top             =   1290
@@ -1377,7 +1592,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   360
             Index           =   59
             Left            =   2400
-            TabIndex        =   76
+            TabIndex        =   77
             Tag             =   "Concepto Facturación Publicidad |T|S|||spara1|confactupubli|||"
             Text            =   "Text1 "
             Top             =   870
@@ -1397,7 +1612,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   32
             Left            =   2400
             MaxLength       =   16
-            TabIndex        =   75
+            TabIndex        =   76
             Tag             =   "Recar |T|S|||spara1|codartictel|||"
             Text            =   "Text1 "
             Top             =   450
@@ -1419,7 +1634,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4020
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   210
+            TabIndex        =   211
             Text            =   "Text2"
             Top             =   450
             Width           =   4845
@@ -1438,7 +1653,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   61
             Left            =   240
-            TabIndex        =   213
+            TabIndex        =   214
             Top             =   1320
             Width           =   2115
          End
@@ -1465,7 +1680,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   69
             Left            =   240
-            TabIndex        =   212
+            TabIndex        =   213
             Top             =   900
             Width           =   2100
          End
@@ -1483,7 +1698,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   32
             Left            =   240
-            TabIndex        =   211
+            TabIndex        =   212
             Top             =   510
             Width           =   1830
          End
@@ -1510,15 +1725,15 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   855
-         Left            =   -69870
-         TabIndex        =   207
+         Left            =   5130
+         TabIndex        =   208
          Top             =   5880
          Width           =   3375
          Begin VB.CheckBox chkTicketsAgrupads 
             Caption         =   "Contabilizar ticket TPV agrupados"
             Height          =   375
             Left            =   360
-            TabIndex        =   208
+            TabIndex        =   209
             Tag             =   "Tickets agrupadsos|N|N|||spara1|conttickagrupado|||"
             Top             =   360
             Visible         =   0   'False
@@ -1529,10 +1744,10 @@ Begin VB.Form frmConfParamAplic
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   25
-         Left            =   -73980
+         Left            =   1020
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   200
+         TabIndex        =   201
          Text            =   "Text2"
          Top             =   4710
          Width           =   3105
@@ -1541,9 +1756,9 @@ Begin VB.Form frmConfParamAplic
          Alignment       =   1  'Right Justify
          Height          =   320
          Index           =   25
-         Left            =   -74820
+         Left            =   180
          MaxLength       =   3
-         TabIndex        =   199
+         TabIndex        =   200
          Tag             =   "Actividad|N|S|0||spara1|defactividad|000||"
          Text            =   "Tex"
          Top             =   4710
@@ -1553,10 +1768,10 @@ Begin VB.Form frmConfParamAplic
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   26
-         Left            =   -69660
+         Left            =   5340
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   198
+         TabIndex        =   199
          Text            =   "Text2"
          Top             =   4710
          Width           =   3105
@@ -1565,9 +1780,9 @@ Begin VB.Form frmConfParamAplic
          Alignment       =   1  'Right Justify
          Height          =   320
          Index           =   26
-         Left            =   -70500
+         Left            =   4500
          MaxLength       =   3
-         TabIndex        =   197
+         TabIndex        =   198
          Tag             =   "Envio|N|S|0|999|spara1|defenvio|000||"
          Text            =   "Tex"
          Top             =   4710
@@ -1577,10 +1792,10 @@ Begin VB.Form frmConfParamAplic
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   27
-         Left            =   -73980
+         Left            =   1020
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   196
+         TabIndex        =   197
          Text            =   "Text2"
          Top             =   5310
          Width           =   3105
@@ -1589,8 +1804,8 @@ Begin VB.Form frmConfParamAplic
          Alignment       =   1  'Right Justify
          Height          =   320
          Index           =   27
-         Left            =   -74820
-         TabIndex        =   195
+         Left            =   180
+         TabIndex        =   196
          Tag             =   "Zona|N|S|0|999|spara1|defzona|000||"
          Text            =   "Tex"
          Top             =   5310
@@ -1600,10 +1815,10 @@ Begin VB.Form frmConfParamAplic
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   29
-         Left            =   -73980
+         Left            =   1020
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   194
+         TabIndex        =   195
          Text            =   "Text2"
          Top             =   6030
          Width           =   3105
@@ -1612,9 +1827,9 @@ Begin VB.Form frmConfParamAplic
          Alignment       =   1  'Right Justify
          Height          =   320
          Index           =   29
-         Left            =   -74820
+         Left            =   180
          MaxLength       =   3
-         TabIndex        =   193
+         TabIndex        =   194
          Tag             =   "Situacion|N|S|0|999|spara1|defstituacion|000||"
          Text            =   "Tex"
          Top             =   6030
@@ -1624,10 +1839,10 @@ Begin VB.Form frmConfParamAplic
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   30
-         Left            =   -69660
+         Left            =   5340
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   192
+         TabIndex        =   193
          Text            =   "Text2"
          Top             =   6030
          Width           =   3105
@@ -1636,9 +1851,9 @@ Begin VB.Form frmConfParamAplic
          Alignment       =   1  'Right Justify
          Height          =   320
          Index           =   30
-         Left            =   -70500
+         Left            =   4500
          MaxLength       =   3
-         TabIndex        =   191
+         TabIndex        =   192
          Tag             =   "Tarifa|N|S|0|999|spara1|deftarifa|||"
          Text            =   "Tex"
          Top             =   6030
@@ -1648,10 +1863,10 @@ Begin VB.Form frmConfParamAplic
          BackColor       =   &H80000018&
          Height          =   315
          Index           =   31
-         Left            =   -69660
+         Left            =   5340
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   190
+         TabIndex        =   191
          Text            =   "Text2"
          Top             =   5310
          Width           =   3105
@@ -1660,9 +1875,9 @@ Begin VB.Form frmConfParamAplic
          Alignment       =   1  'Right Justify
          Height          =   320
          Index           =   31
-         Left            =   -70500
+         Left            =   4500
          MaxLength       =   3
-         TabIndex        =   189
+         TabIndex        =   190
          Tag             =   "Agente|N|S|0|999|spara1|defagente|000||"
          Text            =   "Tex"
          Top             =   5310
@@ -1682,7 +1897,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   735
          Left            =   -74640
-         TabIndex        =   183
+         TabIndex        =   184
          Top             =   5760
          Width           =   4605
          Begin VB.TextBox Text1 
@@ -1720,7 +1935,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   62
             Left            =   150
-            TabIndex        =   184
+            TabIndex        =   185
             Top             =   300
             Width           =   615
          End
@@ -1758,7 +1973,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   360
          Left            =   -72090
          Style           =   2  'Dropdown List
-         TabIndex        =   179
+         TabIndex        =   180
          Tag             =   "Modo analítica|N|N|0|9|spara1|modanalitica|||"
          Top             =   1560
          Width           =   3135
@@ -1779,7 +1994,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   50
          Left            =   -72090
          MaxLength       =   2
-         TabIndex        =   170
+         TabIndex        =   171
          Tag             =   "NºConta|N|S|1|99|spara1|conta_B|||"
          Text            =   "Text1"
          Top             =   1125
@@ -1801,7 +2016,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   52
          Left            =   -72120
          MaxLength       =   2
-         TabIndex        =   58
+         TabIndex        =   59
          Tag             =   "IVAexento|N|S|0||spara1|IvaIntracom|||"
          Text            =   "Text1"
          Top             =   2520
@@ -1823,7 +2038,7 @@ Begin VB.Form frmConfParamAplic
          Left            =   -71400
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   168
+         TabIndex        =   169
          Text            =   "Text2"
          Top             =   2520
          Width           =   3105
@@ -1841,7 +2056,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   360
          Left            =   -67800
          Style           =   2  'Dropdown List
-         TabIndex        =   56
+         TabIndex        =   57
          Tag             =   "Orden Descuentos|N|S|||spara1|obsfactura|||"
          Top             =   1110
          Width           =   3135
@@ -1862,7 +2077,7 @@ Begin VB.Form frmConfParamAplic
          Left            =   -71400
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   162
+         TabIndex        =   163
          Text            =   "Text2"
          Top             =   2085
          Width           =   2985
@@ -1882,7 +2097,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   48
          Left            =   -72120
          MaxLength       =   2
-         TabIndex        =   57
+         TabIndex        =   58
          Tag             =   "IVAexento|N|S|0||spara1|ivaexento|||"
          Text            =   "Text1"
          Top             =   2085
@@ -1902,7 +2117,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00800000&
          Height          =   3735
          Left            =   -74940
-         TabIndex        =   145
+         TabIndex        =   146
          Top             =   2970
          Width           =   10905
          Begin VB.TextBox Text1 
@@ -1920,7 +2135,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   86
             Left            =   6690
             MaxLength       =   2
-            TabIndex        =   68
+            TabIndex        =   69
             Tag             =   "IVRE Ant 2|N|S|0|99|spara1|ivaant2eq|||"
             Text            =   "Text1"
             Top             =   2130
@@ -1942,7 +2157,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   7350
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   275
+            TabIndex        =   280
             Text            =   "Text2"
             Top             =   2130
             Width           =   3195
@@ -1962,7 +2177,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   85
             Left            =   6690
             MaxLength       =   2
-            TabIndex        =   67
+            TabIndex        =   68
             Tag             =   "IVA Ant 2|N|S|0|99|spara1|ivaant2|||"
             Text            =   "Text1"
             Top             =   1710
@@ -1984,7 +2199,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   7350
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   272
+            TabIndex        =   277
             Text            =   "Text2"
             Top             =   1710
             Width           =   3195
@@ -2004,7 +2219,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   84
             Left            =   6690
             MaxLength       =   2
-            TabIndex        =   66
+            TabIndex        =   67
             Tag             =   "IVRE Ant 1|N|S|0|99|spara1|ivaant1eq|||"
             Text            =   "Text1"
             Top             =   1050
@@ -2026,7 +2241,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   7350
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   270
+            TabIndex        =   275
             Text            =   "Text2"
             Top             =   1050
             Width           =   3195
@@ -2046,7 +2261,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   83
             Left            =   6690
             MaxLength       =   2
-            TabIndex        =   65
+            TabIndex        =   66
             Tag             =   "IVA Ant 1|N|S|0|99|spara1|ivaant1|||"
             Text            =   "Text1"
             Top             =   630
@@ -2068,7 +2283,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   7350
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   267
+            TabIndex        =   272
             Text            =   "Text2"
             Top             =   630
             Width           =   3195
@@ -2089,7 +2304,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   2070
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   154
+            TabIndex        =   155
             Text            =   "Text2"
             Top             =   3210
             Width           =   2925
@@ -2110,7 +2325,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   2070
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   153
+            TabIndex        =   154
             Text            =   "Text2"
             Top             =   2790
             Width           =   2925
@@ -2131,7 +2346,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   2070
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   152
+            TabIndex        =   153
             Text            =   "Text2"
             Top             =   2100
             Width           =   2925
@@ -2152,7 +2367,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   2070
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   151
+            TabIndex        =   152
             Text            =   "Text2"
             Top             =   1680
             Width           =   2925
@@ -2173,7 +2388,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   2070
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   150
+            TabIndex        =   151
             Text            =   "Text2"
             Top             =   1050
             Width           =   2925
@@ -2194,7 +2409,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   2070
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   149
+            TabIndex        =   150
             Text            =   "Text2"
             Top             =   630
             Width           =   2925
@@ -2214,7 +2429,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   42
             Left            =   1410
             MaxLength       =   2
-            TabIndex        =   64
+            TabIndex        =   65
             Tag             =   "IVRE3|N|S|0|99|spara1|ivare3eq|||"
             Text            =   "Text1"
             Top             =   3210
@@ -2235,7 +2450,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   41
             Left            =   1410
             MaxLength       =   2
-            TabIndex        =   62
+            TabIndex        =   63
             Tag             =   "IVRE2|N|S|0|99|spara1|ivare2eq|||"
             Text            =   "Text1"
             Top             =   2100
@@ -2256,7 +2471,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   40
             Left            =   1410
             MaxLength       =   2
-            TabIndex        =   60
+            TabIndex        =   61
             Tag             =   "IVRE1|N|S|0|99|spara1|ivare1eq|||"
             Text            =   "Text1"
             Top             =   1050
@@ -2277,7 +2492,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   43
             Left            =   1410
             MaxLength       =   2
-            TabIndex        =   59
+            TabIndex        =   60
             Tag             =   "IVA1|N|S|0|99|spara1|ivare1|||"
             Text            =   "Text1"
             Top             =   630
@@ -2298,7 +2513,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   44
             Left            =   1410
             MaxLength       =   2
-            TabIndex        =   61
+            TabIndex        =   62
             Tag             =   "IVA2|N|S|0|99|spara1|ivare2|||"
             Text            =   "Text1"
             Top             =   1680
@@ -2319,7 +2534,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   45
             Left            =   1410
             MaxLength       =   2
-            TabIndex        =   63
+            TabIndex        =   64
             Tag             =   "IVA3|N|S|0|99|spara1|ivare3|||"
             Text            =   "Text1"
             Top             =   2790
@@ -2348,7 +2563,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   14
             Left            =   5580
-            TabIndex        =   276
+            TabIndex        =   281
             Top             =   2130
             Width           =   495
          End
@@ -2376,7 +2591,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   83
             Left            =   5430
-            TabIndex        =   274
+            TabIndex        =   279
             Top             =   1410
             Width           =   1575
          End
@@ -2394,7 +2609,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   13
             Left            =   5580
-            TabIndex        =   273
+            TabIndex        =   278
             Top             =   1740
             Width           =   735
          End
@@ -2421,7 +2636,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   12
             Left            =   5610
-            TabIndex        =   271
+            TabIndex        =   276
             Top             =   1050
             Width           =   495
          End
@@ -2449,7 +2664,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   285
             Index           =   82
             Left            =   5430
-            TabIndex        =   269
+            TabIndex        =   274
             Top             =   330
             Width           =   2175
          End
@@ -2467,7 +2682,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   11
             Left            =   5610
-            TabIndex        =   268
+            TabIndex        =   273
             Top             =   660
             Width           =   705
          End
@@ -2485,7 +2700,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   5
             Left            =   300
-            TabIndex        =   160
+            TabIndex        =   161
             Top             =   3210
             Width           =   435
          End
@@ -2503,7 +2718,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   4
             Left            =   270
-            TabIndex        =   159
+            TabIndex        =   160
             Top             =   2790
             Width           =   735
          End
@@ -2521,7 +2736,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   3
             Left            =   300
-            TabIndex        =   158
+            TabIndex        =   159
             Top             =   2100
             Width           =   495
          End
@@ -2539,7 +2754,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   2
             Left            =   300
-            TabIndex        =   157
+            TabIndex        =   158
             Top             =   1710
             Width           =   735
          End
@@ -2557,7 +2772,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   1
             Left            =   300
-            TabIndex        =   156
+            TabIndex        =   157
             Top             =   1050
             Width           =   495
          End
@@ -2575,7 +2790,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   0
             Left            =   270
-            TabIndex        =   155
+            TabIndex        =   156
             Top             =   660
             Width           =   795
          End
@@ -2594,7 +2809,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   45
             Left            =   150
-            TabIndex        =   148
+            TabIndex        =   149
             Top             =   330
             Width           =   1455
          End
@@ -2613,7 +2828,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   44
             Left            =   150
-            TabIndex        =   147
+            TabIndex        =   148
             Top             =   1380
             Width           =   1605
          End
@@ -2632,7 +2847,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   46
             Left            =   90
-            TabIndex        =   146
+            TabIndex        =   147
             Top             =   2460
             Width           =   2160
          End
@@ -2707,7 +2922,7 @@ Begin VB.Form frmConfParamAplic
          Left            =   -71640
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   132
+         TabIndex        =   133
          Text            =   "Text2"
          Top             =   1320
          Width           =   6135
@@ -2725,8 +2940,8 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   3645
-         Left            =   -74880
-         TabIndex        =   129
+         Left            =   120
+         TabIndex        =   130
          Top             =   650
          Width           =   10755
          Begin VB.TextBox Text3 
@@ -2746,7 +2961,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   9030
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   233
+            TabIndex        =   234
             Text            =   "Text3"
             Top             =   2280
             Width           =   1305
@@ -2768,7 +2983,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   9030
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   231
+            TabIndex        =   232
             Text            =   "Text3"
             Top             =   1875
             Width           =   1305
@@ -2790,7 +3005,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   9030
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   230
+            TabIndex        =   231
             Text            =   "Text3"
             Top             =   1065
             Width           =   1305
@@ -2812,7 +3027,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   9030
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   229
+            TabIndex        =   230
             Text            =   "Text3"
             Top             =   1470
             Width           =   1305
@@ -2834,7 +3049,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   9030
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   228
+            TabIndex        =   229
             Text            =   "Text3"
             Top             =   660
             Width           =   1305
@@ -2855,7 +3070,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4440
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   225
+            TabIndex        =   226
             Text            =   "Text2"
             Top             =   1065
             Width           =   4545
@@ -2873,7 +3088,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   360
             Index           =   70
             Left            =   2400
-            TabIndex        =   70
+            TabIndex        =   71
             Tag             =   "Con Chofer|T|S|||spara1|artcuotaconchof|||"
             Text            =   "Tex"
             Top             =   1065
@@ -2892,7 +3107,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   360
             Index           =   69
             Left            =   2400
-            TabIndex        =   73
+            TabIndex        =   74
             Tag             =   "Servicios|T|S|||spara1|artservcuotas|||"
             Text            =   "Tex"
             Top             =   2280
@@ -2914,7 +3129,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4440
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   223
+            TabIndex        =   224
             Text            =   "Text2"
             Top             =   2280
             Width           =   4545
@@ -2935,7 +3150,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4440
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   221
+            TabIndex        =   222
             Text            =   "Text2"
             Top             =   1875
             Width           =   4545
@@ -2953,7 +3168,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   360
             Index           =   67
             Left            =   2400
-            TabIndex        =   72
+            TabIndex        =   73
             Tag             =   "Alquiler|T|S|||spara1|artalquiler|||"
             Text            =   "Tex"
             Top             =   1875
@@ -2974,7 +3189,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   66
             Left            =   2400
             MaxLength       =   10
-            TabIndex        =   74
+            TabIndex        =   75
             Tag             =   "Raiz Cta Socio Publi|T|S|||spara1|raiz_ctaclien_soc|||"
             Text            =   "3"
             Top             =   2850
@@ -2996,7 +3211,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4440
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   186
+            TabIndex        =   187
             Text            =   "Text2"
             Top             =   1470
             Width           =   4545
@@ -3014,7 +3229,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   360
             Index           =   61
             Left            =   2400
-            TabIndex        =   71
+            TabIndex        =   72
             Tag             =   "Cuota Ext|T|S|||spara1|artcuotaext|||"
             Text            =   "Tex"
             Top             =   1470
@@ -3033,7 +3248,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   360
             Index           =   28
             Left            =   2400
-            TabIndex        =   69
+            TabIndex        =   70
             Tag             =   "Sin Chofer|T|S|||spara1|artcuotasinchof|||"
             Text            =   "Tex"
             Top             =   660
@@ -3055,7 +3270,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4440
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   130
+            TabIndex        =   131
             Text            =   "Text2"
             Top             =   660
             Width           =   4545
@@ -3074,7 +3289,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   75
             Left            =   9030
-            TabIndex        =   232
+            TabIndex        =   233
             Top             =   360
             Width           =   765
          End
@@ -3092,7 +3307,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   64
             Left            =   2430
-            TabIndex        =   227
+            TabIndex        =   228
             Top             =   330
             Width           =   765
          End
@@ -3110,7 +3325,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   74
             Left            =   180
-            TabIndex        =   226
+            TabIndex        =   227
             Top             =   1117
             Width           =   1875
          End
@@ -3144,7 +3359,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   73
             Left            =   180
-            TabIndex        =   224
+            TabIndex        =   225
             Top             =   2310
             Width           =   1515
          End
@@ -3162,7 +3377,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   71
             Left            =   180
-            TabIndex        =   222
+            TabIndex        =   223
             Top             =   1911
             Width           =   1515
          End
@@ -3188,7 +3403,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   70
             Left            =   180
-            TabIndex        =   220
+            TabIndex        =   221
             Top             =   2850
             Width           =   1665
          End
@@ -3214,7 +3429,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   63
             Left            =   180
-            TabIndex        =   185
+            TabIndex        =   186
             Top             =   1514
             Width           =   1515
          End
@@ -3240,7 +3455,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   28
             Left            =   180
-            TabIndex        =   131
+            TabIndex        =   132
             Top             =   720
             Width           =   2025
          End
@@ -3259,7 +3474,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   23
          Left            =   -72090
          MaxLength       =   30
-         TabIndex        =   52
+         TabIndex        =   53
          Tag             =   "Servidor Contabilidad|T|S|||spara1|serconta|||"
          Text            =   "3wwwwwwwwwwwwwwwwwwwwwwwwwwwww"
          Top             =   555
@@ -3280,7 +3495,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   22
          Left            =   -65070
          MaxLength       =   2
-         TabIndex        =   55
+         TabIndex        =   56
          Tag             =   "Nº Contabilidad|N|S|||spara1|numconta|||"
          Text            =   "3"
          Top             =   555
@@ -3300,7 +3515,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   21
          Left            =   -69570
          MaxLength       =   20
-         TabIndex        =   53
+         TabIndex        =   54
          Tag             =   "Usuario Contabilidad|T|S|||spara1|usuconta|||"
          Text            =   "3wwwwwwwwwwwwwwwwwww"
          Top             =   555
@@ -3322,7 +3537,7 @@ Begin VB.Form frmConfParamAplic
          Left            =   -67800
          MaxLength       =   20
          PasswordChar    =   "*"
-         TabIndex        =   54
+         TabIndex        =   55
          Tag             =   "Password Contabilidad|T|S|||spara1|pasconta|||"
          Text            =   "3"
          Top             =   555
@@ -3360,7 +3575,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   855
          Left            =   -74850
-         TabIndex        =   118
+         TabIndex        =   119
          Top             =   630
          Width           =   10665
          Begin VB.TextBox Text1 
@@ -3461,7 +3676,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   13
             Left            =   4950
-            TabIndex        =   120
+            TabIndex        =   121
             Top             =   360
             Width           =   1545
          End
@@ -3479,7 +3694,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   11
             Left            =   180
-            TabIndex        =   119
+            TabIndex        =   120
             Top             =   360
             Width           =   1755
          End
@@ -3498,7 +3713,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   1605
          Left            =   -74850
-         TabIndex        =   115
+         TabIndex        =   116
          Top             =   1500
          Width           =   10665
          Begin VB.TextBox Text1 
@@ -3537,7 +3752,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4365
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   281
+            TabIndex        =   286
             Text            =   "Text2"
             Top             =   1170
             Width           =   5715
@@ -3558,7 +3773,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4380
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   187
+            TabIndex        =   188
             Text            =   "Text2"
             Top             =   750
             Width           =   5715
@@ -3619,7 +3834,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   4380
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   116
+            TabIndex        =   117
             Text            =   "Text2"
             Top             =   330
             Width           =   5715
@@ -3638,7 +3853,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   240
             Index           =   84
             Left            =   150
-            TabIndex        =   282
+            TabIndex        =   287
             Top             =   1230
             Width           =   2010
          End
@@ -3674,7 +3889,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   54
             Left            =   150
-            TabIndex        =   188
+            TabIndex        =   189
             Top             =   810
             Width           =   2010
          End
@@ -3692,7 +3907,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   10
             Left            =   150
-            TabIndex        =   117
+            TabIndex        =   118
             Top             =   360
             Width           =   1905
          End
@@ -3709,8 +3924,8 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Frame FrameSoporte 
          ForeColor       =   &H00972E0B&
          Height          =   1635
-         Left            =   240
-         TabIndex        =   110
+         Left            =   -74760
+         TabIndex        =   111
          Top             =   3840
          Width           =   8355
          Begin VB.TextBox Text1 
@@ -3727,7 +3942,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   12
             Left            =   1860
             MaxLength       =   100
-            TabIndex        =   48
+            TabIndex        =   49
             Tag             =   "Web de Soporte|T|S|||spara1|websoporte|||"
             Text            =   "3"
             Top             =   300
@@ -3747,7 +3962,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   13
             Left            =   1860
             MaxLength       =   100
-            TabIndex        =   49
+            TabIndex        =   50
             Tag             =   "Mail de Soporte|T|S|||spara1|mailsoporte|||"
             Text            =   "3"
             Top             =   720
@@ -3767,7 +3982,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   14
             Left            =   1860
             MaxLength       =   100
-            TabIndex        =   50
+            TabIndex        =   51
             Tag             =   "Version Web|T|S|||spara1|webversion|||"
             Text            =   "3"
             Top             =   1140
@@ -3787,7 +4002,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   9
             Left            =   300
-            TabIndex        =   114
+            TabIndex        =   115
             Top             =   360
             Width           =   1140
          End
@@ -3805,7 +4020,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   12
             Left            =   300
-            TabIndex        =   113
+            TabIndex        =   114
             Top             =   780
             Width           =   1080
          End
@@ -3823,7 +4038,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   16
             Left            =   300
-            TabIndex        =   112
+            TabIndex        =   113
             Top             =   1200
             Width           =   1500
          End
@@ -3842,15 +4057,15 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   1
             Left            =   360
-            TabIndex        =   111
+            TabIndex        =   112
             Top             =   0
             Width           =   840
          End
       End
       Begin VB.Frame FrameEMail 
          Height          =   2895
-         Left            =   240
-         TabIndex        =   104
+         Left            =   -74760
+         TabIndex        =   105
          Top             =   720
          Width           =   10635
          Begin VB.TextBox Text1 
@@ -3868,7 +4083,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   57
             Left            =   2760
             MaxLength       =   30
-            TabIndex        =   47
+            TabIndex        =   48
             Tag             =   "LanzaMailOutlook|T|S|||spara1|arigesmail|||"
             Text            =   "3"
             Top             =   2400
@@ -3887,7 +4102,7 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   375
             Left            =   7740
-            TabIndex        =   180
+            TabIndex        =   181
             Tag             =   "Outlook|N|N|||spara1|EnvioDesdeOutlook|||"
             Top             =   1560
             Width           =   2685
@@ -3908,7 +4123,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   1440
             MaxLength       =   30
             PasswordChar    =   "*"
-            TabIndex        =   46
+            TabIndex        =   47
             Tag             =   "Password SMTP|T|S|||spara1|smtppass|||"
             Text            =   "3"
             Top             =   1650
@@ -3928,7 +4143,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   10
             Left            =   1440
             MaxLength       =   50
-            TabIndex        =   45
+            TabIndex        =   46
             Tag             =   "Usuario SMTP|T|S|||spara1|smtpuser|||"
             Text            =   "3"
             Top             =   1245
@@ -3948,7 +4163,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   9
             Left            =   1440
             MaxLength       =   50
-            TabIndex        =   44
+            TabIndex        =   45
             Tag             =   "Servidor SMTP|T|S|||spara1|smtphost|||"
             Text            =   "3"
             Top             =   825
@@ -3968,7 +4183,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   8
             Left            =   1440
             MaxLength       =   50
-            TabIndex        =   43
+            TabIndex        =   44
             Tag             =   "Direccion e-mail|T|S|||spara1|diremail|||"
             Text            =   "3"
             Top             =   420
@@ -3994,7 +4209,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   285
             Index           =   60
             Left            =   240
-            TabIndex        =   182
+            TabIndex        =   183
             Top             =   2430
             Width           =   2280
          End
@@ -4013,7 +4228,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   0
             Left            =   360
-            TabIndex        =   109
+            TabIndex        =   110
             Top             =   0
             Width           =   1320
          End
@@ -4031,7 +4246,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   23
             Left            =   300
-            TabIndex        =   108
+            TabIndex        =   109
             Top             =   1710
             Width           =   1020
          End
@@ -4049,7 +4264,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   22
             Left            =   300
-            TabIndex        =   107
+            TabIndex        =   108
             Top             =   1300
             Width           =   780
          End
@@ -4067,7 +4282,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   21
             Left            =   300
-            TabIndex        =   106
+            TabIndex        =   107
             Top             =   890
             Width           =   1140
          End
@@ -4085,7 +4300,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   20
             Left            =   300
-            TabIndex        =   105
+            TabIndex        =   106
             Top             =   480
             Width           =   900
          End
@@ -4143,7 +4358,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   1070
          Left            =   -74640
-         TabIndex        =   95
+         TabIndex        =   96
          Top             =   3360
          Width           =   4605
          Begin VB.TextBox Text1 
@@ -4202,7 +4417,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   2
             Left            =   120
-            TabIndex        =   97
+            TabIndex        =   98
             Top             =   255
             Width           =   2505
          End
@@ -4220,7 +4435,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   3
             Left            =   120
-            TabIndex        =   96
+            TabIndex        =   97
             Top             =   660
             Width           =   2655
          End
@@ -4279,7 +4494,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   1095
          Left            =   -74640
-         TabIndex        =   91
+         TabIndex        =   92
          Top             =   4560
          Width           =   4605
          Begin VB.TextBox Text1 
@@ -4338,7 +4553,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   7
             Left            =   120
-            TabIndex        =   93
+            TabIndex        =   94
             Top             =   675
             Width           =   2055
          End
@@ -4356,7 +4571,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   8
             Left            =   120
-            TabIndex        =   92
+            TabIndex        =   93
             Top             =   300
             Width           =   2085
          End
@@ -4366,7 +4581,7 @@ Begin VB.Form frmConfParamAplic
          Index           =   0
          Left            =   -70740
          MaxLength       =   15
-         TabIndex        =   102
+         TabIndex        =   103
          Tag             =   "Código Parámetros Aplic|N|N|||spara1|codigo||S|"
          Text            =   "Text1"
          Top             =   540
@@ -4385,8 +4600,8 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   2415
-         Left            =   -74880
-         TabIndex        =   133
+         Left            =   120
+         TabIndex        =   134
          Top             =   1080
          Width           =   8535
          Begin VB.TextBox Text1 
@@ -4395,7 +4610,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   33
             Left            =   3600
             MaxLength       =   2
-            TabIndex        =   78
+            TabIndex        =   79
             Tag             =   "ped. cli|N|S|0||spara1|avipedcli|||"
             Text            =   "3"
             Top             =   315
@@ -4407,7 +4622,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   34
             Left            =   6720
             MaxLength       =   2
-            TabIndex        =   79
+            TabIndex        =   80
             Tag             =   "ped.pro.|N|S|0||spara1|avipedpro|||"
             Text            =   "3"
             Top             =   315
@@ -4419,7 +4634,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   35
             Left            =   3600
             MaxLength       =   2
-            TabIndex        =   80
+            TabIndex        =   81
             Tag             =   "alb.cli.|N|S|0||spara1|avialbcli|||"
             Text            =   "3"
             Top             =   720
@@ -4431,7 +4646,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   36
             Left            =   6720
             MaxLength       =   2
-            TabIndex        =   81
+            TabIndex        =   82
             Tag             =   "alb.pro.|N|S|0||spara1|avialbpro|||"
             Text            =   "3"
             Top             =   720
@@ -4443,7 +4658,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   37
             Left            =   3600
             MaxLength       =   2
-            TabIndex        =   82
+            TabIndex        =   83
             Tag             =   "avi.mante|N|S|0||spara1|avimanteni|||"
             Text            =   "3"
             Top             =   1275
@@ -4455,7 +4670,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   38
             Left            =   3600
             MaxLength       =   2
-            TabIndex        =   84
+            TabIndex        =   85
             Tag             =   "avi.avisos|N|S|0||spara1|aviavios|||"
             Text            =   "3"
             Top             =   1995
@@ -4467,7 +4682,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   39
             Left            =   3600
             MaxLength       =   2
-            TabIndex        =   83
+            TabIndex        =   84
             Tag             =   "avi.repa.|N|S|0||spara1|avirepara|||"
             Text            =   "3"
             Top             =   1635
@@ -4479,7 +4694,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   33
             Left            =   2040
-            TabIndex        =   144
+            TabIndex        =   145
             Top             =   360
             Width           =   1155
          End
@@ -4488,7 +4703,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   34
             Left            =   4680
-            TabIndex        =   143
+            TabIndex        =   144
             Top             =   360
             Width           =   1500
          End
@@ -4498,7 +4713,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   35
             Left            =   2040
-            TabIndex        =   142
+            TabIndex        =   143
             Top             =   765
             Width           =   1290
          End
@@ -4507,7 +4722,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   36
             Left            =   4680
-            TabIndex        =   141
+            TabIndex        =   142
             Top             =   765
             Width           =   1635
          End
@@ -4517,7 +4732,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   37
             Left            =   2040
-            TabIndex        =   140
+            TabIndex        =   141
             Top             =   1320
             Width           =   1110
          End
@@ -4526,7 +4741,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   38
             Left            =   2040
-            TabIndex        =   139
+            TabIndex        =   140
             Top             =   1680
             Width           =   1155
          End
@@ -4536,7 +4751,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   39
             Left            =   2040
-            TabIndex        =   138
+            TabIndex        =   139
             Top             =   2040
             Width           =   510
          End
@@ -4545,7 +4760,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   40
             Left            =   120
-            TabIndex        =   137
+            TabIndex        =   138
             Top             =   360
             Width           =   7275
          End
@@ -4563,7 +4778,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   41
             Left            =   4680
-            TabIndex        =   136
+            TabIndex        =   137
             Top             =   1320
             Width           =   2955
          End
@@ -4581,7 +4796,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   42
             Left            =   4680
-            TabIndex        =   135
+            TabIndex        =   136
             Top             =   1680
             Width           =   3555
          End
@@ -4599,7 +4814,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   43
             Left            =   4680
-            TabIndex        =   134
+            TabIndex        =   135
             Top             =   2040
             Width           =   2955
          End
@@ -4607,8 +4822,8 @@ Begin VB.Form frmConfParamAplic
       Begin VB.TextBox Text1 
          Height          =   320
          Index           =   62
-         Left            =   -73890
-         TabIndex        =   234
+         Left            =   1110
+         TabIndex        =   235
          Text            =   "Tex"
          Top             =   1050
          Width           =   1335
@@ -4616,8 +4831,8 @@ Begin VB.Form frmConfParamAplic
       Begin VB.TextBox Text1 
          Height          =   320
          Index           =   63
-         Left            =   -73830
-         TabIndex        =   235
+         Left            =   1170
+         TabIndex        =   236
          Text            =   "Tex"
          Top             =   1020
          Width           =   1335
@@ -4625,8 +4840,8 @@ Begin VB.Form frmConfParamAplic
       Begin VB.TextBox Text1 
          Height          =   320
          Index           =   64
-         Left            =   -73500
-         TabIndex        =   236
+         Left            =   1500
+         TabIndex        =   237
          Text            =   "Tex"
          Top             =   1080
          Width           =   1335
@@ -4634,8 +4849,8 @@ Begin VB.Form frmConfParamAplic
       Begin VB.TextBox Text1 
          Height          =   320
          Index           =   68
-         Left            =   -73770
-         TabIndex        =   237
+         Left            =   1230
+         TabIndex        =   238
          Text            =   "Tex"
          Top             =   810
          Width           =   1335
@@ -4655,7 +4870,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   735
          Left            =   -74880
-         TabIndex        =   164
+         TabIndex        =   165
          Top             =   6000
          Visible         =   0   'False
          Width           =   8655
@@ -4674,7 +4889,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   51
             Left            =   2520
             MaxLength       =   10
-            TabIndex        =   42
+            TabIndex        =   43
             Tag             =   "Cta aportacion|N|S|||spara1|ctaaportacion|||"
             Text            =   "3"
             Top             =   240
@@ -4696,7 +4911,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   3840
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   165
+            TabIndex        =   166
             Text            =   "Text2"
             Top             =   240
             Width           =   4185
@@ -4724,7 +4939,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   8
             Left            =   270
-            TabIndex        =   166
+            TabIndex        =   167
             Top             =   240
             Width           =   915
          End
@@ -4744,7 +4959,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   735
          Left            =   -74880
-         TabIndex        =   126
+         TabIndex        =   127
          Top             =   6000
          Visible         =   0   'False
          Width           =   8655
@@ -4755,7 +4970,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   3960
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   127
+            TabIndex        =   128
             Text            =   "Text2"
             Top             =   240
             Width           =   4550
@@ -4766,7 +4981,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   24
             Left            =   3000
             MaxLength       =   3
-            TabIndex        =   41
+            TabIndex        =   42
             Tag             =   "Forma de pago para cheque regalo |N|S|0|999|spara1|codforpa|000||"
             Text            =   "Tex"
             Top             =   237
@@ -4786,7 +5001,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   24
             Left            =   1320
-            TabIndex        =   128
+            TabIndex        =   129
             Top             =   240
             Width           =   1335
          End
@@ -4805,7 +5020,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   2025
          Left            =   -69810
-         TabIndex        =   262
+         TabIndex        =   267
          Top             =   2550
          Width           =   5835
          Begin VB.TextBox Text1 
@@ -4864,7 +5079,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   285
             Index           =   79
             Left            =   240
-            TabIndex        =   264
+            TabIndex        =   269
             Top             =   840
             Width           =   3015
          End
@@ -4882,7 +5097,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   285
             Index           =   78
             Left            =   240
-            TabIndex        =   263
+            TabIndex        =   268
             Top             =   420
             Width           =   2175
          End
@@ -4902,7 +5117,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   4365
          Left            =   -69810
-         TabIndex        =   94
+         TabIndex        =   95
          Top             =   2520
          Visible         =   0   'False
          Width           =   5835
@@ -4919,7 +5134,7 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   375
             Left            =   3000
-            TabIndex        =   177
+            TabIndex        =   178
             Tag             =   "Hay Dtos por cantidad|N|N|||spara1|dtoxcanti|||"
             Top             =   240
             Width           =   2715
@@ -5120,7 +5335,7 @@ Begin VB.Form frmConfParamAplic
          ForeColor       =   &H00972E0B&
          Height          =   975
          Left            =   -74790
-         TabIndex        =   172
+         TabIndex        =   173
          Top             =   4230
          Visible         =   0   'False
          Width           =   8655
@@ -5139,7 +5354,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   56
             Left            =   6720
             MaxLength       =   16
-            TabIndex        =   40
+            TabIndex        =   41
             Tag             =   "R|N|S||10000|spara1|impminped|#,##0.00||"
             Text            =   "Text1 "
             Top             =   600
@@ -5160,7 +5375,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   55
             Left            =   6720
             MaxLength       =   16
-            TabIndex        =   39
+            TabIndex        =   40
             Tag             =   "i |N|S|||spara1|abonokilos|#,##0.0000||"
             Text            =   "Text1 "
             Top             =   240
@@ -5182,7 +5397,7 @@ Begin VB.Form frmConfParamAplic
             Left            =   840
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   174
+            TabIndex        =   175
             Text            =   "Text2"
             Top             =   600
             Width           =   3705
@@ -5201,7 +5416,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   54
             Left            =   1200
             MaxLength       =   16
-            TabIndex        =   38
+            TabIndex        =   39
             Tag             =   "Reci. |T|S|||spara1|ArticuloPortes|||"
             Text            =   "Text1 "
             Top             =   240
@@ -5222,7 +5437,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   57
             Left            =   4800
-            TabIndex        =   176
+            TabIndex        =   177
             Top             =   600
             Width           =   1620
          End
@@ -5241,7 +5456,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   56
             Left            =   4800
-            TabIndex        =   175
+            TabIndex        =   176
             Top             =   300
             Width           =   1620
          End
@@ -5268,7 +5483,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   55
             Left            =   120
-            TabIndex        =   173
+            TabIndex        =   174
             Top             =   300
             Width           =   780
          End
@@ -5288,8 +5503,8 @@ Begin VB.Form frmConfParamAplic
          Height          =   285
          Index           =   81
          Left            =   -74670
-         TabIndex        =   266
-         Top             =   3645
+         TabIndex        =   271
+         Top             =   3915
          Visible         =   0   'False
          Width           =   2070
       End
@@ -5306,8 +5521,8 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   80
-         Left            =   540
-         TabIndex        =   265
+         Left            =   -74460
+         TabIndex        =   270
          Top             =   5745
          Width           =   2070
       End
@@ -5325,7 +5540,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   77
          Left            =   -66540
-         TabIndex        =   261
+         TabIndex        =   266
          Top             =   1890
          Width           =   1575
       End
@@ -5334,7 +5549,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   76
          Left            =   -69450
-         TabIndex        =   260
+         TabIndex        =   265
          Top             =   1920
          Width           =   1575
       End
@@ -5342,8 +5557,8 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Agente"
          Height          =   255
          Index           =   31
-         Left            =   -70500
-         TabIndex        =   206
+         Left            =   4500
+         TabIndex        =   207
          Top             =   5040
          Width           =   735
       End
@@ -5351,15 +5566,15 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Situación"
          Height          =   255
          Index           =   29
-         Left            =   -74820
-         TabIndex        =   205
+         Left            =   180
+         TabIndex        =   206
          Top             =   5760
          Width           =   855
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   29
-         Left            =   -74100
+         Left            =   900
          ToolTipText     =   "Buscar situacion"
          Top             =   5760
          Width           =   240
@@ -5367,7 +5582,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   31
-         Left            =   -69900
+         Left            =   5100
          ToolTipText     =   "Buscar agente"
          Top             =   5040
          Width           =   240
@@ -5376,8 +5591,8 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Actividad"
          Height          =   255
          Index           =   25
-         Left            =   -74820
-         TabIndex        =   204
+         Left            =   180
+         TabIndex        =   205
          Top             =   4470
          Width           =   735
       End
@@ -5385,8 +5600,8 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Envio"
          Height          =   195
          Index           =   26
-         Left            =   -70500
-         TabIndex        =   203
+         Left            =   4500
+         TabIndex        =   204
          Top             =   4470
          Width           =   405
       End
@@ -5394,8 +5609,8 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Forma de Pago"
          Height          =   255
          Index           =   27
-         Left            =   -74820
-         TabIndex        =   202
+         Left            =   180
+         TabIndex        =   203
          Top             =   5070
          Width           =   1095
       End
@@ -5403,15 +5618,15 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Tarifa"
          Height          =   255
          Index           =   30
-         Left            =   -70500
-         TabIndex        =   201
+         Left            =   4500
+         TabIndex        =   202
          Top             =   5790
          Width           =   615
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   26
-         Left            =   -70020
+         Left            =   4980
          ToolTipText     =   "Buscar forma de envio"
          Top             =   4470
          Width           =   240
@@ -5419,7 +5634,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   27
-         Left            =   -73620
+         Left            =   1380
          ToolTipText     =   "Buscar forma de pago"
          Top             =   5070
          Width           =   240
@@ -5427,7 +5642,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   25
-         Left            =   -74100
+         Left            =   900
          Tag             =   "-1"
          ToolTipText     =   "Buscar actividad"
          Top             =   4470
@@ -5436,7 +5651,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   30
-         Left            =   -70020
+         Left            =   4980
          ToolTipText     =   "Buscar tarifa"
          Top             =   5790
          Width           =   240
@@ -5455,7 +5670,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   59
          Left            =   -74640
-         TabIndex        =   181
+         TabIndex        =   182
          Top             =   2790
          Width           =   1455
       End
@@ -5474,7 +5689,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   58
          Left            =   -74760
-         TabIndex        =   178
+         TabIndex        =   179
          Top             =   1560
          Width           =   1515
       End
@@ -5494,7 +5709,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   51
          Left            =   -74760
-         TabIndex        =   171
+         TabIndex        =   172
          Top             =   1125
          Visible         =   0   'False
          Width           =   2775
@@ -5514,7 +5729,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   47
          Left            =   -74760
-         TabIndex        =   169
+         TabIndex        =   170
          Top             =   2520
          Width           =   2175
       End
@@ -5543,7 +5758,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   240
          Index           =   53
          Left            =   -70410
-         TabIndex        =   167
+         TabIndex        =   168
          Top             =   1125
          Width           =   2610
       End
@@ -5571,7 +5786,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   50
          Left            =   -74760
-         TabIndex        =   163
+         TabIndex        =   164
          Top             =   2085
          Width           =   1155
       End
@@ -5590,7 +5805,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   49
          Left            =   -74760
-         TabIndex        =   161
+         TabIndex        =   162
          Top             =   600
          Width           =   1185
       End
@@ -5617,7 +5832,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   19
          Left            =   -73020
-         TabIndex        =   125
+         TabIndex        =   126
          Top             =   600
          Width           =   900
       End
@@ -5635,7 +5850,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   18
          Left            =   -66000
-         TabIndex        =   124
+         TabIndex        =   125
          Top             =   600
          Width           =   1290
       End
@@ -5653,7 +5868,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   17
          Left            =   -70410
-         TabIndex        =   123
+         TabIndex        =   124
          Top             =   600
          Width           =   780
       End
@@ -5671,7 +5886,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   195
          Index           =   15
          Left            =   -68280
-         TabIndex        =   122
+         TabIndex        =   123
          Top             =   600
          Width           =   840
       End
@@ -5689,7 +5904,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   14
          Left            =   -74640
-         TabIndex        =   121
+         TabIndex        =   122
          Top             =   1860
          Width           =   2055
       End
@@ -5707,7 +5922,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   0
          Left            =   -74640
-         TabIndex        =   101
+         TabIndex        =   102
          Top             =   2325
          Width           =   2205
       End
@@ -5725,7 +5940,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   1
          Left            =   -74640
-         TabIndex        =   100
+         TabIndex        =   101
          Top             =   1320
          Width           =   1575
       End
@@ -5743,7 +5958,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   4
          Left            =   -74640
-         TabIndex        =   99
+         TabIndex        =   100
          Top             =   480
          Width           =   2055
       End
@@ -5761,7 +5976,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   5
          Left            =   -74640
-         TabIndex        =   98
+         TabIndex        =   99
          Top             =   900
          Width           =   2655
       End
@@ -5770,7 +5985,7 @@ Begin VB.Form frmConfParamAplic
          Height          =   255
          Index           =   6
          Left            =   -71280
-         TabIndex        =   103
+         TabIndex        =   104
          Top             =   1020
          Width           =   495
       End
@@ -6034,7 +6249,7 @@ Dim kms As Currency
             vParamAplic.Frecuencias = Me.chkHayfrecu.Value
             vParamAplic.Servicios = Me.chkHayServicio.Value
             vParamAplic.Departamento = Me.chkHaydepar.Value
-            vParamAplic.ControlStock = Me.chkctrstock.Value
+            vParamAplic.ControlStock = Me.chkCtrStock.Value
             vParamAplic.InventarioxProv = Me.chkInventar.Value
             vParamAplic.NumSeries = Me.chkHaynserie.Value  'Hay Nº Serie en Compras?
             vParamAplic.DiasSiMante = Me.Text1(7).Text 'Dias Rep. con Mantenimiento
@@ -6149,6 +6364,8 @@ Dim kms As Currency
             vParamAplic.Raiz_Cta_Reten_Soc = ComprobarCero(Text1(47).Text)
             vParamAplic.PorReten = ComprobarCero(Text1(49).Text)
             
+            vParamAplic.PorDtoCentra = ComprobarCero(Text1(96).Text)
+            
             'IVA exento
             vParamAplic.IVA_Exento2 = ComprobarCero(Text1(48).Text)
             vParamAplic.IVA_Intracomunitario = ComprobarCero(Text1(52).Text)
@@ -6207,13 +6424,26 @@ Dim kms As Currency
             vParamAplic.ClienteCooperativa = Text1(90).Text
             vParamAplic.EmpresaTaxitronic = Text1(91).Text
             
+            
+            '[Monica]28/02/2018: se marcan como validados
+            vParamAplic.MarcarValidados = Me.ChkMarcarValidados.Value
+            
+            
+            
+            '[Monica]14/03/2019: impresion de certificados de aportaciones
+            vParamAplic.AporSerie = Text1(92).Text
+            vParamAplic.AporNumero = Text1(93).Text
+            vParamAplic.AporPresidente = Text1(94).Text
+            vParamAplic.AporSecretario = Text1(95).Text
+            
+            
             actualiza = vParamAplic.Modificar(Text1(0).Text)
             TerminaBloquear
 
             vParamAplic.ComprobarProgramaEnvioMail
             
-            '[Monica]28/02/2018: se marcan como validados
-            vParamAplic.MarcarValidados = Me.ChkMarcarValidados.Value
+            
+            
 
             If actualiza Then  'Inserta o Modifica
                 'Abrir la conexion a la conta q hemos modificado
@@ -6324,7 +6554,7 @@ Dim Im
     
     '[Monica]01/02/2019: cambiamos el label de path facturae por lo de URL para sevilla
     If vParamAplic.Cooperativa = 3 Then
-        Label1(0).Caption = "Direccion URL"
+        Label1(80).Caption = "Direccion URL"
     End If
     
     
@@ -6436,7 +6666,7 @@ Private Sub frmT_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim I As Integer
+Dim i As Integer
     Screen.MousePointer = vbHourglass
 
     Select Case Index
@@ -6553,22 +6783,22 @@ Dim I As Integer
             If CadenaDesdeOtroForm <> "" Then
                 Select Case Index
                     Case 42
-                        I = 9 'Para la cta aportacion
+                        i = 9 'Para la cta aportacion
                     Case 6
-                        I = 65 ' cta de liquidacion
+                        i = 65 ' cta de liquidacion
                     Case 7
-                        I = 65 ' cta de titulo d alta de socio
+                        i = 65 ' cta de titulo d alta de socio
                     Case 8
-                        I = 65 ' cta de gastos de alta de socio
+                        i = 65 ' cta de gastos de alta de socio
                     Case 9, 10, 11, 12
-                        I = 74
+                        i = 74
                     Case 13
-                        I = 75
+                        i = 75
                     Case Else
-                        I = 7
+                        i = 7
                 End Select
-                Text1(Index + I).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
-                Text2(Index + I).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
+                Text1(Index + i).Text = RecuperaValor(CadenaDesdeOtroForm, 1)
+                Text2(Index + i).Text = RecuperaValor(CadenaDesdeOtroForm, 2)
             End If
         
         Case 3 ' articulo de alquiler de equipos
@@ -6841,8 +7071,8 @@ Private Sub Text1_LostFocus(Index As Integer)
                 Text2(Index).Text = ""
             End If
         
-        Case 49
-            'pORCE RETENCION
+        Case 49, 96
+            'pORCE RETENCION, %dto centralizacion
             PonerFormatoDecimal Text1(48), 4
             
         Case 50, 58, 78, 91
@@ -6902,6 +7132,9 @@ Private Sub Text1_LostFocus(Index As Integer)
             PonerFormatoEntero Text1(Index)
             Text2(Index).Text = PonerNombreDeCod(Text1(Index), conAri, "scliente", "nomclien", "codclien", "N")
     
+        '[Monica]14/03/2019: tema de impresion de aportaciones
+        Case 92 ' serie de aportaciones
+            If Text1(Index).Text <> "" Then Text1(Index).Text = UCase(Text1(Index))
     End Select
 End Sub
 
@@ -7110,14 +7343,14 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim I As Integer
+Dim i As Integer
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
       
-    For I = 0 To Text1.Count - 1
-        Text1(I).BackColor = vbWhite
-    Next I
+    For i = 0 To Text1.Count - 1
+        Text1(i).BackColor = vbWhite
+    Next i
       
       
     '------------------------------------------------------

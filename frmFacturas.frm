@@ -388,7 +388,8 @@ Dim encontrado As String
          
          '[Monica]12/12/2017: por el tema de fusion de empresas, SOLO SI VIENE DE EXCEL
          '                    si el fichero es de la otra empresa ponemos que el cliente es el gros
-         If deExcel Then
+                    '[Monica]12/03/2019: para el caso de cordoba quitamos el lio de empresas
+         If deExcel And vParamAplic.Cooperativa <> 2 Then
              If b Then
                  If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
                      Label1(2).Caption = "Modificando códigos de cliente de otra empresa"
@@ -402,14 +403,17 @@ Dim encontrado As String
              End If
              '[Monica]12/12/2017: eliminamos todos aquellas llamadas que no son de nuestros clientes ni lo ha hecho un asociado nuestro
              If b Then
-                 Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
-                 Label1(2).Refresh
-                 
-                 Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
-                 Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
-                 Sql = Sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
-             
-                 b = EjecutarSQL(Sql)
+                '[Monica]12/03/2019: para el caso de que no haya empresa de taxitronic
+                 If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
+                    Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
+                    Label1(2).Refresh
+                    
+                    Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                    Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
+                    Sql = Sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
+                
+                    b = EjecutarSQL(Sql)
+                 End If
              End If
          End If
          
@@ -564,7 +568,7 @@ Dim encontrado As String
      Label1(2).Caption = ""
      Me.ProgressBar1.visible = False
      
-     CargaGrid DataGrid1, adodc1
+     CargaGrid DataGrid1, Adodc1
 
 End Sub
 
@@ -656,10 +660,10 @@ End Sub
 
 Private Sub DataGrid1_Click()
 
-    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & adodc1.Recordset!Id
+    frmGesHisLlamTMP.DatosADevolverBusqueda = "id = " & Adodc1.Recordset!Id
     frmGesHisLlamTMP.Show vbModal
     
-    CargaGrid Me.DataGrid1, Me.adodc1
+    CargaGrid Me.DataGrid1, Me.Adodc1
     
 End Sub
 
@@ -673,12 +677,12 @@ Private Sub Form_Load()
     Me.Icon = frmppal.Icon
 
     Screen.MousePointer = vbDefault
-    adodc1.ConnectionString = conn
-    adodc1.RecordSource = Sql
-    adodc1.Refresh
+    Adodc1.ConnectionString = conn
+    Adodc1.RecordSource = Sql
+    Adodc1.Refresh
     
-    If Not adodc1.Recordset.EOF Then
-        CargaGrid DataGrid1, adodc1
+    If Not Adodc1.Recordset.EOF Then
+        CargaGrid DataGrid1, Adodc1
     End If
 
     With Me.Toolbar3(0)
@@ -701,7 +705,7 @@ End Sub
 
 
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
-Dim I As Integer
+Dim i As Integer
 
 On Error GoTo ECargaGrid
 
@@ -735,10 +739,10 @@ On Error GoTo ECargaGrid
     
     
     vDataGrid.Enabled = True
-    For I = 0 To vDataGrid.Columns.Count - 1
-        vDataGrid.Columns(I).Locked = True
-        vDataGrid.Columns(I).AllowSizing = False
-    Next I
+    For i = 0 To vDataGrid.Columns.Count - 1
+        vDataGrid.Columns(i).Locked = True
+        vDataGrid.Columns(i).AllowSizing = False
+    Next i
 
     Exit Sub
 ECargaGrid:

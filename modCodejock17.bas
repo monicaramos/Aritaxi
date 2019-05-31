@@ -920,6 +920,7 @@ Public Const ID_Choferes = 403
 Public Const ID_Socios = 404
 Public Const ID_HistoricoUves = 405
 Public Const ID_EtiquetasSocios = 406
+Public Const ID_Aportaciones = 407
 Public Const ID_CartasSocios = 408
 Public Const ID_Albaranes = 409
 Public Const ID_AlbxArt = 410

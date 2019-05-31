@@ -153,6 +153,9 @@ Private mvarIVAREA As Integer
 Private mvarCtaReten As String
 Private mvarPorReten As Currency
 
+Private mvarPorDtoCentra As Currency
+
+
 Private mvarIVA_Exento As Integer
 Private mvarIVA_Intracomunitario As Integer
 
@@ -238,6 +241,12 @@ Private mvarContabilidadNueva As Boolean
 
 Private mvarMarcarValidados As Boolean      'marcar servicios como validados (caso de cordoba)
 
+
+'[Monica]14/03/2019: aportaciones
+Private mvarAporSerie As String
+Private mvarAporNumero As String
+Private mvarAporSecretario As String
+Private mvarAporPresidente As String
 
 
 '------------------------------------------------
@@ -1001,6 +1010,13 @@ Public Property Let IVA_Exento2(ByVal vData As Integer)
      mvarIVA_Exento = vData
 End Property
 
+Public Property Get PorDtoCentra() As Currency
+     PorDtoCentra = mvarPorDtoCentra
+End Property
+
+Public Property Let PorDtoCentra(ByVal vData As Currency)
+     mvarPorDtoCentra = vData
+End Property
 
 
 'IVA intracomunitario
@@ -1301,6 +1317,48 @@ Public Property Get MarcarValidados() As Boolean
 End Property
 
 
+
+'[Monica]14/03/2019: aportaciones
+Public Property Let AporSerie(ByVal vData As String)
+     mvarAporSerie = vData
+End Property
+
+Public Property Get AporSerie() As String
+     AporSerie = mvarAporSerie
+End Property
+
+Public Property Let AporNumero(ByVal vData As String)
+     mvarAporNumero = vData
+End Property
+
+Public Property Get AporNumero() As String
+     AporNumero = mvarAporNumero
+End Property
+
+Public Property Let AporSecretario(ByVal vData As String)
+     mvarAporSecretario = vData
+End Property
+
+Public Property Get AporSecretario() As String
+     AporSecretario = mvarAporSecretario
+End Property
+
+Public Property Let AporPresidente(ByVal vData As String)
+     mvarAporPresidente = vData
+End Property
+
+Public Property Get AporPresidente() As String
+     AporPresidente = mvarAporPresidente
+End Property
+
+
+
+
+
+
+
+
+
 '------------------------------------------------
 'FUNCIONES del modulo Cparametros
 '------------------------------------------------
@@ -1444,10 +1502,10 @@ On Error GoTo Err3
         mvarPorReten = DBLet(Rs!PorReten, "N")
         mvarCtaReten = DBLet(Rs!CtaReten, "T") 'cuenta retencion proveedores
                 
-                
         'IVA exento
         mvarIVA_Exento = DBLet(Rs!ivaexento, "N")
         
+        mvarPorDtoCentra = DBLet(Rs!PorDtoCentra, "N")
         
         'Contabilidad
         mvarContabilidadB = DBLet(Rs!conta_B, "N")
@@ -1517,6 +1575,12 @@ On Error GoTo Err3
         mvarClienteCooperativa = DBLet(Rs!codclicooperativa, "N")
         
         mvarEmpresaTaxitronic = DBLet(Rs!EmpresaTaxitronic, "N")
+        
+        '[Monica]14/03/2019: aportaciones
+        mvarAporSerie = DBLet(Rs!AporSerie, "T")
+        mvarAporNumero = DBLet(Rs!AporNumero, "N")
+        mvarAporSecretario = DBLet(Rs!AporSecretario, "T")
+        mvarAporPresidente = DBLet(Rs!AporPresidente, "T")
         
         Leer = 0
         
@@ -1647,6 +1711,10 @@ On Error GoTo EModificar
     Sql = Sql & ", CtaLiqsuplidos = " & DBSet(mvarCtaLiqSuplidos, "T", "S")
 
 
+    '[Monica]06/04/2019: porcentaje de dto centralizacion
+    Sql = Sql & ", Pordtocentra = " & DBSet(mvarPorDtoCentra, "N", "S")
+
+
     ' datos de alta de socio
     Sql = Sql & ", Ctatituloalta  = " & DBSet(mvarCtaTituloAlta, "T", "S")
     Sql = Sql & ", Ctagastoalta  = " & DBSet(mvarCtaGastoAlta, "T", "S")
@@ -1744,6 +1812,14 @@ On Error GoTo EModificar
     
     
     Sql = Sql & ", marcarvalidados= " & DBSet(mvarMarcarValidados, "B")
+    
+    
+    '[Monica]14/03/2019: aportaciones
+    Sql = Sql & ", aporserie = " & DBSet(mvarAporSerie, "T")
+    Sql = Sql & ", apornumero = " & DBSet(mvarAporNumero, "N")
+    Sql = Sql & ", aporsecretario = " & DBSet(mvarAporSecretario, "T")
+    Sql = Sql & ", aporpresidente = " & DBSet(mvarAporPresidente, "T")
+    
     
     'where
     Sql = Sql & " WHERE codigo =" & Codigo & ";"
@@ -1856,7 +1932,7 @@ Dim Rs As ADODB.Recordset
     Sql = "select codigiva from tiposiva"
     Rs.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not Rs.EOF
-        Sql = "INSERT INTO sivatra VALUES (" & Rs!Codigiva & "," & Rs!Codigiva & ")"
+        Sql = "INSERT INTO sivatra VALUES (" & Rs!codigiva & "," & Rs!codigiva & ")"
         
         conn.Execute Sql
         Rs.MoveNext

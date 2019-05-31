@@ -52,6 +52,12 @@ Begin VB.Form frmInbox
       TabIndex        =   0
       Top             =   360
       Width           =   8415
+      Begin VB.Image Image2 
+         Height          =   21600
+         Left            =   0
+         Top             =   -90
+         Width           =   28800
+      End
       Begin VB.Image Image1 
          Height          =   810
          Left            =   5400
@@ -124,6 +130,10 @@ Private Sub Form_Load()
     
     CalendarControl.SetScrollBars 0, ScrollBarCalendar.hwnd
     
+    '[Monica]11/03/2019: cargamos el fondo nuevo
+    Image2.Picture = LoadPicture(App.Path & "\styles\Arifon2.dll")
+    
+    
 End Sub
 
 Private Sub CreateCalendar()
@@ -137,8 +147,6 @@ Private Sub CreateCalendar()
     EnableScrollV_WeekView = True
     EnableScrollV_MonthView = True
          
-
-
 
     OpenProvider  'cjCalendarData_MySQL, C
 

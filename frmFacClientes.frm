@@ -6,7 +6,7 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmFacClientes 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Clientes"
-   ClientHeight    =   9240
+   ClientHeight    =   9300
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   13425
@@ -15,7 +15,7 @@ Begin VB.Form frmFacClientes
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9240
+   ScaleHeight     =   9300
    ScaleWidth      =   13425
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -6549,11 +6549,11 @@ End Sub
 
 
 Private Sub PonerCamposDirecciones()
-Dim X As Boolean
+Dim x As Boolean
 
     If Data2.Recordset.EOF Then Exit Sub
     
-    X = PonerCamposFormaFrame(Me, "Text3", Data2)
+    x = PonerCamposFormaFrame(Me, "Text3", Data2)
     
     '-- Esto permanece para saber donde estamos
 '    lblIndicador.Caption = Data2.Recordset.AbsolutePosition & " de " & Data2.Recordset.RecordCount
@@ -7209,10 +7209,10 @@ Private Sub PonerOpcionesMenu()
 End Sub
 
 Private Sub KEYpress(KeyAscii As Integer)
-Dim cerrar As Boolean
+Dim Cerrar As Boolean
 
-    KEYpressGnral KeyAscii, Modo, cerrar
-    If cerrar Then Unload Me
+    KEYpressGnral KeyAscii, Modo, Cerrar
+    If Cerrar Then Unload Me
 End Sub
 
 
@@ -7523,7 +7523,7 @@ Dim Ancho As String
 Dim Alinea As String
 Dim Formato As String
 Dim Ncol As Integer
-Dim C As ColumnHeader
+Dim c As ColumnHeader
 
     Select Case OpcionList
     Case 2
@@ -7558,23 +7558,23 @@ Dim C As ColumnHeader
     lw1.ColumnHeaders.Clear
     
     For NumRegElim = 1 To Ncol
-         Set C = lw1.ColumnHeaders.Add()
-         C.Text = RecuperaValor(Columnas, CInt(NumRegElim))
-         C.Width = RecuperaValor(Ancho, CInt(NumRegElim))
-         C.Alignment = Val(RecuperaValor(Alinea, CInt(NumRegElim)))
-         C.Tag = RecuperaValor(Formato, CInt(NumRegElim))
+         Set c = lw1.ColumnHeaders.Add()
+         c.Text = RecuperaValor(Columnas, CInt(NumRegElim))
+         c.Width = RecuperaValor(Ancho, CInt(NumRegElim))
+         c.Alignment = Val(RecuperaValor(Alinea, CInt(NumRegElim)))
+         c.Tag = RecuperaValor(Formato, CInt(NumRegElim))
     Next NumRegElim
 End Sub
 
 Private Sub CargaDatosLWDoc()
-Dim C As String
+Dim c As String
 Dim bs As Byte
     bs = Screen.MousePointer
-    C = Me.lblIndicador.Caption
+    c = Me.lblIndicador.Caption
     lblIndicador.Caption = "Leyendo " & LabelDoc.Caption
     lblIndicador.Refresh
     CargaDatosLWDoc2
-    Me.lblIndicador.Caption = C
+    Me.lblIndicador.Caption = c
     Screen.MousePointer = bs
 End Sub
 
@@ -7740,7 +7740,7 @@ End Sub
 
 Private Function TratarDptoEnTesoreria() As Boolean
 Dim Existe As Boolean
-Dim C As String
+Dim c As String
 
     If Text1(35).Text = "" Or Text2(35).Text = "" Then
         
@@ -7750,9 +7750,9 @@ Dim C As String
 
 
     Existe = False
-    C = "codmacta = '" & Text1(35).Text & "' and Dpto "
-    C = DevuelveDesdeBD(conConta, "descripcion", "departamentos", C, Text3(0).Text)
-    If C <> "" Then Existe = True
+    c = "codmacta = '" & Text1(35).Text & "' and Dpto "
+    c = DevuelveDesdeBD(conConta, "descripcion", "departamentos", c, Text3(0).Text)
+    If c <> "" Then Existe = True
     
     
     If Existe Then
@@ -7761,15 +7761,15 @@ Dim C As String
             
         End If
         'UPDATEAMOS
-        C = "UPDATE  departamentos set Descripcion = " & DBSet(Text3(1).Text, "T")
-        C = C & " WHERE codmacta= '" & Text1(35).Text & "' AND Dpto = " & Text3(0).Text
+        c = "UPDATE  departamentos set Descripcion = " & DBSet(Text3(1).Text, "T")
+        c = c & " WHERE codmacta= '" & Text1(35).Text & "' AND Dpto = " & Text3(0).Text
     Else
         'NO EXISTE... creamos
-        C = "insert into `departamentos` (`codmacta`,`Dpto`,`Descripcion`) values ('"
-        C = C & Text1(35).Text & "'," & Text3(0).Text & "," & DBSet(Text3(1).Text, "T") & ")"
+        c = "insert into `departamentos` (`codmacta`,`Dpto`,`Descripcion`) values ('"
+        c = c & Text1(35).Text & "'," & Text3(0).Text & "," & DBSet(Text3(1).Text, "T") & ")"
         
     End If
-    ConnConta.Execute C
+    ConnConta.Execute c
     
 End Function
 
@@ -7809,7 +7809,7 @@ Dim Ancho As String
 Dim Alinea As String
 Dim Formato As String
 Dim Ncol As Integer
-Dim C As ColumnHeader
+Dim c As ColumnHeader
 Dim Ordena As Integer
     'Las llamadas cogera las llamadas recibidas desde sllama y las efectuadas desde acciones comerciales con tipoaccion=1
     'para poder ordenarlas tendremos una columna viiblefalse con yyymmddhhmmss
@@ -7885,11 +7885,11 @@ Dim Ordena As Integer
     
     
     For NumRegElim = 1 To Ncol
-         Set C = lwCRM.ColumnHeaders.Add()
-         C.Text = RecuperaValor(Columnas, CInt(NumRegElim))
-         C.Width = RecuperaValor(Ancho, CInt(NumRegElim))
-         C.Alignment = Val(RecuperaValor(Alinea, CInt(NumRegElim)))
-         C.Tag = RecuperaValor(Formato, CInt(NumRegElim))
+         Set c = lwCRM.ColumnHeaders.Add()
+         c.Text = RecuperaValor(Columnas, CInt(NumRegElim))
+         c.Width = RecuperaValor(Ancho, CInt(NumRegElim))
+         c.Alignment = Val(RecuperaValor(Alinea, CInt(NumRegElim)))
+         c.Tag = RecuperaValor(Formato, CInt(NumRegElim))
     Next NumRegElim
     
     If Ordena < 0 Then
@@ -7909,14 +7909,14 @@ End Sub
 
 
 Private Sub CargaDatosLWCRM()
-Dim C As String
+Dim c As String
 Dim bs As Byte
     bs = Screen.MousePointer
-    C = Me.lblIndicador.Caption
+    c = Me.lblIndicador.Caption
     lblIndicador.Caption = "Leyendo " & LabelCRM.Caption
     lblIndicador.Refresh
     CargaDatosLWcrm2
-    Me.lblIndicador.Caption = C
+    Me.lblIndicador.Caption = c
     Screen.MousePointer = bs
 End Sub
 

@@ -47,6 +47,8 @@ Private mCuentaba As String 'cuenta bancaria
 
 Private mNumerUve As String 'numero de uve
 
+Private mDtoCentra As Boolean
+
 '------------------------------------------------
 '------------------------------------------------
 'Propiedades del modulo CSocio
@@ -67,12 +69,12 @@ End Property
 
 '**** Nombre del socio
 
-Public Property Let Nombre(ByVal vData As String)
+Public Property Let NOMBRE(ByVal vData As String)
      mNomSocio = vData
 End Property
 
-Public Property Get Nombre() As String
-     Nombre = mNomSocio
+Public Property Get NOMBRE() As String
+     NOMBRE = mNomSocio
 End Property
 
 
@@ -303,6 +305,16 @@ Public Property Get UveSocio() As String
      UveSocio = mNumerUve
 End Property
 
+'**** Aplicar Dto centralizacion
+
+Public Property Let DtoCentra(ByVal vData As Boolean)
+     mDtoCentra = vData
+End Property
+
+Public Property Get DtoCentra() As Boolean
+     DtoCentra = mDtoCentra
+End Property
+
 
 '------------------------------------------------
 '------------------------------------------------
@@ -334,7 +346,7 @@ Public Function LeerDatos(vCodsocio As String) As Boolean
 'Leer los datos de un tranportista dado
 'Lee de la BD: Ariges, Tabla: agencias
 'OUT: True si lee los datos correctamente
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Mens As String
 Dim Sql As String
 Dim CADENA As String
@@ -342,37 +354,39 @@ Dim CADENA As String
     On Error GoTo ELeer
     LeerDatos = False
     
-    Sql = "SELECT codclien,nomclien,domclien,codpobla,pobclien,proclien,nifclien,codbanco,codsucur,digcontr,cuentaba, telclie1, observac, licencia, maiclie1, numeruve, iban "
+    Sql = "SELECT codclien,nomclien,domclien,codpobla,pobclien,proclien,nifclien,codbanco,codsucur,digcontr,cuentaba, telclie1, observac, licencia, maiclie1, numeruve, iban, dtocentra "
     Sql = Sql & " FROM sclien "
     Sql = Sql & " WHERE codclien=" & DBSet(vCodsocio, "N")
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
-    If RS.EOF Then
+    If Rs.EOF Then
         LeerDatos = False
     Else
         Mens = "Datos Socio"
-        mCodSocio = CStr(RS!CodClien)
-        mNomSocio = RS!nomclien
-        mDomSocio = CStr(RS!domclien)
-        mCPostalSocio = CStr(RS!codpobla)
-        mPobSocio = CStr(RS!pobclien)
-        mProSocio = CStr(RS!proclien)
-        mNIFSocio = CStr(RS!nifClien)
+        mCodSocio = CStr(Rs!CodClien)
+        mNomSocio = Rs!nomclien
+        mDomSocio = CStr(Rs!domclien)
+        mCPostalSocio = CStr(Rs!codpobla)
+        mPobSocio = CStr(Rs!pobclien)
+        mProSocio = CStr(Rs!proclien)
+        mNIFSocio = CStr(Rs!nifClien)
         
         '[Monica]22/11/2013: tema iban
-        mIban = CStr(DBLet(RS!Iban, "T"))
+        mIban = CStr(DBLet(Rs!Iban, "T"))
         
-        mCodbanco = CStr(DBLet(RS!codbanco, "N"))
-        mCodsucur = CStr(DBLet(RS!codsucur, "N"))
-        mDigContr = DBLet(RS!digcontr, "T")
-        mCuentaba = DBLet(RS!cuentaba, "T")
-        mLicencia = CStr(DBLet(RS!Licencia, "N"))
-        mTfnoSocio = DBLet(RS!telclie1, "T")
-        mObservac = DBLet(RS!observac, "T")
-        mMaiSocio = DBLet(RS!maiclie1, "T")
-        mNumerUve = DBLet(RS!NumerUve, "N")
+        mCodbanco = CStr(DBLet(Rs!codbanco, "N"))
+        mCodsucur = CStr(DBLet(Rs!codsucur, "N"))
+        mDigContr = DBLet(Rs!digcontr, "T")
+        mCuentaba = DBLet(Rs!cuentaba, "T")
+        mLicencia = CStr(DBLet(Rs!Licencia, "N"))
+        mTfnoSocio = DBLet(Rs!telclie1, "T")
+        mObservac = DBLet(Rs!observac, "T")
+        mMaiSocio = DBLet(Rs!maiclie1, "T")
+        mNumerUve = DBLet(Rs!NumerUve, "N")
+        
+        mDtoCentra = DBLet(Rs!DtoCentra, "N") = 1
         
         CADENA = String(vEmpresa.DigitosUltimoNivel - vEmpresa.DigitosNivelAnterior, "0")
         
@@ -382,8 +396,8 @@ Dim CADENA As String
         LeerDatos = True
     End If
 
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Function
 
 ELeer:
@@ -391,7 +405,7 @@ ELeer:
     Mens = Mens & "Número: " & Err.Number & vbCrLf
     Mens = Mens & "Descripción: " & Err.Description
     MsgBox Mens, vbExclamation
-    Set RS = Nothing
+    Set Rs = Nothing
     LeerDatos = False
 End Function
 
@@ -399,7 +413,7 @@ End Function
 Public Function ConseguirContador(vTipom As String) As Long
 Dim Ok As Boolean
 Dim C1 As Long 'contador
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim SQL2 As String
 Dim Mens As String
@@ -412,11 +426,11 @@ On Error GoTo Err1
     'Abrimos bloqueando
     Sql = "Select contador from sclien_contadores WHERE codsocio=" & Trim(mCodSocio)
     Sql = Sql & " and codtipom = " & DBSet(vTipom, "T") & " FOR UPDATE"
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    If Not RS.EOF Then
-        mContador = RS!Contador
-        C1 = RS!Contador
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    If Not Rs.EOF Then
+        mContador = Rs!Contador
+        C1 = Rs!Contador
         Ok = True
     Else
         'MsgBox "No existe contador de tipo " & vTipom & " para ese socio.", vbExclamation
@@ -432,8 +446,8 @@ On Error GoTo Err1
         
         Ok = True
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
      
     If Ok Then ConseguirContador = C1 + 1
     Exit Function
@@ -497,7 +511,7 @@ Public Function DevolverContador(vCodigo As String, Contador As Long, vTipom As 
 Dim Ok As Boolean
 Dim C1 As Long
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Mens As String
 
 On Error GoTo Err1
@@ -508,14 +522,14 @@ On Error GoTo Err1
     'Conn.Execute "Set autocommit = 0"
     DevolverContador = 1
     Ok = False
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    If Not RS.EOF Then
-        C1 = RS!Contador
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    If Not Rs.EOF Then
+        C1 = Rs!Contador
         Ok = True
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     If Not Ok Then
         conn.Execute "commit"
         Exit Function

@@ -685,7 +685,8 @@ Dim cadTabla As String
                 
                 '[Monica]12/12/2017: por el tema de fusion de empresas, SOLO SI VIENE DE EXCEL
                 '                    si el fichero es de la otra empresa ponemos que el cliente es el gros
-                If Check1(0).Value = 1 Then
+                    '[Monica]12/03/2019: para el caso de cordoba quitamos el lio de empresas
+                If Check1(0).Value = 1 And vParamAplic.Cooperativa <> 2 Then
                     If b Then
                         If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
                             Label1(2).Caption = "Modificando códigos de cliente de otra empresa"
@@ -699,14 +700,17 @@ Dim cadTabla As String
                     End If
                     '[Monica]12/12/2017: eliminamos todos aquellas llamadas que no son de nuestros clientes ni lo ha hecho un asociado nuestro
                     If b Then
-                        Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
-                        Label1(2).Refresh
+                        '[Monica]12/03/2019: añadido
+                        If ComprobarCero(vParamAplic.EmpresaTaxitronic) <> 0 Then
+                            Label1(2).Caption = "Eliminando registros que no se tienen que procesar"
+                            Label1(2).Refresh
+                            
+                            Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
+                            Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
+                            Sql = Sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
                         
-                        Sql = "delete from tmptaxi where codclien = " & DBSet(vParamAplic.ClienteCooperativa, "N")
-                        Sql = Sql & " and codsocio = " & DBSet(vParamAplic.SocioCooperativa, "N")
-                        Sql = Sql & " and empresa <> " & vParamAplic.EmpresaTaxitronic
-                    
-                        b = EjecutarSQL(Sql)
+                            b = EjecutarSQL(Sql)
+                        End If
                     End If
                 End If
                 
@@ -776,38 +780,6 @@ Dim cadTabla As String
                     Rs.Close
         
         
-'[Monica]18/06/2018: quito esto ya van todos por licencia
-'                    '[Monica]28/12/2017: para el caso de Tele y Alfa 6 pongo el numero de V correcto y que no sea cordoba
-'                    If Trim(vParam.CifEmpresa) <> "B98877806" And Check1(0).Value = 1 And vParamAplic.Cooperativa <> 2 Then
-'                        Dim nUve As Long
-'
-'                        Sql = "select codsocio from tmptaxi where error1 = 0 and codsocio <> " & vParamAplic.SocioCooperativa & " group by 1"
-'
-'                        Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
-'
-'                        total = rsContador("select count(*) from (" & Sql & ") aaalias ")  'tmptaxi where error1 <> 1")
-'                        Label1(2).Caption = "Modificando Vehículo en registros del fichero."
-'                        Label1(2).Refresh
-'
-'                        While Not Rs.EOF
-'                            Contador = Contador + 1
-'                           ' ProgressBar1.Value = Round2((Contador * 100) / total, 0)
-'                            DoEvents
-'                            Label1(0).Caption = Contador
-'                            Label1(0).Refresh
-'
-'                            Sql = "select numeruve from sclien where codclien = " & DBSet(Rs!codSocio, "N")
-'                            nUve = DevuelveValor(Sql)
-'
-'                            Sql = "UPDATE tmptaxi set numeruve = " & DBSet(nUve, "N") & " where codsocio = " & DBSet(Rs!codSocio, "N") & " and error1 = 0 "
-'                            conn.Execute Sql
-'
-'                            Rs.MoveNext
-'                        Wend
-'                        Rs.Close
-'
-'                    End If
-                    
         
                     'ahora vamos a buscar en la tabla shilla
                     Sql = "select * from tmptaxi where error1 = 0"
